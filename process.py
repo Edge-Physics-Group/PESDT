@@ -16,6 +16,7 @@ from PESDT.pyADASread import adas_adf11_read, adas_adf15_read, continuo_read
 from PESDT.edge_code_formats.edge2d_format import Edge2D, Cell
 from PESDT.edge_code_formats.solps_format import SOLPS
 
+import amread
 
 
 at_sym = ['H','He','Li','Be','B','C','N','O','F','Ne','Na','Mg',
@@ -68,35 +69,6 @@ def interp_nearest_neighb(point, neighbs, neighbs_param_pervol):
 def isclose(a, b, rel_tol=1e-09, abs_tol=0.0):
     return abs(a-b) <= max(rel_tol * max(abs(a), abs(b)), abs_tol)
 
-def get_eproc_param(self, funstr, parstr, par2str=None, args=None):
-    '''
-    Uses Python eproc to load data from a tran file
-    funstr: eproc function name
-    parstr: tran file variable name (e.g. "DENEL" or "TEV")
-    par2str: identifier for location ('OT', 'IT', 'OMP', 'IMP') or location
-             as an integer index 
-    args: seemingly unused, execpt for accesing eproc ring/row
-    
-    '''
-    if par2str and args:
-        if type(par2str) == int:
-            cmd = 'ret=' + funstr +'(tranfile,'+ """'""" + parstr + """'""" + ',' + str(par2str) + ',' + args + ')'
-        elif type(par2str) == str:
-            cmd = 'ret=' + funstr +'(tranfile,'+ """'""" + parstr + """'""" + ','  + """'""" + par2str + """'""" + ',' + args + ')'
-
-        print(cmd)
-        if funstr == "EprocRow":
-            epdata = ep.row(self.tranfile,parstr,par2str)
-        else:
-            epdata = ep.ring(self.tranfile,parstr,par2str)
-        return {'xdata': epdata.xData, 'ydata': epdata.yData, 'npts': epdata.nPts}
-
-    else:
-        cmd = 'ret=' + funstr +'(tranfile,'+ """'""" + parstr + """'""" + ')'
-        epdata = ep.data(self.tranfile,parstr)
-        print(parstr, epdata.nPts)
-        return {'data': epdata.data, 'npts': epdata.nPts}
-
 class Region:
 
     def __init__(self, name, Rmin, Rmax, Zmin, Zmax, include_confined=True, include_SOL=True, include_PFR=True):
@@ -112,11 +84,9 @@ class Region:
         # container of cell objects belonging to the region
         self.cells = []
 
-        # Total radiated power - main and impuritiy ions
+        # Total radiated power - main ions
         self.Prad_H = 0.0
         self.Prad_H_Lytrap = 0.0
-        self.Prad_imp1 = 0.0
-        self.Prad_imp2 = 0.0
         self.Prad_units = 'W'
 
         # Main ion ionization and recombination [units: s^-1]
@@ -138,16 +108,19 @@ class Region:
 class ProcessEdgeSim:
     '''
     Class to read and store EDGE2D-EIRENE results
+
+    First all properties to be loaded are initialized as "None"
+    Currently the code is very edge2d spesific, i.e. reading SOLPS does not actually work
+
     '''
-    def __init__(self, ADAS_dict, edge_code_defs, ADAS_dict_lytrap=None,
-                 machine='JET', pulse=90531, interactive_plots = False,
-                 spec_line_dict=None, spec_line_dict_lytrap = None, 
-                 diag_list=None, calc_synth_spec_features=None,
-                 calc_NII_afg_feature=False, save_synth_diag=False,
-                 synth_diag_save_file=None, data2d_save_file=None,
-                 outlier_cell_dict=None):
+    def __init__(self, ADAS_dict, edge_code_defs, use_AMJUEL = False, AMJUEL_date = 2016, ADAS_dict_lytrap=None,
+                 machine='JET', pulse=90531, spec_line_dict=None, spec_line_dict_lytrap = None, 
+                 diag_list=None, calc_synth_spec_features=None, save_synth_diag=False,
+                 synth_diag_save_file=None, data2d_save_file=None, outlier_cell_dict=None, recalc_h2_pos=True, **kwargs):
 
         self.ADAS_dict = ADAS_dict
+        self.AMJUEL_date = AMJUEL_date
+        self.use_AMJUEL = use_AMJUEL
         self.ADAS_dict_lytrap = ADAS_dict_lytrap
         self.spec_line_dict = spec_line_dict
         self.spec_line_dict_lytrap = spec_line_dict_lytrap
@@ -155,6 +128,7 @@ class ProcessEdgeSim:
         self.sim_path = edge_code_defs['sim_path']
         self.machine = machine
         self.pulse = pulse
+        self.recalc_h2_pos = recalc_h2_pos
 
         self.regions = {}
 
@@ -163,7 +137,6 @@ class ProcessEdgeSim:
         self.cells_df = None
 
         #Flags
-        self.calc_NII_afg_feature = calc_NII_afg_feature
 
         self.geom = None
         self.teve = None
@@ -195,15 +168,8 @@ class ProcessEdgeSim:
         self.ne = None
         self.ni = None
         self.n0 = None
-
-        # impurities
-        self.zch = None
-        self.imp1_atom_num = None
-        self.imp2_atom_num = None
-        self.imp1_chrg_idx = []
-        self.imp2_chrg_idx = []
-        self.imp1_denz = []
-        self.imp2_denz = []
+        self.n2 = None
+        self.n2p = None
 
         # dictionary of outlier cells and their specified neighbours for interpolation
         self.outlier_cell_dict = outlier_cell_dict
@@ -212,60 +178,69 @@ class ProcessEdgeSim:
         
         # New (04-Mar-2021) way of reading edge code data
         if self.edge_code == 'edge2d':
-            self.data = Edge2D(self.sim_path)
+            data = Edge2D(self.sim_path)
             #self.cells = self.data.quad_cells
-            self.cells = self.data.cells          
+            # For compatability reasons, copy everything over manually.
+            # If we want to continue to use separate "<sol_code>_format.py" files
+            # to read results, the best way moving forward would be to just use self.data.
+            # This, however, would require changes to multiple places in the code, which 
+            # I don't have the time for right now. - V.-P Rikala
+            self.geom = data.geom
+            self.teve = data.teve
+            self.den = data.den
+            self.denel = data.denel
+            self.da = data.da
+            self.korpg = data.korpg
+            self.rmesh = data.rmesh
+            self.rvertp = data.rvertp
+            self.zmesh = data.zmesh
+            self.zvertp = data.zvertp
+            self.NE2Ddata = data.NE2Ddata
+            self.patches = data.patches
+            #self.H_adf11 = self.data.H_adf11
+
+            self.sep_poly = data.sep_poly
+            self.shply_sep_poly = data.shply_sep_poly
+            self.sep_poly_below_xpt = data.sep_poly_below_xpt
+            self.shply_sep_poly_below_xpt = data.shply_sep_poly_below_xpt
+
+            self.wall_poly = data.wall_poly
+            self.shply_wall_poly = data.shply_wall_poly
+
+            self.rv = data.rv
+            self.zv = data.zv
+            
+            self.osp = data.osp
+            self.isp = data.isp
+
+            # variables mapped onto edge_codes grid
+            self.te = data.te
+            self.ne = data.ne
+            self.ni = data.ni
+            self.n0 = data.n0
+            self.n2 = data.n2
+            self.n2p = data.n2p
+
+            self.cells = data.cells
+
+            self.data = data      
         elif self.edge_code == 'solps':
             self.data = SOLPS(self.sim_path)
-            self.cells = self.data.tri_cells            
-            
-        # For compatability reasons, copy everything over manually.
-        # If we want to continue to use separate "<sol_code>_format.py" files
-        # to read results, the best way moving forward would be to just use self.data.
-        # This, however, would require changes to multiple places in the code, which 
-        # I don't have the time for right now. - V.-P Rikala
-        self.geom = self.data.geom
-        self.teve = self.data.teve
-        self.den = self.data.den
-        self.denel = self.data.denel
-        self.da = self.data.da
-        self.korpg = self.data.korpg
-        self.rmesh = self.data.rmesh
-        self.rvertp = self.data.rvertp
-        self.zmesh = self.data.zmesh
-        self.zvertp = self.data.zvertp
-        self.NE2Ddata = self.data.NE2Ddata
-        self.patches = self.data.patches
-        #self.H_adf11 = self.data.H_adf11
+            self.cells = self.data.tri_cells     
 
-        self.sep_poly = self.data.sep_poly
-        self.shply_sep_poly = self.data.shply_sep_poly
-        self.sep_poly_below_xpt = self.data.sep_poly_below_xpt
-        self.shply_sep_poly_below_xpt = self.data.shply_sep_poly_below_xpt
-
-        self.wall_poly = self.data.wall_poly
-        self.shply_wall_poly = self.data.shply_wall_poly
-
-        self.rv = self.data.rv
-        self.zv = self.data.zv
-        
-        self.osp = self.data.osp
-        self.isp = self.data.isp
-
-        # variables mapped onto edge_codes grid
-        self.te = self.data.te
-        self.ne = self.data.ne
-        self.ni = self.data.ni
-        self.n0 = self.data.n0
-
-        # impurities
-        self.zch = self.data.zch
-        self.imp1_atom_num = self.data.imp1_atom_num
-        self.imp2_atom_num = self.data.imp2_atom_num
-        self.imp1_chrg_idx = self.data.imp1_chrg_idx
-        self.imp2_chrg_idx = self.data.imp2_chrg_idx
-        self.imp1_denz = self.data.imp1_denz
-        self.imp2_denz = self.data.imp2_denz
+            self.ne = []
+            self.n0 = []
+            self.n2 = []
+            self.n2p = []
+            self.ni = []
+            self.te = []
+            for cell in self.cells:
+                self.ne.append(cell.ne)   
+                self.n0.append(cell.n0)
+                self.n2.append(cell.n2)
+                self.n2p.append(cell.n2p)
+                self.ni.append(cell.ni)   
+                self.te.append(max(cell.te,0.1))       
         
         # Interpolate any outlier cells using specified neighbours R,Z coords. Interpolated cell's plasma properties
         # are averages of its neighbours weighted by the distance between centroids.
@@ -307,28 +282,20 @@ class ProcessEdgeSim:
         # Calc ff+fb emissivity.
         # Use KL11 cam e WI filter.
         # TODO: generalise to accept other filters
-        filter_file = '/home/bloman/python_bal/TomI/kl11_filters/WI40096_kl11_filter_peak_norm.txt'
-        filter_curve = np.genfromtxt(filter_file, delimiter=',', skip_header=4)
-        print('FF+FB emission filter file: ', filter_file)
-        self.calc_ff_fb_filtered_emiss(filter_curve[:,0], filter_curve[:,1])
+        #filter_file = '/home/bloman/python_bal/TomI/kl11_filters/WI40096_kl11_filter_peak_norm.txt'
+        #filter_curve = np.genfromtxt(filter_file, delimiter=',', skip_header=4)
+        #print('FF+FB emission filter file: ', filter_file)
+        #self.calc_ff_fb_filtered_emiss(filter_curve[:,0], filter_curve[:,1])
 
-        # # Had to comment this out due issue with ADAS readers (29/04/2022 by bloman):
-        # if (self.mesh_data.imp1_atom_num or self.mesh_data.imp2_atom_num):
-        #     self.calc_imp_rad_power()
-
-        if self.spec_line_dict and (self.data.imp1_atom_num 
-            or self.data.imp2_atom_num):
-            self.calc_imp_emiss()
-            self.calc_imp_rad_power()
 
         # CALULCATE PRAD IN DEFINED MACRO REGIONS
         # TODO: Add opacity calcs
-        if self.regions:
-            self.calc_region_aggregates()
+        #if self.regions:
+        #    self.calc_region_aggregates()
 
         # CALCULATE POWER FLOW INTO INNER AND OUTER DIVERTOR AT Z=-1.2
-        if self.edge_code == 'edge2d':
-            self.calc_qpol_div()
+        #if self.edge_code == 'edge2d':
+        #    self.calc_qpol_div()
 
         if diag_list:
             print('diag_list', diag_list)
@@ -336,15 +303,22 @@ class ProcessEdgeSim:
                 if key in self.defs.diag_dict.keys():
                     self.synth_diag[key] = SynthDiag(self.defs, diag=key,
                                                      spec_line_dict = self.spec_line_dict,
-                                                     spec_line_dict_lytrap=self.spec_line_dict_lytrap,
-                                                     imp1_atom_num=self.imp1_atom_num, imp2_atom_num=self.imp2_atom_num,
-                                                     calc_NII_afg_feature=self.calc_NII_afg_feature)
+                                                     spec_line_dict_lytrap=self.spec_line_dict_lytrap, 
+                                                     use_AMJUEL = self.use_AMJUEL)
                     for chord in self.synth_diag[key].chords:
                         # Basic LOS implementation using 2D polygons - no reflections
                         self.los_intersect(chord)
                         chord.orthogonal_polys()
-                        chord.calc_int_and_1d_los_quantities()
+                        if self.use_AMJUEL:
+                            chord.calc_int_and_1d_los_quantities_AMJUEL_1()
+                        else:
+                            chord.calc_int_and_1d_los_quantities_1()
                         if calc_synth_spec_features:
+                            # Derived ne, te require information along LOS, calc emission again using _2 functions
+                            if self.use_AMJUEL:
+                                chord.calc_int_and_1d_los_quantities_AMJUEL_2()
+                            else:
+                                chord.calc_int_and_1d_los_quantities_2()
                             print('Calculating synthetic spectra for diag: ', key)
                             chord.calc_int_and_1d_los_synth_spectra()
 
@@ -357,10 +331,6 @@ class ProcessEdgeSim:
             output = open(data2d_save_file, 'wb')
             pickle.dump(self, output)
             output.close()
-
-        # Plotting routines
-        if interactive_plots:
-            print('Interactive plots is disabled. Use PyprocPlot instead.')
 
     def __getstate__(self):
         """
@@ -390,10 +360,9 @@ class ProcessEdgeSim:
                     neighb_ne = []
                     neighb_ni = []
                     neighb_n0 = []
+                    neighb_n2 = []
                     neighb_Te = []
                     neighb_Ti = []
-                    neighb_imp1_den = []
-                    neighb_imp2_den = []
                     for i, neighb in enumerate(outlier_cell['neighbs_RZ']):
                         for _cell in self.cells:
                             if isclose(_cell.R, neighb[i][0], rel_tol=1e-09, abs_tol=rz_match_tol) and \
@@ -402,22 +371,18 @@ class ProcessEdgeSim:
                                 neighb_ne.append(_cell.ne)
                                 neighb_ni.append(_cell.ni)
                                 neighb_n0.append(_cell.n0)
+                                neighb_n2.append(_cell.n2)
                                 neighb_Te.append(_cell.Te)
                                 neighb_Ti.append(_cell.Ti)
-                                neighb_imp1_den.append(_cell.imp1_den)
-                                neighb_imp2_den.append(_cell.imp2_den)
                                 break
 
                     # now interpolate
                     cell.ne = interp_nearest_neighb([R,Z], neighbs_RZ, neighb_ne)
                     cell.ni = interp_nearest_neighb([R,Z], neighbs_RZ, neighb_ni)
                     cell.n0 = interp_nearest_neighb([R,Z], neighbs_RZ, neighb_n0)
+                    cell.n2 = interp_nearest_neighb([R,Z], neighbs_RZ, neighb_n2)
                     cell.Te = interp_nearest_neighb([R,Z], neighbs_RZ, neighb_Te)
                     cell.Ti = interp_nearest_neighb([R,Z], neighbs_RZ, neighb_Ti)
-                    # have to loop over impurity charge states
-                    cell.imp1_den = interp_nearest_neighb([R,Z], neighbs_RZ, neighb_imp1_den)
-                    cell.imp2_den = interp_nearest_neighb([R,Z], neighbs_RZ, neighb_imp2_den)
-
                 break
 
 
@@ -457,14 +422,34 @@ class ProcessEdgeSim:
 
 
     def calc_H_emiss(self):
-        # Te_rnge = [0.2, 5000]
-        # ne_rnge = [1.0e11, 1.0e15]
-        # PEC_dict = adas_adf15_utils.get_adas_H_PECs_interp(self.spec_line_dict, Te_rnge, ne_rnge, npts=self.ADAS_npts, npts_interp=1000)
+        '''
+        Calculate the hydrogenic emission for spectral lines defined in the input
+
+        If Use_AMJUEL flag set to true, calculate the emission with contributions from molecules and H-
+        Otherwise used ADAS rates for contributions from el-impact excitation and recombination.
+
+        TODO: addability to define path to AMJUEL.tex. Currently assume that the file is located in the home dir.
+
+        '''
         print('Calculating H emission...')
-        for cell in self.cells:
+        if self.use_AMJUEL:
+            print('Using AMJUEL data')
+            debug = True
+            h3 = False
+            if self.AMJUEL_date >= 2017:
+                h3 = True
             for line_key in self.spec_line_dict['1']['1']:
-                E_excit, E_recom= adas_adf15_read.get_H_line_emiss(line_key, self.ADAS_dict['adf15']['1']['1'], cell.te, cell.ne*1.0E-06, cell.ni*1.0E-06, cell.n0*1.0E-06)
-                cell.H_emiss[line_key] = {'excit':E_excit, 'recom':E_recom, 'units':'ph.s^-1.m^-3.sr^-1'}
+                E_excit, E_recom, E_mol, E_h2_pos, E_h3_pos, E_h_neg, E_tot = amread.calc_photon_rate(self.spec_line_dict['1']['1'][line_key], self.te, self.ne, self.n0, mol_n_density=self.n2,molp_n_density=self.n2p,p_density=self.ni, h3=h3, recalc_h2_pos=self.recalc_h2_pos, debug=debug)
+                for k in range(len(self.cells)):
+                    self.cells[k].H_emiss[line_key] = {'excit': E_excit[k], 'recom': E_recom[k], "h2": E_mol[k], "h2+": E_h2_pos[k], "h3+": E_h3_pos[k], "h-": E_h_neg[k], "tot": E_tot[k], 
+                    "units": 'ph.s^-1.m^-3.sr^-1'}
+                                      
+        else: 
+            print("Using Adas")
+            for cell in self.cells:
+                for line_key in self.spec_line_dict['1']['1']:
+                    E_excit, E_recom= adas_adf15_read.get_H_line_emiss(line_key, self.ADAS_dict['adf15']['1']['1'], cell.te, cell.ne*1.0E-06, cell.ni*1.0E-06, cell.n0*1.0E-06)
+                    cell.H_emiss[line_key] = {'excit':E_excit, 'recom':E_recom, 'units':'ph.s^-1.m^-3.sr^-1'}
 
         if self.spec_line_dict_lytrap:
             print('Calculating H emission for Ly trapping...')
@@ -518,7 +503,6 @@ class ProcessEdgeSim:
             sum_ff_radpwr += cell.ff_radpwr
         print('Total ff radiated power:', sum_ff_radpwr, ' [W]')
 
-
     def calc_H_rad_power(self):
         # Te_rnge = [0.2, 5000]
         # ne_rnge = [1.0e11, 1.0e15]
@@ -557,104 +541,6 @@ class ProcessEdgeSim:
             self.Prad_H_Lytrap = sum_pwr
             print('Total H radiated power w/ Ly trapping:', sum_pwr, ' [W]')
 
-    def calc_imp_emiss(self):
-        # Te_rnge = [0.2, 5000]
-        # ne_rnge = [1.0e11, 1.0e15]
-        # PEC_dict = adas_adf15_utils.get_adas_imp_PECs_interp(self.spec_line_dict, Te_rnge, ne_rnge, npts=self.ADAS_npts, npts_interp=1000)
-        # Also get adf11 for the ionisation balance fractional abundance. No Te_arr, ne_arr interpolation
-        # available in the adf11 reader at the moment, so generate more coarse array (sloppy!)
-        # TODO: add interpolation capability to the adf11 reader so that adf15 and adf11 are on the same Te, ne grid
-        # Te_arr_adf11 = np.logspace(np.log10(Te_rnge[0]), np.log10(Te_rnge[1]), 500)
-        # ne_arr_adf11 = np.logspace(np.log10(ne_rnge[0]), np.log10(ne_rnge[1]), 30)
-
-        e2d_imps = self.data.zch['data'][0:2]
-        for e2d_imp_idx, e2d_at_num in enumerate(e2d_imps):
-            for req_at_num in self.spec_line_dict:
-                if int(req_at_num) == int(e2d_at_num):
-                    print('Calculating impurity (atomic num. =' , req_at_num, ') emission...')
-                    # Get the adf11 data for the ionisation balance frac. abundances (adas_405 code)
-                    # self.imp_adf11 = adas_adf11_utils.get_adas_imp_adf11(e2d_at_num, Te_arr_adf11, ne_arr_adf11)
-                    for cell in self.cells:
-                        cell.imp_emiss[req_at_num] = {}
-                        for ion_stage in self.spec_line_dict[req_at_num]:
-                            cell.imp_emiss[req_at_num][ion_stage] = {}
-                            if e2d_imp_idx == 0: # impurity 1
-                                imp_den_parent_stage = cell.imp1_den[int(ion_stage)]
-                                imp_den_ion_stage = cell.imp1_den[int(ion_stage)-1]
-                                ion_frac = cell.imp1_den[int(ion_stage)-1] / np.sum(cell.imp1_den)
-                                ion_frac_parent = cell.imp1_den[int(ion_stage)] / np.sum(cell.imp1_den)
-                            else: # impurity 2
-                                imp_den_parent_stage = cell.imp2_den[int(ion_stage)]
-                                imp_den_ion_stage = cell.imp2_den[int(ion_stage)-1]
-                                ion_frac = cell.imp2_den[int(ion_stage)-1] / np.sum(cell.imp2_den)
-                                ion_frac_parent = cell.imp2_den[int(ion_stage)] / np.sum(cell.imp2_den)
-                            for line_key in self.spec_line_dict[req_at_num][ion_stage]:
-                                idxTe_adf11, valTe_adf11 = find_nearest(self.ADAS_dict['adf11'][req_at_num].Te_arr, cell.te)
-                                idxne_adf11, valne_adf11 = find_nearest(self.ADAS_dict['adf11'][req_at_num].ne_arr, cell.ne*1.0E-06)
-                                ion_frac_ionbal = self.ADAS_dict['adf11'][req_at_num].ion_bal_frac['ion'][idxne_adf11,idxTe_adf11,int(ion_stage)-1]
-                                ion_frac_parent_ionbal = self.ADAS_dict['adf11'][req_at_num].ion_bal_frac['ion'][idxne_adf11,idxTe_adf11,int(ion_stage)]
-
-                                E_excit, E_recom= adas_adf15_read.get_imp_line_emiss(line_key, self.ADAS_dict['adf15'][req_at_num][ion_stage], cell.te, cell.ne*1.0E-06, imp_den_parent_stage*1.0E-06, imp_den_ion_stage*1.0E-06)
-                                idxTe, valTe = find_nearest(self.ADAS_dict['adf15'][req_at_num][ion_stage][line_key+'recom'].Te_arr, cell.te)
-                                idxne, valne = find_nearest(self.ADAS_dict['adf15'][req_at_num][ion_stage][line_key+'recom'].ne_arr, cell.ne*1.0E-06)
-                                PEC_recom =  self.ADAS_dict['adf15'][req_at_num][ion_stage][line_key+'recom'].pec[idxTe, idxne]
-                                PEC_excit =  self.ADAS_dict['adf15'][req_at_num][ion_stage][line_key+'excit'].pec[idxTe, idxne]
-                                cell.imp_emiss[req_at_num][ion_stage][line_key] = {'excit':E_excit, 'recom':E_recom, 'units':'ph.s^-1.m^-3.sr^-1',
-                                                                                   'PEC_excit':PEC_excit, 'PEC_recom':PEC_recom,
-                                                                                   'fPEC_excit':ion_frac*PEC_excit, 'fPEC_recom':ion_frac_parent*PEC_recom,
-                                                                                   'fPEC_excit_ionbal':ion_frac_ionbal*PEC_excit, 'fPEC_recom_ionbal':ion_frac_parent_ionbal*PEC_recom}
-
-    def calc_imp_rad_power(self):
-
-        e2d_imps = self.data.zch['data'][0:2]
-        for e2d_imp_idx, e2d_at_num in enumerate(e2d_imps):
-            if e2d_imp_idx == 0 and e2d_at_num > 0: # impurity 1
-                print('Calculating impurity (atomic num. =' , e2d_at_num, ') power...')
-                sum_pwr = 0
-                for cell in self.cells:
-                    iTe, vTe = find_nearest(self.ADAS_dict['adf11'][str(e2d_at_num)].Te_arr, cell.te)
-                    ine, vne = find_nearest(self.ADAS_dict['adf11'][str(e2d_at_num)].ne_arr, cell.ne*1.0e-06)
-                    for ion_stage in range(e2d_at_num):
-                        # plt/prb absolute rad pow contr in units W
-                        plt_contr = self.ADAS_dict['adf11'][str(e2d_at_num)].plt[iTe,ine,ion_stage]*(1.0e-06*cell.imp1_den[ion_stage])*(1.0e-06*cell.ne)
-                        prb_contr = self.ADAS_dict['adf11'][str(e2d_at_num)].prb[iTe,ine,ion_stage]*(1.0e-06*cell.imp1_den[ion_stage+1])*(1.0e-06*cell.ne)
-                        prc_contr = self.ADAS_dict['adf11'][str(e2d_at_num)].prc[iTe,ine,ion_stage]*(1.0e-06*cell.imp1_den[ion_stage+1])*(1.0e-06*cell.n0)
-                        cell_vol = cell.poly.area * 2.0 * np.pi * cell.R # m^3
-                        cell.imp1_radpwr.append((plt_contr+prb_contr+prc_contr)*1.e06*cell_vol) # Watts
-                        cell.imp1_radpwr_perm3.append((plt_contr+prb_contr+prc_contr)*1.e06) # Watts m^-3
-                        # plt/prb contr to rad loss coefficient in units W.m^3
-                        ion_frac = cell.imp1_den[ion_stage] / np.sum(cell.imp1_den)
-                        ion_frac_parent = cell.imp1_den[ion_stage+1] / np.sum(cell.imp1_den)
-                        cell.imp1_radpwr_coeff.append(1.0e-06*(self.ADAS_dict['adf11'][str(e2d_at_num)].plt[iTe,ine,ion_stage]*ion_frac+
-                                                               self.ADAS_dict['adf11'][str(e2d_at_num)].prb[iTe,ine,ion_stage]*ion_frac_parent))
-                    sum_pwr += np.sum(np.asarray(cell.imp1_radpwr)) # sanity check. compare to eproc
-                print('Total power (atomic num. =' , e2d_at_num, '):', sum_pwr, ' [W]')
-                self.Prad_imp1 = sum_pwr
-            elif e2d_imp_idx == 1 and e2d_at_num > 0: # impurity 2
-                print('Calculating impurity (atomic num. =' , e2d_at_num, ') power...')
-                sum_pwr = 0
-                for cell in self.cells:
-                    iTe, vTe = find_nearest(self.ADAS_dict['adf11'][str(e2d_at_num)].Te_arr, cell.te)
-                    ine, vne = find_nearest(self.ADAS_dict['adf11'][str(e2d_at_num)].ne_arr, cell.ne*1.0e-06)
-                    for ion_stage in range(e2d_at_num):
-                        # plt/prb_contr in units W.cm^-3
-                        plt_contr = self.ADAS_dict['adf11'][str(e2d_at_num)].plt[iTe,ine,ion_stage]*(1.0e-06*cell.imp2_den[ion_stage])*(1.0e-06*cell.ne)
-                        # if ion_stage > 0:
-                        prb_contr = self.ADAS_dict['adf11'][str(e2d_at_num)].prb[iTe,ine,ion_stage]*(1.0e-06*cell.imp2_den[ion_stage+1])*(1.0e-06*cell.ne)
-                        # else:
-                        #     prb_contr = 0.0
-                        prc_contr = self.ADAS_dict['adf11'][str(e2d_at_num)].prc[iTe,ine,ion_stage]*(1.0e-06*cell.imp2_den[ion_stage+1])*(1.0e-06*cell.n0)
-                        cell_vol = cell.poly.area * 2.0 * np.pi * cell.R # m^3
-                        cell.imp2_radpwr.append((plt_contr+prb_contr+prc_contr)*1.e06*cell_vol) #Watts
-                        cell.imp2_radpwr_perm3.append((plt_contr+prb_contr+prc_contr)*1.e06) #Watts m^-3
-                        # plt/prb contr to rad loss coefficient in units W.m^3
-                        ion_frac = cell.imp2_den[ion_stage] / np.sum(cell.imp2_den)
-                        ion_frac_parent = cell.imp2_den[ion_stage+1] / np.sum(cell.imp2_den)
-                        cell.imp2_radpwr_coeff.append(1.0e-06*(self.ADAS_dict['adf11'][str(e2d_at_num)].plt[iTe,ine,ion_stage]*ion_frac+
-                                                               self.ADAS_dict['adf11'][str(e2d_at_num)].prb[iTe,ine,ion_stage]*ion_frac_parent))
-                    sum_pwr += np.sum(np.asarray(cell.imp2_radpwr)) # sanity check. compare to eproc
-                print('Total power (atomic num. =' , e2d_at_num, '):', sum_pwr, ' [W]')
-                self.Prad_imp2 = sum_pwr
 
     def los_intersect(self, los):
         for cell in self.cells:
@@ -666,19 +552,14 @@ class ProcessEdgeSim:
                 clipped_poly = los.los_poly.intersection(cell.poly)
                 if clipped_poly.geom_type == 'Polygon':
                     centroid_p = clipped_poly.centroid
-                    clipped_cell = Cell(centroid_p.x, centroid_p.y, poly=clipped_poly, te=cell.te, ne=cell.ne, ni=cell.ni, n0=cell.n0, Srec=cell.Srec, Sion=cell.Sion, imp1_den = cell.imp1_den, imp2_den=cell.imp2_den)
+                    clipped_cell = Cell(centroid_p.x, centroid_p.y, poly=clipped_poly, te=cell.te, ne=cell.ne, ni=cell.ni, n0=cell.n0, Srec=cell.Srec, Sion=cell.Sion)
                     clipped_cell.H_emiss = cell.H_emiss
-                    clipped_cell.imp_emiss = cell.imp_emiss
                     area_ratio = clipped_cell.poly.area /  cell.poly.area
                     clipped_cell.H_radpwr = cell.H_radpwr * area_ratio
                     clipped_cell.H_radpwr_perm3 = cell.H_radpwr_perm3
                     if self.spec_line_dict_lytrap:
                         clipped_cell.H_radpwr_Lytrap = cell.H_radpwr_Lytrap * area_ratio
                         clipped_cell.H_radpwr_Lytrap_perm3 = cell.H_radpwr_Lytrap_perm3
-                    clipped_cell.imp1_radpwr = np.asarray(cell.imp1_radpwr) * area_ratio
-                    clipped_cell.imp1_radpwr_perm3 = cell.imp1_radpwr_perm3
-                    clipped_cell.imp2_radpwr = np.asarray(cell.imp2_radpwr) * area_ratio
-                    clipped_cell.imp2_radpwr_perm3 = cell.imp2_radpwr_perm3
                     clipped_cell.ff_radpwr = np.asarray(cell.ff_radpwr) * area_ratio
                     clipped_cell.ff_radpwr_perm3 = cell.ff_radpwr_perm3
                     clipped_cell.ff_fb_radpwr = np.asarray(cell.ff_fb_radpwr) * area_ratio
@@ -691,28 +572,6 @@ class ProcessEdgeSim:
 #        if los.los_poly.intersects(self.shply_sep_poly_below_xpt):
 #            los.shply_intersects_w_sep = None#los.shply_cenline.intersection(self.shply_sep_poly_below_xpt)
 
-    def ion_balance_OT(self, nrings=20):
-        # RING-WISE IONISATION VS TARGET FLUX COMPARISON
-        """
-        NOTE: UNTESTED
-        21-9-2023: Switched IDLeproc to Python eproc, but did not have time to 
-        test the function V-P R.
-        """
-        for iring in range(0,nrings):
-            labelarg = 'S' + str(iring)
-            pflxd = get_eproc_param(self, "EprocRing", 'PFLXD', labelarg, args = 'parallel=0')
-            pflxd['ydata']*=-1.0
-            dv = get_eproc_param(self, "EprocRing", 'DV', labelarg, args = 'parallel=0')
-            soun = get_eproc_param(self, "EprocRing", 'SOUN', labelarg, args = 'parallel=0')
-            rmesh = get_eproc_param(self, "EprocRing", 'RMESH', labelarg, args = 'parallel=0')
-            soun_dv = soun['ydata']*dv['ydata']
-            sum_soun_dv = np.sum(np.abs(soun_dv[0:40]))
-            plt.plot(rmesh['ydata'][0], sum_soun_dv, 'ob')
-            plt.plot(rmesh['ydata'][0],pflxd['ydata'][0], 'or')
-
-        pflxd_OT = get_eproc_param(self, "EprocRow", 'PFLXD', 'OT', args = 'ALL_POINTS=0')
-        plt.plot(pflxd_OT['xdata']+self.osp[0], -1.0*pflxd_OT['ydata'], '-ok')
-        plt.show()
 
     def calc_qpol_div(self):
 
@@ -782,10 +641,6 @@ class ProcessEdgeSim:
                     region.Prad_H += cell.H_radpwr
                     if self.spec_line_dict_lytrap:
                         region.Prad_H_Lytrap += cell.H_radpwr_Lytrap
-                    if self.imp1_atom_num:
-                        region.Prad_imp1 += np.sum(cell.imp1_radpwr)
-                    if self.imp2_atom_num:
-                        region.Prad_imp2 += np.sum(cell.imp2_radpwr)
                     # ionization/recombination * cell volume
                     region.Sion += cell.Sion * 2.*np.pi*cell.R * cell.poly.area
                     region.Srec += cell.Srec * 2.*np.pi*cell.R * cell.poly.area
@@ -814,12 +669,9 @@ class LOS:
 
     def __init__(self, diag, los_poly = None, chord_num=None, p1 = None, w1 = None, p2orig = None, p2 = None,
                  w2orig = None, w2 = None, l12 = None, theta=None, los_angle=None, spec_line_dict=None,
-                 spec_line_dict_lytrap=None,
-                 imp1_atom_num=None, imp2_atom_num=None, calc_NII_afg_feature=False):
+                 spec_line_dict_lytrap=None, use_AMJUEL = False):
 
         self.diag = diag
-
-        self.calc_NII_afg_feature = calc_NII_afg_feature
 
         self.los_poly = los_poly
         self.chord_num = chord_num
@@ -835,8 +687,7 @@ class LOS:
         self.cells = []
         self.spec_line_dict = spec_line_dict
         self.spec_line_dict_lytrap = spec_line_dict_lytrap
-        self.imp1_atom_num = imp1_atom_num
-        self.imp2_atom_num = imp2_atom_num
+        self.use_AMJUEL = use_AMJUEL
 
         # center line shapely object
         self.shply_cenline = None
@@ -884,7 +735,7 @@ class LOS:
 
             cell.los_ortho_delL = cell_area / cell.los_ortho_width
 
-    def calc_int_and_1d_los_quantities(self):
+    def calc_int_and_1d_los_quantities_1(self):
 
         # SUM H EMISSION METHOD 1: TRAVERSE CELLS AND SUM EMISSIVITIES*ORTHO_DELL
         self.los_int['H_emiss'] = {}
@@ -905,23 +756,6 @@ class LOS:
                     sum_excit += (cell.H_emiss[key]['excit'] * cell.los_ortho_delL)
                     sum_recom += (cell.H_emiss[key]['recom'] * cell.los_ortho_delL)
                 self.los_int['H_emiss'].update({key:{'excit':sum_excit, 'recom':sum_recom, 'units':'ph.s^-1.m^-2.sr^-1'}})
-
-
-        # SUM IMPURITY EMISSION
-        if self.spec_line_dict:
-            self.los_int['imp_emiss'] = {}
-            for at_num in self.spec_line_dict:
-                if int(at_num)>1: # skip hydrogen
-                    self.los_int['imp_emiss'][at_num] = {}
-                    for ion_stage in self.spec_line_dict[at_num]:
-                        self.los_int['imp_emiss'][at_num][ion_stage] = {}
-                        for line_key in self.spec_line_dict[at_num][ion_stage]:
-                            sum_excit = 0
-                            sum_recom = 0
-                            for cell in self.cells:
-                                sum_excit += (cell.imp_emiss[at_num][ion_stage][line_key]['excit'] * cell.los_ortho_delL)
-                                sum_recom += (cell.imp_emiss[at_num][ion_stage][line_key]['recom'] * cell.los_ortho_delL)
-                            self.los_int['imp_emiss'][at_num][ion_stage].update({line_key:{'excit':sum_excit, 'recom':sum_recom, 'units':'ph.s^-1.m^-2.sr^-1'}})
 
         # SUM TOTAL RECOMBINATION/IONISATION
         self.los_int['Srec'] = {}
@@ -967,28 +801,7 @@ class LOS:
             self.los_int['Prad_Lytrap'].update({'H': sum_Prad_H_Lytrap, 'units': 'W'})
             self.los_int['Prad_Lytrap_perm2'].update({'H': sum_Prad_H_Lytrap_perm2, 'units': 'W m^-2'})
 
-        if self.imp1_atom_num:
-            sum_Prad_imp1 = np.zeros((self.imp1_atom_num))
-            sum_Prad_imp1_perm2 = np.zeros((self.imp1_atom_num))
-            for cell in self.cells:
-                sum_Prad_imp1 += (cell.imp1_radpwr)
-                sum_Prad_imp1_perm2 += (np.asarray(cell.imp1_radpwr_perm3)*cell.los_ortho_delL)
-            self.los_int['Prad'].update({'imp1':sum_Prad_imp1})
-            self.los_int['Prad']['imp1'] = self.los_int['Prad']['imp1'].tolist()
-            self.los_int['Prad_perm2'].update({'imp1':sum_Prad_imp1_perm2})
-            self.los_int['Prad_perm2']['imp1'] = self.los_int['Prad_perm2']['imp1'].tolist()
-
-        if self.imp2_atom_num:
-            sum_Prad_imp2 = np.zeros((self.imp2_atom_num))
-            sum_Prad_imp2_perm2 = np.zeros((self.imp2_atom_num))
-            for cell in self.cells:
-                sum_Prad_imp2 += (cell.imp2_radpwr)
-                sum_Prad_imp2_perm2 += (np.asarray(cell.imp2_radpwr_perm3)*cell.los_ortho_delL)
-            self.los_int['Prad'].update({'imp2':sum_Prad_imp2})
-            self.los_int['Prad']['imp2'] = self.los_int['Prad']['imp2'].tolist()
-            self.los_int['Prad_perm2'].update({'imp2': sum_Prad_imp2_perm2})
-            self.los_int['Prad_perm2']['imp2'] = self.los_int['Prad_perm2']['imp2'].tolist()
-
+    def calc_int_and_1d_los_quantities_2(self):
         ####################################################
         # COMPUTE AVERAGED QUANTITIES ALONG LOS
         ####################################################
@@ -996,10 +809,6 @@ class LOS:
         self.los_1d['l'] = np.arange(0, self.l12, self.los_1d['dl'])
         for item in ['ne', 'n0', 'te', 'ortho_delL']:
             self.los_1d[item] = np.zeros((len(self.los_1d['l'])))
-        if self.imp1_atom_num:
-            self.los_1d['imp1_den'] = np.zeros((len(self.los_1d['l']), self.imp1_atom_num+1))
-        if self.imp2_atom_num:
-            self.los_1d['imp2_den'] = np.zeros((len(self.los_1d['l']), self.imp2_atom_num+1))
 
         # H EMISS LOS 1D METHOD 2: SIMILAR TO METHOD 1 ABOVE, EXCEPT 1D PROFILE INFO IS ALSO STORED ALONG LOS
         recom = {}
@@ -1013,52 +822,13 @@ class LOS:
             recom_pervol[key] = np.zeros((len(self.los_1d['l'])))
             excit_pervol[key] = np.zeros((len(self.los_1d['l'])))
 
-        # Impurity emission dict. along LOS
-        if self.spec_line_dict:
-            imp_recom = {}
-            imp_excit = {}
-            imp_PEC_recom = {}
-            imp_PEC_excit = {}
-            imp_fPEC_recom = {}
-            imp_fPEC_excit = {}
-            imp_fPEC_recom_ionbal = {}
-            imp_fPEC_excit_ionbal = {}
-            for at_num in self.spec_line_dict:
-                if int(at_num) > 1:  # skip hydrogen
-                    imp_recom[at_num] = {}
-                    imp_excit[at_num] = {}
-                    imp_PEC_recom[at_num]  = {}
-                    imp_PEC_excit[at_num]  = {}
-                    imp_fPEC_recom[at_num] = {}
-                    imp_fPEC_excit[at_num] = {}
-                    imp_fPEC_recom_ionbal[at_num] = {}
-                    imp_fPEC_excit_ionbal[at_num] = {}
-                    for ion_stage in self.spec_line_dict[at_num]:
-                        imp_recom[at_num][ion_stage] = {}
-                        imp_excit[at_num][ion_stage] = {}
-                        imp_PEC_recom[at_num][ion_stage]  = {}
-                        imp_PEC_excit[at_num][ion_stage]  = {}
-                        imp_fPEC_recom[at_num][ion_stage] = {}
-                        imp_fPEC_excit[at_num][ion_stage] = {}
-                        imp_fPEC_recom_ionbal[at_num][ion_stage] = {}
-                        imp_fPEC_excit_ionbal[at_num][ion_stage] = {}
-                        for line_key in self.spec_line_dict[at_num][ion_stage]:
-                            imp_recom[at_num][ion_stage][line_key] = np.zeros((len(self.los_1d['l'])))
-                            imp_excit[at_num][ion_stage][line_key] = np.zeros((len(self.los_1d['l'])))
-                            imp_PEC_recom[at_num][ion_stage][line_key] = np.zeros((len(self.los_1d['l'])))
-                            imp_PEC_excit[at_num][ion_stage][line_key] = np.zeros((len(self.los_1d['l'])))
-                            imp_fPEC_recom[at_num][ion_stage][line_key] = np.zeros((len(self.los_1d['l'])))
-                            imp_fPEC_excit[at_num][ion_stage][line_key] = np.zeros((len(self.los_1d['l'])))
-                            imp_fPEC_recom_ionbal[at_num][ion_stage][line_key] = np.zeros((len(self.los_1d['l'])))
-                            imp_fPEC_excit_ionbal[at_num][ion_stage][line_key] = np.zeros((len(self.los_1d['l'])))
+        
 
         for dl_idx, dl_val in enumerate(self.los_1d['l']):
             # temp storage
             ne_tmp = []
             n0_tmp = []
             te_tmp = []
-            imp1_den_tmp = []
-            imp2_den_tmp = []
             delL_tmp = []
             H_emiss_excit_tmp = {}
             H_emiss_recom_tmp = {}
@@ -1069,117 +839,36 @@ class LOS:
                 H_emiss_recom_tmp[key] = []
                 H_emiss_pervol_excit_tmp[key] = []
                 H_emiss_pervol_recom_tmp[key] = []
-                
-            # Impurity emission dict. along LOS
-            if self.spec_line_dict:
-                imp_recom_tmp = {}
-                imp_excit_tmp = {}
-                imp_PEC_recom_tmp = {}
-                imp_PEC_excit_tmp = {}
-                imp_fPEC_recom_tmp = {}
-                imp_fPEC_excit_tmp = {}
-                imp_fPEC_recom_ionbal_tmp = {}
-                imp_fPEC_excit_ionbal_tmp = {}
-                for at_num in self.spec_line_dict:
-                    if int(at_num) > 1:  # skip hydrogen
-                        imp_recom_tmp[at_num] = {}
-                        imp_excit_tmp[at_num] = {}
-                        imp_PEC_recom_tmp[at_num]  = {}
-                        imp_PEC_excit_tmp[at_num]  = {}
-                        imp_fPEC_recom_tmp[at_num]  = {}
-                        imp_fPEC_excit_tmp[at_num]  = {}
-                        imp_fPEC_recom_ionbal_tmp[at_num]  = {}
-                        imp_fPEC_excit_ionbal_tmp[at_num]  = {}
-                        for ion_stage in self.spec_line_dict[at_num]:
-                            imp_recom_tmp[at_num][ion_stage] = {}
-                            imp_excit_tmp[at_num][ion_stage] = {}
-                            imp_PEC_recom_tmp[at_num][ion_stage]  = {}
-                            imp_PEC_excit_tmp[at_num][ion_stage]  = {}
-                            imp_fPEC_recom_tmp[at_num][ion_stage]  = {}
-                            imp_fPEC_excit_tmp[at_num][ion_stage]  = {}
-                            imp_fPEC_recom_ionbal_tmp[at_num][ion_stage]  = {}
-                            imp_fPEC_excit_ionbal_tmp[at_num][ion_stage]  = {}
-                            for line_key in self.spec_line_dict[at_num][ion_stage]:
-                                imp_recom_tmp[at_num][ion_stage][line_key] = []
-                                imp_excit_tmp[at_num][ion_stage][line_key] = []
-                                imp_PEC_recom_tmp[at_num][ion_stage][line_key] = []
-                                imp_PEC_excit_tmp[at_num][ion_stage][line_key] = []
-                                imp_fPEC_recom_tmp[at_num][ion_stage][line_key]  = []
-                                imp_fPEC_excit_tmp[at_num][ion_stage][line_key]  = []
-                                imp_fPEC_recom_ionbal_tmp[at_num][ion_stage][line_key]  = []
-                                imp_fPEC_excit_ionbal_tmp[at_num][ion_stage][line_key]  = []
                             
             for cell in self.cells:
                 if cell.dist_to_los_v1 >= dl_val and cell.dist_to_los_v1 < dl_val + self.los_1d['dl']:
                     ne_tmp.append(cell.ne)
                     n0_tmp.append(cell.n0)
                     te_tmp.append(cell.te)
-                    if self.imp1_atom_num:
-                        imp1_den_tmp.append(cell.imp1_den)
-                    if self.imp2_atom_num:
-                        imp2_den_tmp.append(cell.imp2_den)
                     delL_tmp.append(cell.los_ortho_delL)
                     for key in self.spec_line_dict['1']['1']:
                         H_emiss_excit_tmp[key].append(cell.H_emiss[key]['excit']*cell.los_ortho_delL)
                         H_emiss_recom_tmp[key].append(cell.H_emiss[key]['recom']*cell.los_ortho_delL)
                         H_emiss_pervol_excit_tmp[key].append(cell.H_emiss[key]['excit'])
                         H_emiss_pervol_recom_tmp[key].append(cell.H_emiss[key]['recom'])
-                    if self.spec_line_dict:
-                        for at_num in self.spec_line_dict:
-                            if int(at_num)>1: # skip hydrogen
-                                for ion_stage in self.spec_line_dict[at_num]:
-                                    for line_key in self.spec_line_dict[at_num][ion_stage]:
-                                        imp_recom_tmp[at_num][ion_stage][line_key].append(cell.imp_emiss[at_num][ion_stage][line_key]['recom']*cell.los_ortho_delL)
-                                        imp_excit_tmp[at_num][ion_stage][line_key].append(cell.imp_emiss[at_num][ion_stage][line_key]['excit']*cell.los_ortho_delL)
-                                        imp_PEC_recom_tmp[at_num][ion_stage][line_key].append(cell.imp_emiss[at_num][ion_stage][line_key]['PEC_recom'])#*cell.los_ortho_delL)
-                                        imp_PEC_excit_tmp[at_num][ion_stage][line_key].append(cell.imp_emiss[at_num][ion_stage][line_key]['PEC_excit'])#*cell.los_ortho_delL)
-                                        imp_fPEC_recom_tmp[at_num][ion_stage][line_key].append(cell.imp_emiss[at_num][ion_stage][line_key]['fPEC_recom'])#*cell.los_ortho_delL)
-                                        imp_fPEC_excit_tmp[at_num][ion_stage][line_key].append(cell.imp_emiss[at_num][ion_stage][line_key]['fPEC_excit'])#*cell.los_ortho_delL)
-                                        imp_fPEC_recom_ionbal_tmp[at_num][ion_stage][line_key].append(cell.imp_emiss[at_num][ion_stage][line_key]['fPEC_recom_ionbal'])#*cell.los_ortho_delL)
-                                        imp_fPEC_excit_ionbal_tmp[at_num][ion_stage][line_key].append(cell.imp_emiss[at_num][ion_stage][line_key]['fPEC_excit_ionbal'])#*cell.los_ortho_delL)
-
             if ne_tmp:
                 self.los_1d['ortho_delL'][dl_idx] = np.sum(np.asarray(delL_tmp))
                 delL_norm = np.asarray(delL_tmp) / self.los_1d['ortho_delL'][dl_idx]
                 self.los_1d['ne'][dl_idx] = np.average(np.asarray(ne_tmp),weights = delL_norm)
                 self.los_1d['n0'][dl_idx] = np.average(np.asarray(n0_tmp),weights = delL_norm)
                 self.los_1d['te'][dl_idx] = np.average(np.asarray(te_tmp),weights = delL_norm)
-                if imp1_den_tmp:
-                    self.los_1d['imp1_den'][dl_idx] = np.average(np.asarray(imp1_den_tmp),axis=0, weights = delL_norm)
-                if imp2_den_tmp:
-                    self.los_1d['imp2_den'][dl_idx] = np.average(np.asarray(imp2_den_tmp),axis=0, weights = delL_norm)
                 for key in self.spec_line_dict['1']['1']:
                     excit[key][dl_idx] = np.sum(np.asarray(H_emiss_excit_tmp[key]))
                     recom[key][dl_idx] = np.sum(np.asarray(H_emiss_recom_tmp[key]))
                     excit_pervol[key][dl_idx] = np.average(np.asarray(H_emiss_pervol_excit_tmp[key]), weights = delL_norm)
                     recom_pervol[key][dl_idx] = np.average(np.asarray(H_emiss_pervol_recom_tmp[key]), weights = delL_norm )
-                if self.spec_line_dict:
-                    for at_num in self.spec_line_dict:
-                        if int(at_num) > 1:  # skip hydrogen
-                            for ion_stage in self.spec_line_dict[at_num]:
-                                for line_key in self.spec_line_dict[at_num][ion_stage]:
-                                    imp_recom[at_num][ion_stage][line_key][dl_idx] = np.sum(np.asarray(imp_recom_tmp[at_num][ion_stage][line_key]))
-                                    imp_excit[at_num][ion_stage][line_key][dl_idx] = np.sum(np.asarray(imp_excit_tmp[at_num][ion_stage][line_key]))
-                                    imp_PEC_recom[at_num][ion_stage][line_key][dl_idx] = np.average(np.asarray(imp_PEC_recom_tmp[at_num][ion_stage][line_key]),weights = delL_norm)
-                                    imp_PEC_excit[at_num][ion_stage][line_key][dl_idx] = np.average(np.asarray(imp_PEC_excit_tmp[at_num][ion_stage][line_key]),weights = delL_norm)
-                                    imp_fPEC_recom[at_num][ion_stage][line_key][dl_idx] = np.average(np.asarray(imp_fPEC_recom_tmp[at_num][ion_stage][line_key]),weights = delL_norm)
-                                    imp_fPEC_excit[at_num][ion_stage][line_key][dl_idx] = np.average(np.asarray(imp_fPEC_excit_tmp[at_num][ion_stage][line_key]),weights = delL_norm)
-                                    imp_fPEC_recom_ionbal[at_num][ion_stage][line_key][dl_idx] = np.average(np.asarray(imp_fPEC_recom_ionbal_tmp[at_num][ion_stage][line_key]),weights = delL_norm)
-                                    imp_fPEC_excit_ionbal[at_num][ion_stage][line_key][dl_idx] = np.average(np.asarray(imp_fPEC_excit_ionbal_tmp[at_num][ion_stage][line_key]),weights = delL_norm)
-
+                
         # REMOVE ZEROS FROM COMPUTED LOS ARRAYS
         nonzero_idx = np.nonzero(self.los_1d['ne'])
         for item in ['l', 'ne', 'n0', 'te', 'ortho_delL']:
             self.los_1d[item] = self.los_1d[item][nonzero_idx]
             # convert numpy arrays to lists for JSON serialization
             self.los_1d[item] = list(self.los_1d[item])
-
-        if self.imp1_atom_num:
-            self.los_1d['imp1_den'] = self.los_1d['imp1_den'][nonzero_idx]
-            self.los_1d['imp1_den'] = self.los_1d['imp1_den'].tolist()
-        if self.imp2_atom_num:
-            self.los_1d['imp2_den'] = self.los_1d['imp2_den'][nonzero_idx]
-            self.los_1d['imp2_den'] = self.los_1d['imp2_den'].tolist()
 
         self.los_1d['H_emiss'] = {}
         self.los_1d['H_emiss_per_vol'] = {}
@@ -1196,40 +885,175 @@ class LOS:
             self.los_1d['H_emiss_per_vol'][key]['excit'] = list(self.los_1d['H_emiss_per_vol'][key]['excit'])
             self.los_1d['H_emiss_per_vol'][key]['recom'] = list(self.los_1d['H_emiss_per_vol'][key]['recom'])
 
-        if self.spec_line_dict:
-            self.los_1d['imp_emiss'] = {}
-            for at_num in self.spec_line_dict:
-                if int(at_num) > 1:  # skip hydrogen
-                    self.los_1d['imp_emiss'][at_num] = {}
-                    for ion_stage in self.spec_line_dict[at_num]:
-                        self.los_1d['imp_emiss'][at_num][ion_stage]= {}
-                        for line_key in self.spec_line_dict[at_num][ion_stage]:
-                            imp_recom[at_num][ion_stage][line_key] = imp_recom[at_num][ion_stage][line_key][nonzero_idx]
-                            imp_excit[at_num][ion_stage][line_key] = imp_excit[at_num][ion_stage][line_key][nonzero_idx]
-                            imp_PEC_recom[at_num][ion_stage][line_key] = imp_PEC_recom[at_num][ion_stage][line_key][nonzero_idx]
-                            imp_PEC_excit[at_num][ion_stage][line_key] = imp_PEC_excit[at_num][ion_stage][line_key][nonzero_idx]
-                            imp_fPEC_recom[at_num][ion_stage][line_key] = imp_fPEC_recom[at_num][ion_stage][line_key][nonzero_idx]
-                            imp_fPEC_excit[at_num][ion_stage][line_key] = imp_fPEC_excit[at_num][ion_stage][line_key][nonzero_idx]
-                            imp_fPEC_recom_ionbal[at_num][ion_stage][line_key] = imp_fPEC_recom_ionbal[at_num][ion_stage][line_key][nonzero_idx]
-                            imp_fPEC_excit_ionbal[at_num][ion_stage][line_key] = imp_fPEC_excit_ionbal[at_num][ion_stage][line_key][nonzero_idx]
-                            self.los_1d['imp_emiss'][at_num][ion_stage].update({line_key:{'excit':imp_excit[at_num][ion_stage][line_key],
-                                                                                          'recom':imp_recom[at_num][ion_stage][line_key],
-                                                                                          'PEC_excit':imp_PEC_excit[at_num][ion_stage][line_key],
-                                                                                          'PEC_recom':imp_PEC_recom[at_num][ion_stage][line_key],
-                                                                                          'fPEC_excit':imp_fPEC_excit[at_num][ion_stage][line_key],
-                                                                                          'fPEC_recom':imp_fPEC_recom[at_num][ion_stage][line_key],
-                                                                                          'fPEC_excit_ionbal':imp_fPEC_excit_ionbal[at_num][ion_stage][line_key],
-                                                                                          'fPEC_recom_ionbal':imp_fPEC_recom_ionbal[at_num][ion_stage][line_key],
-                                                                                          'units':'ph s^-1 m^-2 sr^-1'}})
-                            # convert numpy arrays to lists for JSON serialization
-                            self.los_1d['imp_emiss'][at_num][ion_stage][line_key]['excit'] = self.los_1d['imp_emiss'][at_num][ion_stage][line_key]['excit'].tolist()
-                            self.los_1d['imp_emiss'][at_num][ion_stage][line_key]['recom'] = self.los_1d['imp_emiss'][at_num][ion_stage][line_key]['recom'].tolist()
-                            self.los_1d['imp_emiss'][at_num][ion_stage][line_key]['PEC_excit'] = self.los_1d['imp_emiss'][at_num][ion_stage][line_key]['PEC_excit'].tolist()
-                            self.los_1d['imp_emiss'][at_num][ion_stage][line_key]['PEC_recom'] = self.los_1d['imp_emiss'][at_num][ion_stage][line_key]['PEC_recom'].tolist()
-                            self.los_1d['imp_emiss'][at_num][ion_stage][line_key]['fPEC_excit'] = self.los_1d['imp_emiss'][at_num][ion_stage][line_key]['fPEC_excit'].tolist()
-                            self.los_1d['imp_emiss'][at_num][ion_stage][line_key]['fPEC_recom'] = self.los_1d['imp_emiss'][at_num][ion_stage][line_key]['fPEC_recom'].tolist()
-                            self.los_1d['imp_emiss'][at_num][ion_stage][line_key]['fPEC_excit_ionbal'] = self.los_1d['imp_emiss'][at_num][ion_stage][line_key]['fPEC_excit_ionbal'].tolist()
-                            self.los_1d['imp_emiss'][at_num][ion_stage][line_key]['fPEC_recom_ionbal'] = self.los_1d['imp_emiss'][at_num][ion_stage][line_key]['fPEC_recom_ionbal'].tolist()
+    def calc_int_and_1d_los_quantities_AMJUEL_1(self):
+        # SUM H EMISSION METHOD 1: TRAVERSE CELLS AND SUM EMISSIVITIES*ORTHO_DELL
+        self.los_int['H_emiss'] = {}
+        for key in self.spec_line_dict['1']['1']:
+            sum_exc = 0
+            sum_rec = 0
+            sum_h2 = 0
+            sum_h2_pos = 0
+            sum_h_neg = 0
+            sum_tot = 0
+            for cell in self.cells:
+                sum_tot += (cell.H_emiss[key]['tot'] * cell.los_ortho_delL)
+                sum_exc += (cell.H_emiss[key]['excit'] * cell.los_ortho_delL)
+                sum_rec += (cell.H_emiss[key]['recom'] * cell.los_ortho_delL)
+                sum_h2  += (cell.H_emiss[key]['h2'] * cell.los_ortho_delL)
+                sum_h2_pos += (cell.H_emiss[key]['h2+'] * cell.los_ortho_delL)
+                sum_h_neg += (cell.H_emiss[key]['h-'] * cell.los_ortho_delL)
+            self.los_int['H_emiss'].update({key:{'tot':sum_tot, 'excit': sum_exc, 'recom': sum_rec,
+                                            'h2': sum_h2, 'h2+': sum_h2_pos, 'h-': sum_h_neg, 'units':'ph.s^-1.m^-2.sr^-1'}})
+
+    def calc_int_and_1d_los_quantities_AMJUEL_2(self):
+        ####################################################
+        # COMPUTE AVERAGED QUANTITIES ALONG LOS
+        ####################################################
+        self.los_1d['dl'] = 0.01 # m
+        self.los_1d['l'] = np.arange(0, self.l12, self.los_1d['dl'])
+        for item in ['ne', 'n0', 'te', 'ortho_delL']:
+            self.los_1d[item] = np.zeros((len(self.los_1d['l'])))
+        # H EMISS LOS 1D METHOD 2: SIMILAR TO METHOD 1 ABOVE, EXCEPT 1D PROFILE INFO IS ALSO STORED ALONG LOS
+        # Added for processing emission calculated from AMJUEL, initially only for the total emissivity
+        em = {}
+        em_pervol = {}
+        recom = {}
+        excit = {}
+        h2 = {}
+        h2_pos = {}
+        h_neg = {}
+        h2_pervol = {}
+        h2_pos_pervol = {}
+        h_neg_pervol = {}
+        recom_pervol = {} # emissivity per m^-3
+        excit_pervol = {} # emissivity per m^-3
+
+        for key in self.spec_line_dict['1']['1']:
+            em[key] = np.zeros((len(self.los_1d['l'])))
+            em_pervol[key] = np.zeros((len(self.los_1d['l'])))
+            recom[key] = np.zeros((len(self.los_1d['l'])))
+            excit[key] = np.zeros((len(self.los_1d['l'])))
+            h2[key] = np.zeros((len(self.los_1d['l'])))
+            h2_pos[key] = np.zeros((len(self.los_1d['l'])))
+            h_neg[key] = np.zeros((len(self.los_1d['l'])))
+            recom_pervol[key] = np.zeros((len(self.los_1d['l'])))
+            excit_pervol[key] = np.zeros((len(self.los_1d['l'])))
+            h2_pervol[key] = np.zeros((len(self.los_1d['l'])))
+            h2_pos_pervol[key] = np.zeros((len(self.los_1d['l'])))
+            h_neg_pervol[key] = np.zeros((len(self.los_1d['l'])))
+
+        for dl_idx, dl_val in enumerate(self.los_1d['l']):
+            # temp storage
+            ne_tmp = []
+            n0_tmp = []
+            te_tmp = []
+            delL_tmp = []
+            H_emiss_em_tmp = {}
+            H_emiss_em_pervol_tmp = {}
+            H_emiss_excit_tmp = {}
+            H_emiss_recom_tmp = {}
+            H_emiss_h2_tmp = {}
+            H_emiss_h2_pos_tmp = {}
+            H_emiss_h_neg_tmp = {}
+            H_emiss_pervol_excit_tmp = {}
+            H_emiss_pervol_recom_tmp = {}
+            H_emiss_pervol_h2_tmp = {}
+            H_emiss_pervol_h2_pos_tmp = {}
+            H_emiss_pervol_h_neg_tmp = {}
+                
+            for key in self.spec_line_dict['1']['1']:
+                H_emiss_em_tmp[key] = []
+                H_emiss_em_pervol_tmp[key] = []
+                H_emiss_excit_tmp[key] = []
+                H_emiss_recom_tmp[key] = []
+                H_emiss_h2_tmp[key] = []
+                H_emiss_h2_pos_tmp[key] = []
+                H_emiss_h_neg_tmp[key] = []
+                H_emiss_pervol_excit_tmp[key] = []
+                H_emiss_pervol_recom_tmp[key] = []
+                H_emiss_pervol_h2_tmp[key] = []
+                H_emiss_pervol_h2_pos_tmp[key] = []
+                H_emiss_pervol_h_neg_tmp[key] = []
+                            
+            for cell in self.cells:
+                if cell.dist_to_los_v1 >= dl_val and cell.dist_to_los_v1 < dl_val + self.los_1d['dl']:
+                    ne_tmp.append(cell.ne)
+                    n0_tmp.append(cell.n0)
+                    te_tmp.append(cell.te)
+                    delL_tmp.append(cell.los_ortho_delL)
+                    for key in self.spec_line_dict['1']['1']:
+                        H_emiss_em_tmp[key].append(cell.H_emiss[key]['tot']*cell.los_ortho_delL)
+                        H_emiss_em_pervol_tmp[key].append(cell.H_emiss[key]['tot'])
+                        H_emiss_excit_tmp[key].append(cell.H_emiss[key]['excit']*cell.los_ortho_delL)
+                        H_emiss_recom_tmp[key].append(cell.H_emiss[key]['recom']*cell.los_ortho_delL)
+                        H_emiss_h2_tmp[key].append(cell.H_emiss[key]['h2']*cell.los_ortho_delL)
+                        H_emiss_h2_pos_tmp[key].append(cell.H_emiss[key]['h2+']*cell.los_ortho_delL)
+                        H_emiss_h_neg_tmp[key].append(cell.H_emiss[key]['h-']*cell.los_ortho_delL)
+                        H_emiss_pervol_excit_tmp[key].append(cell.H_emiss[key]['excit'])
+                        H_emiss_pervol_recom_tmp[key].append(cell.H_emiss[key]['recom'])
+                        H_emiss_pervol_h2_tmp[key].append(cell.H_emiss[key]['h2'])
+                        H_emiss_pervol_h2_pos_tmp[key].append(cell.H_emiss[key]['h2+'])
+                        H_emiss_pervol_h_neg_tmp[key].append(cell.H_emiss[key]['h-'])
+            if ne_tmp:
+                self.los_1d['ortho_delL'][dl_idx] = np.sum(np.asarray(delL_tmp))
+                delL_norm = np.asarray(delL_tmp) / self.los_1d['ortho_delL'][dl_idx]
+                self.los_1d['ne'][dl_idx] = np.average(np.asarray(ne_tmp),weights = delL_norm)
+                self.los_1d['n0'][dl_idx] = np.average(np.asarray(n0_tmp),weights = delL_norm)
+                self.los_1d['te'][dl_idx] = np.average(np.asarray(te_tmp),weights = delL_norm)
+                for key in self.spec_line_dict['1']['1']:
+                    em[key][dl_idx] = np.sum(np.asarray(H_emiss_em_tmp[key]))
+                    em_pervol[key][dl_idx] = np.average(np.asarray(H_emiss_em_pervol_tmp[key]), weights = delL_norm )
+                    recom[key][dl_idx] = np.sum(np.asarray(H_emiss_recom_tmp[key]))
+                    excit[key][dl_idx] = np.sum(np.asarray(H_emiss_excit_tmp[key]))
+                    h2[key][dl_idx] = np.sum(np.asarray(H_emiss_h2_tmp[key]))
+                    h2_pos[key][dl_idx] = np.sum(np.asarray(H_emiss_h2_pos_tmp[key]))
+                    h_neg[key][dl_idx] = np.sum(np.asarray(H_emiss_h_neg_tmp[key]))
+                    recom_pervol[key][dl_idx] = np.average(np.asarray(H_emiss_pervol_recom_tmp[key]), weights = delL_norm )
+                    excit_pervol[key][dl_idx] = np.average(np.asarray(H_emiss_pervol_excit_tmp[key]), weights = delL_norm )
+                    h2_pervol[key][dl_idx] = np.average(np.asarray(H_emiss_pervol_h2_tmp[key]), weights = delL_norm )
+                    h2_pos_pervol[key][dl_idx] = np.average(np.asarray(H_emiss_pervol_h2_pos_tmp[key]), weights = delL_norm )
+                    h_neg_pervol[key][dl_idx] = np.average(np.asarray(H_emiss_pervol_h_neg_tmp[key]), weights = delL_norm )
+                
+        # REMOVE ZEROS FROM COMPUTED LOS ARRAYS
+        nonzero_idx = np.nonzero(self.los_1d['ne'])
+        for item in ['l', 'ne', 'n0', 'te', 'ortho_delL']:
+            self.los_1d[item] = self.los_1d[item][nonzero_idx]
+            # convert numpy arrays to lists for JSON serialization
+            self.los_1d[item] = list(self.los_1d[item])
+
+        self.los_1d['H_emiss'] = {}
+        self.los_1d['H_emiss_per_vol'] = {}
+        for key in self.spec_line_dict['1']['1']:
+            em[key] = em[key][nonzero_idx]
+            em_pervol[key] = em_pervol[key][nonzero_idx]
+            excit[key] = excit[key][nonzero_idx]
+            excit_pervol[key] = excit_pervol[key][nonzero_idx]
+            recom[key] = recom[key][nonzero_idx]
+            recom_pervol[key] = recom_pervol[key][nonzero_idx]
+            h2[key] = h2[key][nonzero_idx]
+            h2_pervol[key] = h2_pervol[key][nonzero_idx]
+            h2_pos[key] = h2_pos[key][nonzero_idx]
+            h2_pos_pervol[key] = h2_pos_pervol[key][nonzero_idx]
+            h_neg[key] = h_neg[key][nonzero_idx]
+            h_neg_pervol[key] = h_neg_pervol[key][nonzero_idx]
+            self.los_1d['H_emiss'].update({key:{'tot':em[key], 'excit': excit[key], 'recom': recom[key],
+                                          'h2': h2[key], 'h2+': h2_pos[key], 'h-': h_neg[key],'units':'ph s^-1 m^-2 sr^-1'}})
+            self.los_1d['H_emiss_per_vol'].update({key:{'tot':em_pervol[key], 'excit': excit_pervol[key], 'recom': recom_pervol[key],
+                                          'h2': h2_pervol[key], 'h2+': h2_pos_pervol[key], 'h-': h_neg_pervol[key], 'units':'ph s^-1 m^-3 sr^-1'}})
+            # convert numpy arrays to lists for JSON serialization
+            self.los_1d['H_emiss'][key]['tot'] = list(self.los_1d['H_emiss'][key]['tot'])
+            self.los_1d['H_emiss_per_vol'][key]['tot'] = list(self.los_1d['H_emiss_per_vol'][key]['tot'])
+            self.los_1d['H_emiss'][key]['excit'] = list(self.los_1d['H_emiss'][key]['excit'])
+            self.los_1d['H_emiss_per_vol'][key]['excit'] = list(self.los_1d['H_emiss_per_vol'][key]['excit'])
+            self.los_1d['H_emiss'][key]['recom'] = list(self.los_1d['H_emiss'][key]['recom'])
+            self.los_1d['H_emiss_per_vol'][key]['recom'] = list(self.los_1d['H_emiss_per_vol'][key]['recom'])
+            self.los_1d['H_emiss'][key]['h2'] = list(self.los_1d['H_emiss'][key]['h2'])
+            self.los_1d['H_emiss_per_vol'][key]['h2'] = list(self.los_1d['H_emiss_per_vol'][key]['h2'])
+            self.los_1d['H_emiss'][key]['h2+'] = list(self.los_1d['H_emiss'][key]['h2+'])
+            self.los_1d['H_emiss_per_vol'][key]['h2+'] = list(self.los_1d['H_emiss_per_vol'][key]['h2+'])
+            self.los_1d['H_emiss'][key]['h-'] = list(self.los_1d['H_emiss'][key]['h-'])
+            self.los_1d['H_emiss_per_vol'][key]['h-'] = list(self.los_1d['H_emiss_per_vol'][key]['h-'])
+
 
     def calc_int_and_1d_los_synth_spectra(self):
 
@@ -1265,16 +1089,6 @@ class LOS:
         self.los_int_spectra['ff_fb_continuum']['wave'] = list(self.los_int_spectra['ff_fb_continuum']['wave'])
         self.los_int_spectra['ff_fb_continuum']['intensity'] = list(self.los_int_spectra['ff_fb_continuum']['intensity'])
 
-        # fig, ax = plt.subplots(ncols=1)
-        # ax.semilogy(self.los_int_spectra['ff_fb_continuum']['wave'], self.los_int_spectra['ff_fb_continuum']['intensity'], '-k', lw=3.0)
-        # # ax.semilogy(self.los_int_spectra['ff_fb_continuum']['wave'], sum_ff_fb, '-r')
-        # for dl_idx, dl_val in enumerate(self.los_1d['l']):
-        #     ax.semilogy(self.los_int_spectra['ff_fb_continuum']['wave'], self.los_1d_spectra['ff_fb_continuum']['intensity'][dl_idx], '--k')
-        # ax.set_xlabel('Wavelength (nm)')
-        # ax.set_ylabel(r'$\mathrm{ph\/s^{-1}\/m^{-2}\/sr^{-1}\/nm^{-1}}$')
-        # ax.set_title(str(self.v2unmod[0]))
-        # plt.show()
-
         ###############################################################
         # STARK BROADENED H6-2 LINE
         ###############################################################
@@ -1293,6 +1107,10 @@ class LOS:
                     dl_stark[dl_idx] = 1. / ( np.power(np.abs(wave_nm-cwl), 5./2.) + np.power(stark_fwhm / 2., 5./2.) )
                     # normalise by emissivity
                     dl_emiss = self.los_1d['H_emiss'][key]['excit'][dl_idx] + self.los_1d['H_emiss'][key]['recom'][dl_idx]
+                    if self.use_AMJUEL:
+                        dl_emiss += self.los_1d['H_emiss'][key]['h2'][dl_idx]
+                        dl_emiss += self.los_1d['H_emiss'][key]['h2+'][dl_idx]
+                        dl_emiss += self.los_1d['H_emiss'][key]['h-'][dl_idx]
                     wv_area = np.trapz(dl_stark[dl_idx], x = wave_nm)
                     amp_scal = dl_emiss / wv_area
                     dl_stark[dl_idx] *= amp_scal
@@ -1306,30 +1124,17 @@ class LOS:
                 self.los_int_spectra['stark']['wave'] = list(self.los_int_spectra['stark']['wave'])
                 self.los_int_spectra['stark']['intensity'] = list(self.los_int_spectra['stark']['intensity'])
 
-
-                # fig, ax = plt.subplots(ncols=1)
-                # ax.semilogy(self.los_int_spectra['stark']['wave'], self.los_int_spectra['stark']['intensity'], '-k', lw=3.0)
-                # for dl_idx, dl_val in enumerate(self.los_1d['l']):
-                #     ax.semilogy(self.los_int_spectra['stark']['wave'], self.los_1d_spectra['stark']['intensity'][dl_idx], '--k')
-                # ax.set_xlabel('Wavelength (nm)')
-                # ax.set_ylabel(r'$\mathrm{ph\/s^{-1}\/m^{-2}\/sr^{-1}\/nm^{-1}}$')
-                # ax.set_title(str(self.v2unmod[0]))
-                # plt.show()
-
 class SynthDiag:
 
-    def __init__(self, defs, diag, pulse=None, spec_line_dict=None, spec_line_dict_lytrap=None, imp1_atom_num=None,
-                 imp2_atom_num=None, calc_NII_afg_feature=False):
+    def __init__(self, defs, diag, pulse=None, spec_line_dict=None, spec_line_dict_lytrap=None, use_AMJUEL = False):
 
-        self.calc_NII_afg_feature = calc_NII_afg_feature
         self.diag = diag
         self.pulse = pulse
         self.chords = []
         self.spec_line_dict = spec_line_dict
         self.spec_line_dict_lytrap = spec_line_dict_lytrap
-        self.imp1_atom_num = imp1_atom_num
-        self.imp2_atom_num = imp2_atom_num
-
+        self.use_AMJUEL = use_AMJUEL
+        
         self.get_spec_geom(defs)
 
     def get_spec_geom(self, defs):
@@ -1363,9 +1168,8 @@ class SynthDiag:
                                        chord_num=defs.diag_dict[self.diag]['id'][i], p1=[r1, z1], w1=w1, p2orig=[r2, z2],
                                        p2=[p2new[i, 0], p2new[i, 1]], w2orig=w2, w2=w2_elong, l12=chord_L_elong, theta=theta,
                                        los_angle = los_angle, spec_line_dict=self.spec_line_dict,
-                                       spec_line_dict_lytrap=self.spec_line_dict_lytrap,
-                                       imp1_atom_num=self.imp1_atom_num, imp2_atom_num=self.imp2_atom_num,
-                                       calc_NII_afg_feature=self.calc_NII_afg_feature))
+                                       spec_line_dict_lytrap=self.spec_line_dict_lytrap, 
+                                       use_AMJUEL = self.use_AMJUEL))
 
     def plot_LOS(self, ax, color='w', lw='2.0', Rrng=None):
         for chord in self.chords:

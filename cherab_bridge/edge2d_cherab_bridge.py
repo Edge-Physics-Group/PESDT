@@ -1,14 +1,10 @@
 
-from statistics import multimode
 import numpy as np
 from raysect.core.math.function.float.function2d.interpolate import Discrete2DMesh
-
-from cherab.core.math.mappers import AxisymmetricMapper
-from cherab.edge2d.mesh_geometry import Edge2DMesh
-from cherab.edge2d.edge2d_plasma import Edge2DSimulation
+from cherab.amjuel_data import Edge2DMesh, Edge2DSimulation
 
 
-def load_edge2d_from_PESDT(PESDT, convert_denel_to_m3 = True):
+def load_edge2d_from_PESDT(PESDT, convert_denel_to_m3 = True, load_mol_data = False, recalc_h2_pos = True):
 
     ########################################################################
     # Start by loading in all the data from B Lowmanowski's PESDT object #
@@ -25,7 +21,8 @@ def load_edge2d_from_PESDT(PESDT, convert_denel_to_m3 = True):
     ne = np.zeros(num_cells)
     ni = np.zeros(num_cells)
     n0 = np.zeros(num_cells)
-
+    n2 = np.zeros(num_cells)
+    n2p = np.zeros(num_cells)
     multi = 1.0
     if convert_denel_to_m3:
         multi = 1e-6
@@ -46,49 +43,69 @@ def load_edge2d_from_PESDT(PESDT, convert_denel_to_m3 = True):
         ni[ith_cell] = cell.ni*multi
         ne[ith_cell] = cell.ne*multi
         n0[ith_cell] = cell.n0*multi
-
-        # Set to constant value, for debugging (COMMENT OUT!)
-        # Settings for masking ISP and OSP emission
-        # if (cell.R >= 2.67 and cell.Z <= -1.55) or cell.R <= 2.5:
-        #     ni[ith_cell] = 1.1e+16
-        #     ne[ith_cell] = 1.1e+16
-        #     n0[ith_cell] = 1.1e+02
-        # te[ith_cell] = cell.te*0 + 10
-        # ti[ith_cell] = cell.te*0 + 10
-        # ni[ith_cell] = cell.ni*0 + 1e20
-        # ne[ith_cell] = cell.ne*0 + 1e20
-        # n0[ith_cell] = cell.n0*0 + 1e20
+        n2[ith_cell] = cell.n2*multi
+        n2p[ith_cell] = cell.n2p*multi
 
     #####################################################
     # Now load the simulation object with plasma values #
     rv = np.transpose(rv)
     zv = np.transpose(zv)
 
+    # Master list of species, e.g. ['D0', 'D+1', 'C0', 'C+1', ...
+    
+    #sim._species_list = ['D0', 'D+1']
+    species_list = [('D', 0), ('D', 1)]
+    
+    if load_mol_data:
+        '''
+        Calculate the H2+, H3+, and H- densities through AMJUEL rates, and add the molecular density 
+        and derived densities to species
+
+        '''
+        from PESDT.amread import read_amjuel_1d,read_amjuel_2d,reactions, calc_cross_sections
+
+        print("Loading H2, H2+, H3+ and H-")
+        num_species = 6
+        species_density = np.zeros((num_species, num_cells))
+        species_list.append(('D2', 0))
+        
+        reac = reactions("2") # The densities are independent of the hydrogenic excited state
+        if recalc_h2_pos:
+            MARc_h2_pos_den = read_amjuel_2d(reac["den_H2+"][0],reac["den_H2+"][1])
+            h2_pos_den = calc_cross_sections(MARc_h2_pos_den, T = te, n = ne*1e-6)*n2
+        else:
+            h2_pos_den = n2p[:]
+        species_list.append(('D2', 1))
+
+        MARc_h3_pos_den = read_amjuel_1d(reac["den_H3+"][0],reac["den_H3+"][1])
+        h3_pos_den = calc_cross_sections(MARc_h3_pos_den, T = te, n = ne*1e-6)*n2*h2_pos_den/ne
+        species_list.append(('D3', 1))
+
+        MARc_h_neg_den = read_amjuel_1d(reac["den_H-"][0],reac["den_H-"][1])
+        h_neg_den = calc_cross_sections(MARc_h_neg_den, T = te, n = ne*1e-6)*n2
+        species_list.append(('H', 0)) # Need a proxy, neg allowed in Cherab
+
+        species_density[2, :] = n2[:]  # Mol. density D2
+        species_density[3, :] = h2_pos_den[:]
+        species_density[4, :] = h3_pos_den[:]
+        species_density[5, :] = h_neg_den[:]
+    else:
+        num_species = 2
+        species_density = np.zeros((num_species, num_cells))
+
+    species_density[0, :] = n0[:]  # neutral density D0
+    species_density[1, :] = ni[:]  # ion density D+1
     edge2d_mesh = Edge2DMesh(rv, zv) #, rc, zc)
 
-    sim = Edge2DSimulation(edge2d_mesh, [('D', 0), ('D', 1)]) #[['D0', 0], ['D+1', 1]])
+    print(species_list)
+
+    sim = Edge2DSimulation(edge2d_mesh, species_list ) #[['D0', 0], ['D+1', 1]])
     sim.electron_temperature = te
     sim.electron_density = ne
     sim.ion_temperature = ti
 
-    # Load electron species
-    #sim._electron_temperature = te
-    #sim._electron_density = ne
-
-    # Master list of species, e.g. ['D0', 'D+1', 'C0', 'C+1', ...
-    num_species = 2
-    #sim._species_list = ['D0', 'D+1']
-    species_density = np.zeros((num_species, num_cells))
-    species_density[0, :] = n0[:]  # neutral density D0
-    species_density[1, :] = ni[:]  # ion density D+1
-    
     sim.species_density = species_density
     #sim._species_density = species_density
     #sim._ion_temperature = ti
-
-    # Make Mesh Interpolator function for inside/outside mesh test.
-	#inside_outside_data = np.ones(edge2d_mesh._num_tris)
-    #inside_outside = AxisymmetricMapper(Discrete2DMesh(edge2d_mesh.vertex_coordinates, edge2d_mesh.triangles, inside_outside_data, limit=False))
-    #sim._inside_mesh = inside_outside
 
     return sim

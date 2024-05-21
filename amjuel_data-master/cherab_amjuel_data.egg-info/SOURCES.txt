@@ -1,0 +1,15 @@
+setup.py
+cherab/__init__.py
+cherab/amjuel_data/LineEmitters.c
+cherab/amjuel_data/RateFunctions.c
+cherab/amjuel_data/__init__.py
+cherab/amjuel_data/am_edge2d.py
+cherab/amjuel_data/amread.py
+cherab/amjuel_data/continuo.c
+cherab/amjuel_data/molecules.c
+cherab/amjuel_data/stark.c
+cherab_amjuel_data.egg-info/PKG-INFO
+cherab_amjuel_data.egg-info/SOURCES.txt
+cherab_amjuel_data.egg-info/dependency_links.txt
+cherab_amjuel_data.egg-info/namespace_packages.txt
+cherab_amjuel_data.egg-info/top_level.txt

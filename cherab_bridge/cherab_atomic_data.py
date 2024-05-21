@@ -26,7 +26,7 @@ _recom_lookup_table = {
 }
 
 
-class PESDT_AtomicData(AtomicData):
+class PESDT_ADAS_Data(AtomicData):
 
     def __init__(self, atomic_data_dict):
 
@@ -88,4 +88,5 @@ class PESDT_AtomicData(AtomicData):
         pec_interpolator = RecombinationPEC(wavelength, rate_data, extrapolate = True)
 
         return pec_interpolator
+
 

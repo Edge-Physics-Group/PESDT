@@ -85,10 +85,12 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                          spec_line_dict_lytrap = self.spec_line_dict_lytrap,
                          diag_list=input_dict['diag_list'],
                          calc_synth_spec_features=input_dict['run_options']['calc_synth_spec_features'],
-                         calc_NII_afg_feature=input_dict['run_options']['calc_NII_afg_feature'],
                          save_synth_diag=True,
                          synth_diag_save_file=self.synth_diag_save_file,
-                         data2d_save_file=self.data2d_save_file)
+                         data2d_save_file=self.data2d_save_file,
+                         use_AMJUEL = input_dict['run_options'].get('use_AMJUEL', False),
+                         AMJUEL_date = input_dict['run_options'].get('AMJUEL_date', 2016), # Default to <2017 (no H3+)
+                         recalc_h2_pos = input_dict['run_options'].get('recalc_h2_pos', True))   # When set to true H2+ density is recalculated with AMJUEL H.12 2.0c
 
         if self.input_dict['run_options']['analyse_synth_spec_features']:
             # Read synth diag saved data
@@ -116,12 +118,12 @@ class AnalyseSynthDiag(ProcessEdgeSim):
         self.recover_line_int_ff_fb_Te(res_dict)
 
         # Recombination and Ionization
-        self.recover_line_int_particle_bal(res_dict, sion_H_transition=sion_H_transition,
-                                           srec_H_transition=srec_H_transition, ne_scal=1.0,
-                                           cherab_ne_Te_KT3_resfile=self.cherab_ne_Te_KT3_resfile)
+        #self.recover_line_int_particle_bal(res_dict, sion_H_transition=sion_H_transition,
+        #                                   srec_H_transition=srec_H_transition, ne_scal=1.0,
+        #                                   cherab_ne_Te_KT3_resfile=self.cherab_ne_Te_KT3_resfile)
 
         # delL * neutral density assuming excitation dominated
-        self.recover_delL_atomden_product(res_dict, sion_H_transition=sion_H_transition)
+        #self.recover_delL_atomden_product(res_dict, sion_H_transition=sion_H_transition)
 
         if self.proc_synth_diag_save_file:
             with open(self.proc_synth_diag_save_file, mode='w', encoding='utf-8') as f:
@@ -166,113 +168,6 @@ class AnalyseSynthDiag(ProcessEdgeSim):
         if eps_data is None:
             return (model_ff_fb - data)
         return (model_ff_fb - data) / eps_data
-
-    # @staticmethod
-    # @contextlib.contextmanager
-    # def stdchannel_redirected(stdchannel, dest_filename):
-    #     """
-    #     https://stackoverflow.com/questions/977840/redirecting-fortran-called-via-f2py-output-in-python
-    #
-    #     A context manager to temporarily redirect stdout or stderr
-    #
-    #     e.g.:
-    #
-    #
-    #     with stdchannel_redirected(sys.stderr, os.devnull):
-    #         if compiler.has_function('clock_gettime', libraries=['rt']):
-    #             libraries.append('rt')
-    #     """
-    #
-    #     try:
-    #         oldstdchannel = os.dup(stdchannel.fileno())
-    #         dest_file = open(dest_filename, 'w')
-    #         os.dup2(dest_file.fileno(), stdchannel.fileno())
-    #
-    #         yield
-    #     finally:
-    #         if oldstdchannel is not None:
-    #             os.dup2(oldstdchannel, stdchannel.fileno())
-    #         if dest_file is not None:
-    #             dest_file.close()
-
-    # @staticmethod
-    # def get_ADAS_dict(save_dir, spec_line_dict, num_samples=100, restore=False, lytrap=False,
-    #                   adf11_year = 12, lytrap_adf11_dir=False, lytrap_pec_file=False):
-    #
-    #     if restore:
-    #         # Try to restore ADAS_dict
-    #         if lytrap:
-    #             try:
-    #                 with open(save_dir + 'ADAS_dict_lytrap.pkl', 'rb') as f:
-    #                     ADAS_dict = pickle.load(f)
-    #             except IOError as e:
-    #                 print('ADAS dictionary not found. Set [read_ADAS_lytrap] to True.')
-    #                 raise
-    #         else:
-    #             try:
-    #                 with open(save_dir + 'ADAS_dict.pkl', 'rb') as f:
-    #                     ADAS_dict = pickle.load(f)
-    #             except IOError as e:
-    #                 print('ADAS dictionary not found. Set [read_ADAS] to True.')
-    #                 raise
-    #
-    #         # Does the restored ADAS_dict contain all of the requested lines?
-    #         for atnum, atnumdict in spec_line_dict.items():
-    #             for ionstage, stagedict in atnumdict.items():
-    #                 for line, val in stagedict.items():
-    #                     found_line = False
-    #                     for adas_atnum, adas_atnumdict in ADAS_dict['adf15'].items():
-    #                         for adas_ionstage, adas_stagedict in adas_atnumdict.items():
-    #                             if atnum == adas_atnum and ionstage == adas_ionstage:
-    #                                 for adas_line, val in adas_stagedict.items():
-    #                                     if line == adas_line[:-5]:  # strip 'recom', 'excit'
-    #                                         found_line = True
-    #                     if not found_line:
-    #                         print(atnum, ' ', ionstage, ' ', line,
-    #                               ' not found in restored ADAS_dict. Set [read_ADAS] to True and try again.')
-    #                         return
-    #         if lytrap:
-    #             print('ADAS Ly trapping dictionary restored.')
-    #         else:
-    #             print('ADAS dictionary restored.')
-    #     else:
-    #         with AnalyseSynthDiag.stdchannel_redirected(sys.stderr, os.devnull):
-    #             with AnalyseSynthDiag.stdchannel_redirected(sys.stdout, os.devnull):
-    #                 # Read all necessary ADAS data here and store in dict
-    #                 ADAS_dict = {}
-    #                 Te_rnge = [0.2, 5000]
-    #                 ne_rnge = [1.0e11, 1.0e15]
-    #                 num_samples = 100
-    #                 ADAS_dict['adf15'] = adas_adf15_read.get_adas_imp_PECs_interp(spec_line_dict, Te_rnge,
-    #                                                                               ne_rnge, npts=num_samples,
-    #                                                                               npts_interp=1000,
-    #                                                                               lytrap_pec_file=lytrap_pec_file)
-    #                 # Also get adf11 for the ionisation balance fractional abundance. No Te_arr, ne_arr interpolation
-    #                 # available in the adf11 reader at the moment, so generate more coarse array (sloppy!)
-    #                 # TODO: add interpolation capability to the adf11 reader so that adf15 and adf11 are on the same Te, ne grid
-    #                 Te_arr_adf11 = np.logspace(np.log10(Te_rnge[0]), np.log10(Te_rnge[1]), 500)
-    #                 ne_arr_adf11 = np.logspace(np.log10(ne_rnge[0]), np.log10(ne_rnge[1]), 30)
-    #                 ADAS_dict['adf11'] = {}
-    #                 for atnum in spec_line_dict:
-    #                     if int(atnum) > 1:
-    #                         ADAS_dict['adf11'][atnum] = adas_adf11_read.get_adas_imp_adf11(int(atnum), Te_arr_adf11,
-    #                                                                                        ne_arr_adf11)
-    #                     elif int(atnum) == 1:
-    #                         ADAS_dict['adf11'][atnum] = adas_adf11_read.get_adas_H_adf11_interp(Te_rnge, ne_rnge,
-    #                                                                                             npts=num_samples,
-    #                                                                                             npts_interp=1000,
-    #                                                                                             pwr=True,
-    #                                                                                             year=adf11_year,
-    #                                                                                             custom_dir=lytrap_adf11_dir)
-    #                 # Pickle ADAS dictionary to save_dir
-    #                 if lytrap_adf11_dir:
-    #                     output = open(save_dir + 'ADAS_dict_lytrap.pkl', 'wb')
-    #                 else:
-    #                     output = open(save_dir + 'ADAS_dict.pkl', 'wb')
-    #                 pickle.dump(ADAS_dict, output)
-    #                 output.close()
-    #
-    #     return ADAS_dict
 
     @staticmethod
     def recover_line_int_ff_fb_Te(res_dict):
@@ -342,7 +237,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                         vals['delL']
 
     @staticmethod
-    def recover_line_int_Stark_ne(res_dict):
+    def recover_line_int_Stark_ne(res_dict, use_AMJUEL = False):
         """
             RECOVER LINE-AVERAGED ELECTRON DENSITY FROM H6-2 STARK BROADENED SPECTRA
         """
@@ -366,9 +261,17 @@ class AnalyseSynthDiag(ProcessEdgeSim):
 
                         params = Parameters()
                         params.add('cwl', value=float(H_line_key) / 10.0)
-                        params.add('area', value=float(
-                            res_dict[diag_key][chord_key]['los_int']['H_emiss'][H_line_key]['excit'] +
-                            res_dict[diag_key][chord_key]['los_int']['H_emiss'][H_line_key]['recom']))
+                        if use_AMJUEL:
+                            params.add('area', value=float(
+                                res_dict[diag_key][chord_key]['los_int']['H_emiss'][H_line_key]['excit'] +
+                                res_dict[diag_key][chord_key]['los_int']['H_emiss'][H_line_key]['recom'] +
+                                res_dict[diag_key][chord_key]['los_int']['H_emiss'][H_line_key]['h2'] +
+                                res_dict[diag_key][chord_key]['los_int']['H_emiss'][H_line_key]['h2+'] +
+                                res_dict[diag_key][chord_key]['los_int']['H_emiss'][H_line_key]['h-']))
+                        else:
+                            params.add('area', value=float(
+                                res_dict[diag_key][chord_key]['los_int']['H_emiss'][H_line_key]['excit'] +
+                                res_dict[diag_key][chord_key]['los_int']['H_emiss'][H_line_key]['recom']))
                         params.add('stark_fwhm', value=0.15, min=0.0001, max=10.0)
 
                         params['cwl'].vary = True

@@ -70,28 +70,32 @@ class Plot():
         # Cherab flags
         self.cherab_bridge = False
         self.cherab_reflection = False
-        self.cherab_abs_fac_dict = None
         # Read pickled PESDT object
         try:
             with open(self.work_dir + self.case + '/PESDT.2ddata.pkl', 'rb') as f:
                 self.__data2d = pickle.load(f)
         except IOError as e:
             raise
-
+        
+        if self.plot_dict.get('synth_data', False):
+            try:
+                with open(self.work_dir + self.case +  '/PESDT.proc_synth_diag.json', 'r') as f:
+                    self.__res_dict = json.load(f)
+            except IOError as e:
+                raise
         # Read processed synth diag saved data
-        try:
-            with open(self.work_dir + self.case +  '/PESDT.proc_synth_diag.json', 'r') as f:
-                self.__res_dict = json.load(f)
-        except IOError as e:
-            raise
+        else:
+            try:
+                with open(self.work_dir + self.case +  '/PESDT.synth_diag.json', 'r') as f:
+                    self.__res_dict = json.load(f)
+            except IOError as e:
+                raise
 
         if plot_dict:
-
             # Read cherab_bridge synth diag save data
             if 'cherab_bridge_results' in plot_dict:
                 self.cherab_bridge = plot_dict['cherab_bridge_results']
                 if self.cherab_bridge:
-                    self.cherab_abs_fac_dict = plot_dict['cherab_abs_factor']
                     if 'cherab_reflections' in plot_dict:
                         self.cherab_reflections = plot_dict['cherab_reflections']
                         if self.cherab_reflections:
@@ -116,8 +120,6 @@ class Plot():
                 if key == 'prof_Hemiss_defs':
                     self.plot_Hemiss_profiles(lineweight=3.0, alpha=0.2500, legend=True,
                                               Watts=False)
-                if key == 'prof_impemiss_defs':
-                    self.plot_impemiss_profiles(lineweight=3.0, alpha=0.250, legend=True)
                 if key == 'prof_Prad_defs':
                     write_ppf = False
                     if 'write_ppf' in val:
@@ -137,18 +139,12 @@ class Plot():
                             for line in val['lines'][at_num][stage]:
                                 self.plot_2d_spec_line(at_num, stage, line, diagLOS, max_abs = 1.5e22,
                                                        Rrng=Rrng, Zrng=Zrng, savefig=savefig)
-                if key == 'imp_rad_coeff':
-                    self.plot_imp_rad_coeff(val['region'], val['atnum'], val['ion_stages'])
-                if key == 'imp_rad_dist':
-                    self.plot_imp_rad_dist(val['region'], val['atnum'], val['te_nbins'])
                 if key == '2d_prad':
                     diagLOS = val['diagLOS']
                     savefig = val['save']
                     Rrng = val['Rrng']
                     Zrng = val['Zrng']
                     self.plot_2d_prad(diagLOS, Rrng=Rrng, Zrng=Zrng, savefig=savefig)
-                if key == 'nii_adas_afg':
-                    self.plot_nii_adas_afg()
 
     @property
     def data2d(self):
@@ -188,7 +184,6 @@ class Plot():
             return 0
 
     def plot_param_profiles(self, linestyle='-', lineweight=2.0,
-                            # fontsize=20, alpha=0.250, ne_scal=1.e-20, legend=True):
                             fontsize=20, alpha=0.250, ne_scal=1.0, legend=True):
         '''
         Reads in inputs from the plot_dict dictionary 
@@ -248,17 +243,6 @@ class Plot():
         else:
             axs[0].plot(x, ne_scal*ne, c=color, ls=linestyle, lw=lineweight, zorder=zorder)
 
-            # Ne from N II line ratios
-            # file = self.work_dir + self.case + '/niiafg_ne.txt'
-            # nii_fit_ne = np.genfromtxt(file, skip_header=1)
-            # file = self.work_dir + self.case + '/niiafg_tau01_ne.txt'
-            # nii_fit_ne_tau01 = np.genfromtxt(file, skip_header=1)
-            # file = self.work_dir + self.case + '/niiafg_R.txt'
-            # nii_fit_R = np.genfromtxt(file, skip_header=1)
-            # axs[0].plot(nii_fit_R, nii_fit_ne, c=color2, lw=lineweight+1, zorder=zorder)
-            # axs[0].plot(nii_fit_R, nii_fit_ne_tau01, c=color2, lw=lineweight+1, zorder=zorder)
-            # axs[0].fill_between(x, nii_fit_ne, nii_fit_ne_tau01, facecolor=color2,
-            #                 edgecolor=color, alpha=alpha, linewidth=0, zorder=zorder)
 
         if isinstance(axs, np.ndarray) and len(axs) > 1:
         # Te
@@ -270,20 +254,7 @@ class Plot():
 
             axs[1].plot(x, Te_hi, c=color, ls=linestyle, lw=lineweight, zorder=zorder)
             axs[1].plot(x, Te_lo, c=color, ls=linestyle, lw=lineweight, zorder=zorder)
-            #axs[1].fill_between(x, Te_hi, Te_lo, facecolor=color,
-            #                    edgecolor=color, alpha=alpha, linewidth=0, zorder=zorder)
-            # Te from NII line ratios
-            # file = self.work_dir + self.case + '/niiafg_te.txt'
-            # nii_fit_te = np.genfromtxt(file, skip_header=1)
-            # file = self.work_dir + self.case + '/niiafg_tau01_te.txt'
-            # nii_fit_te_tau01 = np.genfromtxt(file, skip_header=1)
-            # file = self.work_dir + self.case + '/niiafg_R.txt'
-            # nii_fit_R = np.genfromtxt(file, skip_header=1)
-            # axs[1].plot(nii_fit_R, nii_fit_te, c=color2, lw=lineweight+1, zorder=zorder)
-            # axs[1].plot(nii_fit_R, nii_fit_te_tau01, c=color2, lw=lineweight+1, zorder=zorder)
-            # axs[1].fill_between(x, nii_fit_te, nii_fit_te_tau01, facecolor=color2,
-            #                 edgecolor=color, alpha=alpha, linewidth=0, zorder=zorder)
-
+            
         if isinstance(axs, np.ndarray) and len(axs) > 2:
             # Ionization
             ls = ['-', '--', '.', '-.']
@@ -335,36 +306,6 @@ class Plot():
             if legend:
                 leg = axs[2].legend(loc='upper right', prop={'size':14}, frameon=False, labelspacing=0.05)
 
-            # Plot Sion_adf11 with LyB/Da ratio escape factor method vs without opacity
-            # Sion_lytrap_lineratio = np.asarray([4.7257897353678081e+20, 5.3802025298496186e+20, 8.5578014676312929e+20, 1.958580935988641e+21,
-            #                                     2.032739614057646e+21, 2.4279939563161445e+21, 2.883631693369264e+21, 4.5697306094182004e+21,
-            #                                     8.7224707334947356e+21, 1.7111927552036078e+22, 3.3676408317293405e+22, 9.4791692751852911e+22,
-            #                                     2.3727363283138071e+22, 6.8152481982620107e+21, 2.3222702039845718e+21, 1.0588119111867407e+21,
-            #                                     5.7096223176716727e+20, 3.0019403872240153e+20, 3.3478481200987885e+20, 2.3340881317069586e+21,
-            #                                     1.8457659632979007e+21, 1.3642617546692103e+21])
-            #
-            # Sion_wo_lytrap = np.asarray([4.7257897353678081e+20, 5.3802025298496186e+20, 8.5578014676312929e+20, 1.958580935988641e+21,
-            #                              2.032739614057646e+21, 2.4279939563161445e+21, 2.883631693369264e+21, 4.5697306094182004e+21,
-            #                              8.7224707334947356e+21, 1.7111927552036078e+22, 2.4555755186520179e+22, 3.0123796572893939e+22,
-            #                              3.1174839253707868e+21, 1.0758010921885586e+21, 5.7227872854819452e+20, 2.9157528656924892e+20,
-            #                              1.4755577257289064e+20, 8.3616829422194147e+19, 1.1787849752383744e+20, 2.3340881317069586e+21,
-            #                              1.8457659632979007e+21, 1.3642617546692103e+21])
-            # axs[2].semilogy(x, Sion_lytrap_lineratio, c=color, lw=lineweight, zorder=zorder)
-            # axs[2].semilogy(x, Sion_wo_lytrap, c='m', lw=lineweight, zorder=zorder)
-
-
-        # if len(axs) > 2:
-        #     # Ne from N II line ratios
-        #     file = self.work_dir + self.case + '/niiafg_Nconc.txt'
-        #     nii_fit_Nconc = np.genfromtxt(file, skip_header=1)
-        #     file = self.work_dir + self.case + '/niiafg_tau01_Nconc.txt'
-        #     nii_fit_Nconc_tau01 = np.genfromtxt(file, skip_header=1)
-        #     file = self.work_dir + self.case + '/niiafg_R.txt'
-        #     nii_fit_R = np.genfromtxt(file, skip_header=1)
-        #     axs[2].plot(nii_fit_R, nii_fit_Nconc, c=color2, lw=lineweight+1, zorder=zorder)
-        #     axs[2].plot(nii_fit_R, nii_fit_Nconc_tau01, c=color2, lw=lineweight+1, zorder=zorder)
-        #     axs[2].fill_between(x, nii_fit_Nconc, nii_fit_Nconc_tau01, facecolor=color2,
-        #                     edgecolor=color, alpha=alpha, linewidth=0, zorder=zorder)
 
         if isinstance(axs, np.ndarray) and len(axs) > 3:
             # N0
@@ -515,9 +456,11 @@ class Plot():
         zorder = self.plot_dict['prof_Hemiss_defs']['zorder']
         excrec = self.plot_dict['prof_Hemiss_defs']['excrec']
         coord = self.plot_dict['prof_Hemiss_defs']['coord']
+        cherab_res = self.plot_dict.get('cherab_bridge_results', False)
         write_csv = False
         if 'write_csv' in self.plot_dict['prof_Hemiss_defs']:
             write_csv = self.plot_dict['prof_Hemiss_defs']['write_csv']
+        amjuel = self.plot_dict['prof_Hemiss_defs'].get('AMJUEL', False)
         ylim, xlim = None, None
         if 'ylim' in self.plot_dict['prof_Hemiss_defs']:
             ylim = self.plot_dict['prof_Hemiss_defs']['ylim']
@@ -538,14 +481,19 @@ class Plot():
             x = p2[:, 0]
 
         for i, line in enumerate(lines.keys()):
-            abs_corr_fac = 1.0
-            if self.cherab_abs_fac_dict:
-                for linekey, fac in self.cherab_abs_fac_dict.items():
-                    if linekey == line:
-                        abs_corr_fac = fac
-
-            excit = abs_corr_fac*self.get_line_int_sorted_data_by_chord_id(diag, ['los_int', 'H_emiss', line, 'excit'])
-            recom = abs_corr_fac*self.get_line_int_sorted_data_by_chord_id(diag, ['los_int', 'H_emiss', line, 'recom'])
+            if amjuel:
+                #if cherab_res:
+                excit = self.get_line_int_sorted_data_by_chord_id(diag, ['los_int', 'H_emiss', line, 'excit'])
+                recom = self.get_line_int_sorted_data_by_chord_id(diag, ['los_int', 'H_emiss', line, 'recom'])
+                h2 = self.get_line_int_sorted_data_by_chord_id(diag, ['los_int', 'H_emiss', line, 'h2'])
+                h2_pos = self.get_line_int_sorted_data_by_chord_id(diag, ['los_int', 'H_emiss', line, 'h2+'])
+                h_neg = self.get_line_int_sorted_data_by_chord_id(diag, ['los_int', 'H_emiss', line, 'h-'])
+                #else:
+                #    excit = self.get_line_int_sorted_data_by_chord_id(diag, ['los_int', 'H_emiss', line, 'tot'])
+                #    recom = np.zeros(np.shape(excit))        
+            else:
+                excit = self.get_line_int_sorted_data_by_chord_id(diag, ['los_int', 'H_emiss', line, 'excit'])
+                recom = self.get_line_int_sorted_data_by_chord_id(diag, ['los_int', 'H_emiss', line, 'recom'])
             label = '{:5.1f}'.format(float(line)/10.) + ' nm'
 
             if Watts:
@@ -557,16 +505,31 @@ class Plot():
                 ylabel = '$\mathrm{10^{21}\/ph\/s^{-1}\/m^{-2}\/sr^{-1}}$'
                 # ylabel = '$\mathrm{ph\/s^{-1}\/m^{-2}\/sr^{-1}}$'
 
-            axs[i].plot(x, scal*(excit+recom), ls=linestyle, lw=lineweight, c=color, zorder=zorder, label=label)
-            if excrec:
-                axs[i].plot(x, scal*excit, '--', lw=1, c=color, zorder=zorder, label=label+' excit')
-                axs[i].plot(x, scal*recom, ':', lw=1, c=color, zorder=zorder, label=label+' recom')
+            
+            if amjuel:
+                axs[i].plot(x, scal*(excit+recom+h2+h2_pos+h_neg), ls=linestyle, lw=lineweight, c=color, zorder=zorder, label=label)
+                axs[i].plot(x, scal*(excit), '--', lw=1, c=color, zorder=zorder, label=label + 'excit')
+                axs[i].plot(x, scal*(recom), ':', lw=1, c=color, zorder=zorder, label=label + 'recom')
+                axs[i].plot(x, scal*(h2), '--', lw=1, c='r', zorder=zorder, label=label + ' D2')
+                axs[i].plot(x, scal*(h2_pos), ':', lw=1, c='r', zorder=zorder, label=label + ' D2+')
+                axs[i].plot(x, scal*(h_neg),'.', lw=1, c='g', zorder=zorder, label=label + ' D-')
+                
+            else:
+                axs[i].plot(x, scal*(excit+recom), ls=linestyle, lw=lineweight, c=color, zorder=zorder, label=label)
+
+                if excrec:
+                    axs[i].plot(x, scal*excit, '--', lw=1, c=color, zorder=zorder, label=label+' excit')
+                    axs[i].plot(x, scal*recom, ':', lw=1, c=color, zorder=zorder, label=label+' recom')
 
             if write_csv:
                 filedir = self.work_dir + self.case + '/'
                 filename = filedir + self.case + '.' + diag + '.' + 'Hemiss' + '.' + '{:5.1f}'.format(float(line)/10.) + 'nm.txt'
-                header = 'line: ' + '{:5.1f}'.format(float(line)/10.) + ' nm, ' + 'cols: ' + coord + ', excit (ph/s/m^2/sr), recom (ph/s/m^2/sr)'
-                np.savetxt(filename, np.transpose((x,excit,recom)), header=header, delimiter=',')
+                if amjuel and cherab_res:
+                    header = 'line: ' + '{:5.1f}'.format(float(line)/10.) + ' nm, ' + 'cols: ' + coord + ', excit (ph/s/m^2/sr), recom (ph/s/m^2/sr), D2 (ph/s/m^2/sr), D2+ (ph/s/m^2/sr), D- (ph/s/m^2/sr)'
+                    np.savetxt(filename, np.transpose((x,excit,recom, h2, h2_pos, h_neg)), header=header, delimiter=',')
+                else:
+                    header = 'line: ' + '{:5.1f}'.format(float(line)/10.) + ' nm, ' + 'cols: ' + coord + ', excit (ph/s/m^2/sr), recom (ph/s/m^2/sr)'
+                    np.savetxt(filename, np.transpose((x,excit,recom)), header=header, delimiter=',')
 
             if legend:
                 leg = axs[i].legend(loc='upper left')
@@ -904,25 +867,11 @@ class Plot():
             # TODO: add logic for testing whether imp1 and/or imp2 exist
             Prad_ff_perm2 = self.get_line_int_sorted_data_by_chord_id(diag, ['los_int', 'Prad_perm2', 'ff'])
             Prad_H_perm2 = self.get_line_int_sorted_data_by_chord_id(diag, ['los_int', 'Prad_perm2', 'H'])
-            Prad_imp1_perm2 = self.get_line_int_sorted_data_by_chord_id(diag, ['los_int', 'Prad_perm2', 'imp1'])
-            Prad_imp2_perm2 = self.get_line_int_sorted_data_by_chord_id(diag, ['los_int', 'Prad_perm2', 'imp2'])
 
             ylabel = '$\mathrm{W\/m^{-2}}$'
 
-            if np.ndim(Prad_imp1_perm2) == 2:
-                Prad_imp1_perm2_sum = np.sum(Prad_imp1_perm2, axis=1)
-                axs.plot(x, Prad_imp1_perm2_sum, ls='-.',
-                         lw=lineweight, c=color, zorder=zorder, label='Prad,imp1')
-            else:
-                Prad_imp1_perm2_sum = Prad_imp1_perm2
-            if np.ndim(Prad_imp2_perm2) == 2:
-                Prad_imp2_perm2_sum = np.sum(Prad_imp2_perm2, axis=1)
-                axs.plot(x, Prad_imp2_perm2_sum, ls=':',
-                         lw=lineweight, c=color, zorder=zorder, label='Prad,imp2')
-            else:
-                Prad_imp2_perm2_sum = Prad_imp2_perm2
 
-            Prad_sum = Prad_ff_perm2 + Prad_H_perm2 + Prad_imp1_perm2_sum + Prad_imp2_perm2_sum
+            Prad_sum = Prad_ff_perm2 + Prad_H_perm2 
 
             axs.plot(x, Prad_sum, ls=linestyle,
                      lw=lineweight, c=color, zorder=zorder, label='Prad,total')
@@ -940,8 +889,8 @@ class Plot():
         if write_csv:
             filedir = self.work_dir + self.case + '/'
             filename = filedir + self.case + '.' + diag + '.' + 'Prad.txt'
-            header =  coord + ', Prad_free_free, Prad_H, Prad_imp1, Prad_imp2 (W/m^2)'
-            np.savetxt(filename, np.transpose((x,Prad_ff_perm2, Prad_H_perm2, Prad_imp1_perm2_sum, Prad_imp2_perm2_sum)), header=header, delimiter=',')
+            header =  coord + ', Prad_free_free, Prad_H (W/m^2)'
+            np.savetxt(filename, np.transpose((x,Prad_ff_perm2, Prad_H_perm2)), header=header, delimiter=',')
 
         if legend:
             leg = axs.legend(loc='upper left')
@@ -968,123 +917,6 @@ class Plot():
         title = self.case
         axs.set_title(title, rotation=270, x=1.05, y=0.9)
 
-    def plot_nii_adas_afg(self):
-
-        # PLOT RADIAL PROFILES OF SYNTHETIC LINE-INTEGRATED RECOVERED PARAMS
-        axs = self.plot_dict['nii_adas_afg']['axs']
-        color = self.plot_dict['nii_adas_afg']['color']
-        zorder = self.plot_dict['nii_adas_afg']['zorder']
-        writecsv = self.plot_dict['nii_adas_afg']['writecsv']
-
-        for diagname, diag in self.__res_dict.items():
-            if diagname == 'KT3':
-                p2 = self.get_line_int_sorted_data_by_chord_id(diagname, ['chord', 'p2'])
-                R = p2[:, 0]
-
-                wav = np.asarray(diag['1']['los_int']['afg_adasn1_kt3b1200']['wave'])
-                nii_adas_afg_intensity = self.get_line_int_sorted_data_by_chord_id(
-                    diagname, ['los_int', 'afg_adasn1_kt3b1200', 'intensity'])
-                for ichord, chord in enumerate(R):
-                    axs.semilogy(wav, 0.01+nii_adas_afg_intensity[ichord], '-', c=color, lw=2.)
-
-                if writecsv:
-                    # Also write the results to file for Stuart to process
-                    filename = self.work_dir + self.case + '/kt3_nii_adas_afg' '.wav'
-                    np.savetxt(filename, wav.T, newline='\n')
-                    filename = self.work_dir + self.case + '/kt3_nii_adas_afg' + '.coord'
-                    np.savetxt(filename, R, newline='\n')
-                    filename = self.work_dir + self.case + '/kt3_nii_adas_afg' + '.data'
-                    header = 'units: ph s^-1 m^-2 sr^-1 nm^-1'
-                    np.savetxt(filename, nii_adas_afg_intensity.T, header=header, delimiter=',', newline='\n')
-
-            leg = axs.legend(loc='upper right')
-            # leg.get_frame().set_alpha(0.2)
-
-    def plot_impemiss_profiles(self, lineweight=2.0, alpha=0.250, legend=True):
-
-        # PLOT RADIAL PROFILES OF SYNTHETIC LINE-INTEGRATED RECOVERED PARAMS
-        lines = self.plot_dict['prof_impemiss_defs']['lines']
-        axs = self.plot_dict['prof_impemiss_defs']['axs']
-        diag = self.plot_dict['prof_impemiss_defs']['diag']
-        color = self.plot_dict['prof_impemiss_defs']['color']
-        zorder = self.plot_dict['prof_impemiss_defs']['zorder']
-        excrec = self.plot_dict['prof_impemiss_defs']['excrec']
-        coord = self.plot_dict['prof_impemiss_defs']['coord']
-        write_csv = False
-        if 'write_csv' in self.plot_dict['prof_impemiss_defs']:
-            write_csv = self.plot_dict['prof_impemiss_defs']['write_csv']
-        ylim, xlim = None, None
-        if 'ylim' in self.plot_dict['prof_impemiss_defs']:
-            ylim = self.plot_dict['prof_impemiss_defs']['ylim']
-        if 'xlim' in self.plot_dict['prof_impemiss_defs']:
-            xlim = self.plot_dict['prof_impemiss_defs']['xlim']
-
-        if coord == 'R':
-            p2 = self.get_line_int_sorted_data_by_chord_id(diag, ['chord', 'p2'])
-            x = p2[:, 0]
-        elif coord == 'Z':
-            p2 = self.get_line_int_sorted_data_by_chord_id(diag, ['chord', 'p2'])
-            x = p2[:, 1]
-        elif coord == 'angle':
-            x = self.get_line_int_sorted_data_by_chord_id(diag, ['chord', 'los_angle'])
-        else:
-            # default R coord
-            p2 = self.get_line_int_sorted_data_by_chord_id(diag, ['chord', 'p2'])
-            x = p2[:, 0]
-
-        icol = 0
-        for at_num in lines.keys():
-            if int(at_num) > 1 : # skip hydrogen
-                for i, ion_stage in enumerate(lines[at_num].keys()):
-                    for line in lines[at_num][ion_stage]:
-                        line_wv = float(line) / 10.
-
-                        label = process.at_sym[int(at_num) - 1] + ' ' + \
-                                process.roman[int(ion_stage) - 1] + ' ' + '{:5.1f}'.format(
-                            line_wv) + ' nm'
-
-                        excit = self.get_line_int_sorted_data_by_chord_id(diag, ['los_int', 'imp_emiss', at_num, ion_stage, line, 'excit'])
-                        recom = self.get_line_int_sorted_data_by_chord_id(diag, ['los_int', 'imp_emiss', at_num, ion_stage, line, 'recom'])
-
-                        axs[i].plot(x, excit+recom, '-', lw=lineweight, c=color[icol], zorder=zorder, label=label)
-                        if excrec:
-                            axs[i].plot(x, excit, '--', lw=1, c=color[icol], zorder=zorder, label=label +' excit')
-                            axs[i].plot(x, recom, ':', lw=1, c=color[icol], zorder=zorder, label=label +' recom')
-                        if legend:
-                            leg = axs[i].legend(loc='upper left')
-                            leg.get_frame().set_alpha(0.2)
-
-                        if write_csv:
-                            filedir = self.work_dir + self.case + '/'
-                            filename = filedir + self.case + '.' + diag + '.' + 'impemiss' + '.' + \
-                                       process.at_sym[int(at_num) - 1] + \
-                                       process.roman[int(ion_stage) - 1] + '{:5.1f}'.format(line_wv) + 'nm.txt'
-                            header = 'line: ' + label +', ' + 'cols: ' + coord + ', excit (ph/s/m^2/sr), recom (ph/s/m^2/sr)'
-                            np.savetxt(filename, np.transpose((x, excit, recom)), header=header, delimiter=',')
-
-                icol += 1
-
-        title = self.case
-        axs[0].set_title(title, rotation=270, x=1.05, y=0.9)
-
-        # xpt, isp, osp locations
-        for i in range(len(axs)):
-            axs[i].axvline(self.__data2d.geom['rpx'], ls=':', c='darkgrey', linewidth=2.)
-            axs[i].axvline(self.__data2d.osp[0], ls=':', c='darkgrey', linewidth=2.)
-            axs[i].axvline(self.__data2d.isp[0], ls=':', c='darkgrey', linewidth=2.)
-            if ylim:
-                axs[i].set_ylim(ylim[i][0], ylim[i][1])
-            if xlim:
-                axs[i].set_xlim(xlim[0], xlim[1])
-            else:
-                axs[i].set_xlim(x[0], x[-1])
-            label = '$\mathrm{ph\/s^{-1}\/m^{-2}\/sr^{-1}}$'
-            axs[i].set_ylabel(label)
-            if i == len(axs)-1:
-                # axs[i].set_xlabel('Major radius on tile 5 (m)')
-                # axs[i].set_xlabel(coord)
-                axs[i].set_xlabel('R (m)')
-
     def plot_params_along_LOS(self, lineweight=2.0, alpha=0.250, legend=True):
 
         dummy = 0
@@ -1096,8 +928,6 @@ class Plot():
         chord = self.plot_dict['param_along_LOS']['chord']
         color = self.plot_dict['param_along_LOS']['color']
         zorder = self.plot_dict['param_along_LOS']['zorder']
-        imp1_den = None
-        imp2_den = None
 
         ylim, xlim = None, None
         if 'ylim' in self.plot_dict['param_along_LOS']:
@@ -1110,70 +940,10 @@ class Plot():
                 l = self.__res_dict[diag][chord]['los_1d']['l']
                 Te = self.__res_dict[diag][chord]['los_1d']['te']
                 ne = self.__res_dict[diag][chord]['los_1d']['ne']
-                if 'imp2_den' in self.__res_dict[diag][chord]['los_1d']:
-                    imp2_den = np.asarray(self.__res_dict[diag][chord]['los_1d']['imp2_den'])
 
         if isinstance(axs, np.ndarray) and len(axs) > 0:
             # n_e
             axs[0].semilogy(l, ne, c=color, lw=lineweight, zorder=zorder, label=r'$\mathrm{n_{e}}$')
-
-            if imp2_den.any():
-                axs[0].semilogy(l, np.sum(imp2_den, axis=1), '--', c=color, lw=lineweight, zorder=zorder, label=r'$\mathrm{n_{N}}$')
-                # axs[0].semilogy(l, imp2_den[:,0], ':', c='darkgray', lw=lineweight, zorder=zorder, label=r'$\mathrm{n_{N0+}}$')
-                axs[0].semilogy(l, imp2_den[:,1], ':', c=color, lw=lineweight, zorder=zorder, label=r'$\mathrm{n_{N^{1+}}}$')
-                # axs[0].semilogy(l, imp2_den[:,2], ':', c='darkgray', lw=lineweight, zorder=zorder, label=r'$\mathrm{n_{N2+}}$')
-                # axs[0].semilogy(l, imp2_den[:,3], ':', c='darkgray', lw=lineweight, zorder=zorder, label=r'$\mathrm{n_{N3+}}$')
-                # axs[0].semilogy(l, imp2_den[:,4], ':', c='darkgray', lw=lineweight, zorder=zorder, label=r'$\mathrm{n_{N4+}}$')
-                # axs[0].semilogy(l, imp2_den[:,5], ':', c='darkgray', lw=lineweight, zorder=zorder, label=r'$\mathrm{n_{N5+}}$')
-                # axs[0].semilogy(l, imp2_den[:,6], ':', c='darkgray', lw=lineweight, zorder=zorder, label=r'$\mathrm{n_{N6+}}$')
-                # axs[0].semilogy(l, imp2_den[:,7], ':', c='darkgray', lw=lineweight, zorder=zorder, label=r'$\mathrm{n_{N7+}}$')
-
-                axs_twinx = axs[0].twinx()
-                axs_twinx.plot(l, np.sum(imp2_den, axis=1)/ne, '-', c='r', lw=lineweight, zorder=zorder, label=r'$\mathrm{c_{N}}$')
-                axs_twinx.set_ylabel(r'$\mathrm{c_{N}}$')
-                axs_twinx.spines['left'].set_color('r')
-                axs_twinx.yaxis.label.set_color('r')
-                axs_twinx.tick_params(axis='y', colors='r')
-                if dummy==0:
-                    axs[0].legend(loc='upper left', prop={'size': 18}, handletextpad=0.1, borderaxespad=0.1,
-                                  framealpha=1.0, frameon=True, labelspacing=0.05)
-                    leg = axs[0].get_legend()
-                    # for i in range(0,len(leg.legendHandles)):
-                    #     leg.legendHandles[i].set_color('k')
-
-        # if isinstance(axs, np.ndarray) and len(axs) > 1:
-        #     # Nitrogen concentration
-        #     if imp2_den.any():
-        #         axs[1].plot(l, np.sum(imp2_den, axis=1)/ne, '-', c=color, lw=lineweight, zorder=zorder, label=r'$\mathrm{c_{N}}$')
-        #         if dummy==0:
-        #             axs[1].legend(loc='upper right', prop={'size': 18}, frameon=True, labelspacing=0.05)
-        #             leg = axs[1].get_legend()
-        #             for i in range(0,len(leg.legendHandles)):
-        #                 leg.legendHandles[i].set_color('k')
-
-        if isinstance(axs, np.ndarray) and len(axs) > 1:
-            # N II 399.6 nm emission
-            for at_num in lines.keys():
-                if int(at_num) == 7:
-                    for i, ion_stage in enumerate(lines[at_num].keys()):
-                        for line in lines[at_num][ion_stage]:
-                            if line == '3996.13':
-                                line_wv = float(line) / 10.
-
-                                label = process.at_sym[int(at_num) - 1] + ' ' + \
-                                        process.roman[int(ion_stage) - 1] + ' ' + '{:5.1f}'.format(
-                                    line_wv) + ' nm'
-
-                                excit = self.__res_dict[diag][chord]['los_1d']['imp_emiss'][at_num][ion_stage][line]['excit']
-                                recom = self.__res_dict[diag][chord]['los_1d']['imp_emiss'][at_num][ion_stage][line]['recom']
-
-                                axs[1].plot(l, np.asarray(excit) + np.asarray(recom), '-', lw=lineweight, c=color, zorder=zorder, label=label)
-            # if dummy==0:
-                # axs[1].legend(loc='upper right', prop={'size': 18}, frameon=True, labelspacing=0.05)
-                # leg = axs[1].get_legend()
-                # for i in range(0, len(leg.legendHandles)):
-                #     leg.legendHandles[i].set_color('k')
-
         if isinstance(axs, np.ndarray) and len(axs) > 0:
             axs[len(axs)-1].set_xlabel('Distance along LOS (m)')
         if isinstance(axs, np.ndarray) and len(axs) > 0:
@@ -1195,171 +965,12 @@ class Plot():
             rect = patches.Rectangle((self.__res_dict[diag][chord]['los_1d']['l'][-1], axs[1].get_ylim()[0]), width,
                                      height, hatch='\\', edgecolor='none', facecolor='k', alpha=0.35)
             axs[1].add_patch(rect)
-            # # DRAW TILE 5 RECTANGLE
-            # width = np.abs(axs[2].get_xlim()[0] - self.__res_dict[diag][chord]['los_1d']['l'][-1])
-            # height = np.abs(axs[2].get_ylim()[1] - axs[2].get_ylim()[0])
-            # rect = patches.Rectangle((self.__res_dict[diag][chord]['los_1d']['l'][-1], axs[2].get_ylim()[0]), width,
-            #                          height, hatch='\\', edgecolor='none', facecolor='k', alpha=0.35)
-            # axs[2].add_patch(rect)
 
         title = diag + ' R = ' + '{:3.2f}'.format(self.__res_dict[diag][chord]['chord']['p2'][0]) + ' m'
 
         # axs[0].set_xlim(np.min(l), np.max(l)+0.1)
         axs[0].set_xlim(5, 5.25)
         axs[0].set_title(title)
-
-    def plot_imp_rad_coeff(self, region, atnum, ion_stages):
-
-        axs = self.plot_dict['imp_rad_coeff']['axs']
-        color = self.plot_dict['imp_rad_coeff']['color']
-        zorder = self.plot_dict['imp_rad_coeff']['zorder']
-
-        if self.data2d.imp1_atom_num or self.data2d.imp2_atom_num:
-            if atnum == self.data2d.imp1_atom_num or atnum == self.data2d.imp2_atom_num:
-                atnumstr = str(atnum)
-                # rad loss coeff not very sensitive to elec. density so choose a sensible value
-                ine, vne = find_nearest(self.ADAS_dict['adf11'][atnumstr].ne_arr, 1.0e14)
-
-                # plot ionisation balance radiative loss coeff
-                axs[0].loglog(self.ADAS_dict['adf11'][atnumstr].Te_arr,
-                              1.0e-06 * self.ADAS_dict['adf11'][atnumstr].ion_bal_pwr['total'][ine, :], '-k',
-                              lw=3.0)
-                for i, stage in enumerate(ion_stages):
-                    axs[0].loglog(self.ADAS_dict['adf11'][atnumstr].Te_arr,
-                                  1.0e-06 * self.ADAS_dict['adf11'][atnumstr].ion_bal_pwr['ion'][ine, :, stage-1],
-                                  ':', c='k', lw=1.0)
-                    axs[i + 1].loglog(self.ADAS_dict['adf11'][atnumstr].Te_arr,
-                                      1.0e-06 * self.ADAS_dict['adf11'][atnumstr].ion_bal_pwr['ion'][ine, :, stage-1],
-                                      '-', c='k', lw=2.0)
-
-                # plot sim rad loss coeff/pwr for each stage
-                imp_radpwr_coeff_collate = []
-                imp_radpwr_collate = []
-                te_collate = []
-                for cell in self.data2d.regions[region].cells:
-                    if atnum == self.data2d.imp1_atom_num:
-                        imp_radpwr_coeff_collate.append(cell.imp1_radpwr_coeff)
-                        imp_radpwr_collate.append(cell.imp1_radpwr)
-                    elif atnum == self.data2d.imp2_atom_num:
-                        imp_radpwr_coeff_collate.append(cell.imp2_radpwr_coeff)
-                        imp_radpwr_collate.append(cell.imp2_radpwr)
-
-                    te_collate.append(cell.te)
-
-                imp_radpwr_coeff_collate_arr = np.asarray(imp_radpwr_coeff_collate)
-                imp_radpwr_collate_arr = np.sum(np.asarray(imp_radpwr_collate), axis=1)
-                imp_radpwr_collate_arr_max = np.max(imp_radpwr_collate_arr)
-                imp_radpwr_collate_arr/= imp_radpwr_collate_arr_max
-                te_collate_arr = np.asarray(te_collate)
-
-                axs[0].scatter(te_collate_arr, np.sum(imp_radpwr_coeff_collate_arr, axis=1),
-                               s=500*imp_radpwr_collate_arr, c=color, edgecolors='none')
-                # axs[0].scatter(te_collate_arr, np.sum(imp_radpwr_coeff_collate_arr, axis=1),
-                #                s=10, c=color, edgecolors='none')
-                axs[0].set_ylabel(r'$\mathrm{P_{rad}}$' + r'$\mathrm{\/(W m^{3})}$')
-
-                for i, stage in enumerate(ion_stages):
-                    scale = np.asarray(imp_radpwr_collate)[:, i]
-                    scale/=imp_radpwr_collate_arr_max
-                    axs[i + 1].scatter(te_collate_arr, imp_radpwr_coeff_collate_arr[:, i],
-                                       s=500*scale, c=color,  edgecolors='none')
-                    # axs[i + 1].scatter(te_collate_arr, imp_radpwr_coeff_collate_arr[:, i],
-                    #                    s=10, c=color,  edgecolors='none')
-                    axs[i + 1].set_ylabel(r'$\mathrm{P_{rad}\/+}$' + str(stage-1) + r'$\mathrm{\/(W m^{3})}$')
-
-                    if i == len(axs)-2:
-                        axs[i + 1].set_xlabel(r'$\mathrm{T_{e}\/(eV)}$')
-
-                axs[0].set_title(self.case + ' ' + process.at_sym[atnum - 1] + ' in region: ' + region)
-
-    def plot_imp_rad_dist(self, region, atnum, te_nbins):
-
-        axs = self.plot_dict['imp_rad_dist']['axs']
-        color = self.plot_dict['imp_rad_dist']['color']
-        zorder = self.plot_dict['imp_rad_dist']['zorder']
-        if 'norm' in self.plot_dict['imp_rad_dist']:
-            norm = self.plot_dict['imp_rad_dist']['norm']
-        else:
-            norm = None
-        if 'ion_stage' in self.plot_dict['imp_rad_dist']:
-            ion_stage = self.plot_dict['imp_rad_dist']['ion_stage']
-        else:
-            ion_stage = None
-
-        if self.data2d.imp1_atom_num or self.data2d.imp2_atom_num:
-            if atnum == self.data2d.imp1_atom_num or atnum == self.data2d.imp2_atom_num:
-                atnumstr = str(atnum)
-                # rad loss coeff not very sensitive to elec. density so choose a sensible value
-                ine, vne = find_nearest(self.ADAS_dict['adf11'][atnumstr].ne_arr, 1.0e14)
-
-                # Get max and min Te in region for Te bin range
-                min_Te = 100000.
-                max_Te = 0.0
-                for cell in self.data2d.regions[region].cells:
-                    if cell.te > max_Te: max_Te = cell.te
-                    if cell.te < min_Te: min_Te = cell.te
-
-                # Set up elec. temp bins and labels
-                te_bins = np.logspace(np.log10(min_Te), np.log10(max_Te), te_nbins)
-                te_bin_labels = []
-
-                for ite, vte in enumerate(te_bins):
-                    if (ite + 1) != len(te_bins):
-                        label = '{:6.1f}'.format(te_bins[ite]) + '-' + '{:6.1f}'.format(te_bins[ite + 1])
-                        te_bin_labels.append(label)
-
-                        # BIN RADIATED POWER BY TE
-                        te_bin_imp_radpwr = np.zeros((te_nbins-1, atnum))
-                        te_bin_H_radpwr = np.zeros((te_nbins-1))
-                        for cell in self.data2d.regions[region].cells:
-                            for ite, vte in enumerate(te_bins):
-                                if (ite + 1) != len(te_bins):
-                                    if cell.te > te_bins[ite] and cell.te <= te_bins[ite + 1]:
-                                        te_bin_H_radpwr[ite] += cell.H_radpwr
-                                        if atnum == self.data2d.imp1_atom_num:
-                                            te_bin_imp_radpwr[ite] += cell.imp1_radpwr
-                                        elif atnum == self.data2d.imp2_atom_num:
-                                            te_bin_imp_radpwr[ite] += cell.imp2_radpwr
-                        # convert to MW
-                        te_bin_imp_radpwr *= 1.0e-06
-                        te_bin_H_radpwr *= 1.0e-06
-
-                # IMP CHARGE STATE DIST
-                axs[0].plot(np.sum(te_bin_imp_radpwr, axis=0), '-o', c=color, mfc=color, mec=color, ms=4, mew=2.0)
-                axs[0].set_ylabel(r'$\mathrm{P_{RAD}\/(MW)}$')
-                axs[0].set_xlabel('Ionisation stage')
-
-                # BAR PLOT BY TE BINS
-
-                if ion_stage:
-                    if int(ion_stage)>=0 and int(ion_stage) < atnum:
-                        te_bin_imp_radpwr_plot = te_bin_imp_radpwr[:, int(ion_stage)]
-                        label=process.at_sym[atnum - 1] +  str(int(ion_stage)) + '+'
-                else:
-                    te_bin_imp_radpwr_plot = np.sum(te_bin_imp_radpwr, axis=1)
-                    label = process.at_sym[atnum - 1]
-
-                if norm:
-                    norm_scal_H = te_bin_H_radpwr / np.sum(te_bin_H_radpwr)
-                    norm_scal_imp = te_bin_imp_radpwr_plot / np.sum(te_bin_imp_radpwr_plot)#
-                else:
-                    norm_scal_H = 1.0
-                    norm_scal_imp = 1.0
-
-
-                x_pos = np.arange(len(te_bin_labels))
-                width = 0.2
-                barspace = width * self.icase
-                axs[1].bar(x_pos+barspace, norm_scal_H*te_bin_H_radpwr, width, align='center', color='darkgrey', edgecolor=color, alpha=0.3)
-                axs[1].bar(x_pos+barspace, norm_scal_imp*np.sum(te_bin_imp_radpwr, axis=1) , width, align='center', color=color, alpha=0.3, label=label)
-                # axs[1].bar(x_pos+barspace, te_bin_imp_radpwr[:,2] , width, align='center', color=color, alpha=0.3)
-                axs[1].set_xticks(x_pos+width*(self.icase-1))
-                axs[1].set_xticklabels(te_bin_labels, rotation=90)
-                axs[1].set_xlabel(r'$\mathrm{T_{e}\/(eV)}$')
-                axs[1].set_ylabel(r'$\mathrm{P_{RAD}\/(MW)}$')
-                axs[1].set_title(label, loc = 'right')
-
-                axs[0].set_title(self.case + ' ' + process.at_sym[atnum - 1] + ' in region: ' + region)
 
     def get_line_int_sorted_data_by_chord_id(self, diag, mapList):
         """
@@ -1403,21 +1014,11 @@ class Plot():
         spec_line = []
         for cell in self.__data2d.cells:
             cell_patches.append(patches.Polygon(cell.poly.exterior.coords, closed=True, zorder=1))
-            if int(at_num) > 1:
-                spec_line.append(cell.imp_emiss[at_num][ion_stage][line_key]['excit'] +
-                                cell.imp_emiss[at_num][ion_stage][line_key]['recom'])
-            else:   
-                spec_line.append(cell.H_emiss[line_key]['excit'] +
+            spec_line.append(cell.H_emiss[line_key]['excit'] +
                                 cell.H_emiss[line_key]['recom'])
 
-            # imp_line.append((cell.imp_emiss[at_num][ion_stage][line_key]['fPEC_excit']+cell.imp_emiss[at_num][ion_stage][line_key]['fPEC_recom'])*cell.ne)
-
-        # coll1 = PatchCollection(cell_patches, cmap=matplotlib.cm.hot, norm=matplotlib.colors.LogNorm(), zorder=1, lw=0)
-        # coll1 = PatchCollection(cell_patches, cmap=matplotlib.cm.hot, zorder=1, lw=0)
         coll1 = PatchCollection(cell_patches, zorder=1)
-        # coll1.set_array(np.asarray(imp_line))
-
-        # Clip color scale with min and max threshold
+        
         if scal_log10:
             cscale_min = min_clip * np.max(np.log10(spec_line))
             cscale_max = max_clip * np.max(np.log10(spec_line))
@@ -1504,19 +1105,14 @@ class Plot():
         prad = []
         for cell in self.__data2d.cells:
             cell_patches.append(patches.Polygon(cell.poly.exterior.coords, closed=True, zorder=1))
-            prad.append(cell.ff_radpwr_perm3+np.sum(cell.imp2_radpwr_perm3)+np.sum(cell.imp1_radpwr_perm3)+cell.H_radpwr_perm3)
-            # prad.append(cell.H_radpwr_perm3)
-
-
-            # imp_line.append((cell.imp_emiss[at_num][ion_stage][line_key]['fPEC_excit']+cell.imp_emiss[at_num][ion_stage][line_key]['fPEC_recom'])*cell.ne)
-
+            prad.append(cell.ff_radpwr_perm3+cell.H_radpwr_perm3)
+    
         prad=np.asarray(prad)*1.0e-06
 
         # coll1 = PatchCollection(cell_patches, cmap=matplotlib.cm.hot, norm=matplotlib.colors.LogNorm(), zorder=1, lw=0)
         # coll1 = PatchCollection(cell_patches, cmap=matplotlib.cm.hot, zorder=1, lw=0)
         coll1 = PatchCollection(cell_patches, zorder=1)
-        # coll1.set_array(np.asarray(imp_line))
-
+        
         # Clip color scale with min and max threshold
         cscale_min = min_clip * np.max(prad)
         cscale_max = max_clip * np.max(prad)
@@ -1534,7 +1130,7 @@ class Plot():
         coll1.set_color(colors)
         collplt = ax.add_collection(coll1)
         ax.set_yscale
-        title = self.case + ' imp2 Prad '
+        title = self.case 
 
         # ax.set_title(title)
         plt.gca().set_aspect('equal', adjustable='box')

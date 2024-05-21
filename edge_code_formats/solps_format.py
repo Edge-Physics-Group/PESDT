@@ -261,12 +261,18 @@ class SOLPS():
                 _ne = self.mesh_data_dict['ne'][_idx_grid_map[0], _idx_grid_map[1]]       
             
                 # Plasma species (fuel + impurity)
-                # TODO: Generalize to multi-species - also needs mods on pyproc process side, 
+                # TODO: Generalize to multi-species - also needs mods on PESDT process side, 
                 # which is edge2d-centric with the legacy imp1 and imp2 structure
-                _n0 = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 0]       
-                _ni = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 1]       
-                _imp1_den = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 2:]
-                self.imp1_atom_num = self.sim_info_dict['zn'][2]
+                # Neutral species densities must be read from fort.44 file, dab2. This is the 
+                # EIRENE output on the B2 quad mesh. fort.46 pdena holds the same info on the tri
+                # EIRENE mesh.
+#                _n0 = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 0] # fluid neutral den  
+                _n0 = self.fort44_data_dict['dab2'][_idx_grid_map[0], _idx_grid_map[1]] # kinetic atom den  
+                _n2 = self.fort44_data_dict['dmb2'][_idx_grid_map[0], _idx_grid_map[1]] # kinetic mol. den 
+                _n2p = self.fort44_data_dict['dib2'][_idx_grid_map[0], _idx_grid_map[1]] # kinetic mol. ion den
+                _ni = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 1] # fuel ion den      
+                _imp1_den = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 2:] # impurity den by ion stage
+                self.imp1_atom_num = None
                 
 #                for i in range(len(sim_info_dict['zn'])):
 #                    zn = int(sim_info_dict['zn'][i])  # Nuclear charge
@@ -279,13 +285,13 @@ class SOLPS():
                 # TODO: read-in equlibirium and populate x-pt, osp, isp, wall_poly, sep_poly
                 self.geom['rpx'] = 2.563
                 self.geom['zpx'] = -1.449
-                self.zch['data'] = [int(self.sim_info_dict['zn'][2]), 0, 0, 0, 0, 0]
+                self.zch = {}
                                         
                 self.tri_cells.append(process.Cell(shply_poly.centroid.x, shply_poly.centroid.y,
                                            row=_idx_grid_map[0], ring=_idx_grid_map[1],                                       
                                            poly=shply_poly, te=_te,
                                            ne=_ne, ni=_ni,
-                                           n0=_n0, Srec=0, Sion=0,
+                                           n0=_n0, n2=_n2, n2p=_n2p, Srec=0, Sion=0,
                                            imp1_den = _imp1_den, imp2_den=None))
     
             # Deubgging
@@ -320,7 +326,7 @@ class SOLPS():
         Required files include:
         * mesh description file (b2fgmtry)
         * B2 plasma state (b2fstate)
-        * Eirene output file (fort.44)
+        * Eirene output file on B2 triangular grid (fort.44)
     
         :param str simulation_path: String path to simulation directory.
         :rtype: SOLPSSimulation
@@ -331,7 +337,7 @@ class SOLPS():
     
         mesh_file_path = os.path.join(self.sim_path, 'b2fgmtry')
         b2_state_file = os.path.join(self.sim_path, 'b2fstate')
-#            eirene_fort44_file = os.path.join(self.sim_path, "fort.44")
+        eirene_fort44_file = os.path.join(self.sim_path, "fort.44")
     
         if not os.path.isfile(mesh_file_path):
             raise RuntimeError("No B2 b2fgmtry file found in SOLPS output directory")
@@ -339,13 +345,14 @@ class SOLPS():
         if not(os.path.isfile(b2_state_file)):
             RuntimeError("No B2 b2fstate file found in SOLPS output directory")
     
-#            if not(os.path.isfile(eirene_fort44_file)):
-#                RuntimeError("No EIRENE fort.44 file found in SOLPS output directory")
+        if not(os.path.isfile(eirene_fort44_file)):
+            RuntimeError("No EIRENE fort.44 file found in SOLPS output directory")
     
         # Load SOLPS mesh geometry
         self.mesh = self.load_mesh_from_files(mesh_file_path=mesh_file_path, debug=debug)
 #        self.mesh.plot_mesh()
-    
+
+        self.fort44_header_dict, self.fort44_info_dict, self.fort44_data_dict = self.load_fort44_file(eirene_fort44_file, debug=debug)
         self.header_dict, self.sim_info_dict, self.mesh_data_dict = self.load_b2f_file(b2_state_file, debug=debug)
     
     
@@ -466,6 +473,162 @@ class SOLPS():
                 mesh_data_dict[name] = shaped_data
     
         return header_dict, sim_info_dict, mesh_data_dict
+
+
+
+    def load_fort44_file(self, filepath, debug=False):
+        """
+        File for parsing the 'fort.44' B2 Eirene output file.
+    
+        :param str filepath: full path for file to load and parse
+        :param bool debug: flag for displaying textual debugging information.
+        :return: tuple of dictionaries. First is the header information such as the version, label, grid size, etc. Second
+        dictionary has a SOLPSData object for each piece of data found in the file.
+        """
+    
+        # Inline function for mapping str data to floats, reshaping arrays, and loading into SOLPSData object.
+        def _make_solps_data_object(_data): 
+
+            # Convert list of strings to list of floats
+            for idx, item in enumerate(_data):
+                _data[idx] = float(item)
+
+            # Multiple 2D data field (e.g. dab2)
+            if number > nxyg:
+                _data = np.array(_data).reshape((nxg, nyg, int(number / nxyg)), order='F')
+                if debug:
+                    print('Mesh data field {} with dimensions:  {:d} x {:d} x {:d}'.format(name, nxg, nyg, int(number/nxyg)))
+                return MESH_DATA, _data
+    
+            # 2D data field (e.g. ne)
+            elif number == nxyg:
+                _data = np.array(_data).reshape((nxg, nyg), order='F')
+                if debug:
+                    print('Mesh data field {} with dimensions:  {:d} x {:d}'.format(name, nxg, nyg))
+                return MESH_DATA, _data
+    
+            # Additional information field (e.g. zamin)
+            else:
+                _data = np.array(_data)
+                if debug:
+                    print('Sim info field {} with length:     {} '.format(name, _data.shape[0]))
+                return SIM_INFO_DATA, _data
+    
+        if not(os.path.isfile(filepath)):
+            raise IOError('File {} not found.'.format(filepath))
+    
+        # Open fort.44 file for reading
+        fh = open(filepath, 'r')
+    
+        # Version header
+        version = fh.readline()
+    
+        # Read mesh size
+        line = version.split()
+        nx = int(line[0])
+        ny = int(line[1])
+        date = int(line[2])
+        version = line[3]
+    
+        # Calculate guard cells
+        nxg = nx + 2
+        nyg = ny + 2
+    
+        # Flat vector size
+        nxy = nx * ny
+        nxyg = nxg * nyg
+    
+        # Read num species
+        line = fh.readline().split()
+        num_atomic_species = int(line[0])
+        num_mol_species = int(line[1])
+        num_testion_species = int(line[2])
+        
+        atomic_species_label = []
+        for _i in range(num_atomic_species):
+            atomic_species_label.append(fh.readline())
+            
+        mol_species_label = []
+        for _i in range(num_mol_species):
+            mol_species_label.append(fh.readline())
+            
+        testion_species_label = []
+        for _i in range(num_testion_species):
+            testion_species_label.append(fh.readline())
+
+    
+        # Save header
+        fort44_header_dict = {'version': version, 'nx': nx, 'ny': ny, 
+                       'nxg': nxg, 'nyg': nyg, 'nxy': nxy, 'nxyg': nxyg, 
+                       'num_atomic_species': num_atomic_species,
+                       'num_mol_species': num_mol_species,
+                       'num_testion_species': num_testion_species,
+                       'atomic_species_label': atomic_species_label,
+                       'mol_species_label': mol_species_label,
+                       'testion_species_label': testion_species_label
+                       }
+    
+        # variables for file data
+        name = ''
+        number = 0
+        data = []
+        fort44_data_dict = {}
+        fort44_info_dict = {}
+    
+        # Repeat reading data blocks till EOF
+        while True:
+            # Read line
+            line = fh.readline().split()
+    
+            # EOF 
+            if len(line) == 0:
+                # Check if last line
+                line = fh.readline().split()
+                if len(line) == 0:
+                    break
+    
+            # New block found
+            if line[0] == '*eirene':
+                # If previous block read --> Convert data to float, reshape and save to Object
+                if name != '':
+                    data.extend((nxg+1)*[0.0]) # Add last row of guard cells
+                    flag, shaped_data = _make_solps_data_object(data)
+                    if flag == SIM_INFO_DATA:
+                        fort44_info_dict[name] = shaped_data                    
+                    elif flag == MESH_DATA:
+                        fort44_data_dict[name] = shaped_data
+    
+                # Read next field paramters
+                data_type = 'real'
+                number = int(line[6]) 
+                if number >= nxy: # adding guard cells
+                    number = number + (2*nxg+2*ny)*(number/nxy)           
+                name = str(line[3].strip())
+                if name == 'edissml': # you can stop reading here, because other variables are not needed
+                    break
+                data = (nxg+1)*['0.0']
+                ndata = 0
+                nrow = 1
+    
+            # Append line to vector of data
+            else:
+                for i in range(len(line)):
+                    ndata = ndata+1
+                    if ndata > nrow*nx: # add guard cells
+                       nrow = nrow+1
+                       data.extend(['0.0'])
+                       data.extend(['0.0'])
+                    data.extend([line[i]])
+    
+        if name != '' and name != 'edissml':
+            data.extend((nxg+1)*[0.0]) # Add last row of guard cells
+            flag, shaped_data = _make_solps_data_object(data)
+            if flag == SIM_INFO_DATA:
+                fort44_info_dict[name] = shaped_data
+            elif flag == MESH_DATA:
+                fort44_data_dict[name] = shaped_data
+    
+        return fort44_header_dict, fort44_info_dict, fort44_data_dict
     
     
     def load_mesh_from_files(self,mesh_file_path, debug=False):
@@ -490,9 +653,9 @@ class SOLPS():
 # Test case
 if __name__ == '__main__':
 
-    simulation_path = "/home/bloman/pyproc/examples/solps_test"
+    simulation_path = "/home/5bl/PESDT/examples/mastu_solps_dmoulton/puff=40.0e21_pump=0.001_drifts_divchiconstfix_bcmom2_visper1_rxf0p1_parmvsa2_pin2.0_redoutpfrtrans"
 
-    # p = load_b2f_file("/home/mcarr/mst1/aug_2016/solps_testcase/b2fstate", debug=True)
+    # p = load_b2f_file(simulation_path + "/b2fstate", debug=True)
 
     SOLPS(simulation_path)
 

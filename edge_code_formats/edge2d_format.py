@@ -22,7 +22,7 @@ def floatToBits(f):
 class Cell:
 
     def __init__(self, R=None, Z=None, row=None, ring=None,
-                 poly=None, te=None, ti=None, ne=None, ni=None, n0=None,
+                 poly=None, te=None, ti=None, ne=None, ni=None, n0=None,  n2 = None, n2p = None,
                  Srec=None, Sion=None, imp1_den=None, imp2_den=None, imp2_charge=None):
 
         self.R = R # m
@@ -35,6 +35,8 @@ class Cell:
         self.ni = ni # m^-3
         self.ne = ne # m^-3
         self.n0 = n0 # m^-3
+        self.n2 = n2
+        self.n2p = n2p
         self.imp1_den = imp1_den # m^-3
         self.imp2_den = imp2_den # m^-3
         self.imp2_charge = imp2_charge
@@ -80,11 +82,7 @@ class Edge2D():
     from the tran file
     
     TODO: implement read_eirene_side function for reading the EIRENE output
-    
-    LEGACY:
-    functions which use idlbridge and idl eproc
-    get_eproc_param_temp
-    get_eproc_row_ring_from_kval
+
     '''
 
     def __init__(self, tranfile, read_fluid_side=True, read_eirene_side=False):
@@ -118,6 +116,7 @@ class Edge2D():
         # Read in na and nm (atomic, molecular)
         self.da = self.get_eproc_param("EprocDataRead", 'DA')
         self.dm = self.get_eproc_param("EprocDataRead", 'DM')
+        self.di = self.get_eproc_param("EprocDataRead", 'DI')
         # ?
         self.korpg = self.get_eproc_param("EprocDataRead", 'KORPG')
         # Read in recombination and ionization (?) sources
@@ -129,8 +128,6 @@ class Edge2D():
             self.korpg['data'][i] = floatToBits(self.korpg['data'][i])
             
         # GET INNER AND OUTER TARGET DATA
-        self.dm_OT = self.get_eproc_param("EprocRow", 'DM', 'OT', args='ALL_POINTS=0')
-        self.dm_IT = self.get_eproc_param("EprocRow", 'DM', 'IT', args='ALL_POINTS=0')
         self.psi_OT = self.get_eproc_param("EprocRow", 'PSI', 'OT', args='ALL_POINTS=0')
         self.psi_IT = self.get_eproc_param("EprocRow", 'PSI', 'IT', args='ALL_POINTS=0')
         self.qeflxd_OT = self.get_eproc_param("EprocRow", 'QEFLXD', 'OT', args='ALL_POINTS=0')
@@ -141,10 +138,16 @@ class Edge2D():
         self.pflxd_IT = self.get_eproc_param("EprocRow", 'PFLXD', 'IT', args = 'ALL_POINTS=0')
         self.teve_OT = self.get_eproc_param("EprocRow", 'TEVE', 'OT', args = 'ALL_POINTS=0')
         self.teve_IT = self.get_eproc_param("EprocRow", 'TEVE', 'IT', args = 'ALL_POINTS=0')
+        self.tev_OT = self.get_eproc_param("EprocRow", 'TEV', 'OT', args = 'ALL_POINTS=0')
+        self.tev_IT = self.get_eproc_param("EprocRow", 'TEV', 'IT', args = 'ALL_POINTS=0')
         self.denel_OT = self.get_eproc_param("EprocRow", 'DENEL', 'OT', args = 'ALL_POINTS=0')
         self.denel_IT = self.get_eproc_param("EprocRow", 'DENEL', 'IT', args = 'ALL_POINTS=0')
         self.da_OT = self.get_eproc_param("EprocRow", 'DA', 'OT', args = 'ALL_POINTS=0')
         self.da_IT = self.get_eproc_param("EprocRow", 'DA', 'IT', args = 'ALL_POINTS=0')
+        self.dm_OT = self.get_eproc_param("EprocRow", 'DM', 'OT', args='ALL_POINTS=0')
+        self.dm_IT = self.get_eproc_param("EprocRow", 'DM', 'IT', args='ALL_POINTS=0')
+        self.di_OT = self.get_eproc_param("EprocRow", 'DI', 'OT', args='ALL_POINTS=0')
+        self.di_IT = self.get_eproc_param("EprocRow", 'DI', 'IT', args='ALL_POINTS=0')
 
         # GET GEOM INFO
         self.geom = {'rpx':0,'zpx':0}
@@ -158,6 +161,7 @@ class Edge2D():
         self.ti_OMP = self.get_eproc_param("EprocRow", 'TEV', 'OMP', args = 'ALL_POINTS=0')
         self.da_OMP = self.get_eproc_param("EprocRow", 'DA', 'OMP', args = 'ALL_POINTS=0')
         self.dm_OMP = self.get_eproc_param("EprocRow", 'DM', 'OMP', args = 'ALL_POINTS=0')
+        self.di_OMP = self.get_eproc_param("EprocRow", 'DI', 'OMP', args = 'ALL_POINTS=0')
         self.psi_OMP = self.get_eproc_param("EprocRow", 'PSI', 'OMP', args = 'ALL_POINTS=0')
 
         # GET INNER AND OUTER QPARTOT AT Z=-1.2
@@ -257,6 +261,8 @@ class Edge2D():
         self.ne = np.zeros((self.NE2Ddata))
         self.ni = np.zeros((self.NE2Ddata))
         self.n0 = np.zeros((self.NE2Ddata))
+        self.n2 = np.zeros((self.NE2Ddata))
+        self.n2p = np.zeros((self.NE2Ddata))
         self.srec = np.zeros((self.NE2Ddata))
         self.sion = np.zeros((self.NE2Ddata))
         self.imp1_den = np.zeros((len(_imp1_chrg_idx)+1,self.NE2Ddata))
@@ -275,6 +281,8 @@ class Edge2D():
                 self.ni[k] = self.den['data'][i]
                 self.ne[k] = self.denel['data'][i]
                 self.n0[k] = self.da['data'][i]
+                self.n2[k] = self.dm['data'][i]
+                self.n2p[k] = self.di['data'][i]
                 self.srec[k] = self.sirec['data'][i]
                 self.sion[k] = self.soun['data'][i]
 
@@ -294,34 +302,9 @@ class Edge2D():
                                        row=self.row[k], ring=self.ring[k],
                                        poly=shply_poly, te=self.te[k],
                                        ne=self.ne[k], ni=self.ni[k],
-                                       n0=self.n0[k], Srec=self.srec[k], Sion=self.sion[k],
+                                       n0=self.n0[k], n2 = self.n2[k], n2p = self.n2p[k], Srec=self.srec[k], Sion=self.sion[k],
                                        imp1_den = self.imp1_den[:,k], imp2_den=self.imp2_den[:,k], imp2_charge=self.imp2_charge[:,k]))
                 k+=1
-
-        # Read n0 multiplier:
-        # Set these to false, as it is unclear, what they are for
-        # Should be an optional input, instead of flags in the code
-        if False:
-            infile = open('/work/bloman/pyproc/n0_multip_files/' + self.tranfile.split('/')[7] + '_n0_multip_inter_ELM.pckl', 'rb')
-            n0_multiplier = pickle.load(infile)
-            infile.close()
-            # Calculate corrected neutral density:
-            self.n0 = self.n0*n0_multiplier
-            # Zero out neutral density in the main chamber
-            zv_cen = self.zv.mean(1)
-            mask = zv_cen > -1.3
-            self.n0[mask] = 0.
-
-        if False: # This is to leave some small n0 in the main chamber
-            infile = open('/work/bloman/pyproc/n0_multip_files/' + self.tranfile.split('/')[7] + '_n0_multip_inter_ELM.pckl', 'rb')
-            n0_multiplier = pickle.load(infile)
-            infile.close()
-            # Calculate corrected neutral density:
-            zv_cen = self.zv.mean(1)
-            mask = zv_cen > -1.4
-            self.n0[np.invert(mask)] = self.n0[np.invert(mask)] * n0_multiplier[np.invert(mask)]
-            # Zero out neutral density in the main chamber
-            self.n0[mask] = self.n0[mask]
 
         ##############################################
         # GET STRIKE POINT COORDS AND SEPARATRIX POLY
