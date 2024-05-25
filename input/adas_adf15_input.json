@@ -1,0 +1,69 @@
+{
+// H
+  "1":
+  {"1": {"file": "/home/adas/adas/adf15/pec12#h/pec12#h_pju#h0.dat",
+    "blocks": {"1215.2excit":1, "1215.2recom":67,
+// 2-1
+      "1025.3excit":2, "1025.3recom":68,
+// 3-1
+      "972.1excit":4, "972.1recom":70,
+// 3-2
+      "6561.9excit":3, "6561.9recom":69,
+// 4-2
+      "4860.6excit":5, "4860.6recom":71,
+// 5-2
+      "4339.9excit":8, "4339.9recom":74,
+// 6-2
+      "4101.2excit":12, "4101.2recom":78,
+// 7-2
+      "3969.5excit":17, "3969.5recom":83,
+// 8-2
+      "3888.5excit":23, "3888.5recom":89,
+// 9-2
+      "3834.9excit":30, "3834.9recom":96,
+// 10-2
+      "3797.4excit":38, "3797.4recom":104
+    }}},
+// Be
+  "4":
+  {"2": {"file": "/home/adas/adas/adf15/pec96#be/pec96#be_pju#be1.dat",
+    "blocks": {"5272.32excit": 11, "5272.32recom": 32}}},
+// C
+  "6":
+  {"1":{"file":"/home/adas/adas/adf15/pec96#c/pec96#c_vsu#c0.dat",
+    "blocks":{"9408.4excit":32, "9408.4recom":81}},
+    "2":{"file":"/home/adas/adas/adf15/pec96#c/pec96#c_vsu#c1.dat",
+      "blocks":{"6581.5excit":1, "6581.5recom":51,
+        "5143.3excit":12, "5143.3recom":62}},
+    "3":{"file":"/home/adas/adas/adf15/pec96#c/pec96#c_vsu#c2.dat",
+      "blocks":{"4650.1excit":2, "4650.1recom":52}},
+    "4":{"file":"/home/adas/adas/adf15/pec96#c/pec96#c_pju#c3.dat",
+      "blocks": {"1549.1excit": 14, "1549.1recom": 55}}},
+// N
+  "7":
+//
+//  -1 in place of stage key designates use of Stuart Henderson"s latest PEC file for n1
+  {"-1": {"file": "/home/shenders/adas/adas/adf15/pec16#7/pec98#n_ssh_pju#n1.dat",
+      "blocks": {"3996.13excit": 15, "3996.13recom": 65,
+                 "4042.07excit": 21, "4042.07recom": 71}},
+    "2":{"file":"/home/adas/adas/adf15/pec96#n/pec96#n_vsu#n1.dat",
+      "blocks":{"5002.18excit": 17, "5002.18recom": 67,
+        "5005.86excit": 4, "5005.86recom": 54}},
+    "3":{"file":"/home/adas/adas/adf15/pec96#n/pec96#n_vsu#n2.dat",
+      "blocks":{"4100.51excit":1, "4100.51recom":51}},
+    "4":{"file":"/home/adas/adas/adf15/pec96#n/pec96#n_vsu#n3.dat",
+      "blocks":{"3481.83excit":10, "3481.83recom":51,
+        "4058.90excit":17, "4058.90recom":58}}},
+// Ne
+  "10":
+  {"2": {"file": "/home/adas/adas/adf15/pec96#ne/pec96#ne_pju#ne1.dat",
+    "blocks": {"3718.2excit": 17, "3718.2recom": 70}}},
+// W
+  "74":
+  {"1": {"file": "/home/adas/adas/adf15/pec40#w/pec40#w_ls#w0.dat",
+    "blocks": {"3567.64excit": 44,
+      "3674.90excit": 45,
+      "4053.65excit": 48}},
+    "2": {"file": "/home/adas/adas/adf15/pec40#w/pec40#w_ls#w1.dat",
+      "blocks": {"3604.25excit": 50}}}
+}

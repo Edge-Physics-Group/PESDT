@@ -1,0 +1,60 @@
+{
+// H
+    "1":
+        {
+         "acd":"/home/adas/adas/adf11/acd12/acd12_h.dat",
+         "scd":"/home/adas/adas/adf11/scd12/scd12_h.dat",
+         "ccd":"/home/adas/adas/adf11/ccd12/ccd12_h.dat",
+         "plt":"/home/adas/adas/adf11/plt12/plt12_h.dat",
+         "prb":"/home/adas/adas/adf11/prb12/prb12_h.dat",
+         "prc":"/home/adas/adas/adf11/prc12/prc12_h.dat"
+        },
+// Be
+    "4":
+        {
+         "acd": "/home/adas/adas/adf11/acd96/acd96_be.dat",
+         "scd": "/home/adas/adas/adf11/scd96/scd96_be.dat",
+         "ccd": "/home/adas/adas/adf11/ccd89/ccd89_be.dat",
+         "plt": "/home/adas/adas/adf11/plt96/plt96_be.dat",
+         "prb": "/home/adas/adas/adf11/prb96/prb96_be.dat",
+         "prc": "/home/adas/adas/adf11/prc89/prc89_be.dat"
+        },
+// C
+    "6":
+        {
+         "acd": "/home/adas/adas/adf11/acd96/acd96_c.dat",
+         "scd": "/home/adas/adas/adf11/scd96/scd96_c.dat",
+         "ccd": "/home/adas/adas/adf11/ccd89/ccd89_c.dat",
+         "plt": "/home/adas/adas/adf11/plt96/plt96_c.dat",
+         "prb": "/home/adas/adas/adf11/prb96/prb96_c.dat",
+         "prc": "/home/adas/adas/adf11/prc89/prc89_c.dat"
+        },
+// N
+    "7":
+        {
+         "acd": "/home/adas/adas/adf11/acd96/acd96_n.dat",
+         "scd": "/home/adas/adas/adf11/scd96/scd96_n.dat",
+//         "ccd": "/home/adas/adas/adf11/ccd96/ccd96_n.dat",
+         "plt": "/home/adas/adas/adf11/plt96/plt96_n.dat",
+         "prb": "/home/adas/adas/adf11/prb96/prb96_n.dat",
+         "prc": "/home/adas/adas/adf11/prc89/prc89_n.dat"
+        },
+// Ne
+    "10":
+        {
+         "acd": "/home/adas/adas/adf11/acd96/acd96_ne.dat",
+         "scd": "/home/adas/adas/adf11/scd96/scd96_ne.dat",
+//         "ccd": "/home/adas/adas/adf11/ccd96/ccd96_ne.dat",
+         "plt": "/home/adas/adas/adf11/plt96/plt96_ne.dat",
+         "prb": "/home/adas/adas/adf11/prb96/prb96_ne.dat",
+         "prc": "/home/adas/adas/adf11/prc89/prc89_ne.dat"
+        },
+// W
+    "74":
+        {
+         "acd": "/home/adas/adas/adf11/acd50/acd50_w.dat",
+         "scd": "/home/adas/adas/adf11/scd50/scd50_w.dat",
+         "plt": "/home/adas/adas/adf11/plt50/plt50_w.dat",
+         "prb": "/home/adas/adas/adf11/prb50/prb50_w.dat"
+        }
+}
