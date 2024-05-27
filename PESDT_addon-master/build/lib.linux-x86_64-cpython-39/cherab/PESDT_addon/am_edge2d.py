@@ -30,8 +30,8 @@ from raysect.core import translate, Vector3D
 from raysect.primitive import Cylinder
 
 # CHERAB core imports
-from cherab.core import Plasma, Species #, Maxwellian
-from .maxwellian import Maxwellian
+from cherab.core import Plasma, Species, Maxwellian
+
 from cherab.core.math.function import ConstantVector3D
 from cherab.core.math.mappers import AxisymmetricMapper, VectorAxisymmetricMapper
 from cherab.core.atomic.elements import lookup_isotope, lookup_element
@@ -103,9 +103,6 @@ class Edge2DSimulation:
         self._total_radiation = None
         self._total_radiation_f2d = None
         self._total_radiation_f3d = None
-        self._emission = None
-        self._emission_f2d = None
-        self._emission_f3d = None
 
     @property
     def mesh(self):
@@ -568,54 +565,6 @@ class Edge2DSimulation:
         self._halpha_radiation_f3d = AxisymmetricMapper(self._halpha_radiation_f2d)
 
     @property
-    def emission(self):
-        """
-        H-alpha radiation at each mesh cell.
-        Array of size n.
-
-        Final output is in W m-3.
-        """
-
-        return self._emission
-
-    @property
-    def emission_f2d(self):
-        """
-        Function2D interpolator for H-alpha radiation.
-        Returns radiation at a given point (R, Z).
-        """
-
-        return self._emission_f2d
-
-    @property
-    def emission_f3d(self):
-        """
-        Function3D interpolator for H-alpha radiation.
-        Returns radiation at a given point (x, y, z).
-        """
-
-        return self._emission_f3d
-
-    @emission.setter
-    def emission(self, value):
-        #value = np.array(value, dtype=np.float64, copy=False)
-        # Disable checking shape for now. Emission is goin to be a 3d matrix, which contains the ph/s/m^3 for each transition
-        #_check_shape("pre calculated emission", value, (len(self._species_list ),self.mesh.n,))
-        self._emission = value
-        self._emission_f2d = {}
-        self._emission_f3d = {}
-        for k, sp in enumerate(self._species_list):
-            temp = {}
-            temp2 = {}
-            for key, item in value[k].items():
-                temp[key] = Edge2DFunction.instance(self._inside_mesh, item)
-                temp2[key] = AxisymmetricMapper(temp[key])
-            self._emission_f2d[k] = temp
-            self._emission_f2d[sp] =  self._emission_f2d[k]
-            self._emission_f3d[k] = temp2
-            self._emission_f3d[sp] = self._emission_f3d[k]
-
-    @property
     def b_field(self):
         """
         Magnetic B field in poloidal coordinates (e_pol, e_rad, e_tor) at each mesh cell.
@@ -694,8 +643,7 @@ class Edge2DSimulation:
             'velocities_cylindrical': self._velocities_cylindrical,
             'b_field_cylindrical': self._b_field_cylindrical,
             'total_radiation': self._total_radiation,
-            'halpha_radiation': self._halpha_radiation,
-            'emission' : self._emission,
+            'halpha_radiation': self._halpha_radiation
         }
         return state
 
@@ -724,8 +672,6 @@ class Edge2DSimulation:
             self.total_radiation = state['total_radiation']
         if state['halpha_radiation'] is not None:
             self.halpha_radiation = state['halpha_radiation']
-        if state['emission'] is not None:
-            self.emission = state['emission']
 
     def save(self, filename):
         """
@@ -784,7 +730,7 @@ class Edge2DSimulation:
             electron_velocity = ConstantVector3D(Vector3D(0, 0, 0))
         else:
             electron_velocity = self.electron_velocities_cartesian
-        plasma.electron_distribution = Maxwellian(self.electron_density_f3d, self.electron_temperature_f3d, electron_velocity, electron_mass, emission = {})
+        plasma.electron_distribution = Maxwellian(self.electron_density_f3d, self.electron_temperature_f3d, electron_velocity, electron_mass)
 
         if self.velocities_cartesian is None:
             print('Warning! No species velocities data available for this simulation.')
@@ -813,11 +759,11 @@ class Edge2DSimulation:
 
             if charge or self.neutral_temperature is None:  # ions or neutral atoms (neutral temperature is not available)
                 distribution = Maxwellian(self.species_density_f3d[k], self.ion_temperature_f3d, velocity,
-                                          species_type.atomic_weight * atomic_mass, self.emission_f3d[k])
+                                          species_type.atomic_weight * atomic_mass)
 
             else:  # neutral atoms with neutral temperature
                 distribution = Maxwellian(self.species_density_f3d[k], self._neutral_temperature_f3d[neutral_i], velocity,
-                                          species_type.atomic_weight * atomic_mass, self.emission_f3d[k])
+                                          species_type.atomic_weight * atomic_mass)
                 neutral_i += 1
 
             plasma.composition.add(Species(species_type, charge, distribution))

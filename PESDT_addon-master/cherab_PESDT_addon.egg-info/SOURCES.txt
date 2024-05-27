@@ -2,17 +2,13 @@ setup.py
 cherab/__init__.py
 cherab/PESDT_addon/LineEmitters.c
 cherab/PESDT_addon/LineEmitters.pyx
-cherab/PESDT_addon/LineEmitters_quick.c
-cherab/PESDT_addon/LineEmitters_quick.pyx
 cherab/PESDT_addon/RateFunctions.c
 cherab/PESDT_addon/RateFunctions.pyx
 cherab/PESDT_addon/__init__.py
-cherab/PESDT_addon/adaslib.c
 cherab/PESDT_addon/am_edge2d.py
 cherab/PESDT_addon/amread.py
 cherab/PESDT_addon/continuo.c
 cherab/PESDT_addon/continuo.pyx
-cherab/PESDT_addon/maxwellian.c
 cherab/PESDT_addon/molecules.c
 cherab/PESDT_addon/molecules.pyx
 cherab/PESDT_addon/stark.c

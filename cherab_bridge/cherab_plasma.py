@@ -1,4 +1,5 @@
 
+from ast import Raise
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
@@ -25,6 +26,8 @@ from cherab.jet.machine.cad_files import import_jet_mesh
 
 import cherab.PESDT_addon.molecules as molecules
 from cherab.PESDT_addon.stark import StarkBroadenedLine
+from cherab.PESDT_addon.LineEmitters import LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
+
 #from cherab.amjuel_data.AMJUEL_data import AMJUEL_Data
 
 from PESDT.cherab_bridge.cherab_atomic_data import PESDT_ADAS_Data
@@ -34,6 +37,7 @@ from PESDT.cherab_bridge.cherab_AMJUEL_data import  AMJUEL_Data
 #from PESDT.cherab_bridge.continuo import Continuo  
 from cherab.PESDT_addon.continuo import Continuo
 from PESDT.cherab_bridge.edge2d_cherab_bridge import load_edge2d_from_PESDT
+from solps_cherab_bridge import load_solps_from_PESDT
 #from PESDT.cherab_bridge import molecules
 
 class CherabPlasma():
@@ -47,6 +51,7 @@ class CherabPlasma():
         self.use_AMJUEL = use_AMJUEL
         self.recalc_h2_pos = recalc_h2_pos 
         self.transitions = transitions
+        self.sim_type = PESDT_obj.edge_code
 
         # Create CHERAB plasma from PESDT edge_codes object
         self.world = World()
@@ -57,8 +62,12 @@ class CherabPlasma():
         # Load PESDT object into cherab_edge2d module, which converts the edge_codes grid to cherab
         # format, and populates cherab plasma parameters
         convert_to_m3 = not (self.use_AMJUEL)
-        cherab_edge2d = load_edge2d_from_PESDT(self.PESDT_obj, convert_denel_to_m3 = convert_to_m3, load_mol_data = self.use_AMJUEL, recalc_h2_pos = self.recalc_h2_pos, transitions = self.transitions)
-
+        if (self.sim_type == "edge2d"):
+            cherab = load_edge2d_from_PESDT(self.PESDT_obj, convert_denel_to_m3 = convert_to_m3, load_mol_data = self.use_AMJUEL, recalc_h2_pos = self.recalc_h2_pos)
+        elif (self.sim_type == "solps"):
+            cherab = load_solps_from_PESDT(self.PESDT_obj, convert_denel_to_m3 = convert_to_m3, load_mol_data = self.use_AMJUEL, recalc_h2_pos = self.recalc_h2_pos)
+        else:
+            Raise("Not a valid edge code!")
         if self.import_jet_surfaces:
             if self.include_reflections:
                 import_jet_mesh(self.world)
@@ -66,7 +75,7 @@ class CherabPlasma():
                 import_jet_mesh(self.world, override_material=AbsorbingSurface())
 
         # create atomic data source
-        plasma = cherab_edge2d.create_plasma(parent=self.world)
+        plasma = cherab.create_plasma(parent=self.world)
         if self.use_AMJUEL:
             PESDT_AMJUEL_data = AMJUEL_Data()
             print("Using AMJUEL")
@@ -84,17 +93,14 @@ class CherabPlasma():
                             include_excitation=True, include_recombination=False,
                             include_H2 = False, include_H2_pos = False, include_H_neg = False,
                             include_H3_pos = False, use_tot = False, use_AMJUEL = False,
-                            include_stark=False, include_ff_fb=False, quick = True):
+                            include_stark=False, include_ff_fb=False):
         # Define one transition at a time and 'observe' total radiance
         # If multiple transitions are fed into the plasma object, the total
         # observed radiance will be the sum of the defined spectral lines.
         
-        if quick:
-            from cherab.PESDT_addon.LineEmitters_quick import LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
-            transition_str = f"{transition[0]},{transition[1]}"
-        else:
-            from cherab.PESDT_addon.LineEmitters import LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
-            transition_str = None
+        
+        
+            
         
         if include_stark:
             lineshape = StarkBroadenedLine
@@ -111,19 +117,19 @@ class CherabPlasma():
                 else:
                     if include_excitation:
                         h_line = Line(elements.deuterium, 0, transition)
-                        model_list.append(LineExcitation_AM(h_line, lineshape=lineshape, lineshape_args = transition_str)) #, plasma=self.plasma, atomic_data=self.plasma.atomic_data
+                        model_list.append(LineExcitation_AM(h_line, lineshape=lineshape)) #, plasma=self.plasma, atomic_data=self.plasma.atomic_data
                     if include_recombination:
                         h_line = Line(elements.deuterium, 0, transition)
-                        model_list.append(LineRecombination_AM(h_line, lineshape=lineshape, lineshape_args = transition_str))
+                        model_list.append(LineRecombination_AM(h_line, lineshape=lineshape))
                     if include_H2:
                         h_line = Line(molecules.Deuterium2, 0, transition)
-                        model_list.append(LineH2_AM(h_line, lineshape=lineshape, lineshape_args = transition_str))
+                        model_list.append(LineH2_AM(h_line, lineshape=lineshape))
                     if include_H2_pos:
                         h_line = Line(molecules.Deuterium2, 0, transition) # Increment charge by one 
-                        model_list.append(LineH2_pos_AM(h_line, lineshape=lineshape, lineshape_args = transition_str))
+                        model_list.append(LineH2_pos_AM(h_line, lineshape=lineshape))
                     if include_H_neg:
                         h_line = Line(elements.hydrogen, 0, transition) #Implemented via H proxy
-                        model_list.append(LineH_neg_AM(h_line, lineshape=lineshape, lineshape_args = transition_str))
+                        model_list.append(LineH_neg_AM(h_line, lineshape=lineshape))
                     if include_ff_fb:
                         h_line = Line(elements.deuterium, 0, transition)
                         model_list.append(Continuo(h_line, lineshape = lineshape))

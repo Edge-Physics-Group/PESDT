@@ -1,12 +1,15 @@
 
+from ast import Raise
 import numpy as np
 from raysect.core.math.function.float.function2d.interpolate import Discrete2DMesh
 from cherab.PESDT_addon import Edge2DMesh, Edge2DSimulation
+#from PESDT.edge_code_formats.solps_format import SOLPSMesh
+#from cherab.PESDT_addon import SOLPSSimulation
 from PESDT.amread import read_amjuel_1d,read_amjuel_2d,reactions, calc_cross_sections, calc_photon_rate
 
-def load_edge2d_from_PESDT(PESDT, convert_denel_to_m3 = True, load_mol_data = False, recalc_h2_pos = True ):
+def load_solps_from_PESDT(PESDT, convert_denel_to_m3 = True, load_mol_data = False, recalc_h2_pos = True ):
     '''
-    Creates a cherab compatible EDGE2D simulation object
+    Creates a cherab compatible SOLPS simulation object
     
     convert_denel_to_m3: When using adas data, you need to explicitly convert to the right units
     load_mol_data: Load and pass molecular data based on AMJUEL rates to the object
@@ -14,6 +17,8 @@ def load_edge2d_from_PESDT(PESDT, convert_denel_to_m3 = True, load_mol_data = Fa
                        the molecular ion density is not available in the simualtion output
     quick (BETA): Pre calculate emission, and pass directly to cherab
     **kwargs: used in passing data required for 'quick'
+
+    Currenly just cast to EDGE2D simulation
     
     '''
 
@@ -43,8 +48,9 @@ def load_edge2d_from_PESDT(PESDT, convert_denel_to_m3 = True, load_mol_data = Fa
         rc[ith_cell] = cell.R
         zc[ith_cell] = cell.Z
 
-        rv[ith_cell, :] = PESDT.data.rv[ith_cell, 0:4]
-        zv[ith_cell, :] = PESDT.data.zv[ith_cell, 0:4]
+        coords = np.array(cell.poly.exterior.coords).transpose()
+        rv[ith_cell, :] = coords[0]
+        zv[ith_cell, :] = coords[1]
         # Pull over plasma values to new CHERAB arrays
 
         te[ith_cell] = cell.te

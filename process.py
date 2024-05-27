@@ -356,15 +356,10 @@ class ProcessEdgeSim:
         ff_fb = self.input_dict['cherab_options'].get('ff_fb_emission', False)
         #sion_H_transition = input_dict['cherab_options']['Sion_H_transition']
         #srec_H_transition = input_dict['cherab_options']['Srec_H_transition']
-
-
-        transitions = []
-        for line_key in self.spec_line_dict['1']['1']:
-            tr = self.spec_line_dict['1']['1'][line_key]
-            transitions.append(tr)
+        stark_transition = False
         # Generate cherab plasma
         plasma = CherabPlasma(self, self.ADAS_dict, include_reflections = include_reflections,
-                            import_jet_surfaces = import_jet_surfaces, use_AMJUEL=use_AMJUEL, recalc_h2_pos = recalc_h2_pos, transitions = transitions)
+                            import_jet_surfaces = import_jet_surfaces, use_AMJUEL=use_AMJUEL, recalc_h2_pos = recalc_h2_pos)
 
         # Create output dict
         self.outdict = {}
