@@ -13,7 +13,6 @@ cherab/PESDT_addon/amread.py
 cherab/PESDT_addon/continuo.c
 cherab/PESDT_addon/continuo.pyx
 cherab/PESDT_addon/maxwellian.c
-cherab/PESDT_addon/maxwellian.pyx
 cherab/PESDT_addon/molecules.c
 cherab/PESDT_addon/molecules.pyx
 cherab/PESDT_addon/stark.c

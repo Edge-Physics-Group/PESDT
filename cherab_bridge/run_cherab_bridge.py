@@ -110,6 +110,9 @@ if __name__=='__main__':
                 for diag_chord, val in synth_diag_dict[diag_key].items():
                     los_p1 = val['chord']['p1']
                     los_p2 = val['chord']['p2']
+                    print(los_p1)
+                    print(los_p2)
+                    break
                     los_w1 = val['chord']['w1']
                     los_w2 = val['chord']['w2']
                     H_lines = spec_line_dict['1']['1']

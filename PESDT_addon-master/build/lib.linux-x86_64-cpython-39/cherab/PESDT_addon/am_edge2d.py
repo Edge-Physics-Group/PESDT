@@ -576,7 +576,7 @@ class Edge2DSimulation:
         Final output is in W m-3.
         """
 
-        return self._halpha_radiation
+        return self._emission
 
     @property
     def emission_f2d(self):
@@ -585,7 +585,7 @@ class Edge2DSimulation:
         Returns radiation at a given point (R, Z).
         """
 
-        return self._halpha_radiation_f2d
+        return self._emission_f2d
 
     @property
     def emission_f3d(self):
@@ -594,7 +594,7 @@ class Edge2DSimulation:
         Returns radiation at a given point (x, y, z).
         """
 
-        return self._halpha_radiation_f3d
+        return self._emission_f3d
 
     @emission.setter
     def emission(self, value):

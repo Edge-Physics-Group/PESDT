@@ -369,15 +369,19 @@ class ProcessEdgeSim:
         # Create output dict
         self.outdict = {}
 
-        diag_dict = get_JETdefs().__diag_dict
+        diag_dict = get_JETdefs().diag_dict
 
         # Loop through diagnostics, their LOS, integrate over Lyman/Balmer
         for diag_key in diag_list:
             self.outdict[diag_key] = {}
-            for diag_chord, los_p2 in enumerate(diag_dict[diag_key]):
-                los_p1 = diag_dict[diag_key]['p1']
+            for diag_chord, los_p2 in enumerate(diag_dict[diag_key]['p2']):
+                los_p2 = los_p2.tolist()
+                los_p1 = diag_dict[diag_key]['p1'][0].tolist()
+                #print(los_p1)
+                #print(los_p2)
                 los_w1 = 0.0 # unused
-                los_w2 = diag_dict[diag_key]['w']
+                los_w2 = diag_dict[diag_key]['w'][0][1]
+                #print(los_w2)
                 H_lines = spec_line_dict['1']['1']
 
                 self.outdict[diag_key][str(diag_chord)] = {
