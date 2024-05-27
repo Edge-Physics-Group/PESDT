@@ -14,12 +14,12 @@
             ".",
             "/usr/local/depot/Python-3.9/lib/python3.9/site-packages/numpy/core/include"
         ],
-        "name": "cherab.amjuel_data.LineEmitters",
+        "name": "cherab.PESDT_addon.LineEmitters",
         "sources": [
-            "cherab/amjuel_data/LineEmitters.pyx"
+            "cherab/PESDT_addon/LineEmitters.pyx"
         ]
     },
-    "module_name": "cherab.amjuel_data.LineEmitters"
+    "module_name": "cherab.PESDT_addon.LineEmitters"
 }
 END: Cython Metadata */
 
@@ -954,8 +954,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__cherab__amjuel_data__LineEmitters
-#define __PYX_HAVE_API__cherab__amjuel_data__LineEmitters
+#define __PYX_HAVE__cherab__PESDT_addon__LineEmitters
+#define __PYX_HAVE_API__cherab__PESDT_addon__LineEmitters
 /* Early includes */
 #include <string.h>
 #include <stdio.h>
@@ -1215,7 +1215,7 @@ static const char *__pyx_filename;
 /* #### Code section: filename_table ### */
 
 static const char *__pyx_f[] = {
-  "cherab/amjuel_data/LineEmitters.pyx",
+  "cherab/PESDT_addon/LineEmitters.pyx",
   "<stringsource>",
   "base.pxd",
   "__init__.cython-30.pxd",
@@ -1998,12 +1998,12 @@ struct __pyx_obj_6cherab_4core_5model_6plasma_14bremsstrahlung_Bremsstrahlung;
 struct __pyx_obj_6cherab_4core_5model_6plasma_17impact_excitation_ExcitationLine;
 struct __pyx_obj_6cherab_4core_5model_6plasma_13recombination_RecombinationLine;
 struct __pyx_obj_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower;
-struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM;
-struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM;
-struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM;
-struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM;
-struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM;
-struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM;
+struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM;
+struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM;
+struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM;
+struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM;
+struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM;
+struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM;
 struct __pyx_array_obj;
 struct __pyx_MemviewEnum_obj;
 struct __pyx_memoryview_obj;
@@ -7471,79 +7471,79 @@ struct __pyx_obj_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiat
 };
 
 
-/* "cherab/amjuel_data/LineEmitters.pyx":24
+/* "cherab/PESDT_addon/LineEmitters.pyx":24
  * '''
  * 
  * cdef class LineExcitation_AM(PlasmaModel):             # <<<<<<<<<<<<<<
  *     cdef dict __dict__
  * 
  */
-struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM {
+struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM {
   struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel __pyx_base;
   PyObject *__dict__;
 };
 
 
-/* "cherab/amjuel_data/LineEmitters.pyx":115
+/* "cherab/PESDT_addon/LineEmitters.pyx":115
  * 
  * 
  * cdef class LineRecombination_AM(PlasmaModel):             # <<<<<<<<<<<<<<
  *     cdef dict __dict__
  * 
  */
-struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM {
+struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM {
   struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel __pyx_base;
   PyObject *__dict__;
 };
 
 
-/* "cherab/amjuel_data/LineEmitters.pyx":202
+/* "cherab/PESDT_addon/LineEmitters.pyx":202
  *         self._lineshape = None
  * 
  * cdef class LineH2_AM(PlasmaModel):             # <<<<<<<<<<<<<<
  *     cdef dict __dict__
  * 
  */
-struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM {
+struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM {
   struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel __pyx_base;
   PyObject *__dict__;
 };
 
 
-/* "cherab/amjuel_data/LineEmitters.pyx":292
+/* "cherab/PESDT_addon/LineEmitters.pyx":292
  *         self._lineshape = None
  * 
  * cdef class LineH2_pos_AM(PlasmaModel):             # <<<<<<<<<<<<<<
  *     cdef dict __dict__
  * 
  */
-struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM {
+struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM {
   struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel __pyx_base;
   PyObject *__dict__;
 };
 
 
-/* "cherab/amjuel_data/LineEmitters.pyx":380
+/* "cherab/PESDT_addon/LineEmitters.pyx":380
  *         self._lineshape = None
  * 
  * cdef class LineH_neg_AM(PlasmaModel):             # <<<<<<<<<<<<<<
  *     cdef dict __dict__
  * 
  */
-struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM {
+struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM {
   struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel __pyx_base;
   PyObject *__dict__;
 };
 
 
-/* "cherab/amjuel_data/LineEmitters.pyx":472
+/* "cherab/PESDT_addon/LineEmitters.pyx":472
  *         self._lineshape = None
  * 
  * cdef class LineH3_pos_AM(PlasmaModel):             # <<<<<<<<<<<<<<
  *     cdef dict __dict__
  * 
  */
-struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM {
+struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM {
   struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel __pyx_base;
   PyObject *__dict__;
 };
@@ -12728,7 +12728,7 @@ struct __pyx_vtabstruct_6cherab_4core_5model_6plasma_20total_radiated_power_Tota
 static struct __pyx_vtabstruct_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower *__pyx_vtabptr_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower;
 
 
-/* "cherab/amjuel_data/LineEmitters.pyx":24
+/* "cherab/PESDT_addon/LineEmitters.pyx":24
  * '''
  * 
  * cdef class LineExcitation_AM(PlasmaModel):             # <<<<<<<<<<<<<<
@@ -12736,14 +12736,14 @@ static struct __pyx_vtabstruct_6cherab_4core_5model_6plasma_20total_radiated_pow
  * 
  */
 
-struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM {
+struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM {
   struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel __pyx_base;
-  int (*_populate_cache)(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *);
+  int (*_populate_cache)(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *);
 };
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *__pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *__pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM;
 
 
-/* "cherab/amjuel_data/LineEmitters.pyx":115
+/* "cherab/PESDT_addon/LineEmitters.pyx":115
  * 
  * 
  * cdef class LineRecombination_AM(PlasmaModel):             # <<<<<<<<<<<<<<
@@ -12751,14 +12751,14 @@ static struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineExcitati
  * 
  */
 
-struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM {
+struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM {
   struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel __pyx_base;
-  int (*_populate_cache)(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *);
+  int (*_populate_cache)(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *);
 };
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *__pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *__pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM;
 
 
-/* "cherab/amjuel_data/LineEmitters.pyx":202
+/* "cherab/PESDT_addon/LineEmitters.pyx":202
  *         self._lineshape = None
  * 
  * cdef class LineH2_AM(PlasmaModel):             # <<<<<<<<<<<<<<
@@ -12766,14 +12766,14 @@ static struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineRecombin
  * 
  */
 
-struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH2_AM {
+struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM {
   struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel __pyx_base;
-  int (*_populate_cache)(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *);
+  int (*_populate_cache)(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *);
 };
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *__pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineH2_AM;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *__pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM;
 
 
-/* "cherab/amjuel_data/LineEmitters.pyx":292
+/* "cherab/PESDT_addon/LineEmitters.pyx":292
  *         self._lineshape = None
  * 
  * cdef class LineH2_pos_AM(PlasmaModel):             # <<<<<<<<<<<<<<
@@ -12781,14 +12781,14 @@ static struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *_
  * 
  */
 
-struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM {
+struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM {
   struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel __pyx_base;
-  int (*_populate_cache)(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *);
+  int (*_populate_cache)(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *);
 };
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *__pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *__pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM;
 
 
-/* "cherab/amjuel_data/LineEmitters.pyx":380
+/* "cherab/PESDT_addon/LineEmitters.pyx":380
  *         self._lineshape = None
  * 
  * cdef class LineH_neg_AM(PlasmaModel):             # <<<<<<<<<<<<<<
@@ -12796,14 +12796,14 @@ static struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_A
  * 
  */
 
-struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM {
+struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM {
   struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel __pyx_base;
-  int (*_populate_cache)(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *);
+  int (*_populate_cache)(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *);
 };
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *__pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *__pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM;
 
 
-/* "cherab/amjuel_data/LineEmitters.pyx":472
+/* "cherab/PESDT_addon/LineEmitters.pyx":472
  *         self._lineshape = None
  * 
  * cdef class LineH3_pos_AM(PlasmaModel):             # <<<<<<<<<<<<<<
@@ -12811,11 +12811,11 @@ static struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM
  * 
  */
 
-struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM {
+struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM {
   struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel __pyx_base;
-  int (*_populate_cache)(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *);
+  int (*_populate_cache)(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *);
 };
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *__pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *__pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM;
 
 
 /* "View.MemoryView":109
@@ -13826,18 +13826,18 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 #endif
 
 /* #### Code section: module_declarations ### */
-static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch); /* proto*/
-static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__populate_cache(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *__pyx_v_self); /* proto*/
-static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch); /* proto*/
-static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__populate_cache(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *__pyx_v_self); /* proto*/
-static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch); /* proto*/
-static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cache(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *__pyx_v_self); /* proto*/
-static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch); /* proto*/
-static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populate_cache(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *__pyx_v_self); /* proto*/
-static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch); /* proto*/
-static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate_cache(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *__pyx_v_self); /* proto*/
-static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch); /* proto*/
-static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populate_cache(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *__pyx_v_self); /* proto*/
+static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch); /* proto*/
+static int __pyx_f_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM__populate_cache(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *__pyx_v_self); /* proto*/
+static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch); /* proto*/
+static int __pyx_f_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM__populate_cache(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *__pyx_v_self); /* proto*/
+static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch); /* proto*/
+static int __pyx_f_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM__populate_cache(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *__pyx_v_self); /* proto*/
+static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch); /* proto*/
+static int __pyx_f_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM__populate_cache(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *__pyx_v_self); /* proto*/
+static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch); /* proto*/
+static int __pyx_f_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM__populate_cache(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *__pyx_v_self); /* proto*/
+static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch); /* proto*/
+static int __pyx_f_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM__populate_cache(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *__pyx_v_self); /* proto*/
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_7ndarray_4base_base(PyArrayObject *__pyx_v_self); /* proto*/
 static CYTHON_INLINE PyArray_Descr *__pyx_f_5numpy_7ndarray_5descr_descr(PyArrayObject *__pyx_v_self); /* proto*/
 static CYTHON_INLINE int __pyx_f_5numpy_7ndarray_4ndim_ndim(PyArrayObject *__pyx_v_self); /* proto*/
@@ -14915,14 +14915,14 @@ static double *__pyx_vp_6cherab_4core_7utility_9constants_ELECTRON_REST_MASS = 0
 static double *__pyx_vp_6cherab_4core_7utility_9constants_RYDBERG_CONSTANT_EV = 0;
 #define __pyx_v_6cherab_4core_7utility_9constants_RYDBERG_CONSTANT_EV (*__pyx_vp_6cherab_4core_7utility_9constants_RYDBERG_CONSTANT_EV)
 
-/* Module declarations from "cherab.amjuel_data.LineEmitters" */
+/* Module declarations from "cherab.PESDT_addon.LineEmitters" */
 #if !CYTHON_USE_MODULE_STATE
-static PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM = 0;
-static PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM = 0;
-static PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM = 0;
-static PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM = 0;
-static PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM = 0;
-static PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM = 0;
+static PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM = 0;
+static PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM = 0;
+static PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM = 0;
+static PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM = 0;
+static PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM = 0;
+static PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM = 0;
 static PyTypeObject *__pyx_array_type = 0;
 static PyTypeObject *__pyx_MemviewEnum_type = 0;
 static PyTypeObject *__pyx_memoryview_type = 0;
@@ -14935,12 +14935,12 @@ static PyObject *contiguous = 0;
 static PyObject *indirect_contiguous = 0;
 static int __pyx_memoryview_thread_locks_used;
 static PyThread_type_lock __pyx_memoryview_thread_locks[8];
-static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineExcitation_AM__set_state(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *, PyObject *); /*proto*/
-static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineRecombination_AM__set_state(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *, PyObject *); /*proto*/
-static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineH2_AM__set_state(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *, PyObject *); /*proto*/
-static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineH2_pos_AM__set_state(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *, PyObject *); /*proto*/
-static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineH_neg_AM__set_state(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *, PyObject *); /*proto*/
-static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineH3_pos_AM__set_state(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *, PyObject *); /*proto*/
+static PyObject *__pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineExcitation_AM__set_state(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *, PyObject *); /*proto*/
+static PyObject *__pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineRecombination_AM__set_state(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *, PyObject *); /*proto*/
+static PyObject *__pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineH2_AM__set_state(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *, PyObject *); /*proto*/
+static PyObject *__pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineH2_pos_AM__set_state(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *, PyObject *); /*proto*/
+static PyObject *__pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineH_neg_AM__set_state(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *, PyObject *); /*proto*/
+static PyObject *__pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineH3_pos_AM__set_state(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *, PyObject *); /*proto*/
 static int __pyx_array_allocate_buffer(struct __pyx_array_obj *); /*proto*/
 static struct __pyx_array_obj *__pyx_array_new(PyObject *, Py_ssize_t, char *, char *, char *); /*proto*/
 static void *__pyx_align_pointer(void *, size_t); /*proto*/
@@ -14978,11 +14978,11 @@ static void __pyx_memoryview__slice_assign_scalar(char *, Py_ssize_t *, Py_ssize
 static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *, PyObject *); /*proto*/
 /* #### Code section: typeinfo ### */
 /* #### Code section: before_global_var ### */
-#define __Pyx_MODULE_NAME "cherab.amjuel_data.LineEmitters"
-extern int __pyx_module_is_main_cherab__amjuel_data__LineEmitters;
-int __pyx_module_is_main_cherab__amjuel_data__LineEmitters = 0;
+#define __Pyx_MODULE_NAME "cherab.PESDT_addon.LineEmitters"
+extern int __pyx_module_is_main_cherab__PESDT_addon__LineEmitters;
+int __pyx_module_is_main_cherab__PESDT_addon__LineEmitters = 0;
 
-/* Implementation of "cherab.amjuel_data.LineEmitters" */
+/* Implementation of "cherab.PESDT_addon.LineEmitters" */
 /* #### Code section: global_var ### */
 static PyObject *__pyx_builtin_super;
 static PyObject *__pyx_builtin_TypeError;
@@ -15179,7 +15179,7 @@ static const char __pyx_k_LineH3_pos_AM___setstate_cython[] = "LineH3_pos_AM.__s
 static const char __pyx_k_LineRecombination_AM___setstate[] = "LineRecombination_AM.__setstate_cython__";
 static const char __pyx_k_RecombinationLine_element_charg[] = "<RecombinationLine: element={}, charge={}, transition={}>";
 static const char __pyx_k_The_attribute_lineshape_must_be[] = "The attribute lineshape must be a subclass of LineShapeModel.";
-static const char __pyx_k_cherab_amjuel_data_LineEmitters[] = "cherab/amjuel_data/LineEmitters.pyx";
+static const char __pyx_k_cherab_PESDT_addon_LineEmitters[] = "cherab/PESDT_addon/LineEmitters.pyx";
 static const char __pyx_k_numpy_core_multiarray_failed_to[] = "numpy.core.multiarray failed to import";
 static const char __pyx_k_All_dimensions_preceding_dimensi[] = "All dimensions preceding dimension %d must be indexed and not sliced";
 static const char __pyx_k_Buffer_view_does_not_expose_stri[] = "Buffer view does not expose strides";
@@ -15204,7 +15204,7 @@ static const char __pyx_k_got_differing_extents_in_dimensi[] = "got differing ex
 static const char __pyx_k_no_default___reduce___due_to_non[] = "no default __reduce__ due to non-trivial __cinit__";
 static const char __pyx_k_numpy_core_umath_failed_to_impor[] = "numpy.core.umath failed to import";
 static const char __pyx_k_unable_to_allocate_shape_and_str[] = "unable to allocate shape and strides.";
-static const char __pyx_k_cherab_amjuel_data_LineEmitters_2[] = "cherab.amjuel_data.LineEmitters";
+static const char __pyx_k_cherab_PESDT_addon_LineEmitters_2[] = "cherab.PESDT_addon.LineEmitters";
 static const char __pyx_k_The_emission_model_is_not_connec_2[] = "The emission model is not connected to an atomic data source.";
 #if !CYTHON_USE_MODULE_STATE
 static PyObject *__pyx_n_s_ASCII;
@@ -15303,8 +15303,8 @@ static PyObject *__pyx_n_s_c;
 static PyObject *__pyx_n_u_c;
 static PyObject *__pyx_n_s_change;
 static PyObject *__pyx_n_s_charge;
-static PyObject *__pyx_kp_s_cherab_amjuel_data_LineEmitters;
-static PyObject *__pyx_n_s_cherab_amjuel_data_LineEmitters_2;
+static PyObject *__pyx_kp_s_cherab_PESDT_addon_LineEmitters;
+static PyObject *__pyx_n_s_cherab_PESDT_addon_LineEmitters_2;
 static PyObject *__pyx_n_s_cherab_core_utility;
 static PyObject *__pyx_n_s_class;
 static PyObject *__pyx_n_s_class_getitem;
@@ -15420,48 +15420,48 @@ static PyObject *__pyx_n_s_wavelength_2;
 static PyObject *__pyx_n_s_wl;
 #endif
 /* #### Code section: decls ### */
-static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___init__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_2__repr__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_4emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_6_change(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
-static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM___init__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_2__repr__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_4emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_6_change(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
-static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_2__repr__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_4emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_6_change(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
-static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_2__repr__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_4emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_6_change(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
-static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_2__repr__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_4emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_6_change(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
-static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_2__repr__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_4emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_6_change(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineExcitation_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_2__pyx_unpickle_LineRecombination_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_4__pyx_unpickle_LineH2_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_6__pyx_unpickle_LineH2_pos_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_8__pyx_unpickle_LineH_neg_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_10__pyx_unpickle_LineH3_pos_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
+static int __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM___init__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_2__repr__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_4emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_6_change(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static int __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM___init__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_2__repr__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_4emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_6_change(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static int __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM___init__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_2__repr__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_4emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_6_change(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static int __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM___init__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_2__repr__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_4emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_6_change(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static int __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM___init__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_2__repr__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_4emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_6_change(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static int __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM___init__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_2__repr__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_4emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_6_change(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineExcitation_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_2__pyx_unpickle_LineRecombination_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_4__pyx_unpickle_LineH2_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_6__pyx_unpickle_LineH2_pos_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_8__pyx_unpickle_LineH_neg_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_10__pyx_unpickle_LineH3_pos_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(struct __pyx_array_obj *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struct __pyx_array_obj *__pyx_v_self); /* proto */
@@ -15503,12 +15503,12 @@ static void __pyx_memoryviewslice___pyx_pf_15View_dot_MemoryView_16_memoryviewsl
 static PyObject *__pyx_pf___pyx_memoryviewslice___reduce_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf___pyx_memoryviewslice_2__setstate_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_15View_dot_MemoryView___pyx_unpickle_Enum(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineH2_AM(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_array(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_Enum(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_memoryview(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -15949,18 +15949,18 @@ typedef struct {
   PyTypeObject *__pyx_ptype_6cherab_4core_5model_6plasma_17impact_excitation_ExcitationLine;
   PyTypeObject *__pyx_ptype_6cherab_4core_5model_6plasma_13recombination_RecombinationLine;
   PyTypeObject *__pyx_ptype_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower;
-  PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM;
-  PyObject *__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM;
-  PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM;
-  PyObject *__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM;
-  PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM;
-  PyObject *__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_AM;
-  PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM;
-  PyObject *__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM;
-  PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM;
-  PyObject *__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM;
-  PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM;
-  PyObject *__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM;
+  PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM;
+  PyObject *__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM;
+  PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM;
+  PyObject *__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM;
+  PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM;
+  PyObject *__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM;
+  PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM;
+  PyObject *__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM;
+  PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM;
+  PyObject *__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM;
+  PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM;
+  PyObject *__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM;
   PyTypeObject *__pyx_array_type;
   PyObject *__pyx_type___pyx_array;
   PyTypeObject *__pyx_MemviewEnum_type;
@@ -16065,8 +16065,8 @@ typedef struct {
   PyObject *__pyx_n_u_c;
   PyObject *__pyx_n_s_change;
   PyObject *__pyx_n_s_charge;
-  PyObject *__pyx_kp_s_cherab_amjuel_data_LineEmitters;
-  PyObject *__pyx_n_s_cherab_amjuel_data_LineEmitters_2;
+  PyObject *__pyx_kp_s_cherab_PESDT_addon_LineEmitters;
+  PyObject *__pyx_n_s_cherab_PESDT_addon_LineEmitters_2;
   PyObject *__pyx_n_s_cherab_core_utility;
   PyObject *__pyx_n_s_class;
   PyObject *__pyx_n_s_class_getitem;
@@ -16629,18 +16629,18 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_4core_5model_6plasma_17impact_excitation_ExcitationLine);
   Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_4core_5model_6plasma_13recombination_RecombinationLine);
   Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower);
-  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM);
-  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM);
-  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM);
-  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM);
-  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM);
-  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_AM);
-  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM);
-  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM);
-  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM);
-  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM);
-  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM);
-  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM);
+  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM);
+  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM);
+  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM);
+  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM);
+  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM);
+  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM);
+  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM);
+  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM);
+  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM);
+  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM);
+  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM);
+  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM);
   Py_CLEAR(clear_module_state->__pyx_array_type);
   Py_CLEAR(clear_module_state->__pyx_type___pyx_array);
   Py_CLEAR(clear_module_state->__pyx_MemviewEnum_type);
@@ -16745,8 +16745,8 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_u_c);
   Py_CLEAR(clear_module_state->__pyx_n_s_change);
   Py_CLEAR(clear_module_state->__pyx_n_s_charge);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_cherab_amjuel_data_LineEmitters);
-  Py_CLEAR(clear_module_state->__pyx_n_s_cherab_amjuel_data_LineEmitters_2);
+  Py_CLEAR(clear_module_state->__pyx_kp_s_cherab_PESDT_addon_LineEmitters);
+  Py_CLEAR(clear_module_state->__pyx_n_s_cherab_PESDT_addon_LineEmitters_2);
   Py_CLEAR(clear_module_state->__pyx_n_s_cherab_core_utility);
   Py_CLEAR(clear_module_state->__pyx_n_s_class);
   Py_CLEAR(clear_module_state->__pyx_n_s_class_getitem);
@@ -17296,18 +17296,18 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_4core_5model_6plasma_17impact_excitation_ExcitationLine);
   Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_4core_5model_6plasma_13recombination_RecombinationLine);
   Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower);
-  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM);
-  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM);
-  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM);
-  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM);
-  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM);
-  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_AM);
-  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM);
-  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM);
-  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM);
-  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM);
-  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM);
-  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM);
+  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM);
+  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM);
+  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM);
+  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM);
+  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM);
+  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM);
+  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM);
+  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM);
+  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM);
+  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM);
+  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM);
+  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM);
   Py_VISIT(traverse_module_state->__pyx_array_type);
   Py_VISIT(traverse_module_state->__pyx_type___pyx_array);
   Py_VISIT(traverse_module_state->__pyx_MemviewEnum_type);
@@ -17412,8 +17412,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_u_c);
   Py_VISIT(traverse_module_state->__pyx_n_s_change);
   Py_VISIT(traverse_module_state->__pyx_n_s_charge);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_cherab_amjuel_data_LineEmitters);
-  Py_VISIT(traverse_module_state->__pyx_n_s_cherab_amjuel_data_LineEmitters_2);
+  Py_VISIT(traverse_module_state->__pyx_kp_s_cherab_PESDT_addon_LineEmitters);
+  Py_VISIT(traverse_module_state->__pyx_n_s_cherab_PESDT_addon_LineEmitters_2);
   Py_VISIT(traverse_module_state->__pyx_n_s_cherab_core_utility);
   Py_VISIT(traverse_module_state->__pyx_n_s_class);
   Py_VISIT(traverse_module_state->__pyx_n_s_class_getitem);
@@ -17960,18 +17960,18 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_ptype_6cherab_4core_5model_6plasma_17impact_excitation_ExcitationLine __pyx_mstate_global->__pyx_ptype_6cherab_4core_5model_6plasma_17impact_excitation_ExcitationLine
 #define __pyx_ptype_6cherab_4core_5model_6plasma_13recombination_RecombinationLine __pyx_mstate_global->__pyx_ptype_6cherab_4core_5model_6plasma_13recombination_RecombinationLine
 #define __pyx_ptype_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower __pyx_mstate_global->__pyx_ptype_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower
-#define __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM __pyx_mstate_global->__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM
-#define __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM __pyx_mstate_global->__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM
-#define __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM __pyx_mstate_global->__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM
-#define __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM __pyx_mstate_global->__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM
-#define __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM __pyx_mstate_global->__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM
-#define __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_AM __pyx_mstate_global->__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_AM
-#define __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM __pyx_mstate_global->__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM
-#define __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM __pyx_mstate_global->__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM
-#define __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM __pyx_mstate_global->__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM
-#define __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM __pyx_mstate_global->__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM
-#define __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM __pyx_mstate_global->__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM
-#define __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM __pyx_mstate_global->__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM
+#define __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM __pyx_mstate_global->__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM
+#define __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM __pyx_mstate_global->__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM
+#define __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM __pyx_mstate_global->__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM
+#define __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM __pyx_mstate_global->__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM
+#define __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM __pyx_mstate_global->__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM
+#define __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM __pyx_mstate_global->__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM
+#define __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM __pyx_mstate_global->__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM
+#define __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM __pyx_mstate_global->__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM
+#define __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM __pyx_mstate_global->__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM
+#define __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM __pyx_mstate_global->__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM
+#define __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM __pyx_mstate_global->__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM
+#define __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM __pyx_mstate_global->__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM
 #define __pyx_array_type __pyx_mstate_global->__pyx_array_type
 #define __pyx_type___pyx_array __pyx_mstate_global->__pyx_type___pyx_array
 #define __pyx_MemviewEnum_type __pyx_mstate_global->__pyx_MemviewEnum_type
@@ -18076,8 +18076,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_u_c __pyx_mstate_global->__pyx_n_u_c
 #define __pyx_n_s_change __pyx_mstate_global->__pyx_n_s_change
 #define __pyx_n_s_charge __pyx_mstate_global->__pyx_n_s_charge
-#define __pyx_kp_s_cherab_amjuel_data_LineEmitters __pyx_mstate_global->__pyx_kp_s_cherab_amjuel_data_LineEmitters
-#define __pyx_n_s_cherab_amjuel_data_LineEmitters_2 __pyx_mstate_global->__pyx_n_s_cherab_amjuel_data_LineEmitters_2
+#define __pyx_kp_s_cherab_PESDT_addon_LineEmitters __pyx_mstate_global->__pyx_kp_s_cherab_PESDT_addon_LineEmitters
+#define __pyx_n_s_cherab_PESDT_addon_LineEmitters_2 __pyx_mstate_global->__pyx_n_s_cherab_PESDT_addon_LineEmitters_2
 #define __pyx_n_s_cherab_core_utility __pyx_mstate_global->__pyx_n_s_cherab_core_utility
 #define __pyx_n_s_class __pyx_mstate_global->__pyx_n_s_class
 #define __pyx_n_s_class_getitem __pyx_mstate_global->__pyx_n_s_class_getitem
@@ -18249,7 +18249,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #endif
 /* #### Code section: module_code ### */
 
-/* "cherab/amjuel_data/LineEmitters.pyx":27
+/* "cherab/PESDT_addon/LineEmitters.pyx":27
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -18258,8 +18258,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
  */
 
 /* Python wrapper */
-static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line = 0;
   struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma = 0;
   struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data = 0;
@@ -18285,7 +18285,7 @@ static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_1__
     values[2] = (PyObject *)((struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *)Py_None);
     values[3] = ((PyObject *)Py_None);
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":28
+    /* "cherab/PESDT_addon/LineEmitters.pyx":28
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
  *                  object lineshape_args=None, object lineshape_kwargs=None):             # <<<<<<<<<<<<<<
@@ -18386,16 +18386,16 @@ static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_1__
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 6, __pyx_nargs); __PYX_ERR(0, 27, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineExcitation_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineExcitation_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_line), __pyx_ptype_6cherab_4core_6atomic_4line_Line, 1, "line", 0))) __PYX_ERR(0, 27, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_plasma), __pyx_ptype_6cherab_4core_6plasma_4node_Plasma, 1, "plasma", 0))) __PYX_ERR(0, 27, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_atomic_data), __pyx_ptype_6cherab_4core_6atomic_9interface_AtomicData, 1, "atomic_data", 0))) __PYX_ERR(0, 27, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___init__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *)__pyx_v_self), __pyx_v_line, __pyx_v_plasma, __pyx_v_atomic_data, __pyx_v_lineshape, __pyx_v_lineshape_args, __pyx_v_lineshape_kwargs);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM___init__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *)__pyx_v_self), __pyx_v_line, __pyx_v_plasma, __pyx_v_atomic_data, __pyx_v_lineshape, __pyx_v_lineshape_args, __pyx_v_lineshape_kwargs);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":27
+  /* "cherab/PESDT_addon/LineEmitters.pyx":27
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -18412,7 +18412,7 @@ static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_1__
   return __pyx_r;
 }
 
-static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___init__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs) {
+static int __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM___init__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -18426,7 +18426,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":31
+  /* "cherab/PESDT_addon/LineEmitters.pyx":31
  * 
  * 
  *         super().__init__(plasma, atomic_data)             # <<<<<<<<<<<<<<
@@ -18435,9 +18435,9 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
  */
   __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 31, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_INCREF((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM);
-  __Pyx_GIVEREF((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM));
+  __Pyx_INCREF((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM);
+  __Pyx_GIVEREF((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM));
   __Pyx_INCREF((PyObject *)__pyx_v_self);
   __Pyx_GIVEREF((PyObject *)__pyx_v_self);
   PyTuple_SET_ITEM(__pyx_t_2, 1, ((PyObject *)__pyx_v_self));
@@ -18469,7 +18469,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":33
+  /* "cherab/PESDT_addon/LineEmitters.pyx":33
  *         super().__init__(plasma, atomic_data)
  * 
  *         self._line = line             # <<<<<<<<<<<<<<
@@ -18478,7 +18478,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_line_2, ((PyObject *)__pyx_v_line)) < 0) __PYX_ERR(0, 33, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":35
+  /* "cherab/PESDT_addon/LineEmitters.pyx":35
  *         self._line = line
  * 
  *         self._lineshape_class = lineshape or GaussianLine             # <<<<<<<<<<<<<<
@@ -18498,7 +18498,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_class, __pyx_t_1) < 0) __PYX_ERR(0, 35, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":36
+  /* "cherab/PESDT_addon/LineEmitters.pyx":36
  * 
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):             # <<<<<<<<<<<<<<
@@ -18512,7 +18512,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
   __pyx_t_6 = ((!(__pyx_t_5 != 0)) != 0);
   if (unlikely(__pyx_t_6)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":37
+    /* "cherab/PESDT_addon/LineEmitters.pyx":37
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")             # <<<<<<<<<<<<<<
@@ -18525,7 +18525,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __PYX_ERR(0, 37, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":36
+    /* "cherab/PESDT_addon/LineEmitters.pyx":36
  * 
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):             # <<<<<<<<<<<<<<
@@ -18534,7 +18534,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":39
+  /* "cherab/PESDT_addon/LineEmitters.pyx":39
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
  * 
  *         if lineshape_args:             # <<<<<<<<<<<<<<
@@ -18544,7 +18544,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
   __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_lineshape_args); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 39, __pyx_L1_error)
   if (__pyx_t_6) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":40
+    /* "cherab/PESDT_addon/LineEmitters.pyx":40
  * 
  *         if lineshape_args:
  *             self._lineshape_args = lineshape_args             # <<<<<<<<<<<<<<
@@ -18553,7 +18553,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
  */
     if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_args_2, __pyx_v_lineshape_args) < 0) __PYX_ERR(0, 40, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":39
+    /* "cherab/PESDT_addon/LineEmitters.pyx":39
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
  * 
  *         if lineshape_args:             # <<<<<<<<<<<<<<
@@ -18563,7 +18563,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
     goto __pyx_L6;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":42
+  /* "cherab/PESDT_addon/LineEmitters.pyx":42
  *             self._lineshape_args = lineshape_args
  *         else:
  *             self._lineshape_args = []             # <<<<<<<<<<<<<<
@@ -18578,7 +18578,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
   }
   __pyx_L6:;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":43
+  /* "cherab/PESDT_addon/LineEmitters.pyx":43
  *         else:
  *             self._lineshape_args = []
  *         if lineshape_kwargs:             # <<<<<<<<<<<<<<
@@ -18588,7 +18588,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
   __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_lineshape_kwargs); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 43, __pyx_L1_error)
   if (__pyx_t_6) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":44
+    /* "cherab/PESDT_addon/LineEmitters.pyx":44
  *             self._lineshape_args = []
  *         if lineshape_kwargs:
  *             self._lineshape_kwargs = lineshape_kwargs             # <<<<<<<<<<<<<<
@@ -18597,7 +18597,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
  */
     if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_kwargs_2, __pyx_v_lineshape_kwargs) < 0) __PYX_ERR(0, 44, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":43
+    /* "cherab/PESDT_addon/LineEmitters.pyx":43
  *         else:
  *             self._lineshape_args = []
  *         if lineshape_kwargs:             # <<<<<<<<<<<<<<
@@ -18607,7 +18607,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
     goto __pyx_L7;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":46
+  /* "cherab/PESDT_addon/LineEmitters.pyx":46
  *             self._lineshape_kwargs = lineshape_kwargs
  *         else:
  *             self._lineshape_kwargs = {}             # <<<<<<<<<<<<<<
@@ -18622,7 +18622,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
   }
   __pyx_L7:;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":49
+  /* "cherab/PESDT_addon/LineEmitters.pyx":49
  * 
  *         # ensure that cache is initialised
  *         self._change()             # <<<<<<<<<<<<<<
@@ -18653,7 +18653,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":27
+  /* "cherab/PESDT_addon/LineEmitters.pyx":27
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -18668,14 +18668,14 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineExcitation_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineExcitation_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":51
+/* "cherab/PESDT_addon/LineEmitters.pyx":51
  *         self._change()
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -18684,20 +18684,20 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM___i
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_3__repr__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_3__repr__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_3__repr__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_3__repr__(PyObject *__pyx_v_self) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__repr__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_2__repr__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_2__repr__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_2__repr__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_2__repr__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -18712,7 +18712,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":52
+  /* "cherab/PESDT_addon/LineEmitters.pyx":52
  * 
  *     def __repr__(self):
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)             # <<<<<<<<<<<<<<
@@ -18767,7 +18767,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":51
+  /* "cherab/PESDT_addon/LineEmitters.pyx":51
  *         self._change()
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -18783,7 +18783,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineExcitation_AM.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineExcitation_AM.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -18791,7 +18791,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":54
+/* "cherab/PESDT_addon/LineEmitters.pyx":54
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -18799,14 +18799,14 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
  *         # cache data on first run
  */
 
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_5emission(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch) {
+static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch) {
   double __pyx_v_ne;
   double __pyx_v_n;
   double __pyx_v_te;
@@ -18843,7 +18843,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
       #else
       if (!PyCFunction_Check(__pyx_t_1)
       #endif
-              || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_5emission)) {
+              || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_5emission)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
@@ -18885,7 +18885,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     #endif
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":57
+  /* "cherab/PESDT_addon/LineEmitters.pyx":57
  *         cdef double ne, n, te, radiance
  *         # cache data on first run
  *         if self._target_species is None:             # <<<<<<<<<<<<<<
@@ -18899,16 +18899,16 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = (__pyx_t_6 != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":58
+    /* "cherab/PESDT_addon/LineEmitters.pyx":58
  *         # cache data on first run
  *         if self._target_species is None:
  *             self._populate_cache()             # <<<<<<<<<<<<<<
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  */
-    __pyx_t_5 = ((struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *)__pyx_v_self->__pyx_base.__pyx_vtab)->_populate_cache(__pyx_v_self); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 58, __pyx_L1_error)
+    __pyx_t_5 = ((struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *)__pyx_v_self->__pyx_base.__pyx_vtab)->_populate_cache(__pyx_v_self); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 58, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":57
+    /* "cherab/PESDT_addon/LineEmitters.pyx":57
  *         cdef double ne, n, te, radiance
  *         # cache data on first run
  *         if self._target_species is None:             # <<<<<<<<<<<<<<
@@ -18917,7 +18917,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":60
+  /* "cherab/PESDT_addon/LineEmitters.pyx":60
  *             self._populate_cache()
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -18930,7 +18930,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_ne = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":61
+  /* "cherab/PESDT_addon/LineEmitters.pyx":61
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:             # <<<<<<<<<<<<<<
@@ -18940,7 +18940,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = ((__pyx_v_ne <= 0.0) != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":62
+    /* "cherab/PESDT_addon/LineEmitters.pyx":62
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -18952,7 +18952,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":61
+    /* "cherab/PESDT_addon/LineEmitters.pyx":61
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:             # <<<<<<<<<<<<<<
@@ -18961,7 +18961,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":64
+  /* "cherab/PESDT_addon/LineEmitters.pyx":64
  *             return spectrum
  * 
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -18974,7 +18974,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_te = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":65
+  /* "cherab/PESDT_addon/LineEmitters.pyx":65
  * 
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:             # <<<<<<<<<<<<<<
@@ -18984,7 +18984,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = ((__pyx_v_te <= 0.0) != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":66
+    /* "cherab/PESDT_addon/LineEmitters.pyx":66
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -18996,7 +18996,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":65
+    /* "cherab/PESDT_addon/LineEmitters.pyx":65
  * 
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:             # <<<<<<<<<<<<<<
@@ -19005,7 +19005,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":68
+  /* "cherab/PESDT_addon/LineEmitters.pyx":68
  *             return spectrum
  * 
  *         n = self._target_species.distribution.density(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -19053,7 +19053,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_n = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":69
+  /* "cherab/PESDT_addon/LineEmitters.pyx":69
  * 
  *         n = self._target_species.distribution.density(point.x, point.y, point.z)
  *         if n <= 0.0:             # <<<<<<<<<<<<<<
@@ -19063,7 +19063,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = ((__pyx_v_n <= 0.0) != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":70
+    /* "cherab/PESDT_addon/LineEmitters.pyx":70
  *         n = self._target_species.distribution.density(point.x, point.y, point.z)
  *         if n <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -19075,7 +19075,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":69
+    /* "cherab/PESDT_addon/LineEmitters.pyx":69
  * 
  *         n = self._target_species.distribution.density(point.x, point.y, point.z)
  *         if n <= 0.0:             # <<<<<<<<<<<<<<
@@ -19084,7 +19084,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":73
+  /* "cherab/PESDT_addon/LineEmitters.pyx":73
  * 
  *         # add emission line to spectrum
  *         radiance = RECIP_4_PI * self._rates.evaluate(ne, te) * n             # <<<<<<<<<<<<<<
@@ -19138,7 +19138,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_radiance = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":74
+  /* "cherab/PESDT_addon/LineEmitters.pyx":74
  *         # add emission line to spectrum
  *         radiance = RECIP_4_PI * self._rates.evaluate(ne, te) * n
  *         return self._lineshape.add_line(radiance, point, direction, spectrum)             # <<<<<<<<<<<<<<
@@ -19179,7 +19179,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":54
+  /* "cherab/PESDT_addon/LineEmitters.pyx":54
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -19195,7 +19195,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_9);
   __Pyx_XDECREF(__pyx_t_10);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineExcitation_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineExcitation_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF((PyObject *)__pyx_r);
@@ -19204,15 +19204,15 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_5emission(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_5emission = {"emission", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_5emission, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_5emission(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_5emission = {"emission", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_5emission, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -19291,14 +19291,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("emission", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 54, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineExcitation_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineExcitation_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_point), __pyx_ptype_7raysect_4core_4math_5point_Point3D, 1, "point", 0))) __PYX_ERR(0, 54, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_direction), __pyx_ptype_7raysect_4core_4math_6vector_Vector3D, 1, "direction", 0))) __PYX_ERR(0, 54, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_spectrum), __pyx_ptype_7raysect_7optical_8spectrum_Spectrum, 1, "spectrum", 0))) __PYX_ERR(0, 54, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_4emission(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *)__pyx_v_self), __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_4emission(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *)__pyx_v_self), __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum);
 
   /* function exit code */
   goto __pyx_L0;
@@ -19309,7 +19309,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_4emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_4emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -19318,7 +19318,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("emission", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_emission(__pyx_v_self, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_emission(__pyx_v_self, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -19327,7 +19327,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineExcitation_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineExcitation_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -19335,7 +19335,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":76
+/* "cherab/PESDT_addon/LineEmitters.pyx":76
  *         return self._lineshape.add_line(radiance, point, direction, spectrum)
  * 
  *     cdef int _populate_cache(self) except -1:             # <<<<<<<<<<<<<<
@@ -19343,7 +19343,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
  *         # sanity checks
  */
 
-static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__populate_cache(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *__pyx_v_self) {
+static int __pyx_f_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM__populate_cache(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *__pyx_v_self) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -19365,7 +19365,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_populate_cache", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":79
+  /* "cherab/PESDT_addon/LineEmitters.pyx":79
  * 
  *         # sanity checks
  *         if self._plasma is None:             # <<<<<<<<<<<<<<
@@ -19376,7 +19376,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":80
+    /* "cherab/PESDT_addon/LineEmitters.pyx":80
  *         # sanity checks
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")             # <<<<<<<<<<<<<<
@@ -19389,7 +19389,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(0, 80, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":79
+    /* "cherab/PESDT_addon/LineEmitters.pyx":79
  * 
  *         # sanity checks
  *         if self._plasma is None:             # <<<<<<<<<<<<<<
@@ -19398,7 +19398,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":81
+  /* "cherab/PESDT_addon/LineEmitters.pyx":81
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:             # <<<<<<<<<<<<<<
@@ -19409,7 +19409,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":82
+    /* "cherab/PESDT_addon/LineEmitters.pyx":82
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")             # <<<<<<<<<<<<<<
@@ -19422,7 +19422,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(0, 82, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":81
+    /* "cherab/PESDT_addon/LineEmitters.pyx":81
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:             # <<<<<<<<<<<<<<
@@ -19431,7 +19431,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":84
+  /* "cherab/PESDT_addon/LineEmitters.pyx":84
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")
  * 
  *         if self._line is None:             # <<<<<<<<<<<<<<
@@ -19445,7 +19445,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":85
+    /* "cherab/PESDT_addon/LineEmitters.pyx":85
  * 
  *         if self._line is None:
  *             raise RuntimeError("The emission line has not been set.")             # <<<<<<<<<<<<<<
@@ -19458,7 +19458,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(0, 85, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":84
+    /* "cherab/PESDT_addon/LineEmitters.pyx":84
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")
  * 
  *         if self._line is None:             # <<<<<<<<<<<<<<
@@ -19467,7 +19467,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":88
+  /* "cherab/PESDT_addon/LineEmitters.pyx":88
  * 
  *         # locate target species
  *         try:             # <<<<<<<<<<<<<<
@@ -19483,7 +19483,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
     __Pyx_XGOTREF(__pyx_t_6);
     /*try:*/ {
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":89
+      /* "cherab/PESDT_addon/LineEmitters.pyx":89
  *         # locate target species
  *         try:
  *             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge)             # <<<<<<<<<<<<<<
@@ -19530,7 +19530,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
       if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_target_species, __pyx_t_3) < 0) __PYX_ERR(0, 89, __pyx_L6_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":88
+      /* "cherab/PESDT_addon/LineEmitters.pyx":88
  * 
  *         # locate target species
  *         try:             # <<<<<<<<<<<<<<
@@ -19549,7 +19549,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":90
+    /* "cherab/PESDT_addon/LineEmitters.pyx":90
  *         try:
  *             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge)
  *         except ValueError:             # <<<<<<<<<<<<<<
@@ -19558,13 +19558,13 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
  */
     __pyx_t_11 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_ValueError);
     if (__pyx_t_11) {
-      __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineExcitation_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineExcitation_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
       if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_8, &__pyx_t_10) < 0) __PYX_ERR(0, 90, __pyx_L8_except_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_GOTREF(__pyx_t_10);
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":92
+      /* "cherab/PESDT_addon/LineEmitters.pyx":92
  *         except ValueError:
  *             raise RuntimeError("The plasma object does not contain the ion species for the specified line "
  *                                "(element={}, ionisation={}).".format(self._line.element.symbol, self._line.charge))             # <<<<<<<<<<<<<<
@@ -19609,7 +19609,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":91
+      /* "cherab/PESDT_addon/LineEmitters.pyx":91
  *             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge)
  *         except ValueError:
  *             raise RuntimeError("The plasma object does not contain the ion species for the specified line "             # <<<<<<<<<<<<<<
@@ -19626,7 +19626,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
     goto __pyx_L8_except_error;
     __pyx_L8_except_error:;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":88
+    /* "cherab/PESDT_addon/LineEmitters.pyx":88
  * 
  *         # locate target species
  *         try:             # <<<<<<<<<<<<<<
@@ -19641,7 +19641,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
     __pyx_L11_try_end:;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":96
+  /* "cherab/PESDT_addon/LineEmitters.pyx":96
  *         #print('T1')
  *         # obtain rate function
  *         self._rates = self._atomic_data.H_excit(self._line.transition)             # <<<<<<<<<<<<<<
@@ -19679,7 +19679,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_rates, __pyx_t_10) < 0) __PYX_ERR(0, 96, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":99
+  /* "cherab/PESDT_addon/LineEmitters.pyx":99
  * 
  *         # identify wavelength
  *         self._wavelength = self._atomic_data.wavelength(self._line.element, self._line.charge, self._line.transition)             # <<<<<<<<<<<<<<
@@ -19712,7 +19712,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_wavelength, __pyx_t_7) < 0) __PYX_ERR(0, 99, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":102
+  /* "cherab/PESDT_addon/LineEmitters.pyx":102
  * 
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,             # <<<<<<<<<<<<<<
@@ -19742,7 +19742,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
   __pyx_t_8 = 0;
   __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":103
+  /* "cherab/PESDT_addon/LineEmitters.pyx":103
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)             # <<<<<<<<<<<<<<
@@ -19752,7 +19752,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
   __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_args_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":102
+  /* "cherab/PESDT_addon/LineEmitters.pyx":102
  * 
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,             # <<<<<<<<<<<<<<
@@ -19767,7 +19767,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":103
+  /* "cherab/PESDT_addon/LineEmitters.pyx":103
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)             # <<<<<<<<<<<<<<
@@ -19790,7 +19790,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":102
+  /* "cherab/PESDT_addon/LineEmitters.pyx":102
  * 
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,             # <<<<<<<<<<<<<<
@@ -19805,7 +19805,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_2, __pyx_t_9) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":76
+  /* "cherab/PESDT_addon/LineEmitters.pyx":76
  *         return self._lineshape.add_line(radiance, point, direction, spectrum)
  * 
  *     cdef int _populate_cache(self) except -1:             # <<<<<<<<<<<<<<
@@ -19825,14 +19825,14 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
   __Pyx_XDECREF(__pyx_t_12);
   __Pyx_XDECREF(__pyx_t_13);
   __Pyx_XDECREF(__pyx_t_14);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineExcitation_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineExcitation_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":106
+/* "cherab/PESDT_addon/LineEmitters.pyx":106
  * 
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
@@ -19841,15 +19841,15 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__pop
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_7_change(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_7_change(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_7_change = {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_7_change(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_7_change = {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_7_change(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -19866,14 +19866,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("_change", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "_change", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_6_change(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_6_change(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_6_change(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_6_change(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -19881,7 +19881,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_change", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":109
+  /* "cherab/PESDT_addon/LineEmitters.pyx":109
  * 
  *         # clear cache to force regeneration on first use
  *         self._target_species = None             # <<<<<<<<<<<<<<
@@ -19890,7 +19890,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_target_species, Py_None) < 0) __PYX_ERR(0, 109, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":110
+  /* "cherab/PESDT_addon/LineEmitters.pyx":110
  *         # clear cache to force regeneration on first use
  *         self._target_species = None
  *         self._wavelength = 0.0             # <<<<<<<<<<<<<<
@@ -19899,7 +19899,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_wavelength, __pyx_float_0_0) < 0) __PYX_ERR(0, 110, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":111
+  /* "cherab/PESDT_addon/LineEmitters.pyx":111
  *         self._target_species = None
  *         self._wavelength = 0.0
  *         self._rates = None             # <<<<<<<<<<<<<<
@@ -19908,7 +19908,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_rates, Py_None) < 0) __PYX_ERR(0, 111, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":112
+  /* "cherab/PESDT_addon/LineEmitters.pyx":112
  *         self._wavelength = 0.0
  *         self._rates = None
  *         self._lineshape = None             # <<<<<<<<<<<<<<
@@ -19917,7 +19917,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_2, Py_None) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":106
+  /* "cherab/PESDT_addon/LineEmitters.pyx":106
  * 
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
@@ -19929,7 +19929,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineExcitation_AM._change", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineExcitation_AM._change", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -19944,15 +19944,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_9__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_9__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -19969,14 +19969,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("__reduce_cython__", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__reduce_cython__", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_8__reduce_cython__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_8__reduce_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -20195,7 +20195,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineExcitation_AM.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineExcitation_AM.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_state);
@@ -20213,15 +20213,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_11__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_11__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20276,18 +20276,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__setstate_cython__", 1, 1, 1, __pyx_nargs); __PYX_ERR(1, 16, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineExcitation_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineExcitation_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_10__setstate_cython__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_10__setstate_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -20302,7 +20302,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
  *     __pyx_unpickle_LineExcitation_AM__set_state(self, __pyx_state)             # <<<<<<<<<<<<<<
  */
   if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 17, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineExcitation_AM__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineExcitation_AM__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
@@ -20318,7 +20318,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineExcitation_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineExcitation_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -20326,7 +20326,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":118
+/* "cherab/PESDT_addon/LineEmitters.pyx":118
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -20335,8 +20335,8 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_
  */
 
 /* Python wrapper */
-static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line = 0;
   struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma = 0;
   struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data = 0;
@@ -20362,7 +20362,7 @@ static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
     values[2] = (PyObject *)((struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *)Py_None);
     values[3] = ((PyObject *)Py_None);
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":119
+    /* "cherab/PESDT_addon/LineEmitters.pyx":119
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
  *                  object lineshape_args=None, object lineshape_kwargs=None):             # <<<<<<<<<<<<<<
@@ -20463,16 +20463,16 @@ static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 6, __pyx_nargs); __PYX_ERR(0, 118, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineRecombination_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineRecombination_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_line), __pyx_ptype_6cherab_4core_6atomic_4line_Line, 1, "line", 0))) __PYX_ERR(0, 118, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_plasma), __pyx_ptype_6cherab_4core_6plasma_4node_Plasma, 1, "plasma", 0))) __PYX_ERR(0, 118, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_atomic_data), __pyx_ptype_6cherab_4core_6atomic_9interface_AtomicData, 1, "atomic_data", 0))) __PYX_ERR(0, 118, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM___init__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *)__pyx_v_self), __pyx_v_line, __pyx_v_plasma, __pyx_v_atomic_data, __pyx_v_lineshape, __pyx_v_lineshape_args, __pyx_v_lineshape_kwargs);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM___init__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *)__pyx_v_self), __pyx_v_line, __pyx_v_plasma, __pyx_v_atomic_data, __pyx_v_lineshape, __pyx_v_lineshape_args, __pyx_v_lineshape_kwargs);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":118
+  /* "cherab/PESDT_addon/LineEmitters.pyx":118
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -20489,7 +20489,7 @@ static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
   return __pyx_r;
 }
 
-static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM___init__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs) {
+static int __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM___init__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -20503,7 +20503,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":121
+  /* "cherab/PESDT_addon/LineEmitters.pyx":121
  *                  object lineshape_args=None, object lineshape_kwargs=None):
  * 
  *         super().__init__(plasma, atomic_data)             # <<<<<<<<<<<<<<
@@ -20512,9 +20512,9 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
  */
   __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_INCREF((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM);
-  __Pyx_GIVEREF((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM));
+  __Pyx_INCREF((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM);
+  __Pyx_GIVEREF((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM));
   __Pyx_INCREF((PyObject *)__pyx_v_self);
   __Pyx_GIVEREF((PyObject *)__pyx_v_self);
   PyTuple_SET_ITEM(__pyx_t_2, 1, ((PyObject *)__pyx_v_self));
@@ -20546,7 +20546,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":123
+  /* "cherab/PESDT_addon/LineEmitters.pyx":123
  *         super().__init__(plasma, atomic_data)
  * 
  *         self._line = line             # <<<<<<<<<<<<<<
@@ -20555,7 +20555,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_line_2, ((PyObject *)__pyx_v_line)) < 0) __PYX_ERR(0, 123, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":125
+  /* "cherab/PESDT_addon/LineEmitters.pyx":125
  *         self._line = line
  * 
  *         self._lineshape_class = lineshape or GaussianLine             # <<<<<<<<<<<<<<
@@ -20575,7 +20575,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_class, __pyx_t_1) < 0) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":126
+  /* "cherab/PESDT_addon/LineEmitters.pyx":126
  * 
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):             # <<<<<<<<<<<<<<
@@ -20589,7 +20589,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
   __pyx_t_6 = ((!(__pyx_t_5 != 0)) != 0);
   if (unlikely(__pyx_t_6)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":127
+    /* "cherab/PESDT_addon/LineEmitters.pyx":127
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")             # <<<<<<<<<<<<<<
@@ -20602,7 +20602,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __PYX_ERR(0, 127, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":126
+    /* "cherab/PESDT_addon/LineEmitters.pyx":126
  * 
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):             # <<<<<<<<<<<<<<
@@ -20611,7 +20611,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":129
+  /* "cherab/PESDT_addon/LineEmitters.pyx":129
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
  * 
  *         if lineshape_args:             # <<<<<<<<<<<<<<
@@ -20621,7 +20621,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
   __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_lineshape_args); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 129, __pyx_L1_error)
   if (__pyx_t_6) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":130
+    /* "cherab/PESDT_addon/LineEmitters.pyx":130
  * 
  *         if lineshape_args:
  *             self._lineshape_args = lineshape_args             # <<<<<<<<<<<<<<
@@ -20630,7 +20630,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
  */
     if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_args_2, __pyx_v_lineshape_args) < 0) __PYX_ERR(0, 130, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":129
+    /* "cherab/PESDT_addon/LineEmitters.pyx":129
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
  * 
  *         if lineshape_args:             # <<<<<<<<<<<<<<
@@ -20640,7 +20640,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
     goto __pyx_L6;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":132
+  /* "cherab/PESDT_addon/LineEmitters.pyx":132
  *             self._lineshape_args = lineshape_args
  *         else:
  *             self._lineshape_args = []             # <<<<<<<<<<<<<<
@@ -20655,7 +20655,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
   }
   __pyx_L6:;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":133
+  /* "cherab/PESDT_addon/LineEmitters.pyx":133
  *         else:
  *             self._lineshape_args = []
  *         if lineshape_kwargs:             # <<<<<<<<<<<<<<
@@ -20665,7 +20665,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
   __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_lineshape_kwargs); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 133, __pyx_L1_error)
   if (__pyx_t_6) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":134
+    /* "cherab/PESDT_addon/LineEmitters.pyx":134
  *             self._lineshape_args = []
  *         if lineshape_kwargs:
  *             self._lineshape_kwargs = lineshape_kwargs             # <<<<<<<<<<<<<<
@@ -20674,7 +20674,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
  */
     if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_kwargs_2, __pyx_v_lineshape_kwargs) < 0) __PYX_ERR(0, 134, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":133
+    /* "cherab/PESDT_addon/LineEmitters.pyx":133
  *         else:
  *             self._lineshape_args = []
  *         if lineshape_kwargs:             # <<<<<<<<<<<<<<
@@ -20684,7 +20684,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
     goto __pyx_L7;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":136
+  /* "cherab/PESDT_addon/LineEmitters.pyx":136
  *             self._lineshape_kwargs = lineshape_kwargs
  *         else:
  *             self._lineshape_kwargs = {}             # <<<<<<<<<<<<<<
@@ -20699,7 +20699,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
   }
   __pyx_L7:;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":139
+  /* "cherab/PESDT_addon/LineEmitters.pyx":139
  * 
  *         # ensure that cache is initialised
  *         self._change()             # <<<<<<<<<<<<<<
@@ -20730,7 +20730,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":118
+  /* "cherab/PESDT_addon/LineEmitters.pyx":118
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -20745,14 +20745,14 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineRecombination_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineRecombination_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":141
+/* "cherab/PESDT_addon/LineEmitters.pyx":141
  *         self._change()
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -20761,20 +20761,20 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_3__repr__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_3__repr__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_3__repr__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_3__repr__(PyObject *__pyx_v_self) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__repr__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_2__repr__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_2__repr__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_2__repr__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_2__repr__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -20789,7 +20789,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":142
+  /* "cherab/PESDT_addon/LineEmitters.pyx":142
  * 
  *     def __repr__(self):
  *         return '<RecombinationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge+1, self._line.transition)             # <<<<<<<<<<<<<<
@@ -20847,7 +20847,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":141
+  /* "cherab/PESDT_addon/LineEmitters.pyx":141
  *         self._change()
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -20863,7 +20863,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineRecombination_AM.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineRecombination_AM.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -20871,7 +20871,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":144
+/* "cherab/PESDT_addon/LineEmitters.pyx":144
  *         return '<RecombinationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge+1, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -20879,14 +20879,14 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
  *         # cache data on first run
  */
 
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_5emission(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch) {
+static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch) {
   double __pyx_v_ne;
   double __pyx_v_ni;
   double __pyx_v_te;
@@ -20923,7 +20923,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
       #else
       if (!PyCFunction_Check(__pyx_t_1)
       #endif
-              || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_5emission)) {
+              || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_5emission)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
@@ -20965,7 +20965,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     #endif
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":147
+  /* "cherab/PESDT_addon/LineEmitters.pyx":147
  *         cdef double ne, ni, te, radiance
  *         # cache data on first run
  *         if self._target_species is None:             # <<<<<<<<<<<<<<
@@ -20979,16 +20979,16 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = (__pyx_t_6 != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":148
+    /* "cherab/PESDT_addon/LineEmitters.pyx":148
  *         # cache data on first run
  *         if self._target_species is None:
  *             self._populate_cache()             # <<<<<<<<<<<<<<
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  */
-    __pyx_t_5 = ((struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *)__pyx_v_self->__pyx_base.__pyx_vtab)->_populate_cache(__pyx_v_self); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 148, __pyx_L1_error)
+    __pyx_t_5 = ((struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *)__pyx_v_self->__pyx_base.__pyx_vtab)->_populate_cache(__pyx_v_self); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 148, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":147
+    /* "cherab/PESDT_addon/LineEmitters.pyx":147
  *         cdef double ne, ni, te, radiance
  *         # cache data on first run
  *         if self._target_species is None:             # <<<<<<<<<<<<<<
@@ -20997,7 +20997,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":150
+  /* "cherab/PESDT_addon/LineEmitters.pyx":150
  *             self._populate_cache()
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -21010,7 +21010,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_ne = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":151
+  /* "cherab/PESDT_addon/LineEmitters.pyx":151
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:             # <<<<<<<<<<<<<<
@@ -21020,7 +21020,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = ((__pyx_v_ne <= 0.0) != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":152
+    /* "cherab/PESDT_addon/LineEmitters.pyx":152
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -21032,7 +21032,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":151
+    /* "cherab/PESDT_addon/LineEmitters.pyx":151
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:             # <<<<<<<<<<<<<<
@@ -21041,7 +21041,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":154
+  /* "cherab/PESDT_addon/LineEmitters.pyx":154
  *             return spectrum
  * 
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -21054,7 +21054,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_te = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":155
+  /* "cherab/PESDT_addon/LineEmitters.pyx":155
  * 
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:             # <<<<<<<<<<<<<<
@@ -21064,7 +21064,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = ((__pyx_v_te <= 0.0) != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":156
+    /* "cherab/PESDT_addon/LineEmitters.pyx":156
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -21076,7 +21076,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":155
+    /* "cherab/PESDT_addon/LineEmitters.pyx":155
  * 
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:             # <<<<<<<<<<<<<<
@@ -21085,7 +21085,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":158
+  /* "cherab/PESDT_addon/LineEmitters.pyx":158
  *             return spectrum
  * 
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -21133,7 +21133,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_ni = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":159
+  /* "cherab/PESDT_addon/LineEmitters.pyx":159
  * 
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)
  *         if ni <= 0.0:             # <<<<<<<<<<<<<<
@@ -21143,7 +21143,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = ((__pyx_v_ni <= 0.0) != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":160
+    /* "cherab/PESDT_addon/LineEmitters.pyx":160
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)
  *         if ni <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -21155,7 +21155,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":159
+    /* "cherab/PESDT_addon/LineEmitters.pyx":159
  * 
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)
  *         if ni <= 0.0:             # <<<<<<<<<<<<<<
@@ -21164,7 +21164,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":163
+  /* "cherab/PESDT_addon/LineEmitters.pyx":163
  * 
  *         # add emission line to spectrum
  *         radiance = RECIP_4_PI * self._rates.evaluate(ne, te) * ni             # <<<<<<<<<<<<<<
@@ -21218,7 +21218,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_radiance = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":164
+  /* "cherab/PESDT_addon/LineEmitters.pyx":164
  *         # add emission line to spectrum
  *         radiance = RECIP_4_PI * self._rates.evaluate(ne, te) * ni
  *         return self._lineshape.add_line(radiance, point, direction, spectrum)             # <<<<<<<<<<<<<<
@@ -21259,7 +21259,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":144
+  /* "cherab/PESDT_addon/LineEmitters.pyx":144
  *         return '<RecombinationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge+1, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -21275,7 +21275,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_9);
   __Pyx_XDECREF(__pyx_t_10);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineRecombination_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineRecombination_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF((PyObject *)__pyx_r);
@@ -21284,15 +21284,15 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_5emission(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_5emission = {"emission", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_5emission, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_5emission(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_5emission = {"emission", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_5emission, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -21371,14 +21371,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("emission", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 144, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineRecombination_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineRecombination_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_point), __pyx_ptype_7raysect_4core_4math_5point_Point3D, 1, "point", 0))) __PYX_ERR(0, 144, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_direction), __pyx_ptype_7raysect_4core_4math_6vector_Vector3D, 1, "direction", 0))) __PYX_ERR(0, 144, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_spectrum), __pyx_ptype_7raysect_7optical_8spectrum_Spectrum, 1, "spectrum", 0))) __PYX_ERR(0, 144, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_4emission(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *)__pyx_v_self), __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_4emission(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *)__pyx_v_self), __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum);
 
   /* function exit code */
   goto __pyx_L0;
@@ -21389,7 +21389,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_4emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_4emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -21398,7 +21398,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("emission", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_emission(__pyx_v_self, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_emission(__pyx_v_self, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -21407,7 +21407,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineRecombination_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineRecombination_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -21415,7 +21415,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":166
+/* "cherab/PESDT_addon/LineEmitters.pyx":166
  *         return self._lineshape.add_line(radiance, point, direction, spectrum)
  * 
  *     cdef int _populate_cache(self) except -1:             # <<<<<<<<<<<<<<
@@ -21423,7 +21423,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
  *         # sanity checks
  */
 
-static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__populate_cache(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *__pyx_v_self) {
+static int __pyx_f_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM__populate_cache(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *__pyx_v_self) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -21445,7 +21445,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_populate_cache", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":169
+  /* "cherab/PESDT_addon/LineEmitters.pyx":169
  * 
  *         # sanity checks
  *         if self._plasma is None:             # <<<<<<<<<<<<<<
@@ -21456,7 +21456,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":170
+    /* "cherab/PESDT_addon/LineEmitters.pyx":170
  *         # sanity checks
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")             # <<<<<<<<<<<<<<
@@ -21469,7 +21469,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(0, 170, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":169
+    /* "cherab/PESDT_addon/LineEmitters.pyx":169
  * 
  *         # sanity checks
  *         if self._plasma is None:             # <<<<<<<<<<<<<<
@@ -21478,7 +21478,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":171
+  /* "cherab/PESDT_addon/LineEmitters.pyx":171
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:             # <<<<<<<<<<<<<<
@@ -21489,7 +21489,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":172
+    /* "cherab/PESDT_addon/LineEmitters.pyx":172
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")             # <<<<<<<<<<<<<<
@@ -21502,7 +21502,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(0, 172, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":171
+    /* "cherab/PESDT_addon/LineEmitters.pyx":171
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:             # <<<<<<<<<<<<<<
@@ -21511,7 +21511,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":174
+  /* "cherab/PESDT_addon/LineEmitters.pyx":174
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")
  * 
  *         if self._line is None:             # <<<<<<<<<<<<<<
@@ -21525,7 +21525,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":175
+    /* "cherab/PESDT_addon/LineEmitters.pyx":175
  * 
  *         if self._line is None:
  *             raise RuntimeError("The emission line has not been set.")             # <<<<<<<<<<<<<<
@@ -21538,7 +21538,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(0, 175, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":174
+    /* "cherab/PESDT_addon/LineEmitters.pyx":174
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")
  * 
  *         if self._line is None:             # <<<<<<<<<<<<<<
@@ -21547,7 +21547,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":178
+  /* "cherab/PESDT_addon/LineEmitters.pyx":178
  * 
  *         # locate target species, increment charge by 1 to get the main D ion density
  *         try:             # <<<<<<<<<<<<<<
@@ -21563,7 +21563,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
     __Pyx_XGOTREF(__pyx_t_6);
     /*try:*/ {
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":179
+      /* "cherab/PESDT_addon/LineEmitters.pyx":179
  *         # locate target species, increment charge by 1 to get the main D ion density
  *         try:
  *             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge +1)             # <<<<<<<<<<<<<<
@@ -21613,7 +21613,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
       if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_target_species, __pyx_t_3) < 0) __PYX_ERR(0, 179, __pyx_L6_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":178
+      /* "cherab/PESDT_addon/LineEmitters.pyx":178
  * 
  *         # locate target species, increment charge by 1 to get the main D ion density
  *         try:             # <<<<<<<<<<<<<<
@@ -21632,7 +21632,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":180
+    /* "cherab/PESDT_addon/LineEmitters.pyx":180
  *         try:
  *             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge +1)
  *         except ValueError:             # <<<<<<<<<<<<<<
@@ -21641,13 +21641,13 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
  */
     __pyx_t_11 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_ValueError);
     if (__pyx_t_11) {
-      __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineRecombination_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineRecombination_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
       if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_8, &__pyx_t_7) < 0) __PYX_ERR(0, 180, __pyx_L8_except_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_GOTREF(__pyx_t_7);
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":182
+      /* "cherab/PESDT_addon/LineEmitters.pyx":182
  *         except ValueError:
  *             raise RuntimeError("The plasma object does not contain the ion species for the specified line "
  *                                "(element={}, ionisation={}).".format(self._line.element.symbol, self._line.charge))             # <<<<<<<<<<<<<<
@@ -21692,7 +21692,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       }
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":181
+      /* "cherab/PESDT_addon/LineEmitters.pyx":181
  *             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge +1)
  *         except ValueError:
  *             raise RuntimeError("The plasma object does not contain the ion species for the specified line "             # <<<<<<<<<<<<<<
@@ -21709,7 +21709,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
     goto __pyx_L8_except_error;
     __pyx_L8_except_error:;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":178
+    /* "cherab/PESDT_addon/LineEmitters.pyx":178
  * 
  *         # locate target species, increment charge by 1 to get the main D ion density
  *         try:             # <<<<<<<<<<<<<<
@@ -21724,7 +21724,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
     __pyx_L11_try_end:;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":185
+  /* "cherab/PESDT_addon/LineEmitters.pyx":185
  * 
  *         # obtain rate function
  *         self._rates = self._atomic_data.H_rec(self._line.transition)             # <<<<<<<<<<<<<<
@@ -21762,7 +21762,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_rates, __pyx_t_7) < 0) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":188
+  /* "cherab/PESDT_addon/LineEmitters.pyx":188
  * 
  *         # identify wavelength
  *         self._wavelength = self._atomic_data.wavelength(self._line.element, self._line.charge, self._line.transition)             # <<<<<<<<<<<<<<
@@ -21795,7 +21795,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_wavelength, __pyx_t_10) < 0) __PYX_ERR(0, 188, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":191
+  /* "cherab/PESDT_addon/LineEmitters.pyx":191
  * 
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,             # <<<<<<<<<<<<<<
@@ -21825,7 +21825,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
   __pyx_t_8 = 0;
   __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":192
+  /* "cherab/PESDT_addon/LineEmitters.pyx":192
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)             # <<<<<<<<<<<<<<
@@ -21835,7 +21835,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
   __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_args_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 192, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":191
+  /* "cherab/PESDT_addon/LineEmitters.pyx":191
  * 
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,             # <<<<<<<<<<<<<<
@@ -21850,7 +21850,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":192
+  /* "cherab/PESDT_addon/LineEmitters.pyx":192
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)             # <<<<<<<<<<<<<<
@@ -21873,7 +21873,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":191
+  /* "cherab/PESDT_addon/LineEmitters.pyx":191
  * 
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,             # <<<<<<<<<<<<<<
@@ -21888,7 +21888,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_2, __pyx_t_9) < 0) __PYX_ERR(0, 191, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":166
+  /* "cherab/PESDT_addon/LineEmitters.pyx":166
  *         return self._lineshape.add_line(radiance, point, direction, spectrum)
  * 
  *     cdef int _populate_cache(self) except -1:             # <<<<<<<<<<<<<<
@@ -21908,14 +21908,14 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
   __Pyx_XDECREF(__pyx_t_12);
   __Pyx_XDECREF(__pyx_t_13);
   __Pyx_XDECREF(__pyx_t_14);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineRecombination_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineRecombination_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":194
+/* "cherab/PESDT_addon/LineEmitters.pyx":194
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
@@ -21924,15 +21924,15 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_7_change(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_7_change(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_7_change = {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_7_change(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_7_change = {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_7_change(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -21949,14 +21949,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("_change", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "_change", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_6_change(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_6_change(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_6_change(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_6_change(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -21964,7 +21964,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_change", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":197
+  /* "cherab/PESDT_addon/LineEmitters.pyx":197
  * 
  *         # clear cache to force regeneration on first use
  *         self._target_species = None             # <<<<<<<<<<<<<<
@@ -21973,7 +21973,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_target_species, Py_None) < 0) __PYX_ERR(0, 197, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":198
+  /* "cherab/PESDT_addon/LineEmitters.pyx":198
  *         # clear cache to force regeneration on first use
  *         self._target_species = None
  *         self._wavelength = 0.0             # <<<<<<<<<<<<<<
@@ -21982,7 +21982,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_wavelength, __pyx_float_0_0) < 0) __PYX_ERR(0, 198, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":199
+  /* "cherab/PESDT_addon/LineEmitters.pyx":199
  *         self._target_species = None
  *         self._wavelength = 0.0
  *         self._rates = None             # <<<<<<<<<<<<<<
@@ -21991,7 +21991,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_rates, Py_None) < 0) __PYX_ERR(0, 199, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":200
+  /* "cherab/PESDT_addon/LineEmitters.pyx":200
  *         self._wavelength = 0.0
  *         self._rates = None
  *         self._lineshape = None             # <<<<<<<<<<<<<<
@@ -22000,7 +22000,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_2, Py_None) < 0) __PYX_ERR(0, 200, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":194
+  /* "cherab/PESDT_addon/LineEmitters.pyx":194
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
@@ -22012,7 +22012,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineRecombination_AM._change", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineRecombination_AM._change", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -22027,15 +22027,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_9__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_9__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -22052,14 +22052,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("__reduce_cython__", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__reduce_cython__", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_8__reduce_cython__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_8__reduce_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -22278,7 +22278,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineRecombination_AM.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineRecombination_AM.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_state);
@@ -22296,15 +22296,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_11__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_11__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -22359,18 +22359,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__setstate_cython__", 1, 1, 1, __pyx_nargs); __PYX_ERR(1, 16, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineRecombination_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineRecombination_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_10__setstate_cython__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_10__setstate_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -22385,7 +22385,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
  *     __pyx_unpickle_LineRecombination_AM__set_state(self, __pyx_state)             # <<<<<<<<<<<<<<
  */
   if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 17, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineRecombination_AM__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineRecombination_AM__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
@@ -22401,7 +22401,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineRecombination_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineRecombination_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -22409,7 +22409,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":205
+/* "cherab/PESDT_addon/LineEmitters.pyx":205
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -22418,8 +22418,8 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_20LineRecombinati
  */
 
 /* Python wrapper */
-static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line = 0;
   struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma = 0;
   struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data = 0;
@@ -22445,7 +22445,7 @@ static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_1__init__(Py
     values[2] = (PyObject *)((struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *)Py_None);
     values[3] = ((PyObject *)Py_None);
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":206
+    /* "cherab/PESDT_addon/LineEmitters.pyx":206
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
  *                  object lineshape_args=None, object lineshape_kwargs=None):             # <<<<<<<<<<<<<<
@@ -22546,16 +22546,16 @@ static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_1__init__(Py
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 6, __pyx_nargs); __PYX_ERR(0, 205, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_line), __pyx_ptype_6cherab_4core_6atomic_4line_Line, 1, "line", 0))) __PYX_ERR(0, 205, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_plasma), __pyx_ptype_6cherab_4core_6plasma_4node_Plasma, 1, "plasma", 0))) __PYX_ERR(0, 205, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_atomic_data), __pyx_ptype_6cherab_4core_6atomic_9interface_AtomicData, 1, "atomic_data", 0))) __PYX_ERR(0, 205, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *)__pyx_v_self), __pyx_v_line, __pyx_v_plasma, __pyx_v_atomic_data, __pyx_v_lineshape, __pyx_v_lineshape_args, __pyx_v_lineshape_kwargs);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM___init__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *)__pyx_v_self), __pyx_v_line, __pyx_v_plasma, __pyx_v_atomic_data, __pyx_v_lineshape, __pyx_v_lineshape_args, __pyx_v_lineshape_kwargs);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":205
+  /* "cherab/PESDT_addon/LineEmitters.pyx":205
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -22572,7 +22572,7 @@ static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_1__init__(Py
   return __pyx_r;
 }
 
-static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs) {
+static int __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM___init__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -22586,7 +22586,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":208
+  /* "cherab/PESDT_addon/LineEmitters.pyx":208
  *                  object lineshape_args=None, object lineshape_kwargs=None):
  * 
  *         super().__init__(plasma, atomic_data)             # <<<<<<<<<<<<<<
@@ -22595,9 +22595,9 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
  */
   __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_INCREF((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM);
-  __Pyx_GIVEREF((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM));
+  __Pyx_INCREF((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM);
+  __Pyx_GIVEREF((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM));
   __Pyx_INCREF((PyObject *)__pyx_v_self);
   __Pyx_GIVEREF((PyObject *)__pyx_v_self);
   PyTuple_SET_ITEM(__pyx_t_2, 1, ((PyObject *)__pyx_v_self));
@@ -22629,7 +22629,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":210
+  /* "cherab/PESDT_addon/LineEmitters.pyx":210
  *         super().__init__(plasma, atomic_data)
  * 
  *         self._plasma = plasma             # <<<<<<<<<<<<<<
@@ -22642,7 +22642,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
   __Pyx_DECREF((PyObject *)__pyx_v_self->__pyx_base._plasma);
   __pyx_v_self->__pyx_base._plasma = __pyx_v_plasma;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":211
+  /* "cherab/PESDT_addon/LineEmitters.pyx":211
  * 
  *         self._plasma = plasma
  *         self._atomic_data = atomic_data             # <<<<<<<<<<<<<<
@@ -22655,7 +22655,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
   __Pyx_DECREF((PyObject *)__pyx_v_self->__pyx_base._atomic_data);
   __pyx_v_self->__pyx_base._atomic_data = __pyx_v_atomic_data;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":213
+  /* "cherab/PESDT_addon/LineEmitters.pyx":213
  *         self._atomic_data = atomic_data
  * 
  *         self._line = line             # <<<<<<<<<<<<<<
@@ -22664,7 +22664,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_line_2, ((PyObject *)__pyx_v_line)) < 0) __PYX_ERR(0, 213, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":215
+  /* "cherab/PESDT_addon/LineEmitters.pyx":215
  *         self._line = line
  * 
  *         self._lineshape_class = lineshape or GaussianLine             # <<<<<<<<<<<<<<
@@ -22684,7 +22684,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_class, __pyx_t_1) < 0) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":216
+  /* "cherab/PESDT_addon/LineEmitters.pyx":216
  * 
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):             # <<<<<<<<<<<<<<
@@ -22698,7 +22698,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
   __pyx_t_6 = ((!(__pyx_t_5 != 0)) != 0);
   if (unlikely(__pyx_t_6)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":217
+    /* "cherab/PESDT_addon/LineEmitters.pyx":217
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")             # <<<<<<<<<<<<<<
@@ -22711,7 +22711,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __PYX_ERR(0, 217, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":216
+    /* "cherab/PESDT_addon/LineEmitters.pyx":216
  * 
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):             # <<<<<<<<<<<<<<
@@ -22720,7 +22720,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":219
+  /* "cherab/PESDT_addon/LineEmitters.pyx":219
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
  * 
  *         if lineshape_args:             # <<<<<<<<<<<<<<
@@ -22730,7 +22730,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
   __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_lineshape_args); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 219, __pyx_L1_error)
   if (__pyx_t_6) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":220
+    /* "cherab/PESDT_addon/LineEmitters.pyx":220
  * 
  *         if lineshape_args:
  *             self._lineshape_args = lineshape_args             # <<<<<<<<<<<<<<
@@ -22739,7 +22739,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
  */
     if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_args_2, __pyx_v_lineshape_args) < 0) __PYX_ERR(0, 220, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":219
+    /* "cherab/PESDT_addon/LineEmitters.pyx":219
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
  * 
  *         if lineshape_args:             # <<<<<<<<<<<<<<
@@ -22749,7 +22749,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
     goto __pyx_L6;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":222
+  /* "cherab/PESDT_addon/LineEmitters.pyx":222
  *             self._lineshape_args = lineshape_args
  *         else:
  *             self._lineshape_args = []             # <<<<<<<<<<<<<<
@@ -22764,7 +22764,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
   }
   __pyx_L6:;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":223
+  /* "cherab/PESDT_addon/LineEmitters.pyx":223
  *         else:
  *             self._lineshape_args = []
  *         if lineshape_kwargs:             # <<<<<<<<<<<<<<
@@ -22774,7 +22774,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
   __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_lineshape_kwargs); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 223, __pyx_L1_error)
   if (__pyx_t_6) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":224
+    /* "cherab/PESDT_addon/LineEmitters.pyx":224
  *             self._lineshape_args = []
  *         if lineshape_kwargs:
  *             self._lineshape_kwargs = lineshape_kwargs             # <<<<<<<<<<<<<<
@@ -22783,7 +22783,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
  */
     if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_kwargs_2, __pyx_v_lineshape_kwargs) < 0) __PYX_ERR(0, 224, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":223
+    /* "cherab/PESDT_addon/LineEmitters.pyx":223
  *         else:
  *             self._lineshape_args = []
  *         if lineshape_kwargs:             # <<<<<<<<<<<<<<
@@ -22793,7 +22793,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
     goto __pyx_L7;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":226
+  /* "cherab/PESDT_addon/LineEmitters.pyx":226
  *             self._lineshape_kwargs = lineshape_kwargs
  *         else:
  *             self._lineshape_kwargs = {}             # <<<<<<<<<<<<<<
@@ -22808,7 +22808,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
   }
   __pyx_L7:;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":229
+  /* "cherab/PESDT_addon/LineEmitters.pyx":229
  * 
  *         # ensure that cache is initialised
  *         self._change()             # <<<<<<<<<<<<<<
@@ -22839,7 +22839,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":205
+  /* "cherab/PESDT_addon/LineEmitters.pyx":205
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -22854,14 +22854,14 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":231
+/* "cherab/PESDT_addon/LineEmitters.pyx":231
  *         self._change()
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -22870,20 +22870,20 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM___init__(str
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_3__repr__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_3__repr__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_3__repr__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_3__repr__(PyObject *__pyx_v_self) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__repr__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_2__repr__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_2__repr__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_2__repr__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_2__repr__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -22898,7 +22898,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_2__rep
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":232
+  /* "cherab/PESDT_addon/LineEmitters.pyx":232
  * 
  *     def __repr__(self):
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)             # <<<<<<<<<<<<<<
@@ -22953,7 +22953,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_2__rep
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":231
+  /* "cherab/PESDT_addon/LineEmitters.pyx":231
  *         self._change()
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -22969,7 +22969,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_2__rep
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_AM.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_AM.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -22977,7 +22977,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_2__rep
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":234
+/* "cherab/PESDT_addon/LineEmitters.pyx":234
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -22985,14 +22985,14 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_2__rep
  *         # cache data on first run
  */
 
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_5emission(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch) {
+static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch) {
   double __pyx_v_ne;
   double __pyx_v_ni;
   double __pyx_v_te;
@@ -23029,7 +23029,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
       #else
       if (!PyCFunction_Check(__pyx_t_1)
       #endif
-              || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_5emission)) {
+              || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_5emission)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
@@ -23071,7 +23071,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     #endif
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":237
+  /* "cherab/PESDT_addon/LineEmitters.pyx":237
  *         cdef double ne, ni, te, radiance
  *         # cache data on first run
  *         if self._target_species is None:             # <<<<<<<<<<<<<<
@@ -23085,16 +23085,16 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = (__pyx_t_6 != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":238
+    /* "cherab/PESDT_addon/LineEmitters.pyx":238
  *         # cache data on first run
  *         if self._target_species is None:
  *             self._populate_cache()             # <<<<<<<<<<<<<<
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  */
-    __pyx_t_5 = ((struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *)__pyx_v_self->__pyx_base.__pyx_vtab)->_populate_cache(__pyx_v_self); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 238, __pyx_L1_error)
+    __pyx_t_5 = ((struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *)__pyx_v_self->__pyx_base.__pyx_vtab)->_populate_cache(__pyx_v_self); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 238, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":237
+    /* "cherab/PESDT_addon/LineEmitters.pyx":237
  *         cdef double ne, ni, te, radiance
  *         # cache data on first run
  *         if self._target_species is None:             # <<<<<<<<<<<<<<
@@ -23103,7 +23103,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":240
+  /* "cherab/PESDT_addon/LineEmitters.pyx":240
  *             self._populate_cache()
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -23116,7 +23116,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_ne = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":241
+  /* "cherab/PESDT_addon/LineEmitters.pyx":241
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:             # <<<<<<<<<<<<<<
@@ -23126,7 +23126,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = ((__pyx_v_ne <= 0.0) != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":242
+    /* "cherab/PESDT_addon/LineEmitters.pyx":242
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -23138,7 +23138,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":241
+    /* "cherab/PESDT_addon/LineEmitters.pyx":241
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:             # <<<<<<<<<<<<<<
@@ -23147,7 +23147,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":244
+  /* "cherab/PESDT_addon/LineEmitters.pyx":244
  *             return spectrum
  * 
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -23160,7 +23160,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_te = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":245
+  /* "cherab/PESDT_addon/LineEmitters.pyx":245
  * 
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:             # <<<<<<<<<<<<<<
@@ -23170,7 +23170,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = ((__pyx_v_te <= 0.0) != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":246
+    /* "cherab/PESDT_addon/LineEmitters.pyx":246
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -23182,7 +23182,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":245
+    /* "cherab/PESDT_addon/LineEmitters.pyx":245
  * 
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:             # <<<<<<<<<<<<<<
@@ -23191,7 +23191,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":248
+  /* "cherab/PESDT_addon/LineEmitters.pyx":248
  *             return spectrum
  * 
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -23239,7 +23239,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_ni = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":249
+  /* "cherab/PESDT_addon/LineEmitters.pyx":249
  * 
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)
  *         if ni <= 0.0:             # <<<<<<<<<<<<<<
@@ -23249,7 +23249,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = ((__pyx_v_ni <= 0.0) != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":250
+    /* "cherab/PESDT_addon/LineEmitters.pyx":250
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)
  *         if ni <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -23261,7 +23261,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":249
+    /* "cherab/PESDT_addon/LineEmitters.pyx":249
  * 
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)
  *         if ni <= 0.0:             # <<<<<<<<<<<<<<
@@ -23270,7 +23270,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":253
+  /* "cherab/PESDT_addon/LineEmitters.pyx":253
  * 
  *         # add emission line to spectrum
  *         radiance = RECIP_4_PI * self._rates.evaluate(ne, te) * ni             # <<<<<<<<<<<<<<
@@ -23324,7 +23324,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_radiance = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":254
+  /* "cherab/PESDT_addon/LineEmitters.pyx":254
  *         # add emission line to spectrum
  *         radiance = RECIP_4_PI * self._rates.evaluate(ne, te) * ni
  *         return self._lineshape.add_line(radiance, point, direction, spectrum)             # <<<<<<<<<<<<<<
@@ -23365,7 +23365,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":234
+  /* "cherab/PESDT_addon/LineEmitters.pyx":234
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -23381,7 +23381,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_9);
   __Pyx_XDECREF(__pyx_t_10);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF((PyObject *)__pyx_r);
@@ -23390,15 +23390,15 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_5emission(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_5emission = {"emission", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_5emission, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_5emission(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_5emission = {"emission", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_5emission, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -23477,14 +23477,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("emission", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 234, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_point), __pyx_ptype_7raysect_4core_4math_5point_Point3D, 1, "point", 0))) __PYX_ERR(0, 234, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_direction), __pyx_ptype_7raysect_4core_4math_6vector_Vector3D, 1, "direction", 0))) __PYX_ERR(0, 234, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_spectrum), __pyx_ptype_7raysect_7optical_8spectrum_Spectrum, 1, "spectrum", 0))) __PYX_ERR(0, 234, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_4emission(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *)__pyx_v_self), __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_4emission(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *)__pyx_v_self), __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum);
 
   /* function exit code */
   goto __pyx_L0;
@@ -23495,7 +23495,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_4emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_4emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -23504,7 +23504,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_4emiss
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("emission", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_emission(__pyx_v_self, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_emission(__pyx_v_self, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -23513,7 +23513,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_4emiss
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -23521,7 +23521,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_4emiss
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":256
+/* "cherab/PESDT_addon/LineEmitters.pyx":256
  *         return self._lineshape.add_line(radiance, point, direction, spectrum)
  * 
  *     cdef int _populate_cache(self) except -1:             # <<<<<<<<<<<<<<
@@ -23529,7 +23529,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_4emiss
  *         # sanity checks
  */
 
-static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cache(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *__pyx_v_self) {
+static int __pyx_f_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM__populate_cache(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *__pyx_v_self) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -23551,7 +23551,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_populate_cache", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":259
+  /* "cherab/PESDT_addon/LineEmitters.pyx":259
  * 
  *         # sanity checks
  *         if self._plasma is None:             # <<<<<<<<<<<<<<
@@ -23562,7 +23562,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":260
+    /* "cherab/PESDT_addon/LineEmitters.pyx":260
  *         # sanity checks
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")             # <<<<<<<<<<<<<<
@@ -23575,7 +23575,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(0, 260, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":259
+    /* "cherab/PESDT_addon/LineEmitters.pyx":259
  * 
  *         # sanity checks
  *         if self._plasma is None:             # <<<<<<<<<<<<<<
@@ -23584,7 +23584,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":261
+  /* "cherab/PESDT_addon/LineEmitters.pyx":261
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:             # <<<<<<<<<<<<<<
@@ -23595,7 +23595,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":262
+    /* "cherab/PESDT_addon/LineEmitters.pyx":262
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")             # <<<<<<<<<<<<<<
@@ -23608,7 +23608,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(0, 262, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":261
+    /* "cherab/PESDT_addon/LineEmitters.pyx":261
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:             # <<<<<<<<<<<<<<
@@ -23617,7 +23617,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":264
+  /* "cherab/PESDT_addon/LineEmitters.pyx":264
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")
  * 
  *         if self._line is None:             # <<<<<<<<<<<<<<
@@ -23631,7 +23631,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":265
+    /* "cherab/PESDT_addon/LineEmitters.pyx":265
  * 
  *         if self._line is None:
  *             raise RuntimeError("The emission line has not been set.")             # <<<<<<<<<<<<<<
@@ -23644,7 +23644,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(0, 265, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":264
+    /* "cherab/PESDT_addon/LineEmitters.pyx":264
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")
  * 
  *         if self._line is None:             # <<<<<<<<<<<<<<
@@ -23653,7 +23653,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":268
+  /* "cherab/PESDT_addon/LineEmitters.pyx":268
  * 
  *         # locate target species
  *         try:             # <<<<<<<<<<<<<<
@@ -23669,7 +23669,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
     __Pyx_XGOTREF(__pyx_t_6);
     /*try:*/ {
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":269
+      /* "cherab/PESDT_addon/LineEmitters.pyx":269
  *         # locate target species
  *         try:
  *             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge)             # <<<<<<<<<<<<<<
@@ -23716,7 +23716,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
       if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_target_species, __pyx_t_3) < 0) __PYX_ERR(0, 269, __pyx_L6_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":268
+      /* "cherab/PESDT_addon/LineEmitters.pyx":268
  * 
  *         # locate target species
  *         try:             # <<<<<<<<<<<<<<
@@ -23735,7 +23735,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":270
+    /* "cherab/PESDT_addon/LineEmitters.pyx":270
  *         try:
  *             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge)
  *         except ValueError:             # <<<<<<<<<<<<<<
@@ -23744,13 +23744,13 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
  */
     __pyx_t_11 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_ValueError);
     if (__pyx_t_11) {
-      __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
       if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_8, &__pyx_t_10) < 0) __PYX_ERR(0, 270, __pyx_L8_except_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_GOTREF(__pyx_t_10);
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":272
+      /* "cherab/PESDT_addon/LineEmitters.pyx":272
  *         except ValueError:
  *             raise RuntimeError("The plasma object does not contain the ion species for the specified line "
  *                                "(element={}, ionisation={}).".format(self._line.element.symbol, self._line.charge))             # <<<<<<<<<<<<<<
@@ -23795,7 +23795,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":271
+      /* "cherab/PESDT_addon/LineEmitters.pyx":271
  *             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge)
  *         except ValueError:
  *             raise RuntimeError("The plasma object does not contain the ion species for the specified line "             # <<<<<<<<<<<<<<
@@ -23812,7 +23812,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
     goto __pyx_L8_except_error;
     __pyx_L8_except_error:;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":268
+    /* "cherab/PESDT_addon/LineEmitters.pyx":268
  * 
  *         # locate target species
  *         try:             # <<<<<<<<<<<<<<
@@ -23827,7 +23827,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
     __pyx_L11_try_end:;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":275
+  /* "cherab/PESDT_addon/LineEmitters.pyx":275
  * 
  *         # obtain rate function
  *         self._rates = self._atomic_data.H2_diss( self._line.transition)             # <<<<<<<<<<<<<<
@@ -23865,7 +23865,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_rates, __pyx_t_10) < 0) __PYX_ERR(0, 275, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":278
+  /* "cherab/PESDT_addon/LineEmitters.pyx":278
  * 
  *         # identify wavelength
  *         self._wavelength = self._atomic_data.wavelength(self._line.element, self._line.charge, self._line.transition)             # <<<<<<<<<<<<<<
@@ -23898,7 +23898,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_wavelength, __pyx_t_7) < 0) __PYX_ERR(0, 278, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":281
+  /* "cherab/PESDT_addon/LineEmitters.pyx":281
  * 
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,             # <<<<<<<<<<<<<<
@@ -23928,7 +23928,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
   __pyx_t_8 = 0;
   __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":282
+  /* "cherab/PESDT_addon/LineEmitters.pyx":282
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)             # <<<<<<<<<<<<<<
@@ -23938,7 +23938,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
   __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_args_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 282, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":281
+  /* "cherab/PESDT_addon/LineEmitters.pyx":281
  * 
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,             # <<<<<<<<<<<<<<
@@ -23953,7 +23953,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":282
+  /* "cherab/PESDT_addon/LineEmitters.pyx":282
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)             # <<<<<<<<<<<<<<
@@ -23976,7 +23976,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":281
+  /* "cherab/PESDT_addon/LineEmitters.pyx":281
  * 
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,             # <<<<<<<<<<<<<<
@@ -23991,7 +23991,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_2, __pyx_t_9) < 0) __PYX_ERR(0, 281, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":256
+  /* "cherab/PESDT_addon/LineEmitters.pyx":256
  *         return self._lineshape.add_line(radiance, point, direction, spectrum)
  * 
  *     cdef int _populate_cache(self) except -1:             # <<<<<<<<<<<<<<
@@ -24011,14 +24011,14 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
   __Pyx_XDECREF(__pyx_t_12);
   __Pyx_XDECREF(__pyx_t_13);
   __Pyx_XDECREF(__pyx_t_14);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":284
+/* "cherab/PESDT_addon/LineEmitters.pyx":284
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
@@ -24027,15 +24027,15 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cac
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_7_change(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_7_change(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_7_change = {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_7_change(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_7_change = {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_7_change(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -24052,14 +24052,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("_change", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "_change", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_6_change(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_6_change(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_6_change(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_6_change(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -24067,7 +24067,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_6_chan
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_change", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":287
+  /* "cherab/PESDT_addon/LineEmitters.pyx":287
  * 
  *         # clear cache to force regeneration on first use
  *         self._target_species = None             # <<<<<<<<<<<<<<
@@ -24076,7 +24076,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_6_chan
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_target_species, Py_None) < 0) __PYX_ERR(0, 287, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":288
+  /* "cherab/PESDT_addon/LineEmitters.pyx":288
  *         # clear cache to force regeneration on first use
  *         self._target_species = None
  *         self._wavelength = 0.0             # <<<<<<<<<<<<<<
@@ -24085,7 +24085,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_6_chan
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_wavelength, __pyx_float_0_0) < 0) __PYX_ERR(0, 288, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":289
+  /* "cherab/PESDT_addon/LineEmitters.pyx":289
  *         self._target_species = None
  *         self._wavelength = 0.0
  *         self._rates = None             # <<<<<<<<<<<<<<
@@ -24094,7 +24094,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_6_chan
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_rates, Py_None) < 0) __PYX_ERR(0, 289, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":290
+  /* "cherab/PESDT_addon/LineEmitters.pyx":290
  *         self._wavelength = 0.0
  *         self._rates = None
  *         self._lineshape = None             # <<<<<<<<<<<<<<
@@ -24103,7 +24103,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_6_chan
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_2, Py_None) < 0) __PYX_ERR(0, 290, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":284
+  /* "cherab/PESDT_addon/LineEmitters.pyx":284
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
@@ -24115,7 +24115,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_6_chan
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_AM._change", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_AM._change", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -24130,15 +24130,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_6_chan
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_9__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_9__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -24155,14 +24155,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("__reduce_cython__", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__reduce_cython__", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_8__reduce_cython__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_8__reduce_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -24381,7 +24381,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_8__red
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_AM.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_AM.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_state);
@@ -24399,15 +24399,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_8__red
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_11__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_11__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -24462,18 +24462,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__setstate_cython__", 1, 1, 1, __pyx_nargs); __PYX_ERR(1, 16, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_10__setstate_cython__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_10__setstate_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -24488,7 +24488,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_10__se
  *     __pyx_unpickle_LineH2_AM__set_state(self, __pyx_state)             # <<<<<<<<<<<<<<
  */
   if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 17, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineH2_AM__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineH2_AM__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
@@ -24504,7 +24504,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_10__se
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -24512,7 +24512,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_10__se
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":295
+/* "cherab/PESDT_addon/LineEmitters.pyx":295
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -24521,8 +24521,8 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_10__se
  */
 
 /* Python wrapper */
-static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line = 0;
   struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma = 0;
   struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data = 0;
@@ -24548,7 +24548,7 @@ static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_1__init
     values[2] = (PyObject *)((struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *)Py_None);
     values[3] = ((PyObject *)Py_None);
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":296
+    /* "cherab/PESDT_addon/LineEmitters.pyx":296
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
  *                  object lineshape_args=None, object lineshape_kwargs=None):             # <<<<<<<<<<<<<<
@@ -24649,16 +24649,16 @@ static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_1__init
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 6, __pyx_nargs); __PYX_ERR(0, 295, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_pos_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_pos_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_line), __pyx_ptype_6cherab_4core_6atomic_4line_Line, 1, "line", 0))) __PYX_ERR(0, 295, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_plasma), __pyx_ptype_6cherab_4core_6plasma_4node_Plasma, 1, "plasma", 0))) __PYX_ERR(0, 295, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_atomic_data), __pyx_ptype_6cherab_4core_6atomic_9interface_AtomicData, 1, "atomic_data", 0))) __PYX_ERR(0, 295, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *)__pyx_v_self), __pyx_v_line, __pyx_v_plasma, __pyx_v_atomic_data, __pyx_v_lineshape, __pyx_v_lineshape_args, __pyx_v_lineshape_kwargs);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM___init__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *)__pyx_v_self), __pyx_v_line, __pyx_v_plasma, __pyx_v_atomic_data, __pyx_v_lineshape, __pyx_v_lineshape_args, __pyx_v_lineshape_kwargs);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":295
+  /* "cherab/PESDT_addon/LineEmitters.pyx":295
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -24675,7 +24675,7 @@ static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_1__init
   return __pyx_r;
 }
 
-static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs) {
+static int __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM___init__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -24689,7 +24689,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":298
+  /* "cherab/PESDT_addon/LineEmitters.pyx":298
  *                  object lineshape_args=None, object lineshape_kwargs=None):
  * 
  *         super().__init__(plasma, atomic_data)             # <<<<<<<<<<<<<<
@@ -24698,9 +24698,9 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
  */
   __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 298, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_INCREF((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM);
-  __Pyx_GIVEREF((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM));
+  __Pyx_INCREF((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM);
+  __Pyx_GIVEREF((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM));
   __Pyx_INCREF((PyObject *)__pyx_v_self);
   __Pyx_GIVEREF((PyObject *)__pyx_v_self);
   PyTuple_SET_ITEM(__pyx_t_2, 1, ((PyObject *)__pyx_v_self));
@@ -24732,7 +24732,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":300
+  /* "cherab/PESDT_addon/LineEmitters.pyx":300
  *         super().__init__(plasma, atomic_data)
  * 
  *         self._line = line             # <<<<<<<<<<<<<<
@@ -24741,7 +24741,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_line_2, ((PyObject *)__pyx_v_line)) < 0) __PYX_ERR(0, 300, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":302
+  /* "cherab/PESDT_addon/LineEmitters.pyx":302
  *         self._line = line
  * 
  *         self._lineshape_class = lineshape or GaussianLine             # <<<<<<<<<<<<<<
@@ -24761,7 +24761,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_class, __pyx_t_1) < 0) __PYX_ERR(0, 302, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":303
+  /* "cherab/PESDT_addon/LineEmitters.pyx":303
  * 
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):             # <<<<<<<<<<<<<<
@@ -24775,7 +24775,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
   __pyx_t_6 = ((!(__pyx_t_5 != 0)) != 0);
   if (unlikely(__pyx_t_6)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":304
+    /* "cherab/PESDT_addon/LineEmitters.pyx":304
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")             # <<<<<<<<<<<<<<
@@ -24788,7 +24788,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __PYX_ERR(0, 304, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":303
+    /* "cherab/PESDT_addon/LineEmitters.pyx":303
  * 
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):             # <<<<<<<<<<<<<<
@@ -24797,7 +24797,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":306
+  /* "cherab/PESDT_addon/LineEmitters.pyx":306
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
  * 
  *         if lineshape_args:             # <<<<<<<<<<<<<<
@@ -24807,7 +24807,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
   __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_lineshape_args); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 306, __pyx_L1_error)
   if (__pyx_t_6) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":307
+    /* "cherab/PESDT_addon/LineEmitters.pyx":307
  * 
  *         if lineshape_args:
  *             self._lineshape_args = lineshape_args             # <<<<<<<<<<<<<<
@@ -24816,7 +24816,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
  */
     if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_args_2, __pyx_v_lineshape_args) < 0) __PYX_ERR(0, 307, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":306
+    /* "cherab/PESDT_addon/LineEmitters.pyx":306
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
  * 
  *         if lineshape_args:             # <<<<<<<<<<<<<<
@@ -24826,7 +24826,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
     goto __pyx_L6;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":309
+  /* "cherab/PESDT_addon/LineEmitters.pyx":309
  *             self._lineshape_args = lineshape_args
  *         else:
  *             self._lineshape_args = []             # <<<<<<<<<<<<<<
@@ -24841,7 +24841,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
   }
   __pyx_L6:;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":310
+  /* "cherab/PESDT_addon/LineEmitters.pyx":310
  *         else:
  *             self._lineshape_args = []
  *         if lineshape_kwargs:             # <<<<<<<<<<<<<<
@@ -24851,7 +24851,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
   __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_lineshape_kwargs); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 310, __pyx_L1_error)
   if (__pyx_t_6) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":311
+    /* "cherab/PESDT_addon/LineEmitters.pyx":311
  *             self._lineshape_args = []
  *         if lineshape_kwargs:
  *             self._lineshape_kwargs = lineshape_kwargs             # <<<<<<<<<<<<<<
@@ -24860,7 +24860,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
  */
     if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_kwargs_2, __pyx_v_lineshape_kwargs) < 0) __PYX_ERR(0, 311, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":310
+    /* "cherab/PESDT_addon/LineEmitters.pyx":310
  *         else:
  *             self._lineshape_args = []
  *         if lineshape_kwargs:             # <<<<<<<<<<<<<<
@@ -24870,7 +24870,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
     goto __pyx_L7;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":313
+  /* "cherab/PESDT_addon/LineEmitters.pyx":313
  *             self._lineshape_kwargs = lineshape_kwargs
  *         else:
  *             self._lineshape_kwargs = {}             # <<<<<<<<<<<<<<
@@ -24885,7 +24885,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
   }
   __pyx_L7:;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":316
+  /* "cherab/PESDT_addon/LineEmitters.pyx":316
  * 
  *         # ensure that cache is initialised
  *         self._change()             # <<<<<<<<<<<<<<
@@ -24916,7 +24916,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":295
+  /* "cherab/PESDT_addon/LineEmitters.pyx":295
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -24931,14 +24931,14 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_pos_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_pos_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":318
+/* "cherab/PESDT_addon/LineEmitters.pyx":318
  *         self._change()
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -24947,20 +24947,20 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM___init_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_3__repr__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_3__repr__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_3__repr__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_3__repr__(PyObject *__pyx_v_self) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__repr__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_2__repr__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_2__repr__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_2__repr__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_2__repr__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -24975,7 +24975,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_2
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":319
+  /* "cherab/PESDT_addon/LineEmitters.pyx":319
  * 
  *     def __repr__(self):
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)             # <<<<<<<<<<<<<<
@@ -25030,7 +25030,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_2
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":318
+  /* "cherab/PESDT_addon/LineEmitters.pyx":318
  *         self._change()
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -25046,7 +25046,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_2
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_pos_AM.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_pos_AM.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -25054,7 +25054,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_2
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":321
+/* "cherab/PESDT_addon/LineEmitters.pyx":321
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -25062,14 +25062,14 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_2
  * 
  */
 
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_5emission(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch) {
+static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch) {
   double __pyx_v_ne;
   double __pyx_v_ni;
   double __pyx_v_te;
@@ -25106,7 +25106,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
       #else
       if (!PyCFunction_Check(__pyx_t_1)
       #endif
-              || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_5emission)) {
+              || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_5emission)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
@@ -25148,7 +25148,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     #endif
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":325
+  /* "cherab/PESDT_addon/LineEmitters.pyx":325
  * 
  *         # cache data on first run
  *         if self._target_species is None:             # <<<<<<<<<<<<<<
@@ -25162,16 +25162,16 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = (__pyx_t_6 != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":326
+    /* "cherab/PESDT_addon/LineEmitters.pyx":326
  *         # cache data on first run
  *         if self._target_species is None:
  *             self._populate_cache()             # <<<<<<<<<<<<<<
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  */
-    __pyx_t_5 = ((struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *)__pyx_v_self->__pyx_base.__pyx_vtab)->_populate_cache(__pyx_v_self); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 326, __pyx_L1_error)
+    __pyx_t_5 = ((struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *)__pyx_v_self->__pyx_base.__pyx_vtab)->_populate_cache(__pyx_v_self); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 326, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":325
+    /* "cherab/PESDT_addon/LineEmitters.pyx":325
  * 
  *         # cache data on first run
  *         if self._target_species is None:             # <<<<<<<<<<<<<<
@@ -25180,7 +25180,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":328
+  /* "cherab/PESDT_addon/LineEmitters.pyx":328
  *             self._populate_cache()
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -25193,7 +25193,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_ne = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":329
+  /* "cherab/PESDT_addon/LineEmitters.pyx":329
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:             # <<<<<<<<<<<<<<
@@ -25203,7 +25203,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = ((__pyx_v_ne <= 0.0) != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":330
+    /* "cherab/PESDT_addon/LineEmitters.pyx":330
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -25215,7 +25215,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":329
+    /* "cherab/PESDT_addon/LineEmitters.pyx":329
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:             # <<<<<<<<<<<<<<
@@ -25224,7 +25224,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":332
+  /* "cherab/PESDT_addon/LineEmitters.pyx":332
  *             return spectrum
  * 
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -25237,7 +25237,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_te = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":333
+  /* "cherab/PESDT_addon/LineEmitters.pyx":333
  * 
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:             # <<<<<<<<<<<<<<
@@ -25247,7 +25247,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = ((__pyx_v_te <= 0.0) != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":334
+    /* "cherab/PESDT_addon/LineEmitters.pyx":334
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -25259,7 +25259,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":333
+    /* "cherab/PESDT_addon/LineEmitters.pyx":333
  * 
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:             # <<<<<<<<<<<<<<
@@ -25268,7 +25268,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":336
+  /* "cherab/PESDT_addon/LineEmitters.pyx":336
  *             return spectrum
  * 
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -25316,7 +25316,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_ni = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":337
+  /* "cherab/PESDT_addon/LineEmitters.pyx":337
  * 
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)
  *         if ni <= 0.0:             # <<<<<<<<<<<<<<
@@ -25326,7 +25326,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = ((__pyx_v_ni <= 0.0) != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":338
+    /* "cherab/PESDT_addon/LineEmitters.pyx":338
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)
  *         if ni <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -25338,7 +25338,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":337
+    /* "cherab/PESDT_addon/LineEmitters.pyx":337
  * 
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)
  *         if ni <= 0.0:             # <<<<<<<<<<<<<<
@@ -25347,7 +25347,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":341
+  /* "cherab/PESDT_addon/LineEmitters.pyx":341
  * 
  *         # add emission line to spectrum
  *         radiance = RECIP_4_PI * self._rates.evaluate(ne, te) * ni             # <<<<<<<<<<<<<<
@@ -25401,7 +25401,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_radiance = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":342
+  /* "cherab/PESDT_addon/LineEmitters.pyx":342
  *         # add emission line to spectrum
  *         radiance = RECIP_4_PI * self._rates.evaluate(ne, te) * ni
  *         return self._lineshape.add_line(radiance, point, direction, spectrum)             # <<<<<<<<<<<<<<
@@ -25442,7 +25442,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":321
+  /* "cherab/PESDT_addon/LineEmitters.pyx":321
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -25458,7 +25458,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_9);
   __Pyx_XDECREF(__pyx_t_10);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_pos_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_pos_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF((PyObject *)__pyx_r);
@@ -25467,15 +25467,15 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_5emission(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_5emission = {"emission", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_5emission, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_5emission(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_5emission = {"emission", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_5emission, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -25554,14 +25554,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("emission", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 321, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_pos_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_pos_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_point), __pyx_ptype_7raysect_4core_4math_5point_Point3D, 1, "point", 0))) __PYX_ERR(0, 321, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_direction), __pyx_ptype_7raysect_4core_4math_6vector_Vector3D, 1, "direction", 0))) __PYX_ERR(0, 321, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_spectrum), __pyx_ptype_7raysect_7optical_8spectrum_Spectrum, 1, "spectrum", 0))) __PYX_ERR(0, 321, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_4emission(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *)__pyx_v_self), __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_4emission(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *)__pyx_v_self), __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum);
 
   /* function exit code */
   goto __pyx_L0;
@@ -25572,7 +25572,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_4emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_4emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -25581,7 +25581,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_4
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("emission", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_emission(__pyx_v_self, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_emission(__pyx_v_self, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -25590,7 +25590,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_4
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_pos_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_pos_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -25598,7 +25598,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_4
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":344
+/* "cherab/PESDT_addon/LineEmitters.pyx":344
  *         return self._lineshape.add_line(radiance, point, direction, spectrum)
  * 
  *     cdef int _populate_cache(self) except -1:             # <<<<<<<<<<<<<<
@@ -25606,7 +25606,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_4
  *         # sanity checks
  */
 
-static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populate_cache(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *__pyx_v_self) {
+static int __pyx_f_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM__populate_cache(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *__pyx_v_self) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -25628,7 +25628,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_populate_cache", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":347
+  /* "cherab/PESDT_addon/LineEmitters.pyx":347
  * 
  *         # sanity checks
  *         if self._plasma is None:             # <<<<<<<<<<<<<<
@@ -25639,7 +25639,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":348
+    /* "cherab/PESDT_addon/LineEmitters.pyx":348
  *         # sanity checks
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")             # <<<<<<<<<<<<<<
@@ -25652,7 +25652,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(0, 348, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":347
+    /* "cherab/PESDT_addon/LineEmitters.pyx":347
  * 
  *         # sanity checks
  *         if self._plasma is None:             # <<<<<<<<<<<<<<
@@ -25661,7 +25661,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":349
+  /* "cherab/PESDT_addon/LineEmitters.pyx":349
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:             # <<<<<<<<<<<<<<
@@ -25672,7 +25672,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":350
+    /* "cherab/PESDT_addon/LineEmitters.pyx":350
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")             # <<<<<<<<<<<<<<
@@ -25685,7 +25685,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(0, 350, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":349
+    /* "cherab/PESDT_addon/LineEmitters.pyx":349
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:             # <<<<<<<<<<<<<<
@@ -25694,7 +25694,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":352
+  /* "cherab/PESDT_addon/LineEmitters.pyx":352
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")
  * 
  *         if self._line is None:             # <<<<<<<<<<<<<<
@@ -25708,7 +25708,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":353
+    /* "cherab/PESDT_addon/LineEmitters.pyx":353
  * 
  *         if self._line is None:
  *             raise RuntimeError("The emission line has not been set.")             # <<<<<<<<<<<<<<
@@ -25721,7 +25721,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(0, 353, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":352
+    /* "cherab/PESDT_addon/LineEmitters.pyx":352
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")
  * 
  *         if self._line is None:             # <<<<<<<<<<<<<<
@@ -25730,7 +25730,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":356
+  /* "cherab/PESDT_addon/LineEmitters.pyx":356
  * 
  *         # locate target species
  *         try:             # <<<<<<<<<<<<<<
@@ -25746,7 +25746,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
     __Pyx_XGOTREF(__pyx_t_6);
     /*try:*/ {
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":357
+      /* "cherab/PESDT_addon/LineEmitters.pyx":357
  *         # locate target species
  *         try:
  *             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge +1)             # <<<<<<<<<<<<<<
@@ -25796,7 +25796,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
       if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_target_species, __pyx_t_3) < 0) __PYX_ERR(0, 357, __pyx_L6_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":356
+      /* "cherab/PESDT_addon/LineEmitters.pyx":356
  * 
  *         # locate target species
  *         try:             # <<<<<<<<<<<<<<
@@ -25815,7 +25815,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":358
+    /* "cherab/PESDT_addon/LineEmitters.pyx":358
  *         try:
  *             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge +1)
  *         except ValueError:             # <<<<<<<<<<<<<<
@@ -25824,13 +25824,13 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
  */
     __pyx_t_11 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_ValueError);
     if (__pyx_t_11) {
-      __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_pos_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_pos_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
       if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_8, &__pyx_t_7) < 0) __PYX_ERR(0, 358, __pyx_L8_except_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_GOTREF(__pyx_t_7);
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":360
+      /* "cherab/PESDT_addon/LineEmitters.pyx":360
  *         except ValueError:
  *             raise RuntimeError("The plasma object does not contain the ion species for the specified line "
  *                                "(element={}, ionisation={}).".format(self._line.element.symbol, self._line.charge))             # <<<<<<<<<<<<<<
@@ -25875,7 +25875,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       }
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":359
+      /* "cherab/PESDT_addon/LineEmitters.pyx":359
  *             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge +1)
  *         except ValueError:
  *             raise RuntimeError("The plasma object does not contain the ion species for the specified line "             # <<<<<<<<<<<<<<
@@ -25892,7 +25892,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
     goto __pyx_L8_except_error;
     __pyx_L8_except_error:;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":356
+    /* "cherab/PESDT_addon/LineEmitters.pyx":356
  * 
  *         # locate target species
  *         try:             # <<<<<<<<<<<<<<
@@ -25907,7 +25907,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
     __pyx_L11_try_end:;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":363
+  /* "cherab/PESDT_addon/LineEmitters.pyx":363
  * 
  *         # obtain rate function
  *         self._rates = self._atomic_data.H2_pos_diss(self._line.transition)             # <<<<<<<<<<<<<<
@@ -25945,7 +25945,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_rates, __pyx_t_7) < 0) __PYX_ERR(0, 363, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":366
+  /* "cherab/PESDT_addon/LineEmitters.pyx":366
  * 
  *         # identify wavelength
  *         self._wavelength = self._atomic_data.wavelength(self._line.element, self._line.charge, self._line.transition)             # <<<<<<<<<<<<<<
@@ -25978,7 +25978,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_wavelength, __pyx_t_10) < 0) __PYX_ERR(0, 366, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":369
+  /* "cherab/PESDT_addon/LineEmitters.pyx":369
  * 
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,             # <<<<<<<<<<<<<<
@@ -26008,7 +26008,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
   __pyx_t_8 = 0;
   __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":370
+  /* "cherab/PESDT_addon/LineEmitters.pyx":370
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)             # <<<<<<<<<<<<<<
@@ -26018,7 +26018,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
   __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_args_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 370, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":369
+  /* "cherab/PESDT_addon/LineEmitters.pyx":369
  * 
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,             # <<<<<<<<<<<<<<
@@ -26033,7 +26033,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":370
+  /* "cherab/PESDT_addon/LineEmitters.pyx":370
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)             # <<<<<<<<<<<<<<
@@ -26056,7 +26056,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":369
+  /* "cherab/PESDT_addon/LineEmitters.pyx":369
  * 
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,             # <<<<<<<<<<<<<<
@@ -26071,7 +26071,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_2, __pyx_t_9) < 0) __PYX_ERR(0, 369, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":344
+  /* "cherab/PESDT_addon/LineEmitters.pyx":344
  *         return self._lineshape.add_line(radiance, point, direction, spectrum)
  * 
  *     cdef int _populate_cache(self) except -1:             # <<<<<<<<<<<<<<
@@ -26091,14 +26091,14 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
   __Pyx_XDECREF(__pyx_t_12);
   __Pyx_XDECREF(__pyx_t_13);
   __Pyx_XDECREF(__pyx_t_14);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_pos_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_pos_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":372
+/* "cherab/PESDT_addon/LineEmitters.pyx":372
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
@@ -26107,15 +26107,15 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populat
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_7_change(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_7_change(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_7_change = {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_7_change(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_7_change = {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_7_change(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -26132,14 +26132,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("_change", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "_change", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_6_change(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_6_change(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_6_change(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_6_change(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -26147,7 +26147,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_6
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_change", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":375
+  /* "cherab/PESDT_addon/LineEmitters.pyx":375
  * 
  *         # clear cache to force regeneration on first use
  *         self._target_species = None             # <<<<<<<<<<<<<<
@@ -26156,7 +26156,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_6
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_target_species, Py_None) < 0) __PYX_ERR(0, 375, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":376
+  /* "cherab/PESDT_addon/LineEmitters.pyx":376
  *         # clear cache to force regeneration on first use
  *         self._target_species = None
  *         self._wavelength = 0.0             # <<<<<<<<<<<<<<
@@ -26165,7 +26165,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_6
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_wavelength, __pyx_float_0_0) < 0) __PYX_ERR(0, 376, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":377
+  /* "cherab/PESDT_addon/LineEmitters.pyx":377
  *         self._target_species = None
  *         self._wavelength = 0.0
  *         self._rates = None             # <<<<<<<<<<<<<<
@@ -26174,7 +26174,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_6
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_rates, Py_None) < 0) __PYX_ERR(0, 377, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":378
+  /* "cherab/PESDT_addon/LineEmitters.pyx":378
  *         self._wavelength = 0.0
  *         self._rates = None
  *         self._lineshape = None             # <<<<<<<<<<<<<<
@@ -26183,7 +26183,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_6
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_2, Py_None) < 0) __PYX_ERR(0, 378, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":372
+  /* "cherab/PESDT_addon/LineEmitters.pyx":372
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
@@ -26195,7 +26195,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_6
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_pos_AM._change", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_pos_AM._change", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -26210,15 +26210,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_6
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_9__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_9__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -26235,14 +26235,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("__reduce_cython__", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__reduce_cython__", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_8__reduce_cython__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_8__reduce_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -26461,7 +26461,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_8
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_pos_AM.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_pos_AM.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_state);
@@ -26479,15 +26479,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_8
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_11__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_11__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -26542,18 +26542,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__setstate_cython__", 1, 1, 1, __pyx_nargs); __PYX_ERR(1, 16, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_pos_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_pos_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_10__setstate_cython__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_10__setstate_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -26568,7 +26568,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_1
  *     __pyx_unpickle_LineH2_pos_AM__set_state(self, __pyx_state)             # <<<<<<<<<<<<<<
  */
   if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 17, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineH2_pos_AM__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineH2_pos_AM__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
@@ -26584,7 +26584,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_1
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH2_pos_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH2_pos_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -26592,7 +26592,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_1
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":383
+/* "cherab/PESDT_addon/LineEmitters.pyx":383
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -26601,8 +26601,8 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_1
  */
 
 /* Python wrapper */
-static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line = 0;
   struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma = 0;
   struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data = 0;
@@ -26628,7 +26628,7 @@ static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_1__init_
     values[2] = (PyObject *)((struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *)Py_None);
     values[3] = ((PyObject *)Py_None);
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":384
+    /* "cherab/PESDT_addon/LineEmitters.pyx":384
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
  *                  object lineshape_args=None, object lineshape_kwargs=None):             # <<<<<<<<<<<<<<
@@ -26729,16 +26729,16 @@ static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_1__init_
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 6, __pyx_nargs); __PYX_ERR(0, 383, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH_neg_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH_neg_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_line), __pyx_ptype_6cherab_4core_6atomic_4line_Line, 1, "line", 0))) __PYX_ERR(0, 383, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_plasma), __pyx_ptype_6cherab_4core_6plasma_4node_Plasma, 1, "plasma", 0))) __PYX_ERR(0, 383, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_atomic_data), __pyx_ptype_6cherab_4core_6atomic_9interface_AtomicData, 1, "atomic_data", 0))) __PYX_ERR(0, 383, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *)__pyx_v_self), __pyx_v_line, __pyx_v_plasma, __pyx_v_atomic_data, __pyx_v_lineshape, __pyx_v_lineshape_args, __pyx_v_lineshape_kwargs);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM___init__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *)__pyx_v_self), __pyx_v_line, __pyx_v_plasma, __pyx_v_atomic_data, __pyx_v_lineshape, __pyx_v_lineshape_args, __pyx_v_lineshape_kwargs);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":383
+  /* "cherab/PESDT_addon/LineEmitters.pyx":383
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -26755,7 +26755,7 @@ static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_1__init_
   return __pyx_r;
 }
 
-static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs) {
+static int __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM___init__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -26769,7 +26769,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":386
+  /* "cherab/PESDT_addon/LineEmitters.pyx":386
  *                  object lineshape_args=None, object lineshape_kwargs=None):
  * 
  *         super().__init__(plasma, atomic_data)             # <<<<<<<<<<<<<<
@@ -26778,9 +26778,9 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
  */
   __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 386, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_INCREF((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM);
-  __Pyx_GIVEREF((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM));
+  __Pyx_INCREF((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM);
+  __Pyx_GIVEREF((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM));
   __Pyx_INCREF((PyObject *)__pyx_v_self);
   __Pyx_GIVEREF((PyObject *)__pyx_v_self);
   PyTuple_SET_ITEM(__pyx_t_2, 1, ((PyObject *)__pyx_v_self));
@@ -26812,7 +26812,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":388
+  /* "cherab/PESDT_addon/LineEmitters.pyx":388
  *         super().__init__(plasma, atomic_data)
  * 
  *         self._plasma = plasma             # <<<<<<<<<<<<<<
@@ -26825,7 +26825,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
   __Pyx_DECREF((PyObject *)__pyx_v_self->__pyx_base._plasma);
   __pyx_v_self->__pyx_base._plasma = __pyx_v_plasma;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":389
+  /* "cherab/PESDT_addon/LineEmitters.pyx":389
  * 
  *         self._plasma = plasma
  *         self._atomic_data = atomic_data             # <<<<<<<<<<<<<<
@@ -26838,7 +26838,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
   __Pyx_DECREF((PyObject *)__pyx_v_self->__pyx_base._atomic_data);
   __pyx_v_self->__pyx_base._atomic_data = __pyx_v_atomic_data;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":392
+  /* "cherab/PESDT_addon/LineEmitters.pyx":392
  * 
  * 
  *         self._line = line             # <<<<<<<<<<<<<<
@@ -26847,7 +26847,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_line_2, ((PyObject *)__pyx_v_line)) < 0) __PYX_ERR(0, 392, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":394
+  /* "cherab/PESDT_addon/LineEmitters.pyx":394
  *         self._line = line
  * 
  *         self._lineshape_class = lineshape or GaussianLine             # <<<<<<<<<<<<<<
@@ -26867,7 +26867,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_class, __pyx_t_1) < 0) __PYX_ERR(0, 394, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":395
+  /* "cherab/PESDT_addon/LineEmitters.pyx":395
  * 
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):             # <<<<<<<<<<<<<<
@@ -26881,7 +26881,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
   __pyx_t_6 = ((!(__pyx_t_5 != 0)) != 0);
   if (unlikely(__pyx_t_6)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":396
+    /* "cherab/PESDT_addon/LineEmitters.pyx":396
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")             # <<<<<<<<<<<<<<
@@ -26894,7 +26894,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __PYX_ERR(0, 396, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":395
+    /* "cherab/PESDT_addon/LineEmitters.pyx":395
  * 
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):             # <<<<<<<<<<<<<<
@@ -26903,7 +26903,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":398
+  /* "cherab/PESDT_addon/LineEmitters.pyx":398
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
  * 
  *         if lineshape_args:             # <<<<<<<<<<<<<<
@@ -26913,7 +26913,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
   __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_lineshape_args); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 398, __pyx_L1_error)
   if (__pyx_t_6) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":399
+    /* "cherab/PESDT_addon/LineEmitters.pyx":399
  * 
  *         if lineshape_args:
  *             self._lineshape_args = lineshape_args             # <<<<<<<<<<<<<<
@@ -26922,7 +26922,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
  */
     if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_args_2, __pyx_v_lineshape_args) < 0) __PYX_ERR(0, 399, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":398
+    /* "cherab/PESDT_addon/LineEmitters.pyx":398
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
  * 
  *         if lineshape_args:             # <<<<<<<<<<<<<<
@@ -26932,7 +26932,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
     goto __pyx_L6;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":401
+  /* "cherab/PESDT_addon/LineEmitters.pyx":401
  *             self._lineshape_args = lineshape_args
  *         else:
  *             self._lineshape_args = []             # <<<<<<<<<<<<<<
@@ -26947,7 +26947,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
   }
   __pyx_L6:;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":402
+  /* "cherab/PESDT_addon/LineEmitters.pyx":402
  *         else:
  *             self._lineshape_args = []
  *         if lineshape_kwargs:             # <<<<<<<<<<<<<<
@@ -26957,7 +26957,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
   __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_lineshape_kwargs); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 402, __pyx_L1_error)
   if (__pyx_t_6) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":403
+    /* "cherab/PESDT_addon/LineEmitters.pyx":403
  *             self._lineshape_args = []
  *         if lineshape_kwargs:
  *             self._lineshape_kwargs = lineshape_kwargs             # <<<<<<<<<<<<<<
@@ -26966,7 +26966,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
  */
     if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_kwargs_2, __pyx_v_lineshape_kwargs) < 0) __PYX_ERR(0, 403, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":402
+    /* "cherab/PESDT_addon/LineEmitters.pyx":402
  *         else:
  *             self._lineshape_args = []
  *         if lineshape_kwargs:             # <<<<<<<<<<<<<<
@@ -26976,7 +26976,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
     goto __pyx_L7;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":405
+  /* "cherab/PESDT_addon/LineEmitters.pyx":405
  *             self._lineshape_kwargs = lineshape_kwargs
  *         else:
  *             self._lineshape_kwargs = {}             # <<<<<<<<<<<<<<
@@ -26991,7 +26991,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
   }
   __pyx_L7:;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":408
+  /* "cherab/PESDT_addon/LineEmitters.pyx":408
  * 
  *         # ensure that cache is initialised
  *         self._change()             # <<<<<<<<<<<<<<
@@ -27022,7 +27022,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":383
+  /* "cherab/PESDT_addon/LineEmitters.pyx":383
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -27037,14 +27037,14 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH_neg_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH_neg_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":410
+/* "cherab/PESDT_addon/LineEmitters.pyx":410
  *         self._change()
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -27053,20 +27053,20 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM___init__
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_3__repr__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_3__repr__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_3__repr__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_3__repr__(PyObject *__pyx_v_self) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__repr__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_2__repr__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_2__repr__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_2__repr__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_2__repr__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -27081,7 +27081,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_2_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":411
+  /* "cherab/PESDT_addon/LineEmitters.pyx":411
  * 
  *     def __repr__(self):
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)             # <<<<<<<<<<<<<<
@@ -27136,7 +27136,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_2_
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":410
+  /* "cherab/PESDT_addon/LineEmitters.pyx":410
  *         self._change()
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -27152,7 +27152,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_2_
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH_neg_AM.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH_neg_AM.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -27160,7 +27160,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_2_
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":413
+/* "cherab/PESDT_addon/LineEmitters.pyx":413
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -27168,14 +27168,14 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_2_
  * 
  */
 
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_5emission(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch) {
+static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch) {
   double __pyx_v_ne;
   double __pyx_v_ni;
   double __pyx_v_te;
@@ -27212,7 +27212,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
       #else
       if (!PyCFunction_Check(__pyx_t_1)
       #endif
-              || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_5emission)) {
+              || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_5emission)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
@@ -27254,7 +27254,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     #endif
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":417
+  /* "cherab/PESDT_addon/LineEmitters.pyx":417
  * 
  *         # cache data on first run
  *         if self._target_species is None:             # <<<<<<<<<<<<<<
@@ -27268,16 +27268,16 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = (__pyx_t_6 != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":418
+    /* "cherab/PESDT_addon/LineEmitters.pyx":418
  *         # cache data on first run
  *         if self._target_species is None:
  *             self._populate_cache()             # <<<<<<<<<<<<<<
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  */
-    __pyx_t_5 = ((struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *)__pyx_v_self->__pyx_base.__pyx_vtab)->_populate_cache(__pyx_v_self); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 418, __pyx_L1_error)
+    __pyx_t_5 = ((struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *)__pyx_v_self->__pyx_base.__pyx_vtab)->_populate_cache(__pyx_v_self); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 418, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":417
+    /* "cherab/PESDT_addon/LineEmitters.pyx":417
  * 
  *         # cache data on first run
  *         if self._target_species is None:             # <<<<<<<<<<<<<<
@@ -27286,7 +27286,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":420
+  /* "cherab/PESDT_addon/LineEmitters.pyx":420
  *             self._populate_cache()
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -27299,7 +27299,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_ne = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":421
+  /* "cherab/PESDT_addon/LineEmitters.pyx":421
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:             # <<<<<<<<<<<<<<
@@ -27309,7 +27309,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = ((__pyx_v_ne <= 0.0) != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":422
+    /* "cherab/PESDT_addon/LineEmitters.pyx":422
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -27321,7 +27321,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":421
+    /* "cherab/PESDT_addon/LineEmitters.pyx":421
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:             # <<<<<<<<<<<<<<
@@ -27330,7 +27330,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":424
+  /* "cherab/PESDT_addon/LineEmitters.pyx":424
  *             return spectrum
  * 
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -27343,7 +27343,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_te = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":425
+  /* "cherab/PESDT_addon/LineEmitters.pyx":425
  * 
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:             # <<<<<<<<<<<<<<
@@ -27353,7 +27353,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = ((__pyx_v_te <= 0.0) != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":426
+    /* "cherab/PESDT_addon/LineEmitters.pyx":426
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -27365,7 +27365,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":425
+    /* "cherab/PESDT_addon/LineEmitters.pyx":425
  * 
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:             # <<<<<<<<<<<<<<
@@ -27374,7 +27374,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":428
+  /* "cherab/PESDT_addon/LineEmitters.pyx":428
  *             return spectrum
  * 
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -27422,7 +27422,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_ni = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":429
+  /* "cherab/PESDT_addon/LineEmitters.pyx":429
  * 
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)
  *         if ni <= 0.0:             # <<<<<<<<<<<<<<
@@ -27432,7 +27432,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = ((__pyx_v_ni <= 0.0) != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":430
+    /* "cherab/PESDT_addon/LineEmitters.pyx":430
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)
  *         if ni <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -27444,7 +27444,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":429
+    /* "cherab/PESDT_addon/LineEmitters.pyx":429
  * 
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)
  *         if ni <= 0.0:             # <<<<<<<<<<<<<<
@@ -27453,7 +27453,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":433
+  /* "cherab/PESDT_addon/LineEmitters.pyx":433
  * 
  *         # add emission line to spectrum
  *         radiance = RECIP_4_PI * self._rates.evaluate(ne, te) * ni             # <<<<<<<<<<<<<<
@@ -27507,7 +27507,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_radiance = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":434
+  /* "cherab/PESDT_addon/LineEmitters.pyx":434
  *         # add emission line to spectrum
  *         radiance = RECIP_4_PI * self._rates.evaluate(ne, te) * ni
  *         return self._lineshape.add_line(radiance, point, direction, spectrum)             # <<<<<<<<<<<<<<
@@ -27548,7 +27548,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":413
+  /* "cherab/PESDT_addon/LineEmitters.pyx":413
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -27564,7 +27564,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_9);
   __Pyx_XDECREF(__pyx_t_10);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH_neg_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH_neg_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF((PyObject *)__pyx_r);
@@ -27573,15 +27573,15 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_5emission(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_5emission = {"emission", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_5emission, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_5emission(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_5emission = {"emission", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_5emission, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -27660,14 +27660,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("emission", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 413, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH_neg_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH_neg_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_point), __pyx_ptype_7raysect_4core_4math_5point_Point3D, 1, "point", 0))) __PYX_ERR(0, 413, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_direction), __pyx_ptype_7raysect_4core_4math_6vector_Vector3D, 1, "direction", 0))) __PYX_ERR(0, 413, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_spectrum), __pyx_ptype_7raysect_7optical_8spectrum_Spectrum, 1, "spectrum", 0))) __PYX_ERR(0, 413, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_4emission(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *)__pyx_v_self), __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_4emission(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *)__pyx_v_self), __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum);
 
   /* function exit code */
   goto __pyx_L0;
@@ -27678,7 +27678,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_4emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_4emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -27687,7 +27687,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_4e
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("emission", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_emission(__pyx_v_self, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 413, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_emission(__pyx_v_self, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 413, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -27696,7 +27696,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_4e
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH_neg_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH_neg_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -27704,7 +27704,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_4e
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":436
+/* "cherab/PESDT_addon/LineEmitters.pyx":436
  *         return self._lineshape.add_line(radiance, point, direction, spectrum)
  * 
  *     cdef int _populate_cache(self) except -1:             # <<<<<<<<<<<<<<
@@ -27712,7 +27712,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_4e
  *         # sanity checks
  */
 
-static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate_cache(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *__pyx_v_self) {
+static int __pyx_f_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM__populate_cache(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *__pyx_v_self) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -27734,7 +27734,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_populate_cache", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":439
+  /* "cherab/PESDT_addon/LineEmitters.pyx":439
  * 
  *         # sanity checks
  *         if self._plasma is None:             # <<<<<<<<<<<<<<
@@ -27745,7 +27745,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":440
+    /* "cherab/PESDT_addon/LineEmitters.pyx":440
  *         # sanity checks
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")             # <<<<<<<<<<<<<<
@@ -27758,7 +27758,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(0, 440, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":439
+    /* "cherab/PESDT_addon/LineEmitters.pyx":439
  * 
  *         # sanity checks
  *         if self._plasma is None:             # <<<<<<<<<<<<<<
@@ -27767,7 +27767,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":441
+  /* "cherab/PESDT_addon/LineEmitters.pyx":441
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:             # <<<<<<<<<<<<<<
@@ -27778,7 +27778,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":442
+    /* "cherab/PESDT_addon/LineEmitters.pyx":442
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")             # <<<<<<<<<<<<<<
@@ -27791,7 +27791,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(0, 442, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":441
+    /* "cherab/PESDT_addon/LineEmitters.pyx":441
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:             # <<<<<<<<<<<<<<
@@ -27800,7 +27800,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":444
+  /* "cherab/PESDT_addon/LineEmitters.pyx":444
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")
  * 
  *         if self._line is None:             # <<<<<<<<<<<<<<
@@ -27814,7 +27814,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":445
+    /* "cherab/PESDT_addon/LineEmitters.pyx":445
  * 
  *         if self._line is None:
  *             raise RuntimeError("The emission line has not been set.")             # <<<<<<<<<<<<<<
@@ -27827,7 +27827,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(0, 445, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":444
+    /* "cherab/PESDT_addon/LineEmitters.pyx":444
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")
  * 
  *         if self._line is None:             # <<<<<<<<<<<<<<
@@ -27836,7 +27836,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":448
+  /* "cherab/PESDT_addon/LineEmitters.pyx":448
  * 
  *         # locate target species
  *         try:             # <<<<<<<<<<<<<<
@@ -27852,7 +27852,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
     __Pyx_XGOTREF(__pyx_t_6);
     /*try:*/ {
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":449
+      /* "cherab/PESDT_addon/LineEmitters.pyx":449
  *         # locate target species
  *         try:
  *             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge)             # <<<<<<<<<<<<<<
@@ -27899,7 +27899,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
       if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_target_species, __pyx_t_3) < 0) __PYX_ERR(0, 449, __pyx_L6_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":448
+      /* "cherab/PESDT_addon/LineEmitters.pyx":448
  * 
  *         # locate target species
  *         try:             # <<<<<<<<<<<<<<
@@ -27918,7 +27918,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":450
+    /* "cherab/PESDT_addon/LineEmitters.pyx":450
  *         try:
  *             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge)
  *         except ValueError:             # <<<<<<<<<<<<<<
@@ -27927,13 +27927,13 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
  */
     __pyx_t_11 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_ValueError);
     if (__pyx_t_11) {
-      __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH_neg_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH_neg_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
       if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_8, &__pyx_t_10) < 0) __PYX_ERR(0, 450, __pyx_L8_except_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_GOTREF(__pyx_t_10);
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":452
+      /* "cherab/PESDT_addon/LineEmitters.pyx":452
  *         except ValueError:
  *             raise RuntimeError("The plasma object does not contain the ion species for the specified line "
  *                                "(element={}, ionisation={}).".format(self._line.element.symbol, self._line.charge))             # <<<<<<<<<<<<<<
@@ -27978,7 +27978,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":451
+      /* "cherab/PESDT_addon/LineEmitters.pyx":451
  *             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge)
  *         except ValueError:
  *             raise RuntimeError("The plasma object does not contain the ion species for the specified line "             # <<<<<<<<<<<<<<
@@ -27995,7 +27995,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
     goto __pyx_L8_except_error;
     __pyx_L8_except_error:;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":448
+    /* "cherab/PESDT_addon/LineEmitters.pyx":448
  * 
  *         # locate target species
  *         try:             # <<<<<<<<<<<<<<
@@ -28010,7 +28010,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
     __pyx_L11_try_end:;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":455
+  /* "cherab/PESDT_addon/LineEmitters.pyx":455
  * 
  *         # obtain rate function
  *         self._rates = self._atomic_data.H_neg(self._line.transition)             # <<<<<<<<<<<<<<
@@ -28048,7 +28048,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_rates, __pyx_t_10) < 0) __PYX_ERR(0, 455, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":458
+  /* "cherab/PESDT_addon/LineEmitters.pyx":458
  * 
  *         # identify wavelength
  *         self._wavelength = self._atomic_data.wavelength(self._line.element, self._line.charge, self._line.transition)             # <<<<<<<<<<<<<<
@@ -28081,7 +28081,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_wavelength, __pyx_t_7) < 0) __PYX_ERR(0, 458, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":461
+  /* "cherab/PESDT_addon/LineEmitters.pyx":461
  * 
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,             # <<<<<<<<<<<<<<
@@ -28111,7 +28111,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
   __pyx_t_8 = 0;
   __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":462
+  /* "cherab/PESDT_addon/LineEmitters.pyx":462
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)             # <<<<<<<<<<<<<<
@@ -28121,7 +28121,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
   __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_args_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 462, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":461
+  /* "cherab/PESDT_addon/LineEmitters.pyx":461
  * 
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,             # <<<<<<<<<<<<<<
@@ -28136,7 +28136,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":462
+  /* "cherab/PESDT_addon/LineEmitters.pyx":462
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)             # <<<<<<<<<<<<<<
@@ -28159,7 +28159,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":461
+  /* "cherab/PESDT_addon/LineEmitters.pyx":461
  * 
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,             # <<<<<<<<<<<<<<
@@ -28174,7 +28174,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_2, __pyx_t_9) < 0) __PYX_ERR(0, 461, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":436
+  /* "cherab/PESDT_addon/LineEmitters.pyx":436
  *         return self._lineshape.add_line(radiance, point, direction, spectrum)
  * 
  *     cdef int _populate_cache(self) except -1:             # <<<<<<<<<<<<<<
@@ -28194,14 +28194,14 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
   __Pyx_XDECREF(__pyx_t_12);
   __Pyx_XDECREF(__pyx_t_13);
   __Pyx_XDECREF(__pyx_t_14);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH_neg_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH_neg_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":464
+/* "cherab/PESDT_addon/LineEmitters.pyx":464
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
@@ -28210,15 +28210,15 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_7_change(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_7_change(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_7_change = {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_7_change(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_7_change = {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_7_change(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -28235,14 +28235,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("_change", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "_change", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_6_change(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_6_change(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_6_change(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_6_change(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -28250,7 +28250,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_6_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_change", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":467
+  /* "cherab/PESDT_addon/LineEmitters.pyx":467
  * 
  *         # clear cache to force regeneration on first use
  *         self._target_species = None             # <<<<<<<<<<<<<<
@@ -28259,7 +28259,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_6_
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_target_species, Py_None) < 0) __PYX_ERR(0, 467, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":468
+  /* "cherab/PESDT_addon/LineEmitters.pyx":468
  *         # clear cache to force regeneration on first use
  *         self._target_species = None
  *         self._wavelength = 0.0             # <<<<<<<<<<<<<<
@@ -28268,7 +28268,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_6_
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_wavelength, __pyx_float_0_0) < 0) __PYX_ERR(0, 468, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":469
+  /* "cherab/PESDT_addon/LineEmitters.pyx":469
  *         self._target_species = None
  *         self._wavelength = 0.0
  *         self._rates = None             # <<<<<<<<<<<<<<
@@ -28277,7 +28277,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_6_
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_rates, Py_None) < 0) __PYX_ERR(0, 469, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":470
+  /* "cherab/PESDT_addon/LineEmitters.pyx":470
  *         self._wavelength = 0.0
  *         self._rates = None
  *         self._lineshape = None             # <<<<<<<<<<<<<<
@@ -28286,7 +28286,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_6_
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_2, Py_None) < 0) __PYX_ERR(0, 470, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":464
+  /* "cherab/PESDT_addon/LineEmitters.pyx":464
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
@@ -28298,7 +28298,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_6_
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH_neg_AM._change", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH_neg_AM._change", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -28313,15 +28313,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_6_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_9__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_9__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -28338,14 +28338,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("__reduce_cython__", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__reduce_cython__", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_8__reduce_cython__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_8__reduce_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -28564,7 +28564,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_8_
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH_neg_AM.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH_neg_AM.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_state);
@@ -28582,15 +28582,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_8_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_11__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_11__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -28645,18 +28645,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__setstate_cython__", 1, 1, 1, __pyx_nargs); __PYX_ERR(1, 16, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH_neg_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH_neg_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_10__setstate_cython__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_10__setstate_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -28671,7 +28671,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_10
  *     __pyx_unpickle_LineH_neg_AM__set_state(self, __pyx_state)             # <<<<<<<<<<<<<<
  */
   if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 17, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineH_neg_AM__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineH_neg_AM__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
@@ -28687,7 +28687,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_10
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH_neg_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH_neg_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -28695,7 +28695,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_10
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":475
+/* "cherab/PESDT_addon/LineEmitters.pyx":475
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -28704,8 +28704,8 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_10
  */
 
 /* Python wrapper */
-static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line = 0;
   struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma = 0;
   struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data = 0;
@@ -28731,7 +28731,7 @@ static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_1__init
     values[2] = (PyObject *)((struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *)Py_None);
     values[3] = ((PyObject *)Py_None);
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":476
+    /* "cherab/PESDT_addon/LineEmitters.pyx":476
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
  *                  object lineshape_args=None, object lineshape_kwargs=None):             # <<<<<<<<<<<<<<
@@ -28832,16 +28832,16 @@ static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_1__init
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 6, __pyx_nargs); __PYX_ERR(0, 475, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH3_pos_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH3_pos_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_line), __pyx_ptype_6cherab_4core_6atomic_4line_Line, 1, "line", 0))) __PYX_ERR(0, 475, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_plasma), __pyx_ptype_6cherab_4core_6plasma_4node_Plasma, 1, "plasma", 0))) __PYX_ERR(0, 475, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_atomic_data), __pyx_ptype_6cherab_4core_6atomic_9interface_AtomicData, 1, "atomic_data", 0))) __PYX_ERR(0, 475, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *)__pyx_v_self), __pyx_v_line, __pyx_v_plasma, __pyx_v_atomic_data, __pyx_v_lineshape, __pyx_v_lineshape_args, __pyx_v_lineshape_kwargs);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM___init__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *)__pyx_v_self), __pyx_v_line, __pyx_v_plasma, __pyx_v_atomic_data, __pyx_v_lineshape, __pyx_v_lineshape_args, __pyx_v_lineshape_kwargs);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":475
+  /* "cherab/PESDT_addon/LineEmitters.pyx":475
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -28858,7 +28858,7 @@ static int __pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_1__init
   return __pyx_r;
 }
 
-static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs) {
+static int __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM___init__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -28872,7 +28872,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":478
+  /* "cherab/PESDT_addon/LineEmitters.pyx":478
  *                  object lineshape_args=None, object lineshape_kwargs=None):
  * 
  *         super().__init__(plasma, atomic_data)             # <<<<<<<<<<<<<<
@@ -28881,9 +28881,9 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
  */
   __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 478, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_INCREF((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM);
-  __Pyx_GIVEREF((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM));
+  __Pyx_INCREF((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM);
+  __Pyx_GIVEREF((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM));
   __Pyx_INCREF((PyObject *)__pyx_v_self);
   __Pyx_GIVEREF((PyObject *)__pyx_v_self);
   PyTuple_SET_ITEM(__pyx_t_2, 1, ((PyObject *)__pyx_v_self));
@@ -28915,7 +28915,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":480
+  /* "cherab/PESDT_addon/LineEmitters.pyx":480
  *         super().__init__(plasma, atomic_data)
  * 
  *         self._line = line             # <<<<<<<<<<<<<<
@@ -28924,7 +28924,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_line_2, ((PyObject *)__pyx_v_line)) < 0) __PYX_ERR(0, 480, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":482
+  /* "cherab/PESDT_addon/LineEmitters.pyx":482
  *         self._line = line
  * 
  *         self._lineshape_class = lineshape or GaussianLine             # <<<<<<<<<<<<<<
@@ -28944,7 +28944,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_class, __pyx_t_1) < 0) __PYX_ERR(0, 482, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":483
+  /* "cherab/PESDT_addon/LineEmitters.pyx":483
  * 
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):             # <<<<<<<<<<<<<<
@@ -28958,7 +28958,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
   __pyx_t_6 = ((!(__pyx_t_5 != 0)) != 0);
   if (unlikely(__pyx_t_6)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":484
+    /* "cherab/PESDT_addon/LineEmitters.pyx":484
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")             # <<<<<<<<<<<<<<
@@ -28971,7 +28971,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __PYX_ERR(0, 484, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":483
+    /* "cherab/PESDT_addon/LineEmitters.pyx":483
  * 
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):             # <<<<<<<<<<<<<<
@@ -28980,7 +28980,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":486
+  /* "cherab/PESDT_addon/LineEmitters.pyx":486
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
  * 
  *         if lineshape_args:             # <<<<<<<<<<<<<<
@@ -28990,7 +28990,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
   __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_lineshape_args); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 486, __pyx_L1_error)
   if (__pyx_t_6) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":487
+    /* "cherab/PESDT_addon/LineEmitters.pyx":487
  * 
  *         if lineshape_args:
  *             self._lineshape_args = lineshape_args             # <<<<<<<<<<<<<<
@@ -28999,7 +28999,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
  */
     if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_args_2, __pyx_v_lineshape_args) < 0) __PYX_ERR(0, 487, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":486
+    /* "cherab/PESDT_addon/LineEmitters.pyx":486
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
  * 
  *         if lineshape_args:             # <<<<<<<<<<<<<<
@@ -29009,7 +29009,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
     goto __pyx_L6;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":489
+  /* "cherab/PESDT_addon/LineEmitters.pyx":489
  *             self._lineshape_args = lineshape_args
  *         else:
  *             self._lineshape_args = []             # <<<<<<<<<<<<<<
@@ -29024,7 +29024,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
   }
   __pyx_L6:;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":490
+  /* "cherab/PESDT_addon/LineEmitters.pyx":490
  *         else:
  *             self._lineshape_args = []
  *         if lineshape_kwargs:             # <<<<<<<<<<<<<<
@@ -29034,7 +29034,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
   __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_lineshape_kwargs); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 490, __pyx_L1_error)
   if (__pyx_t_6) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":491
+    /* "cherab/PESDT_addon/LineEmitters.pyx":491
  *             self._lineshape_args = []
  *         if lineshape_kwargs:
  *             self._lineshape_kwargs = lineshape_kwargs             # <<<<<<<<<<<<<<
@@ -29043,7 +29043,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
  */
     if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_kwargs_2, __pyx_v_lineshape_kwargs) < 0) __PYX_ERR(0, 491, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":490
+    /* "cherab/PESDT_addon/LineEmitters.pyx":490
  *         else:
  *             self._lineshape_args = []
  *         if lineshape_kwargs:             # <<<<<<<<<<<<<<
@@ -29053,7 +29053,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
     goto __pyx_L7;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":493
+  /* "cherab/PESDT_addon/LineEmitters.pyx":493
  *             self._lineshape_kwargs = lineshape_kwargs
  *         else:
  *             self._lineshape_kwargs = {}             # <<<<<<<<<<<<<<
@@ -29068,7 +29068,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
   }
   __pyx_L7:;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":496
+  /* "cherab/PESDT_addon/LineEmitters.pyx":496
  * 
  *         # ensure that cache is initialised
  *         self._change()             # <<<<<<<<<<<<<<
@@ -29099,7 +29099,7 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":475
+  /* "cherab/PESDT_addon/LineEmitters.pyx":475
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -29114,14 +29114,14 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH3_pos_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH3_pos_AM.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":498
+/* "cherab/PESDT_addon/LineEmitters.pyx":498
  *         self._change()
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -29130,20 +29130,20 @@ static int __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM___init_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_3__repr__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_3__repr__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_3__repr__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_3__repr__(PyObject *__pyx_v_self) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__repr__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_2__repr__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_2__repr__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_2__repr__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_2__repr__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -29158,7 +29158,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_2
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":499
+  /* "cherab/PESDT_addon/LineEmitters.pyx":499
  * 
  *     def __repr__(self):
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)             # <<<<<<<<<<<<<<
@@ -29213,7 +29213,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_2
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":498
+  /* "cherab/PESDT_addon/LineEmitters.pyx":498
  *         self._change()
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -29229,7 +29229,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_2
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH3_pos_AM.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH3_pos_AM.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -29237,7 +29237,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_2
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":501
+/* "cherab/PESDT_addon/LineEmitters.pyx":501
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -29245,14 +29245,14 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_2
  *         cdef double ne, ni, te, radiance
  */
 
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_5emission(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch) {
+static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch) {
   double __pyx_v_ne;
   double __pyx_v_ni;
   double __pyx_v_te;
@@ -29289,7 +29289,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
       #else
       if (!PyCFunction_Check(__pyx_t_1)
       #endif
-              || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_5emission)) {
+              || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_5emission)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
@@ -29331,7 +29331,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     #endif
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":506
+  /* "cherab/PESDT_addon/LineEmitters.pyx":506
  * 
  *         # cache data on first run
  *         if self._target_species is None:             # <<<<<<<<<<<<<<
@@ -29345,16 +29345,16 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = (__pyx_t_6 != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":507
+    /* "cherab/PESDT_addon/LineEmitters.pyx":507
  *         # cache data on first run
  *         if self._target_species is None:
  *             self._populate_cache()             # <<<<<<<<<<<<<<
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  */
-    __pyx_t_5 = ((struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *)__pyx_v_self->__pyx_base.__pyx_vtab)->_populate_cache(__pyx_v_self); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 507, __pyx_L1_error)
+    __pyx_t_5 = ((struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *)__pyx_v_self->__pyx_base.__pyx_vtab)->_populate_cache(__pyx_v_self); if (unlikely(__pyx_t_5 == ((int)-1))) __PYX_ERR(0, 507, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":506
+    /* "cherab/PESDT_addon/LineEmitters.pyx":506
  * 
  *         # cache data on first run
  *         if self._target_species is None:             # <<<<<<<<<<<<<<
@@ -29363,7 +29363,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":509
+  /* "cherab/PESDT_addon/LineEmitters.pyx":509
  *             self._populate_cache()
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -29376,7 +29376,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_ne = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":510
+  /* "cherab/PESDT_addon/LineEmitters.pyx":510
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:             # <<<<<<<<<<<<<<
@@ -29386,7 +29386,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = ((__pyx_v_ne <= 0.0) != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":511
+    /* "cherab/PESDT_addon/LineEmitters.pyx":511
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -29398,7 +29398,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":510
+    /* "cherab/PESDT_addon/LineEmitters.pyx":510
  * 
  *         ne = self._plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:             # <<<<<<<<<<<<<<
@@ -29407,7 +29407,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":513
+  /* "cherab/PESDT_addon/LineEmitters.pyx":513
  *             return spectrum
  * 
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -29420,7 +29420,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_te = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":514
+  /* "cherab/PESDT_addon/LineEmitters.pyx":514
  * 
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:             # <<<<<<<<<<<<<<
@@ -29430,7 +29430,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = ((__pyx_v_te <= 0.0) != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":515
+    /* "cherab/PESDT_addon/LineEmitters.pyx":515
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -29442,7 +29442,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":514
+    /* "cherab/PESDT_addon/LineEmitters.pyx":514
  * 
  *         te = self._plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:             # <<<<<<<<<<<<<<
@@ -29451,7 +29451,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":517
+  /* "cherab/PESDT_addon/LineEmitters.pyx":517
  *             return spectrum
  * 
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -29499,7 +29499,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_ni = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":518
+  /* "cherab/PESDT_addon/LineEmitters.pyx":518
  * 
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)
  *         if ni <= 0.0:             # <<<<<<<<<<<<<<
@@ -29509,7 +29509,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_7 = ((__pyx_v_ni <= 0.0) != 0);
   if (__pyx_t_7) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":519
+    /* "cherab/PESDT_addon/LineEmitters.pyx":519
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)
  *         if ni <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -29521,7 +29521,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":518
+    /* "cherab/PESDT_addon/LineEmitters.pyx":518
  * 
  *         ni = self._target_species.distribution.density(point.x, point.y, point.z)
  *         if ni <= 0.0:             # <<<<<<<<<<<<<<
@@ -29530,7 +29530,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":522
+  /* "cherab/PESDT_addon/LineEmitters.pyx":522
  * 
  *         # add emission line to spectrum
  *         radiance = RECIP_4_PI * self._rates.evaluate(ne, te)  * ni             # <<<<<<<<<<<<<<
@@ -29584,7 +29584,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_radiance = __pyx_t_8;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":523
+  /* "cherab/PESDT_addon/LineEmitters.pyx":523
  *         # add emission line to spectrum
  *         radiance = RECIP_4_PI * self._rates.evaluate(ne, te)  * ni
  *         return self._lineshape.add_line(radiance, point, direction, spectrum)             # <<<<<<<<<<<<<<
@@ -29625,7 +29625,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":501
+  /* "cherab/PESDT_addon/LineEmitters.pyx":501
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -29641,7 +29641,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_9);
   __Pyx_XDECREF(__pyx_t_10);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH3_pos_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH3_pos_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF((PyObject *)__pyx_r);
@@ -29650,15 +29650,15 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_5emission(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_5emission = {"emission", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_5emission, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_5emission(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_5emission = {"emission", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_5emission, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -29737,14 +29737,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("emission", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 501, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH3_pos_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH3_pos_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_point), __pyx_ptype_7raysect_4core_4math_5point_Point3D, 1, "point", 0))) __PYX_ERR(0, 501, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_direction), __pyx_ptype_7raysect_4core_4math_6vector_Vector3D, 1, "direction", 0))) __PYX_ERR(0, 501, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_spectrum), __pyx_ptype_7raysect_7optical_8spectrum_Spectrum, 1, "spectrum", 0))) __PYX_ERR(0, 501, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_4emission(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *)__pyx_v_self), __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_4emission(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *)__pyx_v_self), __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum);
 
   /* function exit code */
   goto __pyx_L0;
@@ -29755,7 +29755,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_4emission(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_4emission(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -29764,7 +29764,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_4
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("emission", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_emission(__pyx_v_self, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 501, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_emission(__pyx_v_self, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 501, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -29773,7 +29773,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_4
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH3_pos_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH3_pos_AM.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -29781,7 +29781,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_4
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":525
+/* "cherab/PESDT_addon/LineEmitters.pyx":525
  *         return self._lineshape.add_line(radiance, point, direction, spectrum)
  * 
  *     cdef int _populate_cache(self) except -1:             # <<<<<<<<<<<<<<
@@ -29789,7 +29789,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_4
  *         # sanity checks
  */
 
-static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populate_cache(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *__pyx_v_self) {
+static int __pyx_f_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM__populate_cache(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *__pyx_v_self) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -29811,7 +29811,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_populate_cache", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":528
+  /* "cherab/PESDT_addon/LineEmitters.pyx":528
  * 
  *         # sanity checks
  *         if self._plasma is None:             # <<<<<<<<<<<<<<
@@ -29822,7 +29822,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":529
+    /* "cherab/PESDT_addon/LineEmitters.pyx":529
  *         # sanity checks
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")             # <<<<<<<<<<<<<<
@@ -29835,7 +29835,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(0, 529, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":528
+    /* "cherab/PESDT_addon/LineEmitters.pyx":528
  * 
  *         # sanity checks
  *         if self._plasma is None:             # <<<<<<<<<<<<<<
@@ -29844,7 +29844,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":530
+  /* "cherab/PESDT_addon/LineEmitters.pyx":530
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:             # <<<<<<<<<<<<<<
@@ -29855,7 +29855,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":531
+    /* "cherab/PESDT_addon/LineEmitters.pyx":531
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")             # <<<<<<<<<<<<<<
@@ -29868,7 +29868,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(0, 531, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":530
+    /* "cherab/PESDT_addon/LineEmitters.pyx":530
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:             # <<<<<<<<<<<<<<
@@ -29877,7 +29877,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":533
+  /* "cherab/PESDT_addon/LineEmitters.pyx":533
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")
  * 
  *         if self._line is None:             # <<<<<<<<<<<<<<
@@ -29891,7 +29891,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":534
+    /* "cherab/PESDT_addon/LineEmitters.pyx":534
  * 
  *         if self._line is None:
  *             raise RuntimeError("The emission line has not been set.")             # <<<<<<<<<<<<<<
@@ -29904,7 +29904,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(0, 534, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":533
+    /* "cherab/PESDT_addon/LineEmitters.pyx":533
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")
  * 
  *         if self._line is None:             # <<<<<<<<<<<<<<
@@ -29913,7 +29913,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
  */
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":537
+  /* "cherab/PESDT_addon/LineEmitters.pyx":537
  * 
  *         # locate target species
  *         try:             # <<<<<<<<<<<<<<
@@ -29929,7 +29929,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
     __Pyx_XGOTREF(__pyx_t_6);
     /*try:*/ {
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":538
+      /* "cherab/PESDT_addon/LineEmitters.pyx":538
  *         # locate target species
  *         try:
  *             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge)             # <<<<<<<<<<<<<<
@@ -29976,7 +29976,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
       if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_target_species, __pyx_t_3) < 0) __PYX_ERR(0, 538, __pyx_L6_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":537
+      /* "cherab/PESDT_addon/LineEmitters.pyx":537
  * 
  *         # locate target species
  *         try:             # <<<<<<<<<<<<<<
@@ -29995,7 +29995,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":539
+    /* "cherab/PESDT_addon/LineEmitters.pyx":539
  *         try:
  *             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge)
  *         except ValueError:             # <<<<<<<<<<<<<<
@@ -30004,13 +30004,13 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
  */
     __pyx_t_11 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_ValueError);
     if (__pyx_t_11) {
-      __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH3_pos_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH3_pos_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
       if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_8, &__pyx_t_10) < 0) __PYX_ERR(0, 539, __pyx_L8_except_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_GOTREF(__pyx_t_10);
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":541
+      /* "cherab/PESDT_addon/LineEmitters.pyx":541
  *         except ValueError:
  *             raise RuntimeError("The plasma object does not contain the ion species for the specified line "
  *                                "(element={}, ionisation={}).".format(self._line.element.symbol, self._line.charge))             # <<<<<<<<<<<<<<
@@ -30055,7 +30055,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
 
-      /* "cherab/amjuel_data/LineEmitters.pyx":540
+      /* "cherab/PESDT_addon/LineEmitters.pyx":540
  *             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge)
  *         except ValueError:
  *             raise RuntimeError("The plasma object does not contain the ion species for the specified line "             # <<<<<<<<<<<<<<
@@ -30072,7 +30072,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
     goto __pyx_L8_except_error;
     __pyx_L8_except_error:;
 
-    /* "cherab/amjuel_data/LineEmitters.pyx":537
+    /* "cherab/PESDT_addon/LineEmitters.pyx":537
  * 
  *         # locate target species
  *         try:             # <<<<<<<<<<<<<<
@@ -30087,7 +30087,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
     __pyx_L11_try_end:;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":544
+  /* "cherab/PESDT_addon/LineEmitters.pyx":544
  * 
  *         # obtain rate function
  *         self._rates = self._atomic_data.H3_poss_diss( self._line.transition)             # <<<<<<<<<<<<<<
@@ -30125,7 +30125,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_rates, __pyx_t_10) < 0) __PYX_ERR(0, 544, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":547
+  /* "cherab/PESDT_addon/LineEmitters.pyx":547
  * 
  *         # identify wavelength
  *         self._wavelength = self._atomic_data.wavelength( self._line.element, self._line.charge, self._line.transition)             # <<<<<<<<<<<<<<
@@ -30158,7 +30158,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_wavelength, __pyx_t_7) < 0) __PYX_ERR(0, 547, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":550
+  /* "cherab/PESDT_addon/LineEmitters.pyx":550
  * 
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,             # <<<<<<<<<<<<<<
@@ -30188,7 +30188,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
   __pyx_t_8 = 0;
   __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":551
+  /* "cherab/PESDT_addon/LineEmitters.pyx":551
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)             # <<<<<<<<<<<<<<
@@ -30198,7 +30198,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
   __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_args_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 551, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":550
+  /* "cherab/PESDT_addon/LineEmitters.pyx":550
  * 
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,             # <<<<<<<<<<<<<<
@@ -30213,7 +30213,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":551
+  /* "cherab/PESDT_addon/LineEmitters.pyx":551
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)             # <<<<<<<<<<<<<<
@@ -30236,7 +30236,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":550
+  /* "cherab/PESDT_addon/LineEmitters.pyx":550
  * 
  *         # instance line shape renderer
  *         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma,             # <<<<<<<<<<<<<<
@@ -30251,7 +30251,7 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_2, __pyx_t_9) < 0) __PYX_ERR(0, 550, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":525
+  /* "cherab/PESDT_addon/LineEmitters.pyx":525
  *         return self._lineshape.add_line(radiance, point, direction, spectrum)
  * 
  *     cdef int _populate_cache(self) except -1:             # <<<<<<<<<<<<<<
@@ -30271,14 +30271,14 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
   __Pyx_XDECREF(__pyx_t_12);
   __Pyx_XDECREF(__pyx_t_13);
   __Pyx_XDECREF(__pyx_t_14);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH3_pos_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH3_pos_AM._populate_cache", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/LineEmitters.pyx":553
+/* "cherab/PESDT_addon/LineEmitters.pyx":553
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
@@ -30287,15 +30287,15 @@ static int __pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populat
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_7_change(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_7_change(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_7_change = {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_7_change(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_7_change = {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_7_change(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -30312,14 +30312,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("_change", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "_change", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_6_change(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_6_change(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_6_change(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_6_change(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -30327,7 +30327,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_6
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_change", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":556
+  /* "cherab/PESDT_addon/LineEmitters.pyx":556
  * 
  *         # clear cache to force regeneration on first use
  *         self._target_species = None             # <<<<<<<<<<<<<<
@@ -30336,7 +30336,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_6
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_target_species, Py_None) < 0) __PYX_ERR(0, 556, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":557
+  /* "cherab/PESDT_addon/LineEmitters.pyx":557
  *         # clear cache to force regeneration on first use
  *         self._target_species = None
  *         self._wavelength = 0.0             # <<<<<<<<<<<<<<
@@ -30345,7 +30345,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_6
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_wavelength, __pyx_float_0_0) < 0) __PYX_ERR(0, 557, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":558
+  /* "cherab/PESDT_addon/LineEmitters.pyx":558
  *         self._target_species = None
  *         self._wavelength = 0.0
  *         self._rates = None             # <<<<<<<<<<<<<<
@@ -30354,7 +30354,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_6
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_rates, Py_None) < 0) __PYX_ERR(0, 558, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":559
+  /* "cherab/PESDT_addon/LineEmitters.pyx":559
  *         self._wavelength = 0.0
  *         self._rates = None
  *         self._lineshape = None             # <<<<<<<<<<<<<<
@@ -30363,7 +30363,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_6
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_2, Py_None) < 0) __PYX_ERR(0, 559, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":553
+  /* "cherab/PESDT_addon/LineEmitters.pyx":553
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
@@ -30375,7 +30375,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_6
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH3_pos_AM._change", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH3_pos_AM._change", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -30390,15 +30390,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_6
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_9__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_9__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_9__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -30415,14 +30415,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("__reduce_cython__", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__reduce_cython__", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_8__reduce_cython__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_8__reduce_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_8__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -30641,7 +30641,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_8
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH3_pos_AM.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH3_pos_AM.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_state);
@@ -30659,15 +30659,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_8
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_11__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_11__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_11__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -30722,18 +30722,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__setstate_cython__", 1, 1, 1, __pyx_nargs); __PYX_ERR(1, 16, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH3_pos_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH3_pos_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_10__setstate_cython__(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_10__setstate_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_10__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -30748,7 +30748,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_1
  *     __pyx_unpickle_LineH3_pos_AM__set_state(self, __pyx_state)             # <<<<<<<<<<<<<<
  */
   if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 17, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineH3_pos_AM__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineH3_pos_AM__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
@@ -30764,7 +30764,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_1
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.LineH3_pos_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.LineH3_pos_AM.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -30779,15 +30779,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_1
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_1__pyx_unpickle_LineExcitation_AM(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_1__pyx_unpickle_LineExcitation_AM(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_1__pyx_unpickle_LineExcitation_AM = {"__pyx_unpickle_LineExcitation_AM", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_1__pyx_unpickle_LineExcitation_AM, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_1__pyx_unpickle_LineExcitation_AM(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_1__pyx_unpickle_LineExcitation_AM = {"__pyx_unpickle_LineExcitation_AM", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_1__pyx_unpickle_LineExcitation_AM, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_1__pyx_unpickle_LineExcitation_AM(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -30866,18 +30866,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_LineExcitation_AM", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 1, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.__pyx_unpickle_LineExcitation_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.__pyx_unpickle_LineExcitation_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineExcitation_AM(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineExcitation_AM(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineExcitation_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineExcitation_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_v___pyx_PickleError = 0;
   PyObject *__pyx_v___pyx_result = 0;
   PyObject *__pyx_r = NULL;
@@ -30957,7 +30957,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_Li
  *     if __pyx_state is not None:
  *         __pyx_unpickle_LineExcitation_AM__set_state(<LineExcitation_AM> __pyx_result, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -31001,7 +31001,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_Li
  * cdef __pyx_unpickle_LineExcitation_AM__set_state(LineExcitation_AM __pyx_result, tuple __pyx_state):
  */
     if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 9, __pyx_L1_error)
-    __pyx_t_2 = __pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineExcitation_AM__set_state(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineExcitation_AM__set_state(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
@@ -31037,7 +31037,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_Li
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.__pyx_unpickle_LineExcitation_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.__pyx_unpickle_LineExcitation_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v___pyx_PickleError);
@@ -31055,7 +31055,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_Li
  *     if len(__pyx_state) > 2 and hasattr(__pyx_result, '__dict__'):
  */
 
-static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineExcitation_AM__set_state(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineExcitation_AM__set_state(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -31187,7 +31187,7 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_Lin
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.__pyx_unpickle_LineExcitation_AM__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.__pyx_unpickle_LineExcitation_AM__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -31202,15 +31202,15 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_Lin
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_3__pyx_unpickle_LineRecombination_AM(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_3__pyx_unpickle_LineRecombination_AM(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_3__pyx_unpickle_LineRecombination_AM = {"__pyx_unpickle_LineRecombination_AM", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_3__pyx_unpickle_LineRecombination_AM, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_3__pyx_unpickle_LineRecombination_AM(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_3__pyx_unpickle_LineRecombination_AM = {"__pyx_unpickle_LineRecombination_AM", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_3__pyx_unpickle_LineRecombination_AM, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_3__pyx_unpickle_LineRecombination_AM(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -31289,18 +31289,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_LineRecombination_AM", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 1, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.__pyx_unpickle_LineRecombination_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.__pyx_unpickle_LineRecombination_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_2__pyx_unpickle_LineRecombination_AM(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_2__pyx_unpickle_LineRecombination_AM(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_2__pyx_unpickle_LineRecombination_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_2__pyx_unpickle_LineRecombination_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_v___pyx_PickleError = 0;
   PyObject *__pyx_v___pyx_result = 0;
   PyObject *__pyx_r = NULL;
@@ -31380,7 +31380,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_2__pyx_unpickle_L
  *     if __pyx_state is not None:
  *         __pyx_unpickle_LineRecombination_AM__set_state(<LineRecombination_AM> __pyx_result, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -31424,7 +31424,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_2__pyx_unpickle_L
  * cdef __pyx_unpickle_LineRecombination_AM__set_state(LineRecombination_AM __pyx_result, tuple __pyx_state):
  */
     if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 9, __pyx_L1_error)
-    __pyx_t_2 = __pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineRecombination_AM__set_state(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineRecombination_AM__set_state(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
@@ -31460,7 +31460,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_2__pyx_unpickle_L
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.__pyx_unpickle_LineRecombination_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.__pyx_unpickle_LineRecombination_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v___pyx_PickleError);
@@ -31478,7 +31478,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_2__pyx_unpickle_L
  *     if len(__pyx_state) > 2 and hasattr(__pyx_result, '__dict__'):
  */
 
-static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineRecombination_AM__set_state(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineRecombination_AM__set_state(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -31610,7 +31610,7 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_Lin
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.__pyx_unpickle_LineRecombination_AM__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.__pyx_unpickle_LineRecombination_AM__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -31625,15 +31625,15 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_Lin
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_5__pyx_unpickle_LineH2_AM(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_5__pyx_unpickle_LineH2_AM(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_5__pyx_unpickle_LineH2_AM = {"__pyx_unpickle_LineH2_AM", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_5__pyx_unpickle_LineH2_AM, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_5__pyx_unpickle_LineH2_AM(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_5__pyx_unpickle_LineH2_AM = {"__pyx_unpickle_LineH2_AM", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_5__pyx_unpickle_LineH2_AM, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_5__pyx_unpickle_LineH2_AM(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -31712,18 +31712,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_LineH2_AM", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 1, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.__pyx_unpickle_LineH2_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.__pyx_unpickle_LineH2_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_4__pyx_unpickle_LineH2_AM(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_4__pyx_unpickle_LineH2_AM(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_4__pyx_unpickle_LineH2_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_4__pyx_unpickle_LineH2_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_v___pyx_PickleError = 0;
   PyObject *__pyx_v___pyx_result = 0;
   PyObject *__pyx_r = NULL;
@@ -31803,7 +31803,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_4__pyx_unpickle_L
  *     if __pyx_state is not None:
  *         __pyx_unpickle_LineH2_AM__set_state(<LineH2_AM> __pyx_result, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -31847,7 +31847,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_4__pyx_unpickle_L
  * cdef __pyx_unpickle_LineH2_AM__set_state(LineH2_AM __pyx_result, tuple __pyx_state):
  */
     if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 9, __pyx_L1_error)
-    __pyx_t_2 = __pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineH2_AM__set_state(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineH2_AM__set_state(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
@@ -31883,7 +31883,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_4__pyx_unpickle_L
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.__pyx_unpickle_LineH2_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.__pyx_unpickle_LineH2_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v___pyx_PickleError);
@@ -31901,7 +31901,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_4__pyx_unpickle_L
  *     if len(__pyx_state) > 2 and hasattr(__pyx_result, '__dict__'):
  */
 
-static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineH2_AM__set_state(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineH2_AM__set_state(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -32033,7 +32033,7 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_Lin
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.__pyx_unpickle_LineH2_AM__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.__pyx_unpickle_LineH2_AM__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -32048,15 +32048,15 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_Lin
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_7__pyx_unpickle_LineH2_pos_AM(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_7__pyx_unpickle_LineH2_pos_AM(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_7__pyx_unpickle_LineH2_pos_AM = {"__pyx_unpickle_LineH2_pos_AM", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_7__pyx_unpickle_LineH2_pos_AM, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_7__pyx_unpickle_LineH2_pos_AM(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_7__pyx_unpickle_LineH2_pos_AM = {"__pyx_unpickle_LineH2_pos_AM", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_7__pyx_unpickle_LineH2_pos_AM, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_7__pyx_unpickle_LineH2_pos_AM(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -32135,18 +32135,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_LineH2_pos_AM", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 1, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.__pyx_unpickle_LineH2_pos_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.__pyx_unpickle_LineH2_pos_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_6__pyx_unpickle_LineH2_pos_AM(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_6__pyx_unpickle_LineH2_pos_AM(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_6__pyx_unpickle_LineH2_pos_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_6__pyx_unpickle_LineH2_pos_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_v___pyx_PickleError = 0;
   PyObject *__pyx_v___pyx_result = 0;
   PyObject *__pyx_r = NULL;
@@ -32226,7 +32226,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_6__pyx_unpickle_L
  *     if __pyx_state is not None:
  *         __pyx_unpickle_LineH2_pos_AM__set_state(<LineH2_pos_AM> __pyx_result, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -32270,7 +32270,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_6__pyx_unpickle_L
  * cdef __pyx_unpickle_LineH2_pos_AM__set_state(LineH2_pos_AM __pyx_result, tuple __pyx_state):
  */
     if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 9, __pyx_L1_error)
-    __pyx_t_2 = __pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineH2_pos_AM__set_state(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineH2_pos_AM__set_state(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
@@ -32306,7 +32306,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_6__pyx_unpickle_L
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.__pyx_unpickle_LineH2_pos_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.__pyx_unpickle_LineH2_pos_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v___pyx_PickleError);
@@ -32324,7 +32324,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_6__pyx_unpickle_L
  *     if len(__pyx_state) > 2 and hasattr(__pyx_result, '__dict__'):
  */
 
-static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineH2_pos_AM__set_state(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineH2_pos_AM__set_state(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -32456,7 +32456,7 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_Lin
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.__pyx_unpickle_LineH2_pos_AM__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.__pyx_unpickle_LineH2_pos_AM__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -32471,15 +32471,15 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_Lin
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9__pyx_unpickle_LineH_neg_AM(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9__pyx_unpickle_LineH_neg_AM(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_9__pyx_unpickle_LineH_neg_AM = {"__pyx_unpickle_LineH_neg_AM", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9__pyx_unpickle_LineH_neg_AM, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9__pyx_unpickle_LineH_neg_AM(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_9__pyx_unpickle_LineH_neg_AM = {"__pyx_unpickle_LineH_neg_AM", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9__pyx_unpickle_LineH_neg_AM, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9__pyx_unpickle_LineH_neg_AM(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -32558,18 +32558,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_LineH_neg_AM", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 1, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.__pyx_unpickle_LineH_neg_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.__pyx_unpickle_LineH_neg_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_8__pyx_unpickle_LineH_neg_AM(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_8__pyx_unpickle_LineH_neg_AM(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_8__pyx_unpickle_LineH_neg_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_8__pyx_unpickle_LineH_neg_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_v___pyx_PickleError = 0;
   PyObject *__pyx_v___pyx_result = 0;
   PyObject *__pyx_r = NULL;
@@ -32649,7 +32649,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_8__pyx_unpickle_L
  *     if __pyx_state is not None:
  *         __pyx_unpickle_LineH_neg_AM__set_state(<LineH_neg_AM> __pyx_result, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -32693,7 +32693,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_8__pyx_unpickle_L
  * cdef __pyx_unpickle_LineH_neg_AM__set_state(LineH_neg_AM __pyx_result, tuple __pyx_state):
  */
     if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 9, __pyx_L1_error)
-    __pyx_t_2 = __pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineH_neg_AM__set_state(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineH_neg_AM__set_state(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
@@ -32729,7 +32729,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_8__pyx_unpickle_L
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.__pyx_unpickle_LineH_neg_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.__pyx_unpickle_LineH_neg_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v___pyx_PickleError);
@@ -32747,7 +32747,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_8__pyx_unpickle_L
  *     if len(__pyx_state) > 2 and hasattr(__pyx_result, '__dict__'):
  */
 
-static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineH_neg_AM__set_state(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineH_neg_AM__set_state(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -32879,7 +32879,7 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_Lin
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.__pyx_unpickle_LineH_neg_AM__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.__pyx_unpickle_LineH_neg_AM__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -32894,15 +32894,15 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_Lin
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_11__pyx_unpickle_LineH3_pos_AM(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_11__pyx_unpickle_LineH3_pos_AM(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_12LineEmitters_11__pyx_unpickle_LineH3_pos_AM = {"__pyx_unpickle_LineH3_pos_AM", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_11__pyx_unpickle_LineH3_pos_AM, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_12LineEmitters_11__pyx_unpickle_LineH3_pos_AM(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_11__pyx_unpickle_LineH3_pos_AM = {"__pyx_unpickle_LineH3_pos_AM", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_11__pyx_unpickle_LineH3_pos_AM, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_11__pyx_unpickle_LineH3_pos_AM(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -32981,18 +32981,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_LineH3_pos_AM", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 1, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.__pyx_unpickle_LineH3_pos_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.__pyx_unpickle_LineH3_pos_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_12LineEmitters_10__pyx_unpickle_LineH3_pos_AM(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_12LineEmitters_10__pyx_unpickle_LineH3_pos_AM(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_10__pyx_unpickle_LineH3_pos_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_12LineEmitters_10__pyx_unpickle_LineH3_pos_AM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_v___pyx_PickleError = 0;
   PyObject *__pyx_v___pyx_result = 0;
   PyObject *__pyx_r = NULL;
@@ -33072,7 +33072,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_10__pyx_unpickle_
  *     if __pyx_state is not None:
  *         __pyx_unpickle_LineH3_pos_AM__set_state(<LineH3_pos_AM> __pyx_result, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -33116,7 +33116,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_10__pyx_unpickle_
  * cdef __pyx_unpickle_LineH3_pos_AM__set_state(LineH3_pos_AM __pyx_result, tuple __pyx_state):
  */
     if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 9, __pyx_L1_error)
-    __pyx_t_2 = __pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineH3_pos_AM__set_state(((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineH3_pos_AM__set_state(((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
@@ -33152,7 +33152,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_10__pyx_unpickle_
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.__pyx_unpickle_LineH3_pos_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.__pyx_unpickle_LineH3_pos_AM", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v___pyx_PickleError);
@@ -33170,7 +33170,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_12LineEmitters_10__pyx_unpickle_
  *     if len(__pyx_state) > 2 and hasattr(__pyx_result, '__dict__'):
  */
 
-static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_LineH3_pos_AM__set_state(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_f_6cherab_11PESDT_addon_12LineEmitters___pyx_unpickle_LineH3_pos_AM__set_state(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -33302,7 +33302,7 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_12LineEmitters___pyx_unpickle_Lin
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_AddTraceback("cherab.amjuel_data.LineEmitters.__pyx_unpickle_LineH3_pos_AM__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.LineEmitters.__pyx_unpickle_LineH3_pos_AM__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -50116,25 +50116,25 @@ static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *__
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM;
 
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM(PyTypeObject *t, PyObject *a, PyObject *k) {
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *p;
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM(PyTypeObject *t, PyObject *a, PyObject *k) {
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *p;
   PyObject *o = __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_new, newfunc)(t, a, k);
   if (unlikely(!o)) return 0;
-  p = ((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *)o);
-  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel*)__pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM;
+  p = ((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *)o);
+  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel*)__pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM;
   p->__dict__ = PyDict_New(); if (unlikely(!p->__dict__)) goto bad;return o;
   bad:
   Py_DECREF(o); o = 0;
   return NULL;
 }
 
-static void __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM(PyObject *o) {
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *)o;
+static void __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM(PyObject *o) {
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *)o;
   #if CYTHON_USE_TP_FINALIZE
   if (unlikely((PY_VERSION_HEX >= 0x03080000 || __Pyx_PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE)) && __Pyx_PyObject_GetSlot(o, tp_finalize, destructor)) && !_PyGC_FINALIZED(o)) {
-    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM) {
+    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM) {
       if (PyObject_CallFinalizerFromDealloc(o)) return;
     }
   }
@@ -50143,31 +50143,31 @@ static void __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineExcitation
   if (p->__dict__) PyDict_Clear(p->__dict__);
   Py_CLEAR(p->__dict__);
   PyObject_GC_Track(o);
-  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_dealloc, destructor)(o); else __Pyx_call_next_tp_dealloc(o, __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM);
+  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_dealloc, destructor)(o); else __Pyx_call_next_tp_dealloc(o, __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM);
 }
 
-static int __pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM(PyObject *o, visitproc v, void *a) {
+static int __pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM(PyObject *o, visitproc v, void *a) {
   int e;
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *)o;
-  e = ((likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) ? ((__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse) ? __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse(o, v, a) : 0) : __Pyx_call_next_tp_traverse(o, v, a, __pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM)); if (e) return e;
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *)o;
+  e = ((likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) ? ((__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse) ? __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse(o, v, a) : 0) : __Pyx_call_next_tp_traverse(o, v, a, __pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM)); if (e) return e;
   if (p->__dict__) {
     e = (*v)(p->__dict__, a); if (e) return e;
   }
   return 0;
 }
 
-static int __pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM(PyObject *o) {
+static int __pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM(PyObject *o) {
   PyObject* tmp;
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *)o;
-  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) { if (__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear) __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear(o); } else __Pyx_call_next_tp_clear(o, __pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM);
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *)o;
+  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) { if (__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear) __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear(o); } else __Pyx_call_next_tp_clear(o, __pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM);
   tmp = ((PyObject*)p->__dict__);
   p->__dict__ = ((PyObject*)Py_None); Py_INCREF(Py_None);
   Py_XDECREF(tmp);
   return 0;
 }
 
-static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM(PyObject *o, CYTHON_UNUSED void *x) {
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *)o;
+static PyObject *__pyx___dict__getter_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM(PyObject *o, CYTHON_UNUSED void *x) {
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *)o;
   if (unlikely(!p->__dict__)){
     p->__dict__ = PyDict_New();
   }
@@ -50175,52 +50175,52 @@ static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_12LineEmitters_LineE
   return p->__dict__;
 }
 
-static PyMethodDef __pyx_methods_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM[] = {
-  {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+static PyMethodDef __pyx_methods_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM[] = {
+  {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
-static struct PyGetSetDef __pyx_getsets_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM[] = {
-  {(char *)"__dict__", __pyx___dict__getter_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM, 0, (char *)0, 0},
+static struct PyGetSetDef __pyx_getsets_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM[] = {
+  {(char *)"__dict__", __pyx___dict__getter_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM, 0, (char *)0, 0},
   {0, 0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
 static struct PyMemberDef __pyx_tp_members_LineExcitation_AM[] = {
-  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM, __dict__), READONLY, NULL},
+  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM, __dict__), READONLY, NULL},
   {NULL, 0, 0, 0, NULL}
 };
-static PyType_Slot __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM_slots[] = {
-  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM},
-  {Py_tp_repr, (void *)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_3__repr__},
-  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM},
-  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM},
-  {Py_tp_methods, (void *)__pyx_methods_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM},
+static PyType_Slot __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM_slots[] = {
+  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM},
+  {Py_tp_repr, (void *)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_3__repr__},
+  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM},
+  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM},
+  {Py_tp_methods, (void *)__pyx_methods_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM},
   {Py_tp_members, (void *)__pyx_tp_members_LineExcitation_AM},
-  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM},
+  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM},
   #if !CYTHON_USE_TYPE_SPECS
-  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM, __dict__)},
+  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM, __dict__)},
   #endif
-  {Py_tp_init, (void *)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_1__init__},
-  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM},
+  {Py_tp_init, (void *)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_1__init__},
+  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM},
   {0, 0},
 };
-static PyType_Spec __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM_spec = {
-  "cherab.amjuel_data.LineEmitters.LineExcitation_AM",
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM),
+static PyType_Spec __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM_spec = {
+  "cherab.PESDT_addon.LineEmitters.LineExcitation_AM",
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
-  __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM_slots,
+  __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM_slots,
 };
 #else
 
-static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM = {
+static PyTypeObject __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.LineEmitters.""LineExcitation_AM", /*tp_name*/
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM), /*tp_basicsize*/
+  "cherab.PESDT_addon.LineEmitters.""LineExcitation_AM", /*tp_name*/
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM, /*tp_dealloc*/
+  __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM, /*tp_dealloc*/
   #if PY_VERSION_HEX < 0x030800b4
   0, /*tp_print*/
   #endif
@@ -50235,7 +50235,7 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineExcitati
   #if PY_MAJOR_VERSION >= 3
   0, /*tp_as_async*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_3__repr__, /*tp_repr*/
+  __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_3__repr__, /*tp_repr*/
   0, /*tp_as_number*/
   0, /*tp_as_sequence*/
   0, /*tp_as_mapping*/
@@ -50247,25 +50247,25 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineExcitati
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
   0, /*tp_doc*/
-  __pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM, /*tp_traverse*/
-  __pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM, /*tp_clear*/
+  __pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM, /*tp_traverse*/
+  __pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM, /*tp_methods*/
+  __pyx_methods_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM, /*tp_methods*/
   0, /*tp_members*/
-  __pyx_getsets_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM, /*tp_getset*/
+  __pyx_getsets_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM, /*tp_getset*/
   0, /*tp_base*/
   0, /*tp_dict*/
   0, /*tp_descr_get*/
   0, /*tp_descr_set*/
   #if !CYTHON_USE_TYPE_SPECS
-  offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM, __dict__), /*tp_dictoffset*/
+  offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM, __dict__), /*tp_dictoffset*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_1__init__, /*tp_init*/
+  __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_1__init__, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM, /*tp_new*/
+  __pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -50293,25 +50293,25 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineExcitati
   #endif
 };
 #endif
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM;
 
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM(PyTypeObject *t, PyObject *a, PyObject *k) {
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *p;
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM(PyTypeObject *t, PyObject *a, PyObject *k) {
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *p;
   PyObject *o = __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_new, newfunc)(t, a, k);
   if (unlikely(!o)) return 0;
-  p = ((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *)o);
-  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel*)__pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM;
+  p = ((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *)o);
+  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel*)__pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM;
   p->__dict__ = PyDict_New(); if (unlikely(!p->__dict__)) goto bad;return o;
   bad:
   Py_DECREF(o); o = 0;
   return NULL;
 }
 
-static void __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM(PyObject *o) {
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *)o;
+static void __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM(PyObject *o) {
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *)o;
   #if CYTHON_USE_TP_FINALIZE
   if (unlikely((PY_VERSION_HEX >= 0x03080000 || __Pyx_PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE)) && __Pyx_PyObject_GetSlot(o, tp_finalize, destructor)) && !_PyGC_FINALIZED(o)) {
-    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM) {
+    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM) {
       if (PyObject_CallFinalizerFromDealloc(o)) return;
     }
   }
@@ -50320,31 +50320,31 @@ static void __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineRecombinat
   if (p->__dict__) PyDict_Clear(p->__dict__);
   Py_CLEAR(p->__dict__);
   PyObject_GC_Track(o);
-  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_dealloc, destructor)(o); else __Pyx_call_next_tp_dealloc(o, __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM);
+  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_dealloc, destructor)(o); else __Pyx_call_next_tp_dealloc(o, __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM);
 }
 
-static int __pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM(PyObject *o, visitproc v, void *a) {
+static int __pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM(PyObject *o, visitproc v, void *a) {
   int e;
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *)o;
-  e = ((likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) ? ((__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse) ? __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse(o, v, a) : 0) : __Pyx_call_next_tp_traverse(o, v, a, __pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM)); if (e) return e;
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *)o;
+  e = ((likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) ? ((__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse) ? __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse(o, v, a) : 0) : __Pyx_call_next_tp_traverse(o, v, a, __pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM)); if (e) return e;
   if (p->__dict__) {
     e = (*v)(p->__dict__, a); if (e) return e;
   }
   return 0;
 }
 
-static int __pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM(PyObject *o) {
+static int __pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM(PyObject *o) {
   PyObject* tmp;
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *)o;
-  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) { if (__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear) __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear(o); } else __Pyx_call_next_tp_clear(o, __pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM);
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *)o;
+  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) { if (__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear) __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear(o); } else __Pyx_call_next_tp_clear(o, __pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM);
   tmp = ((PyObject*)p->__dict__);
   p->__dict__ = ((PyObject*)Py_None); Py_INCREF(Py_None);
   Py_XDECREF(tmp);
   return 0;
 }
 
-static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM(PyObject *o, CYTHON_UNUSED void *x) {
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *)o;
+static PyObject *__pyx___dict__getter_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM(PyObject *o, CYTHON_UNUSED void *x) {
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *)o;
   if (unlikely(!p->__dict__)){
     p->__dict__ = PyDict_New();
   }
@@ -50352,52 +50352,52 @@ static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_12LineEmitters_LineR
   return p->__dict__;
 }
 
-static PyMethodDef __pyx_methods_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM[] = {
-  {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+static PyMethodDef __pyx_methods_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM[] = {
+  {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
-static struct PyGetSetDef __pyx_getsets_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM[] = {
-  {(char *)"__dict__", __pyx___dict__getter_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM, 0, (char *)0, 0},
+static struct PyGetSetDef __pyx_getsets_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM[] = {
+  {(char *)"__dict__", __pyx___dict__getter_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM, 0, (char *)0, 0},
   {0, 0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
 static struct PyMemberDef __pyx_tp_members_LineRecombination_AM[] = {
-  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM, __dict__), READONLY, NULL},
+  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM, __dict__), READONLY, NULL},
   {NULL, 0, 0, 0, NULL}
 };
-static PyType_Slot __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM_slots[] = {
-  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM},
-  {Py_tp_repr, (void *)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_3__repr__},
-  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM},
-  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM},
-  {Py_tp_methods, (void *)__pyx_methods_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM},
+static PyType_Slot __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM_slots[] = {
+  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM},
+  {Py_tp_repr, (void *)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_3__repr__},
+  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM},
+  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM},
+  {Py_tp_methods, (void *)__pyx_methods_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM},
   {Py_tp_members, (void *)__pyx_tp_members_LineRecombination_AM},
-  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM},
+  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM},
   #if !CYTHON_USE_TYPE_SPECS
-  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM, __dict__)},
+  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM, __dict__)},
   #endif
-  {Py_tp_init, (void *)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_1__init__},
-  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM},
+  {Py_tp_init, (void *)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_1__init__},
+  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM},
   {0, 0},
 };
-static PyType_Spec __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM_spec = {
-  "cherab.amjuel_data.LineEmitters.LineRecombination_AM",
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM),
+static PyType_Spec __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM_spec = {
+  "cherab.PESDT_addon.LineEmitters.LineRecombination_AM",
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
-  __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM_slots,
+  __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM_slots,
 };
 #else
 
-static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM = {
+static PyTypeObject __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.LineEmitters.""LineRecombination_AM", /*tp_name*/
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM), /*tp_basicsize*/
+  "cherab.PESDT_addon.LineEmitters.""LineRecombination_AM", /*tp_name*/
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM, /*tp_dealloc*/
+  __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM, /*tp_dealloc*/
   #if PY_VERSION_HEX < 0x030800b4
   0, /*tp_print*/
   #endif
@@ -50412,7 +50412,7 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineRecombin
   #if PY_MAJOR_VERSION >= 3
   0, /*tp_as_async*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_3__repr__, /*tp_repr*/
+  __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_3__repr__, /*tp_repr*/
   0, /*tp_as_number*/
   0, /*tp_as_sequence*/
   0, /*tp_as_mapping*/
@@ -50424,25 +50424,25 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineRecombin
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
   0, /*tp_doc*/
-  __pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM, /*tp_traverse*/
-  __pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM, /*tp_clear*/
+  __pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM, /*tp_traverse*/
+  __pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM, /*tp_methods*/
+  __pyx_methods_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM, /*tp_methods*/
   0, /*tp_members*/
-  __pyx_getsets_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM, /*tp_getset*/
+  __pyx_getsets_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM, /*tp_getset*/
   0, /*tp_base*/
   0, /*tp_dict*/
   0, /*tp_descr_get*/
   0, /*tp_descr_set*/
   #if !CYTHON_USE_TYPE_SPECS
-  offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM, __dict__), /*tp_dictoffset*/
+  offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM, __dict__), /*tp_dictoffset*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_1__init__, /*tp_init*/
+  __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_1__init__, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM, /*tp_new*/
+  __pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -50470,25 +50470,25 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineRecombin
   #endif
 };
 #endif
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH2_AM __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH2_AM;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM;
 
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineH2_AM(PyTypeObject *t, PyObject *a, PyObject *k) {
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *p;
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM(PyTypeObject *t, PyObject *a, PyObject *k) {
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *p;
   PyObject *o = __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_new, newfunc)(t, a, k);
   if (unlikely(!o)) return 0;
-  p = ((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *)o);
-  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel*)__pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineH2_AM;
+  p = ((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *)o);
+  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel*)__pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM;
   p->__dict__ = PyDict_New(); if (unlikely(!p->__dict__)) goto bad;return o;
   bad:
   Py_DECREF(o); o = 0;
   return NULL;
 }
 
-static void __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH2_AM(PyObject *o) {
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *)o;
+static void __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM(PyObject *o) {
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *)o;
   #if CYTHON_USE_TP_FINALIZE
   if (unlikely((PY_VERSION_HEX >= 0x03080000 || __Pyx_PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE)) && __Pyx_PyObject_GetSlot(o, tp_finalize, destructor)) && !_PyGC_FINALIZED(o)) {
-    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH2_AM) {
+    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM) {
       if (PyObject_CallFinalizerFromDealloc(o)) return;
     }
   }
@@ -50497,31 +50497,31 @@ static void __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH2_AM(PyOb
   if (p->__dict__) PyDict_Clear(p->__dict__);
   Py_CLEAR(p->__dict__);
   PyObject_GC_Track(o);
-  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_dealloc, destructor)(o); else __Pyx_call_next_tp_dealloc(o, __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH2_AM);
+  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_dealloc, destructor)(o); else __Pyx_call_next_tp_dealloc(o, __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM);
 }
 
-static int __pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineH2_AM(PyObject *o, visitproc v, void *a) {
+static int __pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM(PyObject *o, visitproc v, void *a) {
   int e;
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *)o;
-  e = ((likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) ? ((__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse) ? __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse(o, v, a) : 0) : __Pyx_call_next_tp_traverse(o, v, a, __pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineH2_AM)); if (e) return e;
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *)o;
+  e = ((likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) ? ((__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse) ? __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse(o, v, a) : 0) : __Pyx_call_next_tp_traverse(o, v, a, __pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM)); if (e) return e;
   if (p->__dict__) {
     e = (*v)(p->__dict__, a); if (e) return e;
   }
   return 0;
 }
 
-static int __pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineH2_AM(PyObject *o) {
+static int __pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM(PyObject *o) {
   PyObject* tmp;
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *)o;
-  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) { if (__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear) __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear(o); } else __Pyx_call_next_tp_clear(o, __pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineH2_AM);
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *)o;
+  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) { if (__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear) __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear(o); } else __Pyx_call_next_tp_clear(o, __pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM);
   tmp = ((PyObject*)p->__dict__);
   p->__dict__ = ((PyObject*)Py_None); Py_INCREF(Py_None);
   Py_XDECREF(tmp);
   return 0;
 }
 
-static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_12LineEmitters_LineH2_AM(PyObject *o, CYTHON_UNUSED void *x) {
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *)o;
+static PyObject *__pyx___dict__getter_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM(PyObject *o, CYTHON_UNUSED void *x) {
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *)o;
   if (unlikely(!p->__dict__)){
     p->__dict__ = PyDict_New();
   }
@@ -50529,52 +50529,52 @@ static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_12LineEmitters_LineH
   return p->__dict__;
 }
 
-static PyMethodDef __pyx_methods_6cherab_11amjuel_data_12LineEmitters_LineH2_AM[] = {
-  {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+static PyMethodDef __pyx_methods_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM[] = {
+  {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
-static struct PyGetSetDef __pyx_getsets_6cherab_11amjuel_data_12LineEmitters_LineH2_AM[] = {
-  {(char *)"__dict__", __pyx___dict__getter_6cherab_11amjuel_data_12LineEmitters_LineH2_AM, 0, (char *)0, 0},
+static struct PyGetSetDef __pyx_getsets_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM[] = {
+  {(char *)"__dict__", __pyx___dict__getter_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM, 0, (char *)0, 0},
   {0, 0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
 static struct PyMemberDef __pyx_tp_members_LineH2_AM[] = {
-  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM, __dict__), READONLY, NULL},
+  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM, __dict__), READONLY, NULL},
   {NULL, 0, 0, 0, NULL}
 };
-static PyType_Slot __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_AM_slots[] = {
-  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH2_AM},
-  {Py_tp_repr, (void *)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_3__repr__},
-  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineH2_AM},
-  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineH2_AM},
-  {Py_tp_methods, (void *)__pyx_methods_6cherab_11amjuel_data_12LineEmitters_LineH2_AM},
+static PyType_Slot __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM_slots[] = {
+  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM},
+  {Py_tp_repr, (void *)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_3__repr__},
+  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM},
+  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM},
+  {Py_tp_methods, (void *)__pyx_methods_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM},
   {Py_tp_members, (void *)__pyx_tp_members_LineH2_AM},
-  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11amjuel_data_12LineEmitters_LineH2_AM},
+  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM},
   #if !CYTHON_USE_TYPE_SPECS
-  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM, __dict__)},
+  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM, __dict__)},
   #endif
-  {Py_tp_init, (void *)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_1__init__},
-  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineH2_AM},
+  {Py_tp_init, (void *)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_1__init__},
+  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM},
   {0, 0},
 };
-static PyType_Spec __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_AM_spec = {
-  "cherab.amjuel_data.LineEmitters.LineH2_AM",
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM),
+static PyType_Spec __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM_spec = {
+  "cherab.PESDT_addon.LineEmitters.LineH2_AM",
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
-  __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_AM_slots,
+  __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM_slots,
 };
 #else
 
-static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_AM = {
+static PyTypeObject __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.LineEmitters.""LineH2_AM", /*tp_name*/
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM), /*tp_basicsize*/
+  "cherab.PESDT_addon.LineEmitters.""LineH2_AM", /*tp_name*/
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH2_AM, /*tp_dealloc*/
+  __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM, /*tp_dealloc*/
   #if PY_VERSION_HEX < 0x030800b4
   0, /*tp_print*/
   #endif
@@ -50589,7 +50589,7 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_AM = 
   #if PY_MAJOR_VERSION >= 3
   0, /*tp_as_async*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_3__repr__, /*tp_repr*/
+  __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_3__repr__, /*tp_repr*/
   0, /*tp_as_number*/
   0, /*tp_as_sequence*/
   0, /*tp_as_mapping*/
@@ -50601,25 +50601,25 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_AM = 
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
   0, /*tp_doc*/
-  __pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineH2_AM, /*tp_traverse*/
-  __pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineH2_AM, /*tp_clear*/
+  __pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM, /*tp_traverse*/
+  __pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_6cherab_11amjuel_data_12LineEmitters_LineH2_AM, /*tp_methods*/
+  __pyx_methods_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM, /*tp_methods*/
   0, /*tp_members*/
-  __pyx_getsets_6cherab_11amjuel_data_12LineEmitters_LineH2_AM, /*tp_getset*/
+  __pyx_getsets_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM, /*tp_getset*/
   0, /*tp_base*/
   0, /*tp_dict*/
   0, /*tp_descr_get*/
   0, /*tp_descr_set*/
   #if !CYTHON_USE_TYPE_SPECS
-  offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM, __dict__), /*tp_dictoffset*/
+  offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM, __dict__), /*tp_dictoffset*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_1__init__, /*tp_init*/
+  __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_1__init__, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineH2_AM, /*tp_new*/
+  __pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -50647,25 +50647,25 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_AM = 
   #endif
 };
 #endif
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM;
 
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM(PyTypeObject *t, PyObject *a, PyObject *k) {
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *p;
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM(PyTypeObject *t, PyObject *a, PyObject *k) {
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *p;
   PyObject *o = __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_new, newfunc)(t, a, k);
   if (unlikely(!o)) return 0;
-  p = ((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *)o);
-  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel*)__pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM;
+  p = ((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *)o);
+  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel*)__pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM;
   p->__dict__ = PyDict_New(); if (unlikely(!p->__dict__)) goto bad;return o;
   bad:
   Py_DECREF(o); o = 0;
   return NULL;
 }
 
-static void __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM(PyObject *o) {
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *)o;
+static void __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM(PyObject *o) {
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *)o;
   #if CYTHON_USE_TP_FINALIZE
   if (unlikely((PY_VERSION_HEX >= 0x03080000 || __Pyx_PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE)) && __Pyx_PyObject_GetSlot(o, tp_finalize, destructor)) && !_PyGC_FINALIZED(o)) {
-    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM) {
+    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM) {
       if (PyObject_CallFinalizerFromDealloc(o)) return;
     }
   }
@@ -50674,31 +50674,31 @@ static void __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM(
   if (p->__dict__) PyDict_Clear(p->__dict__);
   Py_CLEAR(p->__dict__);
   PyObject_GC_Track(o);
-  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_dealloc, destructor)(o); else __Pyx_call_next_tp_dealloc(o, __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM);
+  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_dealloc, destructor)(o); else __Pyx_call_next_tp_dealloc(o, __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM);
 }
 
-static int __pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM(PyObject *o, visitproc v, void *a) {
+static int __pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM(PyObject *o, visitproc v, void *a) {
   int e;
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *)o;
-  e = ((likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) ? ((__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse) ? __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse(o, v, a) : 0) : __Pyx_call_next_tp_traverse(o, v, a, __pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM)); if (e) return e;
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *)o;
+  e = ((likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) ? ((__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse) ? __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse(o, v, a) : 0) : __Pyx_call_next_tp_traverse(o, v, a, __pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM)); if (e) return e;
   if (p->__dict__) {
     e = (*v)(p->__dict__, a); if (e) return e;
   }
   return 0;
 }
 
-static int __pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM(PyObject *o) {
+static int __pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM(PyObject *o) {
   PyObject* tmp;
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *)o;
-  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) { if (__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear) __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear(o); } else __Pyx_call_next_tp_clear(o, __pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM);
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *)o;
+  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) { if (__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear) __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear(o); } else __Pyx_call_next_tp_clear(o, __pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM);
   tmp = ((PyObject*)p->__dict__);
   p->__dict__ = ((PyObject*)Py_None); Py_INCREF(Py_None);
   Py_XDECREF(tmp);
   return 0;
 }
 
-static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM(PyObject *o, CYTHON_UNUSED void *x) {
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *)o;
+static PyObject *__pyx___dict__getter_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM(PyObject *o, CYTHON_UNUSED void *x) {
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *)o;
   if (unlikely(!p->__dict__)){
     p->__dict__ = PyDict_New();
   }
@@ -50706,52 +50706,52 @@ static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_12LineEmitters_LineH
   return p->__dict__;
 }
 
-static PyMethodDef __pyx_methods_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM[] = {
-  {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+static PyMethodDef __pyx_methods_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM[] = {
+  {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
-static struct PyGetSetDef __pyx_getsets_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM[] = {
-  {(char *)"__dict__", __pyx___dict__getter_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM, 0, (char *)0, 0},
+static struct PyGetSetDef __pyx_getsets_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM[] = {
+  {(char *)"__dict__", __pyx___dict__getter_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM, 0, (char *)0, 0},
   {0, 0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
 static struct PyMemberDef __pyx_tp_members_LineH2_pos_AM[] = {
-  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM, __dict__), READONLY, NULL},
+  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM, __dict__), READONLY, NULL},
   {NULL, 0, 0, 0, NULL}
 };
-static PyType_Slot __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM_slots[] = {
-  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM},
-  {Py_tp_repr, (void *)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_3__repr__},
-  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM},
-  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM},
-  {Py_tp_methods, (void *)__pyx_methods_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM},
+static PyType_Slot __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM_slots[] = {
+  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM},
+  {Py_tp_repr, (void *)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_3__repr__},
+  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM},
+  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM},
+  {Py_tp_methods, (void *)__pyx_methods_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM},
   {Py_tp_members, (void *)__pyx_tp_members_LineH2_pos_AM},
-  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM},
+  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM},
   #if !CYTHON_USE_TYPE_SPECS
-  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM, __dict__)},
+  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM, __dict__)},
   #endif
-  {Py_tp_init, (void *)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_1__init__},
-  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM},
+  {Py_tp_init, (void *)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_1__init__},
+  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM},
   {0, 0},
 };
-static PyType_Spec __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM_spec = {
-  "cherab.amjuel_data.LineEmitters.LineH2_pos_AM",
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM),
+static PyType_Spec __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM_spec = {
+  "cherab.PESDT_addon.LineEmitters.LineH2_pos_AM",
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
-  __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM_slots,
+  __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM_slots,
 };
 #else
 
-static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM = {
+static PyTypeObject __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.LineEmitters.""LineH2_pos_AM", /*tp_name*/
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM), /*tp_basicsize*/
+  "cherab.PESDT_addon.LineEmitters.""LineH2_pos_AM", /*tp_name*/
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM, /*tp_dealloc*/
+  __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM, /*tp_dealloc*/
   #if PY_VERSION_HEX < 0x030800b4
   0, /*tp_print*/
   #endif
@@ -50766,7 +50766,7 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_A
   #if PY_MAJOR_VERSION >= 3
   0, /*tp_as_async*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_3__repr__, /*tp_repr*/
+  __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_3__repr__, /*tp_repr*/
   0, /*tp_as_number*/
   0, /*tp_as_sequence*/
   0, /*tp_as_mapping*/
@@ -50778,25 +50778,25 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_A
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
   0, /*tp_doc*/
-  __pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM, /*tp_traverse*/
-  __pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM, /*tp_clear*/
+  __pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM, /*tp_traverse*/
+  __pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM, /*tp_methods*/
+  __pyx_methods_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM, /*tp_methods*/
   0, /*tp_members*/
-  __pyx_getsets_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM, /*tp_getset*/
+  __pyx_getsets_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM, /*tp_getset*/
   0, /*tp_base*/
   0, /*tp_dict*/
   0, /*tp_descr_get*/
   0, /*tp_descr_set*/
   #if !CYTHON_USE_TYPE_SPECS
-  offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM, __dict__), /*tp_dictoffset*/
+  offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM, __dict__), /*tp_dictoffset*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_1__init__, /*tp_init*/
+  __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_1__init__, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM, /*tp_new*/
+  __pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -50824,25 +50824,25 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_A
   #endif
 };
 #endif
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM;
 
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM(PyTypeObject *t, PyObject *a, PyObject *k) {
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *p;
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM(PyTypeObject *t, PyObject *a, PyObject *k) {
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *p;
   PyObject *o = __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_new, newfunc)(t, a, k);
   if (unlikely(!o)) return 0;
-  p = ((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *)o);
-  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel*)__pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM;
+  p = ((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *)o);
+  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel*)__pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM;
   p->__dict__ = PyDict_New(); if (unlikely(!p->__dict__)) goto bad;return o;
   bad:
   Py_DECREF(o); o = 0;
   return NULL;
 }
 
-static void __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM(PyObject *o) {
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *)o;
+static void __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM(PyObject *o) {
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *)o;
   #if CYTHON_USE_TP_FINALIZE
   if (unlikely((PY_VERSION_HEX >= 0x03080000 || __Pyx_PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE)) && __Pyx_PyObject_GetSlot(o, tp_finalize, destructor)) && !_PyGC_FINALIZED(o)) {
-    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM) {
+    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM) {
       if (PyObject_CallFinalizerFromDealloc(o)) return;
     }
   }
@@ -50851,31 +50851,31 @@ static void __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM(P
   if (p->__dict__) PyDict_Clear(p->__dict__);
   Py_CLEAR(p->__dict__);
   PyObject_GC_Track(o);
-  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_dealloc, destructor)(o); else __Pyx_call_next_tp_dealloc(o, __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM);
+  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_dealloc, destructor)(o); else __Pyx_call_next_tp_dealloc(o, __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM);
 }
 
-static int __pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM(PyObject *o, visitproc v, void *a) {
+static int __pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM(PyObject *o, visitproc v, void *a) {
   int e;
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *)o;
-  e = ((likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) ? ((__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse) ? __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse(o, v, a) : 0) : __Pyx_call_next_tp_traverse(o, v, a, __pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM)); if (e) return e;
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *)o;
+  e = ((likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) ? ((__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse) ? __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse(o, v, a) : 0) : __Pyx_call_next_tp_traverse(o, v, a, __pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM)); if (e) return e;
   if (p->__dict__) {
     e = (*v)(p->__dict__, a); if (e) return e;
   }
   return 0;
 }
 
-static int __pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM(PyObject *o) {
+static int __pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM(PyObject *o) {
   PyObject* tmp;
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *)o;
-  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) { if (__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear) __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear(o); } else __Pyx_call_next_tp_clear(o, __pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM);
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *)o;
+  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) { if (__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear) __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear(o); } else __Pyx_call_next_tp_clear(o, __pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM);
   tmp = ((PyObject*)p->__dict__);
   p->__dict__ = ((PyObject*)Py_None); Py_INCREF(Py_None);
   Py_XDECREF(tmp);
   return 0;
 }
 
-static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM(PyObject *o, CYTHON_UNUSED void *x) {
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *)o;
+static PyObject *__pyx___dict__getter_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM(PyObject *o, CYTHON_UNUSED void *x) {
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *)o;
   if (unlikely(!p->__dict__)){
     p->__dict__ = PyDict_New();
   }
@@ -50883,52 +50883,52 @@ static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_12LineEmitters_LineH
   return p->__dict__;
 }
 
-static PyMethodDef __pyx_methods_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM[] = {
-  {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+static PyMethodDef __pyx_methods_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM[] = {
+  {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
-static struct PyGetSetDef __pyx_getsets_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM[] = {
-  {(char *)"__dict__", __pyx___dict__getter_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM, 0, (char *)0, 0},
+static struct PyGetSetDef __pyx_getsets_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM[] = {
+  {(char *)"__dict__", __pyx___dict__getter_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM, 0, (char *)0, 0},
   {0, 0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
 static struct PyMemberDef __pyx_tp_members_LineH_neg_AM[] = {
-  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM, __dict__), READONLY, NULL},
+  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM, __dict__), READONLY, NULL},
   {NULL, 0, 0, 0, NULL}
 };
-static PyType_Slot __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM_slots[] = {
-  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM},
-  {Py_tp_repr, (void *)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_3__repr__},
-  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM},
-  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM},
-  {Py_tp_methods, (void *)__pyx_methods_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM},
+static PyType_Slot __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM_slots[] = {
+  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM},
+  {Py_tp_repr, (void *)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_3__repr__},
+  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM},
+  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM},
+  {Py_tp_methods, (void *)__pyx_methods_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM},
   {Py_tp_members, (void *)__pyx_tp_members_LineH_neg_AM},
-  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM},
+  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM},
   #if !CYTHON_USE_TYPE_SPECS
-  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM, __dict__)},
+  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM, __dict__)},
   #endif
-  {Py_tp_init, (void *)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_1__init__},
-  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM},
+  {Py_tp_init, (void *)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_1__init__},
+  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM},
   {0, 0},
 };
-static PyType_Spec __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM_spec = {
-  "cherab.amjuel_data.LineEmitters.LineH_neg_AM",
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM),
+static PyType_Spec __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM_spec = {
+  "cherab.PESDT_addon.LineEmitters.LineH_neg_AM",
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
-  __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM_slots,
+  __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM_slots,
 };
 #else
 
-static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM = {
+static PyTypeObject __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.LineEmitters.""LineH_neg_AM", /*tp_name*/
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM), /*tp_basicsize*/
+  "cherab.PESDT_addon.LineEmitters.""LineH_neg_AM", /*tp_name*/
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM, /*tp_dealloc*/
+  __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM, /*tp_dealloc*/
   #if PY_VERSION_HEX < 0x030800b4
   0, /*tp_print*/
   #endif
@@ -50943,7 +50943,7 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM
   #if PY_MAJOR_VERSION >= 3
   0, /*tp_as_async*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_3__repr__, /*tp_repr*/
+  __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_3__repr__, /*tp_repr*/
   0, /*tp_as_number*/
   0, /*tp_as_sequence*/
   0, /*tp_as_mapping*/
@@ -50955,25 +50955,25 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
   0, /*tp_doc*/
-  __pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM, /*tp_traverse*/
-  __pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM, /*tp_clear*/
+  __pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM, /*tp_traverse*/
+  __pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM, /*tp_methods*/
+  __pyx_methods_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM, /*tp_methods*/
   0, /*tp_members*/
-  __pyx_getsets_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM, /*tp_getset*/
+  __pyx_getsets_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM, /*tp_getset*/
   0, /*tp_base*/
   0, /*tp_dict*/
   0, /*tp_descr_get*/
   0, /*tp_descr_set*/
   #if !CYTHON_USE_TYPE_SPECS
-  offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM, __dict__), /*tp_dictoffset*/
+  offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM, __dict__), /*tp_dictoffset*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_1__init__, /*tp_init*/
+  __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_1__init__, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM, /*tp_new*/
+  __pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -51001,25 +51001,25 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM
   #endif
 };
 #endif
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM;
 
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM(PyTypeObject *t, PyObject *a, PyObject *k) {
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *p;
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM(PyTypeObject *t, PyObject *a, PyObject *k) {
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *p;
   PyObject *o = __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_new, newfunc)(t, a, k);
   if (unlikely(!o)) return 0;
-  p = ((struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *)o);
-  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel*)__pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM;
+  p = ((struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *)o);
+  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel*)__pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM;
   p->__dict__ = PyDict_New(); if (unlikely(!p->__dict__)) goto bad;return o;
   bad:
   Py_DECREF(o); o = 0;
   return NULL;
 }
 
-static void __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM(PyObject *o) {
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *)o;
+static void __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM(PyObject *o) {
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *)o;
   #if CYTHON_USE_TP_FINALIZE
   if (unlikely((PY_VERSION_HEX >= 0x03080000 || __Pyx_PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE)) && __Pyx_PyObject_GetSlot(o, tp_finalize, destructor)) && !_PyGC_FINALIZED(o)) {
-    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM) {
+    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM) {
       if (PyObject_CallFinalizerFromDealloc(o)) return;
     }
   }
@@ -51028,31 +51028,31 @@ static void __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM(
   if (p->__dict__) PyDict_Clear(p->__dict__);
   Py_CLEAR(p->__dict__);
   PyObject_GC_Track(o);
-  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_dealloc, destructor)(o); else __Pyx_call_next_tp_dealloc(o, __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM);
+  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_dealloc, destructor)(o); else __Pyx_call_next_tp_dealloc(o, __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM);
 }
 
-static int __pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM(PyObject *o, visitproc v, void *a) {
+static int __pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM(PyObject *o, visitproc v, void *a) {
   int e;
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *)o;
-  e = ((likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) ? ((__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse) ? __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse(o, v, a) : 0) : __Pyx_call_next_tp_traverse(o, v, a, __pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM)); if (e) return e;
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *)o;
+  e = ((likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) ? ((__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse) ? __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse(o, v, a) : 0) : __Pyx_call_next_tp_traverse(o, v, a, __pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM)); if (e) return e;
   if (p->__dict__) {
     e = (*v)(p->__dict__, a); if (e) return e;
   }
   return 0;
 }
 
-static int __pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM(PyObject *o) {
+static int __pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM(PyObject *o) {
   PyObject* tmp;
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *)o;
-  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) { if (__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear) __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear(o); } else __Pyx_call_next_tp_clear(o, __pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM);
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *)o;
+  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) { if (__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear) __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear(o); } else __Pyx_call_next_tp_clear(o, __pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM);
   tmp = ((PyObject*)p->__dict__);
   p->__dict__ = ((PyObject*)Py_None); Py_INCREF(Py_None);
   Py_XDECREF(tmp);
   return 0;
 }
 
-static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM(PyObject *o, CYTHON_UNUSED void *x) {
-  struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *p = (struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *)o;
+static PyObject *__pyx___dict__getter_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM(PyObject *o, CYTHON_UNUSED void *x) {
+  struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *p = (struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *)o;
   if (unlikely(!p->__dict__)){
     p->__dict__ = PyDict_New();
   }
@@ -51060,52 +51060,52 @@ static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_12LineEmitters_LineH
   return p->__dict__;
 }
 
-static PyMethodDef __pyx_methods_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM[] = {
-  {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+static PyMethodDef __pyx_methods_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM[] = {
+  {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
-static struct PyGetSetDef __pyx_getsets_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM[] = {
-  {(char *)"__dict__", __pyx___dict__getter_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM, 0, (char *)0, 0},
+static struct PyGetSetDef __pyx_getsets_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM[] = {
+  {(char *)"__dict__", __pyx___dict__getter_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM, 0, (char *)0, 0},
   {0, 0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
 static struct PyMemberDef __pyx_tp_members_LineH3_pos_AM[] = {
-  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM, __dict__), READONLY, NULL},
+  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM, __dict__), READONLY, NULL},
   {NULL, 0, 0, 0, NULL}
 };
-static PyType_Slot __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM_slots[] = {
-  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM},
-  {Py_tp_repr, (void *)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_3__repr__},
-  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM},
-  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM},
-  {Py_tp_methods, (void *)__pyx_methods_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM},
+static PyType_Slot __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM_slots[] = {
+  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM},
+  {Py_tp_repr, (void *)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_3__repr__},
+  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM},
+  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM},
+  {Py_tp_methods, (void *)__pyx_methods_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM},
   {Py_tp_members, (void *)__pyx_tp_members_LineH3_pos_AM},
-  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM},
+  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM},
   #if !CYTHON_USE_TYPE_SPECS
-  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM, __dict__)},
+  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM, __dict__)},
   #endif
-  {Py_tp_init, (void *)__pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_1__init__},
-  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM},
+  {Py_tp_init, (void *)__pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_1__init__},
+  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM},
   {0, 0},
 };
-static PyType_Spec __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM_spec = {
-  "cherab.amjuel_data.LineEmitters.LineH3_pos_AM",
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM),
+static PyType_Spec __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM_spec = {
+  "cherab.PESDT_addon.LineEmitters.LineH3_pos_AM",
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
-  __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM_slots,
+  __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM_slots,
 };
 #else
 
-static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM = {
+static PyTypeObject __pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.LineEmitters.""LineH3_pos_AM", /*tp_name*/
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM), /*tp_basicsize*/
+  "cherab.PESDT_addon.LineEmitters.""LineH3_pos_AM", /*tp_name*/
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM, /*tp_dealloc*/
+  __pyx_tp_dealloc_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM, /*tp_dealloc*/
   #if PY_VERSION_HEX < 0x030800b4
   0, /*tp_print*/
   #endif
@@ -51120,7 +51120,7 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_A
   #if PY_MAJOR_VERSION >= 3
   0, /*tp_as_async*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_3__repr__, /*tp_repr*/
+  __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_3__repr__, /*tp_repr*/
   0, /*tp_as_number*/
   0, /*tp_as_sequence*/
   0, /*tp_as_mapping*/
@@ -51132,25 +51132,25 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_A
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
   0, /*tp_doc*/
-  __pyx_tp_traverse_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM, /*tp_traverse*/
-  __pyx_tp_clear_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM, /*tp_clear*/
+  __pyx_tp_traverse_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM, /*tp_traverse*/
+  __pyx_tp_clear_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM, /*tp_methods*/
+  __pyx_methods_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM, /*tp_methods*/
   0, /*tp_members*/
-  __pyx_getsets_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM, /*tp_getset*/
+  __pyx_getsets_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM, /*tp_getset*/
   0, /*tp_base*/
   0, /*tp_dict*/
   0, /*tp_descr_get*/
   0, /*tp_descr_set*/
   #if !CYTHON_USE_TYPE_SPECS
-  offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM, __dict__), /*tp_dictoffset*/
+  offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM, __dict__), /*tp_dictoffset*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_1__init__, /*tp_init*/
+  __pyx_pw_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_1__init__, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM, /*tp_new*/
+  __pyx_tp_new_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -51306,7 +51306,7 @@ static PyType_Slot __pyx_type___pyx_array_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_array_spec = {
-  "cherab.amjuel_data.LineEmitters.array",
+  "cherab.PESDT_addon.LineEmitters.array",
   sizeof(struct __pyx_array_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE,
@@ -51352,7 +51352,7 @@ static PyBufferProcs __pyx_tp_as_buffer_array = {
 
 static PyTypeObject __pyx_type___pyx_array = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.LineEmitters.""array", /*tp_name*/
+  "cherab.PESDT_addon.LineEmitters.""array", /*tp_name*/
   sizeof(struct __pyx_array_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_array, /*tp_dealloc*/
@@ -51497,7 +51497,7 @@ static PyType_Slot __pyx_type___pyx_MemviewEnum_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_MemviewEnum_spec = {
-  "cherab.amjuel_data.LineEmitters.Enum",
+  "cherab.PESDT_addon.LineEmitters.Enum",
   sizeof(struct __pyx_MemviewEnum_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -51507,7 +51507,7 @@ static PyType_Spec __pyx_type___pyx_MemviewEnum_spec = {
 
 static PyTypeObject __pyx_type___pyx_MemviewEnum = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.LineEmitters.""Enum", /*tp_name*/
+  "cherab.PESDT_addon.LineEmitters.""Enum", /*tp_name*/
   sizeof(struct __pyx_MemviewEnum_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_Enum, /*tp_dealloc*/
@@ -51786,7 +51786,7 @@ static PyType_Slot __pyx_type___pyx_memoryview_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_memoryview_spec = {
-  "cherab.amjuel_data.LineEmitters.memoryview",
+  "cherab.PESDT_addon.LineEmitters.memoryview",
   sizeof(struct __pyx_memoryview_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -51832,7 +51832,7 @@ static PyBufferProcs __pyx_tp_as_buffer_memoryview = {
 
 static PyTypeObject __pyx_type___pyx_memoryview = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.LineEmitters.""memoryview", /*tp_name*/
+  "cherab.PESDT_addon.LineEmitters.""memoryview", /*tp_name*/
   sizeof(struct __pyx_memoryview_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_memoryview, /*tp_dealloc*/
@@ -51981,7 +51981,7 @@ static PyType_Slot __pyx_type___pyx_memoryviewslice_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_memoryviewslice_spec = {
-  "cherab.amjuel_data.LineEmitters._memoryviewslice",
+  "cherab.PESDT_addon.LineEmitters._memoryviewslice",
   sizeof(struct __pyx_memoryviewslice_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -51991,7 +51991,7 @@ static PyType_Spec __pyx_type___pyx_memoryviewslice_spec = {
 
 static PyTypeObject __pyx_type___pyx_memoryviewslice = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.LineEmitters.""_memoryviewslice", /*tp_name*/
+  "cherab.PESDT_addon.LineEmitters.""_memoryviewslice", /*tp_name*/
   sizeof(struct __pyx_memoryviewslice_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc__memoryviewslice, /*tp_dealloc*/
@@ -52188,8 +52188,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, __pyx_k_c, sizeof(__pyx_k_c), 0, 1, 0, 1},
   {0, __pyx_k_change, sizeof(__pyx_k_change), 0, 0, 1, 1},
   {0, __pyx_k_charge, sizeof(__pyx_k_charge), 0, 0, 1, 1},
-  {0, __pyx_k_cherab_amjuel_data_LineEmitters, sizeof(__pyx_k_cherab_amjuel_data_LineEmitters), 0, 0, 1, 0},
-  {0, __pyx_k_cherab_amjuel_data_LineEmitters_2, sizeof(__pyx_k_cherab_amjuel_data_LineEmitters_2), 0, 0, 1, 1},
+  {0, __pyx_k_cherab_PESDT_addon_LineEmitters, sizeof(__pyx_k_cherab_PESDT_addon_LineEmitters), 0, 0, 1, 0},
+  {0, __pyx_k_cherab_PESDT_addon_LineEmitters_2, sizeof(__pyx_k_cherab_PESDT_addon_LineEmitters_2), 0, 0, 1, 1},
   {0, __pyx_k_cherab_core_utility, sizeof(__pyx_k_cherab_core_utility), 0, 0, 1, 1},
   {0, __pyx_k_class, sizeof(__pyx_k_class), 0, 0, 1, 1},
   {0, __pyx_k_class_getitem, sizeof(__pyx_k_class_getitem), 0, 0, 1, 1},
@@ -52400,8 +52400,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_u_c, __pyx_k_c, sizeof(__pyx_k_c), 0, 1, 0, 1},
   {&__pyx_n_s_change, __pyx_k_change, sizeof(__pyx_k_change), 0, 0, 1, 1},
   {&__pyx_n_s_charge, __pyx_k_charge, sizeof(__pyx_k_charge), 0, 0, 1, 1},
-  {&__pyx_kp_s_cherab_amjuel_data_LineEmitters, __pyx_k_cherab_amjuel_data_LineEmitters, sizeof(__pyx_k_cherab_amjuel_data_LineEmitters), 0, 0, 1, 0},
-  {&__pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_k_cherab_amjuel_data_LineEmitters_2, sizeof(__pyx_k_cherab_amjuel_data_LineEmitters_2), 0, 0, 1, 1},
+  {&__pyx_kp_s_cherab_PESDT_addon_LineEmitters, __pyx_k_cherab_PESDT_addon_LineEmitters, sizeof(__pyx_k_cherab_PESDT_addon_LineEmitters), 0, 0, 1, 0},
+  {&__pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_k_cherab_PESDT_addon_LineEmitters_2, sizeof(__pyx_k_cherab_PESDT_addon_LineEmitters_2), 0, 0, 1, 1},
   {&__pyx_n_s_cherab_core_utility, __pyx_k_cherab_core_utility, sizeof(__pyx_k_cherab_core_utility), 0, 0, 1, 1},
   {&__pyx_n_s_class, __pyx_k_class, sizeof(__pyx_k_class), 0, 0, 1, 1},
   {&__pyx_n_s_class_getitem, __pyx_k_class_getitem, sizeof(__pyx_k_class_getitem), 0, 0, 1, 1},
@@ -52542,7 +52542,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":37
+  /* "cherab/PESDT_addon/LineEmitters.pyx":37
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")             # <<<<<<<<<<<<<<
@@ -52553,7 +52553,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":80
+  /* "cherab/PESDT_addon/LineEmitters.pyx":80
  *         # sanity checks
  *         if self._plasma is None:
  *             raise RuntimeError("The emission model is not connected to a plasma object.")             # <<<<<<<<<<<<<<
@@ -52564,7 +52564,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":82
+  /* "cherab/PESDT_addon/LineEmitters.pyx":82
  *             raise RuntimeError("The emission model is not connected to a plasma object.")
  *         if self._atomic_data is None:
  *             raise RuntimeError("The emission model is not connected to an atomic data source.")             # <<<<<<<<<<<<<<
@@ -52575,7 +52575,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":85
+  /* "cherab/PESDT_addon/LineEmitters.pyx":85
  * 
  *         if self._line is None:
  *             raise RuntimeError("The emission line has not been set.")             # <<<<<<<<<<<<<<
@@ -52633,7 +52633,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_slice__11);
   __Pyx_GIVEREF(__pyx_slice__11);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":54
+  /* "cherab/PESDT_addon/LineEmitters.pyx":54
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -52643,9 +52643,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__14 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_point, __pyx_n_s_direction, __pyx_n_s_spectrum); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__14);
   __Pyx_GIVEREF(__pyx_tuple__14);
-  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_LineEmitters, __pyx_n_s_emission, 54, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 54, __pyx_L1_error)
+  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_LineEmitters, __pyx_n_s_emission, 54, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 54, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":106
+  /* "cherab/PESDT_addon/LineEmitters.pyx":106
  * 
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
@@ -52655,7 +52655,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__16 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__16);
   __Pyx_GIVEREF(__pyx_tuple__16);
-  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_LineEmitters, __pyx_n_s_change, 106, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_LineEmitters, __pyx_n_s_change, 106, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 106, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
@@ -52678,23 +52678,23 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__20);
   __pyx_codeobj__21 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__21)) __PYX_ERR(1, 16, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":144
+  /* "cherab/PESDT_addon/LineEmitters.pyx":144
  *         return '<RecombinationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge+1, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
  *         cdef double ne, ni, te, radiance
  *         # cache data on first run
  */
-  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_LineEmitters, __pyx_n_s_emission, 144, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_LineEmitters, __pyx_n_s_emission, 144, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 144, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":194
+  /* "cherab/PESDT_addon/LineEmitters.pyx":194
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
  * 
  *         # clear cache to force regeneration on first use
  */
-  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_LineEmitters, __pyx_n_s_change, 194, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(0, 194, __pyx_L1_error)
+  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_LineEmitters, __pyx_n_s_change, 194, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(0, 194, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
@@ -52711,23 +52711,23 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  */
   __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(1, 16, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":234
+  /* "cherab/PESDT_addon/LineEmitters.pyx":234
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
  *         cdef double ne, ni, te, radiance
  *         # cache data on first run
  */
-  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_LineEmitters, __pyx_n_s_emission, 234, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_LineEmitters, __pyx_n_s_emission, 234, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(0, 234, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":284
+  /* "cherab/PESDT_addon/LineEmitters.pyx":284
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
  * 
  *         # clear cache to force regeneration on first use
  */
-  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_LineEmitters, __pyx_n_s_change, 284, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_LineEmitters, __pyx_n_s_change, 284, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(0, 284, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
@@ -52744,23 +52744,23 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  */
   __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(1, 16, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":321
+  /* "cherab/PESDT_addon/LineEmitters.pyx":321
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
  *         cdef double ne, ni, te, radiance
  * 
  */
-  __pyx_codeobj__30 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_LineEmitters, __pyx_n_s_emission, 321, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__30)) __PYX_ERR(0, 321, __pyx_L1_error)
+  __pyx_codeobj__30 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_LineEmitters, __pyx_n_s_emission, 321, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__30)) __PYX_ERR(0, 321, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":372
+  /* "cherab/PESDT_addon/LineEmitters.pyx":372
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
  * 
  *         # clear cache to force regeneration on first use
  */
-  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_LineEmitters, __pyx_n_s_change, 372, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(0, 372, __pyx_L1_error)
+  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_LineEmitters, __pyx_n_s_change, 372, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(0, 372, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
@@ -52777,23 +52777,23 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  */
   __pyx_codeobj__33 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__33)) __PYX_ERR(1, 16, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":413
+  /* "cherab/PESDT_addon/LineEmitters.pyx":413
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
  *         cdef double ne, ni, te, radiance
  * 
  */
-  __pyx_codeobj__34 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_LineEmitters, __pyx_n_s_emission, 413, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__34)) __PYX_ERR(0, 413, __pyx_L1_error)
+  __pyx_codeobj__34 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_LineEmitters, __pyx_n_s_emission, 413, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__34)) __PYX_ERR(0, 413, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":464
+  /* "cherab/PESDT_addon/LineEmitters.pyx":464
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
  * 
  *         # clear cache to force regeneration on first use
  */
-  __pyx_codeobj__35 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_LineEmitters, __pyx_n_s_change, 464, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__35)) __PYX_ERR(0, 464, __pyx_L1_error)
+  __pyx_codeobj__35 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_LineEmitters, __pyx_n_s_change, 464, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__35)) __PYX_ERR(0, 464, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
@@ -52810,23 +52810,23 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  */
   __pyx_codeobj__37 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__37)) __PYX_ERR(1, 16, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":501
+  /* "cherab/PESDT_addon/LineEmitters.pyx":501
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
  * 
  *         cdef double ne, ni, te, radiance
  */
-  __pyx_codeobj__38 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_LineEmitters, __pyx_n_s_emission, 501, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__38)) __PYX_ERR(0, 501, __pyx_L1_error)
+  __pyx_codeobj__38 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_LineEmitters, __pyx_n_s_emission, 501, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__38)) __PYX_ERR(0, 501, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":553
+  /* "cherab/PESDT_addon/LineEmitters.pyx":553
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
  * 
  *         # clear cache to force regeneration on first use
  */
-  __pyx_codeobj__39 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_LineEmitters, __pyx_n_s_change, 553, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__39)) __PYX_ERR(0, 553, __pyx_L1_error)
+  __pyx_codeobj__39 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_LineEmitters, __pyx_n_s_change, 553, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__39)) __PYX_ERR(0, 553, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
@@ -53025,8 +53025,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitConstants(void) {
   if (__Pyx_InitString(__pyx_string_tab[93], &__pyx_n_u_c) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[94], &__pyx_n_s_change) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[95], &__pyx_n_s_charge) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
-  if (__Pyx_InitString(__pyx_string_tab[96], &__pyx_kp_s_cherab_amjuel_data_LineEmitters) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
-  if (__Pyx_InitString(__pyx_string_tab[97], &__pyx_n_s_cherab_amjuel_data_LineEmitters_2) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
+  if (__Pyx_InitString(__pyx_string_tab[96], &__pyx_kp_s_cherab_PESDT_addon_LineEmitters) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
+  if (__Pyx_InitString(__pyx_string_tab[97], &__pyx_n_s_cherab_PESDT_addon_LineEmitters_2) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[98], &__pyx_n_s_cherab_core_utility) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[99], &__pyx_n_s_class) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[100], &__pyx_n_s_class_getitem) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
@@ -53212,197 +53212,197 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel = __Pyx_ImportType(__pyx_t_1, "cherab.core.plasma.model", "PlasmaModel", sizeof(struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel), __Pyx_ImportType_CheckSize_Warn);
    if (!__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel) __PYX_ERR(0, 2, __pyx_L1_error)
   __pyx_vtabptr_6cherab_4core_6plasma_5model_PlasmaModel = (struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel*)__Pyx_GetVtable(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel); if (unlikely(!__pyx_vtabptr_6cherab_4core_6plasma_5model_PlasmaModel)) __PYX_ERR(0, 2, __pyx_L1_error)
-  __pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM = &__pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM;
-  __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM.__pyx_base = *__pyx_vtabptr_6cherab_4core_6plasma_5model_PlasmaModel;
-  __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM.__pyx_base.emission = (struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*)(struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel *, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *, int __pyx_skip_dispatch))__pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_emission;
-  __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM._populate_cache = (int (*)(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM *))__pyx_f_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM__populate_cache;
+  __pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM = &__pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM;
+  __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM.__pyx_base = *__pyx_vtabptr_6cherab_4core_6plasma_5model_PlasmaModel;
+  __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM.__pyx_base.emission = (struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*)(struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel *, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *, int __pyx_skip_dispatch))__pyx_f_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_emission;
+  __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM._populate_cache = (int (*)(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM *))__pyx_f_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM__populate_cache;
   #if CYTHON_USE_TYPE_SPECS
   __pyx_t_2 = PyTuple_Pack(1, (PyObject *)__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM_spec, __pyx_t_2);
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM_spec, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM)) __PYX_ERR(0, 24, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM_spec, __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (unlikely(!__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM)) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM_spec, __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
   #else
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM = &__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM;
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM = &__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM->tp_base = __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel;
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM->tp_base = __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel;
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM->tp_print = 0;
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM->tp_print = 0;
   #endif
-  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM, __pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM, __pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_LineExcitation_AM, (PyObject *) __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
-  if (__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM->tp_weaklistoffset == 0) __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM->tp_weaklistoffset = offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM, __pyx_base.__weakref__);
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_LineExcitation_AM, (PyObject *) __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM->tp_weaklistoffset == 0) __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM->tp_weaklistoffset = offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM, __pyx_base.__weakref__);
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
   #endif
-  __pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM = &__pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM;
-  __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM.__pyx_base = *__pyx_vtabptr_6cherab_4core_6plasma_5model_PlasmaModel;
-  __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM.__pyx_base.emission = (struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*)(struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel *, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *, int __pyx_skip_dispatch))__pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_emission;
-  __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM._populate_cache = (int (*)(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM *))__pyx_f_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM__populate_cache;
+  __pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM = &__pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM;
+  __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM.__pyx_base = *__pyx_vtabptr_6cherab_4core_6plasma_5model_PlasmaModel;
+  __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM.__pyx_base.emission = (struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*)(struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel *, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *, int __pyx_skip_dispatch))__pyx_f_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_emission;
+  __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM._populate_cache = (int (*)(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM *))__pyx_f_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM__populate_cache;
   #if CYTHON_USE_TYPE_SPECS
   __pyx_t_2 = PyTuple_Pack(1, (PyObject *)__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 115, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM_spec, __pyx_t_2);
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM_spec, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM)) __PYX_ERR(0, 115, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM_spec, __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (unlikely(!__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM)) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM_spec, __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
   #else
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM = &__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM;
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM = &__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM->tp_base = __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel;
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM->tp_base = __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel;
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM->tp_print = 0;
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM->tp_print = 0;
   #endif
-  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM, __pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM, __pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_LineRecombination_AM, (PyObject *) __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
-  if (__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM->tp_weaklistoffset == 0) __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM->tp_weaklistoffset = offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM, __pyx_base.__weakref__);
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_LineRecombination_AM, (PyObject *) __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM->tp_weaklistoffset == 0) __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM->tp_weaklistoffset = offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM, __pyx_base.__weakref__);
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
   #endif
-  __pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineH2_AM = &__pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH2_AM;
-  __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH2_AM.__pyx_base = *__pyx_vtabptr_6cherab_4core_6plasma_5model_PlasmaModel;
-  __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH2_AM.__pyx_base.emission = (struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*)(struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel *, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *, int __pyx_skip_dispatch))__pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_emission;
-  __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH2_AM._populate_cache = (int (*)(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM *))__pyx_f_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM__populate_cache;
+  __pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM = &__pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM;
+  __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM.__pyx_base = *__pyx_vtabptr_6cherab_4core_6plasma_5model_PlasmaModel;
+  __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM.__pyx_base.emission = (struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*)(struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel *, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *, int __pyx_skip_dispatch))__pyx_f_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_emission;
+  __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM._populate_cache = (int (*)(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM *))__pyx_f_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM__populate_cache;
   #if CYTHON_USE_TYPE_SPECS
   __pyx_t_2 = PyTuple_Pack(1, (PyObject *)__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 202, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_AM_spec, __pyx_t_2);
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM_spec, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM)) __PYX_ERR(0, 202, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_AM_spec, __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM) < 0) __PYX_ERR(0, 202, __pyx_L1_error)
+  if (unlikely(!__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM)) __PYX_ERR(0, 202, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM_spec, __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM) < 0) __PYX_ERR(0, 202, __pyx_L1_error)
   #else
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM = &__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_AM;
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM = &__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM->tp_base = __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel;
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM->tp_base = __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel;
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM) < 0) __PYX_ERR(0, 202, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM) < 0) __PYX_ERR(0, 202, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM->tp_print = 0;
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM->tp_print = 0;
   #endif
-  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM, __pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineH2_AM) < 0) __PYX_ERR(0, 202, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM, __pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM) < 0) __PYX_ERR(0, 202, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM) < 0) __PYX_ERR(0, 202, __pyx_L1_error)
+  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM) < 0) __PYX_ERR(0, 202, __pyx_L1_error)
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_LineH2_AM, (PyObject *) __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM) < 0) __PYX_ERR(0, 202, __pyx_L1_error)
-  if (__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM->tp_weaklistoffset == 0) __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM->tp_weaklistoffset = offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_AM, __pyx_base.__weakref__);
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_LineH2_AM, (PyObject *) __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM) < 0) __PYX_ERR(0, 202, __pyx_L1_error)
+  if (__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM->tp_weaklistoffset == 0) __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM->tp_weaklistoffset = offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM, __pyx_base.__weakref__);
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM) < 0) __PYX_ERR(0, 202, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM) < 0) __PYX_ERR(0, 202, __pyx_L1_error)
   #endif
-  __pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM = &__pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM;
-  __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM.__pyx_base = *__pyx_vtabptr_6cherab_4core_6plasma_5model_PlasmaModel;
-  __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM.__pyx_base.emission = (struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*)(struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel *, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *, int __pyx_skip_dispatch))__pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_emission;
-  __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM._populate_cache = (int (*)(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM *))__pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM__populate_cache;
+  __pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM = &__pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM;
+  __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM.__pyx_base = *__pyx_vtabptr_6cherab_4core_6plasma_5model_PlasmaModel;
+  __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM.__pyx_base.emission = (struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*)(struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel *, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *, int __pyx_skip_dispatch))__pyx_f_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_emission;
+  __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM._populate_cache = (int (*)(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM *))__pyx_f_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM__populate_cache;
   #if CYTHON_USE_TYPE_SPECS
   __pyx_t_2 = PyTuple_Pack(1, (PyObject *)__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM_spec, __pyx_t_2);
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM_spec, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM)) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM_spec, __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
+  if (unlikely(!__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM)) __PYX_ERR(0, 292, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM_spec, __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
   #else
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM = &__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM;
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM = &__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM->tp_base = __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel;
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM->tp_base = __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel;
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM->tp_print = 0;
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM->tp_print = 0;
   #endif
-  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM, __pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM, __pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
+  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_LineH2_pos_AM, (PyObject *) __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM->tp_weaklistoffset == 0) __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM->tp_weaklistoffset = offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM, __pyx_base.__weakref__);
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_LineH2_pos_AM, (PyObject *) __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
+  if (__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM->tp_weaklistoffset == 0) __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM->tp_weaklistoffset = offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM, __pyx_base.__weakref__);
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
   #endif
-  __pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM = &__pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM;
-  __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM.__pyx_base = *__pyx_vtabptr_6cherab_4core_6plasma_5model_PlasmaModel;
-  __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM.__pyx_base.emission = (struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*)(struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel *, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *, int __pyx_skip_dispatch))__pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_emission;
-  __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM._populate_cache = (int (*)(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM *))__pyx_f_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM__populate_cache;
+  __pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM = &__pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM;
+  __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM.__pyx_base = *__pyx_vtabptr_6cherab_4core_6plasma_5model_PlasmaModel;
+  __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM.__pyx_base.emission = (struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*)(struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel *, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *, int __pyx_skip_dispatch))__pyx_f_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_emission;
+  __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM._populate_cache = (int (*)(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM *))__pyx_f_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM__populate_cache;
   #if CYTHON_USE_TYPE_SPECS
   __pyx_t_2 = PyTuple_Pack(1, (PyObject *)__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 380, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM_spec, __pyx_t_2);
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM_spec, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM)) __PYX_ERR(0, 380, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM_spec, __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM) < 0) __PYX_ERR(0, 380, __pyx_L1_error)
+  if (unlikely(!__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM)) __PYX_ERR(0, 380, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM_spec, __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM) < 0) __PYX_ERR(0, 380, __pyx_L1_error)
   #else
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM = &__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM;
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM = &__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM->tp_base = __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel;
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM->tp_base = __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel;
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM) < 0) __PYX_ERR(0, 380, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM) < 0) __PYX_ERR(0, 380, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM->tp_print = 0;
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM->tp_print = 0;
   #endif
-  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM, __pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM) < 0) __PYX_ERR(0, 380, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM, __pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM) < 0) __PYX_ERR(0, 380, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM) < 0) __PYX_ERR(0, 380, __pyx_L1_error)
+  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM) < 0) __PYX_ERR(0, 380, __pyx_L1_error)
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_LineH_neg_AM, (PyObject *) __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM) < 0) __PYX_ERR(0, 380, __pyx_L1_error)
-  if (__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM->tp_weaklistoffset == 0) __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM->tp_weaklistoffset = offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM, __pyx_base.__weakref__);
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_LineH_neg_AM, (PyObject *) __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM) < 0) __PYX_ERR(0, 380, __pyx_L1_error)
+  if (__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM->tp_weaklistoffset == 0) __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM->tp_weaklistoffset = offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM, __pyx_base.__weakref__);
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM) < 0) __PYX_ERR(0, 380, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM) < 0) __PYX_ERR(0, 380, __pyx_L1_error)
   #endif
-  __pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM = &__pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM;
-  __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM.__pyx_base = *__pyx_vtabptr_6cherab_4core_6plasma_5model_PlasmaModel;
-  __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM.__pyx_base.emission = (struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*)(struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel *, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *, int __pyx_skip_dispatch))__pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_emission;
-  __pyx_vtable_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM._populate_cache = (int (*)(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM *))__pyx_f_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM__populate_cache;
+  __pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM = &__pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM;
+  __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM.__pyx_base = *__pyx_vtabptr_6cherab_4core_6plasma_5model_PlasmaModel;
+  __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM.__pyx_base.emission = (struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*)(struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel *, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *, int __pyx_skip_dispatch))__pyx_f_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_emission;
+  __pyx_vtable_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM._populate_cache = (int (*)(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM *))__pyx_f_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM__populate_cache;
   #if CYTHON_USE_TYPE_SPECS
   __pyx_t_2 = PyTuple_Pack(1, (PyObject *)__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 472, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM_spec, __pyx_t_2);
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM_spec, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM)) __PYX_ERR(0, 472, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM_spec, __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM) < 0) __PYX_ERR(0, 472, __pyx_L1_error)
+  if (unlikely(!__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM)) __PYX_ERR(0, 472, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM_spec, __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM) < 0) __PYX_ERR(0, 472, __pyx_L1_error)
   #else
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM = &__pyx_type_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM;
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM = &__pyx_type_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM->tp_base = __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel;
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM->tp_base = __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel;
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM) < 0) __PYX_ERR(0, 472, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM) < 0) __PYX_ERR(0, 472, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
-  __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM->tp_print = 0;
+  __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM->tp_print = 0;
   #endif
-  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM, __pyx_vtabptr_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM) < 0) __PYX_ERR(0, 472, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM, __pyx_vtabptr_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM) < 0) __PYX_ERR(0, 472, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM) < 0) __PYX_ERR(0, 472, __pyx_L1_error)
+  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM) < 0) __PYX_ERR(0, 472, __pyx_L1_error)
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_LineH3_pos_AM, (PyObject *) __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM) < 0) __PYX_ERR(0, 472, __pyx_L1_error)
-  if (__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM->tp_weaklistoffset == 0) __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM->tp_weaklistoffset = offsetof(struct __pyx_obj_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM, __pyx_base.__weakref__);
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_LineH3_pos_AM, (PyObject *) __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM) < 0) __PYX_ERR(0, 472, __pyx_L1_error)
+  if (__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM->tp_weaklistoffset == 0) __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM->tp_weaklistoffset = offsetof(struct __pyx_obj_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM, __pyx_base.__weakref__);
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM) < 0) __PYX_ERR(0, 472, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM) < 0) __PYX_ERR(0, 472, __pyx_L1_error)
   #endif
   __pyx_vtabptr_array = &__pyx_vtable_array;
   __pyx_vtable_array.get_memview = (PyObject *(*)(struct __pyx_array_obj *))__pyx_array_get_memview;
@@ -55298,14 +55298,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_cherab__amjuel_data__LineEmitters) {
+  if (__pyx_module_is_main_cherab__PESDT_addon__LineEmitters) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name_2, __pyx_n_s_main) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 2, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "cherab.amjuel_data.LineEmitters")) {
-      if (unlikely((PyDict_SetItemString(modules, "cherab.amjuel_data.LineEmitters", __pyx_m) < 0))) __PYX_ERR(0, 2, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "cherab.PESDT_addon.LineEmitters")) {
+      if (unlikely((PyDict_SetItemString(modules, "cherab.PESDT_addon.LineEmitters", __pyx_m) < 0))) __PYX_ERR(0, 2, __pyx_L1_error)
     }
   }
   #endif
@@ -55326,7 +55326,7 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   #endif
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":4
+  /* "cherab/PESDT_addon/LineEmitters.pyx":4
  * from cherab.core.atomic cimport AtomicData
  * from cherab.core.plasma cimport PlasmaModel
  * from cherab.core.utility import PerCm3ToPerM3, PhotonToJ, Cm3ToM3             # <<<<<<<<<<<<<<
@@ -55361,7 +55361,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":5
+  /* "cherab/PESDT_addon/LineEmitters.pyx":5
  * from cherab.core.plasma cimport PlasmaModel
  * from cherab.core.utility import PerCm3ToPerM3, PhotonToJ, Cm3ToM3
  * from amread import photon_rate_coeffs, A_coeff             # <<<<<<<<<<<<<<
@@ -55389,7 +55389,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":6
+  /* "cherab/PESDT_addon/LineEmitters.pyx":6
  * from cherab.core.utility import PerCm3ToPerM3, PhotonToJ, Cm3ToM3
  * from amread import photon_rate_coeffs, A_coeff
  * from amread import wavelength as wl             # <<<<<<<<<<<<<<
@@ -55410,7 +55410,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":13
+  /* "cherab/PESDT_addon/LineEmitters.pyx":13
  * from cherab.core.utility.constants cimport RECIP_4_PI
  * 
  * import numpy as np             # <<<<<<<<<<<<<<
@@ -55422,42 +55422,42 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_3) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":54
+  /* "cherab/PESDT_addon/LineEmitters.pyx":54
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
  *         cdef double ne, n, te, radiance
  *         # cache data on first run
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_5emission, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineExcitation_AM_emission, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 54, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_5emission, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineExcitation_AM_emission, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM->tp_dict, __pyx_n_s_emission, __pyx_t_3) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM->tp_dict, __pyx_n_s_emission, __pyx_t_3) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":106
+  /* "cherab/PESDT_addon/LineEmitters.pyx":106
  * 
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
  * 
  *         # clear cache to force regeneration on first use
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_7_change, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineExcitation_AM__change, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_7_change, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineExcitation_AM__change, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM->tp_dict, __pyx_n_s_change, __pyx_t_3) < 0) __PYX_ERR(0, 106, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM->tp_dict, __pyx_n_s_change, __pyx_t_3) < 0) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM);
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_9__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineExcitation_AM___reduce_cytho, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_9__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineExcitation_AM___reduce_cytho, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM);
 
   /* "(tree fragment)":16
  *     else:
@@ -55465,48 +55465,48 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_LineExcitation_AM__set_state(self, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_17LineExcitation_AM_11__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineExcitation_AM___setstate_cyt, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__21)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_17LineExcitation_AM_11__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineExcitation_AM___setstate_cyt, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__21)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineExcitation_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineExcitation_AM);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":144
+  /* "cherab/PESDT_addon/LineEmitters.pyx":144
  *         return '<RecombinationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge+1, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
  *         cdef double ne, ni, te, radiance
  *         # cache data on first run
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_5emission, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineRecombination_AM_emission, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_5emission, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineRecombination_AM_emission, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM->tp_dict, __pyx_n_s_emission, __pyx_t_3) < 0) __PYX_ERR(0, 144, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM->tp_dict, __pyx_n_s_emission, __pyx_t_3) < 0) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":194
+  /* "cherab/PESDT_addon/LineEmitters.pyx":194
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
  * 
  *         # clear cache to force regeneration on first use
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_7_change, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineRecombination_AM__change, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__23)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 194, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_7_change, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineRecombination_AM__change, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__23)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 194, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM->tp_dict, __pyx_n_s_change, __pyx_t_3) < 0) __PYX_ERR(0, 194, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM->tp_dict, __pyx_n_s_change, __pyx_t_3) < 0) __PYX_ERR(0, 194, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM);
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_9__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineRecombination_AM___reduce_cy, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__24)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_9__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineRecombination_AM___reduce_cy, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__24)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM);
 
   /* "(tree fragment)":16
  *     else:
@@ -55514,48 +55514,48 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_LineRecombination_AM__set_state(self, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_20LineRecombination_AM_11__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineRecombination_AM___setstate, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__25)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_20LineRecombination_AM_11__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineRecombination_AM___setstate, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__25)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineRecombination_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineRecombination_AM);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":234
+  /* "cherab/PESDT_addon/LineEmitters.pyx":234
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
  *         cdef double ne, ni, te, radiance
  *         # cache data on first run
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_5emission, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH2_AM_emission, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__26)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_5emission, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH2_AM_emission, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__26)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 234, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM->tp_dict, __pyx_n_s_emission, __pyx_t_3) < 0) __PYX_ERR(0, 234, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM->tp_dict, __pyx_n_s_emission, __pyx_t_3) < 0) __PYX_ERR(0, 234, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":284
+  /* "cherab/PESDT_addon/LineEmitters.pyx":284
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
  * 
  *         # clear cache to force regeneration on first use
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_7_change, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH2_AM__change, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__27)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_7_change, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH2_AM__change, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__27)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM->tp_dict, __pyx_n_s_change, __pyx_t_3) < 0) __PYX_ERR(0, 284, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM->tp_dict, __pyx_n_s_change, __pyx_t_3) < 0) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM);
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_9__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH2_AM___reduce_cython, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__28)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_9__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH2_AM___reduce_cython, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__28)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM);
 
   /* "(tree fragment)":16
  *     else:
@@ -55563,48 +55563,48 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_LineH2_AM__set_state(self, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_9LineH2_AM_11__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH2_AM___setstate_cython, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__29)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_9LineH2_AM_11__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH2_AM___setstate_cython, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__29)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_AM);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":321
+  /* "cherab/PESDT_addon/LineEmitters.pyx":321
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
  *         cdef double ne, ni, te, radiance
  * 
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_5emission, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH2_pos_AM_emission, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__30)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 321, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_5emission, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH2_pos_AM_emission, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__30)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM->tp_dict, __pyx_n_s_emission, __pyx_t_3) < 0) __PYX_ERR(0, 321, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM->tp_dict, __pyx_n_s_emission, __pyx_t_3) < 0) __PYX_ERR(0, 321, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":372
+  /* "cherab/PESDT_addon/LineEmitters.pyx":372
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
  * 
  *         # clear cache to force regeneration on first use
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_7_change, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH2_pos_AM__change, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__31)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 372, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_7_change, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH2_pos_AM__change, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__31)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 372, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM->tp_dict, __pyx_n_s_change, __pyx_t_3) < 0) __PYX_ERR(0, 372, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM->tp_dict, __pyx_n_s_change, __pyx_t_3) < 0) __PYX_ERR(0, 372, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM);
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_9__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH2_pos_AM___reduce_cython, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__32)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_9__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH2_pos_AM___reduce_cython, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__32)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM);
 
   /* "(tree fragment)":16
  *     else:
@@ -55612,48 +55612,48 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_LineH2_pos_AM__set_state(self, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_13LineH2_pos_AM_11__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH2_pos_AM___setstate_cython, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__33)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_13LineH2_pos_AM_11__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH2_pos_AM___setstate_cython, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__33)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH2_pos_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH2_pos_AM);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":413
+  /* "cherab/PESDT_addon/LineEmitters.pyx":413
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
  *         cdef double ne, ni, te, radiance
  * 
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_5emission, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH_neg_AM_emission, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__34)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 413, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_5emission, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH_neg_AM_emission, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__34)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 413, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM->tp_dict, __pyx_n_s_emission, __pyx_t_3) < 0) __PYX_ERR(0, 413, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM->tp_dict, __pyx_n_s_emission, __pyx_t_3) < 0) __PYX_ERR(0, 413, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":464
+  /* "cherab/PESDT_addon/LineEmitters.pyx":464
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
  * 
  *         # clear cache to force regeneration on first use
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_7_change, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH_neg_AM__change, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__35)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 464, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_7_change, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH_neg_AM__change, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__35)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 464, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM->tp_dict, __pyx_n_s_change, __pyx_t_3) < 0) __PYX_ERR(0, 464, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM->tp_dict, __pyx_n_s_change, __pyx_t_3) < 0) __PYX_ERR(0, 464, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM);
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_9__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH_neg_AM___reduce_cython, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_9__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH_neg_AM___reduce_cython, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM);
 
   /* "(tree fragment)":16
  *     else:
@@ -55661,48 +55661,48 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_LineH_neg_AM__set_state(self, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_12LineH_neg_AM_11__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH_neg_AM___setstate_cython, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__37)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_12LineH_neg_AM_11__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH_neg_AM___setstate_cython, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__37)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH_neg_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH_neg_AM);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":501
+  /* "cherab/PESDT_addon/LineEmitters.pyx":501
  *         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
  * 
  *         cdef double ne, ni, te, radiance
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_5emission, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH3_pos_AM_emission, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__38)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 501, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_5emission, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH3_pos_AM_emission, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__38)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 501, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM->tp_dict, __pyx_n_s_emission, __pyx_t_3) < 0) __PYX_ERR(0, 501, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM->tp_dict, __pyx_n_s_emission, __pyx_t_3) < 0) __PYX_ERR(0, 501, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM);
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":553
+  /* "cherab/PESDT_addon/LineEmitters.pyx":553
  *                                                 *self._lineshape_args, **self._lineshape_kwargs)
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
  * 
  *         # clear cache to force regeneration on first use
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_7_change, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH3_pos_AM__change, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__39)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 553, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_7_change, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH3_pos_AM__change, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__39)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 553, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM->tp_dict, __pyx_n_s_change, __pyx_t_3) < 0) __PYX_ERR(0, 553, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM->tp_dict, __pyx_n_s_change, __pyx_t_3) < 0) __PYX_ERR(0, 553, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM);
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_9__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH3_pos_AM___reduce_cython, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__40)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_9__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH3_pos_AM___reduce_cython, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__40)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM);
 
   /* "(tree fragment)":16
  *     else:
@@ -55710,18 +55710,18 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_LineH3_pos_AM__set_state(self, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_13LineH3_pos_AM_11__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH3_pos_AM___setstate_cython, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__41)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_13LineH3_pos_AM_11__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_LineH3_pos_AM___setstate_cython, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__41)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_12LineEmitters_LineH3_pos_AM);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_12LineEmitters_LineH3_pos_AM);
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_LineExcitation_AM(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_1__pyx_unpickle_LineExcitation_AM, 0, __pyx_n_s_pyx_unpickle_LineExcitation_AM, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__43)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_1__pyx_unpickle_LineExcitation_AM, 0, __pyx_n_s_pyx_unpickle_LineExcitation_AM, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__43)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_LineExcitation_AM, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -55733,7 +55733,7 @@ if (!__Pyx_RefNanny) {
  *     __pyx_result._atomic_data = __pyx_state[0]; __pyx_result._plasma = __pyx_state[1]
  *     if len(__pyx_state) > 2 and hasattr(__pyx_result, '__dict__'):
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_3__pyx_unpickle_LineRecombination_AM, 0, __pyx_n_s_pyx_unpickle_LineRecombination, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__44)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_3__pyx_unpickle_LineRecombination_AM, 0, __pyx_n_s_pyx_unpickle_LineRecombination, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__44)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_LineRecombination, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -55743,7 +55743,7 @@ if (!__Pyx_RefNanny) {
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_5__pyx_unpickle_LineH2_AM, 0, __pyx_n_s_pyx_unpickle_LineH2_AM, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__45)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_5__pyx_unpickle_LineH2_AM, 0, __pyx_n_s_pyx_unpickle_LineH2_AM, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__45)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_LineH2_AM, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -55755,7 +55755,7 @@ if (!__Pyx_RefNanny) {
  *     __pyx_result._atomic_data = __pyx_state[0]; __pyx_result._plasma = __pyx_state[1]
  *     if len(__pyx_state) > 2 and hasattr(__pyx_result, '__dict__'):
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_7__pyx_unpickle_LineH2_pos_AM, 0, __pyx_n_s_pyx_unpickle_LineH2_pos_AM, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__46)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_7__pyx_unpickle_LineH2_pos_AM, 0, __pyx_n_s_pyx_unpickle_LineH2_pos_AM, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__46)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_LineH2_pos_AM, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -55765,7 +55765,7 @@ if (!__Pyx_RefNanny) {
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_9__pyx_unpickle_LineH_neg_AM, 0, __pyx_n_s_pyx_unpickle_LineH_neg_AM, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__47)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_9__pyx_unpickle_LineH_neg_AM, 0, __pyx_n_s_pyx_unpickle_LineH_neg_AM, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__47)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_LineH_neg_AM, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -55777,12 +55777,12 @@ if (!__Pyx_RefNanny) {
  *     __pyx_result._atomic_data = __pyx_state[0]; __pyx_result._plasma = __pyx_state[1]
  *     if len(__pyx_state) > 2 and hasattr(__pyx_result, '__dict__'):
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_12LineEmitters_11__pyx_unpickle_LineH3_pos_AM, 0, __pyx_n_s_pyx_unpickle_LineH3_pos_AM, NULL, __pyx_n_s_cherab_amjuel_data_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__48)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_12LineEmitters_11__pyx_unpickle_LineH3_pos_AM, 0, __pyx_n_s_pyx_unpickle_LineH3_pos_AM, NULL, __pyx_n_s_cherab_PESDT_addon_LineEmitters_2, __pyx_d, ((PyObject *)__pyx_codeobj__48)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_LineH3_pos_AM, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/LineEmitters.pyx":2
+  /* "cherab/PESDT_addon/LineEmitters.pyx":2
  * 
  * from cherab.core.atomic cimport AtomicData             # <<<<<<<<<<<<<<
  * from cherab.core.plasma cimport PlasmaModel
@@ -55954,13 +55954,13 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_3);
   if (__pyx_m) {
     if (__pyx_d && stringtab_initialized) {
-      __Pyx_AddTraceback("init cherab.amjuel_data.LineEmitters", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init cherab.PESDT_addon.LineEmitters", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     #if !CYTHON_USE_MODULE_STATE
     Py_CLEAR(__pyx_m);
     #endif
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init cherab.amjuel_data.LineEmitters");
+    PyErr_SetString(PyExc_ImportError, "init cherab.PESDT_addon.LineEmitters");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();

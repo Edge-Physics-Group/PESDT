@@ -277,61 +277,63 @@ class ProcessEdgeSim:
             self.defs = get_DIIIDdefs()
 
         # TODO: Add opacity calcs
-
-        self.calc_H_emiss()
-        self.calc_H_rad_power()
-        self.calc_ff_fb_emiss()
-
-        # Calc ff+fb emissivity.
-        # Use KL11 cam e WI filter.
-        # TODO: generalise to accept other filters
-        #filter_file = '/home/bloman/python_bal/TomI/kl11_filters/WI40096_kl11_filter_peak_norm.txt'
-        #filter_curve = np.genfromtxt(filter_file, delimiter=',', skip_header=4)
-        #print('FF+FB emission filter file: ', filter_file)
-        #self.calc_ff_fb_filtered_emiss(filter_curve[:,0], filter_curve[:,1])
-
-
-        # CALULCATE PRAD IN DEFINED MACRO REGIONS
-        # TODO: Add opacity calcs
-        #if self.regions:
-        #    self.calc_region_aggregates()
-
-        # CALCULATE POWER FLOW INTO INNER AND OUTER DIVERTOR AT Z=-1.2
-        #if self.edge_code == 'edge2d':
-        #    self.calc_qpol_div()
-
-        if diag_list:
-            print('diag_list', diag_list)
-            for key in diag_list:
-                if key in self.defs.diag_dict.keys():
-                    self.synth_diag[key] = SynthDiag(self.defs, diag=key,
-                                                     spec_line_dict = self.spec_line_dict,
-                                                     spec_line_dict_lytrap=self.spec_line_dict_lytrap, 
-                                                     use_AMJUEL = self.use_AMJUEL)
-                    for chord in self.synth_diag[key].chords:
-                        # Basic LOS implementation using 2D polygons - no reflections
-                        self.los_intersect(chord)
-                        chord.orthogonal_polys()
-                        if self.use_AMJUEL:
-                            chord.calc_int_and_1d_los_quantities_AMJUEL_1()
-                        else:
-                            chord.calc_int_and_1d_los_quantities_1()
-                        if calc_synth_spec_features:
-                            # Derived ne, te require information along LOS, calc emission again using _2 functions
-                            if self.use_AMJUEL:
-                                chord.calc_int_and_1d_los_quantities_AMJUEL_2()
-                            else:
-                                chord.calc_int_and_1d_los_quantities_2()
-                            print('Calculating synthetic spectra for diag: ', key)
-                            chord.calc_int_and_1d_los_synth_spectra()
-
-        if save_synth_diag:
-            if self.synth_diag:
-                self.save_synth_diag_data(savefile=synth_diag_save_file)
-
         if run_cherab:
             # Currently the run cherab function uses the synth_diag to get the instrument and LOS details, so that needs to be generated
             self.run_cherab_bridge()
+        else:
+
+            self.calc_H_emiss()
+            self.calc_H_rad_power()
+            self.calc_ff_fb_emiss()
+
+            # Calc ff+fb emissivity.
+            # Use KL11 cam e WI filter.
+            # TODO: generalise to accept other filters
+            #filter_file = '/home/bloman/python_bal/TomI/kl11_filters/WI40096_kl11_filter_peak_norm.txt'
+            #filter_curve = np.genfromtxt(filter_file, delimiter=',', skip_header=4)
+            #print('FF+FB emission filter file: ', filter_file)
+            #self.calc_ff_fb_filtered_emiss(filter_curve[:,0], filter_curve[:,1])
+
+
+            # CALULCATE PRAD IN DEFINED MACRO REGIONS
+            # TODO: Add opacity calcs
+            #if self.regions:
+            #    self.calc_region_aggregates()
+
+            # CALCULATE POWER FLOW INTO INNER AND OUTER DIVERTOR AT Z=-1.2
+            #if self.edge_code == 'edge2d':
+            #    self.calc_qpol_div()
+
+            if diag_list:
+                print('diag_list', diag_list)
+                for key in diag_list:
+                    if key in self.defs.diag_dict.keys():
+                        self.synth_diag[key] = SynthDiag(self.defs, diag=key,
+                                                        spec_line_dict = self.spec_line_dict,
+                                                        spec_line_dict_lytrap=self.spec_line_dict_lytrap, 
+                                                        use_AMJUEL = self.use_AMJUEL)
+                        for chord in self.synth_diag[key].chords:
+                            # Basic LOS implementation using 2D polygons - no reflections
+                            self.los_intersect(chord)
+                            chord.orthogonal_polys()
+                            if self.use_AMJUEL:
+                                chord.calc_int_and_1d_los_quantities_AMJUEL_1()
+                            else:
+                                chord.calc_int_and_1d_los_quantities_1()
+                            if calc_synth_spec_features:
+                                # Derived ne, te require information along LOS, calc emission again using _2 functions
+                                if self.use_AMJUEL:
+                                    chord.calc_int_and_1d_los_quantities_AMJUEL_2()
+                                else:
+                                    chord.calc_int_and_1d_los_quantities_2()
+                                print('Calculating synthetic spectra for diag: ', key)
+                                chord.calc_int_and_1d_los_synth_spectra()
+
+            if save_synth_diag:
+                if self.synth_diag:
+                    self.save_synth_diag_data(savefile=synth_diag_save_file)
+
+        
             
 
         if data2d_save_file:
@@ -358,7 +360,8 @@ class ProcessEdgeSim:
 
         transitions = []
         for line_key in self.spec_line_dict['1']['1']:
-            transitions.append(tuple(int(line_key[0]), int(line_key[1])))
+            tr = self.spec_line_dict['1']['1'][line_key]
+            transitions.append(tr)
         # Generate cherab plasma
         plasma = CherabPlasma(self, self.ADAS_dict, include_reflections = include_reflections,
                             import_jet_surfaces = import_jet_surfaces, use_AMJUEL=use_AMJUEL, recalc_h2_pos = recalc_h2_pos, transitions = transitions)

@@ -30,7 +30,8 @@ from raysect.core import translate, Vector3D
 from raysect.primitive import Cylinder
 
 # CHERAB core imports
-from cherab.core import Plasma, Species, Maxwellian
+from cherab.core import Plasma, Species #, Maxwellian
+from .maxwellian import Maxwellian
 from cherab.core.math.function import ConstantVector3D
 from cherab.core.math.mappers import AxisymmetricMapper, VectorAxisymmetricMapper
 from cherab.core.atomic.elements import lookup_isotope, lookup_element
@@ -597,7 +598,7 @@ class Edge2DSimulation:
 
     @emission.setter
     def emission(self, value):
-        value = np.array(value, dtype=np.float64, copy=False)
+        #value = np.array(value, dtype=np.float64, copy=False)
         # Disable checking shape for now. Emission is goin to be a 3d matrix, which contains the ph/s/m^3 for each transition
         #_check_shape("pre calculated emission", value, (len(self._species_list ),self.mesh.n,))
         self._emission = value
@@ -783,7 +784,7 @@ class Edge2DSimulation:
             electron_velocity = ConstantVector3D(Vector3D(0, 0, 0))
         else:
             electron_velocity = self.electron_velocities_cartesian
-        plasma.electron_distribution = Maxwellian(self.electron_density_f3d, self.electron_temperature_f3d, electron_velocity, electron_mass)
+        plasma.electron_distribution = Maxwellian(self.electron_density_f3d, self.electron_temperature_f3d, electron_velocity, electron_mass, emission = {})
 
         if self.velocities_cartesian is None:
             print('Warning! No species velocities data available for this simulation.')

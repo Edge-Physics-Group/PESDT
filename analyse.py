@@ -102,23 +102,24 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                 self.analyse_synth_spectra(res_dict)
             except IOError as e:
                 raise
-
-        if input_dict['cherab_options'].get('analyse_synth_spec_features', False):
-            try:
-                self.recover_line_int_Stark_ne(self.outdict)
-                if input_dict['cherab_options'].get('ff_fb_emission', False):
-                    self.recover_line_int_ff_fb_Te(self.outdict)
-            except:
-                # SafeGuard for possible issues, so that not all comp. time is lost 
-                print('Something went wrong with AnalyseSynthDiag')
-                pass
-        # SAVE IN JSON FORMAT TO ENSURE PYTHON 2/3 COMPATIBILITY
-        if self.input_dict["cherab_options"].get('include_reflections', False):
-            savefile = self.savedir + '/cherab_refl.synth_diag.json'
-        else:
-            savefile = self.savedir + '/cherab.synth_diag.json'
-        with open(savefile, mode='w', encoding='utf-8') as f:
-            json.dump(self.outdict, f, indent=2)
+        
+        if self.run_cherab:
+            if input_dict['cherab_options'].get('analyse_synth_spec_features', False):
+                try:
+                    self.recover_line_int_Stark_ne(self.outdict)
+                    if input_dict['cherab_options'].get('ff_fb_emission', False):
+                        self.recover_line_int_ff_fb_Te(self.outdict)
+                except:
+                    # SafeGuard for possible issues, so that not all comp. time is lost 
+                    print('Something went wrong with AnalyseSynthDiag')
+                    pass
+            # SAVE IN JSON FORMAT TO ENSURE PYTHON 2/3 COMPATIBILITY
+            if self.input_dict["cherab_options"].get('include_reflections', False):
+                savefile = self.savedir + '/cherab_refl.synth_diag.json'
+            else:
+                savefile = self.savedir + '/cherab.synth_diag.json'
+            with open(savefile, mode='w', encoding='utf-8') as f:
+                json.dump(self.outdict, f, indent=2)
 
 
     # Analyse synthetic spectra

@@ -14,12 +14,12 @@
             ".",
             "/usr/local/depot/Python-3.9/lib/python3.9/site-packages/numpy/core/include"
         ],
-        "name": "cherab.amjuel_data.stark",
+        "name": "cherab.PESDT_addon.stark",
         "sources": [
-            "cherab/amjuel_data/stark.pyx"
+            "cherab/PESDT_addon/stark.pyx"
         ]
     },
-    "module_name": "cherab.amjuel_data.stark"
+    "module_name": "cherab.PESDT_addon.stark"
 }
 END: Cython Metadata */
 
@@ -954,8 +954,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__cherab__amjuel_data__stark
-#define __PYX_HAVE_API__cherab__amjuel_data__stark
+#define __PYX_HAVE__cherab__PESDT_addon__stark
+#define __PYX_HAVE_API__cherab__PESDT_addon__stark
 /* Early includes */
 #include <string.h>
 #include <stdio.h>
@@ -1215,7 +1215,7 @@ static const char *__pyx_filename;
 /* #### Code section: filename_table ### */
 
 static const char *__pyx_f[] = {
-  "cherab/amjuel_data/stark.pyx",
+  "cherab/PESDT_addon/stark.pyx",
   "<stringsource>",
   "__init__.cython-30.pxd",
   "affinematrix.pxd",
@@ -1999,8 +1999,8 @@ struct __pyx_obj_6cherab_4core_5model_6plasma_14bremsstrahlung_Bremsstrahlung;
 struct __pyx_obj_6cherab_4core_5model_6plasma_17impact_excitation_ExcitationLine;
 struct __pyx_obj_6cherab_4core_5model_6plasma_13recombination_RecombinationLine;
 struct __pyx_obj_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower;
-struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction;
-struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine;
+struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction;
+struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine;
 struct __pyx_array_obj;
 struct __pyx_MemviewEnum_obj;
 struct __pyx_memoryview_obj;
@@ -7468,14 +7468,14 @@ struct __pyx_obj_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiat
 };
 
 
-/* "cherab/amjuel_data/stark.pyx":31
+/* "cherab/PESDT_addon/stark.pyx":31
  * DEF LORENZIAN_CUTOFF_GAMMA = 50.0
  * 
  * cdef class StarkFunction(Function1D):             # <<<<<<<<<<<<<<
  *     """
  *     Normalised Stark function for the StarkBroadenedLine line shape.
  */
-struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction {
+struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction {
   struct __pyx_obj_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D __pyx_base;
   double _a;
   double _x0;
@@ -7483,14 +7483,14 @@ struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction {
 };
 
 
-/* "cherab/amjuel_data/stark.pyx":60
+/* "cherab/PESDT_addon/stark.pyx":60
  * 
  * 
  * cdef class StarkBroadenedLine(LineShapeModel):             # <<<<<<<<<<<<<<
  *     #cdef dict __dict__
  *     """
  */
-struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine {
+struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine {
   struct __pyx_obj_6cherab_4core_5model_9lineshape_LineShapeModel __pyx_base;
   PyObject *__dict__;
 };
@@ -12675,7 +12675,7 @@ struct __pyx_vtabstruct_6cherab_4core_5model_6plasma_20total_radiated_power_Tota
 static struct __pyx_vtabstruct_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower *__pyx_vtabptr_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower;
 
 
-/* "cherab/amjuel_data/stark.pyx":31
+/* "cherab/PESDT_addon/stark.pyx":31
  * DEF LORENZIAN_CUTOFF_GAMMA = 50.0
  * 
  * cdef class StarkFunction(Function1D):             # <<<<<<<<<<<<<<
@@ -12683,13 +12683,13 @@ static struct __pyx_vtabstruct_6cherab_4core_5model_6plasma_20total_radiated_pow
  *     Normalised Stark function for the StarkBroadenedLine line shape.
  */
 
-struct __pyx_vtabstruct_6cherab_11amjuel_data_5stark_StarkFunction {
+struct __pyx_vtabstruct_6cherab_11PESDT_addon_5stark_StarkFunction {
   struct __pyx_vtabstruct_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D __pyx_base;
 };
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_5stark_StarkFunction *__pyx_vtabptr_6cherab_11amjuel_data_5stark_StarkFunction;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_5stark_StarkFunction *__pyx_vtabptr_6cherab_11PESDT_addon_5stark_StarkFunction;
 
 
-/* "cherab/amjuel_data/stark.pyx":60
+/* "cherab/PESDT_addon/stark.pyx":60
  * 
  * 
  * cdef class StarkBroadenedLine(LineShapeModel):             # <<<<<<<<<<<<<<
@@ -12697,10 +12697,10 @@ static struct __pyx_vtabstruct_6cherab_11amjuel_data_5stark_StarkFunction *__pyx
  *     """
  */
 
-struct __pyx_vtabstruct_6cherab_11amjuel_data_5stark_StarkBroadenedLine {
+struct __pyx_vtabstruct_6cherab_11PESDT_addon_5stark_StarkBroadenedLine {
   struct __pyx_vtabstruct_6cherab_4core_5model_9lineshape_LineShapeModel __pyx_base;
 };
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_5stark_StarkBroadenedLine *__pyx_vtabptr_6cherab_11amjuel_data_5stark_StarkBroadenedLine;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *__pyx_vtabptr_6cherab_11PESDT_addon_5stark_StarkBroadenedLine;
 
 
 /* "View.MemoryView":109
@@ -13741,8 +13741,8 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 #endif
 
 /* #### Code section: module_declarations ### */
-static double __pyx_f_6cherab_11amjuel_data_5stark_13StarkFunction_evaluate(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction *__pyx_v_self, double __pyx_v_x); /* proto*/
-static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_add_line(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *__pyx_v_self, double __pyx_v_radiance, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, CYTHON_UNUSED struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch); /* proto*/
+static double __pyx_f_6cherab_11PESDT_addon_5stark_13StarkFunction_evaluate(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction *__pyx_v_self, double __pyx_v_x); /* proto*/
+static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_add_line(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *__pyx_v_self, double __pyx_v_radiance, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, CYTHON_UNUSED struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch); /* proto*/
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_7ndarray_4base_base(PyArrayObject *__pyx_v_self); /* proto*/
 static CYTHON_INLINE PyArray_Descr *__pyx_f_5numpy_7ndarray_5descr_descr(PyArrayObject *__pyx_v_self); /* proto*/
 static CYTHON_INLINE int __pyx_f_5numpy_7ndarray_4ndim_ndim(PyArrayObject *__pyx_v_self); /* proto*/
@@ -14822,10 +14822,10 @@ static double *__pyx_vp_6cherab_4core_7utility_9constants_ELECTRON_REST_MASS = 0
 static double *__pyx_vp_6cherab_4core_7utility_9constants_RYDBERG_CONSTANT_EV = 0;
 #define __pyx_v_6cherab_4core_7utility_9constants_RYDBERG_CONSTANT_EV (*__pyx_vp_6cherab_4core_7utility_9constants_RYDBERG_CONSTANT_EV)
 
-/* Module declarations from "cherab.amjuel_data.stark" */
+/* Module declarations from "cherab.PESDT_addon.stark" */
 #if !CYTHON_USE_MODULE_STATE
-static PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction = 0;
-static PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine = 0;
+static PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction = 0;
+static PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine = 0;
 static PyTypeObject *__pyx_array_type = 0;
 static PyTypeObject *__pyx_MemviewEnum_type = 0;
 static PyTypeObject *__pyx_memoryview_type = 0;
@@ -14838,8 +14838,8 @@ static PyObject *contiguous = 0;
 static PyObject *indirect_contiguous = 0;
 static int __pyx_memoryview_thread_locks_used;
 static PyThread_type_lock __pyx_memoryview_thread_locks[8];
-static PyObject *__pyx_f_6cherab_11amjuel_data_5stark___pyx_unpickle_StarkFunction__set_state(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction *, PyObject *); /*proto*/
-static PyObject *__pyx_f_6cherab_11amjuel_data_5stark___pyx_unpickle_StarkBroadenedLine__set_state(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *, PyObject *); /*proto*/
+static PyObject *__pyx_f_6cherab_11PESDT_addon_5stark___pyx_unpickle_StarkFunction__set_state(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction *, PyObject *); /*proto*/
+static PyObject *__pyx_f_6cherab_11PESDT_addon_5stark___pyx_unpickle_StarkBroadenedLine__set_state(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *, PyObject *); /*proto*/
 static int __pyx_array_allocate_buffer(struct __pyx_array_obj *); /*proto*/
 static struct __pyx_array_obj *__pyx_array_new(PyObject *, Py_ssize_t, char *, char *, char *); /*proto*/
 static void *__pyx_align_pointer(void *, size_t); /*proto*/
@@ -14877,11 +14877,11 @@ static void __pyx_memoryview__slice_assign_scalar(char *, Py_ssize_t *, Py_ssize
 static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *, PyObject *); /*proto*/
 /* #### Code section: typeinfo ### */
 /* #### Code section: before_global_var ### */
-#define __Pyx_MODULE_NAME "cherab.amjuel_data.stark"
-extern int __pyx_module_is_main_cherab__amjuel_data__stark;
-int __pyx_module_is_main_cherab__amjuel_data__stark = 0;
+#define __Pyx_MODULE_NAME "cherab.PESDT_addon.stark"
+extern int __pyx_module_is_main_cherab__PESDT_addon__stark;
+int __pyx_module_is_main_cherab__PESDT_addon__stark = 0;
 
-/* Implementation of "cherab.amjuel_data.stark" */
+/* Implementation of "cherab.PESDT_addon.stark" */
 /* #### Code section: global_var ### */
 static PyObject *__pyx_builtin_ValueError;
 static PyObject *__pyx_builtin_IndexError;
@@ -15030,7 +15030,7 @@ static const char __pyx_k_MemoryView_of_r_object[] = "<MemoryView of %r object>"
 static const char __pyx_k_STARK_NORM_COEFFICIENT[] = "STARK_NORM_COEFFICIENT";
 static const char __pyx_k_MemoryView_of_r_at_0x_x[] = "<MemoryView of %r at 0x%x>";
 static const char __pyx_k_contiguous_and_indirect[] = "<contiguous and indirect>";
-static const char __pyx_k_cherab_amjuel_data_stark[] = "cherab.amjuel_data.stark";
+static const char __pyx_k_cherab_PESDT_addon_stark[] = "cherab.PESDT_addon.stark";
 static const char __pyx_k_stark_model_coefficients[] = "stark_model_coefficients";
 static const char __pyx_k_Dimension_d_is_not_direct[] = "Dimension %d is not direct";
 static const char __pyx_k_Index_out_of_bounds_axis_d[] = "Index out of bounds (axis %d)";
@@ -15040,7 +15040,7 @@ static const char __pyx_k_StarkBroadenedLine_add_line[] = "StarkBroadenedLine.ad
 static const char __pyx_k_Step_may_not_be_zero_axis_d[] = "Step may not be zero (axis %d)";
 static const char __pyx_k_cherab_core_atomic_elements[] = "cherab.core.atomic.elements";
 static const char __pyx_k_itemsize_0_for_cython_array[] = "itemsize <= 0 for cython.array";
-static const char __pyx_k_cherab_amjuel_data_stark_pyx[] = "cherab/amjuel_data/stark.pyx";
+static const char __pyx_k_cherab_PESDT_addon_stark_pyx[] = "cherab/PESDT_addon/stark.pyx";
 static const char __pyx_k_StarkFunction___reduce_cython[] = "StarkFunction.__reduce_cython__";
 static const char __pyx_k_unable_to_allocate_array_data[] = "unable to allocate array data.";
 static const char __pyx_k_pyx_unpickle_StarkBroadenedLin[] = "__pyx_unpickle_StarkBroadenedLine";
@@ -15147,8 +15147,8 @@ static PyObject *__pyx_n_s_c;
 static PyObject *__pyx_n_u_c;
 static PyObject *__pyx_kp_u_c_ij_a_ij_b_ij;
 static PyObject *__pyx_n_s_carbon;
-static PyObject *__pyx_n_s_cherab_amjuel_data_stark;
-static PyObject *__pyx_kp_s_cherab_amjuel_data_stark_pyx;
+static PyObject *__pyx_n_s_cherab_PESDT_addon_stark;
+static PyObject *__pyx_kp_s_cherab_PESDT_addon_stark_pyx;
 static PyObject *__pyx_n_s_cherab_core_atomic_elements;
 static PyObject *__pyx_n_s_cij;
 static PyObject *__pyx_n_s_class;
@@ -15259,16 +15259,16 @@ static PyObject *__pyx_n_s_use_setstate;
 static PyObject *__pyx_n_s_wavelength;
 #endif
 /* #### Code section: decls ### */
-static int __pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction___init__(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction *__pyx_v_self, double __pyx_v_wavelength, double __pyx_v_lambda_1_2); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction_2__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction_4__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
-static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, double __pyx_v_wavelength, struct __pyx_obj_6cherab_4core_7species_Species *__pyx_v_target_species, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, PyObject *__pyx_v_stark_model_coefficients, PyObject *__pyx_v_integrator); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_2show_supported_transitions(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_4add_line(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *__pyx_v_self, double __pyx_v_radiance, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_6__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_8__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark___pyx_unpickle_StarkFunction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_2__pyx_unpickle_StarkBroadenedLine(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
+static int __pyx_pf_6cherab_11PESDT_addon_5stark_13StarkFunction___init__(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction *__pyx_v_self, double __pyx_v_wavelength, double __pyx_v_lambda_1_2); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_5stark_13StarkFunction_2__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_5stark_13StarkFunction_4__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static int __pyx_pf_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine___init__(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, double __pyx_v_wavelength, struct __pyx_obj_6cherab_4core_7species_Species *__pyx_v_target_species, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, PyObject *__pyx_v_stark_model_coefficients, PyObject *__pyx_v_integrator); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_2show_supported_transitions(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_4add_line(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *__pyx_v_self, double __pyx_v_radiance, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_6__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_8__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_5stark___pyx_unpickle_StarkFunction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_5stark_2__pyx_unpickle_StarkBroadenedLine(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(struct __pyx_array_obj *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struct __pyx_array_obj *__pyx_v_self); /* proto */
@@ -15310,8 +15310,8 @@ static void __pyx_memoryviewslice___pyx_pf_15View_dot_MemoryView_16_memoryviewsl
 static PyObject *__pyx_pf___pyx_memoryviewslice___reduce_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf___pyx_memoryviewslice_2__setstate_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_15View_dot_MemoryView___pyx_unpickle_Enum(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_5stark_StarkFunction(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_5stark_StarkBroadenedLine(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_5stark_StarkFunction(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_5stark_StarkBroadenedLine(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_array(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_Enum(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_memoryview(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -15804,10 +15804,10 @@ typedef struct {
   PyTypeObject *__pyx_ptype_6cherab_4core_5model_6plasma_17impact_excitation_ExcitationLine;
   PyTypeObject *__pyx_ptype_6cherab_4core_5model_6plasma_13recombination_RecombinationLine;
   PyTypeObject *__pyx_ptype_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower;
-  PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction;
-  PyObject *__pyx_type_6cherab_11amjuel_data_5stark_StarkFunction;
-  PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine;
-  PyObject *__pyx_type_6cherab_11amjuel_data_5stark_StarkBroadenedLine;
+  PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction;
+  PyObject *__pyx_type_6cherab_11PESDT_addon_5stark_StarkFunction;
+  PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine;
+  PyObject *__pyx_type_6cherab_11PESDT_addon_5stark_StarkBroadenedLine;
   PyTypeObject *__pyx_array_type;
   PyObject *__pyx_type___pyx_array;
   PyTypeObject *__pyx_MemviewEnum_type;
@@ -15887,8 +15887,8 @@ typedef struct {
   PyObject *__pyx_n_u_c;
   PyObject *__pyx_kp_u_c_ij_a_ij_b_ij;
   PyObject *__pyx_n_s_carbon;
-  PyObject *__pyx_n_s_cherab_amjuel_data_stark;
-  PyObject *__pyx_kp_s_cherab_amjuel_data_stark_pyx;
+  PyObject *__pyx_n_s_cherab_PESDT_addon_stark;
+  PyObject *__pyx_kp_s_cherab_PESDT_addon_stark_pyx;
   PyObject *__pyx_n_s_cherab_core_atomic_elements;
   PyObject *__pyx_n_s_cij;
   PyObject *__pyx_n_s_class;
@@ -16498,10 +16498,10 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_4core_5model_6plasma_17impact_excitation_ExcitationLine);
   Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_4core_5model_6plasma_13recombination_RecombinationLine);
   Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower);
-  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction);
-  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11amjuel_data_5stark_StarkFunction);
-  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine);
-  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11amjuel_data_5stark_StarkBroadenedLine);
+  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction);
+  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11PESDT_addon_5stark_StarkFunction);
+  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine);
+  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11PESDT_addon_5stark_StarkBroadenedLine);
   Py_CLEAR(clear_module_state->__pyx_array_type);
   Py_CLEAR(clear_module_state->__pyx_type___pyx_array);
   Py_CLEAR(clear_module_state->__pyx_MemviewEnum_type);
@@ -16581,8 +16581,8 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_u_c);
   Py_CLEAR(clear_module_state->__pyx_kp_u_c_ij_a_ij_b_ij);
   Py_CLEAR(clear_module_state->__pyx_n_s_carbon);
-  Py_CLEAR(clear_module_state->__pyx_n_s_cherab_amjuel_data_stark);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_cherab_amjuel_data_stark_pyx);
+  Py_CLEAR(clear_module_state->__pyx_n_s_cherab_PESDT_addon_stark);
+  Py_CLEAR(clear_module_state->__pyx_kp_s_cherab_PESDT_addon_stark_pyx);
   Py_CLEAR(clear_module_state->__pyx_n_s_cherab_core_atomic_elements);
   Py_CLEAR(clear_module_state->__pyx_n_s_cij);
   Py_CLEAR(clear_module_state->__pyx_n_s_class);
@@ -17179,10 +17179,10 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_4core_5model_6plasma_17impact_excitation_ExcitationLine);
   Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_4core_5model_6plasma_13recombination_RecombinationLine);
   Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower);
-  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction);
-  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11amjuel_data_5stark_StarkFunction);
-  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine);
-  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11amjuel_data_5stark_StarkBroadenedLine);
+  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction);
+  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11PESDT_addon_5stark_StarkFunction);
+  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine);
+  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11PESDT_addon_5stark_StarkBroadenedLine);
   Py_VISIT(traverse_module_state->__pyx_array_type);
   Py_VISIT(traverse_module_state->__pyx_type___pyx_array);
   Py_VISIT(traverse_module_state->__pyx_MemviewEnum_type);
@@ -17262,8 +17262,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_u_c);
   Py_VISIT(traverse_module_state->__pyx_kp_u_c_ij_a_ij_b_ij);
   Py_VISIT(traverse_module_state->__pyx_n_s_carbon);
-  Py_VISIT(traverse_module_state->__pyx_n_s_cherab_amjuel_data_stark);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_cherab_amjuel_data_stark_pyx);
+  Py_VISIT(traverse_module_state->__pyx_n_s_cherab_PESDT_addon_stark);
+  Py_VISIT(traverse_module_state->__pyx_kp_s_cherab_PESDT_addon_stark_pyx);
   Py_VISIT(traverse_module_state->__pyx_n_s_cherab_core_atomic_elements);
   Py_VISIT(traverse_module_state->__pyx_n_s_cij);
   Py_VISIT(traverse_module_state->__pyx_n_s_class);
@@ -17857,10 +17857,10 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_ptype_6cherab_4core_5model_6plasma_17impact_excitation_ExcitationLine __pyx_mstate_global->__pyx_ptype_6cherab_4core_5model_6plasma_17impact_excitation_ExcitationLine
 #define __pyx_ptype_6cherab_4core_5model_6plasma_13recombination_RecombinationLine __pyx_mstate_global->__pyx_ptype_6cherab_4core_5model_6plasma_13recombination_RecombinationLine
 #define __pyx_ptype_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower __pyx_mstate_global->__pyx_ptype_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower
-#define __pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction __pyx_mstate_global->__pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction
-#define __pyx_type_6cherab_11amjuel_data_5stark_StarkFunction __pyx_mstate_global->__pyx_type_6cherab_11amjuel_data_5stark_StarkFunction
-#define __pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine __pyx_mstate_global->__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine
-#define __pyx_type_6cherab_11amjuel_data_5stark_StarkBroadenedLine __pyx_mstate_global->__pyx_type_6cherab_11amjuel_data_5stark_StarkBroadenedLine
+#define __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction __pyx_mstate_global->__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction
+#define __pyx_type_6cherab_11PESDT_addon_5stark_StarkFunction __pyx_mstate_global->__pyx_type_6cherab_11PESDT_addon_5stark_StarkFunction
+#define __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine __pyx_mstate_global->__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine
+#define __pyx_type_6cherab_11PESDT_addon_5stark_StarkBroadenedLine __pyx_mstate_global->__pyx_type_6cherab_11PESDT_addon_5stark_StarkBroadenedLine
 #define __pyx_array_type __pyx_mstate_global->__pyx_array_type
 #define __pyx_type___pyx_array __pyx_mstate_global->__pyx_type___pyx_array
 #define __pyx_MemviewEnum_type __pyx_mstate_global->__pyx_MemviewEnum_type
@@ -17940,8 +17940,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_u_c __pyx_mstate_global->__pyx_n_u_c
 #define __pyx_kp_u_c_ij_a_ij_b_ij __pyx_mstate_global->__pyx_kp_u_c_ij_a_ij_b_ij
 #define __pyx_n_s_carbon __pyx_mstate_global->__pyx_n_s_carbon
-#define __pyx_n_s_cherab_amjuel_data_stark __pyx_mstate_global->__pyx_n_s_cherab_amjuel_data_stark
-#define __pyx_kp_s_cherab_amjuel_data_stark_pyx __pyx_mstate_global->__pyx_kp_s_cherab_amjuel_data_stark_pyx
+#define __pyx_n_s_cherab_PESDT_addon_stark __pyx_mstate_global->__pyx_n_s_cherab_PESDT_addon_stark
+#define __pyx_kp_s_cherab_PESDT_addon_stark_pyx __pyx_mstate_global->__pyx_kp_s_cherab_PESDT_addon_stark_pyx
 #define __pyx_n_s_cherab_core_atomic_elements __pyx_mstate_global->__pyx_n_s_cherab_core_atomic_elements
 #define __pyx_n_s_cij __pyx_mstate_global->__pyx_n_s_cij
 #define __pyx_n_s_class __pyx_mstate_global->__pyx_n_s_class
@@ -18160,7 +18160,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #endif
 /* #### Code section: module_code ### */
 
-/* "cherab/amjuel_data/stark.pyx":40
+/* "cherab/PESDT_addon/stark.pyx":40
  *     STARK_NORM_COEFFICIENT = 4 * LORENZIAN_CUTOFF_GAMMA * hyp2f1(0.4, 1, 1.4, -(2 * LORENZIAN_CUTOFF_GAMMA)**2.5)
  * 
  *     def __init__(self, double wavelength, double lambda_1_2):             # <<<<<<<<<<<<<<
@@ -18169,8 +18169,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
  */
 
 /* Python wrapper */
-static int __pyx_pw_6cherab_11amjuel_data_5stark_13StarkFunction_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_6cherab_11amjuel_data_5stark_13StarkFunction_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_6cherab_11PESDT_addon_5stark_13StarkFunction_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_6cherab_11PESDT_addon_5stark_13StarkFunction_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   double __pyx_v_wavelength;
   double __pyx_v_lambda_1_2;
   CYTHON_UNUSED const Py_ssize_t __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
@@ -18229,18 +18229,18 @@ static int __pyx_pw_6cherab_11amjuel_data_5stark_13StarkFunction_1__init__(PyObj
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 40, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.StarkFunction.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.StarkFunction.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction___init__(((struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction *)__pyx_v_self), __pyx_v_wavelength, __pyx_v_lambda_1_2);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_5stark_13StarkFunction___init__(((struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction *)__pyx_v_self), __pyx_v_wavelength, __pyx_v_lambda_1_2);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction___init__(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction *__pyx_v_self, double __pyx_v_wavelength, double __pyx_v_lambda_1_2) {
+static int __pyx_pf_6cherab_11PESDT_addon_5stark_13StarkFunction___init__(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction *__pyx_v_self, double __pyx_v_wavelength, double __pyx_v_lambda_1_2) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -18252,7 +18252,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction___init__(struct
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "cherab/amjuel_data/stark.pyx":42
+  /* "cherab/PESDT_addon/stark.pyx":42
  *     def __init__(self, double wavelength, double lambda_1_2):
  * 
  *         if wavelength <= 0:             # <<<<<<<<<<<<<<
@@ -18262,7 +18262,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction___init__(struct
   __pyx_t_1 = ((__pyx_v_wavelength <= 0.0) != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "cherab/amjuel_data/stark.pyx":43
+    /* "cherab/PESDT_addon/stark.pyx":43
  * 
  *         if wavelength <= 0:
  *             raise ValueError("Argument 'wavelength' must be positive.")             # <<<<<<<<<<<<<<
@@ -18275,7 +18275,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction___init__(struct
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __PYX_ERR(0, 43, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/stark.pyx":42
+    /* "cherab/PESDT_addon/stark.pyx":42
  *     def __init__(self, double wavelength, double lambda_1_2):
  * 
  *         if wavelength <= 0:             # <<<<<<<<<<<<<<
@@ -18284,7 +18284,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction___init__(struct
  */
   }
 
-  /* "cherab/amjuel_data/stark.pyx":45
+  /* "cherab/PESDT_addon/stark.pyx":45
  *             raise ValueError("Argument 'wavelength' must be positive.")
  * 
  *         if lambda_1_2 <= 0:             # <<<<<<<<<<<<<<
@@ -18294,7 +18294,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction___init__(struct
   __pyx_t_1 = ((__pyx_v_lambda_1_2 <= 0.0) != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "cherab/amjuel_data/stark.pyx":46
+    /* "cherab/PESDT_addon/stark.pyx":46
  * 
  *         if lambda_1_2 <= 0:
  *             raise ValueError("Argument 'lambda_1_2' must be positive.")             # <<<<<<<<<<<<<<
@@ -18307,7 +18307,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction___init__(struct
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __PYX_ERR(0, 46, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/stark.pyx":45
+    /* "cherab/PESDT_addon/stark.pyx":45
  *             raise ValueError("Argument 'wavelength' must be positive.")
  * 
  *         if lambda_1_2 <= 0:             # <<<<<<<<<<<<<<
@@ -18316,7 +18316,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction___init__(struct
  */
   }
 
-  /* "cherab/amjuel_data/stark.pyx":48
+  /* "cherab/PESDT_addon/stark.pyx":48
  *             raise ValueError("Argument 'lambda_1_2' must be positive.")
  * 
  *         self._x0 = wavelength             # <<<<<<<<<<<<<<
@@ -18325,7 +18325,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction___init__(struct
  */
   __pyx_v_self->_x0 = __pyx_v_wavelength;
 
-  /* "cherab/amjuel_data/stark.pyx":49
+  /* "cherab/PESDT_addon/stark.pyx":49
  * 
  *         self._x0 = wavelength
  *         self._a = (0.5 * lambda_1_2)**2.5             # <<<<<<<<<<<<<<
@@ -18334,7 +18334,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction___init__(struct
  */
   __pyx_v_self->_a = pow((0.5 * __pyx_v_lambda_1_2), 2.5);
 
-  /* "cherab/amjuel_data/stark.pyx":52
+  /* "cherab/PESDT_addon/stark.pyx":52
  *         # normalise, so the integral over x is equal to 1 in the limits
  *         # (_x0 - LORENZIAN_CUTOFF_GAMMA * lambda_1_2, _x0 + LORENZIAN_CUTOFF_GAMMA * lambda_1_2)
  *         self._norm = (0.5 * lambda_1_2)**1.5 / <double> self.STARK_NORM_COEFFICIENT             # <<<<<<<<<<<<<<
@@ -18352,7 +18352,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction___init__(struct
   }
   __pyx_v_self->_norm = (__pyx_t_3 / ((double)__pyx_t_4));
 
-  /* "cherab/amjuel_data/stark.pyx":40
+  /* "cherab/PESDT_addon/stark.pyx":40
  *     STARK_NORM_COEFFICIENT = 4 * LORENZIAN_CUTOFF_GAMMA * hyp2f1(0.4, 1, 1.4, -(2 * LORENZIAN_CUTOFF_GAMMA)**2.5)
  * 
  *     def __init__(self, double wavelength, double lambda_1_2):             # <<<<<<<<<<<<<<
@@ -18365,28 +18365,28 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction___init__(struct
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.StarkFunction.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.StarkFunction.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/stark.pyx":55
+/* "cherab/PESDT_addon/stark.pyx":55
  * 
  *     @cython.cdivision(True)
- *     cdef double evaluate(self, double x) except? -1e999:             # <<<<<<<<<<<<<<
+ *     cdef double evaluate(self, double x) except ? -1e999:             # <<<<<<<<<<<<<<
  * 
  *         return self._norm / ((fabs(x - self._x0))**2.5 + self._a)
  */
 
-static double __pyx_f_6cherab_11amjuel_data_5stark_13StarkFunction_evaluate(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction *__pyx_v_self, double __pyx_v_x) {
+static double __pyx_f_6cherab_11PESDT_addon_5stark_13StarkFunction_evaluate(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction *__pyx_v_self, double __pyx_v_x) {
   double __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("evaluate", 0);
 
-  /* "cherab/amjuel_data/stark.pyx":57
- *     cdef double evaluate(self, double x) except? -1e999:
+  /* "cherab/PESDT_addon/stark.pyx":57
+ *     cdef double evaluate(self, double x) except ? -1e999:
  * 
  *         return self._norm / ((fabs(x - self._x0))**2.5 + self._a)             # <<<<<<<<<<<<<<
  * 
@@ -18395,10 +18395,10 @@ static double __pyx_f_6cherab_11amjuel_data_5stark_13StarkFunction_evaluate(stru
   __pyx_r = (__pyx_v_self->_norm / (pow(fabs((__pyx_v_x - __pyx_v_self->_x0)), 2.5) + __pyx_v_self->_a));
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/stark.pyx":55
+  /* "cherab/PESDT_addon/stark.pyx":55
  * 
  *     @cython.cdivision(True)
- *     cdef double evaluate(self, double x) except? -1e999:             # <<<<<<<<<<<<<<
+ *     cdef double evaluate(self, double x) except ? -1e999:             # <<<<<<<<<<<<<<
  * 
  *         return self._norm / ((fabs(x - self._x0))**2.5 + self._a)
  */
@@ -18416,15 +18416,15 @@ static double __pyx_f_6cherab_11amjuel_data_5stark_13StarkFunction_evaluate(stru
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_5stark_13StarkFunction_3__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_5stark_13StarkFunction_3__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_5stark_13StarkFunction_3__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_5stark_13StarkFunction_3__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_5stark_13StarkFunction_3__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_5stark_13StarkFunction_3__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_5stark_13StarkFunction_3__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_5stark_13StarkFunction_3__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -18441,14 +18441,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("__reduce_cython__", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__reduce_cython__", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction_2__reduce_cython__(((struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_5stark_13StarkFunction_2__reduce_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction_2__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_5stark_13StarkFunction_2__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -18666,7 +18666,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction_2__reduce
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.StarkFunction.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.StarkFunction.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_state);
@@ -18684,15 +18684,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction_2__reduce
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_5stark_13StarkFunction_5__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_5stark_13StarkFunction_5__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_5stark_13StarkFunction_5__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_5stark_13StarkFunction_5__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_5stark_13StarkFunction_5__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_5stark_13StarkFunction_5__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_5stark_13StarkFunction_5__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_5stark_13StarkFunction_5__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -18747,18 +18747,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__setstate_cython__", 1, 1, 1, __pyx_nargs); __PYX_ERR(1, 16, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.StarkFunction.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.StarkFunction.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction_4__setstate_cython__(((struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_5stark_13StarkFunction_4__setstate_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction_4__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_5stark_13StarkFunction_4__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -18773,7 +18773,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction_4__setsta
  *     __pyx_unpickle_StarkFunction__set_state(self, __pyx_state)             # <<<<<<<<<<<<<<
  */
   if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 17, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_6cherab_11amjuel_data_5stark___pyx_unpickle_StarkFunction__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6cherab_11PESDT_addon_5stark___pyx_unpickle_StarkFunction__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
@@ -18789,7 +18789,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction_4__setsta
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.StarkFunction.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.StarkFunction.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -18797,7 +18797,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction_4__setsta
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/stark.pyx":158
+/* "cherab/PESDT_addon/stark.pyx":158
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, double wavelength, Species target_species, Plasma plasma,             # <<<<<<<<<<<<<<
@@ -18806,8 +18806,8 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_13StarkFunction_4__setsta
  */
 
 /* Python wrapper */
-static int __pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line = 0;
   double __pyx_v_wavelength;
   struct __pyx_obj_6cherab_4core_7species_Species *__pyx_v_target_species = 0;
@@ -18830,7 +18830,7 @@ static int __pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_1__init__(
     #endif
     PyObject* values[6] = {0,0,0,0,0,0};
 
-    /* "cherab/amjuel_data/stark.pyx":159
+    /* "cherab/PESDT_addon/stark.pyx":159
  * 
  *     def __init__(self, Line line, double wavelength, Species target_species, Plasma plasma,
  *                  dict stark_model_coefficients=None, integrator=GaussianQuadrature()):             # <<<<<<<<<<<<<<
@@ -18928,7 +18928,7 @@ static int __pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_1__init__(
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__init__", 0, 4, 6, __pyx_nargs); __PYX_ERR(0, 158, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.StarkBroadenedLine.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.StarkBroadenedLine.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
@@ -18936,9 +18936,9 @@ static int __pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_1__init__(
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_target_species), __pyx_ptype_6cherab_4core_7species_Species, 1, "target_species", 0))) __PYX_ERR(0, 158, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_plasma), __pyx_ptype_6cherab_4core_6plasma_4node_Plasma, 1, "plasma", 0))) __PYX_ERR(0, 158, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_stark_model_coefficients), (&PyDict_Type), 1, "stark_model_coefficients", 1))) __PYX_ERR(0, 159, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(((struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *)__pyx_v_self), __pyx_v_line, __pyx_v_wavelength, __pyx_v_target_species, __pyx_v_plasma, __pyx_v_stark_model_coefficients, __pyx_v_integrator);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine___init__(((struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *)__pyx_v_self), __pyx_v_line, __pyx_v_wavelength, __pyx_v_target_species, __pyx_v_plasma, __pyx_v_stark_model_coefficients, __pyx_v_integrator);
 
-  /* "cherab/amjuel_data/stark.pyx":158
+  /* "cherab/PESDT_addon/stark.pyx":158
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, double wavelength, Species target_species, Plasma plasma,             # <<<<<<<<<<<<<<
@@ -18955,7 +18955,7 @@ static int __pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_1__init__(
   return __pyx_r;
 }
 
-static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, double __pyx_v_wavelength, struct __pyx_obj_6cherab_4core_7species_Species *__pyx_v_target_species, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, PyObject *__pyx_v_stark_model_coefficients, PyObject *__pyx_v_integrator) {
+static int __pyx_pf_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine___init__(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, double __pyx_v_wavelength, struct __pyx_obj_6cherab_4core_7species_Species *__pyx_v_target_species, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, PyObject *__pyx_v_stark_model_coefficients, PyObject *__pyx_v_integrator) {
   PyObject *__pyx_v_cij = NULL;
   PyObject *__pyx_v_aij = NULL;
   PyObject *__pyx_v_bij = NULL;
@@ -18979,7 +18979,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
   __Pyx_RefNannySetupContext("__init__", 0);
   __Pyx_INCREF(__pyx_v_stark_model_coefficients);
 
-  /* "cherab/amjuel_data/stark.pyx":161
+  /* "cherab/PESDT_addon/stark.pyx":161
  *                  dict stark_model_coefficients=None, integrator=GaussianQuadrature()):
  * 
  *         stark_model_coefficients = stark_model_coefficients or self.STARK_MODEL_COEFFICIENTS_DEFAULT             # <<<<<<<<<<<<<<
@@ -19003,7 +19003,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
   __Pyx_DECREF_SET(__pyx_v_stark_model_coefficients, ((PyObject*)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":163
+  /* "cherab/PESDT_addon/stark.pyx":163
  *         stark_model_coefficients = stark_model_coefficients or self.STARK_MODEL_COEFFICIENTS_DEFAULT
  * 
  *         try:             # <<<<<<<<<<<<<<
@@ -19019,7 +19019,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
     __Pyx_XGOTREF(__pyx_t_6);
     /*try:*/ {
 
-      /* "cherab/amjuel_data/stark.pyx":165
+      /* "cherab/PESDT_addon/stark.pyx":165
  *         try:
  *             # Fitted Stark Constants
  *             cij, aij, bij = stark_model_coefficients[line]             # <<<<<<<<<<<<<<
@@ -19092,7 +19092,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
       __pyx_v_bij = __pyx_t_8;
       __pyx_t_8 = 0;
 
-      /* "cherab/amjuel_data/stark.pyx":166
+      /* "cherab/PESDT_addon/stark.pyx":166
  *             # Fitted Stark Constants
  *             cij, aij, bij = stark_model_coefficients[line]
  *             if cij <= 0:             # <<<<<<<<<<<<<<
@@ -19104,7 +19104,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if (unlikely(__pyx_t_2)) {
 
-        /* "cherab/amjuel_data/stark.pyx":167
+        /* "cherab/PESDT_addon/stark.pyx":167
  *             cij, aij, bij = stark_model_coefficients[line]
  *             if cij <= 0:
  *                 raise ValueError('Coefficient c_ij must be positive.')             # <<<<<<<<<<<<<<
@@ -19117,7 +19117,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __PYX_ERR(0, 167, __pyx_L5_error)
 
-        /* "cherab/amjuel_data/stark.pyx":166
+        /* "cherab/PESDT_addon/stark.pyx":166
  *             # Fitted Stark Constants
  *             cij, aij, bij = stark_model_coefficients[line]
  *             if cij <= 0:             # <<<<<<<<<<<<<<
@@ -19126,7 +19126,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
  */
       }
 
-      /* "cherab/amjuel_data/stark.pyx":168
+      /* "cherab/PESDT_addon/stark.pyx":168
  *             if cij <= 0:
  *                 raise ValueError('Coefficient c_ij must be positive.')
  *             if aij <= 0:             # <<<<<<<<<<<<<<
@@ -19138,7 +19138,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if (unlikely(__pyx_t_2)) {
 
-        /* "cherab/amjuel_data/stark.pyx":169
+        /* "cherab/PESDT_addon/stark.pyx":169
  *                 raise ValueError('Coefficient c_ij must be positive.')
  *             if aij <= 0:
  *                 raise ValueError('Coefficient a_ij must be positive.')             # <<<<<<<<<<<<<<
@@ -19151,7 +19151,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __PYX_ERR(0, 169, __pyx_L5_error)
 
-        /* "cherab/amjuel_data/stark.pyx":168
+        /* "cherab/PESDT_addon/stark.pyx":168
  *             if cij <= 0:
  *                 raise ValueError('Coefficient c_ij must be positive.')
  *             if aij <= 0:             # <<<<<<<<<<<<<<
@@ -19160,7 +19160,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
  */
       }
 
-      /* "cherab/amjuel_data/stark.pyx":170
+      /* "cherab/PESDT_addon/stark.pyx":170
  *             if aij <= 0:
  *                 raise ValueError('Coefficient a_ij must be positive.')
  *             if bij <= 0:             # <<<<<<<<<<<<<<
@@ -19172,7 +19172,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if (unlikely(__pyx_t_2)) {
 
-        /* "cherab/amjuel_data/stark.pyx":171
+        /* "cherab/PESDT_addon/stark.pyx":171
  *                 raise ValueError('Coefficient a_ij must be positive.')
  *             if bij <= 0:
  *                 raise ValueError('Coefficient b_ij must be positive.')             # <<<<<<<<<<<<<<
@@ -19185,7 +19185,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __PYX_ERR(0, 171, __pyx_L5_error)
 
-        /* "cherab/amjuel_data/stark.pyx":170
+        /* "cherab/PESDT_addon/stark.pyx":170
  *             if aij <= 0:
  *                 raise ValueError('Coefficient a_ij must be positive.')
  *             if bij <= 0:             # <<<<<<<<<<<<<<
@@ -19194,7 +19194,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
  */
       }
 
-      /* "cherab/amjuel_data/stark.pyx":172
+      /* "cherab/PESDT_addon/stark.pyx":172
  *             if bij <= 0:
  *                 raise ValueError('Coefficient b_ij must be positive.')
  *             self._aij = aij             # <<<<<<<<<<<<<<
@@ -19203,7 +19203,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
  */
       if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_aij, __pyx_v_aij) < 0) __PYX_ERR(0, 172, __pyx_L5_error)
 
-      /* "cherab/amjuel_data/stark.pyx":173
+      /* "cherab/PESDT_addon/stark.pyx":173
  *                 raise ValueError('Coefficient b_ij must be positive.')
  *             self._aij = aij
  *             self._bij = bij             # <<<<<<<<<<<<<<
@@ -19212,7 +19212,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
  */
       if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_bij, __pyx_v_bij) < 0) __PYX_ERR(0, 173, __pyx_L5_error)
 
-      /* "cherab/amjuel_data/stark.pyx":174
+      /* "cherab/PESDT_addon/stark.pyx":174
  *             self._aij = aij
  *             self._bij = bij
  *             self._cij = cij             # <<<<<<<<<<<<<<
@@ -19221,7 +19221,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
  */
       if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_cij, __pyx_v_cij) < 0) __PYX_ERR(0, 174, __pyx_L5_error)
 
-      /* "cherab/amjuel_data/stark.pyx":163
+      /* "cherab/PESDT_addon/stark.pyx":163
  *         stark_model_coefficients = stark_model_coefficients or self.STARK_MODEL_COEFFICIENTS_DEFAULT
  * 
  *         try:             # <<<<<<<<<<<<<<
@@ -19240,7 +19240,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-    /* "cherab/amjuel_data/stark.pyx":175
+    /* "cherab/PESDT_addon/stark.pyx":175
  *             self._bij = bij
  *             self._cij = cij
  *         except IndexError:             # <<<<<<<<<<<<<<
@@ -19249,13 +19249,13 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
  */
     __pyx_t_11 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_IndexError);
     if (__pyx_t_11) {
-      __Pyx_AddTraceback("cherab.amjuel_data.stark.StarkBroadenedLine.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("cherab.PESDT_addon.stark.StarkBroadenedLine.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
       if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_8, &__pyx_t_7) < 0) __PYX_ERR(0, 175, __pyx_L7_except_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_GOTREF(__pyx_t_7);
 
-      /* "cherab/amjuel_data/stark.pyx":176
+      /* "cherab/PESDT_addon/stark.pyx":176
  *             self._cij = cij
  *         except IndexError:
  *             raise ValueError('Stark broadening coefficients for {} is not currently available.'.format(line))             # <<<<<<<<<<<<<<
@@ -19294,7 +19294,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
     goto __pyx_L7_except_error;
     __pyx_L7_except_error:;
 
-    /* "cherab/amjuel_data/stark.pyx":163
+    /* "cherab/PESDT_addon/stark.pyx":163
  *         stark_model_coefficients = stark_model_coefficients or self.STARK_MODEL_COEFFICIENTS_DEFAULT
  * 
  *         try:             # <<<<<<<<<<<<<<
@@ -19309,7 +19309,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
     __pyx_L10_try_end:;
   }
 
-  /* "cherab/amjuel_data/stark.pyx":178
+  /* "cherab/PESDT_addon/stark.pyx":178
  *             raise ValueError('Stark broadening coefficients for {} is not currently available.'.format(line))
  * 
  *         super().__init__(line, wavelength, target_species, plasma, integrator)             # <<<<<<<<<<<<<<
@@ -19318,9 +19318,9 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
  */
   __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __Pyx_INCREF((PyObject *)__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine);
-  __Pyx_GIVEREF((PyObject *)__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine);
-  PyTuple_SET_ITEM(__pyx_t_8, 0, ((PyObject *)__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine));
+  __Pyx_INCREF((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine);
+  __Pyx_GIVEREF((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine);
+  PyTuple_SET_ITEM(__pyx_t_8, 0, ((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine));
   __Pyx_INCREF((PyObject *)__pyx_v_self);
   __Pyx_GIVEREF((PyObject *)__pyx_v_self);
   PyTuple_SET_ITEM(__pyx_t_8, 1, ((PyObject *)__pyx_v_self));
@@ -19355,7 +19355,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
   }
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":158
+  /* "cherab/PESDT_addon/stark.pyx":158
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, double wavelength, Species target_species, Plasma plasma,             # <<<<<<<<<<<<<<
@@ -19373,7 +19373,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_9);
   __Pyx_XDECREF(__pyx_t_12);
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.StarkBroadenedLine.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.StarkBroadenedLine.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_cij);
@@ -19384,7 +19384,7 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/stark.pyx":180
+/* "cherab/PESDT_addon/stark.pyx":180
  *         super().__init__(line, wavelength, target_species, plasma, integrator)
  * 
  *     def show_supported_transitions(self):             # <<<<<<<<<<<<<<
@@ -19393,16 +19393,16 @@ static int __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine___init__(s
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_3show_supported_transitions(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_3show_supported_transitions(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_2show_supported_transitions, " Prints all supported transitions.");
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_3show_supported_transitions = {"show_supported_transitions", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_3show_supported_transitions, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_2show_supported_transitions};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_3show_supported_transitions(PyObject *__pyx_v_self, 
+PyDoc_STRVAR(__pyx_doc_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_2show_supported_transitions, " Prints all supported transitions.");
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_3show_supported_transitions = {"show_supported_transitions", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_3show_supported_transitions, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_2show_supported_transitions};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_3show_supported_transitions(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -19419,14 +19419,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("show_supported_transitions", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "show_supported_transitions", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_2show_supported_transitions(((struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_2show_supported_transitions(((struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_2show_supported_transitions(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_2show_supported_transitions(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *__pyx_v_self) {
   PyObject *__pyx_v_line = NULL;
   PyObject *__pyx_v_coeff = NULL;
   PyObject *__pyx_r = NULL;
@@ -19447,7 +19447,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_2sho
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("show_supported_transitions", 0);
 
-  /* "cherab/amjuel_data/stark.pyx":182
+  /* "cherab/PESDT_addon/stark.pyx":182
  *     def show_supported_transitions(self):
  *         """ Prints all supported transitions."""
  *         for line, coeff in self.STARK_MODEL_COEFFICIENTS_DEFAULT.items():             # <<<<<<<<<<<<<<
@@ -19478,7 +19478,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_2sho
     __Pyx_XDECREF_SET(__pyx_v_coeff, __pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "cherab/amjuel_data/stark.pyx":183
+    /* "cherab/PESDT_addon/stark.pyx":183
  *         """ Prints all supported transitions."""
  *         for line, coeff in self.STARK_MODEL_COEFFICIENTS_DEFAULT.items():
  *             print('{}: c_ij={}, a_ij={}, b_ij={}'.format(line, coeff[0], coeff[1], coeff[2]))             # <<<<<<<<<<<<<<
@@ -19523,7 +19523,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_2sho
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":180
+  /* "cherab/PESDT_addon/stark.pyx":180
  *         super().__init__(line, wavelength, target_species, plasma, integrator)
  * 
  *     def show_supported_transitions(self):             # <<<<<<<<<<<<<<
@@ -19542,7 +19542,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_2sho
   __Pyx_XDECREF(__pyx_t_9);
   __Pyx_XDECREF(__pyx_t_10);
   __Pyx_XDECREF(__pyx_t_11);
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.StarkBroadenedLine.show_supported_transitions", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.StarkBroadenedLine.show_supported_transitions", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_line);
@@ -19552,7 +19552,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_2sho
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/stark.pyx":189
+/* "cherab/PESDT_addon/stark.pyx":189
  *     @cython.initializedcheck(False)
  *     @cython.cdivision(True)
  *     cpdef Spectrum add_line(self, double radiance, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -19560,14 +19560,14 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_2sho
  *         cdef:
  */
 
-static PyObject *__pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_5add_line(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_5add_line(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_add_line(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *__pyx_v_self, double __pyx_v_radiance, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, CYTHON_UNUSED struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch) {
+static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_add_line(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *__pyx_v_self, double __pyx_v_radiance, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, CYTHON_UNUSED struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch) {
   double __pyx_v_ne;
   double __pyx_v_te;
   double __pyx_v_lambda_1_2;
@@ -19618,7 +19618,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
       #else
       if (!PyCFunction_Check(__pyx_t_1)
       #endif
-              || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_5add_line)) {
+              || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_5add_line)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
         __pyx_t_3 = PyFloat_FromDouble(__pyx_v_radiance); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 189, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
@@ -19663,7 +19663,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     #endif
   }
 
-  /* "cherab/amjuel_data/stark.pyx":199
+  /* "cherab/PESDT_addon/stark.pyx":199
  *             Spectrum raw_lineshape
  * 
  *         ne = self.plasma.get_electron_distribution().density(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -19676,7 +19676,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_ne = __pyx_t_7;
 
-  /* "cherab/amjuel_data/stark.pyx":200
+  /* "cherab/PESDT_addon/stark.pyx":200
  * 
  *         ne = self.plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:             # <<<<<<<<<<<<<<
@@ -19686,7 +19686,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_8 = ((__pyx_v_ne <= 0.0) != 0);
   if (__pyx_t_8) {
 
-    /* "cherab/amjuel_data/stark.pyx":201
+    /* "cherab/PESDT_addon/stark.pyx":201
  *         ne = self.plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -19698,7 +19698,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/stark.pyx":200
+    /* "cherab/PESDT_addon/stark.pyx":200
  * 
  *         ne = self.plasma.get_electron_distribution().density(point.x, point.y, point.z)
  *         if ne <= 0.0:             # <<<<<<<<<<<<<<
@@ -19707,7 +19707,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/stark.pyx":203
+  /* "cherab/PESDT_addon/stark.pyx":203
  *             return spectrum
  * 
  *         te = self.plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -19720,7 +19720,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_te = __pyx_t_7;
 
-  /* "cherab/amjuel_data/stark.pyx":204
+  /* "cherab/PESDT_addon/stark.pyx":204
  * 
  *         te = self.plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:             # <<<<<<<<<<<<<<
@@ -19730,7 +19730,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_8 = ((__pyx_v_te <= 0.0) != 0);
   if (__pyx_t_8) {
 
-    /* "cherab/amjuel_data/stark.pyx":205
+    /* "cherab/PESDT_addon/stark.pyx":205
  *         te = self.plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -19742,7 +19742,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/stark.pyx":204
+    /* "cherab/PESDT_addon/stark.pyx":204
  * 
  *         te = self.plasma.get_electron_distribution().effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:             # <<<<<<<<<<<<<<
@@ -19751,7 +19751,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/stark.pyx":207
+  /* "cherab/PESDT_addon/stark.pyx":207
  *             return spectrum
  * 
  *         lambda_1_2 = self._cij * ne**self._aij / (te**self._bij)             # <<<<<<<<<<<<<<
@@ -19788,7 +19788,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_lambda_1_2 = __pyx_t_7;
 
-  /* "cherab/amjuel_data/stark.pyx":209
+  /* "cherab/PESDT_addon/stark.pyx":209
  *         lambda_1_2 = self._cij * ne**self._aij / (te**self._bij)
  * 
  *         self.integrator.function = StarkFunction(self.wavelength, lambda_1_2)             # <<<<<<<<<<<<<<
@@ -19807,7 +19807,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction), __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 209, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction), __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_GIVEREF(__pyx_t_2);
@@ -19816,7 +19816,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_v_self->__pyx_base.integrator->function = ((struct __pyx_obj_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":212
+  /* "cherab/PESDT_addon/stark.pyx":212
  * 
  *         # calculate and check end of limits
  *         cutoff_lower_wavelength = self.wavelength - LORENZIAN_CUTOFF_GAMMA * lambda_1_2             # <<<<<<<<<<<<<<
@@ -19825,7 +19825,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   __pyx_v_cutoff_lower_wavelength = (__pyx_v_self->__pyx_base.wavelength - (50.0 * __pyx_v_lambda_1_2));
 
-  /* "cherab/amjuel_data/stark.pyx":213
+  /* "cherab/PESDT_addon/stark.pyx":213
  *         # calculate and check end of limits
  *         cutoff_lower_wavelength = self.wavelength - LORENZIAN_CUTOFF_GAMMA * lambda_1_2
  *         if spectrum.max_wavelength < cutoff_lower_wavelength:             # <<<<<<<<<<<<<<
@@ -19835,7 +19835,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_8 = ((__pyx_v_spectrum->max_wavelength < __pyx_v_cutoff_lower_wavelength) != 0);
   if (__pyx_t_8) {
 
-    /* "cherab/amjuel_data/stark.pyx":214
+    /* "cherab/PESDT_addon/stark.pyx":214
  *         cutoff_lower_wavelength = self.wavelength - LORENZIAN_CUTOFF_GAMMA * lambda_1_2
  *         if spectrum.max_wavelength < cutoff_lower_wavelength:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -19847,7 +19847,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/stark.pyx":213
+    /* "cherab/PESDT_addon/stark.pyx":213
  *         # calculate and check end of limits
  *         cutoff_lower_wavelength = self.wavelength - LORENZIAN_CUTOFF_GAMMA * lambda_1_2
  *         if spectrum.max_wavelength < cutoff_lower_wavelength:             # <<<<<<<<<<<<<<
@@ -19856,7 +19856,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/stark.pyx":216
+  /* "cherab/PESDT_addon/stark.pyx":216
  *             return spectrum
  * 
  *         cutoff_upper_wavelength = self.wavelength + LORENZIAN_CUTOFF_GAMMA * lambda_1_2             # <<<<<<<<<<<<<<
@@ -19865,7 +19865,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   __pyx_v_cutoff_upper_wavelength = (__pyx_v_self->__pyx_base.wavelength + (50.0 * __pyx_v_lambda_1_2));
 
-  /* "cherab/amjuel_data/stark.pyx":217
+  /* "cherab/PESDT_addon/stark.pyx":217
  * 
  *         cutoff_upper_wavelength = self.wavelength + LORENZIAN_CUTOFF_GAMMA * lambda_1_2
  *         if spectrum.min_wavelength > cutoff_upper_wavelength:             # <<<<<<<<<<<<<<
@@ -19875,7 +19875,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_8 = ((__pyx_v_spectrum->min_wavelength > __pyx_v_cutoff_upper_wavelength) != 0);
   if (__pyx_t_8) {
 
-    /* "cherab/amjuel_data/stark.pyx":218
+    /* "cherab/PESDT_addon/stark.pyx":218
  *         cutoff_upper_wavelength = self.wavelength + LORENZIAN_CUTOFF_GAMMA * lambda_1_2
  *         if spectrum.min_wavelength > cutoff_upper_wavelength:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -19887,7 +19887,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/stark.pyx":217
+    /* "cherab/PESDT_addon/stark.pyx":217
  * 
  *         cutoff_upper_wavelength = self.wavelength + LORENZIAN_CUTOFF_GAMMA * lambda_1_2
  *         if spectrum.min_wavelength > cutoff_upper_wavelength:             # <<<<<<<<<<<<<<
@@ -19896,7 +19896,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/stark.pyx":221
+  /* "cherab/PESDT_addon/stark.pyx":221
  * 
  *         # locate range of bins where there is significant contribution from the gaussian (plus a health margin)
  *         start = max(0, <int> floor((cutoff_lower_wavelength - spectrum.min_wavelength) / spectrum.delta_wavelength))             # <<<<<<<<<<<<<<
@@ -19912,7 +19912,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   }
   __pyx_v_start = __pyx_t_10;
 
-  /* "cherab/amjuel_data/stark.pyx":222
+  /* "cherab/PESDT_addon/stark.pyx":222
  *         # locate range of bins where there is significant contribution from the gaussian (plus a health margin)
  *         start = max(0, <int> floor((cutoff_lower_wavelength - spectrum.min_wavelength) / spectrum.delta_wavelength))
  *         end = min(spectrum.bins, <int> ceil((cutoff_upper_wavelength - spectrum.min_wavelength) / spectrum.delta_wavelength))             # <<<<<<<<<<<<<<
@@ -19928,7 +19928,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   }
   __pyx_v_end = __pyx_t_12;
 
-  /* "cherab/amjuel_data/stark.pyx":225
+  /* "cherab/PESDT_addon/stark.pyx":225
  * 
  *         # add line to spectrum
  *         lower_wavelength = spectrum.min_wavelength + start * spectrum.delta_wavelength             # <<<<<<<<<<<<<<
@@ -19937,7 +19937,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   __pyx_v_lower_wavelength = (__pyx_v_spectrum->min_wavelength + (__pyx_v_start * __pyx_v_spectrum->delta_wavelength));
 
-  /* "cherab/amjuel_data/stark.pyx":228
+  /* "cherab/PESDT_addon/stark.pyx":228
  * 
  *         # Def memory view
  *         cdef double[:] spectrum_samples_mem_view = spectrum.samples_mv             # <<<<<<<<<<<<<<
@@ -19950,7 +19950,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_13.memview = NULL;
   __pyx_t_13.data = NULL;
 
-  /* "cherab/amjuel_data/stark.pyx":231
+  /* "cherab/PESDT_addon/stark.pyx":231
  *         cdef double value_at_i
  *         cdef Py_ssize_t i
  *         for i in range(start, end):             # <<<<<<<<<<<<<<
@@ -19962,7 +19962,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   for (__pyx_t_14 = __pyx_v_start; __pyx_t_14 < __pyx_t_6; __pyx_t_14+=1) {
     __pyx_v_i = __pyx_t_14;
 
-    /* "cherab/amjuel_data/stark.pyx":232
+    /* "cherab/PESDT_addon/stark.pyx":232
  *         cdef Py_ssize_t i
  *         for i in range(start, end):
  *             upper_wavelength = spectrum.min_wavelength + spectrum.delta_wavelength * (i + 1)             # <<<<<<<<<<<<<<
@@ -19971,7 +19971,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
     __pyx_v_upper_wavelength = (__pyx_v_spectrum->min_wavelength + (__pyx_v_spectrum->delta_wavelength * (__pyx_v_i + 1)));
 
-    /* "cherab/amjuel_data/stark.pyx":234
+    /* "cherab/PESDT_addon/stark.pyx":234
  *             upper_wavelength = spectrum.min_wavelength + spectrum.delta_wavelength * (i + 1)
  * 
  *             bin_integral = self.integrator.evaluate(lower_wavelength, upper_wavelength)             # <<<<<<<<<<<<<<
@@ -19981,7 +19981,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_t_7 = ((struct __pyx_vtabstruct_6cherab_4core_4math_11integrators_13integrators1d_Integrator1D *)__pyx_v_self->__pyx_base.integrator->__pyx_vtab)->evaluate(__pyx_v_self->__pyx_base.integrator, __pyx_v_lower_wavelength, __pyx_v_upper_wavelength); if (unlikely(__pyx_t_7 == ((double)(-Py_HUGE_VAL)) && PyErr_Occurred())) __PYX_ERR(0, 234, __pyx_L1_error)
     __pyx_v_bin_integral = __pyx_t_7;
 
-    /* "cherab/amjuel_data/stark.pyx":235
+    /* "cherab/PESDT_addon/stark.pyx":235
  * 
  *             bin_integral = self.integrator.evaluate(lower_wavelength, upper_wavelength)
  *             value_at_i = spectrum_samples_mem_view[i]             # <<<<<<<<<<<<<<
@@ -19991,7 +19991,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_t_15 = __pyx_v_i;
     __pyx_v_value_at_i = (*((double *) ( /* dim=0 */ (__pyx_v_spectrum_samples_mem_view.data + __pyx_t_15 * __pyx_v_spectrum_samples_mem_view.strides[0]) )));
 
-    /* "cherab/amjuel_data/stark.pyx":236
+    /* "cherab/PESDT_addon/stark.pyx":236
  *             bin_integral = self.integrator.evaluate(lower_wavelength, upper_wavelength)
  *             value_at_i = spectrum_samples_mem_view[i]
  *             spectrum_samples_mem_view[i] = value_at_i + radiance * bin_integral / spectrum.delta_wavelength             # <<<<<<<<<<<<<<
@@ -20001,7 +20001,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_t_15 = __pyx_v_i;
     *((double *) ( /* dim=0 */ (__pyx_v_spectrum_samples_mem_view.data + __pyx_t_15 * __pyx_v_spectrum_samples_mem_view.strides[0]) )) = (__pyx_v_value_at_i + ((__pyx_v_radiance * __pyx_v_bin_integral) / __pyx_v_spectrum->delta_wavelength));
 
-    /* "cherab/amjuel_data/stark.pyx":238
+    /* "cherab/PESDT_addon/stark.pyx":238
  *             spectrum_samples_mem_view[i] = value_at_i + radiance * bin_integral / spectrum.delta_wavelength
  * 
  *             lower_wavelength = upper_wavelength             # <<<<<<<<<<<<<<
@@ -20011,7 +20011,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_v_lower_wavelength = __pyx_v_upper_wavelength;
   }
 
-  /* "cherab/amjuel_data/stark.pyx":240
+  /* "cherab/PESDT_addon/stark.pyx":240
  *             lower_wavelength = upper_wavelength
  * 
  *         return spectrum             # <<<<<<<<<<<<<<
@@ -20021,7 +20021,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_r = __pyx_v_spectrum;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/stark.pyx":189
+  /* "cherab/PESDT_addon/stark.pyx":189
  *     @cython.initializedcheck(False)
  *     @cython.cdivision(True)
  *     cpdef Spectrum add_line(self, double radiance, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -20037,7 +20037,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __PYX_XCLEAR_MEMVIEW(&__pyx_t_13, 1);
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.StarkBroadenedLine.add_line", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.StarkBroadenedLine.add_line", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_spectrum_samples_mem_view, 1);
@@ -20047,15 +20047,15 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_5add_line(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_5add_line(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_5add_line = {"add_line", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_5add_line, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_5add_line(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_5add_line = {"add_line", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_5add_line, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_5add_line(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20146,14 +20146,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("add_line", 1, 4, 4, __pyx_nargs); __PYX_ERR(0, 189, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.StarkBroadenedLine.add_line", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.StarkBroadenedLine.add_line", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_point), __pyx_ptype_7raysect_4core_4math_5point_Point3D, 1, "point", 0))) __PYX_ERR(0, 189, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_direction), __pyx_ptype_7raysect_4core_4math_6vector_Vector3D, 1, "direction", 0))) __PYX_ERR(0, 189, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_spectrum), __pyx_ptype_7raysect_7optical_8spectrum_Spectrum, 1, "spectrum", 0))) __PYX_ERR(0, 189, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_4add_line(((struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *)__pyx_v_self), __pyx_v_radiance, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_4add_line(((struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *)__pyx_v_self), __pyx_v_radiance, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum);
 
   /* function exit code */
   goto __pyx_L0;
@@ -20164,7 +20164,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_4add_line(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *__pyx_v_self, double __pyx_v_radiance, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_4add_line(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *__pyx_v_self, double __pyx_v_radiance, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -20173,7 +20173,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_4add
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("add_line", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_add_line(__pyx_v_self, __pyx_v_radiance, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_add_line(__pyx_v_self, __pyx_v_radiance, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 189, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -20182,7 +20182,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_4add
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.StarkBroadenedLine.add_line", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.StarkBroadenedLine.add_line", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -20197,15 +20197,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_4add
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_7__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_7__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_7__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_7__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_7__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_7__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_7__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_7__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20222,14 +20222,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("__reduce_cython__", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__reduce_cython__", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_6__reduce_cython__(((struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_6__reduce_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_6__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_6__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -20473,7 +20473,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_6__r
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.StarkBroadenedLine.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.StarkBroadenedLine.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_state);
@@ -20491,15 +20491,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_6__r
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_9__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_9__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_9__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_9__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_9__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_9__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_9__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_9__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20554,18 +20554,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__setstate_cython__", 1, 1, 1, __pyx_nargs); __PYX_ERR(1, 16, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.StarkBroadenedLine.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.StarkBroadenedLine.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_8__setstate_cython__(((struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_8__setstate_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_8__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_8__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -20580,7 +20580,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_8__s
  *     __pyx_unpickle_StarkBroadenedLine__set_state(self, __pyx_state)             # <<<<<<<<<<<<<<
  */
   if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 17, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_6cherab_11amjuel_data_5stark___pyx_unpickle_StarkBroadenedLine__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6cherab_11PESDT_addon_5stark___pyx_unpickle_StarkBroadenedLine__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
@@ -20596,7 +20596,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_8__s
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.StarkBroadenedLine.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.StarkBroadenedLine.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -20611,15 +20611,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_8__s
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_5stark_1__pyx_unpickle_StarkFunction(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_5stark_1__pyx_unpickle_StarkFunction(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_5stark_1__pyx_unpickle_StarkFunction = {"__pyx_unpickle_StarkFunction", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_5stark_1__pyx_unpickle_StarkFunction, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_5stark_1__pyx_unpickle_StarkFunction(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_5stark_1__pyx_unpickle_StarkFunction = {"__pyx_unpickle_StarkFunction", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_5stark_1__pyx_unpickle_StarkFunction, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_5stark_1__pyx_unpickle_StarkFunction(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20698,18 +20698,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_StarkFunction", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 1, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.__pyx_unpickle_StarkFunction", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.__pyx_unpickle_StarkFunction", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_5stark___pyx_unpickle_StarkFunction(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_5stark___pyx_unpickle_StarkFunction(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark___pyx_unpickle_StarkFunction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_5stark___pyx_unpickle_StarkFunction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_v___pyx_PickleError = 0;
   PyObject *__pyx_v___pyx_result = 0;
   PyObject *__pyx_r = NULL;
@@ -20789,7 +20789,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark___pyx_unpickle_StarkFunct
  *     if __pyx_state is not None:
  *         __pyx_unpickle_StarkFunction__set_state(<StarkFunction> __pyx_result, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -20833,7 +20833,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark___pyx_unpickle_StarkFunct
  * cdef __pyx_unpickle_StarkFunction__set_state(StarkFunction __pyx_result, tuple __pyx_state):
  */
     if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 9, __pyx_L1_error)
-    __pyx_t_2 = __pyx_f_6cherab_11amjuel_data_5stark___pyx_unpickle_StarkFunction__set_state(((struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_6cherab_11PESDT_addon_5stark___pyx_unpickle_StarkFunction__set_state(((struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
@@ -20869,7 +20869,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark___pyx_unpickle_StarkFunct
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.__pyx_unpickle_StarkFunction", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.__pyx_unpickle_StarkFunction", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v___pyx_PickleError);
@@ -20887,7 +20887,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark___pyx_unpickle_StarkFunct
  *     if len(__pyx_state) > 3 and hasattr(__pyx_result, '__dict__'):
  */
 
-static PyObject *__pyx_f_6cherab_11amjuel_data_5stark___pyx_unpickle_StarkFunction__set_state(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_f_6cherab_11PESDT_addon_5stark___pyx_unpickle_StarkFunction__set_state(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -21026,7 +21026,7 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_5stark___pyx_unpickle_StarkFuncti
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.__pyx_unpickle_StarkFunction__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.__pyx_unpickle_StarkFunction__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -21041,15 +21041,15 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_5stark___pyx_unpickle_StarkFuncti
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_5stark_3__pyx_unpickle_StarkBroadenedLine(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_5stark_3__pyx_unpickle_StarkBroadenedLine(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_5stark_3__pyx_unpickle_StarkBroadenedLine = {"__pyx_unpickle_StarkBroadenedLine", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_5stark_3__pyx_unpickle_StarkBroadenedLine, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_5stark_3__pyx_unpickle_StarkBroadenedLine(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_5stark_3__pyx_unpickle_StarkBroadenedLine = {"__pyx_unpickle_StarkBroadenedLine", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_5stark_3__pyx_unpickle_StarkBroadenedLine, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_5stark_3__pyx_unpickle_StarkBroadenedLine(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -21128,18 +21128,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_StarkBroadenedLine", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 1, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.__pyx_unpickle_StarkBroadenedLine", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.__pyx_unpickle_StarkBroadenedLine", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_5stark_2__pyx_unpickle_StarkBroadenedLine(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_5stark_2__pyx_unpickle_StarkBroadenedLine(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_2__pyx_unpickle_StarkBroadenedLine(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_5stark_2__pyx_unpickle_StarkBroadenedLine(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_v___pyx_PickleError = 0;
   PyObject *__pyx_v___pyx_result = 0;
   PyObject *__pyx_r = NULL;
@@ -21219,7 +21219,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_2__pyx_unpickle_StarkBroa
  *     if __pyx_state is not None:
  *         __pyx_unpickle_StarkBroadenedLine__set_state(<StarkBroadenedLine> __pyx_result, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -21263,7 +21263,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_2__pyx_unpickle_StarkBroa
  * cdef __pyx_unpickle_StarkBroadenedLine__set_state(StarkBroadenedLine __pyx_result, tuple __pyx_state):
  */
     if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 9, __pyx_L1_error)
-    __pyx_t_2 = __pyx_f_6cherab_11amjuel_data_5stark___pyx_unpickle_StarkBroadenedLine__set_state(((struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_6cherab_11PESDT_addon_5stark___pyx_unpickle_StarkBroadenedLine__set_state(((struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
@@ -21299,7 +21299,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_2__pyx_unpickle_StarkBroa
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.__pyx_unpickle_StarkBroadenedLine", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.__pyx_unpickle_StarkBroadenedLine", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v___pyx_PickleError);
@@ -21317,7 +21317,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_5stark_2__pyx_unpickle_StarkBroa
  *     if len(__pyx_state) > 5 and hasattr(__pyx_result, '__dict__'):
  */
 
-static PyObject *__pyx_f_6cherab_11amjuel_data_5stark___pyx_unpickle_StarkBroadenedLine__set_state(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_f_6cherab_11PESDT_addon_5stark___pyx_unpickle_StarkBroadenedLine__set_state(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -21483,7 +21483,7 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_5stark___pyx_unpickle_StarkBroade
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_AddTraceback("cherab.amjuel_data.stark.__pyx_unpickle_StarkBroadenedLine__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.stark.__pyx_unpickle_StarkBroadenedLine__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -38297,43 +38297,43 @@ static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *__
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_5stark_StarkFunction __pyx_vtable_6cherab_11amjuel_data_5stark_StarkFunction;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_5stark_StarkFunction __pyx_vtable_6cherab_11PESDT_addon_5stark_StarkFunction;
 
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_5stark_StarkFunction(PyTypeObject *t, PyObject *a, PyObject *k) {
-  struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction *p;
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_5stark_StarkFunction(PyTypeObject *t, PyObject *a, PyObject *k) {
+  struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction *p;
   PyObject *o = __Pyx_PyType_GetSlot(__pyx_ptype_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D, tp_new, newfunc)(t, a, k);
   if (unlikely(!o)) return 0;
-  p = ((struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction *)o);
-  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D*)__pyx_vtabptr_6cherab_11amjuel_data_5stark_StarkFunction;
+  p = ((struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction *)o);
+  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D*)__pyx_vtabptr_6cherab_11PESDT_addon_5stark_StarkFunction;
   return o;
 }
 
-static PyMethodDef __pyx_methods_6cherab_11amjuel_data_5stark_StarkFunction[] = {
-  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_5stark_13StarkFunction_3__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_5stark_13StarkFunction_5__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+static PyMethodDef __pyx_methods_6cherab_11PESDT_addon_5stark_StarkFunction[] = {
+  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_5stark_13StarkFunction_3__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_5stark_13StarkFunction_5__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
-static PyType_Slot __pyx_type_6cherab_11amjuel_data_5stark_StarkFunction_slots[] = {
+static PyType_Slot __pyx_type_6cherab_11PESDT_addon_5stark_StarkFunction_slots[] = {
   {Py_tp_doc, (void *)PyDoc_STR("\n    Normalised Stark function for the StarkBroadenedLine line shape.\n    ")},
-  {Py_tp_methods, (void *)__pyx_methods_6cherab_11amjuel_data_5stark_StarkFunction},
-  {Py_tp_init, (void *)__pyx_pw_6cherab_11amjuel_data_5stark_13StarkFunction_1__init__},
-  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11amjuel_data_5stark_StarkFunction},
+  {Py_tp_methods, (void *)__pyx_methods_6cherab_11PESDT_addon_5stark_StarkFunction},
+  {Py_tp_init, (void *)__pyx_pw_6cherab_11PESDT_addon_5stark_13StarkFunction_1__init__},
+  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11PESDT_addon_5stark_StarkFunction},
   {0, 0},
 };
-static PyType_Spec __pyx_type_6cherab_11amjuel_data_5stark_StarkFunction_spec = {
-  "cherab.amjuel_data.stark.StarkFunction",
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction),
+static PyType_Spec __pyx_type_6cherab_11PESDT_addon_5stark_StarkFunction_spec = {
+  "cherab.PESDT_addon.stark.StarkFunction",
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE,
-  __pyx_type_6cherab_11amjuel_data_5stark_StarkFunction_slots,
+  __pyx_type_6cherab_11PESDT_addon_5stark_StarkFunction_slots,
 };
 #else
 
-static PyTypeObject __pyx_type_6cherab_11amjuel_data_5stark_StarkFunction = {
+static PyTypeObject __pyx_type_6cherab_11PESDT_addon_5stark_StarkFunction = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.stark.""StarkFunction", /*tp_name*/
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkFunction), /*tp_basicsize*/
+  "cherab.PESDT_addon.stark.""StarkFunction", /*tp_name*/
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkFunction), /*tp_basicsize*/
   0, /*tp_itemsize*/
   0, /*tp_dealloc*/
   #if PY_VERSION_HEX < 0x030800b4
@@ -38368,7 +38368,7 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_5stark_StarkFunction = {
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_6cherab_11amjuel_data_5stark_StarkFunction, /*tp_methods*/
+  __pyx_methods_6cherab_11PESDT_addon_5stark_StarkFunction, /*tp_methods*/
   0, /*tp_members*/
   0, /*tp_getset*/
   0, /*tp_base*/
@@ -38378,9 +38378,9 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_5stark_StarkFunction = {
   #if !CYTHON_USE_TYPE_SPECS
   0, /*tp_dictoffset*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_5stark_13StarkFunction_1__init__, /*tp_init*/
+  __pyx_pw_6cherab_11PESDT_addon_5stark_13StarkFunction_1__init__, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_6cherab_11amjuel_data_5stark_StarkFunction, /*tp_new*/
+  __pyx_tp_new_6cherab_11PESDT_addon_5stark_StarkFunction, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -38408,25 +38408,25 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_5stark_StarkFunction = {
   #endif
 };
 #endif
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_5stark_StarkBroadenedLine __pyx_vtable_6cherab_11amjuel_data_5stark_StarkBroadenedLine;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_5stark_StarkBroadenedLine __pyx_vtable_6cherab_11PESDT_addon_5stark_StarkBroadenedLine;
 
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_5stark_StarkBroadenedLine(PyTypeObject *t, PyObject *a, PyObject *k) {
-  struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *p;
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_5stark_StarkBroadenedLine(PyTypeObject *t, PyObject *a, PyObject *k) {
+  struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *p;
   PyObject *o = __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel, tp_new, newfunc)(t, a, k);
   if (unlikely(!o)) return 0;
-  p = ((struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *)o);
-  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_6cherab_4core_5model_9lineshape_LineShapeModel*)__pyx_vtabptr_6cherab_11amjuel_data_5stark_StarkBroadenedLine;
+  p = ((struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *)o);
+  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_6cherab_4core_5model_9lineshape_LineShapeModel*)__pyx_vtabptr_6cherab_11PESDT_addon_5stark_StarkBroadenedLine;
   p->__dict__ = PyDict_New(); if (unlikely(!p->__dict__)) goto bad;return o;
   bad:
   Py_DECREF(o); o = 0;
   return NULL;
 }
 
-static void __pyx_tp_dealloc_6cherab_11amjuel_data_5stark_StarkBroadenedLine(PyObject *o) {
-  struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *p = (struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *)o;
+static void __pyx_tp_dealloc_6cherab_11PESDT_addon_5stark_StarkBroadenedLine(PyObject *o) {
+  struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *p = (struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *)o;
   #if CYTHON_USE_TP_FINALIZE
   if (unlikely((PY_VERSION_HEX >= 0x03080000 || __Pyx_PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE)) && __Pyx_PyObject_GetSlot(o, tp_finalize, destructor)) && !_PyGC_FINALIZED(o)) {
-    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11amjuel_data_5stark_StarkBroadenedLine) {
+    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11PESDT_addon_5stark_StarkBroadenedLine) {
       if (PyObject_CallFinalizerFromDealloc(o)) return;
     }
   }
@@ -38435,31 +38435,31 @@ static void __pyx_tp_dealloc_6cherab_11amjuel_data_5stark_StarkBroadenedLine(PyO
   if (p->__dict__) PyDict_Clear(p->__dict__);
   Py_CLEAR(p->__dict__);
   PyObject_GC_Track(o);
-  if (likely(__pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel)) __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel, tp_dealloc, destructor)(o); else __Pyx_call_next_tp_dealloc(o, __pyx_tp_dealloc_6cherab_11amjuel_data_5stark_StarkBroadenedLine);
+  if (likely(__pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel)) __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel, tp_dealloc, destructor)(o); else __Pyx_call_next_tp_dealloc(o, __pyx_tp_dealloc_6cherab_11PESDT_addon_5stark_StarkBroadenedLine);
 }
 
-static int __pyx_tp_traverse_6cherab_11amjuel_data_5stark_StarkBroadenedLine(PyObject *o, visitproc v, void *a) {
+static int __pyx_tp_traverse_6cherab_11PESDT_addon_5stark_StarkBroadenedLine(PyObject *o, visitproc v, void *a) {
   int e;
-  struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *p = (struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *)o;
-  e = ((likely(__pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel)) ? ((__pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel->tp_traverse) ? __pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel->tp_traverse(o, v, a) : 0) : __Pyx_call_next_tp_traverse(o, v, a, __pyx_tp_traverse_6cherab_11amjuel_data_5stark_StarkBroadenedLine)); if (e) return e;
+  struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *p = (struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *)o;
+  e = ((likely(__pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel)) ? ((__pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel->tp_traverse) ? __pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel->tp_traverse(o, v, a) : 0) : __Pyx_call_next_tp_traverse(o, v, a, __pyx_tp_traverse_6cherab_11PESDT_addon_5stark_StarkBroadenedLine)); if (e) return e;
   if (p->__dict__) {
     e = (*v)(p->__dict__, a); if (e) return e;
   }
   return 0;
 }
 
-static int __pyx_tp_clear_6cherab_11amjuel_data_5stark_StarkBroadenedLine(PyObject *o) {
+static int __pyx_tp_clear_6cherab_11PESDT_addon_5stark_StarkBroadenedLine(PyObject *o) {
   PyObject* tmp;
-  struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *p = (struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *)o;
-  if (likely(__pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel)) { if (__pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel->tp_clear) __pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel->tp_clear(o); } else __Pyx_call_next_tp_clear(o, __pyx_tp_clear_6cherab_11amjuel_data_5stark_StarkBroadenedLine);
+  struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *p = (struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *)o;
+  if (likely(__pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel)) { if (__pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel->tp_clear) __pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel->tp_clear(o); } else __Pyx_call_next_tp_clear(o, __pyx_tp_clear_6cherab_11PESDT_addon_5stark_StarkBroadenedLine);
   tmp = ((PyObject*)p->__dict__);
   p->__dict__ = ((PyObject*)Py_None); Py_INCREF(Py_None);
   Py_XDECREF(tmp);
   return 0;
 }
 
-static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_5stark_StarkBroadenedLine(PyObject *o, CYTHON_UNUSED void *x) {
-  struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *p = (struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine *)o;
+static PyObject *__pyx___dict__getter_6cherab_11PESDT_addon_5stark_StarkBroadenedLine(PyObject *o, CYTHON_UNUSED void *x) {
+  struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *p = (struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine *)o;
   if (unlikely(!p->__dict__)){
     p->__dict__ = PyDict_New();
   }
@@ -38467,52 +38467,52 @@ static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_5stark_StarkBroadene
   return p->__dict__;
 }
 
-static PyMethodDef __pyx_methods_6cherab_11amjuel_data_5stark_StarkBroadenedLine[] = {
-  {"show_supported_transitions", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_3show_supported_transitions, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_2show_supported_transitions},
-  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_7__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_9__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+static PyMethodDef __pyx_methods_6cherab_11PESDT_addon_5stark_StarkBroadenedLine[] = {
+  {"show_supported_transitions", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_3show_supported_transitions, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_2show_supported_transitions},
+  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_7__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_9__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
-static struct PyGetSetDef __pyx_getsets_6cherab_11amjuel_data_5stark_StarkBroadenedLine[] = {
-  {(char *)"__dict__", __pyx___dict__getter_6cherab_11amjuel_data_5stark_StarkBroadenedLine, 0, (char *)0, 0},
+static struct PyGetSetDef __pyx_getsets_6cherab_11PESDT_addon_5stark_StarkBroadenedLine[] = {
+  {(char *)"__dict__", __pyx___dict__getter_6cherab_11PESDT_addon_5stark_StarkBroadenedLine, 0, (char *)0, 0},
   {0, 0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
 static struct PyMemberDef __pyx_tp_members_StarkBroadenedLine[] = {
-  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine, __dict__), READONLY, NULL},
+  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine, __dict__), READONLY, NULL},
   {NULL, 0, 0, 0, NULL}
 };
-static PyType_Slot __pyx_type_6cherab_11amjuel_data_5stark_StarkBroadenedLine_slots[] = {
-  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11amjuel_data_5stark_StarkBroadenedLine},
+static PyType_Slot __pyx_type_6cherab_11PESDT_addon_5stark_StarkBroadenedLine_slots[] = {
+  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11PESDT_addon_5stark_StarkBroadenedLine},
   {Py_tp_doc, (void *)PyDoc_STR("\n    Parametrised Stark broadened line shape based on the Model Microfield Method (MMM).\n    Contains embedded atomic data in the form of fits to MMM.\n    Only Balmer and Paschen series are supported by default.\n    See B. Lomanowski, et al. \"Inferring divertor plasma properties from hydrogen Balmer\n    and Paschen series spectroscopy in JET-ILW.\" Nuclear Fusion 55.12 (2015)\n    `123028 <https://doi.org/10.1088/0029-5515/55/12/123028>`_.\n\n    Call `show_supported_transitions()` to see the list of supported transitions and\n    default model coefficients.\n\n    :param Line line: The emission line object for this line shape.\n    :param float wavelength: The rest wavelength for this emission line.\n    :param Species target_species: The target plasma species that is emitting.\n    :param Plasma plasma: The emitting plasma object.\n    :param dict stark_model_coefficients: Alternative model coefficients in the form\n                                          {line_ij: (c_ij, a_ij, b_ij), ...}.\n                                          If None, the default model parameters will be used.\n    :param Integrator1D integrator: Integrator1D instance to integrate the line shape\n        over the spectral bin. Default is `GaussianQuadrature()`.\n\n    ")},
-  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11amjuel_data_5stark_StarkBroadenedLine},
-  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11amjuel_data_5stark_StarkBroadenedLine},
-  {Py_tp_methods, (void *)__pyx_methods_6cherab_11amjuel_data_5stark_StarkBroadenedLine},
+  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11PESDT_addon_5stark_StarkBroadenedLine},
+  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11PESDT_addon_5stark_StarkBroadenedLine},
+  {Py_tp_methods, (void *)__pyx_methods_6cherab_11PESDT_addon_5stark_StarkBroadenedLine},
   {Py_tp_members, (void *)__pyx_tp_members_StarkBroadenedLine},
-  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11amjuel_data_5stark_StarkBroadenedLine},
+  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11PESDT_addon_5stark_StarkBroadenedLine},
   #if !CYTHON_USE_TYPE_SPECS
-  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine, __dict__)},
+  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine, __dict__)},
   #endif
-  {Py_tp_init, (void *)__pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_1__init__},
-  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11amjuel_data_5stark_StarkBroadenedLine},
+  {Py_tp_init, (void *)__pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_1__init__},
+  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11PESDT_addon_5stark_StarkBroadenedLine},
   {0, 0},
 };
-static PyType_Spec __pyx_type_6cherab_11amjuel_data_5stark_StarkBroadenedLine_spec = {
-  "cherab.amjuel_data.stark.StarkBroadenedLine",
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine),
+static PyType_Spec __pyx_type_6cherab_11PESDT_addon_5stark_StarkBroadenedLine_spec = {
+  "cherab.PESDT_addon.stark.StarkBroadenedLine",
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
-  __pyx_type_6cherab_11amjuel_data_5stark_StarkBroadenedLine_slots,
+  __pyx_type_6cherab_11PESDT_addon_5stark_StarkBroadenedLine_slots,
 };
 #else
 
-static PyTypeObject __pyx_type_6cherab_11amjuel_data_5stark_StarkBroadenedLine = {
+static PyTypeObject __pyx_type_6cherab_11PESDT_addon_5stark_StarkBroadenedLine = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.stark.""StarkBroadenedLine", /*tp_name*/
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine), /*tp_basicsize*/
+  "cherab.PESDT_addon.stark.""StarkBroadenedLine", /*tp_name*/
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_6cherab_11amjuel_data_5stark_StarkBroadenedLine, /*tp_dealloc*/
+  __pyx_tp_dealloc_6cherab_11PESDT_addon_5stark_StarkBroadenedLine, /*tp_dealloc*/
   #if PY_VERSION_HEX < 0x030800b4
   0, /*tp_print*/
   #endif
@@ -38539,25 +38539,25 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_5stark_StarkBroadenedLine =
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
   PyDoc_STR("\n    Parametrised Stark broadened line shape based on the Model Microfield Method (MMM).\n    Contains embedded atomic data in the form of fits to MMM.\n    Only Balmer and Paschen series are supported by default.\n    See B. Lomanowski, et al. \"Inferring divertor plasma properties from hydrogen Balmer\n    and Paschen series spectroscopy in JET-ILW.\" Nuclear Fusion 55.12 (2015)\n    `123028 <https://doi.org/10.1088/0029-5515/55/12/123028>`_.\n\n    Call `show_supported_transitions()` to see the list of supported transitions and\n    default model coefficients.\n\n    :param Line line: The emission line object for this line shape.\n    :param float wavelength: The rest wavelength for this emission line.\n    :param Species target_species: The target plasma species that is emitting.\n    :param Plasma plasma: The emitting plasma object.\n    :param dict stark_model_coefficients: Alternative model coefficients in the form\n                                          {line_ij: (c_ij, a_ij, b_ij), ...}.\n                                          If None, the default model parameters will be used.\n    :param Integrator1D integrator: Integrator1D instance to integrate the line shape\n        over the spectral bin. Default is `GaussianQuadrature()`.\n\n    "), /*tp_doc*/
-  __pyx_tp_traverse_6cherab_11amjuel_data_5stark_StarkBroadenedLine, /*tp_traverse*/
-  __pyx_tp_clear_6cherab_11amjuel_data_5stark_StarkBroadenedLine, /*tp_clear*/
+  __pyx_tp_traverse_6cherab_11PESDT_addon_5stark_StarkBroadenedLine, /*tp_traverse*/
+  __pyx_tp_clear_6cherab_11PESDT_addon_5stark_StarkBroadenedLine, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_6cherab_11amjuel_data_5stark_StarkBroadenedLine, /*tp_methods*/
+  __pyx_methods_6cherab_11PESDT_addon_5stark_StarkBroadenedLine, /*tp_methods*/
   0, /*tp_members*/
-  __pyx_getsets_6cherab_11amjuel_data_5stark_StarkBroadenedLine, /*tp_getset*/
+  __pyx_getsets_6cherab_11PESDT_addon_5stark_StarkBroadenedLine, /*tp_getset*/
   0, /*tp_base*/
   0, /*tp_dict*/
   0, /*tp_descr_get*/
   0, /*tp_descr_set*/
   #if !CYTHON_USE_TYPE_SPECS
-  offsetof(struct __pyx_obj_6cherab_11amjuel_data_5stark_StarkBroadenedLine, __dict__), /*tp_dictoffset*/
+  offsetof(struct __pyx_obj_6cherab_11PESDT_addon_5stark_StarkBroadenedLine, __dict__), /*tp_dictoffset*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_1__init__, /*tp_init*/
+  __pyx_pw_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_1__init__, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_6cherab_11amjuel_data_5stark_StarkBroadenedLine, /*tp_new*/
+  __pyx_tp_new_6cherab_11PESDT_addon_5stark_StarkBroadenedLine, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -38713,7 +38713,7 @@ static PyType_Slot __pyx_type___pyx_array_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_array_spec = {
-  "cherab.amjuel_data.stark.array",
+  "cherab.PESDT_addon.stark.array",
   sizeof(struct __pyx_array_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE,
@@ -38759,7 +38759,7 @@ static PyBufferProcs __pyx_tp_as_buffer_array = {
 
 static PyTypeObject __pyx_type___pyx_array = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.stark.""array", /*tp_name*/
+  "cherab.PESDT_addon.stark.""array", /*tp_name*/
   sizeof(struct __pyx_array_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_array, /*tp_dealloc*/
@@ -38904,7 +38904,7 @@ static PyType_Slot __pyx_type___pyx_MemviewEnum_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_MemviewEnum_spec = {
-  "cherab.amjuel_data.stark.Enum",
+  "cherab.PESDT_addon.stark.Enum",
   sizeof(struct __pyx_MemviewEnum_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -38914,7 +38914,7 @@ static PyType_Spec __pyx_type___pyx_MemviewEnum_spec = {
 
 static PyTypeObject __pyx_type___pyx_MemviewEnum = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.stark.""Enum", /*tp_name*/
+  "cherab.PESDT_addon.stark.""Enum", /*tp_name*/
   sizeof(struct __pyx_MemviewEnum_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_Enum, /*tp_dealloc*/
@@ -39193,7 +39193,7 @@ static PyType_Slot __pyx_type___pyx_memoryview_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_memoryview_spec = {
-  "cherab.amjuel_data.stark.memoryview",
+  "cherab.PESDT_addon.stark.memoryview",
   sizeof(struct __pyx_memoryview_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -39239,7 +39239,7 @@ static PyBufferProcs __pyx_tp_as_buffer_memoryview = {
 
 static PyTypeObject __pyx_type___pyx_memoryview = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.stark.""memoryview", /*tp_name*/
+  "cherab.PESDT_addon.stark.""memoryview", /*tp_name*/
   sizeof(struct __pyx_memoryview_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_memoryview, /*tp_dealloc*/
@@ -39388,7 +39388,7 @@ static PyType_Slot __pyx_type___pyx_memoryviewslice_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_memoryviewslice_spec = {
-  "cherab.amjuel_data.stark._memoryviewslice",
+  "cherab.PESDT_addon.stark._memoryviewslice",
   sizeof(struct __pyx_memoryviewslice_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -39398,7 +39398,7 @@ static PyType_Spec __pyx_type___pyx_memoryviewslice_spec = {
 
 static PyTypeObject __pyx_type___pyx_memoryviewslice = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.stark.""_memoryviewslice", /*tp_name*/
+  "cherab.PESDT_addon.stark.""_memoryviewslice", /*tp_name*/
   sizeof(struct __pyx_memoryviewslice_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc__memoryviewslice, /*tp_dealloc*/
@@ -39570,8 +39570,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, __pyx_k_c, sizeof(__pyx_k_c), 0, 1, 0, 1},
   {0, __pyx_k_c_ij_a_ij_b_ij, sizeof(__pyx_k_c_ij_a_ij_b_ij), 0, 1, 0, 0},
   {0, __pyx_k_carbon, sizeof(__pyx_k_carbon), 0, 0, 1, 1},
-  {0, __pyx_k_cherab_amjuel_data_stark, sizeof(__pyx_k_cherab_amjuel_data_stark), 0, 0, 1, 1},
-  {0, __pyx_k_cherab_amjuel_data_stark_pyx, sizeof(__pyx_k_cherab_amjuel_data_stark_pyx), 0, 0, 1, 0},
+  {0, __pyx_k_cherab_PESDT_addon_stark, sizeof(__pyx_k_cherab_PESDT_addon_stark), 0, 0, 1, 1},
+  {0, __pyx_k_cherab_PESDT_addon_stark_pyx, sizeof(__pyx_k_cherab_PESDT_addon_stark_pyx), 0, 0, 1, 0},
   {0, __pyx_k_cherab_core_atomic_elements, sizeof(__pyx_k_cherab_core_atomic_elements), 0, 0, 1, 1},
   {0, __pyx_k_cij, sizeof(__pyx_k_cij), 0, 0, 1, 1},
   {0, __pyx_k_class, sizeof(__pyx_k_class), 0, 0, 1, 1},
@@ -39752,8 +39752,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_u_c, __pyx_k_c, sizeof(__pyx_k_c), 0, 1, 0, 1},
   {&__pyx_kp_u_c_ij_a_ij_b_ij, __pyx_k_c_ij_a_ij_b_ij, sizeof(__pyx_k_c_ij_a_ij_b_ij), 0, 1, 0, 0},
   {&__pyx_n_s_carbon, __pyx_k_carbon, sizeof(__pyx_k_carbon), 0, 0, 1, 1},
-  {&__pyx_n_s_cherab_amjuel_data_stark, __pyx_k_cherab_amjuel_data_stark, sizeof(__pyx_k_cherab_amjuel_data_stark), 0, 0, 1, 1},
-  {&__pyx_kp_s_cherab_amjuel_data_stark_pyx, __pyx_k_cherab_amjuel_data_stark_pyx, sizeof(__pyx_k_cherab_amjuel_data_stark_pyx), 0, 0, 1, 0},
+  {&__pyx_n_s_cherab_PESDT_addon_stark, __pyx_k_cherab_PESDT_addon_stark, sizeof(__pyx_k_cherab_PESDT_addon_stark), 0, 0, 1, 1},
+  {&__pyx_kp_s_cherab_PESDT_addon_stark_pyx, __pyx_k_cherab_PESDT_addon_stark_pyx, sizeof(__pyx_k_cherab_PESDT_addon_stark_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_cherab_core_atomic_elements, __pyx_k_cherab_core_atomic_elements, sizeof(__pyx_k_cherab_core_atomic_elements), 0, 0, 1, 1},
   {&__pyx_n_s_cij, __pyx_k_cij, sizeof(__pyx_k_cij), 0, 0, 1, 1},
   {&__pyx_n_s_class, __pyx_k_class, sizeof(__pyx_k_class), 0, 0, 1, 1},
@@ -39889,7 +39889,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "cherab/amjuel_data/stark.pyx":43
+  /* "cherab/PESDT_addon/stark.pyx":43
  * 
  *         if wavelength <= 0:
  *             raise ValueError("Argument 'wavelength' must be positive.")             # <<<<<<<<<<<<<<
@@ -39900,7 +39900,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "cherab/amjuel_data/stark.pyx":46
+  /* "cherab/PESDT_addon/stark.pyx":46
  * 
  *         if lambda_1_2 <= 0:
  *             raise ValueError("Argument 'lambda_1_2' must be positive.")             # <<<<<<<<<<<<<<
@@ -39911,7 +39911,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "cherab/amjuel_data/stark.pyx":167
+  /* "cherab/PESDT_addon/stark.pyx":167
  *             cij, aij, bij = stark_model_coefficients[line]
  *             if cij <= 0:
  *                 raise ValueError('Coefficient c_ij must be positive.')             # <<<<<<<<<<<<<<
@@ -39922,7 +39922,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
 
-  /* "cherab/amjuel_data/stark.pyx":169
+  /* "cherab/PESDT_addon/stark.pyx":169
  *                 raise ValueError('Coefficient c_ij must be positive.')
  *             if aij <= 0:
  *                 raise ValueError('Coefficient a_ij must be positive.')             # <<<<<<<<<<<<<<
@@ -39933,7 +39933,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
 
-  /* "cherab/amjuel_data/stark.pyx":171
+  /* "cherab/PESDT_addon/stark.pyx":171
  *                 raise ValueError('Coefficient a_ij must be positive.')
  *             if bij <= 0:
  *                 raise ValueError('Coefficient b_ij must be positive.')             # <<<<<<<<<<<<<<
@@ -40012,7 +40012,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__18);
   __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(1, 16, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/stark.pyx":86
+  /* "cherab/PESDT_addon/stark.pyx":86
  * 
  *     STARK_MODEL_COEFFICIENTS_DEFAULT = {
  *         Line(hydrogen, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),             # <<<<<<<<<<<<<<
@@ -40026,7 +40026,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
 
-  /* "cherab/amjuel_data/stark.pyx":87
+  /* "cherab/PESDT_addon/stark.pyx":87
  *     STARK_MODEL_COEFFICIENTS_DEFAULT = {
  *         Line(hydrogen, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),
  *         Line(hydrogen, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),             # <<<<<<<<<<<<<<
@@ -40040,7 +40040,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__23);
   __Pyx_GIVEREF(__pyx_tuple__23);
 
-  /* "cherab/amjuel_data/stark.pyx":88
+  /* "cherab/PESDT_addon/stark.pyx":88
  *         Line(hydrogen, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),
  *         Line(hydrogen, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),
  *         Line(hydrogen, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),             # <<<<<<<<<<<<<<
@@ -40054,7 +40054,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__25);
   __Pyx_GIVEREF(__pyx_tuple__25);
 
-  /* "cherab/amjuel_data/stark.pyx":89
+  /* "cherab/PESDT_addon/stark.pyx":89
  *         Line(hydrogen, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),
  *         Line(hydrogen, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),
  *         Line(hydrogen, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),             # <<<<<<<<<<<<<<
@@ -40068,7 +40068,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__27);
   __Pyx_GIVEREF(__pyx_tuple__27);
 
-  /* "cherab/amjuel_data/stark.pyx":90
+  /* "cherab/PESDT_addon/stark.pyx":90
  *         Line(hydrogen, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),
  *         Line(hydrogen, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),
  *         Line(hydrogen, 0, (7, 2)): (6.258e-16, 0.712, 0.029),             # <<<<<<<<<<<<<<
@@ -40082,7 +40082,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__29);
   __Pyx_GIVEREF(__pyx_tuple__29);
 
-  /* "cherab/amjuel_data/stark.pyx":91
+  /* "cherab/PESDT_addon/stark.pyx":91
  *         Line(hydrogen, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),
  *         Line(hydrogen, 0, (7, 2)): (6.258e-16, 0.712, 0.029),
  *         Line(hydrogen, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),             # <<<<<<<<<<<<<<
@@ -40096,7 +40096,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__31);
   __Pyx_GIVEREF(__pyx_tuple__31);
 
-  /* "cherab/amjuel_data/stark.pyx":92
+  /* "cherab/PESDT_addon/stark.pyx":92
  *         Line(hydrogen, 0, (7, 2)): (6.258e-16, 0.712, 0.029),
  *         Line(hydrogen, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),
  *         Line(hydrogen, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),             # <<<<<<<<<<<<<<
@@ -40110,7 +40110,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__33);
   __Pyx_GIVEREF(__pyx_tuple__33);
 
-  /* "cherab/amjuel_data/stark.pyx":93
+  /* "cherab/PESDT_addon/stark.pyx":93
  *         Line(hydrogen, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),
  *         Line(hydrogen, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),
  *         Line(hydrogen, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),             # <<<<<<<<<<<<<<
@@ -40124,7 +40124,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__35);
   __Pyx_GIVEREF(__pyx_tuple__35);
 
-  /* "cherab/amjuel_data/stark.pyx":94
+  /* "cherab/PESDT_addon/stark.pyx":94
  *         Line(hydrogen, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),
  *         Line(hydrogen, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),
  *         Line(hydrogen, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),             # <<<<<<<<<<<<<<
@@ -40138,7 +40138,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__37);
   __Pyx_GIVEREF(__pyx_tuple__37);
 
-  /* "cherab/amjuel_data/stark.pyx":95
+  /* "cherab/PESDT_addon/stark.pyx":95
  *         Line(hydrogen, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),
  *         Line(hydrogen, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),
  *         Line(hydrogen, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),             # <<<<<<<<<<<<<<
@@ -40152,7 +40152,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__39);
   __Pyx_GIVEREF(__pyx_tuple__39);
 
-  /* "cherab/amjuel_data/stark.pyx":96
+  /* "cherab/PESDT_addon/stark.pyx":96
  *         Line(hydrogen, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),
  *         Line(hydrogen, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),
  *         Line(hydrogen, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),             # <<<<<<<<<<<<<<
@@ -40166,7 +40166,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__41);
   __Pyx_GIVEREF(__pyx_tuple__41);
 
-  /* "cherab/amjuel_data/stark.pyx":97
+  /* "cherab/PESDT_addon/stark.pyx":97
  *         Line(hydrogen, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),
  *         Line(hydrogen, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),
  *         Line(hydrogen, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),             # <<<<<<<<<<<<<<
@@ -40180,7 +40180,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__43);
   __Pyx_GIVEREF(__pyx_tuple__43);
 
-  /* "cherab/amjuel_data/stark.pyx":98
+  /* "cherab/PESDT_addon/stark.pyx":98
  *         Line(hydrogen, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),
  *         Line(hydrogen, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),
  *         Line(hydrogen, 0, (9, 3)): (5.588e-15, 0.7165, 0.033),             # <<<<<<<<<<<<<<
@@ -40194,7 +40194,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__45);
   __Pyx_GIVEREF(__pyx_tuple__45);
 
-  /* "cherab/amjuel_data/stark.pyx":180
+  /* "cherab/PESDT_addon/stark.pyx":180
  *         super().__init__(line, wavelength, target_species, plasma, integrator)
  * 
  *     def show_supported_transitions(self):             # <<<<<<<<<<<<<<
@@ -40204,9 +40204,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__46 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_line, __pyx_n_s_coeff); if (unlikely(!__pyx_tuple__46)) __PYX_ERR(0, 180, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__46);
   __Pyx_GIVEREF(__pyx_tuple__46);
-  __pyx_codeobj__47 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__46, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_stark_pyx, __pyx_n_s_show_supported_transitions, 180, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__47)) __PYX_ERR(0, 180, __pyx_L1_error)
+  __pyx_codeobj__47 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__46, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_stark_pyx, __pyx_n_s_show_supported_transitions, 180, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__47)) __PYX_ERR(0, 180, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/stark.pyx":189
+  /* "cherab/PESDT_addon/stark.pyx":189
  *     @cython.initializedcheck(False)
  *     @cython.cdivision(True)
  *     cpdef Spectrum add_line(self, double radiance, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -40216,7 +40216,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__48 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_radiance, __pyx_n_s_point, __pyx_n_s_direction, __pyx_n_s_spectrum); if (unlikely(!__pyx_tuple__48)) __PYX_ERR(0, 189, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__48);
   __Pyx_GIVEREF(__pyx_tuple__48);
-  __pyx_codeobj__49 = (PyObject*)__Pyx_PyCode_New(5, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__48, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_stark_pyx, __pyx_n_s_add_line, 189, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__49)) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_codeobj__49 = (PyObject*)__Pyx_PyCode_New(5, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__48, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_stark_pyx, __pyx_n_s_add_line, 189, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__49)) __PYX_ERR(0, 189, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
@@ -40386,8 +40386,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitConstants(void) {
   if (__Pyx_InitString(__pyx_string_tab[68], &__pyx_n_u_c) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[69], &__pyx_kp_u_c_ij_a_ij_b_ij) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[70], &__pyx_n_s_carbon) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
-  if (__Pyx_InitString(__pyx_string_tab[71], &__pyx_n_s_cherab_amjuel_data_stark) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
-  if (__Pyx_InitString(__pyx_string_tab[72], &__pyx_kp_s_cherab_amjuel_data_stark_pyx) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
+  if (__Pyx_InitString(__pyx_string_tab[71], &__pyx_n_s_cherab_PESDT_addon_stark) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
+  if (__Pyx_InitString(__pyx_string_tab[72], &__pyx_kp_s_cherab_PESDT_addon_stark_pyx) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[73], &__pyx_n_s_cherab_core_atomic_elements) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[74], &__pyx_n_s_cij) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[75], &__pyx_n_s_class) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
@@ -40615,76 +40615,76 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_ptype_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D = __Pyx_ImportType(__pyx_t_1, "raysect.core.math.function.float.function1d.base", "Function1D", sizeof(struct __pyx_obj_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D), __Pyx_ImportType_CheckSize_Warn);
    if (!__pyx_ptype_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_vtabptr_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D = (struct __pyx_vtabstruct_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D*)__Pyx_GetVtable(__pyx_ptype_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D); if (unlikely(!__pyx_vtabptr_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_vtabptr_6cherab_11amjuel_data_5stark_StarkFunction = &__pyx_vtable_6cherab_11amjuel_data_5stark_StarkFunction;
-  __pyx_vtable_6cherab_11amjuel_data_5stark_StarkFunction.__pyx_base = *__pyx_vtabptr_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D;
-  __pyx_vtable_6cherab_11amjuel_data_5stark_StarkFunction.__pyx_base.evaluate = (double (*)(struct __pyx_obj_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D *, double))__pyx_f_6cherab_11amjuel_data_5stark_13StarkFunction_evaluate;
+  __pyx_vtabptr_6cherab_11PESDT_addon_5stark_StarkFunction = &__pyx_vtable_6cherab_11PESDT_addon_5stark_StarkFunction;
+  __pyx_vtable_6cherab_11PESDT_addon_5stark_StarkFunction.__pyx_base = *__pyx_vtabptr_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D;
+  __pyx_vtable_6cherab_11PESDT_addon_5stark_StarkFunction.__pyx_base.evaluate = (double (*)(struct __pyx_obj_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D *, double))__pyx_f_6cherab_11PESDT_addon_5stark_13StarkFunction_evaluate;
   #if CYTHON_USE_TYPE_SPECS
   __pyx_t_2 = PyTuple_Pack(1, (PyObject *)__pyx_ptype_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 31, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11amjuel_data_5stark_StarkFunction_spec, __pyx_t_2);
+  __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11PESDT_addon_5stark_StarkFunction_spec, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction)) __PYX_ERR(0, 31, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11amjuel_data_5stark_StarkFunction_spec, __pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
+  if (unlikely(!__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction)) __PYX_ERR(0, 31, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11PESDT_addon_5stark_StarkFunction_spec, __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
   #else
-  __pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction = &__pyx_type_6cherab_11amjuel_data_5stark_StarkFunction;
+  __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction = &__pyx_type_6cherab_11PESDT_addon_5stark_StarkFunction;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  __pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction->tp_dealloc = __pyx_ptype_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D->tp_dealloc;
-  __pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction->tp_base = __pyx_ptype_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D;
+  __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction->tp_dealloc = __pyx_ptype_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D->tp_dealloc;
+  __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction->tp_base = __pyx_ptype_7raysect_4core_4math_8function_5float_10function1d_4base_Function1D;
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
-  __pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction->tp_print = 0;
+  __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction->tp_print = 0;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction->tp_dictoffset && __pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction->tp_getattro == PyObject_GenericGetAttr)) {
-    __pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction->tp_getattro = __Pyx_PyObject_GenericGetAttr;
+  if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction->tp_dictoffset && __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction->tp_getattro == PyObject_GenericGetAttr)) {
+    __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction->tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction, __pyx_vtabptr_6cherab_11amjuel_data_5stark_StarkFunction) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction, __pyx_vtabptr_6cherab_11PESDT_addon_5stark_StarkFunction) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
+  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_StarkFunction, (PyObject *) __pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_StarkFunction, (PyObject *) __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
   #endif
   __pyx_t_2 = PyImport_ImportModule("cherab.core.model.lineshape"); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel = __Pyx_ImportType(__pyx_t_2, "cherab.core.model.lineshape", "LineShapeModel", sizeof(struct __pyx_obj_6cherab_4core_5model_9lineshape_LineShapeModel), __Pyx_ImportType_CheckSize_Warn);
    if (!__pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_vtabptr_6cherab_4core_5model_9lineshape_LineShapeModel = (struct __pyx_vtabstruct_6cherab_4core_5model_9lineshape_LineShapeModel*)__Pyx_GetVtable(__pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel); if (unlikely(!__pyx_vtabptr_6cherab_4core_5model_9lineshape_LineShapeModel)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_vtabptr_6cherab_11amjuel_data_5stark_StarkBroadenedLine = &__pyx_vtable_6cherab_11amjuel_data_5stark_StarkBroadenedLine;
-  __pyx_vtable_6cherab_11amjuel_data_5stark_StarkBroadenedLine.__pyx_base = *__pyx_vtabptr_6cherab_4core_5model_9lineshape_LineShapeModel;
-  __pyx_vtable_6cherab_11amjuel_data_5stark_StarkBroadenedLine.__pyx_base.add_line = (struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*)(struct __pyx_obj_6cherab_4core_5model_9lineshape_LineShapeModel *, double, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *, int __pyx_skip_dispatch))__pyx_f_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_add_line;
+  __pyx_vtabptr_6cherab_11PESDT_addon_5stark_StarkBroadenedLine = &__pyx_vtable_6cherab_11PESDT_addon_5stark_StarkBroadenedLine;
+  __pyx_vtable_6cherab_11PESDT_addon_5stark_StarkBroadenedLine.__pyx_base = *__pyx_vtabptr_6cherab_4core_5model_9lineshape_LineShapeModel;
+  __pyx_vtable_6cherab_11PESDT_addon_5stark_StarkBroadenedLine.__pyx_base.add_line = (struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*)(struct __pyx_obj_6cherab_4core_5model_9lineshape_LineShapeModel *, double, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *, int __pyx_skip_dispatch))__pyx_f_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_add_line;
   #if CYTHON_USE_TYPE_SPECS
   __pyx_t_3 = PyTuple_Pack(1, (PyObject *)__pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11amjuel_data_5stark_StarkBroadenedLine_spec, __pyx_t_3);
+  __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11PESDT_addon_5stark_StarkBroadenedLine_spec, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine)) __PYX_ERR(0, 60, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11amjuel_data_5stark_StarkBroadenedLine_spec, __pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
+  if (unlikely(!__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine)) __PYX_ERR(0, 60, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11PESDT_addon_5stark_StarkBroadenedLine_spec, __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
   #else
-  __pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine = &__pyx_type_6cherab_11amjuel_data_5stark_StarkBroadenedLine;
+  __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine = &__pyx_type_6cherab_11PESDT_addon_5stark_StarkBroadenedLine;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  __pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine->tp_base = __pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel;
+  __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine->tp_base = __pyx_ptype_6cherab_4core_5model_9lineshape_LineShapeModel;
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
-  __pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine->tp_print = 0;
+  __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine->tp_print = 0;
   #endif
-  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine, __pyx_vtabptr_6cherab_11amjuel_data_5stark_StarkBroadenedLine) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine, __pyx_vtabptr_6cherab_11PESDT_addon_5stark_StarkBroadenedLine) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
+  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_StarkBroadenedLine, (PyObject *) __pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_StarkBroadenedLine, (PyObject *) __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
   #endif
   __pyx_vtabptr_array = &__pyx_vtable_array;
   __pyx_vtable_array.get_memview = (PyObject *(*)(struct __pyx_array_obj *))__pyx_array_get_memview;
@@ -42590,14 +42590,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_cherab__amjuel_data__stark) {
+  if (__pyx_module_is_main_cherab__PESDT_addon__stark) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name_2, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "cherab.amjuel_data.stark")) {
-      if (unlikely((PyDict_SetItemString(modules, "cherab.amjuel_data.stark", __pyx_m) < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "cherab.PESDT_addon.stark")) {
+      if (unlikely((PyDict_SetItemString(modules, "cherab.PESDT_addon.stark", __pyx_m) < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -42618,7 +42618,7 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "cherab/amjuel_data/stark.pyx":6
+  /* "cherab/PESDT_addon/stark.pyx":6
  * 
  * 
  * import numpy as np             # <<<<<<<<<<<<<<
@@ -42630,7 +42630,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_2) < 0) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":7
+  /* "cherab/PESDT_addon/stark.pyx":7
  * 
  * import numpy as np
  * from scipy.special import hyp2f1             # <<<<<<<<<<<<<<
@@ -42651,7 +42651,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":11
+  /* "cherab/PESDT_addon/stark.pyx":11
  * cimport numpy as np
  * from libc.math cimport sqrt, erf, M_SQRT2, floor, ceil, fabs
  * from scipy.special import hyp2f1             # <<<<<<<<<<<<<<
@@ -42672,7 +42672,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":16
+  /* "cherab/PESDT_addon/stark.pyx":16
  * from raysect.core.math.function.float cimport Function1D
  * 
  * from cherab.core.atomic.elements import hydrogen, deuterium, tritium, helium, helium3, beryllium, boron, carbon, nitrogen, oxygen, neon             # <<<<<<<<<<<<<<
@@ -42763,7 +42763,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":22
+  /* "cherab/PESDT_addon/stark.pyx":22
  * from cherab.core.utility.constants cimport ATOMIC_MASS, ELEMENTARY_CHARGE, SPEED_OF_LIGHT
  * from cherab.core.model.lineshape cimport GaussianLine, LineShapeModel
  * from .molecules import Deuterium2, Deuterium3, Tritium2, Tritium3             # <<<<<<<<<<<<<<
@@ -42805,7 +42805,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":27
+  /* "cherab/PESDT_addon/stark.pyx":27
  * 
  * # required by numpy c-api
  * np.import_array()             # <<<<<<<<<<<<<<
@@ -42814,7 +42814,7 @@ if (!__Pyx_RefNanny) {
  */
   __pyx_t_4 = __pyx_f_5numpy_import_array(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 27, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/stark.pyx":38
+  /* "cherab/PESDT_addon/stark.pyx":38
  *     cdef double _a, _x0, _norm
  * 
  *     STARK_NORM_COEFFICIENT = 4 * LORENZIAN_CUTOFF_GAMMA * hyp2f1(0.4, 1, 1.4, -(2 * LORENZIAN_CUTOFF_GAMMA)**2.5)             # <<<<<<<<<<<<<<
@@ -42852,20 +42852,20 @@ if (!__Pyx_RefNanny) {
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction->tp_dict, __pyx_n_s_STARK_NORM_COEFFICIENT, __pyx_t_5) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction->tp_dict, __pyx_n_s_STARK_NORM_COEFFICIENT, __pyx_t_5) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction);
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_5stark_13StarkFunction_3__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_StarkFunction___reduce_cython, NULL, __pyx_n_s_cherab_amjuel_data_stark, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_5stark_13StarkFunction_3__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_StarkFunction___reduce_cython, NULL, __pyx_n_s_cherab_PESDT_addon_stark, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_5) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_5) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction);
 
   /* "(tree fragment)":16
  *     else:
@@ -42873,13 +42873,13 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_StarkFunction__set_state(self, __pyx_state)
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_5stark_13StarkFunction_5__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_StarkFunction___setstate_cython, NULL, __pyx_n_s_cherab_amjuel_data_stark, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_5stark_13StarkFunction_5__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_StarkFunction___setstate_cython, NULL, __pyx_n_s_cherab_PESDT_addon_stark, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_5) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_5) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_5stark_StarkFunction);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkFunction);
 
-  /* "cherab/amjuel_data/stark.pyx":86
+  /* "cherab/PESDT_addon/stark.pyx":86
  * 
  *     STARK_MODEL_COEFFICIENTS_DEFAULT = {
  *         Line(hydrogen, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),             # <<<<<<<<<<<<<<
@@ -42907,7 +42907,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__21) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":87
+  /* "cherab/PESDT_addon/stark.pyx":87
  *     STARK_MODEL_COEFFICIENTS_DEFAULT = {
  *         Line(hydrogen, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),
  *         Line(hydrogen, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),             # <<<<<<<<<<<<<<
@@ -42933,7 +42933,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__23) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":88
+  /* "cherab/PESDT_addon/stark.pyx":88
  *         Line(hydrogen, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),
  *         Line(hydrogen, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),
  *         Line(hydrogen, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),             # <<<<<<<<<<<<<<
@@ -42959,7 +42959,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__25) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":89
+  /* "cherab/PESDT_addon/stark.pyx":89
  *         Line(hydrogen, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),
  *         Line(hydrogen, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),
  *         Line(hydrogen, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),             # <<<<<<<<<<<<<<
@@ -42985,7 +42985,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__27) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":90
+  /* "cherab/PESDT_addon/stark.pyx":90
  *         Line(hydrogen, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),
  *         Line(hydrogen, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),
  *         Line(hydrogen, 0, (7, 2)): (6.258e-16, 0.712, 0.029),             # <<<<<<<<<<<<<<
@@ -43011,7 +43011,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__29) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":91
+  /* "cherab/PESDT_addon/stark.pyx":91
  *         Line(hydrogen, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),
  *         Line(hydrogen, 0, (7, 2)): (6.258e-16, 0.712, 0.029),
  *         Line(hydrogen, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),             # <<<<<<<<<<<<<<
@@ -43037,7 +43037,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__31) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":92
+  /* "cherab/PESDT_addon/stark.pyx":92
  *         Line(hydrogen, 0, (7, 2)): (6.258e-16, 0.712, 0.029),
  *         Line(hydrogen, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),
  *         Line(hydrogen, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),             # <<<<<<<<<<<<<<
@@ -43063,7 +43063,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__33) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":93
+  /* "cherab/PESDT_addon/stark.pyx":93
  *         Line(hydrogen, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),
  *         Line(hydrogen, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),
  *         Line(hydrogen, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),             # <<<<<<<<<<<<<<
@@ -43089,7 +43089,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__35) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":94
+  /* "cherab/PESDT_addon/stark.pyx":94
  *         Line(hydrogen, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),
  *         Line(hydrogen, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),
  *         Line(hydrogen, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),             # <<<<<<<<<<<<<<
@@ -43115,7 +43115,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__37) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":95
+  /* "cherab/PESDT_addon/stark.pyx":95
  *         Line(hydrogen, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),
  *         Line(hydrogen, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),
  *         Line(hydrogen, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),             # <<<<<<<<<<<<<<
@@ -43141,7 +43141,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__39) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":96
+  /* "cherab/PESDT_addon/stark.pyx":96
  *         Line(hydrogen, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),
  *         Line(hydrogen, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),
  *         Line(hydrogen, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),             # <<<<<<<<<<<<<<
@@ -43167,7 +43167,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__41) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":97
+  /* "cherab/PESDT_addon/stark.pyx":97
  *         Line(hydrogen, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),
  *         Line(hydrogen, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),
  *         Line(hydrogen, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),             # <<<<<<<<<<<<<<
@@ -43193,7 +43193,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__43) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":98
+  /* "cherab/PESDT_addon/stark.pyx":98
  *         Line(hydrogen, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),
  *         Line(hydrogen, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),
  *         Line(hydrogen, 0, (9, 3)): (5.588e-15, 0.7165, 0.033),             # <<<<<<<<<<<<<<
@@ -43219,7 +43219,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__45) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":99
+  /* "cherab/PESDT_addon/stark.pyx":99
  *         Line(hydrogen, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),
  *         Line(hydrogen, 0, (9, 3)): (5.588e-15, 0.7165, 0.033),
  *         Line(deuterium, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),             # <<<<<<<<<<<<<<
@@ -43245,7 +43245,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__21) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":100
+  /* "cherab/PESDT_addon/stark.pyx":100
  *         Line(hydrogen, 0, (9, 3)): (5.588e-15, 0.7165, 0.033),
  *         Line(deuterium, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),
  *         Line(deuterium, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),             # <<<<<<<<<<<<<<
@@ -43271,7 +43271,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__23) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":101
+  /* "cherab/PESDT_addon/stark.pyx":101
  *         Line(deuterium, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),
  *         Line(deuterium, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),
  *         Line(deuterium, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),             # <<<<<<<<<<<<<<
@@ -43297,7 +43297,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__25) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":102
+  /* "cherab/PESDT_addon/stark.pyx":102
  *         Line(deuterium, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),
  *         Line(deuterium, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),
  *         Line(deuterium, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),             # <<<<<<<<<<<<<<
@@ -43323,7 +43323,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__27) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":103
+  /* "cherab/PESDT_addon/stark.pyx":103
  *         Line(deuterium, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),
  *         Line(deuterium, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),
  *         Line(deuterium, 0, (7, 2)): (6.258e-16, 0.712, 0.029),             # <<<<<<<<<<<<<<
@@ -43349,7 +43349,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__29) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":104
+  /* "cherab/PESDT_addon/stark.pyx":104
  *         Line(deuterium, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),
  *         Line(deuterium, 0, (7, 2)): (6.258e-16, 0.712, 0.029),
  *         Line(deuterium, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),             # <<<<<<<<<<<<<<
@@ -43375,7 +43375,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__31) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":105
+  /* "cherab/PESDT_addon/stark.pyx":105
  *         Line(deuterium, 0, (7, 2)): (6.258e-16, 0.712, 0.029),
  *         Line(deuterium, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),
  *         Line(deuterium, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),             # <<<<<<<<<<<<<<
@@ -43401,7 +43401,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__33) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":106
+  /* "cherab/PESDT_addon/stark.pyx":106
  *         Line(deuterium, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),
  *         Line(deuterium, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),
  *         Line(deuterium, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),             # <<<<<<<<<<<<<<
@@ -43427,7 +43427,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__35) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":107
+  /* "cherab/PESDT_addon/stark.pyx":107
  *         Line(deuterium, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),
  *         Line(deuterium, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),
  *         Line(deuterium, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),             # <<<<<<<<<<<<<<
@@ -43453,7 +43453,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__37) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":108
+  /* "cherab/PESDT_addon/stark.pyx":108
  *         Line(deuterium, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),
  *         Line(deuterium, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),
  *         Line(deuterium, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),             # <<<<<<<<<<<<<<
@@ -43479,7 +43479,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__39) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":109
+  /* "cherab/PESDT_addon/stark.pyx":109
  *         Line(deuterium, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),
  *         Line(deuterium, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),
  *         Line(deuterium, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),             # <<<<<<<<<<<<<<
@@ -43505,7 +43505,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__41) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":110
+  /* "cherab/PESDT_addon/stark.pyx":110
  *         Line(deuterium, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),
  *         Line(deuterium, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),
  *         Line(deuterium, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),             # <<<<<<<<<<<<<<
@@ -43531,7 +43531,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__43) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":111
+  /* "cherab/PESDT_addon/stark.pyx":111
  *         Line(deuterium, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),
  *         Line(deuterium, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),
  *         Line(deuterium, 0, (9, 3)): (5.588e-15, 0.7165, 0.033),             # <<<<<<<<<<<<<<
@@ -43557,7 +43557,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__45) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":112
+  /* "cherab/PESDT_addon/stark.pyx":112
  *         Line(deuterium, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),
  *         Line(deuterium, 0, (9, 3)): (5.588e-15, 0.7165, 0.033),
  *         Line(tritium, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),             # <<<<<<<<<<<<<<
@@ -43583,7 +43583,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__21) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":113
+  /* "cherab/PESDT_addon/stark.pyx":113
  *         Line(deuterium, 0, (9, 3)): (5.588e-15, 0.7165, 0.033),
  *         Line(tritium, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),
  *         Line(tritium, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),             # <<<<<<<<<<<<<<
@@ -43609,7 +43609,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__23) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":114
+  /* "cherab/PESDT_addon/stark.pyx":114
  *         Line(tritium, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),
  *         Line(tritium, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),
  *         Line(tritium, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),             # <<<<<<<<<<<<<<
@@ -43635,7 +43635,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__25) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":115
+  /* "cherab/PESDT_addon/stark.pyx":115
  *         Line(tritium, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),
  *         Line(tritium, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),
  *         Line(tritium, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),             # <<<<<<<<<<<<<<
@@ -43661,7 +43661,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__27) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":116
+  /* "cherab/PESDT_addon/stark.pyx":116
  *         Line(tritium, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),
  *         Line(tritium, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),
  *         Line(tritium, 0, (7, 2)): (6.258e-16, 0.712, 0.029),             # <<<<<<<<<<<<<<
@@ -43687,7 +43687,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__29) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":117
+  /* "cherab/PESDT_addon/stark.pyx":117
  *         Line(tritium, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),
  *         Line(tritium, 0, (7, 2)): (6.258e-16, 0.712, 0.029),
  *         Line(tritium, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),             # <<<<<<<<<<<<<<
@@ -43713,7 +43713,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__31) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":118
+  /* "cherab/PESDT_addon/stark.pyx":118
  *         Line(tritium, 0, (7, 2)): (6.258e-16, 0.712, 0.029),
  *         Line(tritium, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),
  *         Line(tritium, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),             # <<<<<<<<<<<<<<
@@ -43739,7 +43739,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__33) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":119
+  /* "cherab/PESDT_addon/stark.pyx":119
  *         Line(tritium, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),
  *         Line(tritium, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),
  *         Line(tritium, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),             # <<<<<<<<<<<<<<
@@ -43765,7 +43765,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__35) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":120
+  /* "cherab/PESDT_addon/stark.pyx":120
  *         Line(tritium, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),
  *         Line(tritium, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),
  *         Line(tritium, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),             # <<<<<<<<<<<<<<
@@ -43791,7 +43791,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__37) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":121
+  /* "cherab/PESDT_addon/stark.pyx":121
  *         Line(tritium, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),
  *         Line(tritium, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),
  *         Line(tritium, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),             # <<<<<<<<<<<<<<
@@ -43817,7 +43817,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__39) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":122
+  /* "cherab/PESDT_addon/stark.pyx":122
  *         Line(tritium, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),
  *         Line(tritium, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),
  *         Line(tritium, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),             # <<<<<<<<<<<<<<
@@ -43843,7 +43843,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__41) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":123
+  /* "cherab/PESDT_addon/stark.pyx":123
  *         Line(tritium, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),
  *         Line(tritium, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),
  *         Line(tritium, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),             # <<<<<<<<<<<<<<
@@ -43869,7 +43869,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__43) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":124
+  /* "cherab/PESDT_addon/stark.pyx":124
  *         Line(tritium, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),
  *         Line(tritium, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),
  *         Line(tritium, 0, (9, 3)): (5.588e-15, 0.7165, 0.033),             # <<<<<<<<<<<<<<
@@ -43895,7 +43895,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__45) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":127
+  /* "cherab/PESDT_addon/stark.pyx":127
  *         # Add Molecules -> Use the same coeff as for parent atom, as the "molecule line" is just the contribution of the
  *         # Molecule to the excited atomic polulation
  *         Line(Deuterium2, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),             # <<<<<<<<<<<<<<
@@ -43921,7 +43921,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__21) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":128
+  /* "cherab/PESDT_addon/stark.pyx":128
  *         # Molecule to the excited atomic polulation
  *         Line(Deuterium2, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),
  *         Line(Deuterium2, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),             # <<<<<<<<<<<<<<
@@ -43947,7 +43947,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__23) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":129
+  /* "cherab/PESDT_addon/stark.pyx":129
  *         Line(Deuterium2, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),
  *         Line(Deuterium2, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),
  *         Line(Deuterium2, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),             # <<<<<<<<<<<<<<
@@ -43973,7 +43973,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__25) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":130
+  /* "cherab/PESDT_addon/stark.pyx":130
  *         Line(Deuterium2, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),
  *         Line(Deuterium2, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),
  *         Line(Deuterium2, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),             # <<<<<<<<<<<<<<
@@ -43999,7 +43999,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__27) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":131
+  /* "cherab/PESDT_addon/stark.pyx":131
  *         Line(Deuterium2, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),
  *         Line(Deuterium2, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),
  *         Line(Deuterium2, 0, (7, 2)): (6.258e-16, 0.712, 0.029),             # <<<<<<<<<<<<<<
@@ -44025,7 +44025,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__29) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":132
+  /* "cherab/PESDT_addon/stark.pyx":132
  *         Line(Deuterium2, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),
  *         Line(Deuterium2, 0, (7, 2)): (6.258e-16, 0.712, 0.029),
  *         Line(Deuterium2, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),             # <<<<<<<<<<<<<<
@@ -44051,7 +44051,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__31) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":133
+  /* "cherab/PESDT_addon/stark.pyx":133
  *         Line(Deuterium2, 0, (7, 2)): (6.258e-16, 0.712, 0.029),
  *         Line(Deuterium2, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),
  *         Line(Deuterium2, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),             # <<<<<<<<<<<<<<
@@ -44077,7 +44077,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__33) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":134
+  /* "cherab/PESDT_addon/stark.pyx":134
  *         Line(Deuterium2, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),
  *         Line(Deuterium2, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),
  *         Line(Deuterium2, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),             # <<<<<<<<<<<<<<
@@ -44103,7 +44103,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__35) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":135
+  /* "cherab/PESDT_addon/stark.pyx":135
  *         Line(Deuterium2, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),
  *         Line(Deuterium2, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),
  *         Line(Deuterium2, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),             # <<<<<<<<<<<<<<
@@ -44129,7 +44129,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__37) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":136
+  /* "cherab/PESDT_addon/stark.pyx":136
  *         Line(Deuterium2, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),
  *         Line(Deuterium2, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),
  *         Line(Deuterium2, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),             # <<<<<<<<<<<<<<
@@ -44155,7 +44155,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__39) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":137
+  /* "cherab/PESDT_addon/stark.pyx":137
  *         Line(Deuterium2, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),
  *         Line(Deuterium2, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),
  *         Line(Deuterium2, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),             # <<<<<<<<<<<<<<
@@ -44181,7 +44181,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__41) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":138
+  /* "cherab/PESDT_addon/stark.pyx":138
  *         Line(Deuterium2, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),
  *         Line(Deuterium2, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),
  *         Line(Deuterium2, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),             # <<<<<<<<<<<<<<
@@ -44207,7 +44207,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__43) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":139
+  /* "cherab/PESDT_addon/stark.pyx":139
  *         Line(Deuterium2, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),
  *         Line(Deuterium2, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),
  *         Line(Deuterium2, 0, (9, 3)): (5.588e-15, 0.7165, 0.033),             # <<<<<<<<<<<<<<
@@ -44233,7 +44233,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__45) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":140
+  /* "cherab/PESDT_addon/stark.pyx":140
  *         Line(Deuterium2, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),
  *         Line(Deuterium2, 0, (9, 3)): (5.588e-15, 0.7165, 0.033),
  *         Line(Tritium2, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),             # <<<<<<<<<<<<<<
@@ -44259,7 +44259,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__21) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":141
+  /* "cherab/PESDT_addon/stark.pyx":141
  *         Line(Deuterium2, 0, (9, 3)): (5.588e-15, 0.7165, 0.033),
  *         Line(Tritium2, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),
  *         Line(Tritium2, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),             # <<<<<<<<<<<<<<
@@ -44285,7 +44285,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__23) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":142
+  /* "cherab/PESDT_addon/stark.pyx":142
  *         Line(Tritium2, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),
  *         Line(Tritium2, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),
  *         Line(Tritium2, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),             # <<<<<<<<<<<<<<
@@ -44311,7 +44311,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__25) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":143
+  /* "cherab/PESDT_addon/stark.pyx":143
  *         Line(Tritium2, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),
  *         Line(Tritium2, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),
  *         Line(Tritium2, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),             # <<<<<<<<<<<<<<
@@ -44337,7 +44337,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__27) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":144
+  /* "cherab/PESDT_addon/stark.pyx":144
  *         Line(Tritium2, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),
  *         Line(Tritium2, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),
  *         Line(Tritium2, 0, (7, 2)): (6.258e-16, 0.712, 0.029),             # <<<<<<<<<<<<<<
@@ -44363,7 +44363,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__29) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":145
+  /* "cherab/PESDT_addon/stark.pyx":145
  *         Line(Tritium2, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),
  *         Line(Tritium2, 0, (7, 2)): (6.258e-16, 0.712, 0.029),
  *         Line(Tritium2, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),             # <<<<<<<<<<<<<<
@@ -44389,7 +44389,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__31) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":146
+  /* "cherab/PESDT_addon/stark.pyx":146
  *         Line(Tritium2, 0, (7, 2)): (6.258e-16, 0.712, 0.029),
  *         Line(Tritium2, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),
  *         Line(Tritium2, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),             # <<<<<<<<<<<<<<
@@ -44415,7 +44415,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__33) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":147
+  /* "cherab/PESDT_addon/stark.pyx":147
  *         Line(Tritium2, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),
  *         Line(Tritium2, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),
  *         Line(Tritium2, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),             # <<<<<<<<<<<<<<
@@ -44441,7 +44441,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__35) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":148
+  /* "cherab/PESDT_addon/stark.pyx":148
  *         Line(Tritium2, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),
  *         Line(Tritium2, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),
  *         Line(Tritium2, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),             # <<<<<<<<<<<<<<
@@ -44467,7 +44467,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__37) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":149
+  /* "cherab/PESDT_addon/stark.pyx":149
  *         Line(Tritium2, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),
  *         Line(Tritium2, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),
  *         Line(Tritium2, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),             # <<<<<<<<<<<<<<
@@ -44493,7 +44493,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__39) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":150
+  /* "cherab/PESDT_addon/stark.pyx":150
  *         Line(Tritium2, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),
  *         Line(Tritium2, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),
  *         Line(Tritium2, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),             # <<<<<<<<<<<<<<
@@ -44519,7 +44519,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__41) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":151
+  /* "cherab/PESDT_addon/stark.pyx":151
  *         Line(Tritium2, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),
  *         Line(Tritium2, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),
  *         Line(Tritium2, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),             # <<<<<<<<<<<<<<
@@ -44545,7 +44545,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__43) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":152
+  /* "cherab/PESDT_addon/stark.pyx":152
  *         Line(Tritium2, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),
  *         Line(Tritium2, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),
  *         Line(Tritium2, 0, (9, 3)): (5.588e-15, 0.7165, 0.033),             # <<<<<<<<<<<<<<
@@ -44570,11 +44570,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (PyDict_SetItem(__pyx_t_5, __pyx_t_3, __pyx_tuple__45) < 0) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine->tp_dict, __pyx_n_s_STARK_MODEL_COEFFICIENTS_DEFAULT, __pyx_t_5) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine->tp_dict, __pyx_n_s_STARK_MODEL_COEFFICIENTS_DEFAULT, __pyx_t_5) < 0) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine);
 
-  /* "cherab/amjuel_data/stark.pyx":159
+  /* "cherab/PESDT_addon/stark.pyx":159
  * 
  *     def __init__(self, Line line, double wavelength, Species target_species, Plasma plasma,
  *                  dict stark_model_coefficients=None, integrator=GaussianQuadrature()):             # <<<<<<<<<<<<<<
@@ -44587,42 +44587,42 @@ if (!__Pyx_RefNanny) {
   __Pyx_GIVEREF(__pyx_t_5);
   __pyx_t_5 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":180
+  /* "cherab/PESDT_addon/stark.pyx":180
  *         super().__init__(line, wavelength, target_species, plasma, integrator)
  * 
  *     def show_supported_transitions(self):             # <<<<<<<<<<<<<<
  *         """ Prints all supported transitions."""
  *         for line, coeff in self.STARK_MODEL_COEFFICIENTS_DEFAULT.items():
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_3show_supported_transitions, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_StarkBroadenedLine_show_supporte, NULL, __pyx_n_s_cherab_amjuel_data_stark, __pyx_d, ((PyObject *)__pyx_codeobj__47)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 180, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_3show_supported_transitions, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_StarkBroadenedLine_show_supporte, NULL, __pyx_n_s_cherab_PESDT_addon_stark, __pyx_d, ((PyObject *)__pyx_codeobj__47)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 180, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine->tp_dict, __pyx_n_s_show_supported_transitions, __pyx_t_5) < 0) __PYX_ERR(0, 180, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine->tp_dict, __pyx_n_s_show_supported_transitions, __pyx_t_5) < 0) __PYX_ERR(0, 180, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine);
 
-  /* "cherab/amjuel_data/stark.pyx":189
+  /* "cherab/PESDT_addon/stark.pyx":189
  *     @cython.initializedcheck(False)
  *     @cython.cdivision(True)
  *     cpdef Spectrum add_line(self, double radiance, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
  * 
  *         cdef:
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_5add_line, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_StarkBroadenedLine_add_line, NULL, __pyx_n_s_cherab_amjuel_data_stark, __pyx_d, ((PyObject *)__pyx_codeobj__49)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_5add_line, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_StarkBroadenedLine_add_line, NULL, __pyx_n_s_cherab_PESDT_addon_stark, __pyx_d, ((PyObject *)__pyx_codeobj__49)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 189, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine->tp_dict, __pyx_n_s_add_line, __pyx_t_5) < 0) __PYX_ERR(0, 189, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine->tp_dict, __pyx_n_s_add_line, __pyx_t_5) < 0) __PYX_ERR(0, 189, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine);
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_7__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_StarkBroadenedLine___reduce_cyth, NULL, __pyx_n_s_cherab_amjuel_data_stark, __pyx_d, ((PyObject *)__pyx_codeobj__50)); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_7__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_StarkBroadenedLine___reduce_cyth, NULL, __pyx_n_s_cherab_PESDT_addon_stark, __pyx_d, ((PyObject *)__pyx_codeobj__50)); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_5) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_5) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine);
 
   /* "(tree fragment)":16
  *     else:
@@ -44630,18 +44630,18 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_StarkBroadenedLine__set_state(self, __pyx_state)
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_5stark_18StarkBroadenedLine_9__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_StarkBroadenedLine___setstate_cy, NULL, __pyx_n_s_cherab_amjuel_data_stark, __pyx_d, ((PyObject *)__pyx_codeobj__51)); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_5stark_18StarkBroadenedLine_9__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_StarkBroadenedLine___setstate_cy, NULL, __pyx_n_s_cherab_PESDT_addon_stark, __pyx_d, ((PyObject *)__pyx_codeobj__51)); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_5) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_5) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_5stark_StarkBroadenedLine);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_5stark_StarkBroadenedLine);
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_StarkFunction(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_5stark_1__pyx_unpickle_StarkFunction, 0, __pyx_n_s_pyx_unpickle_StarkFunction, NULL, __pyx_n_s_cherab_amjuel_data_stark, __pyx_d, ((PyObject *)__pyx_codeobj__53)); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_5stark_1__pyx_unpickle_StarkFunction, 0, __pyx_n_s_pyx_unpickle_StarkFunction, NULL, __pyx_n_s_cherab_PESDT_addon_stark, __pyx_d, ((PyObject *)__pyx_codeobj__53)); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_StarkFunction, __pyx_t_5) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -44653,12 +44653,12 @@ if (!__Pyx_RefNanny) {
  *     __pyx_result._a = __pyx_state[0]; __pyx_result._norm = __pyx_state[1]; __pyx_result._x0 = __pyx_state[2]
  *     if len(__pyx_state) > 3 and hasattr(__pyx_result, '__dict__'):
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_5stark_3__pyx_unpickle_StarkBroadenedLine, 0, __pyx_n_s_pyx_unpickle_StarkBroadenedLin, NULL, __pyx_n_s_cherab_amjuel_data_stark, __pyx_d, ((PyObject *)__pyx_codeobj__54)); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_5stark_3__pyx_unpickle_StarkBroadenedLine, 0, __pyx_n_s_pyx_unpickle_StarkBroadenedLin, NULL, __pyx_n_s_cherab_PESDT_addon_stark, __pyx_d, ((PyObject *)__pyx_codeobj__54)); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_StarkBroadenedLin, __pyx_t_5) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "cherab/amjuel_data/stark.pyx":1
+  /* "cherab/PESDT_addon/stark.pyx":1
  * # cython: language_level=3             # <<<<<<<<<<<<<<
  * 
  * # Slightly modified StarkBroadenedLine to add support for molecular contributions
@@ -44832,13 +44832,13 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_7);
   if (__pyx_m) {
     if (__pyx_d && stringtab_initialized) {
-      __Pyx_AddTraceback("init cherab.amjuel_data.stark", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init cherab.PESDT_addon.stark", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     #if !CYTHON_USE_MODULE_STATE
     Py_CLEAR(__pyx_m);
     #endif
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init cherab.amjuel_data.stark");
+    PyErr_SetString(PyExc_ImportError, "init cherab.PESDT_addon.stark");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();

@@ -1,0 +1,50 @@
+{
+    "machine": "JET",
+    "edge_code": {"code": "edge2d", "sim_path": "/home/mgroth/cmg/catalog/edge2d/jet/81472/jul3122/seq#1/tran"},
+    "diag_list": [
+      "KT3A"
+    ],
+    "pulse": 81472,
+    "read_ADAS": false,
+    "spec_line_dict": {
+      "1": {
+        "1": {
+          "6561.9": [
+            "3",
+            "2"
+          ],
+          "4339.9": [
+            "5",
+            "2"
+          ],
+          "4101.2": [
+            "6",
+            "2"
+          ]
+        }
+      }
+    },
+    "interactive_plots": false,
+    "save_dir": "PESDT_cases/", 
+    "run_cherab": true,
+    "run_options": {
+        "calc_synth_spec_features": false,
+        "analyse_synth_spec_features": false,
+        "use_AMJUEL": true,
+        "recalc_h2_pos": false,
+        "Sion_H_transition": [[2,1],[3,2]],
+        "Srec_H_transition": [[5,2]]
+      },
+    "cherab_options": {
+        "spectral_bins": 1,
+        "pixel_samples": 1000,
+        "import_jet_surfaces": true,
+        "include_reflections": true,
+        "ray_extinction_prob": 0.33,
+        "stark_transition": [6,2],
+        "ff_fb_emission": false,
+        "analyse_synth_spec_features": false
+    }
+  }
+  
+  

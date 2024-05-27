@@ -14,12 +14,12 @@
             ".",
             "/usr/local/depot/Python-3.9/lib/python3.9/site-packages/numpy/core/include"
         ],
-        "name": "cherab.amjuel_data.RateFunctions",
+        "name": "cherab.PESDT_addon.RateFunctions",
         "sources": [
-            "cherab/amjuel_data/RateFunctions.pyx"
+            "cherab/PESDT_addon/RateFunctions.pyx"
         ]
     },
-    "module_name": "cherab.amjuel_data.RateFunctions"
+    "module_name": "cherab.PESDT_addon.RateFunctions"
 }
 END: Cython Metadata */
 
@@ -954,8 +954,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__cherab__amjuel_data__RateFunctions
-#define __PYX_HAVE_API__cherab__amjuel_data__RateFunctions
+#define __PYX_HAVE__cherab__PESDT_addon__RateFunctions
+#define __PYX_HAVE_API__cherab__PESDT_addon__RateFunctions
 /* Early includes */
 #include <string.h>
 #include <stdio.h>
@@ -1214,7 +1214,7 @@ static const char *__pyx_filename;
 /* #### Code section: filename_table ### */
 
 static const char *__pyx_f[] = {
-  "cherab/amjuel_data/RateFunctions.pyx",
+  "cherab/PESDT_addon/RateFunctions.pyx",
   "<stringsource>",
   "__init__.cython-30.pxd",
   "type.pxd",
@@ -1546,8 +1546,8 @@ static CYTHON_INLINE __pyx_t_double_complex __pyx_t_double_complex_from_parts(do
 /* #### Code section: type_declarations ### */
 
 /*--- Type declarations ---*/
-struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction;
-struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction;
+struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction;
+struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction;
 struct __pyx_array_obj;
 struct __pyx_MemviewEnum_obj;
 struct __pyx_memoryview_obj;
@@ -1589,32 +1589,32 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 
-/* "cherab/amjuel_data/RateFunctions.pyx":11
+/* "cherab/PESDT_addon/RateFunctions.pyx":11
  * DTYPE = np.double
  * 
  * cdef class RateFunction():             # <<<<<<<<<<<<<<
  *     #
  *     # Generalized rate function for calculating emission from 2D AMJUEL rate coefficients
  */
-struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction {
+struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction {
   PyObject_HEAD
-  struct __pyx_vtabstruct_6cherab_11amjuel_data_13RateFunctions_RateFunction *__pyx_vtab;
+  struct __pyx_vtabstruct_6cherab_11PESDT_addon_13RateFunctions_RateFunction *__pyx_vtab;
   PyArrayObject *_MARc;
   double _A_coeff;
   double res;
 };
 
 
-/* "cherab/amjuel_data/RateFunctions.pyx":50
+/* "cherab/PESDT_addon/RateFunctions.pyx":50
  *         return self._evaluate(ne, T)
  * 
  * cdef class NullRateFunction():             # <<<<<<<<<<<<<<
  * 
  *     cdef dict __dict__
  */
-struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction {
+struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction {
   PyObject_HEAD
-  struct __pyx_vtabstruct_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *__pyx_vtab;
+  struct __pyx_vtabstruct_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *__pyx_vtab;
   PyObject *__dict__;
 };
 
@@ -1697,7 +1697,7 @@ struct __pyx_memoryviewslice_obj {
 
 
 
-/* "cherab/amjuel_data/RateFunctions.pyx":11
+/* "cherab/PESDT_addon/RateFunctions.pyx":11
  * DTYPE = np.double
  * 
  * cdef class RateFunction():             # <<<<<<<<<<<<<<
@@ -1705,13 +1705,13 @@ struct __pyx_memoryviewslice_obj {
  *     # Generalized rate function for calculating emission from 2D AMJUEL rate coefficients
  */
 
-struct __pyx_vtabstruct_6cherab_11amjuel_data_13RateFunctions_RateFunction {
-  double (*_evaluate)(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *, double, double);
+struct __pyx_vtabstruct_6cherab_11PESDT_addon_13RateFunctions_RateFunction {
+  double (*_evaluate)(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *, double, double);
 };
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_13RateFunctions_RateFunction *__pyx_vtabptr_6cherab_11amjuel_data_13RateFunctions_RateFunction;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_13RateFunctions_RateFunction *__pyx_vtabptr_6cherab_11PESDT_addon_13RateFunctions_RateFunction;
 
 
-/* "cherab/amjuel_data/RateFunctions.pyx":50
+/* "cherab/PESDT_addon/RateFunctions.pyx":50
  *         return self._evaluate(ne, T)
  * 
  * cdef class NullRateFunction():             # <<<<<<<<<<<<<<
@@ -1719,10 +1719,10 @@ static struct __pyx_vtabstruct_6cherab_11amjuel_data_13RateFunctions_RateFunctio
  *     cdef dict __dict__
  */
 
-struct __pyx_vtabstruct_6cherab_11amjuel_data_13RateFunctions_NullRateFunction {
-  double (*evaluate)(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *, double, double, int __pyx_skip_dispatch);
+struct __pyx_vtabstruct_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction {
+  double (*evaluate)(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *, double, double, int __pyx_skip_dispatch);
 };
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *__pyx_vtabptr_6cherab_11amjuel_data_13RateFunctions_NullRateFunction;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *__pyx_vtabptr_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction;
 
 
 /* "View.MemoryView":109
@@ -2723,8 +2723,8 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 #endif
 
 /* #### Code section: module_declarations ### */
-static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_12RateFunction__evaluate(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *__pyx_v_self, double __pyx_v_ne, double __pyx_v_T); /* proto*/
-static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_evaluate(CYTHON_UNUSED struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *__pyx_v_self, CYTHON_UNUSED double __pyx_v_T, CYTHON_UNUSED double __pyx_v_ne, int __pyx_skip_dispatch); /* proto*/
+static double __pyx_f_6cherab_11PESDT_addon_13RateFunctions_12RateFunction__evaluate(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *__pyx_v_self, double __pyx_v_ne, double __pyx_v_T); /* proto*/
+static double __pyx_f_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_evaluate(CYTHON_UNUSED struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *__pyx_v_self, CYTHON_UNUSED double __pyx_v_T, CYTHON_UNUSED double __pyx_v_ne, int __pyx_skip_dispatch); /* proto*/
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_7ndarray_4base_base(PyArrayObject *__pyx_v_self); /* proto*/
 static CYTHON_INLINE PyArray_Descr *__pyx_f_5numpy_7ndarray_5descr_descr(PyArrayObject *__pyx_v_self); /* proto*/
 static CYTHON_INLINE int __pyx_f_5numpy_7ndarray_4ndim_ndim(PyArrayObject *__pyx_v_self); /* proto*/
@@ -2809,10 +2809,10 @@ static PyTypeObject *__pyx_ptype_5numpy_ufunc = 0;
 #if !CYTHON_USE_MODULE_STATE
 #endif
 
-/* Module declarations from "cherab.amjuel_data.RateFunctions" */
+/* Module declarations from "cherab.PESDT_addon.RateFunctions" */
 #if !CYTHON_USE_MODULE_STATE
-static PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction = 0;
-static PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction = 0;
+static PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction = 0;
+static PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction = 0;
 static PyTypeObject *__pyx_array_type = 0;
 static PyTypeObject *__pyx_MemviewEnum_type = 0;
 static PyTypeObject *__pyx_memoryview_type = 0;
@@ -2825,8 +2825,8 @@ static PyObject *contiguous = 0;
 static PyObject *indirect_contiguous = 0;
 static int __pyx_memoryview_thread_locks_used;
 static PyThread_type_lock __pyx_memoryview_thread_locks[8];
-static PyObject *__pyx_f_6cherab_11amjuel_data_13RateFunctions___pyx_unpickle_RateFunction__set_state(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *, PyObject *); /*proto*/
-static PyObject *__pyx_f_6cherab_11amjuel_data_13RateFunctions___pyx_unpickle_NullRateFunction__set_state(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *, PyObject *); /*proto*/
+static PyObject *__pyx_f_6cherab_11PESDT_addon_13RateFunctions___pyx_unpickle_RateFunction__set_state(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *, PyObject *); /*proto*/
+static PyObject *__pyx_f_6cherab_11PESDT_addon_13RateFunctions___pyx_unpickle_NullRateFunction__set_state(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *, PyObject *); /*proto*/
 static int __pyx_array_allocate_buffer(struct __pyx_array_obj *); /*proto*/
 static struct __pyx_array_obj *__pyx_array_new(PyObject *, Py_ssize_t, char *, char *, char *); /*proto*/
 static void *__pyx_align_pointer(void *, size_t); /*proto*/
@@ -2865,11 +2865,11 @@ static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *, 
 /* #### Code section: typeinfo ### */
 static __Pyx_TypeInfo __Pyx_TypeInfo_double = { "double", NULL, sizeof(double), { 0 }, 0, 'R', 0, 0 };
 /* #### Code section: before_global_var ### */
-#define __Pyx_MODULE_NAME "cherab.amjuel_data.RateFunctions"
-extern int __pyx_module_is_main_cherab__amjuel_data__RateFunctions;
-int __pyx_module_is_main_cherab__amjuel_data__RateFunctions = 0;
+#define __Pyx_MODULE_NAME "cherab.PESDT_addon.RateFunctions"
+extern int __pyx_module_is_main_cherab__PESDT_addon__RateFunctions;
+int __pyx_module_is_main_cherab__PESDT_addon__RateFunctions = 0;
 
-/* Implementation of "cherab.amjuel_data.RateFunctions" */
+/* Implementation of "cherab.PESDT_addon.RateFunctions" */
 /* #### Code section: global_var ### */
 static PyObject *__pyx_builtin_range;
 static PyObject *__pyx_builtin_ImportError;
@@ -3019,12 +3019,12 @@ static const char __pyx_k_NullRateFunction___reduce_cython[] = "NullRateFunction
 static const char __pyx_k_NullRateFunction___setstate_cyth[] = "NullRateFunction.__setstate_cython__";
 static const char __pyx_k_Out_of_bounds_on_buffer_access_a[] = "Out of bounds on buffer access (axis ";
 static const char __pyx_k_Unable_to_convert_item_to_object[] = "Unable to convert item to object";
-static const char __pyx_k_cherab_amjuel_data_RateFunctions[] = "cherab/amjuel_data/RateFunctions.pyx";
+static const char __pyx_k_cherab_PESDT_addon_RateFunctions[] = "cherab/PESDT_addon/RateFunctions.pyx";
 static const char __pyx_k_got_differing_extents_in_dimensi[] = "got differing extents in dimension ";
 static const char __pyx_k_no_default___reduce___due_to_non[] = "no default __reduce__ due to non-trivial __cinit__";
 static const char __pyx_k_numpy_core_umath_failed_to_impor[] = "numpy.core.umath failed to import";
 static const char __pyx_k_unable_to_allocate_shape_and_str[] = "unable to allocate shape and strides.";
-static const char __pyx_k_cherab_amjuel_data_RateFunctions_2[] = "cherab.amjuel_data.RateFunctions";
+static const char __pyx_k_cherab_PESDT_addon_RateFunctions_2[] = "cherab.PESDT_addon.RateFunctions";
 #if !CYTHON_USE_MODULE_STATE
 static PyObject *__pyx_kp_u_;
 static PyObject *__pyx_n_s_ASCII;
@@ -3084,8 +3084,8 @@ static PyObject *__pyx_n_s_asyncio_coroutines;
 static PyObject *__pyx_n_s_base;
 static PyObject *__pyx_n_s_c;
 static PyObject *__pyx_n_u_c;
-static PyObject *__pyx_kp_s_cherab_amjuel_data_RateFunctions;
-static PyObject *__pyx_n_s_cherab_amjuel_data_RateFunctions_2;
+static PyObject *__pyx_kp_s_cherab_PESDT_addon_RateFunctions;
+static PyObject *__pyx_n_s_cherab_PESDT_addon_RateFunctions_2;
 static PyObject *__pyx_n_s_class;
 static PyObject *__pyx_n_s_class_getitem;
 static PyObject *__pyx_n_s_cline_in_traceback;
@@ -3173,16 +3173,16 @@ static PyObject *__pyx_n_s_use_setstate;
 static PyObject *__pyx_n_s_zeros;
 #endif
 /* #### Code section: decls ### */
-static int __pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction___init__(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *__pyx_v_self, PyObject *__pyx_v_MARc, PyObject *__pyx_v_transition); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_2evaluate(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *__pyx_v_self, PyObject *__pyx_v_ne, PyObject *__pyx_v_T); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_4__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_6__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
-static int __pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction___init__(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_MARc, CYTHON_UNUSED PyObject *__pyx_v_transition); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_2evaluate(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *__pyx_v_self, double __pyx_v_T, double __pyx_v_ne); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_4__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_6__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions___pyx_unpickle_RateFunction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_2__pyx_unpickle_NullRateFunction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
+static int __pyx_pf_6cherab_11PESDT_addon_13RateFunctions_12RateFunction___init__(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *__pyx_v_self, PyObject *__pyx_v_MARc, PyObject *__pyx_v_transition); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_2evaluate(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *__pyx_v_self, PyObject *__pyx_v_ne, PyObject *__pyx_v_T); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_4__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_6__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static int __pyx_pf_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction___init__(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_MARc, CYTHON_UNUSED PyObject *__pyx_v_transition); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_2evaluate(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *__pyx_v_self, double __pyx_v_T, double __pyx_v_ne); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_4__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_6__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_13RateFunctions___pyx_unpickle_RateFunction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_13RateFunctions_2__pyx_unpickle_NullRateFunction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(struct __pyx_array_obj *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struct __pyx_array_obj *__pyx_v_self); /* proto */
@@ -3224,8 +3224,8 @@ static void __pyx_memoryviewslice___pyx_pf_15View_dot_MemoryView_16_memoryviewsl
 static PyObject *__pyx_pf___pyx_memoryviewslice___reduce_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf___pyx_memoryviewslice_2__setstate_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_15View_dot_MemoryView___pyx_unpickle_Enum(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_13RateFunctions_RateFunction(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_13RateFunctions_NullRateFunction(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_13RateFunctions_RateFunction(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_array(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_Enum(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_memoryview(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -3295,10 +3295,10 @@ typedef struct {
   PyTypeObject *__pyx_ptype_5numpy_flexible;
   PyTypeObject *__pyx_ptype_5numpy_character;
   PyTypeObject *__pyx_ptype_5numpy_ufunc;
-  PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction;
-  PyObject *__pyx_type_6cherab_11amjuel_data_13RateFunctions_RateFunction;
-  PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction;
-  PyObject *__pyx_type_6cherab_11amjuel_data_13RateFunctions_NullRateFunction;
+  PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction;
+  PyObject *__pyx_type_6cherab_11PESDT_addon_13RateFunctions_RateFunction;
+  PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction;
+  PyObject *__pyx_type_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction;
   PyTypeObject *__pyx_array_type;
   PyObject *__pyx_type___pyx_array;
   PyTypeObject *__pyx_MemviewEnum_type;
@@ -3365,8 +3365,8 @@ typedef struct {
   PyObject *__pyx_n_s_base;
   PyObject *__pyx_n_s_c;
   PyObject *__pyx_n_u_c;
-  PyObject *__pyx_kp_s_cherab_amjuel_data_RateFunctions;
-  PyObject *__pyx_n_s_cherab_amjuel_data_RateFunctions_2;
+  PyObject *__pyx_kp_s_cherab_PESDT_addon_RateFunctions;
+  PyObject *__pyx_n_s_cherab_PESDT_addon_RateFunctions_2;
   PyObject *__pyx_n_s_class;
   PyObject *__pyx_n_s_class_getitem;
   PyObject *__pyx_n_s_cline_in_traceback;
@@ -3530,10 +3530,10 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_5numpy_flexible);
   Py_CLEAR(clear_module_state->__pyx_ptype_5numpy_character);
   Py_CLEAR(clear_module_state->__pyx_ptype_5numpy_ufunc);
-  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction);
-  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11amjuel_data_13RateFunctions_RateFunction);
-  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction);
-  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11amjuel_data_13RateFunctions_NullRateFunction);
+  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction);
+  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11PESDT_addon_13RateFunctions_RateFunction);
+  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction);
+  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction);
   Py_CLEAR(clear_module_state->__pyx_array_type);
   Py_CLEAR(clear_module_state->__pyx_type___pyx_array);
   Py_CLEAR(clear_module_state->__pyx_MemviewEnum_type);
@@ -3600,8 +3600,8 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_base);
   Py_CLEAR(clear_module_state->__pyx_n_s_c);
   Py_CLEAR(clear_module_state->__pyx_n_u_c);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_cherab_amjuel_data_RateFunctions);
-  Py_CLEAR(clear_module_state->__pyx_n_s_cherab_amjuel_data_RateFunctions_2);
+  Py_CLEAR(clear_module_state->__pyx_kp_s_cherab_PESDT_addon_RateFunctions);
+  Py_CLEAR(clear_module_state->__pyx_n_s_cherab_PESDT_addon_RateFunctions_2);
   Py_CLEAR(clear_module_state->__pyx_n_s_class);
   Py_CLEAR(clear_module_state->__pyx_n_s_class_getitem);
   Py_CLEAR(clear_module_state->__pyx_n_s_cline_in_traceback);
@@ -3752,10 +3752,10 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_ptype_5numpy_flexible);
   Py_VISIT(traverse_module_state->__pyx_ptype_5numpy_character);
   Py_VISIT(traverse_module_state->__pyx_ptype_5numpy_ufunc);
-  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction);
-  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11amjuel_data_13RateFunctions_RateFunction);
-  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction);
-  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11amjuel_data_13RateFunctions_NullRateFunction);
+  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction);
+  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11PESDT_addon_13RateFunctions_RateFunction);
+  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction);
+  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction);
   Py_VISIT(traverse_module_state->__pyx_array_type);
   Py_VISIT(traverse_module_state->__pyx_type___pyx_array);
   Py_VISIT(traverse_module_state->__pyx_MemviewEnum_type);
@@ -3822,8 +3822,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_base);
   Py_VISIT(traverse_module_state->__pyx_n_s_c);
   Py_VISIT(traverse_module_state->__pyx_n_u_c);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_cherab_amjuel_data_RateFunctions);
-  Py_VISIT(traverse_module_state->__pyx_n_s_cherab_amjuel_data_RateFunctions_2);
+  Py_VISIT(traverse_module_state->__pyx_kp_s_cherab_PESDT_addon_RateFunctions);
+  Py_VISIT(traverse_module_state->__pyx_n_s_cherab_PESDT_addon_RateFunctions_2);
   Py_VISIT(traverse_module_state->__pyx_n_s_class);
   Py_VISIT(traverse_module_state->__pyx_n_s_class_getitem);
   Py_VISIT(traverse_module_state->__pyx_n_s_cline_in_traceback);
@@ -3971,10 +3971,10 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_ptype_5numpy_flexible __pyx_mstate_global->__pyx_ptype_5numpy_flexible
 #define __pyx_ptype_5numpy_character __pyx_mstate_global->__pyx_ptype_5numpy_character
 #define __pyx_ptype_5numpy_ufunc __pyx_mstate_global->__pyx_ptype_5numpy_ufunc
-#define __pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction __pyx_mstate_global->__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction
-#define __pyx_type_6cherab_11amjuel_data_13RateFunctions_RateFunction __pyx_mstate_global->__pyx_type_6cherab_11amjuel_data_13RateFunctions_RateFunction
-#define __pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction __pyx_mstate_global->__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction
-#define __pyx_type_6cherab_11amjuel_data_13RateFunctions_NullRateFunction __pyx_mstate_global->__pyx_type_6cherab_11amjuel_data_13RateFunctions_NullRateFunction
+#define __pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction __pyx_mstate_global->__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction
+#define __pyx_type_6cherab_11PESDT_addon_13RateFunctions_RateFunction __pyx_mstate_global->__pyx_type_6cherab_11PESDT_addon_13RateFunctions_RateFunction
+#define __pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction __pyx_mstate_global->__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction
+#define __pyx_type_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction __pyx_mstate_global->__pyx_type_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction
 #define __pyx_array_type __pyx_mstate_global->__pyx_array_type
 #define __pyx_type___pyx_array __pyx_mstate_global->__pyx_type___pyx_array
 #define __pyx_MemviewEnum_type __pyx_mstate_global->__pyx_MemviewEnum_type
@@ -4041,8 +4041,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_base __pyx_mstate_global->__pyx_n_s_base
 #define __pyx_n_s_c __pyx_mstate_global->__pyx_n_s_c
 #define __pyx_n_u_c __pyx_mstate_global->__pyx_n_u_c
-#define __pyx_kp_s_cherab_amjuel_data_RateFunctions __pyx_mstate_global->__pyx_kp_s_cherab_amjuel_data_RateFunctions
-#define __pyx_n_s_cherab_amjuel_data_RateFunctions_2 __pyx_mstate_global->__pyx_n_s_cherab_amjuel_data_RateFunctions_2
+#define __pyx_kp_s_cherab_PESDT_addon_RateFunctions __pyx_mstate_global->__pyx_kp_s_cherab_PESDT_addon_RateFunctions
+#define __pyx_n_s_cherab_PESDT_addon_RateFunctions_2 __pyx_mstate_global->__pyx_n_s_cherab_PESDT_addon_RateFunctions_2
 #define __pyx_n_s_class __pyx_mstate_global->__pyx_n_s_class
 #define __pyx_n_s_class_getitem __pyx_mstate_global->__pyx_n_s_class_getitem
 #define __pyx_n_s_cline_in_traceback __pyx_mstate_global->__pyx_n_s_cline_in_traceback
@@ -4160,7 +4160,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #endif
 /* #### Code section: module_code ### */
 
-/* "cherab/amjuel_data/RateFunctions.pyx":21
+/* "cherab/PESDT_addon/RateFunctions.pyx":21
  *     cdef double res
  * 
  *     def __init__(self, MARc, transition):             # <<<<<<<<<<<<<<
@@ -4169,8 +4169,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
  */
 
 /* Python wrapper */
-static int __pyx_pw_6cherab_11amjuel_data_13RateFunctions_12RateFunction_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_6cherab_11amjuel_data_13RateFunctions_12RateFunction_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_MARc = 0;
   PyObject *__pyx_v_transition = 0;
   CYTHON_UNUSED const Py_ssize_t __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
@@ -4229,18 +4229,18 @@ static int __pyx_pw_6cherab_11amjuel_data_13RateFunctions_12RateFunction_1__init
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 21, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.RateFunction.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.RateFunction.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction___init__(((struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *)__pyx_v_self), __pyx_v_MARc, __pyx_v_transition);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_13RateFunctions_12RateFunction___init__(((struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *)__pyx_v_self), __pyx_v_MARc, __pyx_v_transition);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction___init__(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *__pyx_v_self, PyObject *__pyx_v_MARc, PyObject *__pyx_v_transition) {
+static int __pyx_pf_6cherab_11PESDT_addon_13RateFunctions_12RateFunction___init__(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *__pyx_v_self, PyObject *__pyx_v_MARc, PyObject *__pyx_v_transition) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4253,7 +4253,7 @@ static int __pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction___init_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":22
+  /* "cherab/PESDT_addon/RateFunctions.pyx":22
  * 
  *     def __init__(self, MARc, transition):
  *         self._MARc = MARc             # <<<<<<<<<<<<<<
@@ -4269,7 +4269,7 @@ static int __pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction___init_
   __pyx_v_self->_MARc = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":23
+  /* "cherab/PESDT_addon/RateFunctions.pyx":23
  *     def __init__(self, MARc, transition):
  *         self._MARc = MARc
  *         self._A_coeff = A_coeff(transition)             # <<<<<<<<<<<<<<
@@ -4302,7 +4302,7 @@ static int __pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction___init_
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_self->_A_coeff = __pyx_t_5;
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":21
+  /* "cherab/PESDT_addon/RateFunctions.pyx":21
  *     cdef double res
  * 
  *     def __init__(self, MARc, transition):             # <<<<<<<<<<<<<<
@@ -4317,14 +4317,14 @@ static int __pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction___init_
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.RateFunction.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.RateFunction.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/RateFunctions.pyx":27
+/* "cherab/PESDT_addon/RateFunctions.pyx":27
  *     @cython.boundscheck(False)  # Deactivate bounds checking
  *     @cython.wraparound(False)   # Deactivate negative indexing.
  *     cdef double _evaluate(self, double ne, double T):             # <<<<<<<<<<<<<<
@@ -4332,7 +4332,7 @@ static int __pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction___init_
  * 
  */
 
-static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_12RateFunction__evaluate(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *__pyx_v_self, double __pyx_v_ne, double __pyx_v_T) {
+static double __pyx_f_6cherab_11PESDT_addon_13RateFunctions_12RateFunction__evaluate(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *__pyx_v_self, double __pyx_v_ne, double __pyx_v_T) {
   Py_ssize_t __pyx_v_x_max;
   double __pyx_v_nE;
   PyObject *__pyx_v_cross_sections = NULL;
@@ -4365,7 +4365,7 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_12RateFunction__eval
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_evaluate", 0);
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":28
+  /* "cherab/PESDT_addon/RateFunctions.pyx":28
  *     @cython.wraparound(False)   # Deactivate negative indexing.
  *     cdef double _evaluate(self, double ne, double T):
  *         cdef Py_ssize_t x_max = self._MARc.shape[0]             # <<<<<<<<<<<<<<
@@ -4377,7 +4377,7 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_12RateFunction__eval
   __pyx_v_x_max = (__pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_t_1))[0]);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":32
+  /* "cherab/PESDT_addon/RateFunctions.pyx":32
  *         cdef double nE
  * 
  *         cross_sections = np.zeros((x_max, x_max), dtype=DTYPE)             # <<<<<<<<<<<<<<
@@ -4420,7 +4420,7 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_12RateFunction__eval
   __pyx_v_cross_sections = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":35
+  /* "cherab/PESDT_addon/RateFunctions.pyx":35
  * 
  *         #Define memory_views for fast access
  *         cdef double[:, :] cross_sections_mem_view = cross_sections             # <<<<<<<<<<<<<<
@@ -4432,7 +4432,7 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_12RateFunction__eval
   __pyx_t_5.memview = NULL;
   __pyx_t_5.data = NULL;
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":36
+  /* "cherab/PESDT_addon/RateFunctions.pyx":36
  *         #Define memory_views for fast access
  *         cdef double[:, :] cross_sections_mem_view = cross_sections
  *         cdef double[:, :] MARc_mem_view = self._MARc             # <<<<<<<<<<<<<<
@@ -4444,7 +4444,7 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_12RateFunction__eval
   __pyx_t_5.memview = NULL;
   __pyx_t_5.data = NULL;
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":38
+  /* "cherab/PESDT_addon/RateFunctions.pyx":38
  *         cdef double[:, :] MARc_mem_view = self._MARc
  * 
  *         nE = (ne/1e8)*1e-6             # <<<<<<<<<<<<<<
@@ -4453,7 +4453,7 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_12RateFunction__eval
  */
   __pyx_v_nE = ((__pyx_v_ne / 1e8) * 1e-6);
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":40
+  /* "cherab/PESDT_addon/RateFunctions.pyx":40
  *         nE = (ne/1e8)*1e-6
  *         cdef Py_ssize_t n, m
  *         for n in range(x_max):             # <<<<<<<<<<<<<<
@@ -4465,7 +4465,7 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_12RateFunction__eval
   for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
     __pyx_v_n = __pyx_t_8;
 
-    /* "cherab/amjuel_data/RateFunctions.pyx":41
+    /* "cherab/PESDT_addon/RateFunctions.pyx":41
  *         cdef Py_ssize_t n, m
  *         for n in range(x_max):
  *             for m in range(x_max):             # <<<<<<<<<<<<<<
@@ -4477,7 +4477,7 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_12RateFunction__eval
     for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_10; __pyx_t_11+=1) {
       __pyx_v_m = __pyx_t_11;
 
-      /* "cherab/amjuel_data/RateFunctions.pyx":42
+      /* "cherab/PESDT_addon/RateFunctions.pyx":42
  *         for n in range(x_max):
  *             for m in range(x_max):
  *                 cross_sections_mem_view[n,m] = MARc_mem_view[n,m]*pow( log(T), n)*pow(log(nE), m)             # <<<<<<<<<<<<<<
@@ -4492,7 +4492,7 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_12RateFunction__eval
     }
   }
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":44
+  /* "cherab/PESDT_addon/RateFunctions.pyx":44
  *                 cross_sections_mem_view[n,m] = MARc_mem_view[n,m]*pow( log(T), n)*pow(log(nE), m)
  * 
  *         res = np.sum(cross_sections)             # <<<<<<<<<<<<<<
@@ -4527,7 +4527,7 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_12RateFunction__eval
   __pyx_v_res = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":45
+  /* "cherab/PESDT_addon/RateFunctions.pyx":45
  * 
  *         res = np.sum(cross_sections)
  *         return self._A_coeff*exp(res)             # <<<<<<<<<<<<<<
@@ -4538,7 +4538,7 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_12RateFunction__eval
   __pyx_r = (__pyx_v_self->_A_coeff * exp(__pyx_t_17));
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":27
+  /* "cherab/PESDT_addon/RateFunctions.pyx":27
  *     @cython.boundscheck(False)  # Deactivate bounds checking
  *     @cython.wraparound(False)   # Deactivate negative indexing.
  *     cdef double _evaluate(self, double ne, double T):             # <<<<<<<<<<<<<<
@@ -4553,7 +4553,7 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_12RateFunction__eval
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __PYX_XCLEAR_MEMVIEW(&__pyx_t_5, 1);
-  __Pyx_WriteUnraisable("cherab.amjuel_data.RateFunctions.RateFunction._evaluate", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __Pyx_WriteUnraisable("cherab.PESDT_addon.RateFunctions.RateFunction._evaluate", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_cross_sections);
@@ -4564,7 +4564,7 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_12RateFunction__eval
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/RateFunctions.pyx":47
+/* "cherab/PESDT_addon/RateFunctions.pyx":47
  *         return self._A_coeff*exp(res)
  * 
  *     def evaluate(self, ne, T):             # <<<<<<<<<<<<<<
@@ -4573,15 +4573,15 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_12RateFunction__eval
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_13RateFunctions_12RateFunction_3evaluate(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_3evaluate(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_13RateFunctions_12RateFunction_3evaluate = {"evaluate", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_13RateFunctions_12RateFunction_3evaluate, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_13RateFunctions_12RateFunction_3evaluate(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_3evaluate = {"evaluate", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_3evaluate, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_3evaluate(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -4648,18 +4648,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("evaluate", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 47, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.RateFunction.evaluate", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.RateFunction.evaluate", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_2evaluate(((struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *)__pyx_v_self), __pyx_v_ne, __pyx_v_T);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_2evaluate(((struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *)__pyx_v_self), __pyx_v_ne, __pyx_v_T);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_2evaluate(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *__pyx_v_self, PyObject *__pyx_v_ne, PyObject *__pyx_v_T) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_2evaluate(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *__pyx_v_self, PyObject *__pyx_v_ne, PyObject *__pyx_v_T) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   double __pyx_t_1;
@@ -4670,7 +4670,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_2
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("evaluate", 0);
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":48
+  /* "cherab/PESDT_addon/RateFunctions.pyx":48
  * 
  *     def evaluate(self, ne, T):
  *         return self._evaluate(ne, T)             # <<<<<<<<<<<<<<
@@ -4680,13 +4680,13 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_2
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_ne); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 48, __pyx_L1_error)
   __pyx_t_2 = __pyx_PyFloat_AsDouble(__pyx_v_T); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 48, __pyx_L1_error)
-  __pyx_t_3 = PyFloat_FromDouble(((struct __pyx_vtabstruct_6cherab_11amjuel_data_13RateFunctions_RateFunction *)__pyx_v_self->__pyx_vtab)->_evaluate(__pyx_v_self, __pyx_t_1, __pyx_t_2)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(((struct __pyx_vtabstruct_6cherab_11PESDT_addon_13RateFunctions_RateFunction *)__pyx_v_self->__pyx_vtab)->_evaluate(__pyx_v_self, __pyx_t_1, __pyx_t_2)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":47
+  /* "cherab/PESDT_addon/RateFunctions.pyx":47
  *         return self._A_coeff*exp(res)
  * 
  *     def evaluate(self, ne, T):             # <<<<<<<<<<<<<<
@@ -4697,7 +4697,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_2
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.RateFunction.evaluate", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.RateFunction.evaluate", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -4712,15 +4712,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_2
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_13RateFunctions_12RateFunction_5__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_5__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_13RateFunctions_12RateFunction_5__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_13RateFunctions_12RateFunction_5__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_13RateFunctions_12RateFunction_5__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_5__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_5__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_5__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -4737,14 +4737,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("__reduce_cython__", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__reduce_cython__", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_4__reduce_cython__(((struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_4__reduce_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_4__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_4__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -4959,7 +4959,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_4
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.RateFunction.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.RateFunction.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_state);
@@ -4977,15 +4977,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_4
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_13RateFunctions_12RateFunction_7__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_7__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_13RateFunctions_12RateFunction_7__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_13RateFunctions_12RateFunction_7__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_13RateFunctions_12RateFunction_7__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_7__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_7__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_7__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5040,18 +5040,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__setstate_cython__", 1, 1, 1, __pyx_nargs); __PYX_ERR(1, 16, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.RateFunction.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.RateFunction.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_6__setstate_cython__(((struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_6__setstate_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_6__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_6__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5066,7 +5066,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_6
  *     __pyx_unpickle_RateFunction__set_state(self, __pyx_state)             # <<<<<<<<<<<<<<
  */
   if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 17, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_6cherab_11amjuel_data_13RateFunctions___pyx_unpickle_RateFunction__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6cherab_11PESDT_addon_13RateFunctions___pyx_unpickle_RateFunction__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
@@ -5082,7 +5082,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_6
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.RateFunction.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.RateFunction.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -5090,7 +5090,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_6
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/RateFunctions.pyx":54
+/* "cherab/PESDT_addon/RateFunctions.pyx":54
  *     cdef dict __dict__
  * 
  *     def __init__(self, MARc, transition):             # <<<<<<<<<<<<<<
@@ -5099,8 +5099,8 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_12RateFunction_6
  */
 
 /* Python wrapper */
-static int __pyx_pw_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   CYTHON_UNUSED PyObject *__pyx_v_MARc = 0;
   CYTHON_UNUSED PyObject *__pyx_v_transition = 0;
   CYTHON_UNUSED const Py_ssize_t __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
@@ -5159,18 +5159,18 @@ static int __pyx_pw_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_1__
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 54, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.NullRateFunction.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.NullRateFunction.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction___init__(((struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *)__pyx_v_self), __pyx_v_MARc, __pyx_v_transition);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction___init__(((struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *)__pyx_v_self), __pyx_v_MARc, __pyx_v_transition);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction___init__(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_MARc, CYTHON_UNUSED PyObject *__pyx_v_transition) {
+static int __pyx_pf_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction___init__(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_MARc, CYTHON_UNUSED PyObject *__pyx_v_transition) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -5178,7 +5178,7 @@ static int __pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction___i
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":55
+  /* "cherab/PESDT_addon/RateFunctions.pyx":55
  * 
  *     def __init__(self, MARc, transition):
  *         self.MARC = None # Do not accept any coeff             # <<<<<<<<<<<<<<
@@ -5187,7 +5187,7 @@ static int __pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction___i
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_MARC, Py_None) < 0) __PYX_ERR(0, 55, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":56
+  /* "cherab/PESDT_addon/RateFunctions.pyx":56
  *     def __init__(self, MARc, transition):
  *         self.MARC = None # Do not accept any coeff
  *         self.A_coeff = None             # <<<<<<<<<<<<<<
@@ -5196,7 +5196,7 @@ static int __pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction___i
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_A_coeff, Py_None) < 0) __PYX_ERR(0, 56, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":54
+  /* "cherab/PESDT_addon/RateFunctions.pyx":54
  *     cdef dict __dict__
  * 
  *     def __init__(self, MARc, transition):             # <<<<<<<<<<<<<<
@@ -5208,28 +5208,28 @@ static int __pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction___i
   __pyx_r = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.NullRateFunction.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.NullRateFunction.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/RateFunctions.pyx":58
+/* "cherab/PESDT_addon/RateFunctions.pyx":58
  *         self.A_coeff = None
  * 
  *     cpdef double evaluate(self, double T, double ne):             # <<<<<<<<<<<<<<
  *         return 0.0
  */
 
-static PyObject *__pyx_pw_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_3evaluate(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_3evaluate(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_evaluate(CYTHON_UNUSED struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *__pyx_v_self, CYTHON_UNUSED double __pyx_v_T, CYTHON_UNUSED double __pyx_v_ne, int __pyx_skip_dispatch) {
+static double __pyx_f_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_evaluate(CYTHON_UNUSED struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *__pyx_v_self, CYTHON_UNUSED double __pyx_v_T, CYTHON_UNUSED double __pyx_v_ne, int __pyx_skip_dispatch) {
   double __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5260,7 +5260,7 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_e
       #else
       if (!PyCFunction_Check(__pyx_t_1)
       #endif
-              || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_3evaluate)) {
+              || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_3evaluate)) {
         __pyx_t_3 = PyFloat_FromDouble(__pyx_v_T); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __pyx_t_4 = PyFloat_FromDouble(__pyx_v_ne); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
@@ -5307,7 +5307,7 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_e
     #endif
   }
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":59
+  /* "cherab/PESDT_addon/RateFunctions.pyx":59
  * 
  *     cpdef double evaluate(self, double T, double ne):
  *         return 0.0             # <<<<<<<<<<<<<<
@@ -5315,7 +5315,7 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_e
   __pyx_r = 0.0;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":58
+  /* "cherab/PESDT_addon/RateFunctions.pyx":58
  *         self.A_coeff = None
  * 
  *     cpdef double evaluate(self, double T, double ne):             # <<<<<<<<<<<<<<
@@ -5330,7 +5330,7 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_e
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_WriteUnraisable("cherab.amjuel_data.RateFunctions.NullRateFunction.evaluate", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __Pyx_WriteUnraisable("cherab.PESDT_addon.RateFunctions.NullRateFunction.evaluate", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -5338,15 +5338,15 @@ static double __pyx_f_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_e
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_3evaluate(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_3evaluate(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_3evaluate = {"evaluate", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_3evaluate, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_3evaluate(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_3evaluate = {"evaluate", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_3evaluate, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_3evaluate(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5413,18 +5413,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("evaluate", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 58, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.NullRateFunction.evaluate", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.NullRateFunction.evaluate", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_2evaluate(((struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *)__pyx_v_self), __pyx_v_T, __pyx_v_ne);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_2evaluate(((struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *)__pyx_v_self), __pyx_v_T, __pyx_v_ne);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_2evaluate(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *__pyx_v_self, double __pyx_v_T, double __pyx_v_ne) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_2evaluate(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *__pyx_v_self, double __pyx_v_T, double __pyx_v_ne) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5433,7 +5433,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFuncti
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("evaluate", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_evaluate(__pyx_v_self, __pyx_v_T, __pyx_v_ne, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_evaluate(__pyx_v_self, __pyx_v_T, __pyx_v_ne, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5442,7 +5442,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFuncti
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.NullRateFunction.evaluate", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.NullRateFunction.evaluate", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -5457,15 +5457,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFuncti
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_5__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_5__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_5__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_5__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_5__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_5__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_5__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_5__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5482,14 +5482,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("__reduce_cython__", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__reduce_cython__", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_4__reduce_cython__(((struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_4__reduce_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_4__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_4__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -5688,7 +5688,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFuncti
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.NullRateFunction.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.NullRateFunction.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_state);
@@ -5706,15 +5706,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFuncti
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_7__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_7__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_7__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_7__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_7__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_7__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_7__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_7__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5769,18 +5769,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__setstate_cython__", 1, 1, 1, __pyx_nargs); __PYX_ERR(1, 16, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.NullRateFunction.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.NullRateFunction.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_6__setstate_cython__(((struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_6__setstate_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_6__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_6__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5795,7 +5795,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFuncti
  *     __pyx_unpickle_NullRateFunction__set_state(self, __pyx_state)             # <<<<<<<<<<<<<<
  */
   if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 17, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_6cherab_11amjuel_data_13RateFunctions___pyx_unpickle_NullRateFunction__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6cherab_11PESDT_addon_13RateFunctions___pyx_unpickle_NullRateFunction__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
@@ -5811,7 +5811,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFuncti
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.NullRateFunction.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.NullRateFunction.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -5826,15 +5826,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_16NullRateFuncti
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_13RateFunctions_1__pyx_unpickle_RateFunction(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_1__pyx_unpickle_RateFunction(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_13RateFunctions_1__pyx_unpickle_RateFunction = {"__pyx_unpickle_RateFunction", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_13RateFunctions_1__pyx_unpickle_RateFunction, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_13RateFunctions_1__pyx_unpickle_RateFunction(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_13RateFunctions_1__pyx_unpickle_RateFunction = {"__pyx_unpickle_RateFunction", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_1__pyx_unpickle_RateFunction, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_1__pyx_unpickle_RateFunction(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5913,18 +5913,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_RateFunction", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 1, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.__pyx_unpickle_RateFunction", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.__pyx_unpickle_RateFunction", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_13RateFunctions___pyx_unpickle_RateFunction(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_13RateFunctions___pyx_unpickle_RateFunction(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions___pyx_unpickle_RateFunction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_13RateFunctions___pyx_unpickle_RateFunction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_v___pyx_PickleError = 0;
   PyObject *__pyx_v___pyx_result = 0;
   PyObject *__pyx_r = NULL;
@@ -6004,7 +6004,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions___pyx_unpickle_R
  *     if __pyx_state is not None:
  *         __pyx_unpickle_RateFunction__set_state(<RateFunction> __pyx_result, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -6048,7 +6048,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions___pyx_unpickle_R
  * cdef __pyx_unpickle_RateFunction__set_state(RateFunction __pyx_result, tuple __pyx_state):
  */
     if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 9, __pyx_L1_error)
-    __pyx_t_2 = __pyx_f_6cherab_11amjuel_data_13RateFunctions___pyx_unpickle_RateFunction__set_state(((struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_6cherab_11PESDT_addon_13RateFunctions___pyx_unpickle_RateFunction__set_state(((struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
@@ -6084,7 +6084,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions___pyx_unpickle_R
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.__pyx_unpickle_RateFunction", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.__pyx_unpickle_RateFunction", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v___pyx_PickleError);
@@ -6102,7 +6102,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions___pyx_unpickle_R
  *     if len(__pyx_state) > 3 and hasattr(__pyx_result, '__dict__'):
  */
 
-static PyObject *__pyx_f_6cherab_11amjuel_data_13RateFunctions___pyx_unpickle_RateFunction__set_state(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_f_6cherab_11PESDT_addon_13RateFunctions___pyx_unpickle_RateFunction__set_state(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6244,7 +6244,7 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_13RateFunctions___pyx_unpickle_Ra
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.__pyx_unpickle_RateFunction__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.__pyx_unpickle_RateFunction__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6259,15 +6259,15 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_13RateFunctions___pyx_unpickle_Ra
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_13RateFunctions_3__pyx_unpickle_NullRateFunction(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_3__pyx_unpickle_NullRateFunction(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_13RateFunctions_3__pyx_unpickle_NullRateFunction = {"__pyx_unpickle_NullRateFunction", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_13RateFunctions_3__pyx_unpickle_NullRateFunction, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_13RateFunctions_3__pyx_unpickle_NullRateFunction(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_13RateFunctions_3__pyx_unpickle_NullRateFunction = {"__pyx_unpickle_NullRateFunction", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_3__pyx_unpickle_NullRateFunction, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_3__pyx_unpickle_NullRateFunction(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6346,18 +6346,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_NullRateFunction", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 1, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.__pyx_unpickle_NullRateFunction", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.__pyx_unpickle_NullRateFunction", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_13RateFunctions_2__pyx_unpickle_NullRateFunction(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_13RateFunctions_2__pyx_unpickle_NullRateFunction(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_2__pyx_unpickle_NullRateFunction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_13RateFunctions_2__pyx_unpickle_NullRateFunction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_v___pyx_PickleError = 0;
   PyObject *__pyx_v___pyx_result = 0;
   PyObject *__pyx_r = NULL;
@@ -6437,7 +6437,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_2__pyx_unpickle_
  *     if __pyx_state is not None:
  *         __pyx_unpickle_NullRateFunction__set_state(<NullRateFunction> __pyx_result, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -6481,7 +6481,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_2__pyx_unpickle_
  * cdef __pyx_unpickle_NullRateFunction__set_state(NullRateFunction __pyx_result, tuple __pyx_state):
  */
     if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 9, __pyx_L1_error)
-    __pyx_t_2 = __pyx_f_6cherab_11amjuel_data_13RateFunctions___pyx_unpickle_NullRateFunction__set_state(((struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_6cherab_11PESDT_addon_13RateFunctions___pyx_unpickle_NullRateFunction__set_state(((struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
@@ -6517,7 +6517,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_2__pyx_unpickle_
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.__pyx_unpickle_NullRateFunction", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.__pyx_unpickle_NullRateFunction", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v___pyx_PickleError);
@@ -6535,7 +6535,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_13RateFunctions_2__pyx_unpickle_
  *         __pyx_result.__dict__.update(__pyx_state[0])
  */
 
-static PyObject *__pyx_f_6cherab_11amjuel_data_13RateFunctions___pyx_unpickle_NullRateFunction__set_state(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_f_6cherab_11PESDT_addon_13RateFunctions___pyx_unpickle_NullRateFunction__set_state(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -6635,7 +6635,7 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_13RateFunctions___pyx_unpickle_Nu
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_AddTraceback("cherab.amjuel_data.RateFunctions.__pyx_unpickle_NullRateFunction__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.RateFunctions.__pyx_unpickle_NullRateFunction__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -21334,10 +21334,10 @@ static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *__
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_13RateFunctions_RateFunction __pyx_vtable_6cherab_11amjuel_data_13RateFunctions_RateFunction;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_13RateFunctions_RateFunction __pyx_vtable_6cherab_11PESDT_addon_13RateFunctions_RateFunction;
 
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_13RateFunctions_RateFunction(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
-  struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *p;
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_13RateFunctions_RateFunction(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+  struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *p;
   PyObject *o;
   #if CYTHON_COMPILING_IN_LIMITED_API
   allocfunc alloc_func = (allocfunc)PyType_GetSlot(t, Py_tp_alloc);
@@ -21350,17 +21350,17 @@ static PyObject *__pyx_tp_new_6cherab_11amjuel_data_13RateFunctions_RateFunction
   }
   if (unlikely(!o)) return 0;
   #endif
-  p = ((struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *)o);
-  p->__pyx_vtab = __pyx_vtabptr_6cherab_11amjuel_data_13RateFunctions_RateFunction;
+  p = ((struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *)o);
+  p->__pyx_vtab = __pyx_vtabptr_6cherab_11PESDT_addon_13RateFunctions_RateFunction;
   p->_MARc = ((PyArrayObject *)Py_None); Py_INCREF(Py_None);
   return o;
 }
 
-static void __pyx_tp_dealloc_6cherab_11amjuel_data_13RateFunctions_RateFunction(PyObject *o) {
-  struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *p = (struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *)o;
+static void __pyx_tp_dealloc_6cherab_11PESDT_addon_13RateFunctions_RateFunction(PyObject *o) {
+  struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *p = (struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *)o;
   #if CYTHON_USE_TP_FINALIZE
   if (unlikely((PY_VERSION_HEX >= 0x03080000 || __Pyx_PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE)) && __Pyx_PyObject_GetSlot(o, tp_finalize, destructor)) && !_PyGC_FINALIZED(o)) {
-    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11amjuel_data_13RateFunctions_RateFunction) {
+    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11PESDT_addon_13RateFunctions_RateFunction) {
       if (PyObject_CallFinalizerFromDealloc(o)) return;
     }
   }
@@ -21370,55 +21370,55 @@ static void __pyx_tp_dealloc_6cherab_11amjuel_data_13RateFunctions_RateFunction(
   (*Py_TYPE(o)->tp_free)(o);
 }
 
-static int __pyx_tp_traverse_6cherab_11amjuel_data_13RateFunctions_RateFunction(PyObject *o, visitproc v, void *a) {
+static int __pyx_tp_traverse_6cherab_11PESDT_addon_13RateFunctions_RateFunction(PyObject *o, visitproc v, void *a) {
   int e;
-  struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *p = (struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *)o;
+  struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *p = (struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *)o;
   if (p->_MARc) {
     e = (*v)(((PyObject *)p->_MARc), a); if (e) return e;
   }
   return 0;
 }
 
-static int __pyx_tp_clear_6cherab_11amjuel_data_13RateFunctions_RateFunction(PyObject *o) {
+static int __pyx_tp_clear_6cherab_11PESDT_addon_13RateFunctions_RateFunction(PyObject *o) {
   PyObject* tmp;
-  struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *p = (struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *)o;
+  struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *p = (struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *)o;
   tmp = ((PyObject*)p->_MARc);
   p->_MARc = ((PyArrayObject *)Py_None); Py_INCREF(Py_None);
   Py_XDECREF(tmp);
   return 0;
 }
 
-static PyMethodDef __pyx_methods_6cherab_11amjuel_data_13RateFunctions_RateFunction[] = {
-  {"evaluate", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_13RateFunctions_12RateFunction_3evaluate, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_13RateFunctions_12RateFunction_5__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_13RateFunctions_12RateFunction_7__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+static PyMethodDef __pyx_methods_6cherab_11PESDT_addon_13RateFunctions_RateFunction[] = {
+  {"evaluate", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_3evaluate, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_5__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_7__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
-static PyType_Slot __pyx_type_6cherab_11amjuel_data_13RateFunctions_RateFunction_slots[] = {
-  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11amjuel_data_13RateFunctions_RateFunction},
-  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11amjuel_data_13RateFunctions_RateFunction},
-  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11amjuel_data_13RateFunctions_RateFunction},
-  {Py_tp_methods, (void *)__pyx_methods_6cherab_11amjuel_data_13RateFunctions_RateFunction},
-  {Py_tp_init, (void *)__pyx_pw_6cherab_11amjuel_data_13RateFunctions_12RateFunction_1__init__},
-  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11amjuel_data_13RateFunctions_RateFunction},
+static PyType_Slot __pyx_type_6cherab_11PESDT_addon_13RateFunctions_RateFunction_slots[] = {
+  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11PESDT_addon_13RateFunctions_RateFunction},
+  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11PESDT_addon_13RateFunctions_RateFunction},
+  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11PESDT_addon_13RateFunctions_RateFunction},
+  {Py_tp_methods, (void *)__pyx_methods_6cherab_11PESDT_addon_13RateFunctions_RateFunction},
+  {Py_tp_init, (void *)__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_1__init__},
+  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11PESDT_addon_13RateFunctions_RateFunction},
   {0, 0},
 };
-static PyType_Spec __pyx_type_6cherab_11amjuel_data_13RateFunctions_RateFunction_spec = {
-  "cherab.amjuel_data.RateFunctions.RateFunction",
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction),
+static PyType_Spec __pyx_type_6cherab_11PESDT_addon_13RateFunctions_RateFunction_spec = {
+  "cherab.PESDT_addon.RateFunctions.RateFunction",
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
-  __pyx_type_6cherab_11amjuel_data_13RateFunctions_RateFunction_slots,
+  __pyx_type_6cherab_11PESDT_addon_13RateFunctions_RateFunction_slots,
 };
 #else
 
-static PyTypeObject __pyx_type_6cherab_11amjuel_data_13RateFunctions_RateFunction = {
+static PyTypeObject __pyx_type_6cherab_11PESDT_addon_13RateFunctions_RateFunction = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.RateFunctions.""RateFunction", /*tp_name*/
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction), /*tp_basicsize*/
+  "cherab.PESDT_addon.RateFunctions.""RateFunction", /*tp_name*/
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_6cherab_11amjuel_data_13RateFunctions_RateFunction, /*tp_dealloc*/
+  __pyx_tp_dealloc_6cherab_11PESDT_addon_13RateFunctions_RateFunction, /*tp_dealloc*/
   #if PY_VERSION_HEX < 0x030800b4
   0, /*tp_print*/
   #endif
@@ -21445,13 +21445,13 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_13RateFunctions_RateFunctio
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
   0, /*tp_doc*/
-  __pyx_tp_traverse_6cherab_11amjuel_data_13RateFunctions_RateFunction, /*tp_traverse*/
-  __pyx_tp_clear_6cherab_11amjuel_data_13RateFunctions_RateFunction, /*tp_clear*/
+  __pyx_tp_traverse_6cherab_11PESDT_addon_13RateFunctions_RateFunction, /*tp_traverse*/
+  __pyx_tp_clear_6cherab_11PESDT_addon_13RateFunctions_RateFunction, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_6cherab_11amjuel_data_13RateFunctions_RateFunction, /*tp_methods*/
+  __pyx_methods_6cherab_11PESDT_addon_13RateFunctions_RateFunction, /*tp_methods*/
   0, /*tp_members*/
   0, /*tp_getset*/
   0, /*tp_base*/
@@ -21461,9 +21461,9 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_13RateFunctions_RateFunctio
   #if !CYTHON_USE_TYPE_SPECS
   0, /*tp_dictoffset*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_13RateFunctions_12RateFunction_1__init__, /*tp_init*/
+  __pyx_pw_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_1__init__, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_6cherab_11amjuel_data_13RateFunctions_RateFunction, /*tp_new*/
+  __pyx_tp_new_6cherab_11PESDT_addon_13RateFunctions_RateFunction, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -21491,10 +21491,10 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_13RateFunctions_RateFunctio
   #endif
 };
 #endif
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_13RateFunctions_NullRateFunction __pyx_vtable_6cherab_11amjuel_data_13RateFunctions_NullRateFunction;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction __pyx_vtable_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction;
 
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_13RateFunctions_NullRateFunction(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
-  struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *p;
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+  struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *p;
   PyObject *o;
   #if CYTHON_COMPILING_IN_LIMITED_API
   allocfunc alloc_func = (allocfunc)PyType_GetSlot(t, Py_tp_alloc);
@@ -21507,19 +21507,19 @@ static PyObject *__pyx_tp_new_6cherab_11amjuel_data_13RateFunctions_NullRateFunc
   }
   if (unlikely(!o)) return 0;
   #endif
-  p = ((struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *)o);
-  p->__pyx_vtab = __pyx_vtabptr_6cherab_11amjuel_data_13RateFunctions_NullRateFunction;
+  p = ((struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *)o);
+  p->__pyx_vtab = __pyx_vtabptr_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction;
   p->__dict__ = PyDict_New(); if (unlikely(!p->__dict__)) goto bad;return o;
   bad:
   Py_DECREF(o); o = 0;
   return NULL;
 }
 
-static void __pyx_tp_dealloc_6cherab_11amjuel_data_13RateFunctions_NullRateFunction(PyObject *o) {
-  struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *p = (struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *)o;
+static void __pyx_tp_dealloc_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction(PyObject *o) {
+  struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *p = (struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *)o;
   #if CYTHON_USE_TP_FINALIZE
   if (unlikely((PY_VERSION_HEX >= 0x03080000 || __Pyx_PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE)) && __Pyx_PyObject_GetSlot(o, tp_finalize, destructor)) && !_PyGC_FINALIZED(o)) {
-    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11amjuel_data_13RateFunctions_NullRateFunction) {
+    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction) {
       if (PyObject_CallFinalizerFromDealloc(o)) return;
     }
   }
@@ -21530,26 +21530,26 @@ static void __pyx_tp_dealloc_6cherab_11amjuel_data_13RateFunctions_NullRateFunct
   (*Py_TYPE(o)->tp_free)(o);
 }
 
-static int __pyx_tp_traverse_6cherab_11amjuel_data_13RateFunctions_NullRateFunction(PyObject *o, visitproc v, void *a) {
+static int __pyx_tp_traverse_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction(PyObject *o, visitproc v, void *a) {
   int e;
-  struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *p = (struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *)o;
+  struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *p = (struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *)o;
   if (p->__dict__) {
     e = (*v)(p->__dict__, a); if (e) return e;
   }
   return 0;
 }
 
-static int __pyx_tp_clear_6cherab_11amjuel_data_13RateFunctions_NullRateFunction(PyObject *o) {
+static int __pyx_tp_clear_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction(PyObject *o) {
   PyObject* tmp;
-  struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *p = (struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *)o;
+  struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *p = (struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *)o;
   tmp = ((PyObject*)p->__dict__);
   p->__dict__ = ((PyObject*)Py_None); Py_INCREF(Py_None);
   Py_XDECREF(tmp);
   return 0;
 }
 
-static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_13RateFunctions_NullRateFunction(PyObject *o, CYTHON_UNUSED void *x) {
-  struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *p = (struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *)o;
+static PyObject *__pyx___dict__getter_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction(PyObject *o, CYTHON_UNUSED void *x) {
+  struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *p = (struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *)o;
   if (unlikely(!p->__dict__)){
     p->__dict__ = PyDict_New();
   }
@@ -21557,50 +21557,50 @@ static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_13RateFunctions_Null
   return p->__dict__;
 }
 
-static PyMethodDef __pyx_methods_6cherab_11amjuel_data_13RateFunctions_NullRateFunction[] = {
-  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_5__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_7__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+static PyMethodDef __pyx_methods_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction[] = {
+  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_5__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_7__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
-static struct PyGetSetDef __pyx_getsets_6cherab_11amjuel_data_13RateFunctions_NullRateFunction[] = {
-  {(char *)"__dict__", __pyx___dict__getter_6cherab_11amjuel_data_13RateFunctions_NullRateFunction, 0, (char *)0, 0},
+static struct PyGetSetDef __pyx_getsets_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction[] = {
+  {(char *)"__dict__", __pyx___dict__getter_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction, 0, (char *)0, 0},
   {0, 0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
 static struct PyMemberDef __pyx_tp_members_NullRateFunction[] = {
-  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction, __dict__), READONLY, NULL},
+  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction, __dict__), READONLY, NULL},
   {NULL, 0, 0, 0, NULL}
 };
-static PyType_Slot __pyx_type_6cherab_11amjuel_data_13RateFunctions_NullRateFunction_slots[] = {
-  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11amjuel_data_13RateFunctions_NullRateFunction},
-  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11amjuel_data_13RateFunctions_NullRateFunction},
-  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11amjuel_data_13RateFunctions_NullRateFunction},
-  {Py_tp_methods, (void *)__pyx_methods_6cherab_11amjuel_data_13RateFunctions_NullRateFunction},
+static PyType_Slot __pyx_type_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction_slots[] = {
+  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction},
+  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction},
+  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction},
+  {Py_tp_methods, (void *)__pyx_methods_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction},
   {Py_tp_members, (void *)__pyx_tp_members_NullRateFunction},
-  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11amjuel_data_13RateFunctions_NullRateFunction},
+  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction},
   #if !CYTHON_USE_TYPE_SPECS
-  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction, __dict__)},
+  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction, __dict__)},
   #endif
-  {Py_tp_init, (void *)__pyx_pw_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_1__init__},
-  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11amjuel_data_13RateFunctions_NullRateFunction},
+  {Py_tp_init, (void *)__pyx_pw_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_1__init__},
+  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction},
   {0, 0},
 };
-static PyType_Spec __pyx_type_6cherab_11amjuel_data_13RateFunctions_NullRateFunction_spec = {
-  "cherab.amjuel_data.RateFunctions.NullRateFunction",
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction),
+static PyType_Spec __pyx_type_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction_spec = {
+  "cherab.PESDT_addon.RateFunctions.NullRateFunction",
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
-  __pyx_type_6cherab_11amjuel_data_13RateFunctions_NullRateFunction_slots,
+  __pyx_type_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction_slots,
 };
 #else
 
-static PyTypeObject __pyx_type_6cherab_11amjuel_data_13RateFunctions_NullRateFunction = {
+static PyTypeObject __pyx_type_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.RateFunctions.""NullRateFunction", /*tp_name*/
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction), /*tp_basicsize*/
+  "cherab.PESDT_addon.RateFunctions.""NullRateFunction", /*tp_name*/
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_6cherab_11amjuel_data_13RateFunctions_NullRateFunction, /*tp_dealloc*/
+  __pyx_tp_dealloc_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction, /*tp_dealloc*/
   #if PY_VERSION_HEX < 0x030800b4
   0, /*tp_print*/
   #endif
@@ -21627,25 +21627,25 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_13RateFunctions_NullRateFun
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
   0, /*tp_doc*/
-  __pyx_tp_traverse_6cherab_11amjuel_data_13RateFunctions_NullRateFunction, /*tp_traverse*/
-  __pyx_tp_clear_6cherab_11amjuel_data_13RateFunctions_NullRateFunction, /*tp_clear*/
+  __pyx_tp_traverse_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction, /*tp_traverse*/
+  __pyx_tp_clear_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_6cherab_11amjuel_data_13RateFunctions_NullRateFunction, /*tp_methods*/
+  __pyx_methods_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction, /*tp_methods*/
   0, /*tp_members*/
-  __pyx_getsets_6cherab_11amjuel_data_13RateFunctions_NullRateFunction, /*tp_getset*/
+  __pyx_getsets_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction, /*tp_getset*/
   0, /*tp_base*/
   0, /*tp_dict*/
   0, /*tp_descr_get*/
   0, /*tp_descr_set*/
   #if !CYTHON_USE_TYPE_SPECS
-  offsetof(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction, __dict__), /*tp_dictoffset*/
+  offsetof(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction, __dict__), /*tp_dictoffset*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_1__init__, /*tp_init*/
+  __pyx_pw_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_1__init__, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_6cherab_11amjuel_data_13RateFunctions_NullRateFunction, /*tp_new*/
+  __pyx_tp_new_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -21801,7 +21801,7 @@ static PyType_Slot __pyx_type___pyx_array_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_array_spec = {
-  "cherab.amjuel_data.RateFunctions.array",
+  "cherab.PESDT_addon.RateFunctions.array",
   sizeof(struct __pyx_array_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE,
@@ -21847,7 +21847,7 @@ static PyBufferProcs __pyx_tp_as_buffer_array = {
 
 static PyTypeObject __pyx_type___pyx_array = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.RateFunctions.""array", /*tp_name*/
+  "cherab.PESDT_addon.RateFunctions.""array", /*tp_name*/
   sizeof(struct __pyx_array_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_array, /*tp_dealloc*/
@@ -21992,7 +21992,7 @@ static PyType_Slot __pyx_type___pyx_MemviewEnum_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_MemviewEnum_spec = {
-  "cherab.amjuel_data.RateFunctions.Enum",
+  "cherab.PESDT_addon.RateFunctions.Enum",
   sizeof(struct __pyx_MemviewEnum_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -22002,7 +22002,7 @@ static PyType_Spec __pyx_type___pyx_MemviewEnum_spec = {
 
 static PyTypeObject __pyx_type___pyx_MemviewEnum = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.RateFunctions.""Enum", /*tp_name*/
+  "cherab.PESDT_addon.RateFunctions.""Enum", /*tp_name*/
   sizeof(struct __pyx_MemviewEnum_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_Enum, /*tp_dealloc*/
@@ -22281,7 +22281,7 @@ static PyType_Slot __pyx_type___pyx_memoryview_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_memoryview_spec = {
-  "cherab.amjuel_data.RateFunctions.memoryview",
+  "cherab.PESDT_addon.RateFunctions.memoryview",
   sizeof(struct __pyx_memoryview_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -22327,7 +22327,7 @@ static PyBufferProcs __pyx_tp_as_buffer_memoryview = {
 
 static PyTypeObject __pyx_type___pyx_memoryview = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.RateFunctions.""memoryview", /*tp_name*/
+  "cherab.PESDT_addon.RateFunctions.""memoryview", /*tp_name*/
   sizeof(struct __pyx_memoryview_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_memoryview, /*tp_dealloc*/
@@ -22476,7 +22476,7 @@ static PyType_Slot __pyx_type___pyx_memoryviewslice_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_memoryviewslice_spec = {
-  "cherab.amjuel_data.RateFunctions._memoryviewslice",
+  "cherab.PESDT_addon.RateFunctions._memoryviewslice",
   sizeof(struct __pyx_memoryviewslice_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -22486,7 +22486,7 @@ static PyType_Spec __pyx_type___pyx_memoryviewslice_spec = {
 
 static PyTypeObject __pyx_type___pyx_memoryviewslice = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.RateFunctions.""_memoryviewslice", /*tp_name*/
+  "cherab.PESDT_addon.RateFunctions.""_memoryviewslice", /*tp_name*/
   sizeof(struct __pyx_memoryviewslice_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc__memoryviewslice, /*tp_dealloc*/
@@ -22645,8 +22645,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, __pyx_k_base, sizeof(__pyx_k_base), 0, 0, 1, 1},
   {0, __pyx_k_c, sizeof(__pyx_k_c), 0, 0, 1, 1},
   {0, __pyx_k_c, sizeof(__pyx_k_c), 0, 1, 0, 1},
-  {0, __pyx_k_cherab_amjuel_data_RateFunctions, sizeof(__pyx_k_cherab_amjuel_data_RateFunctions), 0, 0, 1, 0},
-  {0, __pyx_k_cherab_amjuel_data_RateFunctions_2, sizeof(__pyx_k_cherab_amjuel_data_RateFunctions_2), 0, 0, 1, 1},
+  {0, __pyx_k_cherab_PESDT_addon_RateFunctions, sizeof(__pyx_k_cherab_PESDT_addon_RateFunctions), 0, 0, 1, 0},
+  {0, __pyx_k_cherab_PESDT_addon_RateFunctions_2, sizeof(__pyx_k_cherab_PESDT_addon_RateFunctions_2), 0, 0, 1, 1},
   {0, __pyx_k_class, sizeof(__pyx_k_class), 0, 0, 1, 1},
   {0, __pyx_k_class_getitem, sizeof(__pyx_k_class_getitem), 0, 0, 1, 1},
   {0, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
@@ -22791,8 +22791,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_base, __pyx_k_base, sizeof(__pyx_k_base), 0, 0, 1, 1},
   {&__pyx_n_s_c, __pyx_k_c, sizeof(__pyx_k_c), 0, 0, 1, 1},
   {&__pyx_n_u_c, __pyx_k_c, sizeof(__pyx_k_c), 0, 1, 0, 1},
-  {&__pyx_kp_s_cherab_amjuel_data_RateFunctions, __pyx_k_cherab_amjuel_data_RateFunctions, sizeof(__pyx_k_cherab_amjuel_data_RateFunctions), 0, 0, 1, 0},
-  {&__pyx_n_s_cherab_amjuel_data_RateFunctions_2, __pyx_k_cherab_amjuel_data_RateFunctions_2, sizeof(__pyx_k_cherab_amjuel_data_RateFunctions_2), 0, 0, 1, 1},
+  {&__pyx_kp_s_cherab_PESDT_addon_RateFunctions, __pyx_k_cherab_PESDT_addon_RateFunctions, sizeof(__pyx_k_cherab_PESDT_addon_RateFunctions), 0, 0, 1, 0},
+  {&__pyx_n_s_cherab_PESDT_addon_RateFunctions_2, __pyx_k_cherab_PESDT_addon_RateFunctions_2, sizeof(__pyx_k_cherab_PESDT_addon_RateFunctions_2), 0, 0, 1, 1},
   {&__pyx_n_s_class, __pyx_k_class, sizeof(__pyx_k_class), 0, 0, 1, 1},
   {&__pyx_n_s_class_getitem, __pyx_k_class_getitem, sizeof(__pyx_k_class_getitem), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
@@ -22950,7 +22950,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_slice__7);
   __Pyx_GIVEREF(__pyx_slice__7);
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":47
+  /* "cherab/PESDT_addon/RateFunctions.pyx":47
  *         return self._A_coeff*exp(res)
  * 
  *     def evaluate(self, ne, T):             # <<<<<<<<<<<<<<
@@ -22960,7 +22960,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__10 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_ne, __pyx_n_s_T); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
-  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_RateFunctions, __pyx_n_s_evaluate, 47, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_RateFunctions, __pyx_n_s_evaluate, 47, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 47, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
@@ -22983,7 +22983,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__14);
   __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(1, 16, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":58
+  /* "cherab/PESDT_addon/RateFunctions.pyx":58
  *         self.A_coeff = None
  * 
  *     cpdef double evaluate(self, double T, double ne):             # <<<<<<<<<<<<<<
@@ -22992,7 +22992,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__16 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_T, __pyx_n_s_ne); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__16);
   __Pyx_GIVEREF(__pyx_tuple__16);
-  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_RateFunctions, __pyx_n_s_evaluate, 58, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_RateFunctions, __pyx_n_s_evaluate, 58, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 58, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
@@ -23149,8 +23149,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitConstants(void) {
   if (__Pyx_InitString(__pyx_string_tab[55], &__pyx_n_s_base) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[56], &__pyx_n_s_c) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[57], &__pyx_n_u_c) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
-  if (__Pyx_InitString(__pyx_string_tab[58], &__pyx_kp_s_cherab_amjuel_data_RateFunctions) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
-  if (__Pyx_InitString(__pyx_string_tab[59], &__pyx_n_s_cherab_amjuel_data_RateFunctions_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
+  if (__Pyx_InitString(__pyx_string_tab[58], &__pyx_kp_s_cherab_PESDT_addon_RateFunctions) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
+  if (__Pyx_InitString(__pyx_string_tab[59], &__pyx_n_s_cherab_PESDT_addon_RateFunctions_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[60], &__pyx_n_s_class) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[61], &__pyx_n_s_class_getitem) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[62], &__pyx_n_s_cline_in_traceback) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
@@ -23324,58 +23324,58 @@ static int __Pyx_modinit_type_init_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
-  __pyx_vtabptr_6cherab_11amjuel_data_13RateFunctions_RateFunction = &__pyx_vtable_6cherab_11amjuel_data_13RateFunctions_RateFunction;
-  __pyx_vtable_6cherab_11amjuel_data_13RateFunctions_RateFunction._evaluate = (double (*)(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_RateFunction *, double, double))__pyx_f_6cherab_11amjuel_data_13RateFunctions_12RateFunction__evaluate;
+  __pyx_vtabptr_6cherab_11PESDT_addon_13RateFunctions_RateFunction = &__pyx_vtable_6cherab_11PESDT_addon_13RateFunctions_RateFunction;
+  __pyx_vtable_6cherab_11PESDT_addon_13RateFunctions_RateFunction._evaluate = (double (*)(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_RateFunction *, double, double))__pyx_f_6cherab_11PESDT_addon_13RateFunctions_12RateFunction__evaluate;
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11amjuel_data_13RateFunctions_RateFunction_spec, NULL); if (unlikely(!__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction)) __PYX_ERR(0, 11, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11amjuel_data_13RateFunctions_RateFunction_spec, __pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
+  __pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11PESDT_addon_13RateFunctions_RateFunction_spec, NULL); if (unlikely(!__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction)) __PYX_ERR(0, 11, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11PESDT_addon_13RateFunctions_RateFunction_spec, __pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
   #else
-  __pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction = &__pyx_type_6cherab_11amjuel_data_13RateFunctions_RateFunction;
+  __pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction = &__pyx_type_6cherab_11PESDT_addon_13RateFunctions_RateFunction;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
-  __pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction->tp_print = 0;
+  __pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction->tp_print = 0;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction->tp_dictoffset && __pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction->tp_getattro == PyObject_GenericGetAttr)) {
-    __pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction->tp_getattro = __Pyx_PyObject_GenericGetAttr;
+  if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction->tp_dictoffset && __pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction->tp_getattro == PyObject_GenericGetAttr)) {
+    __pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction->tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction, __pyx_vtabptr_6cherab_11amjuel_data_13RateFunctions_RateFunction) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction, __pyx_vtabptr_6cherab_11PESDT_addon_13RateFunctions_RateFunction) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
+  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_RateFunction, (PyObject *) __pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_RateFunction, (PyObject *) __pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
   #endif
-  __pyx_vtabptr_6cherab_11amjuel_data_13RateFunctions_NullRateFunction = &__pyx_vtable_6cherab_11amjuel_data_13RateFunctions_NullRateFunction;
-  __pyx_vtable_6cherab_11amjuel_data_13RateFunctions_NullRateFunction.evaluate = (double (*)(struct __pyx_obj_6cherab_11amjuel_data_13RateFunctions_NullRateFunction *, double, double, int __pyx_skip_dispatch))__pyx_f_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_evaluate;
+  __pyx_vtabptr_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction = &__pyx_vtable_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction;
+  __pyx_vtable_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction.evaluate = (double (*)(struct __pyx_obj_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction *, double, double, int __pyx_skip_dispatch))__pyx_f_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_evaluate;
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11amjuel_data_13RateFunctions_NullRateFunction_spec, NULL); if (unlikely(!__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction)) __PYX_ERR(0, 50, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11amjuel_data_13RateFunctions_NullRateFunction_spec, __pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction_spec, NULL); if (unlikely(!__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction)) __PYX_ERR(0, 50, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction_spec, __pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
   #else
-  __pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction = &__pyx_type_6cherab_11amjuel_data_13RateFunctions_NullRateFunction;
+  __pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction = &__pyx_type_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
-  __pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction->tp_print = 0;
+  __pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction->tp_print = 0;
   #endif
-  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction, __pyx_vtabptr_6cherab_11amjuel_data_13RateFunctions_NullRateFunction) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction, __pyx_vtabptr_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
+  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_NullRateFunction, (PyObject *) __pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_NullRateFunction, (PyObject *) __pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
   #endif
   __pyx_vtabptr_array = &__pyx_vtable_array;
   __pyx_vtable_array.get_memview = (PyObject *(*)(struct __pyx_array_obj *))__pyx_array_get_memview;
@@ -23845,14 +23845,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_cherab__amjuel_data__RateFunctions) {
+  if (__pyx_module_is_main_cherab__PESDT_addon__RateFunctions) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name_2, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "cherab.amjuel_data.RateFunctions")) {
-      if (unlikely((PyDict_SetItemString(modules, "cherab.amjuel_data.RateFunctions", __pyx_m) < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "cherab.PESDT_addon.RateFunctions")) {
+      if (unlikely((PyDict_SetItemString(modules, "cherab.PESDT_addon.RateFunctions", __pyx_m) < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -23873,7 +23873,7 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":1
+  /* "cherab/PESDT_addon/RateFunctions.pyx":1
  * import numpy as np             # <<<<<<<<<<<<<<
  * cimport numpy as np
  * from libc.math cimport pow, log, exp
@@ -23883,7 +23883,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":4
+  /* "cherab/PESDT_addon/RateFunctions.pyx":4
  * cimport numpy as np
  * from libc.math cimport pow, log, exp
  * from .amread import A_coeff             # <<<<<<<<<<<<<<
@@ -23904,7 +23904,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":9
+  /* "cherab/PESDT_addon/RateFunctions.pyx":9
  * 
  * #ctypedef np.double_t DTYPE_t
  * DTYPE = np.double             # <<<<<<<<<<<<<<
@@ -23919,29 +23919,29 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_DTYPE, __pyx_t_2) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":47
+  /* "cherab/PESDT_addon/RateFunctions.pyx":47
  *         return self._A_coeff*exp(res)
  * 
  *     def evaluate(self, ne, T):             # <<<<<<<<<<<<<<
  *         return self._evaluate(ne, T)
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_13RateFunctions_12RateFunction_3evaluate, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_RateFunction_evaluate, NULL, __pyx_n_s_cherab_amjuel_data_RateFunctions_2, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_3evaluate, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_RateFunction_evaluate, NULL, __pyx_n_s_cherab_PESDT_addon_RateFunctions_2, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction->tp_dict, __pyx_n_s_evaluate, __pyx_t_2) < 0) __PYX_ERR(0, 47, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction->tp_dict, __pyx_n_s_evaluate, __pyx_t_2) < 0) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction);
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_13RateFunctions_12RateFunction_5__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_RateFunction___reduce_cython, NULL, __pyx_n_s_cherab_amjuel_data_RateFunctions_2, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_5__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_RateFunction___reduce_cython, NULL, __pyx_n_s_cherab_PESDT_addon_RateFunctions_2, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction);
 
   /* "(tree fragment)":16
  *     else:
@@ -23949,34 +23949,34 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_RateFunction__set_state(self, __pyx_state)
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_13RateFunctions_12RateFunction_7__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_RateFunction___setstate_cython, NULL, __pyx_n_s_cherab_amjuel_data_RateFunctions_2, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_13RateFunctions_12RateFunction_7__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_RateFunction___setstate_cython, NULL, __pyx_n_s_cherab_PESDT_addon_RateFunctions_2, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_2) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_2) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_RateFunction);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_RateFunction);
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":58
+  /* "cherab/PESDT_addon/RateFunctions.pyx":58
  *         self.A_coeff = None
  * 
  *     cpdef double evaluate(self, double T, double ne):             # <<<<<<<<<<<<<<
  *         return 0.0
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_3evaluate, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_NullRateFunction_evaluate, NULL, __pyx_n_s_cherab_amjuel_data_RateFunctions_2, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_3evaluate, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_NullRateFunction_evaluate, NULL, __pyx_n_s_cherab_PESDT_addon_RateFunctions_2, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction->tp_dict, __pyx_n_s_evaluate, __pyx_t_2) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction->tp_dict, __pyx_n_s_evaluate, __pyx_t_2) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction);
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_5__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_NullRateFunction___reduce_cython, NULL, __pyx_n_s_cherab_amjuel_data_RateFunctions_2, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_5__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_NullRateFunction___reduce_cython, NULL, __pyx_n_s_cherab_PESDT_addon_RateFunctions_2, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction);
 
   /* "(tree fragment)":16
  *     else:
@@ -23984,18 +23984,18 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_NullRateFunction__set_state(self, __pyx_state)
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_13RateFunctions_16NullRateFunction_7__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_NullRateFunction___setstate_cyth, NULL, __pyx_n_s_cherab_amjuel_data_RateFunctions_2, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_13RateFunctions_16NullRateFunction_7__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_NullRateFunction___setstate_cyth, NULL, __pyx_n_s_cherab_PESDT_addon_RateFunctions_2, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_2) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_2) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_13RateFunctions_NullRateFunction);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_13RateFunctions_NullRateFunction);
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_RateFunction(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_13RateFunctions_1__pyx_unpickle_RateFunction, 0, __pyx_n_s_pyx_unpickle_RateFunction, NULL, __pyx_n_s_cherab_amjuel_data_RateFunctions_2, __pyx_d, ((PyObject *)__pyx_codeobj__21)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_13RateFunctions_1__pyx_unpickle_RateFunction, 0, __pyx_n_s_pyx_unpickle_RateFunction, NULL, __pyx_n_s_cherab_PESDT_addon_RateFunctions_2, __pyx_d, ((PyObject *)__pyx_codeobj__21)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_RateFunction, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -24007,12 +24007,12 @@ if (!__Pyx_RefNanny) {
  *     __pyx_result._A_coeff = __pyx_state[0]; __pyx_result._MARc = __pyx_state[1]; __pyx_result.res = __pyx_state[2]
  *     if len(__pyx_state) > 3 and hasattr(__pyx_result, '__dict__'):
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_13RateFunctions_3__pyx_unpickle_NullRateFunction, 0, __pyx_n_s_pyx_unpickle_NullRateFunction, NULL, __pyx_n_s_cherab_amjuel_data_RateFunctions_2, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_13RateFunctions_3__pyx_unpickle_NullRateFunction, 0, __pyx_n_s_pyx_unpickle_NullRateFunction, NULL, __pyx_n_s_cherab_PESDT_addon_RateFunctions_2, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_NullRateFunction, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cherab/amjuel_data/RateFunctions.pyx":1
+  /* "cherab/PESDT_addon/RateFunctions.pyx":1
  * import numpy as np             # <<<<<<<<<<<<<<
  * cimport numpy as np
  * from libc.math cimport pow, log, exp
@@ -24183,13 +24183,13 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_3);
   if (__pyx_m) {
     if (__pyx_d && stringtab_initialized) {
-      __Pyx_AddTraceback("init cherab.amjuel_data.RateFunctions", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init cherab.PESDT_addon.RateFunctions", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     #if !CYTHON_USE_MODULE_STATE
     Py_CLEAR(__pyx_m);
     #endif
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init cherab.amjuel_data.RateFunctions");
+    PyErr_SetString(PyExc_ImportError, "init cherab.PESDT_addon.RateFunctions");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();

@@ -14,12 +14,12 @@
             ".",
             "/usr/local/depot/Python-3.9/lib/python3.9/site-packages/numpy/core/include"
         ],
-        "name": "cherab.amjuel_data.molecules",
+        "name": "cherab.PESDT_addon.molecules",
         "sources": [
-            "cherab/amjuel_data/molecules.pyx"
+            "cherab/PESDT_addon/molecules.pyx"
         ]
     },
-    "module_name": "cherab.amjuel_data.molecules"
+    "module_name": "cherab.PESDT_addon.molecules"
 }
 END: Cython Metadata */
 
@@ -954,8 +954,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__cherab__amjuel_data__molecules
-#define __PYX_HAVE_API__cherab__amjuel_data__molecules
+#define __PYX_HAVE__cherab__PESDT_addon__molecules
+#define __PYX_HAVE_API__cherab__PESDT_addon__molecules
 /* Early includes */
 #include <string.h>
 #include <stdio.h>
@@ -1215,7 +1215,7 @@ static const char *__pyx_filename;
 /* #### Code section: filename_table ### */
 
 static const char *__pyx_f[] = {
-  "cherab/amjuel_data/molecules.pyx",
+  "cherab/PESDT_addon/molecules.pyx",
   "<stringsource>",
   "base.pxd",
   "__init__.cython-30.pxd",
@@ -1933,7 +1933,7 @@ struct __pyx_obj_6cherab_4core_6atomic_5rates_ContinuumPower;
 struct __pyx_obj_6cherab_4core_6atomic_5rates_CXRadiationPower;
 struct __pyx_obj_6cherab_4core_6atomic_5rates_FractionalAbundance;
 struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData;
-struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule;
+struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule;
 struct __pyx_array_obj;
 struct __pyx_MemviewEnum_obj;
 struct __pyx_memoryview_obj;
@@ -6623,14 +6623,14 @@ struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData {
 };
 
 
-/* "cherab/amjuel_data/molecules.pyx":13
+/* "cherab/PESDT_addon/molecules.pyx":13
  * """
  * 
  * cdef class Molecule(Element):             # <<<<<<<<<<<<<<
  *     cdef dict __dict__
  * 
  */
-struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule {
+struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule {
   struct __pyx_obj_6cherab_4core_6atomic_8elements_Element __pyx_base;
   PyObject *__dict__;
 };
@@ -12962,9 +12962,9 @@ static PyTypeObject *__pyx_ptype_6cherab_4core_6atomic_9interface_AtomicData = 0
 #if !CYTHON_USE_MODULE_STATE
 #endif
 
-/* Module declarations from "cherab.amjuel_data.molecules" */
+/* Module declarations from "cherab.PESDT_addon.molecules" */
 #if !CYTHON_USE_MODULE_STATE
-static PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule = 0;
+static PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule = 0;
 static PyTypeObject *__pyx_array_type = 0;
 static PyTypeObject *__pyx_MemviewEnum_type = 0;
 static PyTypeObject *__pyx_memoryview_type = 0;
@@ -12977,7 +12977,7 @@ static PyObject *contiguous = 0;
 static PyObject *indirect_contiguous = 0;
 static int __pyx_memoryview_thread_locks_used;
 static PyThread_type_lock __pyx_memoryview_thread_locks[8];
-static PyObject *__pyx_f_6cherab_11amjuel_data_9molecules___pyx_unpickle_Molecule__set_state(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *, PyObject *); /*proto*/
+static PyObject *__pyx_f_6cherab_11PESDT_addon_9molecules___pyx_unpickle_Molecule__set_state(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *, PyObject *); /*proto*/
 static int __pyx_array_allocate_buffer(struct __pyx_array_obj *); /*proto*/
 static struct __pyx_array_obj *__pyx_array_new(PyObject *, Py_ssize_t, char *, char *, char *); /*proto*/
 static void *__pyx_align_pointer(void *, size_t); /*proto*/
@@ -13015,11 +13015,11 @@ static void __pyx_memoryview__slice_assign_scalar(char *, Py_ssize_t *, Py_ssize
 static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *, PyObject *); /*proto*/
 /* #### Code section: typeinfo ### */
 /* #### Code section: before_global_var ### */
-#define __Pyx_MODULE_NAME "cherab.amjuel_data.molecules"
-extern int __pyx_module_is_main_cherab__amjuel_data__molecules;
-int __pyx_module_is_main_cherab__amjuel_data__molecules = 0;
+#define __Pyx_MODULE_NAME "cherab.PESDT_addon.molecules"
+extern int __pyx_module_is_main_cherab__PESDT_addon__molecules;
+int __pyx_module_is_main_cherab__PESDT_addon__molecules = 0;
 
-/* Implementation of "cherab.amjuel_data.molecules" */
+/* Implementation of "cherab.PESDT_addon.molecules" */
 /* #### Code section: global_var ### */
 static PyObject *__pyx_builtin_super;
 static PyObject *__pyx_builtin_NotImplemented;
@@ -13164,7 +13164,7 @@ static const char __pyx_k_Molecule___setstate_cython[] = "Molecule.__setstate_cy
 static const char __pyx_k_Step_may_not_be_zero_axis_d[] = "Step may not be zero (axis %d)";
 static const char __pyx_k_cherab_core_atomic_elements[] = "cherab.core.atomic.elements";
 static const char __pyx_k_itemsize_0_for_cython_array[] = "itemsize <= 0 for cython.array";
-static const char __pyx_k_cherab_amjuel_data_molecules[] = "cherab.amjuel_data.molecules";
+static const char __pyx_k_cherab_PESDT_addon_molecules[] = "cherab.PESDT_addon.molecules";
 static const char __pyx_k_unable_to_allocate_array_data[] = "unable to allocate array data.";
 static const char __pyx_k_strided_and_direct_or_indirect[] = "<strided and direct or indirect>";
 static const char __pyx_k_numpy_core_multiarray_failed_to[] = "numpy.core.multiarray failed to import";
@@ -13182,7 +13182,7 @@ static const char __pyx_k_Indirect_dimensions_not_supporte[] = "Indirect dimensi
 static const char __pyx_k_Invalid_mode_expected_c_or_fortr[] = "Invalid mode, expected 'c' or 'fortran', got ";
 static const char __pyx_k_Out_of_bounds_on_buffer_access_a[] = "Out of bounds on buffer access (axis ";
 static const char __pyx_k_Unable_to_convert_item_to_object[] = "Unable to convert item to object";
-static const char __pyx_k_cherab_amjuel_data_molecules_pyx[] = "cherab/amjuel_data/molecules.pyx";
+static const char __pyx_k_cherab_PESDT_addon_molecules_pyx[] = "cherab/PESDT_addon/molecules.pyx";
 static const char __pyx_k_got_differing_extents_in_dimensi[] = "got differing extents in dimension ";
 static const char __pyx_k_no_default___reduce___due_to_non[] = "no default __reduce__ due to non-trivial __cinit__";
 static const char __pyx_k_numpy_core_umath_failed_to_impor[] = "numpy.core.umath failed to import";
@@ -13251,8 +13251,8 @@ static PyObject *__pyx_n_s_base;
 static PyObject *__pyx_n_s_build_molecule_index;
 static PyObject *__pyx_n_s_c;
 static PyObject *__pyx_n_u_c;
-static PyObject *__pyx_n_s_cherab_amjuel_data_molecules;
-static PyObject *__pyx_kp_s_cherab_amjuel_data_molecules_pyx;
+static PyObject *__pyx_n_s_cherab_PESDT_addon_molecules;
+static PyObject *__pyx_kp_s_cherab_PESDT_addon_molecules_pyx;
 static PyObject *__pyx_n_s_cherab_core_atomic_elements;
 static PyObject *__pyx_n_s_class;
 static PyObject *__pyx_n_s_class_getitem;
@@ -13346,15 +13346,15 @@ static PyObject *__pyx_n_s_use_setstate;
 static PyObject *__pyx_n_s_v;
 #endif
 /* #### Code section: decls ### */
-static int __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule___init__(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *__pyx_v_self, PyObject *__pyx_v_name, PyObject *__pyx_v_symbol, PyObject *__pyx_v_element, PyObject *__pyx_v_mass_number, PyObject *__pyx_v_atomic_weight); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_2__repr__(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *__pyx_v_self); /* proto */
-static Py_hash_t __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_4__hash__(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp__(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *__pyx_v_self, PyObject *__pyx_v_other, PyObject *__pyx_v_op); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_8__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_10__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules__build_molecule_index(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_2lookup_molecule(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_v, PyObject *__pyx_v_number); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_4__pyx_unpickle_Molecule(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
+static int __pyx_pf_6cherab_11PESDT_addon_9molecules_8Molecule___init__(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *__pyx_v_self, PyObject *__pyx_v_name, PyObject *__pyx_v_symbol, PyObject *__pyx_v_element, PyObject *__pyx_v_mass_number, PyObject *__pyx_v_atomic_weight); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_9molecules_8Molecule_2__repr__(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *__pyx_v_self); /* proto */
+static Py_hash_t __pyx_pf_6cherab_11PESDT_addon_9molecules_8Molecule_4__hash__(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_9molecules_8Molecule_6__richcmp__(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *__pyx_v_self, PyObject *__pyx_v_other, PyObject *__pyx_v_op); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_9molecules_8Molecule_8__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_9molecules_8Molecule_10__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_9molecules__build_molecule_index(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_9molecules_2lookup_molecule(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_v, PyObject *__pyx_v_number); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_9molecules_4__pyx_unpickle_Molecule(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(struct __pyx_array_obj *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struct __pyx_array_obj *__pyx_v_self); /* proto */
@@ -13396,7 +13396,7 @@ static void __pyx_memoryviewslice___pyx_pf_15View_dot_MemoryView_16_memoryviewsl
 static PyObject *__pyx_pf___pyx_memoryviewslice___reduce_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf___pyx_memoryviewslice_2__setstate_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_15View_dot_MemoryView___pyx_unpickle_Enum(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_9molecules_Molecule(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_9molecules_Molecule(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_array(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_Enum(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_memoryview(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -13767,8 +13767,8 @@ typedef struct {
   PyTypeObject *__pyx_ptype_6cherab_4core_6atomic_5rates_CXRadiationPower;
   PyTypeObject *__pyx_ptype_6cherab_4core_6atomic_5rates_FractionalAbundance;
   PyTypeObject *__pyx_ptype_6cherab_4core_6atomic_9interface_AtomicData;
-  PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule;
-  PyObject *__pyx_type_6cherab_11amjuel_data_9molecules_Molecule;
+  PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule;
+  PyObject *__pyx_type_6cherab_11PESDT_addon_9molecules_Molecule;
   PyTypeObject *__pyx_array_type;
   PyObject *__pyx_type___pyx_array;
   PyTypeObject *__pyx_MemviewEnum_type;
@@ -13839,8 +13839,8 @@ typedef struct {
   PyObject *__pyx_n_s_build_molecule_index;
   PyObject *__pyx_n_s_c;
   PyObject *__pyx_n_u_c;
-  PyObject *__pyx_n_s_cherab_amjuel_data_molecules;
-  PyObject *__pyx_kp_s_cherab_amjuel_data_molecules_pyx;
+  PyObject *__pyx_n_s_cherab_PESDT_addon_molecules;
+  PyObject *__pyx_kp_s_cherab_PESDT_addon_molecules_pyx;
   PyObject *__pyx_n_s_cherab_core_atomic_elements;
   PyObject *__pyx_n_s_class;
   PyObject *__pyx_n_s_class_getitem;
@@ -14311,8 +14311,8 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_4core_6atomic_5rates_CXRadiationPower);
   Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_4core_6atomic_5rates_FractionalAbundance);
   Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_4core_6atomic_9interface_AtomicData);
-  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule);
-  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11amjuel_data_9molecules_Molecule);
+  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule);
+  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11PESDT_addon_9molecules_Molecule);
   Py_CLEAR(clear_module_state->__pyx_array_type);
   Py_CLEAR(clear_module_state->__pyx_type___pyx_array);
   Py_CLEAR(clear_module_state->__pyx_MemviewEnum_type);
@@ -14383,8 +14383,8 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_build_molecule_index);
   Py_CLEAR(clear_module_state->__pyx_n_s_c);
   Py_CLEAR(clear_module_state->__pyx_n_u_c);
-  Py_CLEAR(clear_module_state->__pyx_n_s_cherab_amjuel_data_molecules);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_cherab_amjuel_data_molecules_pyx);
+  Py_CLEAR(clear_module_state->__pyx_n_s_cherab_PESDT_addon_molecules);
+  Py_CLEAR(clear_module_state->__pyx_kp_s_cherab_PESDT_addon_molecules_pyx);
   Py_CLEAR(clear_module_state->__pyx_n_s_cherab_core_atomic_elements);
   Py_CLEAR(clear_module_state->__pyx_n_s_class);
   Py_CLEAR(clear_module_state->__pyx_n_s_class_getitem);
@@ -14842,8 +14842,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_4core_6atomic_5rates_CXRadiationPower);
   Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_4core_6atomic_5rates_FractionalAbundance);
   Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_4core_6atomic_9interface_AtomicData);
-  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule);
-  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11amjuel_data_9molecules_Molecule);
+  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule);
+  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11PESDT_addon_9molecules_Molecule);
   Py_VISIT(traverse_module_state->__pyx_array_type);
   Py_VISIT(traverse_module_state->__pyx_type___pyx_array);
   Py_VISIT(traverse_module_state->__pyx_MemviewEnum_type);
@@ -14914,8 +14914,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_build_molecule_index);
   Py_VISIT(traverse_module_state->__pyx_n_s_c);
   Py_VISIT(traverse_module_state->__pyx_n_u_c);
-  Py_VISIT(traverse_module_state->__pyx_n_s_cherab_amjuel_data_molecules);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_cherab_amjuel_data_molecules_pyx);
+  Py_VISIT(traverse_module_state->__pyx_n_s_cherab_PESDT_addon_molecules);
+  Py_VISIT(traverse_module_state->__pyx_kp_s_cherab_PESDT_addon_molecules_pyx);
   Py_VISIT(traverse_module_state->__pyx_n_s_cherab_core_atomic_elements);
   Py_VISIT(traverse_module_state->__pyx_n_s_class);
   Py_VISIT(traverse_module_state->__pyx_n_s_class_getitem);
@@ -15370,8 +15370,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_ptype_6cherab_4core_6atomic_5rates_CXRadiationPower __pyx_mstate_global->__pyx_ptype_6cherab_4core_6atomic_5rates_CXRadiationPower
 #define __pyx_ptype_6cherab_4core_6atomic_5rates_FractionalAbundance __pyx_mstate_global->__pyx_ptype_6cherab_4core_6atomic_5rates_FractionalAbundance
 #define __pyx_ptype_6cherab_4core_6atomic_9interface_AtomicData __pyx_mstate_global->__pyx_ptype_6cherab_4core_6atomic_9interface_AtomicData
-#define __pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule __pyx_mstate_global->__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule
-#define __pyx_type_6cherab_11amjuel_data_9molecules_Molecule __pyx_mstate_global->__pyx_type_6cherab_11amjuel_data_9molecules_Molecule
+#define __pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule __pyx_mstate_global->__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule
+#define __pyx_type_6cherab_11PESDT_addon_9molecules_Molecule __pyx_mstate_global->__pyx_type_6cherab_11PESDT_addon_9molecules_Molecule
 #define __pyx_array_type __pyx_mstate_global->__pyx_array_type
 #define __pyx_type___pyx_array __pyx_mstate_global->__pyx_type___pyx_array
 #define __pyx_MemviewEnum_type __pyx_mstate_global->__pyx_MemviewEnum_type
@@ -15442,8 +15442,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_build_molecule_index __pyx_mstate_global->__pyx_n_s_build_molecule_index
 #define __pyx_n_s_c __pyx_mstate_global->__pyx_n_s_c
 #define __pyx_n_u_c __pyx_mstate_global->__pyx_n_u_c
-#define __pyx_n_s_cherab_amjuel_data_molecules __pyx_mstate_global->__pyx_n_s_cherab_amjuel_data_molecules
-#define __pyx_kp_s_cherab_amjuel_data_molecules_pyx __pyx_mstate_global->__pyx_kp_s_cherab_amjuel_data_molecules_pyx
+#define __pyx_n_s_cherab_PESDT_addon_molecules __pyx_mstate_global->__pyx_n_s_cherab_PESDT_addon_molecules
+#define __pyx_kp_s_cherab_PESDT_addon_molecules_pyx __pyx_mstate_global->__pyx_kp_s_cherab_PESDT_addon_molecules_pyx
 #define __pyx_n_s_cherab_core_atomic_elements __pyx_mstate_global->__pyx_n_s_cherab_core_atomic_elements
 #define __pyx_n_s_class __pyx_mstate_global->__pyx_n_s_class
 #define __pyx_n_s_class_getitem __pyx_mstate_global->__pyx_n_s_class_getitem
@@ -15569,7 +15569,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #endif
 /* #### Code section: module_code ### */
 
-/* "cherab/amjuel_data/molecules.pyx":21
+/* "cherab/PESDT_addon/molecules.pyx":21
  *     """
  * 
  *     def __init__(self, name, symbol, element, mass_number, atomic_weight):             # <<<<<<<<<<<<<<
@@ -15578,8 +15578,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
  */
 
 /* Python wrapper */
-static int __pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_name = 0;
   PyObject *__pyx_v_symbol = 0;
   PyObject *__pyx_v_element = 0;
@@ -15674,18 +15674,18 @@ static int __pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_1__init__(PyObjec
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__init__", 1, 5, 5, __pyx_nargs); __PYX_ERR(0, 21, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.molecules.Molecule.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.molecules.Molecule.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule___init__(((struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *)__pyx_v_self), __pyx_v_name, __pyx_v_symbol, __pyx_v_element, __pyx_v_mass_number, __pyx_v_atomic_weight);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_9molecules_8Molecule___init__(((struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *)__pyx_v_self), __pyx_v_name, __pyx_v_symbol, __pyx_v_element, __pyx_v_mass_number, __pyx_v_atomic_weight);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule___init__(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *__pyx_v_self, PyObject *__pyx_v_name, PyObject *__pyx_v_symbol, PyObject *__pyx_v_element, PyObject *__pyx_v_mass_number, PyObject *__pyx_v_atomic_weight) {
+static int __pyx_pf_6cherab_11PESDT_addon_9molecules_8Molecule___init__(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *__pyx_v_self, PyObject *__pyx_v_name, PyObject *__pyx_v_symbol, PyObject *__pyx_v_element, PyObject *__pyx_v_mass_number, PyObject *__pyx_v_atomic_weight) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -15698,7 +15698,7 @@ static int __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule___init__(struct _
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "cherab/amjuel_data/molecules.pyx":23
+  /* "cherab/PESDT_addon/molecules.pyx":23
  *     def __init__(self, name, symbol, element, mass_number, atomic_weight):
  * 
  *         super().__init__(name, symbol, element.atomic_number, atomic_weight)             # <<<<<<<<<<<<<<
@@ -15707,9 +15707,9 @@ static int __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule___init__(struct _
  */
   __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_INCREF((PyObject *)__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule);
-  __Pyx_GIVEREF((PyObject *)__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule));
+  __Pyx_INCREF((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule);
+  __Pyx_GIVEREF((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule));
   __Pyx_INCREF((PyObject *)__pyx_v_self);
   __Pyx_GIVEREF((PyObject *)__pyx_v_self);
   PyTuple_SET_ITEM(__pyx_t_2, 1, ((PyObject *)__pyx_v_self));
@@ -15744,7 +15744,7 @@ static int __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule___init__(struct _
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/molecules.pyx":24
+  /* "cherab/PESDT_addon/molecules.pyx":24
  * 
  *         super().__init__(name, symbol, element.atomic_number, atomic_weight)
  *         self.mass_number = mass_number             # <<<<<<<<<<<<<<
@@ -15753,7 +15753,7 @@ static int __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule___init__(struct _
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_mass_number, __pyx_v_mass_number) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/molecules.pyx":25
+  /* "cherab/PESDT_addon/molecules.pyx":25
  *         super().__init__(name, symbol, element.atomic_number, atomic_weight)
  *         self.mass_number = mass_number
  *         self.element = element             # <<<<<<<<<<<<<<
@@ -15762,7 +15762,7 @@ static int __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule___init__(struct _
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_element, __pyx_v_element) < 0) __PYX_ERR(0, 25, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/molecules.pyx":21
+  /* "cherab/PESDT_addon/molecules.pyx":21
  *     """
  * 
  *     def __init__(self, name, symbol, element, mass_number, atomic_weight):             # <<<<<<<<<<<<<<
@@ -15778,14 +15778,14 @@ static int __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule___init__(struct _
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("cherab.amjuel_data.molecules.Molecule.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.molecules.Molecule.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/molecules.pyx":27
+/* "cherab/PESDT_addon/molecules.pyx":27
  *         self.element = element
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -15794,20 +15794,20 @@ static int __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule___init__(struct _
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_3__repr__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_3__repr__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_3__repr__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_3__repr__(PyObject *__pyx_v_self) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__repr__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_2__repr__(((struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_9molecules_8Molecule_2__repr__(((struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_2__repr__(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_9molecules_8Molecule_2__repr__(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -15819,7 +15819,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_2__repr__(s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "cherab/amjuel_data/molecules.pyx":28
+  /* "cherab/PESDT_addon/molecules.pyx":28
  * 
  *     def __repr__(self):
  *         return '<Molecule: {}>'.format(self.name)             # <<<<<<<<<<<<<<
@@ -15853,7 +15853,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_2__repr__(s
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/molecules.pyx":27
+  /* "cherab/PESDT_addon/molecules.pyx":27
  *         self.element = element
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -15866,7 +15866,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_2__repr__(s
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("cherab.amjuel_data.molecules.Molecule.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.molecules.Molecule.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -15874,7 +15874,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_2__repr__(s
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/molecules.pyx":30
+/* "cherab/PESDT_addon/molecules.pyx":30
  *         return '<Molecule: {}>'.format(self.name)
  * 
  *     def __hash__(self):             # <<<<<<<<<<<<<<
@@ -15883,20 +15883,20 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_2__repr__(s
  */
 
 /* Python wrapper */
-static Py_hash_t __pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_5__hash__(PyObject *__pyx_v_self); /*proto*/
-static Py_hash_t __pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_5__hash__(PyObject *__pyx_v_self) {
+static Py_hash_t __pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_5__hash__(PyObject *__pyx_v_self); /*proto*/
+static Py_hash_t __pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_5__hash__(PyObject *__pyx_v_self) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
   Py_hash_t __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__hash__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_4__hash__(((struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_9molecules_8Molecule_4__hash__(((struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static Py_hash_t __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_4__hash__(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *__pyx_v_self) {
+static Py_hash_t __pyx_pf_6cherab_11PESDT_addon_9molecules_8Molecule_4__hash__(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *__pyx_v_self) {
   Py_hash_t __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -15909,7 +15909,7 @@ static Py_hash_t __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_4__hash__(s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__hash__", 0);
 
-  /* "cherab/amjuel_data/molecules.pyx":31
+  /* "cherab/PESDT_addon/molecules.pyx":31
  * 
  *     def __hash__(self):
  *         return hash((self.name, self.symbol, self.atomic_number, self.atomic_weight, self.mass_number))             # <<<<<<<<<<<<<<
@@ -15944,7 +15944,7 @@ static Py_hash_t __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_4__hash__(s
   __pyx_r = __pyx_t_5;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/molecules.pyx":30
+  /* "cherab/PESDT_addon/molecules.pyx":30
  *         return '<Molecule: {}>'.format(self.name)
  * 
  *     def __hash__(self):             # <<<<<<<<<<<<<<
@@ -15958,7 +15958,7 @@ static Py_hash_t __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_4__hash__(s
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("cherab.amjuel_data.molecules.Molecule.__hash__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.molecules.Molecule.__hash__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   if (unlikely(__pyx_r == -1) && !PyErr_Occurred()) __pyx_r = -2;
@@ -15966,7 +15966,7 @@ static Py_hash_t __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_4__hash__(s
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/molecules.pyx":33
+/* "cherab/PESDT_addon/molecules.pyx":33
  *         return hash((self.name, self.symbol, self.atomic_number, self.atomic_weight, self.mass_number))
  * 
  *     def __richcmp__(self, other, op):             # <<<<<<<<<<<<<<
@@ -15975,8 +15975,8 @@ static Py_hash_t __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_4__hash__(s
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_7__richcmp__(PyObject *__pyx_v_self, PyObject *__pyx_v_other, int __pyx_arg_op); /*proto*/
-static PyObject *__pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_7__richcmp__(PyObject *__pyx_v_self, PyObject *__pyx_v_other, int __pyx_arg_op) {
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_7__richcmp__(PyObject *__pyx_v_self, PyObject *__pyx_v_other, int __pyx_arg_op); /*proto*/
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_7__richcmp__(PyObject *__pyx_v_self, PyObject *__pyx_v_other, int __pyx_arg_op) {
   PyObject *__pyx_v_op = 0;
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
   int __pyx_lineno = 0;
@@ -15989,11 +15989,11 @@ static PyObject *__pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_7__richcmp_
   __Pyx_GOTREF(__pyx_v_op);
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.molecules.Molecule.__richcmp__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.molecules.Molecule.__richcmp__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp__(((struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *)__pyx_v_self), ((PyObject *)__pyx_v_other), ((PyObject *)__pyx_v_op));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_9molecules_8Molecule_6__richcmp__(((struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *)__pyx_v_self), ((PyObject *)__pyx_v_other), ((PyObject *)__pyx_v_op));
 
   /* function exit code */
   __Pyx_DECREF(__pyx_v_op);
@@ -16001,8 +16001,8 @@ static PyObject *__pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_7__richcmp_
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp__(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *__pyx_v_self, PyObject *__pyx_v_other, PyObject *__pyx_v_op) {
-  struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *__pyx_v_e = 0;
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_9molecules_8Molecule_6__richcmp__(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *__pyx_v_self, PyObject *__pyx_v_other, PyObject *__pyx_v_op) {
+  struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *__pyx_v_e = 0;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -16016,18 +16016,18 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__richcmp__", 0);
 
-  /* "cherab/amjuel_data/molecules.pyx":35
+  /* "cherab/PESDT_addon/molecules.pyx":35
  *     def __richcmp__(self, other, op):
  * 
  *         if not isinstance(other, Molecule):             # <<<<<<<<<<<<<<
  *             return NotImplemented
  * 
  */
-  __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_other, __pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule); 
+  __pyx_t_1 = __Pyx_TypeCheck(__pyx_v_other, __pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule); 
   __pyx_t_2 = ((!(__pyx_t_1 != 0)) != 0);
   if (__pyx_t_2) {
 
-    /* "cherab/amjuel_data/molecules.pyx":36
+    /* "cherab/PESDT_addon/molecules.pyx":36
  * 
  *         if not isinstance(other, Molecule):
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -16039,7 +16039,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp_
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/molecules.pyx":35
+    /* "cherab/PESDT_addon/molecules.pyx":35
  *     def __richcmp__(self, other, op):
  * 
  *         if not isinstance(other, Molecule):             # <<<<<<<<<<<<<<
@@ -16048,20 +16048,20 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp_
  */
   }
 
-  /* "cherab/amjuel_data/molecules.pyx":39
+  /* "cherab/PESDT_addon/molecules.pyx":39
  * 
  *         cdef Molecule e
  *         e = other             # <<<<<<<<<<<<<<
  *         if op == 2:     # __eq__()
  *             return (self.name == e.name and self.symbol == e.symbol and
  */
-  if (!(likely(((__pyx_v_other) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_other, __pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule))))) __PYX_ERR(0, 39, __pyx_L1_error)
+  if (!(likely(((__pyx_v_other) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_other, __pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule))))) __PYX_ERR(0, 39, __pyx_L1_error)
   __pyx_t_3 = __pyx_v_other;
   __Pyx_INCREF(__pyx_t_3);
-  __pyx_v_e = ((struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *)__pyx_t_3);
+  __pyx_v_e = ((struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/molecules.pyx":40
+  /* "cherab/PESDT_addon/molecules.pyx":40
  *         cdef Molecule e
  *         e = other
  *         if op == 2:     # __eq__()             # <<<<<<<<<<<<<<
@@ -16074,7 +16074,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp_
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_2) {
 
-    /* "cherab/amjuel_data/molecules.pyx":41
+    /* "cherab/PESDT_addon/molecules.pyx":41
  *         e = other
  *         if op == 2:     # __eq__()
  *             return (self.name == e.name and self.symbol == e.symbol and             # <<<<<<<<<<<<<<
@@ -16101,7 +16101,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp_
       goto __pyx_L5_bool_binop_done;
     }
 
-    /* "cherab/amjuel_data/molecules.pyx":42
+    /* "cherab/PESDT_addon/molecules.pyx":42
  *         if op == 2:     # __eq__()
  *             return (self.name == e.name and self.symbol == e.symbol and
  *                     self.atomic_number == e.atomic_number and self.atomic_weight == e.atomic_weight and             # <<<<<<<<<<<<<<
@@ -16127,7 +16127,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp_
       goto __pyx_L5_bool_binop_done;
     }
 
-    /* "cherab/amjuel_data/molecules.pyx":43
+    /* "cherab/PESDT_addon/molecules.pyx":43
  *             return (self.name == e.name and self.symbol == e.symbol and
  *                     self.atomic_number == e.atomic_number and self.atomic_weight == e.atomic_weight and
  *                     self.element == e.element and self.mass_number == e.mass_number)             # <<<<<<<<<<<<<<
@@ -16165,7 +16165,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp_
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/molecules.pyx":40
+    /* "cherab/PESDT_addon/molecules.pyx":40
  *         cdef Molecule e
  *         e = other
  *         if op == 2:     # __eq__()             # <<<<<<<<<<<<<<
@@ -16174,7 +16174,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp_
  */
   }
 
-  /* "cherab/amjuel_data/molecules.pyx":44
+  /* "cherab/PESDT_addon/molecules.pyx":44
  *                     self.atomic_number == e.atomic_number and self.atomic_weight == e.atomic_weight and
  *                     self.element == e.element and self.mass_number == e.mass_number)
  *         elif op == 3:   # __ne__()             # <<<<<<<<<<<<<<
@@ -16187,7 +16187,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp_
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_2) {
 
-    /* "cherab/amjuel_data/molecules.pyx":45
+    /* "cherab/PESDT_addon/molecules.pyx":45
  *                     self.element == e.element and self.mass_number == e.mass_number)
  *         elif op == 3:   # __ne__()
  *             return (self.name != e.name or self.symbol != e.symbol or             # <<<<<<<<<<<<<<
@@ -16214,7 +16214,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp_
       goto __pyx_L11_bool_binop_done;
     }
 
-    /* "cherab/amjuel_data/molecules.pyx":46
+    /* "cherab/PESDT_addon/molecules.pyx":46
  *         elif op == 3:   # __ne__()
  *             return (self.name != e.name or self.symbol != e.symbol or
  *                     self.atomic_number != e.atomic_number or self.atomic_weight != e.atomic_weight or             # <<<<<<<<<<<<<<
@@ -16240,7 +16240,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp_
       goto __pyx_L11_bool_binop_done;
     }
 
-    /* "cherab/amjuel_data/molecules.pyx":47
+    /* "cherab/PESDT_addon/molecules.pyx":47
  *             return (self.name != e.name or self.symbol != e.symbol or
  *                     self.atomic_number != e.atomic_number or self.atomic_weight != e.atomic_weight or
  *                     self.element != e.element or self.mass_number != e.mass_number)             # <<<<<<<<<<<<<<
@@ -16278,7 +16278,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp_
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/molecules.pyx":44
+    /* "cherab/PESDT_addon/molecules.pyx":44
  *                     self.atomic_number == e.atomic_number and self.atomic_weight == e.atomic_weight and
  *                     self.element == e.element and self.mass_number == e.mass_number)
  *         elif op == 3:   # __ne__()             # <<<<<<<<<<<<<<
@@ -16287,7 +16287,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp_
  */
   }
 
-  /* "cherab/amjuel_data/molecules.pyx":49
+  /* "cherab/PESDT_addon/molecules.pyx":49
  *                     self.element != e.element or self.mass_number != e.mass_number)
  *         else:
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -16301,7 +16301,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp_
     goto __pyx_L0;
   }
 
-  /* "cherab/amjuel_data/molecules.pyx":33
+  /* "cherab/PESDT_addon/molecules.pyx":33
  *         return hash((self.name, self.symbol, self.atomic_number, self.atomic_weight, self.mass_number))
  * 
  *     def __richcmp__(self, other, op):             # <<<<<<<<<<<<<<
@@ -16315,7 +16315,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp_
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("cherab.amjuel_data.molecules.Molecule.__richcmp__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.molecules.Molecule.__richcmp__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF((PyObject *)__pyx_v_e);
@@ -16331,15 +16331,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_6__richcmp_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_9__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_9__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_9molecules_8Molecule_9__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_9__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_9molecules_8Molecule_9__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_9__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -16356,14 +16356,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("__reduce_cython__", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__reduce_cython__", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_8__reduce_cython__(((struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_9molecules_8Molecule_8__reduce_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_8__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_9molecules_8Molecule_8__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -16592,7 +16592,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_8__reduce_c
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("cherab.amjuel_data.molecules.Molecule.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.molecules.Molecule.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_state);
@@ -16610,15 +16610,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_8__reduce_c
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_11__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_11__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_9molecules_8Molecule_11__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_11__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_9molecules_8Molecule_11__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_11__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -16673,18 +16673,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__setstate_cython__", 1, 1, 1, __pyx_nargs); __PYX_ERR(1, 16, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.molecules.Molecule.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.molecules.Molecule.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_10__setstate_cython__(((struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_9molecules_8Molecule_10__setstate_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_10__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_9molecules_8Molecule_10__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -16699,7 +16699,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_10__setstat
  *     __pyx_unpickle_Molecule__set_state(self, __pyx_state)             # <<<<<<<<<<<<<<
  */
   if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 17, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_6cherab_11amjuel_data_9molecules___pyx_unpickle_Molecule__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6cherab_11PESDT_addon_9molecules___pyx_unpickle_Molecule__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
@@ -16715,7 +16715,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_10__setstat
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.molecules.Molecule.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.molecules.Molecule.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -16723,7 +16723,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_10__setstat
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/molecules.pyx":51
+/* "cherab/PESDT_addon/molecules.pyx":51
  *             return NotImplemented
  * 
  * def _build_molecule_index():             # <<<<<<<<<<<<<<
@@ -16732,22 +16732,22 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_8Molecule_10__setstat
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_9molecules_1_build_molecule_index(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-PyDoc_STRVAR(__pyx_doc_6cherab_11amjuel_data_9molecules__build_molecule_index, "\n    Populates an isotope search dictionary.\n\n    Populates the isotope index so users can search for isotopes by name or\n    symbol.\n    ");
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_9molecules_1_build_molecule_index = {"_build_molecule_index", (PyCFunction)__pyx_pw_6cherab_11amjuel_data_9molecules_1_build_molecule_index, METH_NOARGS, __pyx_doc_6cherab_11amjuel_data_9molecules__build_molecule_index};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_9molecules_1_build_molecule_index(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_9molecules_1_build_molecule_index(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+PyDoc_STRVAR(__pyx_doc_6cherab_11PESDT_addon_9molecules__build_molecule_index, "\n    Populates an isotope search dictionary.\n\n    Populates the isotope index so users can search for isotopes by name or\n    symbol.\n    ");
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_9molecules_1_build_molecule_index = {"_build_molecule_index", (PyCFunction)__pyx_pw_6cherab_11PESDT_addon_9molecules_1_build_molecule_index, METH_NOARGS, __pyx_doc_6cherab_11PESDT_addon_9molecules__build_molecule_index};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_9molecules_1_build_molecule_index(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_build_molecule_index (wrapper)", 0);
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_9molecules__build_molecule_index(__pyx_self);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_9molecules__build_molecule_index(__pyx_self);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules__build_molecule_index(CYTHON_UNUSED PyObject *__pyx_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_9molecules__build_molecule_index(CYTHON_UNUSED PyObject *__pyx_self) {
   PyObject *__pyx_v_module = NULL;
   PyObject *__pyx_v_name = NULL;
   PyObject *__pyx_v_obj = NULL;
@@ -16768,7 +16768,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules__build_molecule_index
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_build_molecule_index", 0);
 
-  /* "cherab/amjuel_data/molecules.pyx":59
+  /* "cherab/PESDT_addon/molecules.pyx":59
  *     """
  * 
  *     module = sys.modules[__name__]             # <<<<<<<<<<<<<<
@@ -16789,7 +16789,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules__build_molecule_index
   __pyx_v_module = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/molecules.pyx":60
+  /* "cherab/PESDT_addon/molecules.pyx":60
  * 
  *     module = sys.modules[__name__]
  *     for name in dir(module):             # <<<<<<<<<<<<<<
@@ -16841,7 +16841,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules__build_molecule_index
     __Pyx_XDECREF_SET(__pyx_v_name, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "cherab/amjuel_data/molecules.pyx":61
+    /* "cherab/PESDT_addon/molecules.pyx":61
  *     module = sys.modules[__name__]
  *     for name in dir(module):
  *         obj = getattr(module, name)             # <<<<<<<<<<<<<<
@@ -16853,18 +16853,18 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules__build_molecule_index
     __Pyx_XDECREF_SET(__pyx_v_obj, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "cherab/amjuel_data/molecules.pyx":62
+    /* "cherab/PESDT_addon/molecules.pyx":62
  *     for name in dir(module):
  *         obj = getattr(module, name)
  *         if type(obj) is Molecule:             # <<<<<<<<<<<<<<
  *             # lookup by name or symbol including variations e.g. D and H2 refer to deuterium)
  *             _molecule_index[obj.symbol.lower()] = obj
  */
-    __pyx_t_6 = (((PyObject *)Py_TYPE(__pyx_v_obj)) == ((PyObject *)__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule));
+    __pyx_t_6 = (((PyObject *)Py_TYPE(__pyx_v_obj)) == ((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule));
     __pyx_t_7 = (__pyx_t_6 != 0);
     if (__pyx_t_7) {
 
-      /* "cherab/amjuel_data/molecules.pyx":64
+      /* "cherab/PESDT_addon/molecules.pyx":64
  *         if type(obj) is Molecule:
  *             # lookup by name or symbol including variations e.g. D and H2 refer to deuterium)
  *             _molecule_index[obj.symbol.lower()] = obj             # <<<<<<<<<<<<<<
@@ -16902,7 +16902,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules__build_molecule_index
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "cherab/amjuel_data/molecules.pyx":65
+      /* "cherab/PESDT_addon/molecules.pyx":65
  *             # lookup by name or symbol including variations e.g. D and H2 refer to deuterium)
  *             _molecule_index[obj.symbol.lower()] = obj
  *             _molecule_index[obj.name.lower()] = obj             # <<<<<<<<<<<<<<
@@ -16940,7 +16940,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules__build_molecule_index
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "cherab/amjuel_data/molecules.pyx":66
+      /* "cherab/PESDT_addon/molecules.pyx":66
  *             _molecule_index[obj.symbol.lower()] = obj
  *             _molecule_index[obj.name.lower()] = obj
  *             _molecule_index[obj.element.symbol.lower() + str(obj.mass_number)] = obj             # <<<<<<<<<<<<<<
@@ -16990,7 +16990,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules__build_molecule_index
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-      /* "cherab/amjuel_data/molecules.pyx":67
+      /* "cherab/PESDT_addon/molecules.pyx":67
  *             _molecule_index[obj.name.lower()] = obj
  *             _molecule_index[obj.element.symbol.lower() + str(obj.mass_number)] = obj
  *             _molecule_index[obj.element.name.lower() + str(obj.mass_number)] = obj             # <<<<<<<<<<<<<<
@@ -17040,7 +17040,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules__build_molecule_index
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-      /* "cherab/amjuel_data/molecules.pyx":62
+      /* "cherab/PESDT_addon/molecules.pyx":62
  *     for name in dir(module):
  *         obj = getattr(module, name)
  *         if type(obj) is Molecule:             # <<<<<<<<<<<<<<
@@ -17049,7 +17049,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules__build_molecule_index
  */
     }
 
-    /* "cherab/amjuel_data/molecules.pyx":60
+    /* "cherab/PESDT_addon/molecules.pyx":60
  * 
  *     module = sys.modules[__name__]
  *     for name in dir(module):             # <<<<<<<<<<<<<<
@@ -17059,7 +17059,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules__build_molecule_index
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/molecules.pyx":51
+  /* "cherab/PESDT_addon/molecules.pyx":51
  *             return NotImplemented
  * 
  * def _build_molecule_index():             # <<<<<<<<<<<<<<
@@ -17076,7 +17076,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules__build_molecule_index
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_AddTraceback("cherab.amjuel_data.molecules._build_molecule_index", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.molecules._build_molecule_index", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_module);
@@ -17087,7 +17087,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules__build_molecule_index
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/molecules.pyx":69
+/* "cherab/PESDT_addon/molecules.pyx":69
  *             _molecule_index[obj.element.name.lower() + str(obj.mass_number)] = obj
  * 
  * def lookup_molecule(v, number = None):             # <<<<<<<<<<<<<<
@@ -17096,16 +17096,16 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules__build_molecule_index
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_9molecules_3lookup_molecule(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_9molecules_3lookup_molecule(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_6cherab_11amjuel_data_9molecules_2lookup_molecule, "\n    Finds a molecule by name, symbol or number.\n\n    Molecules are uniquely determined by the element type and mass number. These\n    can be specified as a single string or a combination of element and mass number.\n\n    :param v: Search string, integer or element.\n    :param number: Integer mass number\n    :return: Element object.\n    ");
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_9molecules_3lookup_molecule = {"lookup_molecule", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_9molecules_3lookup_molecule, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6cherab_11amjuel_data_9molecules_2lookup_molecule};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_9molecules_3lookup_molecule(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_6cherab_11PESDT_addon_9molecules_2lookup_molecule, "\n    Finds a molecule by name, symbol or number.\n\n    Molecules are uniquely determined by the element type and mass number. These\n    can be specified as a single string or a combination of element and mass number.\n\n    :param v: Search string, integer or element.\n    :param number: Integer mass number\n    :return: Element object.\n    ");
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_9molecules_3lookup_molecule = {"lookup_molecule", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_9molecules_3lookup_molecule, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6cherab_11PESDT_addon_9molecules_2lookup_molecule};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_9molecules_3lookup_molecule(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -17176,18 +17176,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("lookup_molecule", 0, 1, 2, __pyx_nargs); __PYX_ERR(0, 69, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.molecules.lookup_molecule", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.molecules.lookup_molecule", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_9molecules_2lookup_molecule(__pyx_self, __pyx_v_v, __pyx_v_number);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_9molecules_2lookup_molecule(__pyx_self, __pyx_v_v, __pyx_v_number);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_2lookup_molecule(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_v, PyObject *__pyx_v_number) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_9molecules_2lookup_molecule(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_v, PyObject *__pyx_v_number) {
   PyObject *__pyx_v_key = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -17208,18 +17208,18 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_2lookup_molecule(CYTH
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("lookup_molecule", 0);
 
-  /* "cherab/amjuel_data/molecules.pyx":81
+  /* "cherab/PESDT_addon/molecules.pyx":81
  *     """
  * 
  *     if type(v) is Molecule:             # <<<<<<<<<<<<<<
  *         return v
  * 
  */
-  __pyx_t_1 = (((PyObject *)Py_TYPE(__pyx_v_v)) == ((PyObject *)__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule));
+  __pyx_t_1 = (((PyObject *)Py_TYPE(__pyx_v_v)) == ((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule));
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "cherab/amjuel_data/molecules.pyx":82
+    /* "cherab/PESDT_addon/molecules.pyx":82
  * 
  *     if type(v) is Molecule:
  *         return v             # <<<<<<<<<<<<<<
@@ -17231,7 +17231,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_2lookup_molecule(CYTH
     __pyx_r = __pyx_v_v;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/molecules.pyx":81
+    /* "cherab/PESDT_addon/molecules.pyx":81
  *     """
  * 
  *     if type(v) is Molecule:             # <<<<<<<<<<<<<<
@@ -17240,7 +17240,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_2lookup_molecule(CYTH
  */
   }
 
-  /* "cherab/amjuel_data/molecules.pyx":85
+  /* "cherab/PESDT_addon/molecules.pyx":85
  * 
  *     # full information contained in string
  *     key = str(v).lower()             # <<<<<<<<<<<<<<
@@ -17275,7 +17275,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_2lookup_molecule(CYTH
   __pyx_v_key = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/molecules.pyx":87
+  /* "cherab/PESDT_addon/molecules.pyx":87
  *     key = str(v).lower()
  * 
  *     try:             # <<<<<<<<<<<<<<
@@ -17291,7 +17291,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_2lookup_molecule(CYTH
     __Pyx_XGOTREF(__pyx_t_9);
     /*try:*/ {
 
-      /* "cherab/amjuel_data/molecules.pyx":88
+      /* "cherab/PESDT_addon/molecules.pyx":88
  * 
  *     try:
  *         return _molecule_index[key]             # <<<<<<<<<<<<<<
@@ -17308,7 +17308,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_2lookup_molecule(CYTH
       __pyx_t_5 = 0;
       goto __pyx_L8_try_return;
 
-      /* "cherab/amjuel_data/molecules.pyx":87
+      /* "cherab/PESDT_addon/molecules.pyx":87
  *     key = str(v).lower()
  * 
  *     try:             # <<<<<<<<<<<<<<
@@ -17321,7 +17321,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_2lookup_molecule(CYTH
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "cherab/amjuel_data/molecules.pyx":89
+    /* "cherab/PESDT_addon/molecules.pyx":89
  *     try:
  *         return _molecule_index[key]
  *     except KeyError:             # <<<<<<<<<<<<<<
@@ -17330,13 +17330,13 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_2lookup_molecule(CYTH
  */
     __pyx_t_6 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_KeyError);
     if (__pyx_t_6) {
-      __Pyx_AddTraceback("cherab.amjuel_data.molecules.lookup_molecule", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("cherab.PESDT_addon.molecules.lookup_molecule", __pyx_clineno, __pyx_lineno, __pyx_filename);
       if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_3, &__pyx_t_4) < 0) __PYX_ERR(0, 89, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_GOTREF(__pyx_t_4);
 
-      /* "cherab/amjuel_data/molecules.pyx":90
+      /* "cherab/PESDT_addon/molecules.pyx":90
  *         return _molecule_index[key]
  *     except KeyError:
  *         if number:             # <<<<<<<<<<<<<<
@@ -17346,7 +17346,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_2lookup_molecule(CYTH
       __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_number); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 90, __pyx_L6_except_error)
       if (unlikely(__pyx_t_2)) {
 
-        /* "cherab/amjuel_data/molecules.pyx":91
+        /* "cherab/PESDT_addon/molecules.pyx":91
  *     except KeyError:
  *         if number:
  *             raise ValueError('Could not find an molecule object for the element \'{}\' and number \'{}\'.'.format(v, number))             # <<<<<<<<<<<<<<
@@ -17382,7 +17382,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_2lookup_molecule(CYTH
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         __PYX_ERR(0, 91, __pyx_L6_except_error)
 
-        /* "cherab/amjuel_data/molecules.pyx":90
+        /* "cherab/PESDT_addon/molecules.pyx":90
  *         return _molecule_index[key]
  *     except KeyError:
  *         if number:             # <<<<<<<<<<<<<<
@@ -17391,7 +17391,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_2lookup_molecule(CYTH
  */
       }
 
-      /* "cherab/amjuel_data/molecules.pyx":93
+      /* "cherab/PESDT_addon/molecules.pyx":93
  *             raise ValueError('Could not find an molecule object for the element \'{}\' and number \'{}\'.'.format(v, number))
  *         else:
  *             raise ValueError('Could not find an molecule object for the key \'{}\'.'.format(v))             # <<<<<<<<<<<<<<
@@ -17432,7 +17432,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_2lookup_molecule(CYTH
     goto __pyx_L6_except_error;
     __pyx_L6_except_error:;
 
-    /* "cherab/amjuel_data/molecules.pyx":87
+    /* "cherab/PESDT_addon/molecules.pyx":87
  *     key = str(v).lower()
  * 
  *     try:             # <<<<<<<<<<<<<<
@@ -17452,7 +17452,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_2lookup_molecule(CYTH
     goto __pyx_L0;
   }
 
-  /* "cherab/amjuel_data/molecules.pyx":69
+  /* "cherab/PESDT_addon/molecules.pyx":69
  *             _molecule_index[obj.element.name.lower() + str(obj.mass_number)] = obj
  * 
  * def lookup_molecule(v, number = None):             # <<<<<<<<<<<<<<
@@ -17468,7 +17468,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_2lookup_molecule(CYTH
   __Pyx_XDECREF(__pyx_t_10);
   __Pyx_XDECREF(__pyx_t_11);
   __Pyx_XDECREF(__pyx_t_12);
-  __Pyx_AddTraceback("cherab.amjuel_data.molecules.lookup_molecule", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.molecules.lookup_molecule", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_key);
@@ -17484,15 +17484,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_2lookup_molecule(CYTH
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_9molecules_5__pyx_unpickle_Molecule(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_9molecules_5__pyx_unpickle_Molecule(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_9molecules_5__pyx_unpickle_Molecule = {"__pyx_unpickle_Molecule", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_9molecules_5__pyx_unpickle_Molecule, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_9molecules_5__pyx_unpickle_Molecule(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_9molecules_5__pyx_unpickle_Molecule = {"__pyx_unpickle_Molecule", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_9molecules_5__pyx_unpickle_Molecule, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_9molecules_5__pyx_unpickle_Molecule(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -17571,18 +17571,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_Molecule", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 1, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.molecules.__pyx_unpickle_Molecule", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.molecules.__pyx_unpickle_Molecule", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_9molecules_4__pyx_unpickle_Molecule(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_9molecules_4__pyx_unpickle_Molecule(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_4__pyx_unpickle_Molecule(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_9molecules_4__pyx_unpickle_Molecule(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_v___pyx_PickleError = 0;
   PyObject *__pyx_v___pyx_result = 0;
   PyObject *__pyx_r = NULL;
@@ -17662,7 +17662,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_4__pyx_unpickle_Molec
  *     if __pyx_state is not None:
  *         __pyx_unpickle_Molecule__set_state(<Molecule> __pyx_result, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -17706,7 +17706,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_4__pyx_unpickle_Molec
  * cdef __pyx_unpickle_Molecule__set_state(Molecule __pyx_result, tuple __pyx_state):
  */
     if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 9, __pyx_L1_error)
-    __pyx_t_2 = __pyx_f_6cherab_11amjuel_data_9molecules___pyx_unpickle_Molecule__set_state(((struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_6cherab_11PESDT_addon_9molecules___pyx_unpickle_Molecule__set_state(((struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
@@ -17742,7 +17742,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_4__pyx_unpickle_Molec
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("cherab.amjuel_data.molecules.__pyx_unpickle_Molecule", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.molecules.__pyx_unpickle_Molecule", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v___pyx_PickleError);
@@ -17760,7 +17760,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_9molecules_4__pyx_unpickle_Molec
  *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):
  */
 
-static PyObject *__pyx_f_6cherab_11amjuel_data_9molecules___pyx_unpickle_Molecule__set_state(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_f_6cherab_11PESDT_addon_9molecules___pyx_unpickle_Molecule__set_state(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -17911,7 +17911,7 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_9molecules___pyx_unpickle_Molecul
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_9);
   __Pyx_XDECREF(__pyx_t_10);
-  __Pyx_AddTraceback("cherab.amjuel_data.molecules.__pyx_unpickle_Molecule__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.molecules.__pyx_unpickle_Molecule__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -34526,22 +34526,22 @@ static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *__
   return __pyx_r;
 }
 
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_9molecules_Molecule(PyTypeObject *t, PyObject *a, PyObject *k) {
-  struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *p;
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_9molecules_Molecule(PyTypeObject *t, PyObject *a, PyObject *k) {
+  struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *p;
   PyObject *o = __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6atomic_8elements_Element, tp_new, newfunc)(t, a, k);
   if (unlikely(!o)) return 0;
-  p = ((struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *)o);
+  p = ((struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *)o);
   p->__dict__ = PyDict_New(); if (unlikely(!p->__dict__)) goto bad;return o;
   bad:
   Py_DECREF(o); o = 0;
   return NULL;
 }
 
-static void __pyx_tp_dealloc_6cherab_11amjuel_data_9molecules_Molecule(PyObject *o) {
-  struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *p = (struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *)o;
+static void __pyx_tp_dealloc_6cherab_11PESDT_addon_9molecules_Molecule(PyObject *o) {
+  struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *p = (struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *)o;
   #if CYTHON_USE_TP_FINALIZE
   if (unlikely((PY_VERSION_HEX >= 0x03080000 || __Pyx_PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE)) && __Pyx_PyObject_GetSlot(o, tp_finalize, destructor)) && !_PyGC_FINALIZED(o)) {
-    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11amjuel_data_9molecules_Molecule) {
+    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11PESDT_addon_9molecules_Molecule) {
       if (PyObject_CallFinalizerFromDealloc(o)) return;
     }
   }
@@ -34553,31 +34553,31 @@ static void __pyx_tp_dealloc_6cherab_11amjuel_data_9molecules_Molecule(PyObject 
   if (PyType_IS_GC(Py_TYPE(o)->tp_base))
   #endif
   PyObject_GC_Track(o);
-  if (likely(__pyx_ptype_6cherab_4core_6atomic_8elements_Element)) __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6atomic_8elements_Element, tp_dealloc, destructor)(o); else __Pyx_call_next_tp_dealloc(o, __pyx_tp_dealloc_6cherab_11amjuel_data_9molecules_Molecule);
+  if (likely(__pyx_ptype_6cherab_4core_6atomic_8elements_Element)) __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6atomic_8elements_Element, tp_dealloc, destructor)(o); else __Pyx_call_next_tp_dealloc(o, __pyx_tp_dealloc_6cherab_11PESDT_addon_9molecules_Molecule);
 }
 
-static int __pyx_tp_traverse_6cherab_11amjuel_data_9molecules_Molecule(PyObject *o, visitproc v, void *a) {
+static int __pyx_tp_traverse_6cherab_11PESDT_addon_9molecules_Molecule(PyObject *o, visitproc v, void *a) {
   int e;
-  struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *p = (struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *)o;
-  e = ((likely(__pyx_ptype_6cherab_4core_6atomic_8elements_Element)) ? ((__pyx_ptype_6cherab_4core_6atomic_8elements_Element->tp_traverse) ? __pyx_ptype_6cherab_4core_6atomic_8elements_Element->tp_traverse(o, v, a) : 0) : __Pyx_call_next_tp_traverse(o, v, a, __pyx_tp_traverse_6cherab_11amjuel_data_9molecules_Molecule)); if (e) return e;
+  struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *p = (struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *)o;
+  e = ((likely(__pyx_ptype_6cherab_4core_6atomic_8elements_Element)) ? ((__pyx_ptype_6cherab_4core_6atomic_8elements_Element->tp_traverse) ? __pyx_ptype_6cherab_4core_6atomic_8elements_Element->tp_traverse(o, v, a) : 0) : __Pyx_call_next_tp_traverse(o, v, a, __pyx_tp_traverse_6cherab_11PESDT_addon_9molecules_Molecule)); if (e) return e;
   if (p->__dict__) {
     e = (*v)(p->__dict__, a); if (e) return e;
   }
   return 0;
 }
 
-static int __pyx_tp_clear_6cherab_11amjuel_data_9molecules_Molecule(PyObject *o) {
+static int __pyx_tp_clear_6cherab_11PESDT_addon_9molecules_Molecule(PyObject *o) {
   PyObject* tmp;
-  struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *p = (struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *)o;
-  if (likely(__pyx_ptype_6cherab_4core_6atomic_8elements_Element)) { if (__pyx_ptype_6cherab_4core_6atomic_8elements_Element->tp_clear) __pyx_ptype_6cherab_4core_6atomic_8elements_Element->tp_clear(o); } else __Pyx_call_next_tp_clear(o, __pyx_tp_clear_6cherab_11amjuel_data_9molecules_Molecule);
+  struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *p = (struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *)o;
+  if (likely(__pyx_ptype_6cherab_4core_6atomic_8elements_Element)) { if (__pyx_ptype_6cherab_4core_6atomic_8elements_Element->tp_clear) __pyx_ptype_6cherab_4core_6atomic_8elements_Element->tp_clear(o); } else __Pyx_call_next_tp_clear(o, __pyx_tp_clear_6cherab_11PESDT_addon_9molecules_Molecule);
   tmp = ((PyObject*)p->__dict__);
   p->__dict__ = ((PyObject*)Py_None); Py_INCREF(Py_None);
   Py_XDECREF(tmp);
   return 0;
 }
 
-static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_9molecules_Molecule(PyObject *o, CYTHON_UNUSED void *x) {
-  struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *p = (struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule *)o;
+static PyObject *__pyx___dict__getter_6cherab_11PESDT_addon_9molecules_Molecule(PyObject *o, CYTHON_UNUSED void *x) {
+  struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *p = (struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule *)o;
   if (unlikely(!p->__dict__)){
     p->__dict__ = PyDict_New();
   }
@@ -34585,53 +34585,53 @@ static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_9molecules_Molecule(
   return p->__dict__;
 }
 
-static PyMethodDef __pyx_methods_6cherab_11amjuel_data_9molecules_Molecule[] = {
-  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+static PyMethodDef __pyx_methods_6cherab_11PESDT_addon_9molecules_Molecule[] = {
+  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
-static struct PyGetSetDef __pyx_getsets_6cherab_11amjuel_data_9molecules_Molecule[] = {
-  {(char *)"__dict__", __pyx___dict__getter_6cherab_11amjuel_data_9molecules_Molecule, 0, (char *)0, 0},
+static struct PyGetSetDef __pyx_getsets_6cherab_11PESDT_addon_9molecules_Molecule[] = {
+  {(char *)"__dict__", __pyx___dict__getter_6cherab_11PESDT_addon_9molecules_Molecule, 0, (char *)0, 0},
   {0, 0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
 static struct PyMemberDef __pyx_tp_members_Molecule[] = {
-  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule, __dict__), READONLY, NULL},
+  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule, __dict__), READONLY, NULL},
   {NULL, 0, 0, 0, NULL}
 };
-static PyType_Slot __pyx_type_6cherab_11amjuel_data_9molecules_Molecule_slots[] = {
-  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11amjuel_data_9molecules_Molecule},
-  {Py_tp_repr, (void *)__pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_3__repr__},
-  {Py_tp_hash, (void *)__pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_5__hash__},
-  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11amjuel_data_9molecules_Molecule},
-  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11amjuel_data_9molecules_Molecule},
-  {Py_tp_richcompare, (void *)__pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_7__richcmp__},
-  {Py_tp_methods, (void *)__pyx_methods_6cherab_11amjuel_data_9molecules_Molecule},
+static PyType_Slot __pyx_type_6cherab_11PESDT_addon_9molecules_Molecule_slots[] = {
+  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11PESDT_addon_9molecules_Molecule},
+  {Py_tp_repr, (void *)__pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_3__repr__},
+  {Py_tp_hash, (void *)__pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_5__hash__},
+  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11PESDT_addon_9molecules_Molecule},
+  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11PESDT_addon_9molecules_Molecule},
+  {Py_tp_richcompare, (void *)__pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_7__richcmp__},
+  {Py_tp_methods, (void *)__pyx_methods_6cherab_11PESDT_addon_9molecules_Molecule},
   {Py_tp_members, (void *)__pyx_tp_members_Molecule},
-  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11amjuel_data_9molecules_Molecule},
+  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11PESDT_addon_9molecules_Molecule},
   #if !CYTHON_USE_TYPE_SPECS
-  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule, __dict__)},
+  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule, __dict__)},
   #endif
-  {Py_tp_init, (void *)__pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_1__init__},
-  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11amjuel_data_9molecules_Molecule},
+  {Py_tp_init, (void *)__pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_1__init__},
+  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11PESDT_addon_9molecules_Molecule},
   {0, 0},
 };
-static PyType_Spec __pyx_type_6cherab_11amjuel_data_9molecules_Molecule_spec = {
-  "cherab.amjuel_data.molecules.Molecule",
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule),
+static PyType_Spec __pyx_type_6cherab_11PESDT_addon_9molecules_Molecule_spec = {
+  "cherab.PESDT_addon.molecules.Molecule",
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
-  __pyx_type_6cherab_11amjuel_data_9molecules_Molecule_slots,
+  __pyx_type_6cherab_11PESDT_addon_9molecules_Molecule_slots,
 };
 #else
 
-static PyTypeObject __pyx_type_6cherab_11amjuel_data_9molecules_Molecule = {
+static PyTypeObject __pyx_type_6cherab_11PESDT_addon_9molecules_Molecule = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.molecules.""Molecule", /*tp_name*/
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule), /*tp_basicsize*/
+  "cherab.PESDT_addon.molecules.""Molecule", /*tp_name*/
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_6cherab_11amjuel_data_9molecules_Molecule, /*tp_dealloc*/
+  __pyx_tp_dealloc_6cherab_11PESDT_addon_9molecules_Molecule, /*tp_dealloc*/
   #if PY_VERSION_HEX < 0x030800b4
   0, /*tp_print*/
   #endif
@@ -34646,11 +34646,11 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_9molecules_Molecule = {
   #if PY_MAJOR_VERSION >= 3
   0, /*tp_as_async*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_3__repr__, /*tp_repr*/
+  __pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_3__repr__, /*tp_repr*/
   0, /*tp_as_number*/
   0, /*tp_as_sequence*/
   0, /*tp_as_mapping*/
-  __pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_5__hash__, /*tp_hash*/
+  __pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_5__hash__, /*tp_hash*/
   0, /*tp_call*/
   0, /*tp_str*/
   0, /*tp_getattro*/
@@ -34658,25 +34658,25 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_9molecules_Molecule = {
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
   0, /*tp_doc*/
-  __pyx_tp_traverse_6cherab_11amjuel_data_9molecules_Molecule, /*tp_traverse*/
-  __pyx_tp_clear_6cherab_11amjuel_data_9molecules_Molecule, /*tp_clear*/
-  __pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_7__richcmp__, /*tp_richcompare*/
+  __pyx_tp_traverse_6cherab_11PESDT_addon_9molecules_Molecule, /*tp_traverse*/
+  __pyx_tp_clear_6cherab_11PESDT_addon_9molecules_Molecule, /*tp_clear*/
+  __pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_7__richcmp__, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_6cherab_11amjuel_data_9molecules_Molecule, /*tp_methods*/
+  __pyx_methods_6cherab_11PESDT_addon_9molecules_Molecule, /*tp_methods*/
   0, /*tp_members*/
-  __pyx_getsets_6cherab_11amjuel_data_9molecules_Molecule, /*tp_getset*/
+  __pyx_getsets_6cherab_11PESDT_addon_9molecules_Molecule, /*tp_getset*/
   0, /*tp_base*/
   0, /*tp_dict*/
   0, /*tp_descr_get*/
   0, /*tp_descr_set*/
   #if !CYTHON_USE_TYPE_SPECS
-  offsetof(struct __pyx_obj_6cherab_11amjuel_data_9molecules_Molecule, __dict__), /*tp_dictoffset*/
+  offsetof(struct __pyx_obj_6cherab_11PESDT_addon_9molecules_Molecule, __dict__), /*tp_dictoffset*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_9molecules_8Molecule_1__init__, /*tp_init*/
+  __pyx_pw_6cherab_11PESDT_addon_9molecules_8Molecule_1__init__, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_6cherab_11amjuel_data_9molecules_Molecule, /*tp_new*/
+  __pyx_tp_new_6cherab_11PESDT_addon_9molecules_Molecule, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -34832,7 +34832,7 @@ static PyType_Slot __pyx_type___pyx_array_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_array_spec = {
-  "cherab.amjuel_data.molecules.array",
+  "cherab.PESDT_addon.molecules.array",
   sizeof(struct __pyx_array_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE,
@@ -34878,7 +34878,7 @@ static PyBufferProcs __pyx_tp_as_buffer_array = {
 
 static PyTypeObject __pyx_type___pyx_array = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.molecules.""array", /*tp_name*/
+  "cherab.PESDT_addon.molecules.""array", /*tp_name*/
   sizeof(struct __pyx_array_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_array, /*tp_dealloc*/
@@ -35023,7 +35023,7 @@ static PyType_Slot __pyx_type___pyx_MemviewEnum_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_MemviewEnum_spec = {
-  "cherab.amjuel_data.molecules.Enum",
+  "cherab.PESDT_addon.molecules.Enum",
   sizeof(struct __pyx_MemviewEnum_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -35033,7 +35033,7 @@ static PyType_Spec __pyx_type___pyx_MemviewEnum_spec = {
 
 static PyTypeObject __pyx_type___pyx_MemviewEnum = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.molecules.""Enum", /*tp_name*/
+  "cherab.PESDT_addon.molecules.""Enum", /*tp_name*/
   sizeof(struct __pyx_MemviewEnum_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_Enum, /*tp_dealloc*/
@@ -35312,7 +35312,7 @@ static PyType_Slot __pyx_type___pyx_memoryview_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_memoryview_spec = {
-  "cherab.amjuel_data.molecules.memoryview",
+  "cherab.PESDT_addon.molecules.memoryview",
   sizeof(struct __pyx_memoryview_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -35358,7 +35358,7 @@ static PyBufferProcs __pyx_tp_as_buffer_memoryview = {
 
 static PyTypeObject __pyx_type___pyx_memoryview = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.molecules.""memoryview", /*tp_name*/
+  "cherab.PESDT_addon.molecules.""memoryview", /*tp_name*/
   sizeof(struct __pyx_memoryview_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_memoryview, /*tp_dealloc*/
@@ -35507,7 +35507,7 @@ static PyType_Slot __pyx_type___pyx_memoryviewslice_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_memoryviewslice_spec = {
-  "cherab.amjuel_data.molecules._memoryviewslice",
+  "cherab.PESDT_addon.molecules._memoryviewslice",
   sizeof(struct __pyx_memoryviewslice_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -35517,7 +35517,7 @@ static PyType_Spec __pyx_type___pyx_memoryviewslice_spec = {
 
 static PyTypeObject __pyx_type___pyx_memoryviewslice = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.molecules.""_memoryviewslice", /*tp_name*/
+  "cherab.PESDT_addon.molecules.""_memoryviewslice", /*tp_name*/
   sizeof(struct __pyx_memoryviewslice_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc__memoryviewslice, /*tp_dealloc*/
@@ -35680,8 +35680,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, __pyx_k_build_molecule_index, sizeof(__pyx_k_build_molecule_index), 0, 0, 1, 1},
   {0, __pyx_k_c, sizeof(__pyx_k_c), 0, 0, 1, 1},
   {0, __pyx_k_c, sizeof(__pyx_k_c), 0, 1, 0, 1},
-  {0, __pyx_k_cherab_amjuel_data_molecules, sizeof(__pyx_k_cherab_amjuel_data_molecules), 0, 0, 1, 1},
-  {0, __pyx_k_cherab_amjuel_data_molecules_pyx, sizeof(__pyx_k_cherab_amjuel_data_molecules_pyx), 0, 0, 1, 0},
+  {0, __pyx_k_cherab_PESDT_addon_molecules, sizeof(__pyx_k_cherab_PESDT_addon_molecules), 0, 0, 1, 1},
+  {0, __pyx_k_cherab_PESDT_addon_molecules_pyx, sizeof(__pyx_k_cherab_PESDT_addon_molecules_pyx), 0, 0, 1, 0},
   {0, __pyx_k_cherab_core_atomic_elements, sizeof(__pyx_k_cherab_core_atomic_elements), 0, 0, 1, 1},
   {0, __pyx_k_class, sizeof(__pyx_k_class), 0, 0, 1, 1},
   {0, __pyx_k_class_getitem, sizeof(__pyx_k_class_getitem), 0, 0, 1, 1},
@@ -35836,8 +35836,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_build_molecule_index, __pyx_k_build_molecule_index, sizeof(__pyx_k_build_molecule_index), 0, 0, 1, 1},
   {&__pyx_n_s_c, __pyx_k_c, sizeof(__pyx_k_c), 0, 0, 1, 1},
   {&__pyx_n_u_c, __pyx_k_c, sizeof(__pyx_k_c), 0, 1, 0, 1},
-  {&__pyx_n_s_cherab_amjuel_data_molecules, __pyx_k_cherab_amjuel_data_molecules, sizeof(__pyx_k_cherab_amjuel_data_molecules), 0, 0, 1, 1},
-  {&__pyx_kp_s_cherab_amjuel_data_molecules_pyx, __pyx_k_cherab_amjuel_data_molecules_pyx, sizeof(__pyx_k_cherab_amjuel_data_molecules_pyx), 0, 0, 1, 0},
+  {&__pyx_n_s_cherab_PESDT_addon_molecules, __pyx_k_cherab_PESDT_addon_molecules, sizeof(__pyx_k_cherab_PESDT_addon_molecules), 0, 0, 1, 1},
+  {&__pyx_kp_s_cherab_PESDT_addon_molecules_pyx, __pyx_k_cherab_PESDT_addon_molecules_pyx, sizeof(__pyx_k_cherab_PESDT_addon_molecules_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_cherab_core_atomic_elements, __pyx_k_cherab_core_atomic_elements, sizeof(__pyx_k_cherab_core_atomic_elements), 0, 0, 1, 1},
   {&__pyx_n_s_class, __pyx_k_class, sizeof(__pyx_k_class), 0, 0, 1, 1},
   {&__pyx_n_s_class_getitem, __pyx_k_class_getitem, sizeof(__pyx_k_class_getitem), 0, 0, 1, 1},
@@ -36025,7 +36025,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__12);
   __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(1, 16, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/molecules.pyx":51
+  /* "cherab/PESDT_addon/molecules.pyx":51
  *             return NotImplemented
  * 
  * def _build_molecule_index():             # <<<<<<<<<<<<<<
@@ -36035,9 +36035,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__14 = PyTuple_Pack(3, __pyx_n_s_module, __pyx_n_s_name, __pyx_n_s_obj); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__14);
   __Pyx_GIVEREF(__pyx_tuple__14);
-  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(0, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_molecules_pyx, __pyx_n_s_build_molecule_index, 51, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(0, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_molecules_pyx, __pyx_n_s_build_molecule_index, 51, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 51, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/molecules.pyx":69
+  /* "cherab/PESDT_addon/molecules.pyx":69
  *             _molecule_index[obj.element.name.lower() + str(obj.mass_number)] = obj
  * 
  * def lookup_molecule(v, number = None):             # <<<<<<<<<<<<<<
@@ -36047,7 +36047,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__16 = PyTuple_Pack(3, __pyx_n_s_v, __pyx_n_s_number, __pyx_n_s_key); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__16);
   __Pyx_GIVEREF(__pyx_tuple__16);
-  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_molecules_pyx, __pyx_n_s_lookup_molecule, 69, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_molecules_pyx, __pyx_n_s_lookup_molecule, 69, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 69, __pyx_L1_error)
   __pyx_tuple__18 = PyTuple_Pack(1, ((PyObject *)Py_None)); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__18);
   __Pyx_GIVEREF(__pyx_tuple__18);
@@ -36195,8 +36195,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitConstants(void) {
   if (__Pyx_InitString(__pyx_string_tab[59], &__pyx_n_s_build_molecule_index) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[60], &__pyx_n_s_c) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[61], &__pyx_n_u_c) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
-  if (__Pyx_InitString(__pyx_string_tab[62], &__pyx_n_s_cherab_amjuel_data_molecules) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
-  if (__Pyx_InitString(__pyx_string_tab[63], &__pyx_kp_s_cherab_amjuel_data_molecules_pyx) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
+  if (__Pyx_InitString(__pyx_string_tab[62], &__pyx_n_s_cherab_PESDT_addon_molecules) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
+  if (__Pyx_InitString(__pyx_string_tab[63], &__pyx_kp_s_cherab_PESDT_addon_molecules_pyx) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[64], &__pyx_n_s_cherab_core_atomic_elements) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[65], &__pyx_n_s_class) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[66], &__pyx_n_s_class_getitem) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
@@ -36366,25 +36366,25 @@ static int __Pyx_modinit_type_init_code(void) {
   #if CYTHON_USE_TYPE_SPECS
   __pyx_t_2 = PyTuple_Pack(1, (PyObject *)__pyx_ptype_6cherab_4core_6atomic_8elements_Element); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11amjuel_data_9molecules_Molecule_spec, __pyx_t_2);
+  __pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11PESDT_addon_9molecules_Molecule_spec, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule)) __PYX_ERR(0, 13, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11amjuel_data_9molecules_Molecule_spec, __pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (unlikely(!__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule)) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11PESDT_addon_9molecules_Molecule_spec, __pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
   #else
-  __pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule = &__pyx_type_6cherab_11amjuel_data_9molecules_Molecule;
+  __pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule = &__pyx_type_6cherab_11PESDT_addon_9molecules_Molecule;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  __pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule->tp_base = __pyx_ptype_6cherab_4core_6atomic_8elements_Element;
+  __pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule->tp_base = __pyx_ptype_6cherab_4core_6atomic_8elements_Element;
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
-  __pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule->tp_print = 0;
+  __pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule->tp_print = 0;
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Molecule_2, (PyObject *) __pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Molecule_2, (PyObject *) __pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
   #endif
   __pyx_vtabptr_array = &__pyx_vtable_array;
   __pyx_vtable_array.get_memview = (PyObject *(*)(struct __pyx_array_obj *))__pyx_array_get_memview;
@@ -38065,14 +38065,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_cherab__amjuel_data__molecules) {
+  if (__pyx_module_is_main_cherab__PESDT_addon__molecules) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name_2, __pyx_n_s_main) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 2, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "cherab.amjuel_data.molecules")) {
-      if (unlikely((PyDict_SetItemString(modules, "cherab.amjuel_data.molecules", __pyx_m) < 0))) __PYX_ERR(0, 2, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "cherab.PESDT_addon.molecules")) {
+      if (unlikely((PyDict_SetItemString(modules, "cherab.PESDT_addon.molecules", __pyx_m) < 0))) __PYX_ERR(0, 2, __pyx_L1_error)
     }
   }
   #endif
@@ -38093,7 +38093,7 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   #endif
 
-  /* "cherab/amjuel_data/molecules.pyx":2
+  /* "cherab/PESDT_addon/molecules.pyx":2
  * 
  * from cherab.core.atomic.elements import hydrogen             # <<<<<<<<<<<<<<
  * from cherab.core.atomic cimport Element
@@ -38113,7 +38113,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/molecules.pyx":4
+  /* "cherab/PESDT_addon/molecules.pyx":4
  * from cherab.core.atomic.elements import hydrogen
  * from cherab.core.atomic cimport Element
  * import sys             # <<<<<<<<<<<<<<
@@ -38125,7 +38125,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_sys, __pyx_t_3) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/molecules.pyx":6
+  /* "cherab/PESDT_addon/molecules.pyx":6
  * import sys
  * 
  * _molecule_index = {}             # <<<<<<<<<<<<<<
@@ -38142,11 +38142,11 @@ if (!__Pyx_RefNanny) {
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_9molecules_8Molecule_9__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Molecule___reduce_cython, NULL, __pyx_n_s_cherab_amjuel_data_molecules, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_9molecules_8Molecule_9__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Molecule___reduce_cython, NULL, __pyx_n_s_cherab_PESDT_addon_molecules, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule);
 
   /* "(tree fragment)":16
  *     else:
@@ -38154,38 +38154,38 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_Molecule__set_state(self, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_9molecules_8Molecule_11__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Molecule___setstate_cython, NULL, __pyx_n_s_cherab_amjuel_data_molecules, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_9molecules_8Molecule_11__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Molecule___setstate_cython, NULL, __pyx_n_s_cherab_PESDT_addon_molecules, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule);
 
-  /* "cherab/amjuel_data/molecules.pyx":51
+  /* "cherab/PESDT_addon/molecules.pyx":51
  *             return NotImplemented
  * 
  * def _build_molecule_index():             # <<<<<<<<<<<<<<
  *     """
  *     Populates an isotope search dictionary.
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_9molecules_1_build_molecule_index, 0, __pyx_n_s_build_molecule_index, NULL, __pyx_n_s_cherab_amjuel_data_molecules, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_9molecules_1_build_molecule_index, 0, __pyx_n_s_build_molecule_index, NULL, __pyx_n_s_cherab_PESDT_addon_molecules, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_build_molecule_index, __pyx_t_3) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/molecules.pyx":69
+  /* "cherab/PESDT_addon/molecules.pyx":69
  *             _molecule_index[obj.element.name.lower() + str(obj.mass_number)] = obj
  * 
  * def lookup_molecule(v, number = None):             # <<<<<<<<<<<<<<
  *     """
  *     Finds a molecule by name, symbol or number.
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_9molecules_3lookup_molecule, 0, __pyx_n_s_lookup_molecule, NULL, __pyx_n_s_cherab_amjuel_data_molecules, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_9molecules_3lookup_molecule, 0, __pyx_n_s_lookup_molecule, NULL, __pyx_n_s_cherab_PESDT_addon_molecules, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__18);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_lookup_molecule, __pyx_t_3) < 0) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/molecules.pyx":96
+  /* "cherab/PESDT_addon/molecules.pyx":96
  * 
  * # List of Molecules
  * Deuterium2 = Molecule('Deuterium2', 'D2', hydrogen, 4, 4)             # <<<<<<<<<<<<<<
@@ -38211,13 +38211,13 @@ if (!__Pyx_RefNanny) {
   __Pyx_GIVEREF(__pyx_int_4);
   PyTuple_SET_ITEM(__pyx_t_2, 4, __pyx_int_4);
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule), __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule), __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_Deuterium2, __pyx_t_3) < 0) __PYX_ERR(0, 96, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/molecules.pyx":97
+  /* "cherab/PESDT_addon/molecules.pyx":97
  * # List of Molecules
  * Deuterium2 = Molecule('Deuterium2', 'D2', hydrogen, 4, 4)
  * Deuterium3 = Molecule('Deuterium3', 'D3', hydrogen, 6, 6)             # <<<<<<<<<<<<<<
@@ -38243,13 +38243,13 @@ if (!__Pyx_RefNanny) {
   __Pyx_GIVEREF(__pyx_int_6);
   PyTuple_SET_ITEM(__pyx_t_2, 4, __pyx_int_6);
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule), __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule), __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_Deuterium3, __pyx_t_3) < 0) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/molecules.pyx":98
+  /* "cherab/PESDT_addon/molecules.pyx":98
  * Deuterium2 = Molecule('Deuterium2', 'D2', hydrogen, 4, 4)
  * Deuterium3 = Molecule('Deuterium3', 'D3', hydrogen, 6, 6)
  * Tritium2 = Molecule('Tritium2', 'T2', hydrogen, 6, 6)             # <<<<<<<<<<<<<<
@@ -38275,13 +38275,13 @@ if (!__Pyx_RefNanny) {
   __Pyx_GIVEREF(__pyx_int_6);
   PyTuple_SET_ITEM(__pyx_t_2, 4, __pyx_int_6);
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule), __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule), __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_Tritium2, __pyx_t_3) < 0) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/molecules.pyx":99
+  /* "cherab/PESDT_addon/molecules.pyx":99
  * Deuterium3 = Molecule('Deuterium3', 'D3', hydrogen, 6, 6)
  * Tritium2 = Molecule('Tritium2', 'T2', hydrogen, 6, 6)
  * Tritium3 = Molecule('Tritium3', 'T3', hydrogen, 9, 9)             # <<<<<<<<<<<<<<
@@ -38307,13 +38307,13 @@ if (!__Pyx_RefNanny) {
   __Pyx_GIVEREF(__pyx_int_9);
   PyTuple_SET_ITEM(__pyx_t_2, 4, __pyx_int_9);
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6cherab_11amjuel_data_9molecules_Molecule), __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_9molecules_Molecule), __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 99, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_Tritium3, __pyx_t_3) < 0) __PYX_ERR(0, 99, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/molecules.pyx":101
+  /* "cherab/PESDT_addon/molecules.pyx":101
  * Tritium3 = Molecule('Tritium3', 'T3', hydrogen, 9, 9)
  * 
  * _build_molecule_index()             # <<<<<<<<<<<<<<
@@ -38330,12 +38330,12 @@ if (!__Pyx_RefNanny) {
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_9molecules_5__pyx_unpickle_Molecule, 0, __pyx_n_s_pyx_unpickle_Molecule, NULL, __pyx_n_s_cherab_amjuel_data_molecules, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_9molecules_5__pyx_unpickle_Molecule, 0, __pyx_n_s_pyx_unpickle_Molecule, NULL, __pyx_n_s_cherab_PESDT_addon_molecules, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_Molecule, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cherab/amjuel_data/molecules.pyx":2
+  /* "cherab/PESDT_addon/molecules.pyx":2
  * 
  * from cherab.core.atomic.elements import hydrogen             # <<<<<<<<<<<<<<
  * from cherab.core.atomic cimport Element
@@ -38507,13 +38507,13 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_3);
   if (__pyx_m) {
     if (__pyx_d && stringtab_initialized) {
-      __Pyx_AddTraceback("init cherab.amjuel_data.molecules", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init cherab.PESDT_addon.molecules", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     #if !CYTHON_USE_MODULE_STATE
     Py_CLEAR(__pyx_m);
     #endif
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init cherab.amjuel_data.molecules");
+    PyErr_SetString(PyExc_ImportError, "init cherab.PESDT_addon.molecules");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();

@@ -28,6 +28,7 @@ cimport cython
 
 from cherab.core.math cimport autowrap_function3d, autowrap_vectorfunction3d
 from cherab.core.utility.constants cimport ELEMENTARY_CHARGE
+from cherab.core cimport DistributionFunction
 
 cdef class Maxwellian(DistributionFunction):
     """
@@ -56,7 +57,7 @@ cdef class Maxwellian(DistributionFunction):
        >>> bulk_velocity = Vector3D(0, 0, 0)
        >>> d0_distribution = Maxwellian(d0_density, d0_temperature, bulk_velocity, deuterium.atomic_weight * atomic_mass)
     """
-
+    cdef dict __dict__
     def __init__(self, object density, object temperature, object velocity, double atomic_mass, object emission):
 
         super().__init__()

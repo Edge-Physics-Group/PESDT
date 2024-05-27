@@ -27,7 +27,6 @@ import cherab.PESDT_addon.molecules as molecules
 from cherab.PESDT_addon.stark import StarkBroadenedLine
 #from cherab.amjuel_data.AMJUEL_data import AMJUEL_Data
 
-from PESDT.process import ProcessEdgeSim
 from PESDT.cherab_bridge.cherab_atomic_data import PESDT_ADAS_Data
 from PESDT.cherab_bridge.cherab_AMJUEL_data import  AMJUEL_Data
 #from PESDT.cherab_bridge.cherab_AMJUEL_data import LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM

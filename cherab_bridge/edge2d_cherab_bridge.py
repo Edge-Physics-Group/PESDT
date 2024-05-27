@@ -76,7 +76,7 @@ def load_edge2d_from_PESDT(PESDT, convert_denel_to_m3 = True, load_mol_data = Fa
 
 
         print("Loading H2, H2+, H3+ and H-")
-        num_species = 6
+        num_species = 5
         species_density = np.zeros((num_species, num_cells))
         species_list.append(('D2', 0))
         
@@ -122,6 +122,7 @@ def load_edge2d_from_PESDT(PESDT, convert_denel_to_m3 = True, load_mol_data = Fa
     if quick:
         if load_mol_data:
             transitions = kwargs.get('transitions', None)
+            print(transitions)
             excit_emiss = {}
             rec_emiss = {}
             mol_emiss = {}

@@ -14,12 +14,12 @@
             ".",
             "/usr/local/depot/Python-3.9/lib/python3.9/site-packages/numpy/core/include"
         ],
-        "name": "cherab.amjuel_data.continuo",
+        "name": "cherab.PESDT_addon.continuo",
         "sources": [
-            "cherab/amjuel_data/continuo.pyx"
+            "cherab/PESDT_addon/continuo.pyx"
         ]
     },
-    "module_name": "cherab.amjuel_data.continuo"
+    "module_name": "cherab.PESDT_addon.continuo"
 }
 END: Cython Metadata */
 
@@ -954,8 +954,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__cherab__amjuel_data__continuo
-#define __PYX_HAVE_API__cherab__amjuel_data__continuo
+#define __PYX_HAVE__cherab__PESDT_addon__continuo
+#define __PYX_HAVE_API__cherab__PESDT_addon__continuo
 /* Early includes */
 #include <string.h>
 #include <stdio.h>
@@ -1215,7 +1215,7 @@ static const char *__pyx_filename;
 /* #### Code section: filename_table ### */
 
 static const char *__pyx_f[] = {
-  "cherab/amjuel_data/continuo.pyx",
+  "cherab/PESDT_addon/continuo.pyx",
   "<stringsource>",
   "base.pxd",
   "__init__.cython-30.pxd",
@@ -1998,7 +1998,7 @@ struct __pyx_obj_6cherab_4core_5model_6plasma_14bremsstrahlung_Bremsstrahlung;
 struct __pyx_obj_6cherab_4core_5model_6plasma_17impact_excitation_ExcitationLine;
 struct __pyx_obj_6cherab_4core_5model_6plasma_13recombination_RecombinationLine;
 struct __pyx_obj_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower;
-struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo;
+struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo;
 struct __pyx_array_obj;
 struct __pyx_MemviewEnum_obj;
 struct __pyx_memoryview_obj;
@@ -2365,16 +2365,16 @@ struct __pyx_opt_args_7raysect_7optical_6colour_spectrum_to_ciexyz {
   int __pyx_n;
   __Pyx_memviewslice resampled_xyz;
 };
-struct __pyx_opt_args_6cherab_11amjuel_data_8continuo_8Continuo__continuo;
+struct __pyx_opt_args_6cherab_11PESDT_addon_8continuo_8Continuo__continuo;
 
-/* "cherab/amjuel_data/continuo.pyx":105
+/* "cherab/PESDT_addon/continuo.pyx":105
  * 
  * 
  *     cdef double _continuo(self, double wvl, double te, double ne, double zeff = 1.0):             # <<<<<<<<<<<<<<
  *         cdef int iz0, iz1
  *         cdef double wvl_A, contff, contin, radiance
  */
-struct __pyx_opt_args_6cherab_11amjuel_data_8continuo_8Continuo__continuo {
+struct __pyx_opt_args_6cherab_11PESDT_addon_8continuo_8Continuo__continuo {
   int __pyx_n;
   double zeff;
 };
@@ -7479,14 +7479,14 @@ struct __pyx_obj_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiat
 };
 
 
-/* "cherab/amjuel_data/continuo.pyx":26
+/* "cherab/PESDT_addon/continuo.pyx":26
  * 
  * 
  * cdef class Continuo(PlasmaModel):             # <<<<<<<<<<<<<<
  *     """
  *     Emitter that calculates bremsstrahlung emission from a plasma object using the ADAS
  */
-struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo {
+struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo {
   struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel __pyx_base;
   PyObject *__dict__;
 };
@@ -12671,7 +12671,7 @@ struct __pyx_vtabstruct_6cherab_4core_5model_6plasma_20total_radiated_power_Tota
 static struct __pyx_vtabstruct_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower *__pyx_vtabptr_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower;
 
 
-/* "cherab/amjuel_data/continuo.pyx":26
+/* "cherab/PESDT_addon/continuo.pyx":26
  * 
  * 
  * cdef class Continuo(PlasmaModel):             # <<<<<<<<<<<<<<
@@ -12679,12 +12679,12 @@ static struct __pyx_vtabstruct_6cherab_4core_5model_6plasma_20total_radiated_pow
  *     Emitter that calculates bremsstrahlung emission from a plasma object using the ADAS
  */
 
-struct __pyx_vtabstruct_6cherab_11amjuel_data_8continuo_Continuo {
+struct __pyx_vtabstruct_6cherab_11PESDT_addon_8continuo_Continuo {
   struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel __pyx_base;
-  struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*_emission)(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *);
-  double (*_continuo)(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *, double, double, double, struct __pyx_opt_args_6cherab_11amjuel_data_8continuo_8Continuo__continuo *__pyx_optional_args);
+  struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*_emission)(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *);
+  double (*_continuo)(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *, double, double, double, struct __pyx_opt_args_6cherab_11PESDT_addon_8continuo_8Continuo__continuo *__pyx_optional_args);
 };
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_8continuo_Continuo *__pyx_vtabptr_6cherab_11amjuel_data_8continuo_Continuo;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_vtabptr_6cherab_11PESDT_addon_8continuo_Continuo;
 
 
 /* "View.MemoryView":109
@@ -13719,9 +13719,9 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 #endif
 
 /* #### Code section: module_declarations ### */
-static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11amjuel_data_8continuo_8Continuo__emission(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, CYTHON_UNUSED struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum); /* proto*/
-static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11amjuel_data_8continuo_8Continuo_emission(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch); /* proto*/
-static double __pyx_f_6cherab_11amjuel_data_8continuo_8Continuo__continuo(CYTHON_UNUSED struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v_self, double __pyx_v_wvl, double __pyx_v_te, double __pyx_v_ne, struct __pyx_opt_args_6cherab_11amjuel_data_8continuo_8Continuo__continuo *__pyx_optional_args); /* proto*/
+static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11PESDT_addon_8continuo_8Continuo__emission(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, CYTHON_UNUSED struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum); /* proto*/
+static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11PESDT_addon_8continuo_8Continuo_emission(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch); /* proto*/
+static double __pyx_f_6cherab_11PESDT_addon_8continuo_8Continuo__continuo(CYTHON_UNUSED struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v_self, double __pyx_v_wvl, double __pyx_v_te, double __pyx_v_ne, struct __pyx_opt_args_6cherab_11PESDT_addon_8continuo_8Continuo__continuo *__pyx_optional_args); /* proto*/
 static CYTHON_INLINE PyObject *__pyx_f_5numpy_7ndarray_4base_base(PyArrayObject *__pyx_v_self); /* proto*/
 static CYTHON_INLINE PyArray_Descr *__pyx_f_5numpy_7ndarray_5descr_descr(PyArrayObject *__pyx_v_self); /* proto*/
 static CYTHON_INLINE int __pyx_f_5numpy_7ndarray_4ndim_ndim(PyArrayObject *__pyx_v_self); /* proto*/
@@ -14799,9 +14799,9 @@ static double *__pyx_vp_6cherab_4core_7utility_9constants_ELECTRON_REST_MASS = 0
 static double *__pyx_vp_6cherab_4core_7utility_9constants_RYDBERG_CONSTANT_EV = 0;
 #define __pyx_v_6cherab_4core_7utility_9constants_RYDBERG_CONSTANT_EV (*__pyx_vp_6cherab_4core_7utility_9constants_RYDBERG_CONSTANT_EV)
 
-/* Module declarations from "cherab.amjuel_data.continuo" */
+/* Module declarations from "cherab.PESDT_addon.continuo" */
 #if !CYTHON_USE_MODULE_STATE
-static PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo = 0;
+static PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo = 0;
 static PyTypeObject *__pyx_array_type = 0;
 static PyTypeObject *__pyx_MemviewEnum_type = 0;
 static PyTypeObject *__pyx_memoryview_type = 0;
@@ -14814,7 +14814,7 @@ static PyObject *contiguous = 0;
 static PyObject *indirect_contiguous = 0;
 static int __pyx_memoryview_thread_locks_used;
 static PyThread_type_lock __pyx_memoryview_thread_locks[8];
-static PyObject *__pyx_f_6cherab_11amjuel_data_8continuo___pyx_unpickle_Continuo__set_state(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *, PyObject *); /*proto*/
+static PyObject *__pyx_f_6cherab_11PESDT_addon_8continuo___pyx_unpickle_Continuo__set_state(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *, PyObject *); /*proto*/
 static int __pyx_array_allocate_buffer(struct __pyx_array_obj *); /*proto*/
 static struct __pyx_array_obj *__pyx_array_new(PyObject *, Py_ssize_t, char *, char *, char *); /*proto*/
 static void *__pyx_align_pointer(void *, size_t); /*proto*/
@@ -14853,11 +14853,11 @@ static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *, 
 /* #### Code section: typeinfo ### */
 static __Pyx_TypeInfo __Pyx_TypeInfo_double = { "double", NULL, sizeof(double), { 0 }, 0, 'R', 0, 0 };
 /* #### Code section: before_global_var ### */
-#define __Pyx_MODULE_NAME "cherab.amjuel_data.continuo"
-extern int __pyx_module_is_main_cherab__amjuel_data__continuo;
-int __pyx_module_is_main_cherab__amjuel_data__continuo = 0;
+#define __Pyx_MODULE_NAME "cherab.PESDT_addon.continuo"
+extern int __pyx_module_is_main_cherab__PESDT_addon__continuo;
+int __pyx_module_is_main_cherab__PESDT_addon__continuo = 0;
 
-/* Implementation of "cherab.amjuel_data.continuo" */
+/* Implementation of "cherab.PESDT_addon.continuo" */
 /* #### Code section: global_var ### */
 static PyObject *__pyx_builtin_super;
 static PyObject *__pyx_builtin_TypeError;
@@ -15010,13 +15010,13 @@ static const char __pyx_k_Continuo___setstate_cython[] = "Continuo.__setstate_cy
 static const char __pyx_k_Index_out_of_bounds_axis_d[] = "Index out of bounds (axis %d)";
 static const char __pyx_k_adaslib_atomic_continuo_if[] = "adaslib.atomic.continuo_if";
 static const char __pyx_k_Step_may_not_be_zero_axis_d[] = "Step may not be zero (axis %d)";
-static const char __pyx_k_cherab_amjuel_data_continuo[] = "cherab.amjuel_data.continuo";
+static const char __pyx_k_cherab_PESDT_addon_continuo[] = "cherab.PESDT_addon.continuo";
 static const char __pyx_k_itemsize_0_for_cython_array[] = "itemsize <= 0 for cython.array";
 static const char __pyx_k_unable_to_allocate_array_data[] = "unable to allocate array data.";
 static const char __pyx_k_strided_and_direct_or_indirect[] = "<strided and direct or indirect>";
 static const char __pyx_k_PlasmaModel_adaslib_continuo_Br[] = "<PlasmaModel - adaslib/continuo Bremsstrahlung>";
 static const char __pyx_k_The_attribute_lineshape_must_be[] = "The attribute lineshape must be a subclass of LineShapeModel.";
-static const char __pyx_k_cherab_amjuel_data_continuo_pyx[] = "cherab/amjuel_data/continuo.pyx";
+static const char __pyx_k_cherab_PESDT_addon_continuo_pyx[] = "cherab/PESDT_addon/continuo.pyx";
 static const char __pyx_k_numpy_core_multiarray_failed_to[] = "numpy.core.multiarray failed to import";
 static const char __pyx_k_All_dimensions_preceding_dimensi[] = "All dimensions preceding dimension %d must be indexed and not sliced";
 static const char __pyx_k_Buffer_view_does_not_expose_stri[] = "Buffer view does not expose strides";
@@ -15094,8 +15094,8 @@ static PyObject *__pyx_n_s_base;
 static PyObject *__pyx_n_s_c;
 static PyObject *__pyx_n_u_c;
 static PyObject *__pyx_n_s_change;
-static PyObject *__pyx_n_s_cherab_amjuel_data_continuo;
-static PyObject *__pyx_kp_s_cherab_amjuel_data_continuo_pyx;
+static PyObject *__pyx_n_s_cherab_PESDT_addon_continuo;
+static PyObject *__pyx_kp_s_cherab_PESDT_addon_continuo_pyx;
 static PyObject *__pyx_n_s_cherab_core_utility;
 static PyObject *__pyx_n_s_class;
 static PyObject *__pyx_n_s_class_getitem;
@@ -15204,13 +15204,13 @@ static PyObject *__pyx_n_s_wl;
 static PyObject *__pyx_n_s_z_effective;
 #endif
 /* #### Code section: decls ### */
-static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_2__repr__(CYTHON_UNUSED struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_4emission(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_6_change(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_8__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_10__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo___pyx_unpickle_Continuo(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
+static int __pyx_pf_6cherab_11PESDT_addon_8continuo_8Continuo___init__(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_8continuo_8Continuo_2__repr__(CYTHON_UNUSED struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_8continuo_8Continuo_4emission(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_8continuo_8Continuo_6_change(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_8continuo_8Continuo_8__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_8continuo_8Continuo_10__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_8continuo___pyx_unpickle_Continuo(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(struct __pyx_array_obj *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struct __pyx_array_obj *__pyx_v_self); /* proto */
@@ -15252,7 +15252,7 @@ static void __pyx_memoryviewslice___pyx_pf_15View_dot_MemoryView_16_memoryviewsl
 static PyObject *__pyx_pf___pyx_memoryviewslice___reduce_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf___pyx_memoryviewslice_2__setstate_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_15View_dot_MemoryView___pyx_unpickle_Enum(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_8continuo_Continuo(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_8continuo_Continuo(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_array(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_Enum(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_memoryview(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -15665,8 +15665,8 @@ typedef struct {
   PyTypeObject *__pyx_ptype_6cherab_4core_5model_6plasma_17impact_excitation_ExcitationLine;
   PyTypeObject *__pyx_ptype_6cherab_4core_5model_6plasma_13recombination_RecombinationLine;
   PyTypeObject *__pyx_ptype_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower;
-  PyTypeObject *__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo;
-  PyObject *__pyx_type_6cherab_11amjuel_data_8continuo_Continuo;
+  PyTypeObject *__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo;
+  PyObject *__pyx_type_6cherab_11PESDT_addon_8continuo_Continuo;
   PyTypeObject *__pyx_array_type;
   PyObject *__pyx_type___pyx_array;
   PyTypeObject *__pyx_MemviewEnum_type;
@@ -15733,8 +15733,8 @@ typedef struct {
   PyObject *__pyx_n_s_c;
   PyObject *__pyx_n_u_c;
   PyObject *__pyx_n_s_change;
-  PyObject *__pyx_n_s_cherab_amjuel_data_continuo;
-  PyObject *__pyx_kp_s_cherab_amjuel_data_continuo_pyx;
+  PyObject *__pyx_n_s_cherab_PESDT_addon_continuo;
+  PyObject *__pyx_kp_s_cherab_PESDT_addon_continuo_pyx;
   PyObject *__pyx_n_s_cherab_core_utility;
   PyObject *__pyx_n_s_class;
   PyObject *__pyx_n_s_class_getitem;
@@ -16262,8 +16262,8 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_4core_5model_6plasma_17impact_excitation_ExcitationLine);
   Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_4core_5model_6plasma_13recombination_RecombinationLine);
   Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower);
-  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo);
-  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11amjuel_data_8continuo_Continuo);
+  Py_CLEAR(clear_module_state->__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo);
+  Py_CLEAR(clear_module_state->__pyx_type_6cherab_11PESDT_addon_8continuo_Continuo);
   Py_CLEAR(clear_module_state->__pyx_array_type);
   Py_CLEAR(clear_module_state->__pyx_type___pyx_array);
   Py_CLEAR(clear_module_state->__pyx_MemviewEnum_type);
@@ -16330,8 +16330,8 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_c);
   Py_CLEAR(clear_module_state->__pyx_n_u_c);
   Py_CLEAR(clear_module_state->__pyx_n_s_change);
-  Py_CLEAR(clear_module_state->__pyx_n_s_cherab_amjuel_data_continuo);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_cherab_amjuel_data_continuo_pyx);
+  Py_CLEAR(clear_module_state->__pyx_n_s_cherab_PESDT_addon_continuo);
+  Py_CLEAR(clear_module_state->__pyx_kp_s_cherab_PESDT_addon_continuo_pyx);
   Py_CLEAR(clear_module_state->__pyx_n_s_cherab_core_utility);
   Py_CLEAR(clear_module_state->__pyx_n_s_class);
   Py_CLEAR(clear_module_state->__pyx_n_s_class_getitem);
@@ -16846,8 +16846,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_4core_5model_6plasma_17impact_excitation_ExcitationLine);
   Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_4core_5model_6plasma_13recombination_RecombinationLine);
   Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower);
-  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo);
-  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11amjuel_data_8continuo_Continuo);
+  Py_VISIT(traverse_module_state->__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo);
+  Py_VISIT(traverse_module_state->__pyx_type_6cherab_11PESDT_addon_8continuo_Continuo);
   Py_VISIT(traverse_module_state->__pyx_array_type);
   Py_VISIT(traverse_module_state->__pyx_type___pyx_array);
   Py_VISIT(traverse_module_state->__pyx_MemviewEnum_type);
@@ -16914,8 +16914,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_c);
   Py_VISIT(traverse_module_state->__pyx_n_u_c);
   Py_VISIT(traverse_module_state->__pyx_n_s_change);
-  Py_VISIT(traverse_module_state->__pyx_n_s_cherab_amjuel_data_continuo);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_cherab_amjuel_data_continuo_pyx);
+  Py_VISIT(traverse_module_state->__pyx_n_s_cherab_PESDT_addon_continuo);
+  Py_VISIT(traverse_module_state->__pyx_kp_s_cherab_PESDT_addon_continuo_pyx);
   Py_VISIT(traverse_module_state->__pyx_n_s_cherab_core_utility);
   Py_VISIT(traverse_module_state->__pyx_n_s_class);
   Py_VISIT(traverse_module_state->__pyx_n_s_class_getitem);
@@ -17427,8 +17427,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_ptype_6cherab_4core_5model_6plasma_17impact_excitation_ExcitationLine __pyx_mstate_global->__pyx_ptype_6cherab_4core_5model_6plasma_17impact_excitation_ExcitationLine
 #define __pyx_ptype_6cherab_4core_5model_6plasma_13recombination_RecombinationLine __pyx_mstate_global->__pyx_ptype_6cherab_4core_5model_6plasma_13recombination_RecombinationLine
 #define __pyx_ptype_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower __pyx_mstate_global->__pyx_ptype_6cherab_4core_5model_6plasma_20total_radiated_power_TotalRadiatedPower
-#define __pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo __pyx_mstate_global->__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo
-#define __pyx_type_6cherab_11amjuel_data_8continuo_Continuo __pyx_mstate_global->__pyx_type_6cherab_11amjuel_data_8continuo_Continuo
+#define __pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo __pyx_mstate_global->__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo
+#define __pyx_type_6cherab_11PESDT_addon_8continuo_Continuo __pyx_mstate_global->__pyx_type_6cherab_11PESDT_addon_8continuo_Continuo
 #define __pyx_array_type __pyx_mstate_global->__pyx_array_type
 #define __pyx_type___pyx_array __pyx_mstate_global->__pyx_type___pyx_array
 #define __pyx_MemviewEnum_type __pyx_mstate_global->__pyx_MemviewEnum_type
@@ -17495,8 +17495,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_c __pyx_mstate_global->__pyx_n_s_c
 #define __pyx_n_u_c __pyx_mstate_global->__pyx_n_u_c
 #define __pyx_n_s_change __pyx_mstate_global->__pyx_n_s_change
-#define __pyx_n_s_cherab_amjuel_data_continuo __pyx_mstate_global->__pyx_n_s_cherab_amjuel_data_continuo
-#define __pyx_kp_s_cherab_amjuel_data_continuo_pyx __pyx_mstate_global->__pyx_kp_s_cherab_amjuel_data_continuo_pyx
+#define __pyx_n_s_cherab_PESDT_addon_continuo __pyx_mstate_global->__pyx_n_s_cherab_PESDT_addon_continuo
+#define __pyx_kp_s_cherab_PESDT_addon_continuo_pyx __pyx_mstate_global->__pyx_kp_s_cherab_PESDT_addon_continuo_pyx
 #define __pyx_n_s_cherab_core_utility __pyx_mstate_global->__pyx_n_s_cherab_core_utility
 #define __pyx_n_s_class __pyx_mstate_global->__pyx_n_s_class
 #define __pyx_n_s_class_getitem __pyx_mstate_global->__pyx_n_s_class_getitem
@@ -17633,7 +17633,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #endif
 /* #### Code section: module_code ### */
 
-/* "cherab/amjuel_data/continuo.pyx":34
+/* "cherab/PESDT_addon/continuo.pyx":34
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -17642,8 +17642,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
  */
 
 /* Python wrapper */
-static int __pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line = 0;
   struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma = 0;
   struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data = 0;
@@ -17669,7 +17669,7 @@ static int __pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_1__init__(PyObject
     values[2] = (PyObject *)((struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *)Py_None);
     values[3] = ((PyObject *)Py_None);
 
-    /* "cherab/amjuel_data/continuo.pyx":35
+    /* "cherab/PESDT_addon/continuo.pyx":35
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
  *                  object lineshape_args=None, object lineshape_kwargs=None):             # <<<<<<<<<<<<<<
@@ -17770,16 +17770,16 @@ static int __pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_1__init__(PyObject
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 6, __pyx_nargs); __PYX_ERR(0, 34, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.continuo.Continuo.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.continuo.Continuo.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_line), __pyx_ptype_6cherab_4core_6atomic_4line_Line, 1, "line", 0))) __PYX_ERR(0, 34, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_plasma), __pyx_ptype_6cherab_4core_6plasma_4node_Plasma, 1, "plasma", 0))) __PYX_ERR(0, 34, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_atomic_data), __pyx_ptype_6cherab_4core_6atomic_9interface_AtomicData, 1, "atomic_data", 0))) __PYX_ERR(0, 34, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(((struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *)__pyx_v_self), __pyx_v_line, __pyx_v_plasma, __pyx_v_atomic_data, __pyx_v_lineshape, __pyx_v_lineshape_args, __pyx_v_lineshape_kwargs);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_8continuo_8Continuo___init__(((struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *)__pyx_v_self), __pyx_v_line, __pyx_v_plasma, __pyx_v_atomic_data, __pyx_v_lineshape, __pyx_v_lineshape_args, __pyx_v_lineshape_kwargs);
 
-  /* "cherab/amjuel_data/continuo.pyx":34
+  /* "cherab/PESDT_addon/continuo.pyx":34
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -17796,7 +17796,7 @@ static int __pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_1__init__(PyObject
   return __pyx_r;
 }
 
-static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs) {
+static int __pyx_pf_6cherab_11PESDT_addon_8continuo_8Continuo___init__(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v_self, struct __pyx_obj_6cherab_4core_6atomic_4line_Line *__pyx_v_line, struct __pyx_obj_6cherab_4core_6plasma_4node_Plasma *__pyx_v_plasma, struct __pyx_obj_6cherab_4core_6atomic_9interface_AtomicData *__pyx_v_atomic_data, PyObject *__pyx_v_lineshape, PyObject *__pyx_v_lineshape_args, PyObject *__pyx_v_lineshape_kwargs) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -17810,7 +17810,7 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "cherab/amjuel_data/continuo.pyx":38
+  /* "cherab/PESDT_addon/continuo.pyx":38
  * 
  * 
  *         super().__init__(plasma, atomic_data)             # <<<<<<<<<<<<<<
@@ -17819,9 +17819,9 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
  */
   __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_INCREF((PyObject *)__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo);
-  __Pyx_GIVEREF((PyObject *)__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo));
+  __Pyx_INCREF((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo);
+  __Pyx_GIVEREF((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo));
   __Pyx_INCREF((PyObject *)__pyx_v_self);
   __Pyx_GIVEREF((PyObject *)__pyx_v_self);
   PyTuple_SET_ITEM(__pyx_t_2, 1, ((PyObject *)__pyx_v_self));
@@ -17853,7 +17853,7 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/continuo.pyx":40
+  /* "cherab/PESDT_addon/continuo.pyx":40
  *         super().__init__(plasma, atomic_data)
  * 
  *         self._line = line             # <<<<<<<<<<<<<<
@@ -17862,7 +17862,7 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_line_2, ((PyObject *)__pyx_v_line)) < 0) __PYX_ERR(0, 40, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/continuo.pyx":42
+  /* "cherab/PESDT_addon/continuo.pyx":42
  *         self._line = line
  * 
  *         self._lineshape_class = lineshape or GaussianLine             # <<<<<<<<<<<<<<
@@ -17882,7 +17882,7 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_class, __pyx_t_1) < 0) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/continuo.pyx":43
+  /* "cherab/PESDT_addon/continuo.pyx":43
  * 
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):             # <<<<<<<<<<<<<<
@@ -17896,7 +17896,7 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
   __pyx_t_6 = ((!(__pyx_t_5 != 0)) != 0);
   if (unlikely(__pyx_t_6)) {
 
-    /* "cherab/amjuel_data/continuo.pyx":44
+    /* "cherab/PESDT_addon/continuo.pyx":44
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")             # <<<<<<<<<<<<<<
@@ -17909,7 +17909,7 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __PYX_ERR(0, 44, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/continuo.pyx":43
+    /* "cherab/PESDT_addon/continuo.pyx":43
  * 
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):             # <<<<<<<<<<<<<<
@@ -17918,7 +17918,7 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
  */
   }
 
-  /* "cherab/amjuel_data/continuo.pyx":46
+  /* "cherab/PESDT_addon/continuo.pyx":46
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
  * 
  *         if lineshape_args:             # <<<<<<<<<<<<<<
@@ -17928,7 +17928,7 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
   __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_lineshape_args); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 46, __pyx_L1_error)
   if (__pyx_t_6) {
 
-    /* "cherab/amjuel_data/continuo.pyx":47
+    /* "cherab/PESDT_addon/continuo.pyx":47
  * 
  *         if lineshape_args:
  *             self._lineshape_args = lineshape_args             # <<<<<<<<<<<<<<
@@ -17937,7 +17937,7 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
  */
     if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_args_2, __pyx_v_lineshape_args) < 0) __PYX_ERR(0, 47, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/continuo.pyx":46
+    /* "cherab/PESDT_addon/continuo.pyx":46
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
  * 
  *         if lineshape_args:             # <<<<<<<<<<<<<<
@@ -17947,7 +17947,7 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
     goto __pyx_L6;
   }
 
-  /* "cherab/amjuel_data/continuo.pyx":49
+  /* "cherab/PESDT_addon/continuo.pyx":49
  *             self._lineshape_args = lineshape_args
  *         else:
  *             self._lineshape_args = []             # <<<<<<<<<<<<<<
@@ -17962,7 +17962,7 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
   }
   __pyx_L6:;
 
-  /* "cherab/amjuel_data/continuo.pyx":50
+  /* "cherab/PESDT_addon/continuo.pyx":50
  *         else:
  *             self._lineshape_args = []
  *         if lineshape_kwargs:             # <<<<<<<<<<<<<<
@@ -17972,7 +17972,7 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
   __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_lineshape_kwargs); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 50, __pyx_L1_error)
   if (__pyx_t_6) {
 
-    /* "cherab/amjuel_data/continuo.pyx":51
+    /* "cherab/PESDT_addon/continuo.pyx":51
  *             self._lineshape_args = []
  *         if lineshape_kwargs:
  *             self._lineshape_kwargs = lineshape_kwargs             # <<<<<<<<<<<<<<
@@ -17981,7 +17981,7 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
  */
     if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_kwargs_2, __pyx_v_lineshape_kwargs) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
 
-    /* "cherab/amjuel_data/continuo.pyx":50
+    /* "cherab/PESDT_addon/continuo.pyx":50
  *         else:
  *             self._lineshape_args = []
  *         if lineshape_kwargs:             # <<<<<<<<<<<<<<
@@ -17991,7 +17991,7 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
     goto __pyx_L7;
   }
 
-  /* "cherab/amjuel_data/continuo.pyx":53
+  /* "cherab/PESDT_addon/continuo.pyx":53
  *             self._lineshape_kwargs = lineshape_kwargs
  *         else:
  *             self._lineshape_kwargs = {}             # <<<<<<<<<<<<<<
@@ -18006,7 +18006,7 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
   }
   __pyx_L7:;
 
-  /* "cherab/amjuel_data/continuo.pyx":56
+  /* "cherab/PESDT_addon/continuo.pyx":56
  * 
  *         # ensure that cache is initialised
  *         self._change()             # <<<<<<<<<<<<<<
@@ -18037,7 +18037,7 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cherab/amjuel_data/continuo.pyx":34
+  /* "cherab/PESDT_addon/continuo.pyx":34
  *     cdef dict __dict__
  * 
  *     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,             # <<<<<<<<<<<<<<
@@ -18052,14 +18052,14 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("cherab.amjuel_data.continuo.Continuo.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.continuo.Continuo.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/continuo.pyx":58
+/* "cherab/PESDT_addon/continuo.pyx":58
  *         self._change()
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -18068,25 +18068,25 @@ static int __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo___init__(struct __
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_3__repr__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_3__repr__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_3__repr__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_3__repr__(PyObject *__pyx_v_self) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__repr__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_2__repr__(((struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_8continuo_8Continuo_2__repr__(((struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_2__repr__(CYTHON_UNUSED struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_8continuo_8Continuo_2__repr__(CYTHON_UNUSED struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "cherab/amjuel_data/continuo.pyx":59
+  /* "cherab/PESDT_addon/continuo.pyx":59
  * 
  *     def __repr__(self):
  *         return '<PlasmaModel - adaslib/continuo Bremsstrahlung>'             # <<<<<<<<<<<<<<
@@ -18098,7 +18098,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_2__repr__(CY
   __pyx_r = __pyx_kp_s_PlasmaModel_adaslib_continuo_Br;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/continuo.pyx":58
+  /* "cherab/PESDT_addon/continuo.pyx":58
  *         self._change()
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -18113,7 +18113,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_2__repr__(CY
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/continuo.pyx":63
+/* "cherab/PESDT_addon/continuo.pyx":63
  *     @cython.boundscheck(False)  # Deactivate bounds checking
  *     @cython.wraparound(False)   # Deactivate negative indexing.
  *     cdef Spectrum _emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -18121,7 +18121,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_2__repr__(CY
  *         cdef double ne, n, te, radiance, lower_sample, lower_wavelength, upper_sample, upper_wavelength, z_effective
  */
 
-static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11amjuel_data_8continuo_8Continuo__emission(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, CYTHON_UNUSED struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum) {
+static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11PESDT_addon_8continuo_8Continuo__emission(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, CYTHON_UNUSED struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum) {
   double __pyx_v_ne;
   double __pyx_v_te;
   double __pyx_v_lower_sample;
@@ -18143,7 +18143,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   int __pyx_t_7;
   double __pyx_t_8;
   int __pyx_t_9;
-  struct __pyx_opt_args_6cherab_11amjuel_data_8continuo_8Continuo__continuo __pyx_t_10;
+  struct __pyx_opt_args_6cherab_11PESDT_addon_8continuo_8Continuo__continuo __pyx_t_10;
   __Pyx_memviewslice __pyx_t_11 = { 0, 0, { 0 }, { 0 }, { 0 } };
   int __pyx_t_12;
   Py_ssize_t __pyx_t_13;
@@ -18153,7 +18153,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_emission", 0);
 
-  /* "cherab/amjuel_data/continuo.pyx":67
+  /* "cherab/PESDT_addon/continuo.pyx":67
  *         cdef double ne, n, te, radiance, lower_sample, lower_wavelength, upper_sample, upper_wavelength, z_effective
  * 
  *         ne = self.plasma.electron_distribution.density(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -18201,7 +18201,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_ne = __pyx_t_8;
 
-  /* "cherab/amjuel_data/continuo.pyx":68
+  /* "cherab/PESDT_addon/continuo.pyx":68
  * 
  *         ne = self.plasma.electron_distribution.density(point.x, point.y, point.z)
  *         if ne <= 0.0:             # <<<<<<<<<<<<<<
@@ -18211,7 +18211,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_9 = ((__pyx_v_ne <= 0.0) != 0);
   if (__pyx_t_9) {
 
-    /* "cherab/amjuel_data/continuo.pyx":69
+    /* "cherab/PESDT_addon/continuo.pyx":69
  *         ne = self.plasma.electron_distribution.density(point.x, point.y, point.z)
  *         if ne <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -18223,7 +18223,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/continuo.pyx":68
+    /* "cherab/PESDT_addon/continuo.pyx":68
  * 
  *         ne = self.plasma.electron_distribution.density(point.x, point.y, point.z)
  *         if ne <= 0.0:             # <<<<<<<<<<<<<<
@@ -18232,7 +18232,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/continuo.pyx":71
+  /* "cherab/PESDT_addon/continuo.pyx":71
  *             return spectrum
  * 
  *         te = self.plasma.electron_distribution.effective_temperature(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -18280,7 +18280,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_te = __pyx_t_8;
 
-  /* "cherab/amjuel_data/continuo.pyx":72
+  /* "cherab/PESDT_addon/continuo.pyx":72
  * 
  *         te = self.plasma.electron_distribution.effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:             # <<<<<<<<<<<<<<
@@ -18290,7 +18290,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_9 = ((__pyx_v_te <= 0.0) != 0);
   if (__pyx_t_9) {
 
-    /* "cherab/amjuel_data/continuo.pyx":73
+    /* "cherab/PESDT_addon/continuo.pyx":73
  *         te = self.plasma.electron_distribution.effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:
  *             return spectrum             # <<<<<<<<<<<<<<
@@ -18302,7 +18302,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_r = __pyx_v_spectrum;
     goto __pyx_L0;
 
-    /* "cherab/amjuel_data/continuo.pyx":72
+    /* "cherab/PESDT_addon/continuo.pyx":72
  * 
  *         te = self.plasma.electron_distribution.effective_temperature(point.x, point.y, point.z)
  *         if te <= 0.0:             # <<<<<<<<<<<<<<
@@ -18311,7 +18311,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   }
 
-  /* "cherab/amjuel_data/continuo.pyx":75
+  /* "cherab/PESDT_addon/continuo.pyx":75
  *             return spectrum
  * 
  *         z_effective = self.plasma.z_effective(point.x, point.y, point.z)             # <<<<<<<<<<<<<<
@@ -18356,7 +18356,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_z_effective = __pyx_t_8;
 
-  /* "cherab/amjuel_data/continuo.pyx":80
+  /* "cherab/PESDT_addon/continuo.pyx":80
  *         # todo: add sub-sampling to increase numerical accuracy
  * 
  *         lower_wavelength = spectrum.min_wavelength             # <<<<<<<<<<<<<<
@@ -18366,7 +18366,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_8 = __pyx_v_spectrum->min_wavelength;
   __pyx_v_lower_wavelength = __pyx_t_8;
 
-  /* "cherab/amjuel_data/continuo.pyx":81
+  /* "cherab/PESDT_addon/continuo.pyx":81
  * 
  *         lower_wavelength = spectrum.min_wavelength
  *         lower_sample = self._continuo(lower_wavelength, te, ne, zeff=z_effective)             # <<<<<<<<<<<<<<
@@ -18375,10 +18375,10 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
   __pyx_t_10.__pyx_n = 1;
   __pyx_t_10.zeff = __pyx_v_z_effective;
-  __pyx_t_8 = ((struct __pyx_vtabstruct_6cherab_11amjuel_data_8continuo_Continuo *)__pyx_v_self->__pyx_base.__pyx_vtab)->_continuo(__pyx_v_self, __pyx_v_lower_wavelength, __pyx_v_te, __pyx_v_ne, &__pyx_t_10); 
+  __pyx_t_8 = ((struct __pyx_vtabstruct_6cherab_11PESDT_addon_8continuo_Continuo *)__pyx_v_self->__pyx_base.__pyx_vtab)->_continuo(__pyx_v_self, __pyx_v_lower_wavelength, __pyx_v_te, __pyx_v_ne, &__pyx_t_10); 
   __pyx_v_lower_sample = __pyx_t_8;
 
-  /* "cherab/amjuel_data/continuo.pyx":84
+  /* "cherab/PESDT_addon/continuo.pyx":84
  * 
  *         # Define mem_view
  *         cdef double[:] spectrum_samples_mem_view = spectrum.samples             # <<<<<<<<<<<<<<
@@ -18390,7 +18390,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_t_11.memview = NULL;
   __pyx_t_11.data = NULL;
 
-  /* "cherab/amjuel_data/continuo.pyx":88
+  /* "cherab/PESDT_addon/continuo.pyx":88
  *         cdef Py_ssize_t i
  *         cdef double value_at_i
  *         for i in range(spectrum.bins):             # <<<<<<<<<<<<<<
@@ -18402,7 +18402,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
     __pyx_v_i = __pyx_t_13;
 
-    /* "cherab/amjuel_data/continuo.pyx":90
+    /* "cherab/PESDT_addon/continuo.pyx":90
  *         for i in range(spectrum.bins):
  * 
  *             upper_wavelength = spectrum.min_wavelength + spectrum.delta_wavelength * i             # <<<<<<<<<<<<<<
@@ -18411,7 +18411,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
     __pyx_v_upper_wavelength = (__pyx_v_spectrum->min_wavelength + (__pyx_v_spectrum->delta_wavelength * __pyx_v_i));
 
-    /* "cherab/amjuel_data/continuo.pyx":92
+    /* "cherab/PESDT_addon/continuo.pyx":92
  *             upper_wavelength = spectrum.min_wavelength + spectrum.delta_wavelength * i
  * 
  *             upper_sample = self._continuo(upper_wavelength, te, ne, zeff=z_effective)             # <<<<<<<<<<<<<<
@@ -18420,10 +18420,10 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
     __pyx_t_10.__pyx_n = 1;
     __pyx_t_10.zeff = __pyx_v_z_effective;
-    __pyx_t_8 = ((struct __pyx_vtabstruct_6cherab_11amjuel_data_8continuo_Continuo *)__pyx_v_self->__pyx_base.__pyx_vtab)->_continuo(__pyx_v_self, __pyx_v_upper_wavelength, __pyx_v_te, __pyx_v_ne, &__pyx_t_10); 
+    __pyx_t_8 = ((struct __pyx_vtabstruct_6cherab_11PESDT_addon_8continuo_Continuo *)__pyx_v_self->__pyx_base.__pyx_vtab)->_continuo(__pyx_v_self, __pyx_v_upper_wavelength, __pyx_v_te, __pyx_v_ne, &__pyx_t_10); 
     __pyx_v_upper_sample = __pyx_t_8;
 
-    /* "cherab/amjuel_data/continuo.pyx":93
+    /* "cherab/PESDT_addon/continuo.pyx":93
  * 
  *             upper_sample = self._continuo(upper_wavelength, te, ne, zeff=z_effective)
  *             value_at_i = spectrum_samples_mem_view[i]             # <<<<<<<<<<<<<<
@@ -18433,7 +18433,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_t_14 = __pyx_v_i;
     __pyx_v_value_at_i = (*((double *) ( /* dim=0 */ (__pyx_v_spectrum_samples_mem_view.data + __pyx_t_14 * __pyx_v_spectrum_samples_mem_view.strides[0]) )));
 
-    /* "cherab/amjuel_data/continuo.pyx":94
+    /* "cherab/PESDT_addon/continuo.pyx":94
  *             upper_sample = self._continuo(upper_wavelength, te, ne, zeff=z_effective)
  *             value_at_i = spectrum_samples_mem_view[i]
  *             spectrum_samples_mem_view[i] = 0.5 * (lower_sample + upper_sample) + value_at_i #+ spectrum_samples_mem_view[i]             # <<<<<<<<<<<<<<
@@ -18443,7 +18443,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_t_14 = __pyx_v_i;
     *((double *) ( /* dim=0 */ (__pyx_v_spectrum_samples_mem_view.data + __pyx_t_14 * __pyx_v_spectrum_samples_mem_view.strides[0]) )) = ((0.5 * (__pyx_v_lower_sample + __pyx_v_upper_sample)) + __pyx_v_value_at_i);
 
-    /* "cherab/amjuel_data/continuo.pyx":96
+    /* "cherab/PESDT_addon/continuo.pyx":96
  *             spectrum_samples_mem_view[i] = 0.5 * (lower_sample + upper_sample) + value_at_i #+ spectrum_samples_mem_view[i]
  * 
  *             lower_wavelength = upper_wavelength             # <<<<<<<<<<<<<<
@@ -18452,7 +18452,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  */
     __pyx_v_lower_wavelength = __pyx_v_upper_wavelength;
 
-    /* "cherab/amjuel_data/continuo.pyx":97
+    /* "cherab/PESDT_addon/continuo.pyx":97
  * 
  *             lower_wavelength = upper_wavelength
  *             lower_sample = upper_sample             # <<<<<<<<<<<<<<
@@ -18462,7 +18462,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     __pyx_v_lower_sample = __pyx_v_upper_sample;
   }
 
-  /* "cherab/amjuel_data/continuo.pyx":99
+  /* "cherab/PESDT_addon/continuo.pyx":99
  *             lower_sample = upper_sample
  * 
  *         return spectrum             # <<<<<<<<<<<<<<
@@ -18474,7 +18474,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __pyx_r = __pyx_v_spectrum;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/continuo.pyx":63
+  /* "cherab/PESDT_addon/continuo.pyx":63
  *     @cython.boundscheck(False)  # Deactivate bounds checking
  *     @cython.wraparound(False)   # Deactivate negative indexing.
  *     cdef Spectrum _emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -18491,7 +18491,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
   __PYX_XCLEAR_MEMVIEW(&__pyx_t_11, 1);
-  __Pyx_AddTraceback("cherab.amjuel_data.continuo.Continuo._emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.continuo.Continuo._emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_spectrum_samples_mem_view, 1);
@@ -18500,7 +18500,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/continuo.pyx":101
+/* "cherab/PESDT_addon/continuo.pyx":101
  *         return spectrum
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -18508,14 +18508,14 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  * 
  */
 
-static PyObject *__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_5emission(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11amjuel_data_8continuo_8Continuo_emission(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch) {
+static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11PESDT_addon_8continuo_8Continuo_emission(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum, int __pyx_skip_dispatch) {
   struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -18543,7 +18543,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
       #else
       if (!PyCFunction_Check(__pyx_t_1)
       #endif
-              || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_5emission)) {
+              || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_5emission)) {
         __Pyx_XDECREF((PyObject *)__pyx_r);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
@@ -18585,7 +18585,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
     #endif
   }
 
-  /* "cherab/amjuel_data/continuo.pyx":102
+  /* "cherab/PESDT_addon/continuo.pyx":102
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):
  *        return self._emission(point, direction, spectrum)             # <<<<<<<<<<<<<<
@@ -18593,13 +18593,13 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
  * 
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_6cherab_11amjuel_data_8continuo_Continuo *)__pyx_v_self->__pyx_base.__pyx_vtab)->_emission(__pyx_v_self, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_6cherab_11PESDT_addon_8continuo_Continuo *)__pyx_v_self->__pyx_base.__pyx_vtab)->_emission(__pyx_v_self, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = ((struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/continuo.pyx":101
+  /* "cherab/PESDT_addon/continuo.pyx":101
  *         return spectrum
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -18613,7 +18613,7 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("cherab.amjuel_data.continuo.Continuo.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.continuo.Continuo.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF((PyObject *)__pyx_r);
@@ -18622,15 +18622,15 @@ static struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_f_6cherab_11
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_5emission(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_8continuo_8Continuo_5emission = {"emission", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_5emission, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_5emission(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_8continuo_8Continuo_5emission = {"emission", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_5emission, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_5emission(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -18709,14 +18709,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("emission", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 101, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.continuo.Continuo.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.continuo.Continuo.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_point), __pyx_ptype_7raysect_4core_4math_5point_Point3D, 1, "point", 0))) __PYX_ERR(0, 101, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_direction), __pyx_ptype_7raysect_4core_4math_6vector_Vector3D, 1, "direction", 0))) __PYX_ERR(0, 101, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_spectrum), __pyx_ptype_7raysect_7optical_8spectrum_Spectrum, 1, "spectrum", 0))) __PYX_ERR(0, 101, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_4emission(((struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *)__pyx_v_self), __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_8continuo_8Continuo_4emission(((struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *)__pyx_v_self), __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum);
 
   /* function exit code */
   goto __pyx_L0;
@@ -18727,7 +18727,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_4emission(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_8continuo_8Continuo_4emission(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v_self, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *__pyx_v_point, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *__pyx_v_direction, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *__pyx_v_spectrum) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -18736,7 +18736,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_4emission(st
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("emission", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6cherab_11amjuel_data_8continuo_8Continuo_emission(__pyx_v_self, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6cherab_11PESDT_addon_8continuo_8Continuo_emission(__pyx_v_self, __pyx_v_point, __pyx_v_direction, __pyx_v_spectrum, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -18745,7 +18745,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_4emission(st
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.continuo.Continuo.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.continuo.Continuo.emission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -18753,7 +18753,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_4emission(st
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/continuo.pyx":105
+/* "cherab/PESDT_addon/continuo.pyx":105
  * 
  * 
  *     cdef double _continuo(self, double wvl, double te, double ne, double zeff = 1.0):             # <<<<<<<<<<<<<<
@@ -18761,7 +18761,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_4emission(st
  *         cdef double wvl_A, contff, contin, radiance
  */
 
-static double __pyx_f_6cherab_11amjuel_data_8continuo_8Continuo__continuo(CYTHON_UNUSED struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v_self, double __pyx_v_wvl, double __pyx_v_te, double __pyx_v_ne, struct __pyx_opt_args_6cherab_11amjuel_data_8continuo_8Continuo__continuo *__pyx_optional_args) {
+static double __pyx_f_6cherab_11PESDT_addon_8continuo_8Continuo__continuo(CYTHON_UNUSED struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v_self, double __pyx_v_wvl, double __pyx_v_te, double __pyx_v_ne, struct __pyx_opt_args_6cherab_11PESDT_addon_8continuo_8Continuo__continuo *__pyx_optional_args) {
   int __pyx_v_iz0;
   int __pyx_v_iz1;
   double __pyx_v_wvl_A;
@@ -18786,7 +18786,7 @@ static double __pyx_f_6cherab_11amjuel_data_8continuo_8Continuo__continuo(CYTHON
   if (__pyx_optional_args) {
   }
 
-  /* "cherab/amjuel_data/continuo.pyx":109
+  /* "cherab/PESDT_addon/continuo.pyx":109
  *         cdef double wvl_A, contff, contin, radiance
  * 
  *         wvl_A = wvl * 10.             # <<<<<<<<<<<<<<
@@ -18795,7 +18795,7 @@ static double __pyx_f_6cherab_11amjuel_data_8continuo_8Continuo__continuo(CYTHON
  */
   __pyx_v_wvl_A = (__pyx_v_wvl * 10.);
 
-  /* "cherab/amjuel_data/continuo.pyx":110
+  /* "cherab/PESDT_addon/continuo.pyx":110
  * 
  *         wvl_A = wvl * 10.
  *         iz0=1             # <<<<<<<<<<<<<<
@@ -18804,7 +18804,7 @@ static double __pyx_f_6cherab_11amjuel_data_8continuo_8Continuo__continuo(CYTHON
  */
   __pyx_v_iz0 = 1;
 
-  /* "cherab/amjuel_data/continuo.pyx":111
+  /* "cherab/PESDT_addon/continuo.pyx":111
  *         wvl_A = wvl * 10.
  *         iz0=1
  *         iz1=1             # <<<<<<<<<<<<<<
@@ -18813,7 +18813,7 @@ static double __pyx_f_6cherab_11amjuel_data_8continuo_8Continuo__continuo(CYTHON
  */
   __pyx_v_iz1 = 1;
 
-  /* "cherab/amjuel_data/continuo.pyx":112
+  /* "cherab/PESDT_addon/continuo.pyx":112
  *         iz0=1
  *         iz1=1
  *         contin, confff = continuo_if(wvl_A , te , iz0 , iz1 )             # <<<<<<<<<<<<<<
@@ -18906,7 +18906,7 @@ static double __pyx_f_6cherab_11amjuel_data_8continuo_8Continuo__continuo(CYTHON
   __pyx_v_confff = __pyx_t_6;
   __pyx_t_6 = 0;
 
-  /* "cherab/amjuel_data/continuo.pyx":114
+  /* "cherab/PESDT_addon/continuo.pyx":114
  *         contin, confff = continuo_if(wvl_A , te , iz0 , iz1 )
  * 
  *         return RECIP_4_PI*contin*(1e-6)*ne*ne*10             # <<<<<<<<<<<<<<
@@ -18916,7 +18916,7 @@ static double __pyx_f_6cherab_11amjuel_data_8continuo_8Continuo__continuo(CYTHON
   __pyx_r = (((((__pyx_v_6cherab_4core_7utility_9constants_RECIP_4_PI * __pyx_v_contin) * 1e-6) * __pyx_v_ne) * __pyx_v_ne) * 10.0);
   goto __pyx_L0;
 
-  /* "cherab/amjuel_data/continuo.pyx":105
+  /* "cherab/PESDT_addon/continuo.pyx":105
  * 
  * 
  *     cdef double _continuo(self, double wvl, double te, double ne, double zeff = 1.0):             # <<<<<<<<<<<<<<
@@ -18933,7 +18933,7 @@ static double __pyx_f_6cherab_11amjuel_data_8continuo_8Continuo__continuo(CYTHON
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_WriteUnraisable("cherab.amjuel_data.continuo.Continuo._continuo", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __Pyx_WriteUnraisable("cherab.PESDT_addon.continuo.Continuo._continuo", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_confff);
@@ -18941,7 +18941,7 @@ static double __pyx_f_6cherab_11amjuel_data_8continuo_8Continuo__continuo(CYTHON
   return __pyx_r;
 }
 
-/* "cherab/amjuel_data/continuo.pyx":171
+/* "cherab/PESDT_addon/continuo.pyx":171
  *     '''
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
@@ -18950,15 +18950,15 @@ static double __pyx_f_6cherab_11amjuel_data_8continuo_8Continuo__continuo(CYTHON
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_7_change(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_7_change(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_8continuo_8Continuo_7_change = {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_7_change(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_8continuo_8Continuo_7_change = {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_7_change(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -18975,14 +18975,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("_change", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "_change", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_6_change(((struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_8continuo_8Continuo_6_change(((struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_6_change(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_8continuo_8Continuo_6_change(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -18990,7 +18990,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_6_change(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_change", 0);
 
-  /* "cherab/amjuel_data/continuo.pyx":174
+  /* "cherab/PESDT_addon/continuo.pyx":174
  * 
  *         # clear cache to force regeneration on first use
  *         self._target_species = None             # <<<<<<<<<<<<<<
@@ -18999,7 +18999,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_6_change(str
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_target_species, Py_None) < 0) __PYX_ERR(0, 174, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/continuo.pyx":175
+  /* "cherab/PESDT_addon/continuo.pyx":175
  *         # clear cache to force regeneration on first use
  *         self._target_species = None
  *         self._wavelength = 0.0             # <<<<<<<<<<<<<<
@@ -19008,7 +19008,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_6_change(str
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_wavelength, __pyx_float_0_0) < 0) __PYX_ERR(0, 175, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/continuo.pyx":176
+  /* "cherab/PESDT_addon/continuo.pyx":176
  *         self._target_species = None
  *         self._wavelength = 0.0
  *         self._rates = None             # <<<<<<<<<<<<<<
@@ -19017,7 +19017,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_6_change(str
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_rates, Py_None) < 0) __PYX_ERR(0, 176, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/continuo.pyx":177
+  /* "cherab/PESDT_addon/continuo.pyx":177
  *         self._wavelength = 0.0
  *         self._rates = None
  *         self._lineshape = None             # <<<<<<<<<<<<<<
@@ -19026,7 +19026,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_6_change(str
  */
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_lineshape_2, Py_None) < 0) __PYX_ERR(0, 177, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/continuo.pyx":171
+  /* "cherab/PESDT_addon/continuo.pyx":171
  *     '''
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
@@ -19038,7 +19038,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_6_change(str
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.continuo.Continuo._change", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.continuo.Continuo._change", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -19053,15 +19053,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_6_change(str
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_9__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_9__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_8continuo_8Continuo_9__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_9__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_8continuo_8Continuo_9__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_9__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -19078,14 +19078,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("__reduce_cython__", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__reduce_cython__", 0))) return NULL;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_8__reduce_cython__(((struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_8continuo_8Continuo_8__reduce_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_8__reduce_cython__(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v_self) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_8continuo_8Continuo_8__reduce_cython__(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -19304,7 +19304,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_8__reduce_cy
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("cherab.amjuel_data.continuo.Continuo.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.continuo.Continuo.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_state);
@@ -19322,15 +19322,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_8__reduce_cy
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_11__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_11__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_8continuo_8Continuo_11__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_11__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_8continuo_8Continuo_11__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_11__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -19385,18 +19385,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__setstate_cython__", 1, 1, 1, __pyx_nargs); __PYX_ERR(1, 16, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.continuo.Continuo.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.continuo.Continuo.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_10__setstate_cython__(((struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_8continuo_8Continuo_10__setstate_cython__(((struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_10__setstate_cython__(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_8continuo_8Continuo_10__setstate_cython__(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -19411,7 +19411,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_10__setstate
  *     __pyx_unpickle_Continuo__set_state(self, __pyx_state)             # <<<<<<<<<<<<<<
  */
   if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 17, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_6cherab_11amjuel_data_8continuo___pyx_unpickle_Continuo__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6cherab_11PESDT_addon_8continuo___pyx_unpickle_Continuo__set_state(__pyx_v_self, ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
@@ -19427,7 +19427,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_10__setstate
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("cherab.amjuel_data.continuo.Continuo.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.continuo.Continuo.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -19442,15 +19442,15 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo_8Continuo_10__setstate
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6cherab_11amjuel_data_8continuo_1__pyx_unpickle_Continuo(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_8continuo_1__pyx_unpickle_Continuo(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_6cherab_11amjuel_data_8continuo_1__pyx_unpickle_Continuo = {"__pyx_unpickle_Continuo", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_8continuo_1__pyx_unpickle_Continuo, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6cherab_11amjuel_data_8continuo_1__pyx_unpickle_Continuo(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_6cherab_11PESDT_addon_8continuo_1__pyx_unpickle_Continuo = {"__pyx_unpickle_Continuo", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_8continuo_1__pyx_unpickle_Continuo, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6cherab_11PESDT_addon_8continuo_1__pyx_unpickle_Continuo(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -19529,18 +19529,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__pyx_unpickle_Continuo", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 1, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cherab.amjuel_data.continuo.__pyx_unpickle_Continuo", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.continuo.__pyx_unpickle_Continuo", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6cherab_11amjuel_data_8continuo___pyx_unpickle_Continuo(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_6cherab_11PESDT_addon_8continuo___pyx_unpickle_Continuo(__pyx_self, __pyx_v___pyx_type, __pyx_v___pyx_checksum, __pyx_v___pyx_state);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo___pyx_unpickle_Continuo(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_6cherab_11PESDT_addon_8continuo___pyx_unpickle_Continuo(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_v___pyx_PickleError = 0;
   PyObject *__pyx_v___pyx_result = 0;
   PyObject *__pyx_r = NULL;
@@ -19620,7 +19620,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo___pyx_unpickle_Continu
  *     if __pyx_state is not None:
  *         __pyx_unpickle_Continuo__set_state(<Continuo> __pyx_result, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo), __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -19664,7 +19664,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo___pyx_unpickle_Continu
  * cdef __pyx_unpickle_Continuo__set_state(Continuo __pyx_result, tuple __pyx_state):
  */
     if (!(likely(PyTuple_CheckExact(__pyx_v___pyx_state))||((__pyx_v___pyx_state) == Py_None) || __Pyx_RaiseUnexpectedTypeError("tuple", __pyx_v___pyx_state))) __PYX_ERR(1, 9, __pyx_L1_error)
-    __pyx_t_2 = __pyx_f_6cherab_11amjuel_data_8continuo___pyx_unpickle_Continuo__set_state(((struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_6cherab_11PESDT_addon_8continuo___pyx_unpickle_Continuo__set_state(((struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *)__pyx_v___pyx_result), ((PyObject*)__pyx_v___pyx_state)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
@@ -19700,7 +19700,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo___pyx_unpickle_Continu
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("cherab.amjuel_data.continuo.__pyx_unpickle_Continuo", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.continuo.__pyx_unpickle_Continuo", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v___pyx_PickleError);
@@ -19718,7 +19718,7 @@ static PyObject *__pyx_pf_6cherab_11amjuel_data_8continuo___pyx_unpickle_Continu
  *     if len(__pyx_state) > 2 and hasattr(__pyx_result, '__dict__'):
  */
 
-static PyObject *__pyx_f_6cherab_11amjuel_data_8continuo___pyx_unpickle_Continuo__set_state(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_f_6cherab_11PESDT_addon_8continuo___pyx_unpickle_Continuo__set_state(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -19850,7 +19850,7 @@ static PyObject *__pyx_f_6cherab_11amjuel_data_8continuo___pyx_unpickle_Continuo
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_AddTraceback("cherab.amjuel_data.continuo.__pyx_unpickle_Continuo__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cherab.PESDT_addon.continuo.__pyx_unpickle_Continuo__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -36664,25 +36664,25 @@ static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *__
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
-static struct __pyx_vtabstruct_6cherab_11amjuel_data_8continuo_Continuo __pyx_vtable_6cherab_11amjuel_data_8continuo_Continuo;
+static struct __pyx_vtabstruct_6cherab_11PESDT_addon_8continuo_Continuo __pyx_vtable_6cherab_11PESDT_addon_8continuo_Continuo;
 
-static PyObject *__pyx_tp_new_6cherab_11amjuel_data_8continuo_Continuo(PyTypeObject *t, PyObject *a, PyObject *k) {
-  struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *p;
+static PyObject *__pyx_tp_new_6cherab_11PESDT_addon_8continuo_Continuo(PyTypeObject *t, PyObject *a, PyObject *k) {
+  struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *p;
   PyObject *o = __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_new, newfunc)(t, a, k);
   if (unlikely(!o)) return 0;
-  p = ((struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *)o);
-  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel*)__pyx_vtabptr_6cherab_11amjuel_data_8continuo_Continuo;
+  p = ((struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *)o);
+  p->__pyx_base.__pyx_vtab = (struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel*)__pyx_vtabptr_6cherab_11PESDT_addon_8continuo_Continuo;
   p->__dict__ = PyDict_New(); if (unlikely(!p->__dict__)) goto bad;return o;
   bad:
   Py_DECREF(o); o = 0;
   return NULL;
 }
 
-static void __pyx_tp_dealloc_6cherab_11amjuel_data_8continuo_Continuo(PyObject *o) {
-  struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *p = (struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *)o;
+static void __pyx_tp_dealloc_6cherab_11PESDT_addon_8continuo_Continuo(PyObject *o) {
+  struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *p = (struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *)o;
   #if CYTHON_USE_TP_FINALIZE
   if (unlikely((PY_VERSION_HEX >= 0x03080000 || __Pyx_PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE)) && __Pyx_PyObject_GetSlot(o, tp_finalize, destructor)) && !_PyGC_FINALIZED(o)) {
-    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11amjuel_data_8continuo_Continuo) {
+    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_6cherab_11PESDT_addon_8continuo_Continuo) {
       if (PyObject_CallFinalizerFromDealloc(o)) return;
     }
   }
@@ -36691,31 +36691,31 @@ static void __pyx_tp_dealloc_6cherab_11amjuel_data_8continuo_Continuo(PyObject *
   if (p->__dict__) PyDict_Clear(p->__dict__);
   Py_CLEAR(p->__dict__);
   PyObject_GC_Track(o);
-  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_dealloc, destructor)(o); else __Pyx_call_next_tp_dealloc(o, __pyx_tp_dealloc_6cherab_11amjuel_data_8continuo_Continuo);
+  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) __Pyx_PyType_GetSlot(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel, tp_dealloc, destructor)(o); else __Pyx_call_next_tp_dealloc(o, __pyx_tp_dealloc_6cherab_11PESDT_addon_8continuo_Continuo);
 }
 
-static int __pyx_tp_traverse_6cherab_11amjuel_data_8continuo_Continuo(PyObject *o, visitproc v, void *a) {
+static int __pyx_tp_traverse_6cherab_11PESDT_addon_8continuo_Continuo(PyObject *o, visitproc v, void *a) {
   int e;
-  struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *p = (struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *)o;
-  e = ((likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) ? ((__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse) ? __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse(o, v, a) : 0) : __Pyx_call_next_tp_traverse(o, v, a, __pyx_tp_traverse_6cherab_11amjuel_data_8continuo_Continuo)); if (e) return e;
+  struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *p = (struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *)o;
+  e = ((likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) ? ((__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse) ? __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_traverse(o, v, a) : 0) : __Pyx_call_next_tp_traverse(o, v, a, __pyx_tp_traverse_6cherab_11PESDT_addon_8continuo_Continuo)); if (e) return e;
   if (p->__dict__) {
     e = (*v)(p->__dict__, a); if (e) return e;
   }
   return 0;
 }
 
-static int __pyx_tp_clear_6cherab_11amjuel_data_8continuo_Continuo(PyObject *o) {
+static int __pyx_tp_clear_6cherab_11PESDT_addon_8continuo_Continuo(PyObject *o) {
   PyObject* tmp;
-  struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *p = (struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *)o;
-  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) { if (__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear) __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear(o); } else __Pyx_call_next_tp_clear(o, __pyx_tp_clear_6cherab_11amjuel_data_8continuo_Continuo);
+  struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *p = (struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *)o;
+  if (likely(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel)) { if (__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear) __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel->tp_clear(o); } else __Pyx_call_next_tp_clear(o, __pyx_tp_clear_6cherab_11PESDT_addon_8continuo_Continuo);
   tmp = ((PyObject*)p->__dict__);
   p->__dict__ = ((PyObject*)Py_None); Py_INCREF(Py_None);
   Py_XDECREF(tmp);
   return 0;
 }
 
-static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_8continuo_Continuo(PyObject *o, CYTHON_UNUSED void *x) {
-  struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *p = (struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *)o;
+static PyObject *__pyx___dict__getter_6cherab_11PESDT_addon_8continuo_Continuo(PyObject *o, CYTHON_UNUSED void *x) {
+  struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *p = (struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *)o;
   if (unlikely(!p->__dict__)){
     p->__dict__ = PyDict_New();
   }
@@ -36723,53 +36723,53 @@ static PyObject *__pyx___dict__getter_6cherab_11amjuel_data_8continuo_Continuo(P
   return p->__dict__;
 }
 
-static PyMethodDef __pyx_methods_6cherab_11amjuel_data_8continuo_Continuo[] = {
-  {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+static PyMethodDef __pyx_methods_6cherab_11PESDT_addon_8continuo_Continuo[] = {
+  {"_change", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_7_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_9__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_11__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
-static struct PyGetSetDef __pyx_getsets_6cherab_11amjuel_data_8continuo_Continuo[] = {
-  {(char *)"__dict__", __pyx___dict__getter_6cherab_11amjuel_data_8continuo_Continuo, 0, (char *)0, 0},
+static struct PyGetSetDef __pyx_getsets_6cherab_11PESDT_addon_8continuo_Continuo[] = {
+  {(char *)"__dict__", __pyx___dict__getter_6cherab_11PESDT_addon_8continuo_Continuo, 0, (char *)0, 0},
   {0, 0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
 static struct PyMemberDef __pyx_tp_members_Continuo[] = {
-  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo, __dict__), READONLY, NULL},
+  {"__dictoffset__", T_PYSSIZET, offsetof(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo, __dict__), READONLY, NULL},
   {NULL, 0, 0, 0, NULL}
 };
-static PyType_Slot __pyx_type_6cherab_11amjuel_data_8continuo_Continuo_slots[] = {
-  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11amjuel_data_8continuo_Continuo},
-  {Py_tp_repr, (void *)__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_3__repr__},
+static PyType_Slot __pyx_type_6cherab_11PESDT_addon_8continuo_Continuo_slots[] = {
+  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_6cherab_11PESDT_addon_8continuo_Continuo},
+  {Py_tp_repr, (void *)__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_3__repr__},
   {Py_tp_doc, (void *)PyDoc_STR("\n    Emitter that calculates bremsstrahlung emission from a plasma object using the ADAS\n    adaslib/continuo.f function.\n\n    ")},
-  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11amjuel_data_8continuo_Continuo},
-  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11amjuel_data_8continuo_Continuo},
-  {Py_tp_methods, (void *)__pyx_methods_6cherab_11amjuel_data_8continuo_Continuo},
+  {Py_tp_traverse, (void *)__pyx_tp_traverse_6cherab_11PESDT_addon_8continuo_Continuo},
+  {Py_tp_clear, (void *)__pyx_tp_clear_6cherab_11PESDT_addon_8continuo_Continuo},
+  {Py_tp_methods, (void *)__pyx_methods_6cherab_11PESDT_addon_8continuo_Continuo},
   {Py_tp_members, (void *)__pyx_tp_members_Continuo},
-  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11amjuel_data_8continuo_Continuo},
+  {Py_tp_getset, (void *)__pyx_getsets_6cherab_11PESDT_addon_8continuo_Continuo},
   #if !CYTHON_USE_TYPE_SPECS
-  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo, __dict__)},
+  {Py_tp_dictoffset, (void *)offsetof(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo, __dict__)},
   #endif
-  {Py_tp_init, (void *)__pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_1__init__},
-  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11amjuel_data_8continuo_Continuo},
+  {Py_tp_init, (void *)__pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_1__init__},
+  {Py_tp_new, (void *)__pyx_tp_new_6cherab_11PESDT_addon_8continuo_Continuo},
   {0, 0},
 };
-static PyType_Spec __pyx_type_6cherab_11amjuel_data_8continuo_Continuo_spec = {
-  "cherab.amjuel_data.continuo.Continuo",
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo),
+static PyType_Spec __pyx_type_6cherab_11PESDT_addon_8continuo_Continuo_spec = {
+  "cherab.PESDT_addon.continuo.Continuo",
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
-  __pyx_type_6cherab_11amjuel_data_8continuo_Continuo_slots,
+  __pyx_type_6cherab_11PESDT_addon_8continuo_Continuo_slots,
 };
 #else
 
-static PyTypeObject __pyx_type_6cherab_11amjuel_data_8continuo_Continuo = {
+static PyTypeObject __pyx_type_6cherab_11PESDT_addon_8continuo_Continuo = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.continuo.""Continuo", /*tp_name*/
-  sizeof(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo), /*tp_basicsize*/
+  "cherab.PESDT_addon.continuo.""Continuo", /*tp_name*/
+  sizeof(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_6cherab_11amjuel_data_8continuo_Continuo, /*tp_dealloc*/
+  __pyx_tp_dealloc_6cherab_11PESDT_addon_8continuo_Continuo, /*tp_dealloc*/
   #if PY_VERSION_HEX < 0x030800b4
   0, /*tp_print*/
   #endif
@@ -36784,7 +36784,7 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_8continuo_Continuo = {
   #if PY_MAJOR_VERSION >= 3
   0, /*tp_as_async*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_3__repr__, /*tp_repr*/
+  __pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_3__repr__, /*tp_repr*/
   0, /*tp_as_number*/
   0, /*tp_as_sequence*/
   0, /*tp_as_mapping*/
@@ -36796,25 +36796,25 @@ static PyTypeObject __pyx_type_6cherab_11amjuel_data_8continuo_Continuo = {
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
   PyDoc_STR("\n    Emitter that calculates bremsstrahlung emission from a plasma object using the ADAS\n    adaslib/continuo.f function.\n\n    "), /*tp_doc*/
-  __pyx_tp_traverse_6cherab_11amjuel_data_8continuo_Continuo, /*tp_traverse*/
-  __pyx_tp_clear_6cherab_11amjuel_data_8continuo_Continuo, /*tp_clear*/
+  __pyx_tp_traverse_6cherab_11PESDT_addon_8continuo_Continuo, /*tp_traverse*/
+  __pyx_tp_clear_6cherab_11PESDT_addon_8continuo_Continuo, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_6cherab_11amjuel_data_8continuo_Continuo, /*tp_methods*/
+  __pyx_methods_6cherab_11PESDT_addon_8continuo_Continuo, /*tp_methods*/
   0, /*tp_members*/
-  __pyx_getsets_6cherab_11amjuel_data_8continuo_Continuo, /*tp_getset*/
+  __pyx_getsets_6cherab_11PESDT_addon_8continuo_Continuo, /*tp_getset*/
   0, /*tp_base*/
   0, /*tp_dict*/
   0, /*tp_descr_get*/
   0, /*tp_descr_set*/
   #if !CYTHON_USE_TYPE_SPECS
-  offsetof(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo, __dict__), /*tp_dictoffset*/
+  offsetof(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo, __dict__), /*tp_dictoffset*/
   #endif
-  __pyx_pw_6cherab_11amjuel_data_8continuo_8Continuo_1__init__, /*tp_init*/
+  __pyx_pw_6cherab_11PESDT_addon_8continuo_8Continuo_1__init__, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_6cherab_11amjuel_data_8continuo_Continuo, /*tp_new*/
+  __pyx_tp_new_6cherab_11PESDT_addon_8continuo_Continuo, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -36970,7 +36970,7 @@ static PyType_Slot __pyx_type___pyx_array_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_array_spec = {
-  "cherab.amjuel_data.continuo.array",
+  "cherab.PESDT_addon.continuo.array",
   sizeof(struct __pyx_array_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE,
@@ -37016,7 +37016,7 @@ static PyBufferProcs __pyx_tp_as_buffer_array = {
 
 static PyTypeObject __pyx_type___pyx_array = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.continuo.""array", /*tp_name*/
+  "cherab.PESDT_addon.continuo.""array", /*tp_name*/
   sizeof(struct __pyx_array_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_array, /*tp_dealloc*/
@@ -37161,7 +37161,7 @@ static PyType_Slot __pyx_type___pyx_MemviewEnum_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_MemviewEnum_spec = {
-  "cherab.amjuel_data.continuo.Enum",
+  "cherab.PESDT_addon.continuo.Enum",
   sizeof(struct __pyx_MemviewEnum_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -37171,7 +37171,7 @@ static PyType_Spec __pyx_type___pyx_MemviewEnum_spec = {
 
 static PyTypeObject __pyx_type___pyx_MemviewEnum = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.continuo.""Enum", /*tp_name*/
+  "cherab.PESDT_addon.continuo.""Enum", /*tp_name*/
   sizeof(struct __pyx_MemviewEnum_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_Enum, /*tp_dealloc*/
@@ -37450,7 +37450,7 @@ static PyType_Slot __pyx_type___pyx_memoryview_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_memoryview_spec = {
-  "cherab.amjuel_data.continuo.memoryview",
+  "cherab.PESDT_addon.continuo.memoryview",
   sizeof(struct __pyx_memoryview_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -37496,7 +37496,7 @@ static PyBufferProcs __pyx_tp_as_buffer_memoryview = {
 
 static PyTypeObject __pyx_type___pyx_memoryview = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.continuo.""memoryview", /*tp_name*/
+  "cherab.PESDT_addon.continuo.""memoryview", /*tp_name*/
   sizeof(struct __pyx_memoryview_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_memoryview, /*tp_dealloc*/
@@ -37645,7 +37645,7 @@ static PyType_Slot __pyx_type___pyx_memoryviewslice_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_memoryviewslice_spec = {
-  "cherab.amjuel_data.continuo._memoryviewslice",
+  "cherab.PESDT_addon.continuo._memoryviewslice",
   sizeof(struct __pyx_memoryviewslice_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -37655,7 +37655,7 @@ static PyType_Spec __pyx_type___pyx_memoryviewslice_spec = {
 
 static PyTypeObject __pyx_type___pyx_memoryviewslice = {
   PyVarObject_HEAD_INIT(0, 0)
-  "cherab.amjuel_data.continuo.""_memoryviewslice", /*tp_name*/
+  "cherab.PESDT_addon.continuo.""_memoryviewslice", /*tp_name*/
   sizeof(struct __pyx_memoryviewslice_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc__memoryviewslice, /*tp_dealloc*/
@@ -37814,8 +37814,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, __pyx_k_c, sizeof(__pyx_k_c), 0, 0, 1, 1},
   {0, __pyx_k_c, sizeof(__pyx_k_c), 0, 1, 0, 1},
   {0, __pyx_k_change, sizeof(__pyx_k_change), 0, 0, 1, 1},
-  {0, __pyx_k_cherab_amjuel_data_continuo, sizeof(__pyx_k_cherab_amjuel_data_continuo), 0, 0, 1, 1},
-  {0, __pyx_k_cherab_amjuel_data_continuo_pyx, sizeof(__pyx_k_cherab_amjuel_data_continuo_pyx), 0, 0, 1, 0},
+  {0, __pyx_k_cherab_PESDT_addon_continuo, sizeof(__pyx_k_cherab_PESDT_addon_continuo), 0, 0, 1, 1},
+  {0, __pyx_k_cherab_PESDT_addon_continuo_pyx, sizeof(__pyx_k_cherab_PESDT_addon_continuo_pyx), 0, 0, 1, 0},
   {0, __pyx_k_cherab_core_utility, sizeof(__pyx_k_cherab_core_utility), 0, 0, 1, 1},
   {0, __pyx_k_class, sizeof(__pyx_k_class), 0, 0, 1, 1},
   {0, __pyx_k_class_getitem, sizeof(__pyx_k_class_getitem), 0, 0, 1, 1},
@@ -37981,8 +37981,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_c, __pyx_k_c, sizeof(__pyx_k_c), 0, 0, 1, 1},
   {&__pyx_n_u_c, __pyx_k_c, sizeof(__pyx_k_c), 0, 1, 0, 1},
   {&__pyx_n_s_change, __pyx_k_change, sizeof(__pyx_k_change), 0, 0, 1, 1},
-  {&__pyx_n_s_cherab_amjuel_data_continuo, __pyx_k_cherab_amjuel_data_continuo, sizeof(__pyx_k_cherab_amjuel_data_continuo), 0, 0, 1, 1},
-  {&__pyx_kp_s_cherab_amjuel_data_continuo_pyx, __pyx_k_cherab_amjuel_data_continuo_pyx, sizeof(__pyx_k_cherab_amjuel_data_continuo_pyx), 0, 0, 1, 0},
+  {&__pyx_n_s_cherab_PESDT_addon_continuo, __pyx_k_cherab_PESDT_addon_continuo, sizeof(__pyx_k_cherab_PESDT_addon_continuo), 0, 0, 1, 1},
+  {&__pyx_kp_s_cherab_PESDT_addon_continuo_pyx, __pyx_k_cherab_PESDT_addon_continuo_pyx, sizeof(__pyx_k_cherab_PESDT_addon_continuo_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_cherab_core_utility, __pyx_k_cherab_core_utility, sizeof(__pyx_k_cherab_core_utility), 0, 0, 1, 1},
   {&__pyx_n_s_class, __pyx_k_class, sizeof(__pyx_k_class), 0, 0, 1, 1},
   {&__pyx_n_s_class_getitem, __pyx_k_class_getitem, sizeof(__pyx_k_class_getitem), 0, 0, 1, 1},
@@ -38115,7 +38115,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "cherab/amjuel_data/continuo.pyx":44
+  /* "cherab/PESDT_addon/continuo.pyx":44
  *         self._lineshape_class = lineshape or GaussianLine
  *         if not issubclass(self._lineshape_class, LineShapeModel):
  *             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")             # <<<<<<<<<<<<<<
@@ -38173,7 +38173,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_slice__8);
   __Pyx_GIVEREF(__pyx_slice__8);
 
-  /* "cherab/amjuel_data/continuo.pyx":101
+  /* "cherab/PESDT_addon/continuo.pyx":101
  *         return spectrum
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
@@ -38183,9 +38183,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__11 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_point, __pyx_n_s_direction, __pyx_n_s_spectrum); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
-  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_continuo_pyx, __pyx_n_s_emission, 101, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_continuo_pyx, __pyx_n_s_emission, 101, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 101, __pyx_L1_error)
 
-  /* "cherab/amjuel_data/continuo.pyx":171
+  /* "cherab/PESDT_addon/continuo.pyx":171
  *     '''
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
@@ -38195,7 +38195,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__13 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 171, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__13);
   __Pyx_GIVEREF(__pyx_tuple__13);
-  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_amjuel_data_continuo_pyx, __pyx_n_s_change, 171, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cherab_PESDT_addon_continuo_pyx, __pyx_n_s_change, 171, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 171, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
@@ -38357,8 +38357,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitConstants(void) {
   if (__Pyx_InitString(__pyx_string_tab[55], &__pyx_n_s_c) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[56], &__pyx_n_u_c) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[57], &__pyx_n_s_change) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
-  if (__Pyx_InitString(__pyx_string_tab[58], &__pyx_n_s_cherab_amjuel_data_continuo) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
-  if (__Pyx_InitString(__pyx_string_tab[59], &__pyx_kp_s_cherab_amjuel_data_continuo_pyx) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
+  if (__Pyx_InitString(__pyx_string_tab[58], &__pyx_n_s_cherab_PESDT_addon_continuo) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
+  if (__Pyx_InitString(__pyx_string_tab[59], &__pyx_kp_s_cherab_PESDT_addon_continuo_pyx) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[60], &__pyx_n_s_cherab_core_utility) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[61], &__pyx_n_s_class) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[62], &__pyx_n_s_class_getitem) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
@@ -38537,38 +38537,38 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel = __Pyx_ImportType(__pyx_t_1, "cherab.core.plasma.model", "PlasmaModel", sizeof(struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel), __Pyx_ImportType_CheckSize_Warn);
    if (!__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_vtabptr_6cherab_4core_6plasma_5model_PlasmaModel = (struct __pyx_vtabstruct_6cherab_4core_6plasma_5model_PlasmaModel*)__Pyx_GetVtable(__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel); if (unlikely(!__pyx_vtabptr_6cherab_4core_6plasma_5model_PlasmaModel)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_vtabptr_6cherab_11amjuel_data_8continuo_Continuo = &__pyx_vtable_6cherab_11amjuel_data_8continuo_Continuo;
-  __pyx_vtable_6cherab_11amjuel_data_8continuo_Continuo.__pyx_base = *__pyx_vtabptr_6cherab_4core_6plasma_5model_PlasmaModel;
-  __pyx_vtable_6cherab_11amjuel_data_8continuo_Continuo.__pyx_base.emission = (struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*)(struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel *, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *, int __pyx_skip_dispatch))__pyx_f_6cherab_11amjuel_data_8continuo_8Continuo_emission;
-  __pyx_vtable_6cherab_11amjuel_data_8continuo_Continuo._emission = (struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*)(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *))__pyx_f_6cherab_11amjuel_data_8continuo_8Continuo__emission;
-  __pyx_vtable_6cherab_11amjuel_data_8continuo_Continuo._continuo = (double (*)(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo *, double, double, double, struct __pyx_opt_args_6cherab_11amjuel_data_8continuo_8Continuo__continuo *__pyx_optional_args))__pyx_f_6cherab_11amjuel_data_8continuo_8Continuo__continuo;
+  __pyx_vtabptr_6cherab_11PESDT_addon_8continuo_Continuo = &__pyx_vtable_6cherab_11PESDT_addon_8continuo_Continuo;
+  __pyx_vtable_6cherab_11PESDT_addon_8continuo_Continuo.__pyx_base = *__pyx_vtabptr_6cherab_4core_6plasma_5model_PlasmaModel;
+  __pyx_vtable_6cherab_11PESDT_addon_8continuo_Continuo.__pyx_base.emission = (struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*)(struct __pyx_obj_6cherab_4core_6plasma_5model_PlasmaModel *, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *, int __pyx_skip_dispatch))__pyx_f_6cherab_11PESDT_addon_8continuo_8Continuo_emission;
+  __pyx_vtable_6cherab_11PESDT_addon_8continuo_Continuo._emission = (struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *(*)(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *, struct __pyx_obj_7raysect_4core_4math_5point_Point3D *, struct __pyx_obj_7raysect_4core_4math_6vector_Vector3D *, struct __pyx_obj_7raysect_7optical_8spectrum_Spectrum *))__pyx_f_6cherab_11PESDT_addon_8continuo_8Continuo__emission;
+  __pyx_vtable_6cherab_11PESDT_addon_8continuo_Continuo._continuo = (double (*)(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo *, double, double, double, struct __pyx_opt_args_6cherab_11PESDT_addon_8continuo_8Continuo__continuo *__pyx_optional_args))__pyx_f_6cherab_11PESDT_addon_8continuo_8Continuo__continuo;
   #if CYTHON_USE_TYPE_SPECS
   __pyx_t_2 = PyTuple_Pack(1, (PyObject *)__pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11amjuel_data_8continuo_Continuo_spec, __pyx_t_2);
+  __pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_6cherab_11PESDT_addon_8continuo_Continuo_spec, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo)) __PYX_ERR(0, 26, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11amjuel_data_8continuo_Continuo_spec, __pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
+  if (unlikely(!__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo)) __PYX_ERR(0, 26, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_6cherab_11PESDT_addon_8continuo_Continuo_spec, __pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
   #else
-  __pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo = &__pyx_type_6cherab_11amjuel_data_8continuo_Continuo;
+  __pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo = &__pyx_type_6cherab_11PESDT_addon_8continuo_Continuo;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  __pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo->tp_base = __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel;
+  __pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo->tp_base = __pyx_ptype_6cherab_4core_6plasma_5model_PlasmaModel;
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
-  __pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo->tp_print = 0;
+  __pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo->tp_print = 0;
   #endif
-  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo, __pyx_vtabptr_6cherab_11amjuel_data_8continuo_Continuo) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo, __pyx_vtabptr_6cherab_11PESDT_addon_8continuo_Continuo) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
+  if (__Pyx_MergeVtables(__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Continuo, (PyObject *) __pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
-  if (__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo->tp_weaklistoffset == 0) __pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo->tp_weaklistoffset = offsetof(struct __pyx_obj_6cherab_11amjuel_data_8continuo_Continuo, __pyx_base.__weakref__);
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Continuo, (PyObject *) __pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
+  if (__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo->tp_weaklistoffset == 0) __pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo->tp_weaklistoffset = offsetof(struct __pyx_obj_6cherab_11PESDT_addon_8continuo_Continuo, __pyx_base.__weakref__);
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
   #endif
   __pyx_vtabptr_array = &__pyx_vtable_array;
   __pyx_vtable_array.get_memview = (PyObject *(*)(struct __pyx_array_obj *))__pyx_array_get_memview;
@@ -40464,14 +40464,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_cherab__amjuel_data__continuo) {
+  if (__pyx_module_is_main_cherab__PESDT_addon__continuo) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name_2, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "cherab.amjuel_data.continuo")) {
-      if (unlikely((PyDict_SetItemString(modules, "cherab.amjuel_data.continuo", __pyx_m) < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "cherab.PESDT_addon.continuo")) {
+      if (unlikely((PyDict_SetItemString(modules, "cherab.PESDT_addon.continuo", __pyx_m) < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -40492,7 +40492,7 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "cherab/amjuel_data/continuo.pyx":1
+  /* "cherab/PESDT_addon/continuo.pyx":1
  * import os             # <<<<<<<<<<<<<<
  * 
  * from cherab.core.atomic cimport AtomicData
@@ -40502,7 +40502,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_os, __pyx_t_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cherab/amjuel_data/continuo.pyx":5
+  /* "cherab/PESDT_addon/continuo.pyx":5
  * from cherab.core.atomic cimport AtomicData
  * from cherab.core.plasma cimport PlasmaModel
  * from cherab.core.utility import PerCm3ToPerM3, PhotonToJ, Cm3ToM3             # <<<<<<<<<<<<<<
@@ -40537,7 +40537,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/continuo.pyx":6
+  /* "cherab/PESDT_addon/continuo.pyx":6
  * from cherab.core.plasma cimport PlasmaModel
  * from cherab.core.utility import PerCm3ToPerM3, PhotonToJ, Cm3ToM3
  * from amread import photon_rate_coeffs, A_coeff             # <<<<<<<<<<<<<<
@@ -40565,7 +40565,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cherab/amjuel_data/continuo.pyx":7
+  /* "cherab/PESDT_addon/continuo.pyx":7
  * from cherab.core.utility import PerCm3ToPerM3, PhotonToJ, Cm3ToM3
  * from amread import photon_rate_coeffs, A_coeff
  * from amread import wavelength as wl             # <<<<<<<<<<<<<<
@@ -40586,7 +40586,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cherab/amjuel_data/continuo.pyx":21
+  /* "cherab/PESDT_addon/continuo.pyx":21
  * #                      int *iz1       , double *contff , double *contin )
  * 
  * from adaslib.atomic.continuo_if import continuo_if             # <<<<<<<<<<<<<<
@@ -40607,7 +40607,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cherab/amjuel_data/continuo.pyx":23
+  /* "cherab/PESDT_addon/continuo.pyx":23
  * from adaslib.atomic.continuo_if import continuo_if
  * 
  * import numpy as np             # <<<<<<<<<<<<<<
@@ -40619,42 +40619,42 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_2) < 0) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cherab/amjuel_data/continuo.pyx":101
+  /* "cherab/PESDT_addon/continuo.pyx":101
  *         return spectrum
  * 
  *     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):             # <<<<<<<<<<<<<<
  *        return self._emission(point, direction, spectrum)
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_8continuo_8Continuo_5emission, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Continuo_emission, NULL, __pyx_n_s_cherab_amjuel_data_continuo, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_8continuo_8Continuo_5emission, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Continuo_emission, NULL, __pyx_n_s_cherab_PESDT_addon_continuo, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo->tp_dict, __pyx_n_s_emission, __pyx_t_2) < 0) __PYX_ERR(0, 101, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo->tp_dict, __pyx_n_s_emission, __pyx_t_2) < 0) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo);
 
-  /* "cherab/amjuel_data/continuo.pyx":171
+  /* "cherab/PESDT_addon/continuo.pyx":171
  *     '''
  * 
  *     def _change(self):             # <<<<<<<<<<<<<<
  * 
  *         # clear cache to force regeneration on first use
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_8continuo_8Continuo_7_change, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Continuo__change, NULL, __pyx_n_s_cherab_amjuel_data_continuo, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_8continuo_8Continuo_7_change, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Continuo__change, NULL, __pyx_n_s_cherab_PESDT_addon_continuo, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 171, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo->tp_dict, __pyx_n_s_change, __pyx_t_2) < 0) __PYX_ERR(0, 171, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo->tp_dict, __pyx_n_s_change, __pyx_t_2) < 0) __PYX_ERR(0, 171, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo);
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_8continuo_8Continuo_9__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Continuo___reduce_cython, NULL, __pyx_n_s_cherab_amjuel_data_continuo, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_8continuo_8Continuo_9__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Continuo___reduce_cython, NULL, __pyx_n_s_cherab_PESDT_addon_continuo, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo->tp_dict, __pyx_n_s_reduce_cython, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo);
 
   /* "(tree fragment)":16
  *     else:
@@ -40662,23 +40662,23 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_Continuo__set_state(self, __pyx_state)
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_8continuo_8Continuo_11__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Continuo___setstate_cython, NULL, __pyx_n_s_cherab_amjuel_data_continuo, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 16, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_8continuo_8Continuo_11__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Continuo___setstate_cython, NULL, __pyx_n_s_cherab_PESDT_addon_continuo, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_2) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo->tp_dict, __pyx_n_s_setstate_cython, __pyx_t_2) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  PyType_Modified(__pyx_ptype_6cherab_11amjuel_data_8continuo_Continuo);
+  PyType_Modified(__pyx_ptype_6cherab_11PESDT_addon_8continuo_Continuo);
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_Continuo(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11amjuel_data_8continuo_1__pyx_unpickle_Continuo, 0, __pyx_n_s_pyx_unpickle_Continuo, NULL, __pyx_n_s_cherab_amjuel_data_continuo, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_6cherab_11PESDT_addon_8continuo_1__pyx_unpickle_Continuo, 0, __pyx_n_s_pyx_unpickle_Continuo, NULL, __pyx_n_s_cherab_PESDT_addon_continuo, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_Continuo, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cherab/amjuel_data/continuo.pyx":1
+  /* "cherab/PESDT_addon/continuo.pyx":1
  * import os             # <<<<<<<<<<<<<<
  * 
  * from cherab.core.atomic cimport AtomicData
@@ -40849,13 +40849,13 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_3);
   if (__pyx_m) {
     if (__pyx_d && stringtab_initialized) {
-      __Pyx_AddTraceback("init cherab.amjuel_data.continuo", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init cherab.PESDT_addon.continuo", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     #if !CYTHON_USE_MODULE_STATE
     Py_CLEAR(__pyx_m);
     #endif
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init cherab.amjuel_data.continuo");
+    PyErr_SetString(PyExc_ImportError, "init cherab.PESDT_addon.continuo");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
