@@ -348,7 +348,6 @@ class ProcessEdgeSim:
         pixel_samples = self.input_dict['cherab_options']['pixel_samples']
         spec_line_dict = self.input_dict['spec_line_dict']
         diag_list = self.input_dict['diag_list']
-        read_ADAS = self.input_dict['read_ADAS']
         use_AMJUEL = self.input_dict['run_options']['use_AMJUEL']
         recalc_h2_pos = self.input_dict['run_options'].get("recalc_h2_pos", True)
         stark_transition = self.input_dict['cherab_options'].get('stark_transition', False)
@@ -357,120 +356,126 @@ class ProcessEdgeSim:
         #srec_H_transition = input_dict['cherab_options']['Srec_H_transition']
 
 
-
+        transitions = []
+        for line_key in self.spec_line_dict['1']['1']:
+            transitions.append(tuple(int(line_key[0]), int(line_key[1])))
         # Generate cherab plasma
         plasma = CherabPlasma(self, self.ADAS_dict, include_reflections = include_reflections,
-                            import_jet_surfaces = import_jet_surfaces, use_AMJUEL=use_AMJUEL, recalc_h2_pos = recalc_h2_pos)
+                            import_jet_surfaces = import_jet_surfaces, use_AMJUEL=use_AMJUEL, recalc_h2_pos = recalc_h2_pos, transitions = transitions)
 
         # Create output dict
         self.outdict = {}
 
+        diag_dict = get_JETdefs().__diag_dict
+
         # Loop through diagnostics, their LOS, integrate over Lyman/Balmer
-        multi = 1.0
         for diag_key in diag_list:
-            for diag_key_PESDT, val in self.synth_diag.items():
-                if diag_key == diag_key_PESDT:
-                    self.outdict[diag_key] = {}
-                    for diag_chord, val in self.synth_diag[diag_key].items():
-                        los_p1 = val['chord']['p1']
-                        los_p2 = val['chord']['p2']
-                        los_w1 = val['chord']['w1']
-                        los_w2 = val['chord']['w2']
-                        H_lines = spec_line_dict['1']['1']
+            self.outdict[diag_key] = {}
+            for diag_chord, los_p2 in enumerate(diag_dict[diag_key]):
+                los_p1 = diag_dict[diag_key]['p1']
+                los_w1 = 0.0 # unused
+                los_w2 = diag_dict[diag_key]['w']
+                H_lines = spec_line_dict['1']['1']
 
-                        self.outdict[diag_key][diag_chord] = {
-                            'chord':{'p1':los_p1, 'p2':los_p2, 'w1':los_w1, 'w2':los_w2}
+                self.outdict[diag_key][str(diag_chord)] = {
+                    'chord':{'p1':los_p1, 'p2':los_p2, 'w1':los_w1, 'w2':los_w2}
+                }
+                self.outdict[diag_key][str(diag_chord)]['spec_line_dict'] = spec_line_dict
+
+                self.outdict[diag_key][str(diag_chord)]['los_int'] = {'H_emiss': {}}
+
+                print(diag_key, los_p2)
+                for H_line_key, val in H_lines.items():
+                
+                    transition = (int(val[0]), int(val[1]))
+                    wavelength = float(H_line_key)/10. #nm
+                    min_wavelength = (wavelength)-1.0
+                    max_wavelength = (wavelength)+1.0
+
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_excitation=True, include_recombination=False, use_AMJUEL=use_AMJUEL)
+                    exc_radiance, wave = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, #, exc_spectrum,
+                                                                            min_wavelength, max_wavelength,
+                                                                            spectral_bins=spectral_bins, pixel_samples=pixel_samples)
+
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_excitation=False, include_recombination=True, use_AMJUEL=use_AMJUEL)
+
+                    rec_radiance, wave = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, # rec_spectrum,
+                                                                            min_wavelength, max_wavelength,
+                                                                            spectral_bins=spectral_bins, pixel_samples=pixel_samples)
+                    if use_AMJUEL:
+                        plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                                include_excitation=False, include_H2=True, use_AMJUEL=use_AMJUEL)
+
+                        h2_radiance, wave = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, # H2_spectrum,
+                                                                                min_wavelength, max_wavelength,
+                                                                                spectral_bins=spectral_bins, pixel_samples=pixel_samples)
+
+                        plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                                include_excitation=False, include_H2_pos= True, use_AMJUEL=use_AMJUEL)
+
+                        h2_pos_radiance, wave = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, # H2+_spectrum,
+                                                                                min_wavelength, max_wavelength,
+                                                                                spectral_bins=spectral_bins, pixel_samples=pixel_samples)
+                        plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                                include_excitation=False, include_H_neg=True, use_AMJUEL=use_AMJUEL)
+
+                        h_neg_radiance, wave = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, # H-_spectrum,
+                                                                                min_wavelength, max_wavelength,
+                                                                                spectral_bins=spectral_bins, pixel_samples=pixel_samples)
+                                                            
+                        self.outdict[diag_key][str(diag_chord)]['los_int']['H_emiss'][H_line_key] = {
+                            'excit':(np.array(exc_radiance)).tolist(),
+                            'recom':(np.array(rec_radiance)).tolist(),
+                            'h2': (np.array(h2_radiance)).tolist(),
+                            'h2+': (np.array(h2_pos_radiance)).tolist(),
+                            'h-': (np.array(h_neg_radiance)).tolist(),
+                            'units':'ph.s^-1.m^-2.sr^-1'
                         }
-                        self.outdict[diag_key][diag_chord]['spec_line_dict'] = spec_line_dict
+                    else:
+                        self.outdict[diag_key][str(diag_chord)]['los_int']['H_emiss'][H_line_key] = {
+                            'excit':(np.array(exc_radiance)).tolist(),
+                            'recom':(np.array(rec_radiance)).tolist(),
+                            'units':'ph.s^-1.m^-2.sr^-1'
+                        }
 
-                        self.outdict[diag_key][diag_chord]['los_int'] = {'H_emiss': {}}
-
-                        print(diag_key, los_p2)
-                        for H_line_key, val in H_lines.items():
-                        
-                            transition = (int(val[0]), int(val[1]))
-                            wavelength = float(H_line_key)/10. #nm
-                            min_wavelength = (wavelength)-1.0
-                            max_wavelength = (wavelength)+1.0
-
+                    if stark_transition:
+                        if transition == tuple(stark_transition):
+                            print('Stark transition')
                             plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
-                                                    include_excitation=True, include_recombination=False, use_AMJUEL=use_AMJUEL)
-                            exc_radiance, wave = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, #, exc_spectrum,
-                                                                                    min_wavelength, max_wavelength,
-                                                                                    spectral_bins=spectral_bins, pixel_samples=pixel_samples)
-
-                            plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
-                                                    include_excitation=False, include_recombination=True, use_AMJUEL=use_AMJUEL)
-
-                            rec_radiance, wave = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, # rec_spectrum,
-                                                                                    min_wavelength, max_wavelength,
-                                                                                    spectral_bins=spectral_bins, pixel_samples=pixel_samples)
-
-                            plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
-                                                    include_excitation=False, include_H2=True, use_AMJUEL=use_AMJUEL)
-
-                            h2_radiance, wave = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, # H2_spectrum,
-                                                                                    min_wavelength, max_wavelength,
-                                                                                    spectral_bins=spectral_bins, pixel_samples=pixel_samples)
-
-                            plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
-                                                    include_excitation=False, include_H2_pos= True, use_AMJUEL=use_AMJUEL)
-
-                            h2_pos_radiance, wave = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, # H2+_spectrum,
-                                                                                    min_wavelength, max_wavelength,
-                                                                                    spectral_bins=spectral_bins, pixel_samples=pixel_samples)
-                            plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
-                                                    include_excitation=False, include_H_neg=True, use_AMJUEL=use_AMJUEL)
-
-                            h_neg_radiance, wave = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, # H-_spectrum,
-                                                                                    min_wavelength, max_wavelength,
-                                                                                    spectral_bins=spectral_bins, pixel_samples=pixel_samples)
-                                                                
-                            self.outdict[diag_key][diag_chord]['los_int']['H_emiss'][H_line_key] = {
-                                'excit':(np.array(exc_radiance)*multi).tolist(),
-                                'recom':(np.array(rec_radiance)*multi).tolist(),
-                                'h2': (np.array(h2_radiance)*multi).tolist(),
-                                'h2+': (np.array(h2_pos_radiance)*multi).tolist(),
-                                'h-': (np.array(h_neg_radiance)*multi).tolist(),
-                                'units':'ph.s^-1.m^-2.sr^-1'
-                            }
-
-                            if stark_transition:
-                                if transition == tuple(stark_transition):
-                                    print('Stark transition')
-                                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
-                                                            include_excitation=True, include_recombination=True, 
-                                                            include_H2_pos= True, include_H2=True, include_H_neg=True, use_AMJUEL=use_AMJUEL,
-                                                            include_stark=True)
-                                    spec_bins = 50
-                                    radiance,  wave_arr = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, #spectrum,
-                                                                                        min_wavelength, max_wavelength,
-                                                                                        spectral_bins=spec_bins,
-                                                                                        pixel_samples=pixel_samples,
-                                                                                        display_progress=False,no_avg = True)
-
-                                    self.outdict[diag_key][diag_chord]['los_int']['stark']={'cwl': wavelength, 'wave': (np.array(wave_arr)).tolist(),
-                                                                                    'intensity': (np.array(radiance)).tolist(),
-                                                                                    'units': 'nm, ph s^-1 m^-2 sr^-1 nm^-1'}
-
-                            # Free-free + free-bound using adaslib/continuo
-                        if ff_fb:
-                            plasma.define_plasma_model(atnum=1, ion_stage=0,
-                                                        include_excitation=False, include_recombination=False, use_AMJUEL=use_AMJUEL,
-                                                        include_stark=False, include_ff_fb=True)
-                            min_wave = 300
-                            max_wave = 500
+                                                    include_excitation=True, include_recombination=True, 
+                                                    include_H2_pos= True, include_H2=True, include_H_neg=True, use_AMJUEL=use_AMJUEL,
+                                                    include_stark=True)
                             spec_bins = 50
                             radiance,  wave_arr = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, #spectrum,
-                                                                                    min_wave, max_wave,
-                                                                                    spectral_bins=spec_bins,
-                                                                                    pixel_samples=pixel_samples,
-                                                                                    display_progress=False, no_avg= True)
+                                                                                min_wavelength, max_wavelength,
+                                                                                spectral_bins=spec_bins,
+                                                                                pixel_samples=pixel_samples,
+                                                                                display_progress=False,no_avg = True)
 
-                            self.outdict[diag_key][diag_chord]['los_int']['ff_fb_continuum'] = {
-                                    'wave': (np.array(wave_arr)).tolist(),
-                                    'intensity': (np.array(radiance)).tolist(),
-                                    'units': 'nm, ph s^-1 m^-2 sr^-1 nm^-1'}
+                            self.outdict[diag_key][str(diag_chord)]['los_int']['stark']={'cwl': wavelength, 'wave': (np.array(wave_arr)).tolist(),
+                                                                            'intensity': (np.array(radiance)).tolist(),
+                                                                            'units': 'nm, ph s^-1 m^-2 sr^-1 nm^-1'}
+
+                    # Free-free + free-bound using adaslib/continuo
+                if ff_fb:
+                    plasma.define_plasma_model(atnum=1, ion_stage=0,
+                                                include_excitation=False, include_recombination=False, use_AMJUEL=use_AMJUEL,
+                                                include_stark=False, include_ff_fb=True)
+                    min_wave = 300
+                    max_wave = 500
+                    spec_bins = 50
+                    radiance,  wave_arr = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, #spectrum,
+                                                                            min_wave, max_wave,
+                                                                            spectral_bins=spec_bins,
+                                                                            pixel_samples=pixel_samples,
+                                                                            display_progress=False, no_avg= True)
+
+                    self.outdict[diag_key][str(diag_chord)]['los_int']['ff_fb_continuum'] = {
+                            'wave': (np.array(wave_arr)).tolist(),
+                            'intensity': (np.array(radiance)).tolist(),
+                            'units': 'nm, ph s^-1 m^-2 sr^-1 nm^-1'}
         #return outdict
 
     def __getstate__(self):

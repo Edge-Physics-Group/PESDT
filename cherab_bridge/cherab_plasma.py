@@ -39,7 +39,7 @@ from PESDT.cherab_bridge.edge2d_cherab_bridge import load_edge2d_from_PESDT
 
 class CherabPlasma():
 
-    def __init__(self, PESDT_obj, ADAS_dict, include_reflections=False, import_jet_surfaces = False, use_AMJUEL = False, recalc_h2_pos =True):
+    def __init__(self, PESDT_obj, ADAS_dict, include_reflections=False, import_jet_surfaces = False, use_AMJUEL = False, recalc_h2_pos =True, transitions = None):
 
         self.PESDT_obj = PESDT_obj
         self.include_reflections = include_reflections
@@ -47,6 +47,7 @@ class CherabPlasma():
         self.ADAS_dict = ADAS_dict
         self.use_AMJUEL = use_AMJUEL
         self.recalc_h2_pos = recalc_h2_pos 
+        self.transitions = transitions
 
         # Create CHERAB plasma from PESDT edge_codes object
         self.world = World()
@@ -57,7 +58,7 @@ class CherabPlasma():
         # Load PESDT object into cherab_edge2d module, which converts the edge_codes grid to cherab
         # format, and populates cherab plasma parameters
         convert_to_m3 = not (self.use_AMJUEL)
-        cherab_edge2d = load_edge2d_from_PESDT(self.PESDT_obj, convert_denel_to_m3 = convert_to_m3, load_mol_data = self.use_AMJUEL, recalc_h2_pos = self.recalc_h2_pos)
+        cherab_edge2d = load_edge2d_from_PESDT(self.PESDT_obj, convert_denel_to_m3 = convert_to_m3, load_mol_data = self.use_AMJUEL, recalc_h2_pos = self.recalc_h2_pos, transitions = self.transitions)
 
         if self.import_jet_surfaces:
             if self.include_reflections:
