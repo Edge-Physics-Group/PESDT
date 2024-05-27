@@ -281,7 +281,7 @@ class ProcessEdgeSim:
             # Currently the run cherab function uses the synth_diag to get the instrument and LOS details, so that needs to be generated
             self.run_cherab_bridge()
         else:
-
+            
             self.calc_H_emiss()
             self.calc_H_rad_power()
             self.calc_ff_fb_emiss()
@@ -333,9 +333,6 @@ class ProcessEdgeSim:
                 if self.synth_diag:
                     self.save_synth_diag_data(savefile=synth_diag_save_file)
 
-        
-            
-
         if data2d_save_file:
             # pickle serialization of e2deirpostproc object
             output = open(data2d_save_file, 'wb')
@@ -356,7 +353,6 @@ class ProcessEdgeSim:
         ff_fb = self.input_dict['cherab_options'].get('ff_fb_emission', False)
         #sion_H_transition = input_dict['cherab_options']['Sion_H_transition']
         #srec_H_transition = input_dict['cherab_options']['Srec_H_transition']
-        stark_transition = False
         # Generate cherab plasma
         plasma = CherabPlasma(self, self.ADAS_dict, include_reflections = include_reflections,
                             import_jet_surfaces = import_jet_surfaces, use_AMJUEL=use_AMJUEL, recalc_h2_pos = recalc_h2_pos)

@@ -26,12 +26,12 @@
     },
     "interactive_plots": false,
     "save_dir": "PESDT_cases/", 
-    "run_cherab": true,
+    "run_cherab": false,
     "run_options": {
         "calc_synth_spec_features": false,
         "analyse_synth_spec_features": false,
         "use_AMJUEL": true,
-        "recalc_h2_pos": false,
+        "recalc_h2_pos": true,
         "Sion_H_transition": [[2,1],[3,2]],
         "Srec_H_transition": [[5,2]]
       },

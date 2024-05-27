@@ -115,8 +115,10 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                     pass
             # SAVE IN JSON FORMAT TO ENSURE PYTHON 2/3 COMPATIBILITY
             if self.input_dict["cherab_options"].get('include_reflections', False):
+                print("Saving cherab reflections")
                 savefile = self.savedir + '/cherab_refl.synth_diag.json'
             else:
+                print("Saving cherab no reflections")
                 savefile = self.savedir + '/cherab.synth_diag.json'
             with open(savefile, mode='w', encoding='utf-8') as f:
                 json.dump(self.outdict, f, indent=2)
