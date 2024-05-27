@@ -102,6 +102,9 @@ class Edge2DSimulation:
         self._total_radiation = None
         self._total_radiation_f2d = None
         self._total_radiation_f3d = None
+        self._emission = None
+        self._emission_f2d = None
+        self._emission_f3d = None
 
     @property
     def mesh(self):
@@ -564,6 +567,54 @@ class Edge2DSimulation:
         self._halpha_radiation_f3d = AxisymmetricMapper(self._halpha_radiation_f2d)
 
     @property
+    def emission(self):
+        """
+        H-alpha radiation at each mesh cell.
+        Array of size n.
+
+        Final output is in W m-3.
+        """
+
+        return self._halpha_radiation
+
+    @property
+    def emission_f2d(self):
+        """
+        Function2D interpolator for H-alpha radiation.
+        Returns radiation at a given point (R, Z).
+        """
+
+        return self._halpha_radiation_f2d
+
+    @property
+    def emission_f3d(self):
+        """
+        Function3D interpolator for H-alpha radiation.
+        Returns radiation at a given point (x, y, z).
+        """
+
+        return self._halpha_radiation_f3d
+
+    @emission.setter
+    def emission(self, value):
+        value = np.array(value, dtype=np.float64, copy=False)
+        # Disable checking shape for now. Emission is goin to be a 3d matrix, which contains the ph/s/m^3 for each transition
+        #_check_shape("pre calculated emission", value, (len(self._species_list ),self.mesh.n,))
+        self._emission = value
+        self._emission_f2d = {}
+        self._emission_f3d = {}
+        for k, sp in enumerate(self._species_list):
+            temp = {}
+            temp2 = {}
+            for key, item in value[k].items():
+                temp[key] = Edge2DFunction.instance(self._inside_mesh, item)
+                temp2[key] = AxisymmetricMapper(temp[key])
+            self._emission_f2d[k] = temp
+            self._emission_f2d[sp] =  self._emission_f2d[k]
+            self._emission_f3d[k] = temp2
+            self._emission_f3d[sp] = self._emission_f3d[k]
+
+    @property
     def b_field(self):
         """
         Magnetic B field in poloidal coordinates (e_pol, e_rad, e_tor) at each mesh cell.
@@ -643,6 +694,7 @@ class Edge2DSimulation:
             'b_field_cylindrical': self._b_field_cylindrical,
             'total_radiation': self._total_radiation,
             'halpha_radiation': self._halpha_radiation,
+            'emission' : self._emission,
         }
         return state
 
@@ -671,6 +723,8 @@ class Edge2DSimulation:
             self.total_radiation = state['total_radiation']
         if state['halpha_radiation'] is not None:
             self.halpha_radiation = state['halpha_radiation']
+        if state['emission'] is not None:
+            self.emission = state['emission']
 
     def save(self, filename):
         """
@@ -758,11 +812,11 @@ class Edge2DSimulation:
 
             if charge or self.neutral_temperature is None:  # ions or neutral atoms (neutral temperature is not available)
                 distribution = Maxwellian(self.species_density_f3d[k], self.ion_temperature_f3d, velocity,
-                                          species_type.atomic_weight * atomic_mass)
+                                          species_type.atomic_weight * atomic_mass, self.emission_f3d[k])
 
             else:  # neutral atoms with neutral temperature
                 distribution = Maxwellian(self.species_density_f3d[k], self._neutral_temperature_f3d[neutral_i], velocity,
-                                          species_type.atomic_weight * atomic_mass)
+                                          species_type.atomic_weight * atomic_mass, self.emission_f3d[k])
                 neutral_i += 1
 
             plasma.composition.add(Species(species_type, charge, distribution))

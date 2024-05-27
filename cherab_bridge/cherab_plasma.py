@@ -22,7 +22,7 @@ from cherab.core.model.plasma.recombination import RecombinationLine
 from cherab.core.utility.conversion import PhotonToJ
 from cherab.jet.machine.cad_files import import_jet_mesh
 
-from cherab.PESDT_addon.LineEmitters import LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
+
 import cherab.PESDT_addon.molecules as molecules
 from cherab.PESDT_addon.stark import StarkBroadenedLine
 #from cherab.amjuel_data.AMJUEL_data import AMJUEL_Data
@@ -84,11 +84,18 @@ class CherabPlasma():
                             include_excitation=True, include_recombination=False,
                             include_H2 = False, include_H2_pos = False, include_H_neg = False,
                             include_H3_pos = False, use_tot = False, use_AMJUEL = False,
-                            include_stark=False, include_ff_fb=False):
+                            include_stark=False, include_ff_fb=False, quick = True):
         # Define one transition at a time and 'observe' total radiance
         # If multiple transitions are fed into the plasma object, the total
         # observed radiance will be the sum of the defined spectral lines.
-
+        
+        if quick:
+            from cherab.PESDT_addon.LineEmitters_quick import LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
+            transition_str = f"{transition[0]},{transition[1]}"
+        else:
+            from cherab.PESDT_addon.LineEmitters import LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
+            transition_str = None
+        
         if include_stark:
             lineshape = StarkBroadenedLine
         else:
@@ -104,19 +111,19 @@ class CherabPlasma():
                 else:
                     if include_excitation:
                         h_line = Line(elements.deuterium, 0, transition)
-                        model_list.append(LineExcitation_AM(h_line, lineshape=lineshape)) #, plasma=self.plasma, atomic_data=self.plasma.atomic_data
+                        model_list.append(LineExcitation_AM(h_line, lineshape=lineshape, lineshape_args = transition_str)) #, plasma=self.plasma, atomic_data=self.plasma.atomic_data
                     if include_recombination:
                         h_line = Line(elements.deuterium, 0, transition)
-                        model_list.append(LineRecombination_AM(h_line, lineshape=lineshape))
+                        model_list.append(LineRecombination_AM(h_line, lineshape=lineshape, lineshape_args = transition_str))
                     if include_H2:
                         h_line = Line(molecules.Deuterium2, 0, transition)
-                        model_list.append(LineH2_AM(h_line, lineshape=lineshape))
+                        model_list.append(LineH2_AM(h_line, lineshape=lineshape, lineshape_args = transition_str))
                     if include_H2_pos:
                         h_line = Line(molecules.Deuterium2, 0, transition) # Increment charge by one 
-                        model_list.append(LineH2_pos_AM(h_line, lineshape=lineshape))
+                        model_list.append(LineH2_pos_AM(h_line, lineshape=lineshape, lineshape_args = transition_str))
                     if include_H_neg:
                         h_line = Line(elements.hydrogen, 0, transition) #Implemented via H proxy
-                        model_list.append(LineH_neg_AM(h_line, lineshape=lineshape))
+                        model_list.append(LineH_neg_AM(h_line, lineshape=lineshape, lineshape_args = transition_str))
                     if include_ff_fb:
                         h_line = Line(elements.deuterium, 0, transition)
                         model_list.append(Continuo(h_line, lineshape = lineshape))

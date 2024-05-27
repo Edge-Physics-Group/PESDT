@@ -2,9 +2,20 @@
 import numpy as np
 from raysect.core.math.function.float.function2d.interpolate import Discrete2DMesh
 from cherab.PESDT_addon import Edge2DMesh, Edge2DSimulation
+from PESDT.amread import read_amjuel_1d,read_amjuel_2d,reactions, calc_cross_sections, calc_photon_rate
 
-
-def load_edge2d_from_PESDT(PESDT, convert_denel_to_m3 = True, load_mol_data = False, recalc_h2_pos = True):
+def load_edge2d_from_PESDT(PESDT, convert_denel_to_m3 = True, load_mol_data = False, recalc_h2_pos = True, quick = True, **kwargs ):
+    '''
+    Creates a cherab compatible EDGE2D simulation object
+    
+    convert_denel_to_m3: When using adas data, you need to explicitly convert to the right units
+    load_mol_data: Load and pass molecular data based on AMJUEL rates to the object
+        recalc_h2_pos: Recalculate the H2+ denisity according to AMJUEL H.12 2.0c. Should only be used, if
+                       the molecular ion density is not available in the simualtion output
+    quick (BETA): Pre calculate emission, and pass directly to cherab
+    **kwargs: used in passing data required for 'quick'
+    
+    '''
 
     ########################################################################
     # Start by loading in all the data from B Lowmanowski's PESDT object #
@@ -62,7 +73,7 @@ def load_edge2d_from_PESDT(PESDT, convert_denel_to_m3 = True, load_mol_data = Fa
         and derived densities to species
 
         '''
-        from PESDT.amread import read_amjuel_1d,read_amjuel_2d,reactions, calc_cross_sections
+
 
         print("Loading H2, H2+, H3+ and H-")
         num_species = 6
@@ -76,19 +87,19 @@ def load_edge2d_from_PESDT(PESDT, convert_denel_to_m3 = True, load_mol_data = Fa
         else:
             h2_pos_den = n2p[:]
         species_list.append(('D2', 1))
-
+        '''
         MARc_h3_pos_den = read_amjuel_1d(reac["den_H3+"][0],reac["den_H3+"][1])
         h3_pos_den = calc_cross_sections(MARc_h3_pos_den, T = te, n = ne*1e-6)*n2*h2_pos_den/ne
         species_list.append(('D3', 1))
-
+        '''
         MARc_h_neg_den = read_amjuel_1d(reac["den_H-"][0],reac["den_H-"][1])
         h_neg_den = calc_cross_sections(MARc_h_neg_den, T = te, n = ne*1e-6)*n2
         species_list.append(('H', 0)) # Need a proxy, neg allowed in Cherab
 
         species_density[2, :] = n2[:]  # Mol. density D2
         species_density[3, :] = h2_pos_den[:]
-        species_density[4, :] = h3_pos_den[:]
-        species_density[5, :] = h_neg_den[:]
+        #species_density[4, :] = h3_pos_den[:]
+        species_density[4, :] = h_neg_den[:]
     else:
         num_species = 2
         species_density = np.zeros((num_species, num_cells))
@@ -108,4 +119,21 @@ def load_edge2d_from_PESDT(PESDT, convert_denel_to_m3 = True, load_mol_data = Fa
     #sim._species_density = species_density
     #sim._ion_temperature = ti
 
+    if quick:
+        if load_mol_data:
+            transitions = kwargs.get('transitions', None)
+            excit_emiss = {}
+            rec_emiss = {}
+            mol_emiss = {}
+            mol_ion_emiss = {}
+            at_neg_emiss = {}
+            for t in transitions:
+                t_str = f'{t[0]},{t[1]}'
+                E_excit, E_recom, E_mol, E_h2_pos, E_h3_pos, E_h_neg, E_tot = calc_photon_rate(t, te, ne, n0, mol_n_density=n2,molp_n_density=n2p,p_density=ni, h3=False, recalc_h2_pos=recalc_h2_pos, debug=True)
+                excit_emiss[t_str] = E_excit
+                rec_emiss[t_str] = E_recom
+                mol_emiss[t_str] = E_mol
+                mol_ion_emiss[t_str] = E_h2_pos
+                at_neg_emiss[t_str] = E_h_neg
+            sim.emission = [excit_emiss, rec_emiss, mol_emiss, mol_ion_emiss, at_neg_emiss]
     return sim
