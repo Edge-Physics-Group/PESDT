@@ -334,7 +334,7 @@ def calc_photon_rate(transition, Temperature, el_density, n_density, mol_n_densi
         MARc_h_neg_den = read_amjuel_1d(reac["den_H-"][0],reac["den_H-"][1])
         h_neg_den = calc_cross_sections(MARc_h_neg_den, T = Temperature)*mol_n_density
 
-        MARc_h_neg = read_amjuel_2d(reac["H3+"][0],reac["H3+"][1])
+        MARc_h_neg = read_amjuel_2d(reac["H-"][0],reac["H-"][1])
         em_h_neg = A_coeff(transition)*calc_cross_sections(MARc_h_neg, T = Temperature, n = el_density)*h_neg_den/(4*np.pi)
 
     # Debug: output each contribution separately
