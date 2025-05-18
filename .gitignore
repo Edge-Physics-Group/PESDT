@@ -4,7 +4,6 @@ cherab_bridge/batch/
 *~
 cherab_bridge/inputs_for_psi26/
 cherab_bridge/scrap
-input/inputs_for_psi26
 __pycache__
 PESDT_addon-master/build
 *.c
