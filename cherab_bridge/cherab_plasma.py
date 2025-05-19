@@ -30,13 +30,13 @@ from cherab.PESDT_addon.LineEmitters import LineExcitation_AM, LineRecombination
 
 #from cherab.amjuel_data.AMJUEL_data import AMJUEL_Data
 
-from PESDT.cherab_bridge.cherab_atomic_data import PESDT_ADAS_Data
-from PESDT.cherab_bridge.cherab_AMJUEL_data import  AMJUEL_Data
+from cherab_bridge import PESDT_ADAS_Data
+from cherab_bridge import  AMJUEL_Data
 #from PESDT.cherab_bridge.cherab_AMJUEL_data import LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
 
 #from PESDT.cherab_bridge.continuo import Continuo  
 from cherab.PESDT_addon.continuo import Continuo
-from PESDT.cherab_bridge.edge2d_cherab_bridge import load_edge2d_from_PESDT
+from cherab_bridge import load_edge2d_from_PESDT
 from solps_cherab_bridge import load_solps_from_PESDT
 #from PESDT.cherab_bridge import molecules
 

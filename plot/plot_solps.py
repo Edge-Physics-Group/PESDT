@@ -11,8 +11,8 @@ import matplotlib.pyplot as plt
 from matplotlib.collections import PatchCollection
 from matplotlib import patches, ticker, colors
 from collections import OrderedDict
-from PESDT import process
-from PESDT.atomic import get_ADAS_dict
+from core import process
+from core import get_ADAS_dict
 # from pyproc.process import ProcessEdgeSim
 
 from scipy.constants import Planck, speed_of_light

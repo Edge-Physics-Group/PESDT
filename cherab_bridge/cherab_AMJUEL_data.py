@@ -4,8 +4,8 @@ import numpy as np
 
 from cherab.core.atomic import AtomicData
 from cherab.PESDT_addon.RateFunctions import RateFunction, NullRateFunction
-from amread import photon_rate_coeffs
-from amread import wavelength as wl
+from core import photon_rate_coeffs
+from core import wavelength as wl
 
 
 class AMJUEL_Data(AtomicData):

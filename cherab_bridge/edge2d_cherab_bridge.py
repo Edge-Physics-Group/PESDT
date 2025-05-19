@@ -2,7 +2,7 @@
 import numpy as np
 from raysect.core.math.function.float.function2d.interpolate import Discrete2DMesh
 from cherab.PESDT_addon import Edge2DMesh, Edge2DSimulation
-from PESDT.amread import read_amjuel_1d,read_amjuel_2d,reactions, calc_cross_sections, calc_photon_rate
+from core import read_amjuel_1d,read_amjuel_2d,reactions, calc_cross_sections, calc_photon_rate
 
 def load_edge2d_from_PESDT(PESDT, convert_denel_to_m3 = True, load_mol_data = False, recalc_h2_pos = True ):
     '''
