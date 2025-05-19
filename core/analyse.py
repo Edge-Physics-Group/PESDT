@@ -2,16 +2,14 @@
 import numpy as np
 # import scipy.io as io
 import os, errno
-import json, pickle
+import json
 # http://lmfit.github.io/lmfit-py/parameters.html
 from lmfit import minimize, Parameters, fit_report
-import os
-import sys
-import contextlib
 
-from PESDT.process import ProcessEdgeSim
-from PESDT.pyADASread import adas_adf11_read, adas_adf15_read, continuo_read
-from PESDT.atomic import get_ADAS_dict
+
+from process import ProcessEdgeSim
+from pyADASread import adas_adf11_read, adas_adf15_read, continuo_read
+from utils import get_ADAS_dict
 
 class AnalyseSynthDiag(ProcessEdgeSim):
     """

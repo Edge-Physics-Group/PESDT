@@ -4,9 +4,9 @@ import numpy as np
 import json, os, sys
 import pickle
 
-from PESDT.cherab_bridge.cherab_plasma import CherabPlasma
-from PESDT.atomic import get_ADAS_dict
-from PESDT.analyse import AnalyseSynthDiag
+from cherab_bridge.cherab_plasma import CherabPlasma
+from core import get_ADAS_dict
+from core import AnalyseSynthDiag
 '''
 Old run script to run cherab separately
 

@@ -28,8 +28,7 @@ from shapely.geometry import Polygon, LineString
 from collections import namedtuple
 
 #from .. import process
-from PESDT import process
-
+import process
 
 
 SIM_INFO_DATA = 0

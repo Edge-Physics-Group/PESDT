@@ -1,14 +1,10 @@
 
-import matplotlib.pyplot as plt
 from matplotlib import patches
 import numpy as np
-import sys
-import pickle
 import struct
 
-from shapely.geometry import Polygon, LineString
+from shapely.geometry import Polygon
 
-from .. import process
 
 import eproc as ep
 
@@ -164,17 +160,6 @@ class Edge2D():
         self.di_OMP = self.get_eproc_param("EprocRow", 'DI', 'OMP', args = 'ALL_POINTS=0')
         self.psi_OMP = self.get_eproc_param("EprocRow", 'PSI', 'OMP', args = 'ALL_POINTS=0')
 
-        # GET INNER AND OUTER QPARTOT AT Z=-1.2
-        # FOR 81472 GEOM THIS CORRESPONDS TO ROWS 66 (IN) AND 26 (OUT)
-        # TODO: GENERALIZE TO OTHER GEOMETRIES
-        self.qpartot_HFS = self.get_eproc_param("EprocRow", 'QPARTOT', 66, args = 'ALL_POINTS=0')
-        self.qpartot_LFS = self.get_eproc_param("EprocRow", 'QPARTOT', 26, args = 'ALL_POINTS=0')
-        self.bpol_btot_HFS = self.get_eproc_param("EprocRow", 'SH', 66, args = 'ALL_POINTS=0')
-        self.bpol_btot_LFS = self.get_eproc_param("EprocRow", 'SH', 26, args = 'ALL_POINTS=0')
-        self.qpartot_HFS_rmesh = self.get_eproc_param("EprocRow", 'RMESH', 66, args = 'ALL_POINTS=0')
-        self.qpartot_LFS_rmesh = self.get_eproc_param("EprocRow", 'RMESH', 26, args = 'ALL_POINTS=0')
-        self.qpartot_HFS_zmesh = self.get_eproc_param("EprocRow", 'ZMESH', 66, args = 'ALL_POINTS=0')
-        self.qpartot_LFS_zmesh = self.get_eproc_param("EprocRow", 'ZMESH', 26, args = 'ALL_POINTS=0')
         # GET POWER CROSSING THE SEPARATRIX
         self.powsol = self.get_eproc_param("EprocDataRead", 'POWSOL')
 
