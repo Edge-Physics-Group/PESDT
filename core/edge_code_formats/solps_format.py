@@ -27,8 +27,7 @@ from shapely.geometry import Polygon, LineString
 # External imports
 from collections import namedtuple
 
-#from .. import process
-import process
+from cell import Cell
 
 
 SIM_INFO_DATA = 0
@@ -215,8 +214,6 @@ class SOLPSMesh:
         # for i in range(vessel.shape[0]):
         #     plt.plot([vessel[i, 0], vessel[i, 2]], [vessel[i, 1], vessel[i, 3]], 'or')
 
-
-
 class SOLPS():
 
     def __init__(self, sim_path, read_fluid_side=True, read_eirene_side=False):
@@ -286,12 +283,11 @@ class SOLPS():
                 self.geom['zpx'] = -1.449
                 self.zch = {}
                                         
-                self.tri_cells.append(process.Cell(shply_poly.centroid.x, shply_poly.centroid.y,
+                self.tri_cells.append(Cell(shply_poly.centroid.x, shply_poly.centroid.y,
                                            row=_idx_grid_map[0], ring=_idx_grid_map[1],                                       
-                                           poly=shply_poly, te=_te,
+                                           poly=shply_poly, te=_te, ti = _ti,
                                            ne=_ne, ni=_ni,
-                                           n0=_n0, n2=_n2, n2p=_n2p, Srec=0, Sion=0,
-                                           imp1_den = _imp1_den, imp2_den=None))
+                                           n0=_n0, n2=_n2, n2p=_n2p, Srec=0, Sion=0))
     
             # Deubgging
 #            fig, ax = plt.subplots()

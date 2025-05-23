@@ -1,10 +1,13 @@
 import numpy as np
 from collections import OrderedDict
-from PESDT.plot_old import Plot
+from plot import Plot
 import struct
 
-from PESDT.pyADASutils.source_sink_utils import calc_Siz_synth, calc_Srec_synth, calc_Siz_exp, calc_Srec_exp
-
+try:
+    from pyADASutils import calc_Siz_synth, calc_Srec_synth, calc_Siz_exp, calc_Srec_exp
+except ImportError:
+    print("pyADASutils not available, some PESDT utility functions cannot be used. Look for utils.py for reference")
+    
 def find_nearest(array, value):
     idx = (np.abs(array - value)).argmin()
     return idx, array[idx]
@@ -12,6 +15,7 @@ def find_nearest(array, value):
 def floatToBits(f):
     s = struct.pack('>f', f)
     return struct.unpack('>l', s)[0]
+
 
 def gaussian(cwl, wv, area, fwhm):
     sigma = fwhm / (2. * np.sqrt(2 * np.log(2.)) )
@@ -578,8 +582,4 @@ def get_lfs_adf11_Sion_Srec(workdir, cases, cherab_bridge=False, get_opt_thin_re
     return Sion_adf11_H21, Sion_adf11_H32, Srec_adf11_H72, return_items
 
 if __name__ == "__main__":
-
-    workdir = '/work/bloman/pyproc/'
-    case = {}
-    case['case'] = 'bloman_cmg_catalog_edge2d_jet_81472_mar1920_seq#4'
-    get_var_by_ring(workdir, case, nSOLrings=5)
+    print("This is a script file, which contains utility functions for PESDT")

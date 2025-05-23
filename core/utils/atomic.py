@@ -4,7 +4,7 @@ import os
 import sys
 import contextlib
 
-from PESDT.pyADASread import adas_adf11_read, adas_adf15_read
+from pyADASread import adas_adf11_read, adas_adf15_read
 
 
 @contextlib.contextmanager

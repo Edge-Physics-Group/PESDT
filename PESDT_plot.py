@@ -1,5 +1,5 @@
 # Import external modules
-from PESDT.plot import Plot
+from plot import Plot
 import matplotlib
 # matplotlib.use('TKAgg', force=True)
 import matplotlib.pyplot as plt
@@ -7,7 +7,7 @@ import numpy as np
 import json
 import scipy.io as io
 # from pyJETPPF.JETPPF import JETPPF
-from PESDT.analyse import AnalyseSynthDiag
+from core import AnalyseSynthDiag
 from collections import OrderedDict
 
 font = {'family': 'normal',

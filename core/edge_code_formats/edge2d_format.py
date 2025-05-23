@@ -1,65 +1,16 @@
 
 from matplotlib import patches
 import numpy as np
-import struct
-
 from shapely.geometry import Polygon
-
-
+# Only available on the JET data cluster
 import eproc as ep
 
+from utils import floatToBits
+from cell import Cell
 # Duplicate from process.py
 # Unsure whether using this is necessary, Henri used it in his
 # "fixed" version of pyproc, so I'm using it here
-def floatToBits(f):
-    s = struct.pack('>f', f)
-    return struct.unpack('>l', s)[0]
-    
-class Cell:
 
-    def __init__(self, R=None, Z=None, row=None, ring=None,
-                 poly=None, te=None, ti=None, ne=None, ni=None, n0=None,  n2 = None, n2p = None,
-                 Srec=None, Sion=None, imp1_den=None, imp2_den=None, imp2_charge=None):
-
-        self.R = R # m
-        self.Z = Z # m
-        self.row = row
-        self.ring = ring
-        self.poly = poly
-        self.te = te # eV
-        self.ti = ti # eV
-        self.ni = ni # m^-3
-        self.ne = ne # m^-3
-        self.n0 = n0 # m^-3
-        self.n2 = n2
-        self.n2p = n2p
-        self.imp1_den = imp1_den # m^-3
-        self.imp2_den = imp2_den # m^-3
-        self.imp2_charge = imp2_charge
-        self.imp1_radpwr = []
-        self.imp1_radpwr_perm3 = [] # W m^-3
-        self.imp1_radpwr_coeff = [] # W m^3
-        self.imp2_radpwr = []
-        self.imp2_radpwr_perm3 = [] # W m^-3
-        self.imp2_radpwr_coeff = []  # W m^3
-        self.H_emiss = {}
-        self.ff_fb_filtered_emiss = None
-        self.ff_radpwr = None
-        self.ff_radpwr_perm3 = None
-        self.ff_fb_radpwr = None
-        self.ff_fb_radpwr_perm3 = None
-        self.H_radpwr = None
-        self.H_radpwr_perm3 = None  # W m^-3
-        self.H_radpwr_Lytrap = None
-        self.H_radpwr_Lytrap_perm3 = None  # W m^-3
-        self.imp_emiss = {}
-        self.Srec = Srec # m^-3 s^-1
-        self.Sion = Sion # m^-3 s^-1
-
-        # LOS ORTHOGONAL POLYGON PROPERTIES
-        self.dist_to_los_v1 = None
-        self.los_ortho_width = None
-        self.los_ortho_delL = None
 
 class Edge2D():
     '''
@@ -81,15 +32,11 @@ class Edge2D():
 
     '''
 
-    def __init__(self, tranfile, read_fluid_side=True, read_eirene_side=False):
+    def __init__(self, tranfile):
         self.tranfile = tranfile
         
         self.quad_cells = [] # EDGE2D mesh uses quadralaterals
-        self.tri_cells = [] # EIRENE mesh uses triangles
-        self.edge2d_dict = {} # Dictionary for storing interesting output other than cell-wise plasma parameters
-
-        if read_fluid_side:
-            self.read_edge2d_fluid_side_data_using_eproc()
+        self.read_edge2d_fluid_side_data_using_eproc()
 
     def read_edge2d_fluid_side_data_using_eproc(self):
         '''
@@ -201,12 +148,13 @@ class Edge2D():
                     stridx = str(i+1)
                     _imp1_chrg_idx.append(stridx)
                 _imp1_denz.append(self.get_eproc_param("EprocDataRead", 'DENZ'+stridx))
+
             if self.zch['data'][1] > 0.0:
                 self.imp2_atom_num = self.zch['data'][1]
                 self.imp2_bundle_num = self.nz['data'][1]
                 # First append neutral density, then each charge state density
                 _imp2_denz.append(self.get_eproc_param_temp("EprocDataRead", 'DZ_2'))
-                self.imp2_chargez.append({'data':[0]*_x[0]})
+                self.imp2_chargez.append({'data':[0]*[0]})
                 for i in range(self.nz['data'][1]):
                     if i + self.zch['data'][0] < 9:
                         stridx = '0' + str(i + 1 + self.zch['data'][0])
@@ -219,6 +167,8 @@ class Edge2D():
         else:
             # If no impurities found reset
             self.zch = None
+
+        
         rtmp = self.get_eproc_param("EprocRing", 'RMESH', 'S01', args = 'parallel=1')
         ztmp = self.get_eproc_param("EprocRing", 'ZMESH', 'S01', args = 'parallel=1')
         rtmp1 = self.get_eproc_param("EprocDataRead", 'RVESM1')
@@ -287,8 +237,7 @@ class Edge2D():
                                        row=self.row[k], ring=self.ring[k],
                                        poly=shply_poly, te=self.te[k],
                                        ne=self.ne[k], ni=self.ni[k],
-                                       n0=self.n0[k], n2 = self.n2[k], n2p = self.n2p[k], Srec=self.srec[k], Sion=self.sion[k],
-                                       imp1_den = self.imp1_den[:,k], imp2_den=self.imp2_den[:,k], imp2_charge=self.imp2_charge[:,k]))
+                                       n0=self.n0[k], n2 = self.n2[k], n2p = self.n2p[k], Srec=self.srec[k], Sion=self.sion[k]))
                 k+=1
 
         ##############################################

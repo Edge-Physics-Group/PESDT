@@ -21,7 +21,7 @@ from cherab_bridge.cherab_plasma import CherabPlasma
     
 class ProcessEdgeSim:
     '''
-    Class to read and store EDGE2D-EIRENE results
+    Class to read and store background plasma results from supported edge codes
 
     First all properties to be loaded are initialized as "None"
     Currently the code is very edge2d spesific, i.e. reading SOLPS does not actually work
@@ -353,7 +353,7 @@ class ProcessEdgeSim:
     def __setstate__(self, dict):
         # TODO: Read external ADAS_dict object and add to dict for unpickling
         self.__dict__.update(dict)
-
+    '''
     def interp_outlier_cells(self):
         """
             Replace outlier cell plasma properties with interpolated values from nearest specified neighbours.
@@ -393,7 +393,7 @@ class ProcessEdgeSim:
                     cell.Te = interp_nearest_neighb([R,Z], neighbs_RZ, neighb_Te)
                     cell.Ti = interp_nearest_neighb([R,Z], neighbs_RZ, neighb_Ti)
                 break
-    
+    '''
 
     def save_synth_diag_data(self, savefile=None):
         # output = open(savefile, 'wb')

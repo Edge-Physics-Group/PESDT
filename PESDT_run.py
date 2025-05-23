@@ -1,4 +1,4 @@
-from PESDT.analyse import AnalyseSynthDiag
+from core import AnalyseSynthDiag
 import json, os, sys
 import argparse
 
