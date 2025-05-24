@@ -1,6 +1,8 @@
 from core import AnalyseSynthDiag
 import json, os, sys
 import argparse
+import logging
+logger = logging.getLogger(__name__)
 
 def run_PESDT(input_dict_str):
 
@@ -20,6 +22,9 @@ def run_PESDT(input_dict_str):
     AnalyseSynthDiag(input_dict)
 
 if __name__=='__main__':
+    logging.basicConfig(filename='PESDT.log', level=logging.INFO)
+    logger.info('PESDT started')
+    
 
     # Parse the input arguments
     parser = argparse.ArgumentParser(description='Run PESDT')
@@ -30,7 +35,10 @@ if __name__=='__main__':
     input_dict_file = args.input_dict
 
     if os.path.isfile(input_dict_file):
-        print('Found input dictionary: ', input_dict_file)
+        logger.info('Found input dictionary: ', input_dict_file)
         run_PESDT(input_dict_file)
     else:
+        logger.info(input_dict_file + ' not found')
         sys.exit(input_dict_file + ' not found')
+
+    logger.info('Finished')

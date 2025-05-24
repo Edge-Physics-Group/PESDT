@@ -27,9 +27,6 @@ class Edge2D():
     get_eproc_param:
     a function which implements Python eproc for reading row, rings or single points
     from the tran file
-    
-    TODO: implement read_eirene_side function for reading the EIRENE output
-
     '''
 
     def __init__(self, tranfile):

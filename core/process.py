@@ -14,8 +14,7 @@ from utils.amread import calc_photon_rate
 
 from core.utils.machine_defs import get_DIIIDdefs, get_JETdefs
 from pyADASread import adas_adf11_read, adas_adf15_read, continuo_read
-from edge_code_formats.edge2d_format import Edge2D, Cell
-from edge_code_formats.solps_format import SOLPS
+from edge_code_formats import BackgroundPlasma, Cell
 from cherab_bridge.cherab_plasma import CherabPlasma
 
     
@@ -47,120 +46,26 @@ class ProcessEdgeSim:
         self.input_dict = input_dict
         self.regions = {}
 
-        self.cells = None
-        # cells dataframe for easy filtering by edge_codes row/ring
-        self.cells_df = None
-
-        #Flags
-
-        self.geom = None
-        self.teve = None
-        self.den = None
-        self.denel = None
-        self.da = None
-        self.korpg = None
-        self.rmesh = None
-        self.rvertp = None
-        self.zmesh = None
-        self.zvertp = None
-        self.NE2Ddata = None
-        self.patches = None
-        self.H_adf11 = None
-
-        self.sep_poly = None
-        self.shply_sep_poly = None
-        self.sep_poly_below_xpt = None
-        self.shply_sep_poly_below_xpt = None
-
-        self.wall_poly = None
-        self.shply_wall_poly = None
-
-        self.rv = None
-        self.zv = None
-
-        # variables mapped onto edge_codes grid
-        self.te = None
-        self.ne = None
-        self.ni = None
-        self.n0 = None
-        self.n2 = None
-        self.n2p = None
-
-        # dictionary of outlier cells and their specified neighbours for interpolation
-        self.outlier_cell_dict = outlier_cell_dict
         # Dictionary for storing synthetic diagnostic objects
         self.synth_diag = {}
         
-        # New (04-Mar-2021) way of reading edge code data
-        if self.edge_code == 'edge2d':
-            data = Edge2D(self.sim_path)
-            #self.cells = self.data.quad_cells
-            # For compatability reasons, copy everything over manually.
-            # If we want to continue to use separate "<sol_code>_format.py" files
-            # to read results, the best way moving forward would be to just use self.data.
-            # This, however, would require changes to multiple places in the code, which 
-            # I don't have the time for right now. - V.-P Rikala
-            self.geom = data.geom
-            self.teve = data.teve
-            self.den = data.den
-            self.denel = data.denel
-            self.da = data.da
-            self.korpg = data.korpg
-            self.rmesh = data.rmesh
-            self.rvertp = data.rvertp
-            self.zmesh = data.zmesh
-            self.zvertp = data.zvertp
-            self.NE2Ddata = data.NE2Ddata
-            self.patches = data.patches
-            #self.H_adf11 = self.data.H_adf11
+        if self.machine == 'JET':
+            self.defs = get_JETdefs(pulse_ref=self.pulse)
+        elif self.machine == 'DIIID':
+            self.defs = get_DIIIDdefs()
+        else:
+            raise Exception("Unsupported machine. Currently supported machines are JET and DIIID")
 
-            self.sep_poly = data.sep_poly
-            self.shply_sep_poly = data.shply_sep_poly
-            self.sep_poly_below_xpt = data.sep_poly_below_xpt
-            self.shply_sep_poly_below_xpt = data.shply_sep_poly_below_xpt
+        # variables mapped onto edge_codes grid
+        self.data = BackgroundPlasma(self.edge_code, self.sim_path)
+        self.te = self.data.te
+        self.ne = self.data.ne
+        self.ni = self.data.ni
+        self.n0 = self.data.n0
+        self.n2 = self.data.n2
+        self.n2p = self.data.n2p
 
-            self.wall_poly = data.wall_poly
-            self.shply_wall_poly = data.shply_wall_poly
-
-            self.rv = data.rv
-            self.zv = data.zv
-            
-            self.osp = data.osp
-            self.isp = data.isp
-
-            # variables mapped onto edge_codes grid
-            self.te = data.te
-            self.ne = data.ne
-            self.ni = data.ni
-            self.n0 = data.n0
-            self.n2 = data.n2
-            self.n2p = data.n2p
-
-            self.cells = data.cells
-
-            self.data = data      
-        elif self.edge_code == 'solps':
-            self.data = SOLPS(self.sim_path)
-            self.cells = self.data.tri_cells     
-
-            self.ne = []
-            self.n0 = []
-            self.n2 = []
-            self.n2p = []
-            self.ni = []
-            self.te = []
-            for cell in self.cells:
-                self.ne.append(cell.ne)   
-                self.n0.append(cell.n0)
-                self.n2.append(cell.n2)
-                self.n2p.append(cell.n2p)
-                self.ni.append(cell.ni)   
-                self.te.append(max(cell.te,0.1))       
-        
-        # Interpolate any outlier cells using specified neighbours R,Z coords. Interpolated cell's plasma properties
-        # are averages of its neighbours weighted by the distance between centroids.
-        # self.interp_outlier_cells()
-
+        self.cells = self.data.cells   
 
         # TODO: Add opacity calcs
         if run_cherab:

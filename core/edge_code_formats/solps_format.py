@@ -22,10 +22,7 @@ from matplotlib.collections import PatchCollection
 import numpy as np
 import sys, os
 
-from shapely.geometry import Polygon, LineString
-
-# External imports
-from collections import namedtuple
+from shapely.geometry import Polygon
 
 from cell import Cell
 
@@ -233,83 +230,76 @@ class SOLPS():
         self.imp2_atom_num = None
         
         _patches = [] 
-
-        if read_fluid_side:
-            self.load_solps_from_raw_output(debug=True)
+        
+        self.load_solps_from_raw_output(debug=True)
             
             # Tri centroids
-            for i, tri in enumerate(self.mesh.triangles):
-                _vert_idx = [tri[0], tri[1], tri[2], tri[0]]
-                _vert = self.mesh.vertex_coords[_vert_idx]
-                poly = patches.Polygon([(_vert[0]), (_vert[1]), (_vert[2]), (_vert[3])], closed=True)
-                _patches.append(poly)
-                # create Cell object for each polygon containing the relevant field data
-                shply_poly = Polygon(poly.get_xy())
-                
-                self.tri_poly.append(Polygon(poly.get_xy()))
-                
-                _idx_grid_map = self.mesh.triangle_to_grid_map[i]
-                
-                # eV and m^-3 units
-                
-                _te = self.mesh_data_dict['te'][_idx_grid_map[0], _idx_grid_map[1]]/Q
-                _ti = self.mesh_data_dict['ti'][_idx_grid_map[0], _idx_grid_map[1]]/Q     
-                _ne = self.mesh_data_dict['ne'][_idx_grid_map[0], _idx_grid_map[1]]       
+        for i, tri in enumerate(self.mesh.triangles):
+            _vert_idx = [tri[0], tri[1], tri[2], tri[0]]
+            _vert = self.mesh.vertex_coords[_vert_idx]
+            poly = patches.Polygon([(_vert[0]), (_vert[1]), (_vert[2]), (_vert[3])], closed=True)
+            _patches.append(poly)
+            # create Cell object for each polygon containing the relevant field data
+            shply_poly = Polygon(poly.get_xy())
             
-                # Plasma species (fuel + impurity)
-                # TODO: Generalize to multi-species - also needs mods on PESDT process side, 
-                # which is edge2d-centric with the legacy imp1 and imp2 structure
-                # Neutral species densities must be read from fort.44 file, dab2. This is the 
-                # EIRENE output on the B2 quad mesh. fort.46 pdena holds the same info on the tri
-                # EIRENE mesh.
+            self.tri_poly.append(Polygon(poly.get_xy()))
+            
+            _idx_grid_map = self.mesh.triangle_to_grid_map[i]
+            
+            # eV and m^-3 units
+            
+            _te = self.mesh_data_dict['te'][_idx_grid_map[0], _idx_grid_map[1]]/Q
+            _ti = self.mesh_data_dict['ti'][_idx_grid_map[0], _idx_grid_map[1]]/Q     
+            _ne = self.mesh_data_dict['ne'][_idx_grid_map[0], _idx_grid_map[1]]       
+        
+            # Plasma species (fuel + impurity)
+            # TODO: Generalize to multi-species - also needs mods on PESDT process side, 
+            # which is edge2d-centric with the legacy imp1 and imp2 structure
+            # Neutral species densities must be read from fort.44 file, dab2. This is the 
+            # EIRENE output on the B2 quad mesh. fort.46 pdena holds the same info on the tri
+            # EIRENE mesh.
 #                _n0 = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 0] # fluid neutral den  
-                _n0 = self.fort44_data_dict['dab2'][_idx_grid_map[0], _idx_grid_map[1]] # kinetic atom den  
-                _n2 = self.fort44_data_dict['dmb2'][_idx_grid_map[0], _idx_grid_map[1]] # kinetic mol. den 
-                _n2p = self.fort44_data_dict['dib2'][_idx_grid_map[0], _idx_grid_map[1]] # kinetic mol. ion den
-                _ni = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 1] # fuel ion den      
-                _imp1_den = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 2:] # impurity den by ion stage
-                self.imp1_atom_num = None
-                
+            _n0 = self.fort44_data_dict['dab2'][_idx_grid_map[0], _idx_grid_map[1]] # kinetic atom den  
+            _n2 = self.fort44_data_dict['dmb2'][_idx_grid_map[0], _idx_grid_map[1]] # kinetic mol. den 
+            _n2p = self.fort44_data_dict['dib2'][_idx_grid_map[0], _idx_grid_map[1]] # kinetic mol. ion den
+            _ni = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 1] # fuel ion den      
+            _imp1_den = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 2:] # impurity den by ion stage
+            self.imp1_atom_num = None
+            
 #                for i in range(len(sim_info_dict['zn'])):
 #                    zn = int(sim_info_dict['zn'][i])  # Nuclear charge
 #                    am = float(sim_info_dict['am'][i])  # Atomic mass
 #                    charge = int(sim_info_dict['zamax'][i])  # Ionisation/charge
 #                    species = _popular_species[(zn, am)]
 #                    sim.species_list.append(species.symbol + str(charge))
-                
-                
-                # TODO: read-in equlibirium and populate x-pt, osp, isp, wall_poly, sep_poly
-                self.geom['rpx'] = 2.563
-                self.geom['zpx'] = -1.449
-                self.zch = {}
-                                        
-                self.tri_cells.append(Cell(shply_poly.centroid.x, shply_poly.centroid.y,
-                                           row=_idx_grid_map[0], ring=_idx_grid_map[1],                                       
-                                           poly=shply_poly, te=_te, ti = _ti,
-                                           ne=_ne, ni=_ni,
-                                           n0=_n0, n2=_n2, n2p=_n2p, Srec=0, Sion=0))
-    
-            # Deubgging
-#            fig, ax = plt.subplots()
-#            __patches = []
-#            __te = []
-#            __ne = []
-#            __imp2den = []
-#            for cell in self.tri_cells:
-#                if cell.ring >= 19: # first SOL ring
-##                if cell.ring != -1: # first SOL ring
-#                    __te.append(cell.te)
-#                    __ne.append(cell.ne)
-#                    __imp2den.append(cell.imp2_den)
-#                    __patches.append(patches.Polygon(cell.poly.exterior.coords, closed=True))
-#            __imp2den = np.asarray(__imp2den)
-#            p = PatchCollection(__patches, edgecolors='grey')
-#            colors = plt.cm.hot(__ne/np.max(__ne))
-#            colors = plt.cm.hot(__imp2den[:,4]/np.max(__imp2den[:,4]))
-#            p.set_color(colors)
-#            ax.add_collection(p)
-#            ax.axis('equal')
-        
+            
+            
+            # TODO: read-in equlibirium and populate x-pt, osp, isp, wall_poly, sep_poly
+            self.geom['rpx'] = 2.563
+            self.geom['zpx'] = -1.449
+            self.zch = {}
+                                    
+            self.tri_cells.append(Cell(shply_poly.centroid.x, shply_poly.centroid.y,
+                                        row=_idx_grid_map[0], ring=_idx_grid_map[1],                                       
+                                        poly=shply_poly, te=_te, ti = _ti,
+                                        ne=_ne, ni=_ni,
+                                        n0=_n0, n2=_n2, n2p=_n2p, Srec=0, Sion=0))
+
+        # Conform to PESDT data format 
+        self.cells = self.tri_cells
+        self.ne = []
+        self.n0 = []
+        self.n2 = []
+        self.n2p = []
+        self.ni = []
+        self.te = []
+        for cell in self.cells:
+            self.ne.append(cell.ne)   
+            self.n0.append(cell.n0)
+            self.n2.append(cell.n2)
+            self.n2p.append(cell.n2p)
+            self.ni.append(cell.ni)   
+            self.te.append(max(cell.te,0.1))  
         
             print()
             
