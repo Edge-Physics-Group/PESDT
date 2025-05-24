@@ -2,11 +2,13 @@ import numpy as np
 from collections import OrderedDict
 from plot import Plot
 import struct
+import logging
+logger = logging.getLogger(__name__)
 
 try:
     from pyADASutils import calc_Siz_synth, calc_Srec_synth, calc_Siz_exp, calc_Srec_exp
 except ImportError:
-    print("pyADASutils not available, some PESDT utility functions cannot be used. Look for utils.py for reference")
+    logger.info("pyADASutils not available, some PESDT utility functions cannot be used. Look for utils.py for reference")
     
 def find_nearest(array, value):
     idx = (np.abs(array - value)).argmin()

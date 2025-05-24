@@ -35,6 +35,8 @@ Q = 1.602E-19
 
 
 INFINITY = 1E99
+import logging
+logger = logging.getLogger(__name__)
 
 
 class SOLPSMesh:
@@ -301,7 +303,7 @@ class SOLPS():
             self.ni.append(cell.ni)   
             self.te.append(max(cell.te,0.1))  
         
-            print()
+            
             
     # Code based on script by Felix Reimold (2016)
     def load_solps_from_raw_output(self, debug=False):
@@ -318,6 +320,7 @@ class SOLPS():
         """
     
         if not os.path.isdir(self.sim_path):
+            logger.info("simulation_path must be a valid directory")
             RuntimeError("simulation_path must be a valid directory")
     
         mesh_file_path = os.path.join(self.sim_path, 'b2fgmtry')
@@ -325,12 +328,15 @@ class SOLPS():
         eirene_fort44_file = os.path.join(self.sim_path, "fort.44")
     
         if not os.path.isfile(mesh_file_path):
+            logger.info("No B2 b2fgmtry file found in SOLPS output directory")
             raise RuntimeError("No B2 b2fgmtry file found in SOLPS output directory")
     
         if not(os.path.isfile(b2_state_file)):
+            logger.info("No B2 b2fstate file found in SOLPS output directory")
             RuntimeError("No B2 b2fstate file found in SOLPS output directory")
     
         if not(os.path.isfile(eirene_fort44_file)):
+            logger.info("No EIRENE fort.44 file found in SOLPS output directory")
             RuntimeError("No EIRENE fort.44 file found in SOLPS output directory")
     
         # Load SOLPS mesh geometry
@@ -363,21 +369,21 @@ class SOLPS():
             if number > nxyg:
                 _data = np.array(_data).reshape((nxg, nyg, int(number / nxyg)), order='F')
                 if debug:
-                    print('Mesh data field {} with dimensions:  {:d} x {:d} x {:d}'.format(name, nxg, nyg, int(number/nxyg)))
+                    logger.info('Mesh data field {} with dimensions:  {:d} x {:d} x {:d}'.format(name, nxg, nyg, int(number/nxyg)))
                 return MESH_DATA, _data
     
             # 2D data field (e.g. ne)
             elif number == nxyg:
                 _data = np.array(_data).reshape((nxg, nyg), order='F')
                 if debug:
-                    print('Mesh data field {} with dimensions:  {:d} x {:d}'.format(name, nxg, nyg))
+                    logger.info('Mesh data field {} with dimensions:  {:d} x {:d}'.format(name, nxg, nyg))
                 return MESH_DATA, _data
     
             # Additional information field (e.g. zamin)
             else:
                 _data = np.array(_data)
                 if debug:
-                    print('Sim info field {} with length:     {} '.format(name, _data.shape[0]))
+                    logger.info('Sim info field {} with length:     {} '.format(name, _data.shape[0]))
                 return SIM_INFO_DATA, _data
     
         if not(os.path.isfile(filepath)):
@@ -482,21 +488,21 @@ class SOLPS():
             if number > nxyg:
                 _data = np.array(_data).reshape((nxg, nyg, int(number / nxyg)), order='F')
                 if debug:
-                    print('Mesh data field {} with dimensions:  {:d} x {:d} x {:d}'.format(name, nxg, nyg, int(number/nxyg)))
+                    logger.info('Mesh data field {} with dimensions:  {:d} x {:d} x {:d}'.format(name, nxg, nyg, int(number/nxyg)))
                 return MESH_DATA, _data
     
             # 2D data field (e.g. ne)
             elif number == nxyg:
                 _data = np.array(_data).reshape((nxg, nyg), order='F')
                 if debug:
-                    print('Mesh data field {} with dimensions:  {:d} x {:d}'.format(name, nxg, nyg))
+                    logger.info('Mesh data field {} with dimensions:  {:d} x {:d}'.format(name, nxg, nyg))
                 return MESH_DATA, _data
     
             # Additional information field (e.g. zamin)
             else:
                 _data = np.array(_data)
                 if debug:
-                    print('Sim info field {} with length:     {} '.format(name, _data.shape[0]))
+                    logger.info('Sim info field {} with length:     {} '.format(name, _data.shape[0]))
                 return SIM_INFO_DATA, _data
     
         if not(os.path.isfile(filepath)):

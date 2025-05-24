@@ -14,6 +14,9 @@ grid:
 from edge2d_format import Edge2D
 from solps_format import SOLPS
 
+import logging
+logger = logging.getLogger(__name__)
+
 class BackgroundPlasma():
 
     def __init__(self, edge_code, sim_path):
@@ -35,8 +38,9 @@ class BackgroundPlasma():
             TODO
             '''
         else:
+            logger.info("Edge code not supported")
             raise Exception("Edge code not supported")
-        
+        logger.info("   Data loaded")
         
             
 

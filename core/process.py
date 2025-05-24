@@ -17,6 +17,8 @@ from pyADASread import adas_adf11_read, adas_adf15_read, continuo_read
 from edge_code_formats import BackgroundPlasma, Cell
 from cherab_bridge.cherab_plasma import CherabPlasma
 
+import logging
+logger = logging.getLogger(__name__)
     
 class ProcessEdgeSim:
     '''
@@ -57,6 +59,7 @@ class ProcessEdgeSim:
             raise Exception("Unsupported machine. Currently supported machines are JET and DIIID")
 
         # variables mapped onto edge_codes grid
+        logger.info(f"Loading {self.edge_code} BG plasma from {self.sim_path}.")
         self.data = BackgroundPlasma(self.edge_code, self.sim_path)
         self.te = self.data.te
         self.ne = self.data.ne
@@ -67,18 +70,20 @@ class ProcessEdgeSim:
 
         self.cells = self.data.cells   
 
+        logger.info("Emission evaluation")
         # TODO: Add opacity calcs
         if run_cherab:
+            logger.info("   Calculate emission via Cherab")
             # Currently the run cherab function uses the synth_diag to get the instrument and LOS details, so that needs to be generated
             self.run_cherab_bridge()
         else:
-            
+            logger.info("   Calcualte emission via cone integration")
             self.calc_H_emiss()
             self.calc_H_rad_power()
             self.calc_ff_fb_emiss()
 
             if diag_list:
-                print('diag_list', diag_list)
+                logger.info('       diag_list', diag_list)
                 for key in diag_list:
                     if key in self.defs.diag_dict.keys():
                         self.synth_diag[key] = SynthDiag(self.defs, diag=key,
@@ -99,7 +104,7 @@ class ProcessEdgeSim:
                                     chord.calc_int_and_1d_los_quantities_AMJUEL_2()
                                 else:
                                     chord.calc_int_and_1d_los_quantities_2()
-                                print('Calculating synthetic spectra for diag: ', key)
+                                logger.info('       Calculating synthetic spectra for diag: ', key)
                                 chord.calc_int_and_1d_los_synth_spectra()
 
             if save_synth_diag:
@@ -152,7 +157,7 @@ class ProcessEdgeSim:
 
                 self.outdict[diag_key][str(diag_chord)]['los_int'] = {'H_emiss': {}}
 
-                print(diag_key, los_p2)
+                logger.info(diag_key, los_p2)
                 for H_line_key, val in H_lines.items():
                 
                     transition = (int(val[0]), int(val[1]))
@@ -328,7 +333,7 @@ class ProcessEdgeSim:
         with open (savefile, mode='w', encoding='utf-8') as f:
             json.dump(outdict, f, indent=2)
 
-        print('Saving synthetic diagnostic data to:', savefile)
+        logger.info('Saving synthetic diagnostic data to:', savefile)
 
         # pickle.dump(outdict, output)
         #
@@ -345,9 +350,9 @@ class ProcessEdgeSim:
         TODO: addability to define path to AMJUEL.tex. Currently assume that the file is located in the home dir.
 
         '''
-        print('Calculating H emission...')
+        logger.info('Calculating H emission...')
         if self.use_AMJUEL:
-            print('Using AMJUEL data')
+            logger.info('Using AMJUEL data')
             debug = True
             h3 = False
             if self.AMJUEL_date >= 2017:
@@ -359,14 +364,14 @@ class ProcessEdgeSim:
                     "units": 'ph.s^-1.m^-3.sr^-1'}
                                       
         else: 
-            print("Using Adas")
+            logger.info("Using Adas")
             for cell in self.cells:
                 for line_key in self.spec_line_dict['1']['1']:
                     E_excit, E_recom= adas_adf15_read.get_H_line_emiss(line_key, self.ADAS_dict['adf15']['1']['1'], cell.te, cell.ne*1.0E-06, cell.ni*1.0E-06, cell.n0*1.0E-06)
                     cell.H_emiss[line_key] = {'excit':E_excit, 'recom':E_recom, 'units':'ph.s^-1.m^-3.sr^-1'}
 
         if self.spec_line_dict_lytrap:
-            print('Calculating H emission for Ly trapping...')
+            logger.info('Calculating H emission for Ly trapping...')
             for cell in self.cells:
                 for line_key in self.spec_line_dict_lytrap['1']['1']:
                     E_excit, E_recom= adas_adf15_read.get_H_line_emiss(line_key, self.ADAS_dict_lytrap['adf15']['1']['1'], cell.te, cell.ne*1.0E-06, cell.ni*1.0E-06, cell.n0*1.0E-06)
@@ -378,7 +383,7 @@ class ProcessEdgeSim:
 
         wave_nm = np.linspace(filter_wv_nm[0], filter_wv_nm[-1], 10)
 
-        print('Calculating FF+FB filtered emission...')
+        logger.info('Calculating FF+FB filtered emission...')
         for cell in self.cells:
             ff_only, ff_fb_tot = continuo_read.adas_continuo_py(wave_nm, cell.te, 1, 1)
             f = interp1d(wave_nm, ff_fb_tot)
@@ -397,7 +402,7 @@ class ProcessEdgeSim:
 
         wave_nm = np.logspace((0.001), np.log10(100000), 500)
 
-        print('Calculating FF+FB emission...')
+        logger.info('Calculating FF+FB emission...')
         sum_ff_radpwr = 0
         for cell in self.cells:
             ff_only, ff_fb = continuo_read.adas_continuo_py(wave_nm, cell.te, 1, 1, output_in_ph_s=False)
@@ -415,13 +420,13 @@ class ProcessEdgeSim:
             cell.ff_fb_radpwr = cell.ff_fb_radpwr_perm3 * cell_vol
 
             sum_ff_radpwr += cell.ff_radpwr
-        print('Total ff radiated power:', sum_ff_radpwr, ' [W]')
+        logger.info('Total ff radiated power:', sum_ff_radpwr, ' [W]')
 
     def calc_H_rad_power(self):
         # Te_rnge = [0.2, 5000]
         # ne_rnge = [1.0e11, 1.0e15]
         # self.H_adf11 = adas_adf11_utils.get_adas_H_adf11_interp(Te_rnge, ne_rnge, npts=self.ADAS_npts, npts_interp=1000, pwr=True)
-        print('Calculating H radiated power...')
+        logger.info('Calculating H radiated power...')
         sum_pwr = 0
         for cell in self.cells:
             iTe, vTe = find_nearest(self.ADAS_dict['adf11']['1'].Te_arr, cell.te)
@@ -435,10 +440,10 @@ class ProcessEdgeSim:
 
             sum_pwr += np.sum(np.asarray(cell.H_radpwr)) # sanity check. compare to eproc
         self.Prad_H = sum_pwr
-        print('Total H radiated power:', sum_pwr, ' [W]')
+        logger.info('Total H radiated power:', sum_pwr, ' [W]')
 
         if self.spec_line_dict_lytrap:
-            print('Calculating H radiated power for Ly trapping...')
+            logger.info('Calculating H radiated power for Ly trapping...')
             sum_pwr = 0
             for cell in self.cells:
                 iTe, vTe = find_nearest(self.ADAS_dict_lytrap['adf11']['1'].Te_arr, cell.te)
@@ -453,7 +458,7 @@ class ProcessEdgeSim:
                 cell.H_radpwr_Lytrap_perm3 = (plt_contr + prb_contr) * 1.e06  # Watts m^-3
                 sum_pwr += np.sum(np.asarray(cell.H_radpwr_Lytrap))  # sanity check. compare to eproc
             self.Prad_H_Lytrap = sum_pwr
-            print('Total H radiated power w/ Ly trapping:', sum_pwr, ' [W]')
+            logger.info('Total H radiated power w/ Ly trapping:', sum_pwr, ' [W]')
 
 
     def los_intersect(self, los):

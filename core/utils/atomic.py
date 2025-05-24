@@ -5,7 +5,8 @@ import sys
 import contextlib
 
 from pyADASread import adas_adf11_read, adas_adf15_read
-
+import logging
+logger = logging.getLogger(__name__)
 
 @contextlib.contextmanager
 def stdchannel_redirected(stdchannel, dest_filename):
@@ -44,14 +45,14 @@ def get_ADAS_dict(save_dir, spec_line_dict, num_samples=100, restore=False, lytr
                 with open(save_dir + 'ADAS_dict_lytrap.pkl', 'rb') as f:
                     ADAS_dict = pickle.load(f)
             except IOError as e:
-                print('ADAS dictionary not found. Set [read_ADAS_lytrap] to True.')
+                logger.info('ADAS dictionary not found. Set [read_ADAS_lytrap] to True.')
                 raise
         else:
             try:
                 with open(save_dir + 'ADAS_dict.pkl', 'rb') as f:
                     ADAS_dict = pickle.load(f)
             except IOError as e:
-                print('ADAS dictionary not found. Set [read_ADAS] to True.')
+                logger.info('ADAS dictionary not found. Set [read_ADAS] to True.')
                 raise
 
         # Does the restored ADAS_dict contain all of the requested lines?
@@ -66,13 +67,13 @@ def get_ADAS_dict(save_dir, spec_line_dict, num_samples=100, restore=False, lytr
                                     if line == adas_line[:-5]:  # strip 'recom', 'excit'
                                         found_line = True
                     if not found_line:
-                        print(atnum, ' ', ionstage, ' ', line,
+                        logger.info(atnum, ' ', ionstage, ' ', line,
                               ' not found in restored ADAS_dict. Set [read_ADAS] to True and try again.')
                         return
         if lytrap:
-            print('ADAS Ly trapping dictionary restored.')
+            logger.info('ADAS Ly trapping dictionary restored.')
         else:
-            print('ADAS dictionary restored.')
+            logger.info('ADAS dictionary restored.')
     else:
         with stdchannel_redirected(sys.stderr, os.devnull):
             with stdchannel_redirected(sys.stdout, os.devnull):
