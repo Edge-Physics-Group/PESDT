@@ -25,6 +25,7 @@ import sys, os
 from shapely.geometry import Polygon
 
 from cell import Cell
+from background_plasma import BackgroundPlasma
 
 
 SIM_INFO_DATA = 0
@@ -213,10 +214,10 @@ class SOLPSMesh:
         # for i in range(vessel.shape[0]):
         #     plt.plot([vessel[i, 0], vessel[i, 2]], [vessel[i, 1], vessel[i, 3]], 'or')
 
-class SOLPS():
+class SOLPS(BackgroundPlasma):
 
-    def __init__(self, sim_path, read_fluid_side=True, read_eirene_side=False):
-
+    def __init__(self, sim_path):
+        super.__init__()
         self.sim_path = sim_path
 
         self.tri_cells = []

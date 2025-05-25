@@ -1,0 +1,10 @@
+[project]
+name = "PESDT"
+version = "2.0-dev"
+dependencies = [
+    "cython >= 3.0.5a",
+    "numpy >= 1.20",
+    "matplotlib >= 3.5",
+    "cherab >= 1.4.0",
+    "raysect >= 0.7.0"
+]

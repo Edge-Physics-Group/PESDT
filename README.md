@@ -7,9 +7,13 @@ Either using git, or just downloading the .zip file from github (https://github.
 in your .bashrc (if on JET-JDC), you should have the following lines:
 
 *export PYTHONPATH=$PYTHONPATH:"/home/adas/python/"*
+
 *export PYTHONPATH=$PYTHONPATH:$HOME/PESDT*
+
 *export PYTHONPATH=$PYTHONPATH:"/u/sim/jintrac/v280818/libs/eproc/python/eproc"*
+
 *export PYTHONPATH=$PYTHONPATH:"/u/sim/jintrac/v280818/libs/eproc/python"*
+
 *export CHERAB_CADMESH='/common/cadmesh/'*
 
 

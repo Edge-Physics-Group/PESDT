@@ -7,12 +7,13 @@ import eproc as ep
 
 from utils import floatToBits
 from cell import Cell
+from background_plasma import BackgroundPlasma
 
 
 import logging
 logger = logging.getLogger(__name__)
 
-class Edge2D():
+class Edge2D(BackgroundPlasma):
     '''
     A class to handle reading EDGE2D-EIRENE simulation results. To initialize, give
     "tranfile", i.e. the directory path to the result tran file, as a string (str)
@@ -30,6 +31,7 @@ class Edge2D():
     '''
 
     def __init__(self, tranfile):
+        super.__init__()
         self.tranfile = tranfile
         
         self.quad_cells = [] # EDGE2D mesh uses quadralaterals

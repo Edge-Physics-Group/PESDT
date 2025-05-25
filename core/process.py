@@ -17,6 +17,8 @@ from pyADASread import adas_adf11_read, adas_adf15_read, continuo_read
 from edge_code_formats import BackgroundPlasma, Cell
 from cherab_bridge.cherab_plasma import CherabPlasma
 
+from edge_code_formats import Edge2D, SOLPS
+
 import logging
 logger = logging.getLogger(__name__)
     
@@ -31,7 +33,7 @@ class ProcessEdgeSim:
     def __init__(self, ADAS_dict, edge_code_defs, use_AMJUEL = False, AMJUEL_date = 2016, ADAS_dict_lytrap=None,
                  machine='JET', pulse=90531, spec_line_dict=None, spec_line_dict_lytrap = None, 
                  diag_list=None, calc_synth_spec_features=None, save_synth_diag=False,
-                 synth_diag_save_file=None, data2d_save_file=None, outlier_cell_dict=None, recalc_h2_pos=True, 
+                 synth_diag_save_file=None, data2d_save_file=None, recalc_h2_pos=True, 
                  run_cherab = False, input_dict = None, **kwargs):
 
         self.ADAS_dict = ADAS_dict
@@ -58,9 +60,28 @@ class ProcessEdgeSim:
         else:
             raise Exception("Unsupported machine. Currently supported machines are JET and DIIID")
 
-        # variables mapped onto edge_codes grid
+        
         logger.info(f"Loading {self.edge_code} BG plasma from {self.sim_path}.")
-        self.data = BackgroundPlasma(self.edge_code, self.sim_path)
+        if self.edge_code == "edge2d":
+            self.data = Edge2D(self.sim_path)
+        elif self.edge_code == "solps":
+            self.data = SOLPS(self.sim_path)
+        elif self.edge_code == "oedge":
+            '''
+            TODO
+            '''
+        elif self.edge_code == "custom":
+            try:
+                from custom import Custom
+                self.data = Custom(self.sim_path)
+            except ImportError:
+                logger.info("Could not load custom data format. Try creating a folder named \"custom\", \n and in the folder have \"__init__.py\", where you import your custom BG-plasma format.")
+                raise ImportError
+        else:
+            logger.info("Edge code not supported")
+            raise Exception("Edge code not supported")
+        logger.info("   Data loaded")
+        
         self.te = self.data.te
         self.ne = self.data.ne
         self.ni = self.data.ni

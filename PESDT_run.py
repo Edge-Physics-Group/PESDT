@@ -3,8 +3,7 @@ import json, os, sys
 import argparse
 import logging
 logger = logging.getLogger(__name__)
-# Print log into console 
-logger.addHandler(logging.StreamHandler(sys.stdout))
+
 
 def run_PESDT(input_dict_str):
 
@@ -25,6 +24,8 @@ def run_PESDT(input_dict_str):
 
 if __name__=='__main__':
     logging.basicConfig(filename='PESDT.log', level=logging.INFO)
+    # Print log into console 
+    logger.addHandler(logging.StreamHandler(sys.stdout))
     logger.info('PESDT started')
     
 
