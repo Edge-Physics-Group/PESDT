@@ -19,7 +19,7 @@ from scipy.constants import Planck, speed_of_light
 
 import sys
 sys.path[:0]=['/jet/share/lib/python']
-from ppf import * # JET ppf python library
+
 
 font = {'family': 'normal',
         'weight': 'normal',
@@ -70,113 +70,66 @@ def getIdlColorTable(tablenum=None, cxs=False, create=False):
     :param create: use stored array or query idl via idlbridge
     :return:
     """
-
-    if create:
-        import idlbridge as idlbr  # interface python to idl
-
-        if tablenum is None:
-            tablenum = 22  # default to the show table number
-
-        if cxs:
-            idlpython_startup = "expand_path('+~cxs/utilities/agm_utilities/') + " \
-                                "':' + expand_path('+~cxs/utilities/third_party/') + " \
-                                "':' + expand_path('+~cxs/ks6read/') + " \
-                                "':' + expand_path('+~cxs/ktread/') + " \
-                                "':' + expand_path('+~cxs/kx1read/') + " \
-                                "':' + expand_path('+~cxs/calibration/') + " \
-                                "':' + expand_path('+~cxs/utilities/cg_utilities/') + " \
-                                "':' + expand_path('+~cxs/utilities/tb_utilities/') + " \
-                                "':' + expand_path('+~cxs/utilities/adw_utilities/') + " \
-                                "':' + expand_path('+~cxs/instrument_data')  + " \
-                                "':' + expand_path('+~adas/idl/') + " \
-                                "':' + expand_path('+~sim/eproc/default/idl/pro/') + " \
-                                "':' + expand_path('+~flush/surf/code/') + " \
-                                "':' + expand_path('+~bdavis/source/edge2dplus/') + " \
-                                "':' + expand_path('+~bdavis/source/ppplidl/') + " \
-                                "':' + expand_path('+/usr/local/idl')"
-        else:  ## agm
-            idlpython_startup = "expand_path('+~ameigs/GLV_Project/') + " \
-                                "':' + expand_path('+~cxs/utilities/third_party/') + " \
-                                "':' + expand_path('+~cxs/ks6read/') + " \
-                                "':' + expand_path('+~cxs/ktread/') + " \
-                                "':' + expand_path('+~cxs/kx1read/') + " \
-                                "':' + expand_path('+~cxs/calibration/') + " \
-                                "':' + expand_path('+~cxs/utilities/cg_utilities/') + " \
-                                "':' + expand_path('+~cxs/utilities/tb_utilities/') + " \
-                                "':' + expand_path('+~cxs/utilities/adw_utilities/') + " \
-                                "':' + expand_path('+~cxs/instrument_data')"
-            # print(idlpython_startup)
-
-        idlpython_startup = "!PATH + ':' +" + idlpython_startup
-        idlpath = "!path = " + idlpython_startup
-        # load this into idlbridge
-        idlbr.execute(idlpath)
-        # loadct_idl = idlbr.export_procedure('loadct')
-        agm_loadct_idlbr = idlbr.export_function('agm_loadct_idlbr')
-        bottom = 0
-        ncolors = 256
-        rgb = agm_loadct_idlbr(tablenum, bottom, ncolors)
-    else:
-        rgb = np.asarray([[255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-                           255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-                           255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-                           255, 255, 255, 255, 255, 254, 253, 252, 251, 249, 248, 247, 246,
-                           244, 243, 241, 240, 238, 237, 235, 233, 231, 230, 228, 226, 224,
-                           222, 220, 218, 216, 213, 211, 209, 207, 204, 202, 199, 197, 194,
-                           192, 189, 187, 184, 181, 178, 175, 172, 170, 168, 167, 166, 165,
-                           164, 163, 162, 161, 160, 159, 158, 157, 156, 155, 154, 153, 152,
-                           151, 150, 149, 148, 147, 146, 145, 144, 143, 142, 141, 140, 139,
-                           138, 137, 136, 135, 134, 133, 132, 131, 130, 129, 128, 127, 126,
-                           125, 124, 123, 122, 121, 120, 119, 118, 117, 116, 115, 114, 113,
-                           112, 111, 110, 109, 108, 107, 106, 105, 104, 103, 102, 101, 100,
-                           99, 98, 97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87,
-                           86, 85, 85, 84, 84, 88, 91, 94, 97, 100, 103, 107, 110,
-                           114, 117, 121, 124, 128, 131, 135, 139, 143, 146, 150, 154, 158,
-                           162, 166, 170, 174, 179, 183, 187, 191, 196, 200, 205, 209, 214,
-                           218, 223, 228, 233, 237, 242, 247, 252, 255, 255, 255, 255, 255,
-                           255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-                           255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-                           255, 255, 255, 255, 255, 255, 255, 255, 255],
-                          [253, 253, 252, 251, 250, 249, 248, 247, 246, 245, 244, 243, 242,
-                           241, 240, 239, 238, 237, 236, 235, 234, 233, 232, 231, 230, 229,
-                           228, 227, 226, 225, 224, 223, 222, 221, 220, 219, 218, 217, 216,
-                           215, 214, 213, 212, 211, 210, 209, 208, 207, 206, 205, 204, 203,
-                           202, 201, 200, 199, 198, 197, 196, 195, 194, 193, 192, 191, 190,
-                           189, 188, 187, 186, 185, 184, 183, 182, 181, 180, 179, 178, 177,
-                           176, 175, 174, 173, 172, 171, 170, 169, 169, 169, 170, 171, 172,
-                           173, 174, 176, 177, 178, 180, 181, 183, 184, 186, 188, 189, 191,
-                           193, 195, 197, 199, 201, 203, 205, 207, 209, 211, 214, 216, 218,
-                           221, 223, 226, 228, 231, 233, 236, 239, 241, 244, 247, 250, 253,
-                           255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-                           255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-                           255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-                           255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-                           255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-                           255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-                           255, 255, 255, 255, 255, 255, 255, 255, 252, 247, 242, 237, 232,
-                           226, 221, 216, 211, 205, 200, 194, 189, 183, 178, 172, 166, 160,
-                           155, 149, 143, 137, 131, 125, 119, 113, 107, 100, 94, 88, 81,
-                           75, 69, 62, 56, 49, 42, 36, 29, 29],
-                          [253, 253, 252, 251, 250, 249, 248, 248, 247, 247, 246, 246, 245,
-                           245, 244, 244, 244, 244, 243, 243, 243, 243, 243, 243, 243, 243,
-                           244, 244, 244, 244, 245, 245, 246, 246, 247, 247, 248, 249, 250,
-                           250, 251, 252, 253, 254, 255, 255, 255, 255, 255, 255, 255, 255,
-                           255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-                           255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-                           255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-                           255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-                           255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-                           255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
-                           253, 250, 247, 244, 241, 237, 234, 231, 227, 224, 220, 217, 213,
-                           210, 206, 203, 199, 195, 191, 187, 183, 179, 175, 171, 167, 163,
-                           159, 155, 150, 146, 142, 137, 133, 128, 124, 119, 114, 110, 105,
-                           100, 95, 90, 86, 83, 82, 81, 80, 79, 78, 77, 76, 75,
-                           74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 62,
-                           61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49,
-                           48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36,
-                           35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23,
-                           22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 13,
-                           9, 8, 7, 6, 5, 4, 3, 2, 2]], dtype=np.uint8)
+    rgb = np.asarray([[255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+                        255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+                        255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+                        255, 255, 255, 255, 255, 254, 253, 252, 251, 249, 248, 247, 246,
+                        244, 243, 241, 240, 238, 237, 235, 233, 231, 230, 228, 226, 224,
+                        222, 220, 218, 216, 213, 211, 209, 207, 204, 202, 199, 197, 194,
+                        192, 189, 187, 184, 181, 178, 175, 172, 170, 168, 167, 166, 165,
+                        164, 163, 162, 161, 160, 159, 158, 157, 156, 155, 154, 153, 152,
+                        151, 150, 149, 148, 147, 146, 145, 144, 143, 142, 141, 140, 139,
+                        138, 137, 136, 135, 134, 133, 132, 131, 130, 129, 128, 127, 126,
+                        125, 124, 123, 122, 121, 120, 119, 118, 117, 116, 115, 114, 113,
+                        112, 111, 110, 109, 108, 107, 106, 105, 104, 103, 102, 101, 100,
+                        99, 98, 97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87,
+                        86, 85, 85, 84, 84, 88, 91, 94, 97, 100, 103, 107, 110,
+                        114, 117, 121, 124, 128, 131, 135, 139, 143, 146, 150, 154, 158,
+                        162, 166, 170, 174, 179, 183, 187, 191, 196, 200, 205, 209, 214,
+                        218, 223, 228, 233, 237, 242, 247, 252, 255, 255, 255, 255, 255,
+                        255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+                        255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+                        255, 255, 255, 255, 255, 255, 255, 255, 255],
+                        [253, 253, 252, 251, 250, 249, 248, 247, 246, 245, 244, 243, 242,
+                        241, 240, 239, 238, 237, 236, 235, 234, 233, 232, 231, 230, 229,
+                        228, 227, 226, 225, 224, 223, 222, 221, 220, 219, 218, 217, 216,
+                        215, 214, 213, 212, 211, 210, 209, 208, 207, 206, 205, 204, 203,
+                        202, 201, 200, 199, 198, 197, 196, 195, 194, 193, 192, 191, 190,
+                        189, 188, 187, 186, 185, 184, 183, 182, 181, 180, 179, 178, 177,
+                        176, 175, 174, 173, 172, 171, 170, 169, 169, 169, 170, 171, 172,
+                        173, 174, 176, 177, 178, 180, 181, 183, 184, 186, 188, 189, 191,
+                        193, 195, 197, 199, 201, 203, 205, 207, 209, 211, 214, 216, 218,
+                        221, 223, 226, 228, 231, 233, 236, 239, 241, 244, 247, 250, 253,
+                        255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+                        255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+                        255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+                        255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+                        255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+                        255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+                        255, 255, 255, 255, 255, 255, 255, 255, 252, 247, 242, 237, 232,
+                        226, 221, 216, 211, 205, 200, 194, 189, 183, 178, 172, 166, 160,
+                        155, 149, 143, 137, 131, 125, 119, 113, 107, 100, 94, 88, 81,
+                        75, 69, 62, 56, 49, 42, 36, 29, 29],
+                        [253, 253, 252, 251, 250, 249, 248, 248, 247, 247, 246, 246, 245,
+                        245, 244, 244, 244, 244, 243, 243, 243, 243, 243, 243, 243, 243,
+                        244, 244, 244, 244, 245, 245, 246, 246, 247, 247, 248, 249, 250,
+                        250, 251, 252, 253, 254, 255, 255, 255, 255, 255, 255, 255, 255,
+                        255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+                        255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+                        255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+                        255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+                        255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+                        255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+                        253, 250, 247, 244, 241, 237, 234, 231, 227, 224, 220, 217, 213,
+                        210, 206, 203, 199, 195, 191, 187, 183, 179, 175, 171, 167, 163,
+                        159, 155, 150, 146, 142, 137, 133, 128, 124, 119, 114, 110, 105,
+                        100, 95, 90, 86, 83, 82, 81, 80, 79, 78, 77, 76, 75,
+                        74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 62,
+                        61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49,
+                        48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36,
+                        35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23,
+                        22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 13,
+                        9, 8, 7, 6, 5, 4, 3, 2, 2]], dtype=np.uint8)
 
     return rgb
 
@@ -911,146 +864,6 @@ class Plot():
                 axs[i].set_xlabel('Major radius on tile 5 (m)', fontsize=fontsize)
                 axs[i].xaxis.set_tick_params(labelsize=fontsize)
                 axs[i].yaxis.set_tick_params(labelsize=fontsize)
-
-    def write_bolo_ppf(self, pulse, ppf_data_dict, tstart=52.0, wUid=None):
-        # based on Anthony Field's PPF writer for BORP (pyDivertor/bolometry/bolt.py)
-
-        print('Writing synthetic data to PPF: ' + str(pulse) + ' BOLO')
-
-        if wUid == None:
-            uid = pwd.getpwuid(os.getuid())[0]  # Get current user's UID
-        else:
-            uid = wUid
-
-        ppfuid(uid, rw='W')                 # Change to current UID
-
-        ier = ppfgo()                       # Initialise PPF system
-
-        if ier != 0:
-            ppferr('PPFGO', ier)
-
-        time, date, ier = pdstd(pulse)        # Get the time and date of the pulse
-
-        if ier != 0:
-            ppferr('PDSTD', ier)
-
-        comment = 'Writing synthetic EDGE2D data to ppf'
-
-        ier = ppfopn(pulse, date, time, comment, status=0)
-
-        if ier != 0:
-            msg, ier = ppferr('PPFOPN', ier)
-            exit('PPFOPN' + ": error code" + msg)
-
-        tvec = np.linspace(tstart, tstart+1, 10)
-
-        dda = 'BOLO'
-
-        for cam, camdata in ppf_data_dict.items():
-            #Prepare data
-            if cam =='KB5V':
-                # pad kb5v channels 25-32
-                xpad = np.array((288.760, 280.005, 271.202, 262.441, 253.218, 243.121, 232.948, 222.261))
-                x = np.concatenate((camdata['x'], xpad))
-                data_pad = np.ones((8))
-                data = np.concatenate((camdata['data'], data_pad))
-            elif cam == 'KB5H':
-                x = camdata['x']
-                data = camdata['data']
-
-            data = np.array([data,]*len(tvec))
-
-            dtype = cam
-
-            irdat = ppfwri_irdat(len(x), len(tvec), refx=-1, reft=-1, user=0, system=0)
-            ihdat = ppfwri_ihdat('W m-2', 'deg', 's', 'f', 'f', 'f', 'Synthetic ' + dtype)
-            iwdat, ier = ppfwri(pulse, dda, dtype, irdat, ihdat, data, x, tvec)
-
-            if ier !=0:
-                msg, ier = ppferr('PPFWRI', ier)
-                exit('PPFWRI' + ": error code" + msg)
-                ier = ppfabo()
-
-                if ier != 0:
-                    msg, ier = ppferr('PPFABO', ier)
-                    exit('PPFABO' + ": error code" + msg)
-
-                exit()
-
-
-        # Close the PPF here and clean up!
-        seq, ier = ppfclo(pulse, 'pyproc', vers=1)
-
-        if ier != 0:
-            msg, ier = ppferr('ppfclo', ier)
-            exit('PPFCLO: error code' + msg)
-
-        print('Created PPF for seq.: ', seq)
-
-    def write_B3X4_ppf(self, pulse, dda, tstart=52.0, wUid=None):
-        # based on Anthony Field's PPF writer for BORP (pyDivertor/bolometry/bolt.py)
-
-        print('Writing synthetic data to PPF: ' + str(pulse) + ' ' + dda)
-
-        if wUid == None:
-            uid = pwd.getpwuid(os.getuid())[0]  # Get current user's UID
-        else:
-            uid = wUid
-
-        ppfuid(uid, rw='W')  # Change to current UID
-
-        ier = ppfgo()  # Initialise PPF system
-
-        if ier != 0:
-            ppferr('PPFGO', ier)
-
-        time, date, ier = pdstd(pulse)  # Get the time and date of the pulse
-
-        if ier != 0:
-            ppferr('PDSTD', ier)
-
-        comment = 'Writing synthetic EDGE2D data to ppf'
-
-        ier = ppfopn(pulse, date, time, comment, status=0)
-
-        if ier != 0:
-            msg, ier = ppferr('PPFOPN', ier)
-            exit('PPFOPN' + ": error code" + msg)
-
-        tvec = np.linspace(tstart, tstart + 1, 10)
-
-        for chan, chan_dict in self.__res_dict[dda].items():
-            dtype = chan
-            x = 0.0
-            Prad_H = chan_dict['los_int']['Prad_perm2']['H']
-            Prad_imp1 = np.sum(chan_dict['los_int']['Prad_perm2']['imp1'])
-            Prad_imp2 = np.sum(chan_dict['los_int']['Prad_perm2']['imp2'])
-
-            ppf_data = np.repeat(Prad_H+Prad_imp1+Prad_imp2, len(tvec))
-
-            irdat = ppfwri_irdat(1, len(tvec), refx=-1, reft=-1, user=0, system=0)
-            ihdat = ppfwri_ihdat('W m-2', 'deg', 's', 'f', 'f', 'f', 'Synthetic ' + dtype)
-            iwdat, ier = ppfwri(pulse, dda, dtype, irdat, ihdat, ppf_data, x, tvec)
-
-            if ier != 0:
-                msg, ier = ppferr('PPFWRI', ier)
-                exit('PPFWRI' + ": error code" + msg)
-                ier = ppfabo()
-
-                if ier != 0:
-                    msg, ier = ppferr('PPFABO', ier)
-                    exit('PPFABO' + ": error code" + msg)
-
-                exit()
-
-        # Close the PPF here and clean up!
-        seq, ier = ppfclo(pulse, 'pyproc', vers=1)
-
-        if ier != 0:
-            msg, ier = ppferr('ppfclo', ier)
-            exit('PPFCLO: error code' + msg)
-
-        print('Created PPF for seq.: ', seq)
 
     def plot_Prad_profiles(self, lineweight=2.0, alpha=0.250, legend=True,
                            linestyle='-', scal=1,#.e-21,

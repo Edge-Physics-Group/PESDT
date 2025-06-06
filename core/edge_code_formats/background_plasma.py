@@ -16,7 +16,7 @@ class BackgroundPlasma():
         self.te = None
         self.ti = None
         self.ne = None
-        self.ni = None
+        self.ni = []
 
         self.n0 = None
         self.n2 = None

@@ -228,9 +228,6 @@ class SOLPS(BackgroundPlasma):
         self.geom = {}
         self.zch = {} # impurity atomic number list used in pyproc
         
-        # Legacy impurity data format used by edge2d - needs to be generalized
-        self.imp1_atom_num = None
-        self.imp2_atom_num = None
         
         _patches = [] 
         
@@ -266,7 +263,7 @@ class SOLPS(BackgroundPlasma):
             _n2 = self.fort44_data_dict['dmb2'][_idx_grid_map[0], _idx_grid_map[1]] # kinetic mol. den 
             _n2p = self.fort44_data_dict['dib2'][_idx_grid_map[0], _idx_grid_map[1]] # kinetic mol. ion den
             _ni = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 1] # fuel ion den      
-            _imp1_den = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 2:] # impurity den by ion stage
+            _imp_den = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 2:] # impurity den by ion stage
             self.imp1_atom_num = None
             
 #                for i in range(len(sim_info_dict['zn'])):
