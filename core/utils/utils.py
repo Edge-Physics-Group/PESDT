@@ -1,6 +1,6 @@
 import numpy as np
 from collections import OrderedDict
-from plot import Plot
+#from plot import Plot
 import struct
 import logging
 logger = logging.getLogger(__name__)
