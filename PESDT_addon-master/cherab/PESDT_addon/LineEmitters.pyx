@@ -1,4 +1,4 @@
-
+# cython: language_level=3
 from cherab.core.atomic cimport AtomicData
 from cherab.core.plasma cimport PlasmaModel
 from cherab.core.utility import PerCm3ToPerM3, PhotonToJ, Cm3ToM3
@@ -21,11 +21,11 @@ Cherab AMJUEL plasma models
 
 '''
 cdef class DirectEmission(PlasmaModel):
-
-    cdef Line _line
-    cdef LineShapeModel _lineshape_class
-    cdef object _lineshape_args
-    cdef object _lineshape_kwargs
+    cdef dict __dict__
+    #cdef Line _line
+    #cdef LineShapeModel _lineshape_class
+    #cdef object _lineshape_args
+    #cdef object _lineshape_kwargs
     
     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
                  object lineshape_args=None, object lineshape_kwargs=None):
