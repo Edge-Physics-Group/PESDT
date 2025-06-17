@@ -37,7 +37,7 @@ cdef class PESDTMaxwellian(DistributionFunction):
         self._atomic_mass = atomic_mass
 
     @cython.cdivision(True)
-    cdef double evaluate(self, double x, double y, double z, double vx, double vy, double vz):
+    cpdef double evaluate(self, double x, double y, double z, double vx, double vy, double vz):
         """
         Evaluates the phase space density at the specified point in 6D phase space.
 
@@ -64,7 +64,7 @@ cdef class PESDTMaxwellian(DistributionFunction):
 
         return self._density.evaluate(x, y, z) * exp(-k1 * (ux*ux + uy*uy + uz*uz)) * k2
 
-    cdef Vector3D bulk_velocity(self, double x, double y, double z):
+    cpdef Vector3D bulk_velocity(self, double x, double y, double z):
         """
         Evaluates the species' bulk velocity at the specified 3D coordinate.
 
@@ -81,7 +81,7 @@ cdef class PESDTMaxwellian(DistributionFunction):
 
         return self._velocity.evaluate(x, y, z)
 
-    cdef double effective_temperature(self, double x, double y, double z):
+    cpdef double effective_temperature(self, double x, double y, double z):
         """
 
         :param x: position in meters
@@ -97,7 +97,7 @@ cdef class PESDTMaxwellian(DistributionFunction):
 
         return self._temperature.evaluate(x, y, z)
 
-    cdef double density(self, double x, double y, double z):
+    cpdef double density(self, double x, double y, double z):
         """
 
         :param x: position in meters
