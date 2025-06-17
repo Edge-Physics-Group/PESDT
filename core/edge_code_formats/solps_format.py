@@ -24,8 +24,8 @@ import sys, os
 
 from shapely.geometry import Polygon
 
-from cell import Cell
-from background_plasma import BackgroundPlasma
+from .cell import Cell
+from .background_plasma import BackgroundPlasma
 
 
 SIM_INFO_DATA = 0

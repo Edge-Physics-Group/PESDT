@@ -5,9 +5,9 @@ from shapely.geometry import Polygon
 # Only available on the JET data cluster
 import eproc as ep
 
-from utils import floatToBits
-from cell import Cell
-from background_plasma import BackgroundPlasma
+from core.utils import floatToBits
+from .cell import Cell
+from .background_plasma import BackgroundPlasma
 
 
 import logging
