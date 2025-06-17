@@ -1,6 +1,8 @@
 
 
 from .am_edge2d import Edge2DSimulation, Edge2DMesh
+from .am_solps import SOLPSSimulation
+from .PESDT_plasma import PESDTSimulation
 from .amread import *
 from .molecules import *
 from .RateFunctions import *
