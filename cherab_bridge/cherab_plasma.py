@@ -28,11 +28,12 @@ import cherab.PESDT_addon.molecules as molecules
 from cherab.PESDT_addon.stark import StarkBroadenedLine
 from cherab.PESDT_addon.LineEmitters import DirectEmission, LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
 
-from cherab_bridge import PESDT_ADAS_Data, AMJUEL_Data, D0, D2, D3
-
+from .cherab_AMJUEL_data import AMJUEL_Data
+from .cherab_atomic_data import PESDT_ADAS_Data
+from .createCherabPlasma import createCherabPlasma, D0, D2, D3
 
 from cherab.PESDT_addon.continuo import Continuo
-from cherab_bridge import createCherabPlasma
+
 
 #from PESDT.cherab_bridge import molecules
 
