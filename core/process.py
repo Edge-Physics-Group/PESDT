@@ -9,15 +9,14 @@ from matplotlib.collections import PatchCollection
 from matplotlib import patches
 from scipy.interpolate import interp1d
 from .synth_diag import SynthDiag
-from utils.utils import isclose, interp_nearest_neighb, find_nearest
-from utils.amread import calc_photon_rate
+from .utils.utils import isclose, interp_nearest_neighb, find_nearest
+from .utils.amread import calc_photon_rate
 
-from core.utils.machine_defs import get_DIIIDdefs, get_JETdefs
+from .utils.machine_defs import get_DIIIDdefs, get_JETdefs
 from pyADASread import adas_adf11_read, adas_adf15_read, continuo_read
-from edge_code_formats import BackgroundPlasma, Cell
+from .edge_code_formats import BackgroundPlasma, Cell, Edge2D, SOLPS
 from cherab_bridge.cherab_plasma import CherabPlasma
 
-from edge_code_formats import Edge2D, SOLPS
 
 import logging
 logger = logging.getLogger(__name__)
