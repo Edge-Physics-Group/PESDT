@@ -1,3 +1,3 @@
-import plot_edge2d
-import plot_solps
-import plot
+from .plot_edge2d import*
+from .plot_solps import *
+from .plot import *
