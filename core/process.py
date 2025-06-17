@@ -8,7 +8,7 @@ import json
 from matplotlib.collections import PatchCollection
 from matplotlib import patches
 from scipy.interpolate import interp1d
-from synth_diag import SynthDiag
+from .synth_diag import SynthDiag
 from utils.utils import isclose, interp_nearest_neighb, find_nearest
 from utils.amread import calc_photon_rate
 
