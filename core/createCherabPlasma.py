@@ -4,14 +4,14 @@ from raysect.core.math.function.float.function2d.interpolate import Discrete2DMe
 from cherab.edge2d.mesh_geometry import Edge2DMesh
 from cherab.PESDT_addon import PESDTSimulation, PESDTElement, deuterium
 
-from core import ProcessEdgeSim, read_amjuel_1d,read_amjuel_2d,reactions, calc_cross_sections, calc_photon_rate
+from .utils import read_amjuel_1d,read_amjuel_2d,reactions, calc_cross_sections, calc_photon_rate
 
 BaseD = deuterium
 D0 = PESDTElement("Deuterium", "D", 1.0, 2.0, BaseD)
 D2 = PESDTElement("Deuterium2", "D2", 2.0, 4.0, BaseD)
 D3 = PESDTElement("Deuterium3+", "D3", 3.0, 6.0, BaseD)
 
-def createCherabPlasma(PESDT: ProcessEdgeSim, transitions: list, convert_denel_to_m3 = True, load_mol_data = False, recalc_h2_pos = True):
+def createCherabPlasma(PESDT, transitions: list, convert_denel_to_m3 = True, load_mol_data = False, recalc_h2_pos = True):
     '''
     Creates a cherab compatible PLASMA simulation object
     
