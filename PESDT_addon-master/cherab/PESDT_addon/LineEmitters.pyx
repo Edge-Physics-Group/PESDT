@@ -22,10 +22,10 @@ Cherab AMJUEL plasma models
 '''
 cdef class DirectEmission(PlasmaModel):
     cdef dict __dict__
-    #cdef Line _line
-    #cdef LineShapeModel _lineshape_class
-    #cdef object _lineshape_args
-    #cdef object _lineshape_kwargs
+    cdef Line _line
+    cdef LineShapeModel _lineshape_class
+    cdef object _lineshape_args
+    cdef object _lineshape_kwargs
     
     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
                  object lineshape_args=None, object lineshape_kwargs=None):
@@ -54,7 +54,7 @@ cdef class DirectEmission(PlasmaModel):
     def __repr__(self):
         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
 
-    cdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):
+    cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):
         cdef double radiance
         # cache data on first run
         if self._target_species is None:
