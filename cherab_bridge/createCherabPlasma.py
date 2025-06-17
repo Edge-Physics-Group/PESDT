@@ -1,7 +1,8 @@
 
 import numpy as np
 from raysect.core.math.function.float.function2d.interpolate import Discrete2DMesh
-from cherab.PESDT_addon import Edge2DMesh, SOLPSMEsh, PESDTSimulation, PESDTElement, deuterium
+from cherab.edge2d.mesh_geometry import Edge2DMesh
+from cherab.PESDT_addon import PESDTSimulation, PESDTElement, deuterium
 
 from core import ProcessEdgeSim, read_amjuel_1d,read_amjuel_2d,reactions, calc_cross_sections, calc_photon_rate
 
