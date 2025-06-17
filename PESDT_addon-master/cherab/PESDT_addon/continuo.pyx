@@ -3,8 +3,6 @@ import os
 from cherab.core.atomic cimport AtomicData
 from cherab.core.plasma cimport PlasmaModel
 from cherab.core.utility import PerCm3ToPerM3, PhotonToJ, Cm3ToM3
-from amread import photon_rate_coeffs, A_coeff
-from amread import wavelength as wl
 
 from raysect.optical cimport Spectrum, Point3D, Vector3D
 from cherab.core cimport Line, Species, Plasma, Beam
