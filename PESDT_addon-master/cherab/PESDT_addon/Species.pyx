@@ -49,7 +49,7 @@ cdef class PESDTElement(Element):
         super.__init__(name, symbol, atomic_number, atomic_weight)
         self._base_element = base_element
 
-    @property
+
     cpdef Element base_element(self):
         return self._base_element
 
