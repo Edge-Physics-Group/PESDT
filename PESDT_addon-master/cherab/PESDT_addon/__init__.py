@@ -7,3 +7,5 @@ from .RateFunctions import *
 from .LineEmitters import *
 from .continuo import Continuo
 from .stark import *
+from .Maxwellian import *
+from .Species import *

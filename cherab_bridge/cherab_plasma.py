@@ -2,7 +2,7 @@
 from ast import Raise
 import matplotlib.pyplot as plt
 import numpy as np
-import sys
+import sys, pickle
 from scipy.constants import atomic_mass, electron_mass
 from math import sin, cos, pi, atan
 
@@ -26,18 +26,14 @@ from cherab.jet.machine.cad_files import import_jet_mesh
 
 import cherab.PESDT_addon.molecules as molecules
 from cherab.PESDT_addon.stark import StarkBroadenedLine
-from cherab.PESDT_addon.LineEmitters import LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
+from cherab.PESDT_addon.LineEmitters import DirectEmission, LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
 
-#from cherab.amjuel_data.AMJUEL_data import AMJUEL_Data
+from cherab_bridge import PESDT_ADAS_Data, AMJUEL_Data, D0, D2, D3
 
-from cherab_bridge import PESDT_ADAS_Data
-from cherab_bridge import  AMJUEL_Data
-#from PESDT.cherab_bridge.cherab_AMJUEL_data import LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
 
-#from PESDT.cherab_bridge.continuo import Continuo  
 from cherab.PESDT_addon.continuo import Continuo
-from cherab_bridge import load_edge2d_from_PESDT
-from solps_cherab_bridge import load_solps_from_PESDT
+from cherab_bridge import createCherabPlasma
+
 #from PESDT.cherab_bridge import molecules
 
 class CherabPlasma():
@@ -54,7 +50,13 @@ class CherabPlasma():
         self.sim_type = PESDT_obj.edge_code
 
         # Create CHERAB plasma from PESDT edge_codes object
-        self.world = World()
+        try:
+            with open("~/PESDTCache/world.pkl", "rb") as f:
+                self.world = pickle.load(f)
+        except:
+            print("Could not read raysect-world object from a pkl, creating a new one.")
+            self.world = World()
+
         self.plasma = self.gen_cherab_plasma()
 
     def gen_cherab_plasma(self):
@@ -62,17 +64,14 @@ class CherabPlasma():
         # Load PESDT object into cherab_edge2d module, which converts the edge_codes grid to cherab
         # format, and populates cherab plasma parameters
         convert_to_m3 = not (self.use_AMJUEL)
-        if (self.sim_type == "edge2d"):
-            cherab = load_edge2d_from_PESDT(self.PESDT_obj, convert_denel_to_m3 = convert_to_m3, load_mol_data = self.use_AMJUEL, recalc_h2_pos = self.recalc_h2_pos)
-        elif (self.sim_type == "solps"):
-            cherab = load_solps_from_PESDT(self.PESDT_obj, convert_denel_to_m3 = convert_to_m3, load_mol_data = self.use_AMJUEL, recalc_h2_pos = self.recalc_h2_pos)
-        else:
-            Raise("Not a valid edge code!")
+        cherab = createCherabPlasma(self.PESDT_obj, convert_denel_to_m3 = convert_to_m3, load_mol_data = self.use_AMJUEL, recalc_h2_pos = self.recalc_h2_pos)
         if self.import_jet_surfaces:
             if self.include_reflections:
                 import_jet_mesh(self.world)
             else:
                 import_jet_mesh(self.world, override_material=AbsorbingSurface())
+            with open("~/PESDTCache/world.pkl", "rb") as f:
+                pickle.dump(self.world,f)
 
         # create atomic data source
         plasma = cherab.create_plasma(parent=self.world)
@@ -97,11 +96,7 @@ class CherabPlasma():
         # Define one transition at a time and 'observe' total radiance
         # If multiple transitions are fed into the plasma object, the total
         # observed radiance will be the sum of the defined spectral lines.
-        
-        
-        
-            
-        
+
         if include_stark:
             lineshape = StarkBroadenedLine
         else:
@@ -116,23 +111,48 @@ class CherabPlasma():
                     model_list.append()
                 else:
                     if include_excitation:
-                        h_line = Line(elements.deuterium, 0, transition)
+                        h_line = Line(D0, 0, transition)
+                        model_list.append(DirectEmission(h_line, lineshape=lineshape)) #, plasma=self.plasma, atomic_data=self.plasma.atomic_data
+                    if include_recombination:
+                        h_line = Line(D0, 1, transition)
+                        model_list.append(DirectEmission(h_line, lineshape=lineshape))
+                    if include_H2:
+                        h_line = Line(D2, 0, transition)
+                        model_list.append(DirectEmission(h_line, lineshape=lineshape))
+                    if include_H2_pos:
+                        h_line = Line(D2, 1, transition) # Increment charge by one 
+                        model_list.append(DirectEmission(h_line, lineshape=lineshape))
+                    if include_H3_pos:
+                        h_line = Line(D3, 1, transition) # Increment charge by one 
+                        model_list.append(DirectEmission(h_line, lineshape=lineshape))
+                    if include_H_neg:
+                        h_line = Line(D2, -1, transition) #Implemented via H proxy
+                        model_list.append(DirectEmission(h_line, lineshape=lineshape))
+                    if include_ff_fb:
+                        h_line = Line(D0, 0, transition)
+                        model_list.append(Continuo(h_line, lineshape = lineshape))
+
+                    """ if include_excitation:
+                        h_line = Line(D0, 0, transition)
                         model_list.append(LineExcitation_AM(h_line, lineshape=lineshape)) #, plasma=self.plasma, atomic_data=self.plasma.atomic_data
                     if include_recombination:
-                        h_line = Line(elements.deuterium, 0, transition)
+                        h_line = Line(D0, 1, transition)
                         model_list.append(LineRecombination_AM(h_line, lineshape=lineshape))
                     if include_H2:
-                        h_line = Line(molecules.Deuterium2, 0, transition)
+                        h_line = Line(D2, 0, transition)
                         model_list.append(LineH2_AM(h_line, lineshape=lineshape))
                     if include_H2_pos:
-                        h_line = Line(molecules.Deuterium2, 0, transition) # Increment charge by one 
+                        h_line = Line(D2, 1, transition) # Increment charge by one 
                         model_list.append(LineH2_pos_AM(h_line, lineshape=lineshape))
+                    if include_H3_pos:
+                        h_line = Line(D3, 1, transition) # Increment charge by one 
+                        model_list.append(LineH3_pos_AM(h_line, lineshape=lineshape))
                     if include_H_neg:
-                        h_line = Line(elements.hydrogen, 0, transition) #Implemented via H proxy
+                        h_line = Line(D2, -1, transition) #Implemented via H proxy
                         model_list.append(LineH_neg_AM(h_line, lineshape=lineshape))
                     if include_ff_fb:
-                        h_line = Line(elements.deuterium, 0, transition)
-                        model_list.append(Continuo(h_line, lineshape = lineshape))
+                        h_line = Line(D0, 0, transition)
+                        model_list.append(Continuo(h_line, lineshape = lineshape)) """
                 self.plasma.models = model_list
                     
             else:
@@ -184,49 +204,10 @@ class CherabPlasma():
 
         '''
 
-        ## Here instead I (bloman) put in the real KS3H/V, KT1H coordinates:
-        #
-        # Original KS3H LOS:
-        if (los_p1 == [6.13, 0.341]) & (los_p2 == [1.768, 0.108]):
-            origin = Point3D(3.406, 5.097, 0.341)
-            endpoint = Point3D(1.060, 1.415, 0.108)
-        # "fake" KS3H limiter edge:
-        elif (los_p1 == [6.13, 0.341]) & (los_p2 == [1.768, 0.110]):
-            origin = Point3D(3.406, 5.097, 0.341)
-            endpoint = Point3D(0.984, 1.473, 0.110)
-        # "fake" KS3H limiter center:
-        elif (los_p1 == [6.13, 0.341]) & (los_p2 == [1.768, 0.112]):
-            origin = Point3D(3.406, 5.097, 0.341)
-            endpoint = Point3D(0.855, 1.549, 0.112)
-        # KS3H ch12 limiter edge
-        elif (los_p1 == [6.13, 0.341]) & (los_p2 == [1.768, 0.196]):
-            origin = Point3D(3.406, 5.097, 0.341)
-            endpoint = Point3D(0.984, 1.473, 0.196)
-
-        # KS3V real channel
-        elif (los_p1 == [3.115, 3.354]) & (los_p2 == [3.251, -1.204]):
-            origin = Point3D(0.6077, 3.0551, 3.3543)
-            endpoint = Point3D(0.6721, 3.1814, -1.2045)
-        # "fake" KS3V channel, looking behind vertical tile:
-        elif (los_p1 == [3.115, 3.354]) & (los_p2 == [3.401, -1.204]):
-            origin = Point3D(0.6077, 3.0551, 3.3543)
-            endpoint = Point3D(0.70298, 3.32756, -1.2045)
-
-        # KT1J, aka "fake" KT1H diag:
-        elif (los_p1 == [6.238, -0.74]):
-            ## This is the part which toroidally places the diag
-            theta = -44.09 / 360 * (2 * pi)
-            origin = Point3D(los_p1[0] * cos(theta), los_p1[0] * sin(theta), los_p1[1])
-            endpoint = Point3D(los_p2[0] * cos(theta), los_p2[0] * sin(theta), los_p2[1])
-
-        else:
-            ## This is the part which toroidally places KT1V for Bart's divertor studies
-            ##
-            # Not sure what this does exactly. Need to ask Matt.
-            # -45.61deg=-0.796rad
-            theta = -45.61 / 360 * (2 * pi)
-            origin = Point3D(los_p1[0] * cos(theta), los_p1[0] * sin(theta), los_p1[1])
-            endpoint = Point3D(los_p2[0] * cos(theta), los_p2[0] * sin(theta), los_p2[1])
+        # Place the device in octant 8 viewport
+        theta = -45.61 / 360 * (2 * pi)
+        origin = Point3D(los_p1[0] * cos(theta), los_p1[0] * sin(theta), los_p1[1])
+        endpoint = Point3D(los_p2[0] * cos(theta), los_p2[0] * sin(theta), los_p2[1])
 
         # Calculating direction from origin to endpoint:
         direction = origin.vector_to(endpoint)
@@ -237,8 +218,6 @@ class CherabPlasma():
         acceptance_angle = 2. * atan( (los_w2/2.0) / chord_length) * 180. / np.pi
 
         # Define pipelines and observe
-        # "total radiance" is not total radiance, its something else. Kept here because the code crahshes without it (perhaps no list when only 1 pipeline is given?)
-        #total_radiance = RadiancePipeline0D()
         spectral_radiance = SpectralRadiancePipeline0D(display_progress=display_progress)
         fibre = FibreOptic( [ spectral_radiance], acceptance_angle=acceptance_angle,  #total_radiance,
                            radius=0.01, #width of the pinhole is not recorded anywhere, assume 1cm?
