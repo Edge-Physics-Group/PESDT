@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib import patches
 from matplotlib.collections import PatchCollection
 from shapely.geometry import Polygon
-from los import LOS
+from .los import LOS
 
 class SynthDiag:
 
