@@ -9,7 +9,7 @@ from lmfit import minimize, Parameters, fit_report
 
 from .process import ProcessEdgeSim
 from pyADASread import adas_adf11_read, adas_adf15_read, continuo_read
-from utils import get_ADAS_dict
+from .utils import get_ADAS_dict
 
 import logging
 logger = logging.getLogger(__name__)
