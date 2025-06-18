@@ -2,7 +2,7 @@
 from ast import Raise
 import matplotlib.pyplot as plt
 import numpy as np
-import sys, pickle
+import os, sys, pickle
 from scipy.constants import atomic_mass, electron_mass
 from math import sin, cos, pi, atan
 
@@ -54,7 +54,7 @@ class CherabPlasma():
         # Try loading for a pickled world definition
         if self.import_jet_surfaces:
             try:
-                with open("~/PESDTCache/JETworld.pkl", "rb") as f:
+                with open(os.path.expanduser('~') +"/PESDTCache/JETworld.pkl", "rb") as f:
                     self.world = pickle.load(f)
                 self.import_jet_surfaces = False
             except:
@@ -74,7 +74,7 @@ class CherabPlasma():
                 import_jet_mesh(self.world)
             else:
                 import_jet_mesh(self.world, override_material=AbsorbingSurface())
-            with open("~/PESDTCache/JETworld.pkl", "rb") as f:
+            with open(os.path.expanduser('~') + "/PESDTCache/JETworld.pkl", "wb") as f:
                 pickle.dump(self.world,f)
 
         # create atomic data source
