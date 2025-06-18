@@ -38,10 +38,7 @@ cdef class PESDTLine(Line):
       provider package to define the exact notation.
 
     """
-    cdef :
-        Element element
-        int charge
-        tuple transition
+
     def __init__(self, Element element, int charge, tuple transition):
         self.element = element
         self.charge = charge
