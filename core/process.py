@@ -147,7 +147,8 @@ class ProcessEdgeSim:
         diag_list = self.input_dict['diag_list']
         use_AMJUEL = self.input_dict['run_options']['use_AMJUEL']
         recalc_h2_pos = self.input_dict['run_options'].get("recalc_h2_pos", True)
-        stark_transition = self.input_dict['cherab_options'].get('stark_transition', False)
+        calc_stark_ne = self.input_dict['cherab_options'].get('calculate_stark_ne', False)
+        stark_transition = self.input_dict['cherab_options'].get('stark_transition', None)
         ff_fb = self.input_dict['cherab_options'].get('ff_fb_emission', False)
         #sion_H_transition = input_dict['cherab_options']['Sion_H_transition']
         #srec_H_transition = input_dict['cherab_options']['Srec_H_transition']
@@ -238,7 +239,7 @@ class ProcessEdgeSim:
                             'units':'ph.s^-1.m^-2.sr^-1'
                         }
 
-                    if stark_transition:
+                    if calc_stark_ne:
                         if transition == tuple(stark_transition):
                             print('Stark transition')
                             plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
