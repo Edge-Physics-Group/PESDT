@@ -9,6 +9,7 @@ cimport cython
 from cherab.core.math cimport autowrap_function3d, autowrap_vectorfunction3d
 from cherab.core.utility.constants cimport ELEMENTARY_CHARGE
 from cherab.core cimport DistributionFunction
+from cherab.core.math cimport Function3D, VectorFunction3D
 
 cdef class PESDTMaxwellian(DistributionFunction):
     """
@@ -27,13 +28,18 @@ cdef class PESDTMaxwellian(DistributionFunction):
     """
 
     def __init__(self, object density, object temperature, object velocity, object emission, double atomic_mass):
-
+        cdef :
+            Function3D _density, _temperature, _emission
+            VectorFunction3D _velocity
+            double _atomic_mass
+            dict _emission_dict
+            
         super().__init__()
         self._density = autowrap_function3d(density)
         self._temperature = autowrap_function3d(temperature)
         self._velocity = autowrap_vectorfunction3d(velocity)
         self._emission_dict = emission
-        self._emission = None
+        self._emission = autowrap_function3d(self._emission_dict[next(iter(self._emission_dict))])
         self._atomic_mass = atomic_mass
 
     @cython.cdivision(True)
