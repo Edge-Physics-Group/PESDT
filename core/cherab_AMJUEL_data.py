@@ -17,11 +17,11 @@ class AMJUEL_Data(AtomicData):
     def __init__(self, AMJUEL_dir = ''):
         # Populate data dict with AMJUEL reactions as defined in amread.py
 
-        atomic_data_dict = {2: photon_rate_coeffs("2"),
-                            3: photon_rate_coeffs("3"),
-                            4: photon_rate_coeffs("4"),
-                            5: photon_rate_coeffs("5"),
-                            6: photon_rate_coeffs("6")
+        atomic_data_dict = {2: photon_rate_coeffs(2),
+                            3: photon_rate_coeffs(3),
+                            4: photon_rate_coeffs(4),
+                            5: photon_rate_coeffs(5),
+                            6: photon_rate_coeffs(6)
         }
         self.atomic_data_dict = atomic_data_dict
         #print(atomic_data_dict)
