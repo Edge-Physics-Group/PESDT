@@ -54,8 +54,9 @@ class CherabPlasma():
         # Create CHERAB plasma from PESDT edge_codes object
         # Try loading for a pickled world definition
         if self.import_jet_surfaces:
+            logger.info("Reading JET mesh from pickle file")
             try:
-                logger.info("Reading JET mesh from pickle file")
+                
                 with open(os.path.expanduser('~') +"/PESDTCache/JETworld.pkl", "rb") as f:
                     self.world = pickle.load(f)
                 self.import_jet_surfaces = False

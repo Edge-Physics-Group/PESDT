@@ -2,10 +2,10 @@
 
 from cherab.core.atomic cimport Element, Isotope
 from cherab.core.distribution cimport DistributionFunction
-
+from cherab.core cimport Species
 
 # immutable, so the plasma doesn't have to track changes
-cdef class Species:
+cdef class PESDTSpecies(Species):
     """
     A class representing a given plasma species.
 

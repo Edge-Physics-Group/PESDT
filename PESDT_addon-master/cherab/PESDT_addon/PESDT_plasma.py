@@ -32,7 +32,7 @@ from raysect.primitive import Cylinder
 from cherab.core import Plasma, Maxwellian
 # Override CHERAB definitions
 from .Maxwellian import PESDTMaxwellian
-from .Species import Species
+from .Species import PESDTSpecies
 
 from cherab.core.math.function import ConstantVector3D
 from cherab.core.math.mappers import AxisymmetricMapper, VectorAxisymmetricMapper
@@ -842,7 +842,7 @@ class PESDTSimulation:
                                           species_type.atomic_weight * atomic_mass)
                 neutral_i += 1
 
-            plasma.composition.add(Species(species_type, charge, distribution))
+            plasma.composition.add(PESDTSpecies(species_type, charge, distribution))
 
         return plasma
 
