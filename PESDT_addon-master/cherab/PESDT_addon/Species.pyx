@@ -22,10 +22,7 @@ cdef class PESDTSpecies(Species):
     :param DistributionFunction distribution: A distribution function for this species.
 
     """
-    cdef :
-        Element element
-        int charge
-        DistributionFunction distribution
+
 
     def __init__(self, Element element, int charge, DistributionFunction distribution):
         # Allow any distribution and any charge, as molecules and negative ions do exist
