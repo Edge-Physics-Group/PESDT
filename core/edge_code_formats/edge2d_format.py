@@ -31,7 +31,7 @@ class Edge2D(BackgroundPlasma):
     '''
 
     def __init__(self, tranfile):
-        super.__init__()
+        super().__init__()
         self.tranfile = tranfile
         
         self.quad_cells = [] # EDGE2D mesh uses quadralaterals

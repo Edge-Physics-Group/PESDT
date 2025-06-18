@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 class OEDGE(BackgroundPlasma):
 
     def __init__(self, sim_path):
-        super.__init__()
+        super().__init__()
         self.sim_path = sim_path
 
         self.nc = nc.Dataset(self.sim_path)

@@ -217,7 +217,7 @@ class SOLPSMesh:
 class SOLPS(BackgroundPlasma):
 
     def __init__(self, sim_path):
-        super.__init__()
+        super().__init__()
         self.sim_path = sim_path
 
         self.tri_cells = []
