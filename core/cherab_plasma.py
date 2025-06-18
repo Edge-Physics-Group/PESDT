@@ -33,6 +33,7 @@ from .cherab_atomic_data import PESDT_ADAS_Data
 from .createCherabPlasma import createCherabPlasma, D0, D2, D3
 
 from cherab.PESDT_addon.continuo import Continuo
+from cherab.PESDT_addon import PESDTLine
 import logging
 logger = logging.getLogger(__name__)
 
@@ -119,25 +120,25 @@ class CherabPlasma():
                     model_list.append()
                 else:
                     if include_excitation:
-                        h_line = Line(D0, 0, transition)
+                        h_line = PESDTLine(D0, 0, transition)
                         model_list.append(DirectEmission(h_line, lineshape=lineshape)) #, plasma=self.plasma, atomic_data=self.plasma.atomic_data
                     if include_recombination:
-                        h_line = Line(D0, 1, transition)
+                        h_line = PESDTLine(D0, 1, transition)
                         model_list.append(DirectEmission(h_line, lineshape=lineshape))
                     if include_H2:
-                        h_line = Line(D2, 0, transition)
+                        h_line = PESDTLine(D2, 0, transition)
                         model_list.append(DirectEmission(h_line, lineshape=lineshape))
                     if include_H2_pos:
-                        h_line = Line(D2, 1, transition) # Increment charge by one 
+                        h_line = PESDTLine(D2, 1, transition) # Increment charge by one 
                         model_list.append(DirectEmission(h_line, lineshape=lineshape))
                     if include_H3_pos:
-                        h_line = Line(D3, 1, transition) # Increment charge by one 
+                        h_line = PESDTLine(D3, 1, transition) # Increment charge by one 
                         model_list.append(DirectEmission(h_line, lineshape=lineshape))
                     if include_H_neg:
-                        h_line = Line(D2, -1, transition) #Implemented via H proxy
+                        h_line = PESDTLine(D2, -1, transition) #Implemented via H proxy
                         model_list.append(DirectEmission(h_line, lineshape=lineshape))
                     if include_ff_fb:
-                        h_line = Line(D0, 0, transition)
+                        h_line = PESDTLine(D0, 0, transition)
                         model_list.append(Continuo(h_line, lineshape = lineshape))
 
                     """ if include_excitation:
