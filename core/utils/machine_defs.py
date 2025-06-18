@@ -543,9 +543,9 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     ###############
     #Default vs. re-configured sight line config
     if JET.pulse_ref >=73758 and JET.pulse_ref <=82263:
-        file = os.path.expanduser('~') + '/PESDT/JET/KB5_Bolometer_LOS_73758_82263.txt'
+        file = os.path.expanduser('~') + '/PESDT/devices/JET/KB5_Bolometer_LOS_73758_82263.txt'
     else:
-        file = os.path.expanduser('~') + '/PESDT/JET/KB5_Bolometer_LOS_default.txt'
+        file = os.path.expanduser('~') + '/PESDT/devices/JET/KB5_Bolometer_LOS_default.txt'
     lines = np.genfromtxt(file, dtype=list, delimiter="\t", skip_header=3)
 
     # KB5
@@ -625,7 +625,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     ###############
     half_angle= 5.85 * np.pi / 180.
 
-    file = os.path.expanduser('~') + '/PESDT/JET/B3D4_Bolometer_LOS.txt'
+    file = os.path.expanduser('~') + '/PESDT/devices/JET/B3D4_Bolometer_LOS.txt'
     lines = np.genfromtxt(file, dtype=list, delimiter="\t", skip_header=3)
 
     # B3D4
@@ -660,7 +660,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     ###############
     half_angle= 5.85 * np.pi / 180.
 
-    file = os.path.expanduser('~') + '/PESDT/JET/B3E4_Bolometer_LOS.txt'
+    file = os.path.expanduser('~') + '/PESDT/devices/JET/B3E4_Bolometer_LOS.txt'
     lines = np.genfromtxt(file, dtype=list, delimiter="\t", skip_header=3)
 
     # B3D4
