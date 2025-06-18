@@ -134,7 +134,7 @@ def createCherabPlasma(PESDT, transitions: list, convert_denel_to_m3 = True, loa
     
     for i in range(len(transitions)):
 
-        em_n_exc, em_n_rec, em_mol, em_h2_pos, em_h3_pos, em_h_neg, _ = calc_photon_rate(transitions[i], te, ne, n0[:], n2[:], h2_pos_den[:])
+        em_n_exc, em_n_rec, em_mol, em_h2_pos, em_h3_pos, em_h_neg, _ = calc_photon_rate(transitions[i], te, ne, n0[:], n2[:], h2_pos_den[:], debug = True)
         emission[0][transitions[i]] = em_n_exc
         emission[1][transitions[i]] = em_n_rec
         emission[2][transitions[i]] = em_mol
