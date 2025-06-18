@@ -22,7 +22,7 @@ Cherab AMJUEL plasma models
 cdef class DirectEmission(PlasmaModel):
     cdef dict __dict__
     cdef Line _line
-    cdef LineShapeModel _lineshape_class
+    cdef object _lineshape_class
     cdef object _lineshape_args
     cdef object _lineshape_kwargs
     
