@@ -99,19 +99,19 @@ def createCherabPlasma(PESDT, transitions: list, convert_denel_to_m3 = True, loa
         else:
             h2_pos_den = n2p[:]
         species_list.append((D2, 1))
-        '''
+        
         MARc_h3_pos_den = read_amjuel_1d(reac["den_H3+"][0],reac["den_H3+"][1])
         h3_pos_den = calc_cross_sections(MARc_h3_pos_den, T = te, n = ne*1e-6)*n2*h2_pos_den/ne
         species_list.append((D3, 1))
-        '''
+        
         MARc_h_neg_den = read_amjuel_1d(reac["den_H-"][0],reac["den_H-"][1])
         h_neg_den = calc_cross_sections(MARc_h_neg_den, T = te, n = ne*1e-6)*n2
         species_list.append((D0, -1)) # Need a proxy, neg allowed in Cherab
 
         species_density[2, :] = n2[:]  # Mol. density D2
         species_density[3, :] = h2_pos_den[:]
-        #species_density[4, :] = h3_pos_den[:]
-        species_density[4, :] = h_neg_den[:]
+        species_density[4, :] = h3_pos_den[:]
+        species_density[5, :] = h_neg_den[:]
     else:
         num_species = 2
         species_density = np.zeros((num_species, num_cells))
