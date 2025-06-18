@@ -51,12 +51,15 @@ class CherabPlasma():
         self.sim_type = PESDT_obj.edge_code
 
         # Create CHERAB plasma from PESDT edge_codes object
-        try:
-            with open("~/PESDTCache/world.pkl", "rb") as f:
-                self.world = pickle.load(f)
-        except:
-            print("Could not read raysect-world object from a pkl, creating a new one.")
-            self.world = World()
+        # Try loading for a pickled world definition
+        if self.import_jet_surfaces:
+            try:
+                with open("~/PESDTCache/JETworld.pkl", "rb") as f:
+                    self.world = pickle.load(f)
+                self.import_jet_surfaces = False
+            except:
+                print("Could not read raysect-world object from a pkl, creating a new one.")
+                self.world = World()
 
         self.plasma = self.gen_cherab_plasma()
 
@@ -65,13 +68,13 @@ class CherabPlasma():
         # Load PESDT object into cherab_edge2d module, which converts the edge_codes grid to cherab
         # format, and populates cherab plasma parameters
         convert_to_m3 = not (self.use_AMJUEL)
-        cherab = createCherabPlasma(self.PESDT_obj, convert_denel_to_m3 = convert_to_m3, load_mol_data = self.use_AMJUEL, recalc_h2_pos = self.recalc_h2_pos)
+        cherab = createCherabPlasma(self.PESDT_obj,transitions= self.transitions ,convert_denel_to_m3 = convert_to_m3, load_mol_data = self.use_AMJUEL, recalc_h2_pos = self.recalc_h2_pos)
         if self.import_jet_surfaces:
             if self.include_reflections:
                 import_jet_mesh(self.world)
             else:
                 import_jet_mesh(self.world, override_material=AbsorbingSurface())
-            with open("~/PESDTCache/world.pkl", "rb") as f:
+            with open("~/PESDTCache/JETworld.pkl", "rb") as f:
                 pickle.dump(self.world,f)
 
         # create atomic data source
