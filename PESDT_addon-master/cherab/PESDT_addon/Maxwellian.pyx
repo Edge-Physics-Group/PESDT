@@ -119,7 +119,7 @@ cdef class PESDTMaxwellian(DistributionFunction):
 
         return self._density.evaluate(x, y, z)
 
-    cdef double emission(self, double x, double y, double z):
+    cpdef double emission(self, double x, double y, double z):
 
         return self._emission.evaluate(x, y, z)
 
