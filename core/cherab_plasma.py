@@ -135,7 +135,7 @@ class CherabPlasma():
                         h_line = PESDTLine(D3, 1, transition) # Increment charge by one 
                         model_list.append(DirectEmission(h_line, lineshape=lineshape))
                     if include_H_neg:
-                        h_line = PESDTLine(D2, -1, transition) #Implemented via H proxy
+                        h_line = PESDTLine(D0, -1, transition) #Implemented via H proxy
                         model_list.append(DirectEmission(h_line, lineshape=lineshape))
                     if include_ff_fb:
                         h_line = PESDTLine(D0, 0, transition)
