@@ -88,7 +88,7 @@ def createCherabPlasma(PESDT, transitions: list, convert_denel_to_m3 = True, loa
 
 
         print("Loading H2, H2+, H3+ and H-")
-        num_species = 5
+        num_species = 6
         species_density = np.zeros((num_species, num_cells))
         species_list.append((D2, 0))
         
