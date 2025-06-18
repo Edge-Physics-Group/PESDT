@@ -92,7 +92,7 @@ def createCherabPlasma(PESDT, transitions: list, convert_denel_to_m3 = True, loa
         species_density = np.zeros((num_species, num_cells))
         species_list.append((D2, 0))
         
-        reac = reactions("2") # The densities are independent of the hydrogenic excited state
+        reac = reactions(2) # The densities are independent of the hydrogenic excited state
         if recalc_h2_pos:
             MARc_h2_pos_den = read_amjuel_2d(reac["den_H2+"][0],reac["den_H2+"][1])
             h2_pos_den = calc_cross_sections(MARc_h2_pos_den, T = te, n = ne*1e-6)*n2
