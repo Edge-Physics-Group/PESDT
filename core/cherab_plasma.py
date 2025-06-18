@@ -33,7 +33,8 @@ from .cherab_atomic_data import PESDT_ADAS_Data
 from .createCherabPlasma import createCherabPlasma, D0, D2, D3
 
 from cherab.PESDT_addon.continuo import Continuo
-
+import logging
+logger = logging.getLogger(__name__)
 
 #from PESDT.cherab_bridge import molecules
 
@@ -54,11 +55,13 @@ class CherabPlasma():
         # Try loading for a pickled world definition
         if self.import_jet_surfaces:
             try:
+                logger.info("Reading JET mesh from pickle file")
                 with open(os.path.expanduser('~') +"/PESDTCache/JETworld.pkl", "rb") as f:
                     self.world = pickle.load(f)
                 self.import_jet_surfaces = False
+                logger.info("Mesh read!")
             except:
-                print("Could not read raysect-world object from a pkl, creating a new one.")
+                logger.info("Could not read raysect-world object from a pkl, creating a new one.")
                 self.world = World()
 
         self.plasma = self.gen_cherab_plasma()
@@ -81,12 +84,12 @@ class CherabPlasma():
         plasma = cherab.create_plasma(parent=self.world)
         if self.use_AMJUEL:
             PESDT_AMJUEL_data = AMJUEL_Data()
-            print("Using AMJUEL")
-            print(plasma)
+            logger.info("Using AMJUEL")
+            logger.info(plasma)
             plasma.atomic_data = PESDT_AMJUEL_data
         else:
             PESDT_adas = PESDT_ADAS_Data(self.ADAS_dict)
-            print(plasma)
+            logger.info(plasma)
             plasma.atomic_data = PESDT_adas
 
         return plasma

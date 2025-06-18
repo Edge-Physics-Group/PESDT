@@ -26,13 +26,13 @@ cdef class PESDTMaxwellian(DistributionFunction):
     :param double atomic_mass: Atomic mass of the species in kg.
 
     """
-
-    def __init__(self, object density, object temperature, object velocity, object emission, double atomic_mass):
-        cdef :
+    cdef :
             Function3D _density, _temperature, _emission
             VectorFunction3D _velocity
             double _atomic_mass
             dict _emission_dict
+    def __init__(self, object density, object temperature, object velocity, object emission, double atomic_mass):
+        
             
         super().__init__()
         self._density = autowrap_function3d(density)
