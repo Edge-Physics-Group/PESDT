@@ -80,7 +80,7 @@ def poloidal_angle(p1, p2):
 
 def get_JETdefs(plot_defs = False, pulse_ref = 90531):
 
-    fwall = os.path.expanduser('~')+ '/PESDT/devices/JET/' + 'JET/wall.txt'
+    fwall = os.path.expanduser('~')+ '/PESDT/devices/JET/wall.txt'
     wall_coords = np.genfromtxt(fwall, delimiter=' ')
     wall_poly = patches.Polygon(wall_coords, closed=False, ec='k', lw=2.0, fc='None', zorder=10)
 
