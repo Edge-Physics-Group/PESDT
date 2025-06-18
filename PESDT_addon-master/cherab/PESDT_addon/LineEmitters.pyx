@@ -81,7 +81,7 @@ cdef class DirectEmission(PlasmaModel):
         # set the emission to the current transition
         try:
             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge)
-            self._target_species.update_emission(self._line.transition)
+            self._target_species.distribution.update_emission(self._line.transition)
         except ValueError:
             raise RuntimeError("The plasma object does not contain the ion species for the specified line "
                                "(element={}, ionisation={}).".format(self._line.element.symbol, self._line.charge))
