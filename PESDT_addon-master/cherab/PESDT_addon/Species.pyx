@@ -46,7 +46,7 @@ cdef class PESDTElement(Element):
     cdef Element _base_element
     def __init__(self, str name, str symbol, int atomic_number, double atomic_weight, Element base_element):
 
-        super.__init__(name, symbol, atomic_number, atomic_weight)
+        super().__init__(name, symbol, atomic_number, atomic_weight)
         self._base_element = base_element
 
 
