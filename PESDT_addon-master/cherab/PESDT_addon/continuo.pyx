@@ -10,11 +10,9 @@ from cherab.core.utility.constants cimport RECIP_4_PI
 
 cimport cython
 
-#cdef extern from "/home/adas/include/adaslib.h":
-#    cdef void continuo_(double *wave   , double *tev    , int *iz0,
-#                      int *iz1       , double *contff , double *contin )
-
-from adaslib.atomic.continuo_if import continuo_if
+cdef extern from "/home/adas/include/adaslib.h":
+    cdef void continuo_(double *wave   , double *tev    , int *iz0,
+                      int *iz1       , double *contff , double *contin )
 
 import numpy as np
 
@@ -105,7 +103,7 @@ cdef class Continuo(PlasmaModel):
         wvl_A = wvl * 10.
         iz0=1
         iz1=1
-        contin, confff = continuo_if(wvl_A , te , iz0 , iz1 )
+        contin, confff = continuo_(wvl_A , te , iz0 , iz1 )
 
         return RECIP_4_PI*contin*(1e-6)*ne*ne*10
 
