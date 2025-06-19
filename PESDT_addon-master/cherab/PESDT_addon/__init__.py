@@ -10,5 +10,5 @@ from .LineEmitters import *
 from .continuo import Continuo
 from .stark import *
 from .Maxwellian import *
-from .Species import *
+from .Species import PESDTElement, PESDTSpecies
 from .Line import PESDTLine
