@@ -192,23 +192,23 @@ class ProcessEdgeSim:
                     max_wavelength = (wavelength)+1.0
 
                     plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_excitation=True,  use_AMJUEL=use_AMJUEL)
-                    exc_radiance = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
+                    exc_radiance, exc_radiance_std = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
 
                     plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_recombination=True, use_AMJUEL=use_AMJUEL)
-                    rec_radiance = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
+                    rec_radiance, rec_radiance_std = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
                     
                     if use_AMJUEL:
                         plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_H2=True, use_AMJUEL=use_AMJUEL)
-                        h2_radiance = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
+                        h2_radiance, h2_radiance_std = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
 
                         plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_H2_pos= True, use_AMJUEL=use_AMJUEL)
-                        h2_pos_radiance = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
+                        h2_pos_radiance, h2_pos_radiance_std = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
                         
                         plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_H3_pos=True, use_AMJUEL=use_AMJUEL)
-                        h3_pos_radiance = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2,wavelength=wavelength,  pixel_samples=pixel_samples)
+                        h3_pos_radiance, h3_pos_radiance_std  = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2,wavelength=wavelength,  pixel_samples=pixel_samples)
                         
                         plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_H_neg=True, use_AMJUEL=use_AMJUEL)
-                        h_neg_radiance = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
+                        h_neg_radiance, h_neg_radiance_std = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
                                                             
                         self.outdict[diag_key][str(diag_chord)]['los_int']['H_emiss'][H_line_key] = {
                             'excit':(np.array(exc_radiance)).tolist(),

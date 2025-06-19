@@ -241,7 +241,7 @@ class CherabPlasma():
         fibre.observe()
 
         # Return scalar radiance
-        return PhotonToJ.inv(pipeline.value, wavelength)  # Units: W / (sr * m^2)
+        return pipeline.value.mean, pipeline.value.std  # Units: W / (sr * m^2)
 
     def integrate_los_old(self, los_p1, los_p2, los_w1, los_w2,
                       min_wavelength_nm, max_wavelength_nm,
