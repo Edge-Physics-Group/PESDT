@@ -98,7 +98,7 @@ class CherabPlasma():
 
 
     def define_plasma_model(self, atnum=1, ion_stage=0, transition=(2, 1),
-                            include_excitation=True, include_recombination=False,
+                            include_excitation=False, include_recombination=False,
                             include_H2 = False, include_H2_pos = False, include_H_neg = False,
                             include_H3_pos = False, use_tot = False, use_AMJUEL = False,
                             include_stark=False, include_ff_fb=False):
