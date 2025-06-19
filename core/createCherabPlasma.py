@@ -5,13 +5,15 @@ from cherab.edge2d.mesh_geometry import Edge2DMesh
 from cherab.PESDT_addon import PESDTSimulation, PESDTElement, deuterium
 
 from .utils import read_amjuel_1d,read_amjuel_2d,reactions, calc_cross_sections, calc_photon_rate
+import logging
+logger = logging.getLogger(__name__)
 
 BaseD = deuterium
 D0 = PESDTElement("Deuterium", "D", 1.0, 2.0, BaseD)
 D2 = PESDTElement("Deuterium2", "D2", 2.0, 4.0, BaseD)
 D3 = PESDTElement("Deuterium3+", "D3", 3.0, 6.0, BaseD)
 
-def createCherabPlasma(PESDT, transitions: list, convert_denel_to_m3 = True, load_mol_data = False, recalc_h2_pos = True):
+def createCherabPlasma(PESDT, transitions: list, convert_denel_to_m3 = True, data_source = "AMJUEL", recalc_h2_pos = True, ):
     '''
     Creates a cherab compatible PLASMA simulation object
     
@@ -74,18 +76,14 @@ def createCherabPlasma(PESDT, transitions: list, convert_denel_to_m3 = True, loa
     rv = np.transpose(rv)
     zv = np.transpose(zv)
 
-    # Master list of species, e.g. ['D0', 'D+1', 'C0', 'C+1', ...
-    
-    #sim._species_list = ['D0', 'D+1']
     species_list = [(D0, 0), (D0, 1)]
     
-    if load_mol_data:
+    if data_source == "AMJUEL":
         '''
         Calculate the H2+, H3+, and H- densities through AMJUEL rates, and add the molecular density 
         and derived densities to species
 
         '''
-
 
         print("Loading H2, H2+, H3+ and H-")
         num_species = 6
@@ -106,13 +104,34 @@ def createCherabPlasma(PESDT, transitions: list, convert_denel_to_m3 = True, loa
         
         MARc_h_neg_den = read_amjuel_1d(reac["den_H-"][0],reac["den_H-"][1])
         h_neg_den = calc_cross_sections(MARc_h_neg_den, T = te, n = ne*1e-6)*n2
-        species_list.append((D0, -1)) # Need a proxy, neg allowed in Cherab
+        species_list.append((D0, -1)) 
 
         species_density[2, :] = n2[:]  # Mol. density D2
         species_density[3, :] = h2_pos_den[:]
         species_density[4, :] = h3_pos_den[:]
         species_density[5, :] = h_neg_den[:]
+        emission = [{} for _ in range(len(species_density))]
+        logger.info("Precalculating emission")    
+        for i in range(len(transitions)):
+            logger.info(f"Calculating emission for line: {transitions[i]}")
+            em_n_exc, em_n_rec, em_mol, em_h2_pos, em_h3_pos, em_h_neg, _ = calc_photon_rate(transitions[i], te, ne, n0[:], n2[:], h2_pos_den[:], debug = True)
+            emission[0][transitions[i]] = em_n_exc
+            emission[1][transitions[i]] = em_n_rec
+            emission[2][transitions[i]] = em_mol
+            emission[3][transitions[i]] = em_h2_pos
+            emission[4][transitions[i]] = em_h3_pos
+            emission[5][transitions[i]] = em_h_neg
+        
+    elif data_source == "YACORA":
+        num_species = 3
+        species_density[2,:] = n2[:]
+        species_list.append((D2, 0))
+        logger.info("Precalculating emission")    
+        emission = [{} for _ in range(len(species_density))]
+        for i in range(len(transitions)):
+            logger.info(f"Calculating emission for line: {transitions[i]}")
     else:
+        #ADAS
         num_species = 2
         species_density = np.zeros((num_species, num_cells))
 
@@ -126,22 +145,9 @@ def createCherabPlasma(PESDT, transitions: list, convert_denel_to_m3 = True, loa
     sim.electron_temperature = te
     sim.electron_density = ne
     sim.ion_temperature = ti
-
     sim.species_density = species_density
-    #sim._species_density = species_density
-    #sim._ion_temperature = ti
-    emission = [{} for _ in range(len(species_density))]
-    
-    for i in range(len(transitions)):
 
-        em_n_exc, em_n_rec, em_mol, em_h2_pos, em_h3_pos, em_h_neg, _ = calc_photon_rate(transitions[i], te, ne, n0[:], n2[:], h2_pos_den[:], debug = True)
-        emission[0][transitions[i]] = em_n_exc
-        emission[1][transitions[i]] = em_n_rec
-        emission[2][transitions[i]] = em_mol
-        emission[3][transitions[i]] = em_h2_pos
-        emission[4][transitions[i]] = em_h3_pos
-        emission[5][transitions[i]] = em_h_neg
-    
-    sim.emission = emission
+    if data_source in ["AMJUEL", "YACORA"]:
+        sim.emission = emission
 
     return sim

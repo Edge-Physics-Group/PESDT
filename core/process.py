@@ -188,8 +188,7 @@ class ProcessEdgeSim:
                 
                     transition = (int(val[0]), int(val[1]))
                     wavelength = float(H_line_key)/10. #nm
-                    min_wavelength = (wavelength)-1.0
-                    max_wavelength = (wavelength)+1.0
+                    
 
                     plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_excitation=True,  use_AMJUEL=use_AMJUEL)
                     exc_radiance, exc_radiance_std = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
@@ -228,6 +227,8 @@ class ProcessEdgeSim:
 
                     if calc_stark_ne:
                         if transition == tuple(stark_transition):
+                            min_wavelength = (wavelength)-1.0
+                            max_wavelength = (wavelength)+1.0
                             print('Stark transition')
                             plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
                                                     include_excitation=True, include_recombination=True, 
@@ -239,7 +240,7 @@ class ProcessEdgeSim:
                                                                                 min_wavelength, max_wavelength,
                                                                                 spectral_bins=spec_bins,
                                                                                 pixel_samples=pixel_samples,
-                                                                                display_progress=True)
+                                                                                display_progress=False)
 
                             self.outdict[diag_key][str(diag_chord)]['los_int']['stark']={'cwl': wavelength, 'wave': (np.array(wave_arr)).tolist(),
                                                                             'intensity': (np.array(radiance)).tolist(),
@@ -247,9 +248,7 @@ class ProcessEdgeSim:
 
                     # Free-free + free-bound using adaslib/continuo
                 if ff_fb:
-                    plasma.define_plasma_model(atnum=1, ion_stage=0,
-                                                include_excitation=False, include_recombination=False, use_AMJUEL=use_AMJUEL,
-                                                include_stark=False, include_ff_fb=True)
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, use_AMJUEL=use_AMJUEL, include_ff_fb=True)
                     min_wave = 300
                     max_wave = 500
                     spec_bins = 50
@@ -257,7 +256,7 @@ class ProcessEdgeSim:
                                                                             min_wave, max_wave,
                                                                             spectral_bins=spec_bins,
                                                                             pixel_samples=pixel_samples,
-                                                                            display_progress=True)
+                                                                            display_progress=False)
 
                     self.outdict[diag_key][str(diag_chord)]['los_int']['ff_fb_continuum'] = {
                             'wave': (np.array(wave_arr)).tolist(),

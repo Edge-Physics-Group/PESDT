@@ -87,11 +87,11 @@ class CherabPlasma():
         if self.use_AMJUEL:
             PESDT_AMJUEL_data = AMJUEL_Data()
             logger.info("Using AMJUEL")
-            logger.info(plasma)
+            
             plasma.atomic_data = PESDT_AMJUEL_data
         else:
             PESDT_adas = PESDT_ADAS_Data(self.ADAS_dict)
-            logger.info(plasma)
+            logger.info("Using ADAS")
             plasma.atomic_data = PESDT_adas
 
         return plasma
@@ -141,27 +141,6 @@ class CherabPlasma():
                         h_line = PESDTLine(D0, 0, transition)
                         model_list.append(Continuo(h_line, lineshape = lineshape))
 
-                    """ if include_excitation:
-                        h_line = Line(D0, 0, transition)
-                        model_list.append(LineExcitation_AM(h_line, lineshape=lineshape)) #, plasma=self.plasma, atomic_data=self.plasma.atomic_data
-                    if include_recombination:
-                        h_line = Line(D0, 1, transition)
-                        model_list.append(LineRecombination_AM(h_line, lineshape=lineshape))
-                    if include_H2:
-                        h_line = Line(D2, 0, transition)
-                        model_list.append(LineH2_AM(h_line, lineshape=lineshape))
-                    if include_H2_pos:
-                        h_line = Line(D2, 1, transition) # Increment charge by one 
-                        model_list.append(LineH2_pos_AM(h_line, lineshape=lineshape))
-                    if include_H3_pos:
-                        h_line = Line(D3, 1, transition) # Increment charge by one 
-                        model_list.append(LineH3_pos_AM(h_line, lineshape=lineshape))
-                    if include_H_neg:
-                        h_line = Line(D2, -1, transition) #Implemented via H proxy
-                        model_list.append(LineH_neg_AM(h_line, lineshape=lineshape))
-                    if include_ff_fb:
-                        h_line = Line(D0, 0, transition)
-                        model_list.append(Continuo(h_line, lineshape = lineshape)) """
                 self.plasma.models = model_list
                     
             else:
@@ -241,7 +220,8 @@ class CherabPlasma():
         fibre.observe()
 
         # Return scalar radiance
-        return pipeline.value.mean, pipeline.value.variance  # Units: W / (sr * m^2)
+        return pipeline.value.mean, pipeline.value.variance  
+    
     def integrate_los_spectral(self, los_p1, los_p2, los_w1, los_w2,
                            min_wavelength_nm, max_wavelength_nm,
                            spectral_bins=1000, pixel_samples=100,
