@@ -22,7 +22,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
         self.input_dict = input_dict
 
         tmpstr = input_dict['edge_code']['sim_path'].replace('/','_')
-        logger.info(input_dict['edge_code']['sim_path'])
+        logger.info(f"{input_dict['edge_code']['sim_path']}")
         if tmpstr[:3] == '_u_':
             tmpstr = tmpstr[3:]
         elif tmpstr[:6] == '_work_':
@@ -74,7 +74,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
         # Check for any outlier cells to be 
         outlier_cell_dict = input_dict.get("interp_outlier_cell", None)
 
-        logger.info('diag_list', input_dict['diag_list'])
+        logger.info(f"diag_list: {input_dict['diag_list']}")
         super().__init__(self.ADAS_dict, 
                          input_dict['edge_code'], 
                          ADAS_dict_lytrap = self.ADAS_dict_lytrap, 
@@ -210,7 +210,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
         for diag_key in res_dict.keys():
             for chord_key in res_dict[diag_key].keys():
 
-                logger.info('Fitting ff+fb continuum spectra, LOS id= :', diag_key, ' ', chord_key)
+                logger.info(f"Fitting ff+fb continuum spectra, LOS id= : {diag_key}, {chord_key}")
 
                 wave_fffb = np.asarray(res_dict[diag_key][chord_key]['los_int']['ff_fb_continuum']['wave'])
                 synth_data_fffb = np.asarray(
@@ -272,7 +272,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
         for diag_key in res_dict.keys():
             for chord_key in res_dict[diag_key].keys():
 
-                logger.info('Fitting Stark broadened H6-2 spectra, LOS id= :', diag_key, ' ', chord_key)
+                logger.info(f"Fitting Stark broadened H6-2 spectra, LOS id= : {diag_key}, {chord_key}")
 
                 for H_line_key in res_dict[diag_key][chord_key]['spec_line_dict']['1']['1'].keys():
 
@@ -361,7 +361,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                         # Use highest Te estimate from continuum (usually not available from experiment)
                         # fit_Te = res_dict[diag_key][chord_key]['los_int']['ff_fb_continuum']['fit']['fit_te_400_500']
 
-                    logger.info('Ionization/recombination, LOS id= :', diag_key, ' ', chord_key)
+                    logger.info(f"Ionization/recombination, LOS id= :{diag_key}, {chord_key}")
 
                     # area_cm2 = 2*pi*R*dW
                     w2unmod = res_dict[diag_key][chord_key]['chord']['w2']
@@ -475,7 +475,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                     fit_Te = res_dict[diag_key][chord_key]['los_int']['ff_fb_continuum']['fit']['fit_te_360_400']
 
                     for itran, tran in enumerate(sion_H_transition):
-                        logger.info('delL * n0 from transition', str(tran), ' LOS id= :', diag_key, ' ', chord_key)
+                        logger.info(f"delL * n0 from transition {str(tran)} LOS id= : {diag_key}, {chord_key}")
 
                         for H_line_key in res_dict[diag_key][chord_key][spec_line_dict_key]['1']['1'].keys():
                             if res_dict[diag_key][chord_key][spec_line_dict_key]['1']['1'][H_line_key][0] == str(

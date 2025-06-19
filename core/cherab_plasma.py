@@ -84,12 +84,15 @@ class CherabPlasma():
 
         # create atomic data source
         plasma = cherab.create_plasma(parent=self.world)
-        if self.use_AMJUEL:
+        if self.data_source == "AMJUEL":
             PESDT_AMJUEL_data = AMJUEL_Data()
             logger.info("Using AMJUEL")
             
             plasma.atomic_data = PESDT_AMJUEL_data
+        elif self.data_source == "YACORA":
+            pass
         else:
+            #ADAS
             PESDT_adas = PESDT_ADAS_Data(self.ADAS_dict)
             logger.info("Using ADAS")
             plasma.atomic_data = PESDT_adas

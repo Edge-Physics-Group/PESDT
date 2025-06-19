@@ -38,7 +38,7 @@ if __name__=='__main__':
     input_dict_file = args.input_dict
 
     if os.path.isfile(input_dict_file):
-        logger.info('Found input dictionary: ', input_dict_file)
+        logger.info(f"Found input dictionary: {input_dict_file}")
         run_PESDT(input_dict_file)
     else:
         logger.info(input_dict_file + ' not found')
