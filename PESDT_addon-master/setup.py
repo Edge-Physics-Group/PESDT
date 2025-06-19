@@ -31,8 +31,7 @@ for root, dirs, files in os.walk(setup_path):
                                 Extension(
                                     module,
                                     [pyx_file],
-                                    include_dirs=compilation_includes+["/home/adas/include"],
-                                    extra_objects=["/home/adas/lib/libadaslib_g77.a"],
+                                    include_dirs=compilation_includes,
                                     extra_compile_args=["-O3", "-ffast-math", "-march=native"],
                                     extra_link_args=[],
                                 )
