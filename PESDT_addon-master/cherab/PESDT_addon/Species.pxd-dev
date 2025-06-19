@@ -1,0 +1,8 @@
+# cython: language_level=3
+
+
+cdef class PESDTSpecies(Species):
+    pass
+
+cdef class PESDTElement(Element):
+    cdef Element _base_element
