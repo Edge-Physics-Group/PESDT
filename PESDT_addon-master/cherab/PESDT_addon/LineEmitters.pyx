@@ -8,6 +8,7 @@ from raysect.optical cimport Spectrum, Point3D, Vector3D
 from cherab.core cimport Line, Species, Plasma, Beam
 from cherab.core.model.lineshape cimport GaussianLine, LineShapeModel
 from cherab.core.utility.constants cimport RECIP_4_PI
+from .Species cimport PESDTSpecies
 
 import numpy as np
 
@@ -20,16 +21,13 @@ Cherab AMJUEL plasma models
 
 '''
 
-from libc.stdio cimport printf
-cdef int call_count = 0
-
-
 cdef class DirectEmission(PlasmaModel):
 
     cdef Line _line
     cdef object _lineshape_class
     cdef object _lineshape_args
     cdef object _lineshape_kwargs
+    cdef PESDTSpecies _target_species
     
     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
                  object lineshape_args=None, object lineshape_kwargs=None):
@@ -60,10 +58,6 @@ cdef class DirectEmission(PlasmaModel):
 
     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):
         cdef double radiance
-        global call_count
-        call_count += 1
-        if call_count % 100 == 0:
-            printf("Emission calls: %d\n", call_count)
         # cache data on first run
         if self._target_species is None:
             self._populate_cache()
