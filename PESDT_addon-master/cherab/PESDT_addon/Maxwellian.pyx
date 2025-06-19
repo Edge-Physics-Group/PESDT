@@ -1,7 +1,4 @@
 # cython: language_level=3
-
-
-
 from libc.math cimport exp, M_PI
 from raysect.optical cimport Vector3D
 cimport cython

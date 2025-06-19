@@ -43,7 +43,6 @@ if __name__=='__main__':
     logger.addHandler(file_handler)
     logger.addHandler(console_handler)
 
-    logging.basicConfig(filename='PESDT.log', level=logging.INFO)
     logger.info('PESDT started')
     
 

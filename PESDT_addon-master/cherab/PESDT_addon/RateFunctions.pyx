@@ -1,13 +1,28 @@
 # cython: language_level=3
-import numpy as np
 cimport numpy as np
 from libc.math cimport pow, log, exp
-from .amread import A_coeff
-
 cimport cython
 
 #ctypedef np.double_t DTYPE_t
 DTYPE = np.double
+def  A_coeff(transition):
+
+    '''
+    Returns the Einstein coefficient for transition "n"<-"m"
+
+    transition ("str", "str")
+
+    Coefficients from "Elementary Processes in Hydrogen-Helium Plasmas" (1987), by Janev, Appendix A.2.The original source of the table is Wiese et al. (1966)
+    '''
+
+    coeff_dict = {
+        1: {2: 4.699e8, 3: 5.575e7, 4: 1.278e7, 5: 4.125e6, 6: 1.644e6}, 
+        2: {3: 4.410e7, 4: 8.419e6, 5: 2.53e6, 6: 9.732e5, 7: 4.389e5},
+        3: {4: 8.989e6, 5: 2.201e6, 6: 7.783e5, 7: 3.358e5, 8: 1.651e5},
+        4: {5: 2.699e6, 6: 7.711e5, 7: 3.041e5, 8:1.424e5, 9: 7.459e4}
+    }
+
+    return coeff_dict[transition[1]][transition[0]]
 
 cdef class RateFunction():
     #

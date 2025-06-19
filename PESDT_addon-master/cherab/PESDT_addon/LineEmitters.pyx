@@ -1,7 +1,6 @@
 # cython: language_level=3
 from cherab.core.atomic cimport AtomicData
 from cherab.core.plasma cimport PlasmaModel
-from cherab.core.utility import PerCm3ToPerM3, PhotonToJ, Cm3ToM3
 
 
 from raysect.optical cimport Spectrum, Point3D, Vector3D
@@ -9,18 +8,12 @@ from cherab.core cimport Line, Species, Plasma, Beam
 from cherab.core.model.lineshape cimport GaussianLine, LineShapeModel
 from cherab.core.utility.constants cimport RECIP_4_PI
 
-
-import numpy as np
-
-
-'''
-Cherab AMJUEL plasma models
-
-    Cherab itsel implements only ADAS plasma models and reading
-    In the future these could be included as a cherab module, and Cythonized
-
-'''
-
+"""
+    PESDT DirectEmission model
+    reads from a precalculated array, agnostic of the datasource
+    As long as you pass emission on to the plasma (i.e. use PESDTSimulation),
+    you can use any data source you want.
+"""
 cdef class DirectEmission(PlasmaModel):
 
     cdef Line _line
@@ -104,6 +97,13 @@ cdef class DirectEmission(PlasmaModel):
         self._target_species = None
         self._wavelength = 0.0
         self._lineshape = None
+'''
+Cherab AMJUEL plasma models
+
+    Cherab itsel implements only ADAS plasma models and reading
+    In the future these could be included as a cherab module, and Cythonized
+
+'''
 
 
 cdef class LineExcitation_AM(PlasmaModel):
