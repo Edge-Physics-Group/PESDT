@@ -7,7 +7,6 @@ import numpy as np
 import json
 import scipy.io as io
 # from pyJETPPF.JETPPF import JETPPF
-from core import AnalyseSynthDiag
 from collections import OrderedDict
 
 font = {'family': 'normal',

@@ -133,8 +133,10 @@ def Bmn_coeff(transition):
     '''
     return A_coeff(transition)*FF(wavelength(transition))
 
-def calc_cross_sections(MARc, T = None, n = None, E = None):
-    '''
+
+
+def calc_cross_sections(MARc, T=None, n=None, E=None):
+    """
     Returns the cross-sections for a given coefficient matrix MARc in T(,n or E)
     if given either n or E (2D MARc), the shape of T and n or E must be the same
 
@@ -142,24 +144,28 @@ def calc_cross_sections(MARc, T = None, n = None, E = None):
     T: Temperature vector (eV)
     n: electron density vector (cm^-3)
     E: energy of the particle (J)
-    '''
-    # Calc 2d fit
-    cross_sections = np.empty(np.shape(MARc), dtype=np.ndarray)
-    if np.shape(MARc) == (9,9):
-        if (n is not None):
-            nE = n/1e8
-        else:
-            nE = E
-        for n in range(0,9):
-            for m in range(0,9):
-                cross_sections[n,m] = MARc[n,m]*np.power(np.log(T), n)*np.power(np.log(nE), m)
-    else:
-    # Calc 1d fit
-        for n in range(0,9):
-            cross_sections[n] =  MARc[n]*np.power(np.log(T), n)
+    """
 
-    cross_sections = np.sum(cross_sections)
-    return np.exp(cross_sections)        
+    logT = np.log(T)
+
+    if MARc.shape == (9, 9):
+        lognE = np.log(n*1e-8) if n is not None else np.log(E)
+
+        total = 0.0
+        for i in range(9):
+            logT_i = logT ** i
+            for j in range(9):
+                total += MARc[i, j] * logT_i * (lognE ** j)
+
+    elif MARc.shape == (9,):
+        total = 0.0
+        for i in range(9):
+            total += MARc[i] * (logT ** i)
+
+    else:
+        raise ValueError("MARc must be of shape (9,) or (9,9)")
+
+    return np.exp(total)
 
 def read_amjuel_1d(h_name, collisionName, **kwargs):
     '''
