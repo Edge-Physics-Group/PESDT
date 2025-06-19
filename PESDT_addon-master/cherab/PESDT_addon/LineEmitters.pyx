@@ -20,15 +20,12 @@ Cherab AMJUEL plasma models
 
 '''
 
-cdef class DummyLineShape(LineShapeModel):
+from libc.stdio cimport printf
+cdef int call_count = 0
 
-    cpdef Spectrum add_line(self, double radiance, Point3D point, Vector3D direction, Spectrum spectrum):
-        
-        spectrum.samples_mv[0] += radiance
-        return spectrum
 
 cdef class DirectEmission(PlasmaModel):
-    cdef dict __dict__
+
     cdef Line _line
     cdef object _lineshape_class
     cdef object _lineshape_args
@@ -42,7 +39,7 @@ cdef class DirectEmission(PlasmaModel):
 
         self._line = line
 
-        self._lineshape_class = lineshape or DummyLineShape
+        self._lineshape_class = lineshape or GaussianLine
         if not issubclass(self._lineshape_class, LineShapeModel):
             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
 
@@ -63,6 +60,10 @@ cdef class DirectEmission(PlasmaModel):
 
     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):
         cdef double radiance
+        global call_count
+        call_count += 1
+        if call_count % 100 == 0:
+            printf("Emission calls: %d\n", call_count)
         # cache data on first run
         if self._target_species is None:
             self._populate_cache()
