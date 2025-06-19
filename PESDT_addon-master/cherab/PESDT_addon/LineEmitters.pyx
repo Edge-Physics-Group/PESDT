@@ -19,6 +19,11 @@ Cherab AMJUEL plasma models
     In the future these could be included as a cherab module, and Cythonized
 
 '''
+cdef class DummyLineShape(LineShapeModel):
+    cpdef Spectrum add_line(self, double radiance, Point3D point, Vector3D direction, Spectrum spectrum):
+        spectrum.values[spectrum.index(self._wavelength)] += radiance
+        return spectrum
+
 cdef class DirectEmission(PlasmaModel):
     cdef dict __dict__
     cdef Line _line
@@ -34,7 +39,7 @@ cdef class DirectEmission(PlasmaModel):
 
         self._line = line
 
-        self._lineshape_class = lineshape or GaussianLine
+        self._lineshape_class = lineshape or DummyLineShape
         if not issubclass(self._lineshape_class, LineShapeModel):
             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
 
@@ -53,7 +58,7 @@ cdef class DirectEmission(PlasmaModel):
     def __repr__(self):
         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
 
-    cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):
+    cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum) nogil:
         cdef double radiance
         # cache data on first run
         if self._target_species is None:

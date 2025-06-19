@@ -235,11 +235,11 @@ class ProcessEdgeSim:
                                                     include_H3_pos=True, use_AMJUEL=use_AMJUEL,
                                                     include_stark=True)
                             spec_bins = 50
-                            radiance,  wave_arr = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, #spectrum,
+                            radiance,  wave_arr = plasma.integrate_los_spectral(los_p1, los_p2, los_w1, los_w2, 
                                                                                 min_wavelength, max_wavelength,
                                                                                 spectral_bins=spec_bins,
                                                                                 pixel_samples=pixel_samples,
-                                                                                display_progress=False,no_avg = True)
+                                                                                display_progress=True)
 
                             self.outdict[diag_key][str(diag_chord)]['los_int']['stark']={'cwl': wavelength, 'wave': (np.array(wave_arr)).tolist(),
                                                                             'intensity': (np.array(radiance)).tolist(),
@@ -253,11 +253,11 @@ class ProcessEdgeSim:
                     min_wave = 300
                     max_wave = 500
                     spec_bins = 50
-                    radiance,  wave_arr = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, #spectrum,
+                    radiance,  wave_arr = plasma.integrate_los_spectral(los_p1, los_p2, los_w1, los_w2, #spectrum,
                                                                             min_wave, max_wave,
                                                                             spectral_bins=spec_bins,
                                                                             pixel_samples=pixel_samples,
-                                                                            display_progress=False, no_avg= True)
+                                                                            display_progress=True)
 
                     self.outdict[diag_key][str(diag_chord)]['los_int']['ff_fb_continuum'] = {
                             'wave': (np.array(wave_arr)).tolist(),

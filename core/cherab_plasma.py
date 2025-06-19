@@ -242,58 +242,60 @@ class CherabPlasma():
 
         # Return scalar radiance
         return pipeline.value.mean, pipeline.value.variance  # Units: W / (sr * m^2)
-
-    def integrate_los_old(self, los_p1, los_p2, los_w1, los_w2,
-                      min_wavelength_nm, max_wavelength_nm,
-                      spectral_bins=1000, pixel_samples=100,
-                      display_progress=False, no_avg = False):
+    def integrate_los_spectral(self, los_p1, los_p2, los_w1, los_w2,
+                           min_wavelength_nm, max_wavelength_nm,
+                           spectral_bins=1000, pixel_samples=100,
+                           spectral_rays=1, display_progress=False):
         '''
-        los_p1 and los_p2 are R,Z coordinates
-        los_w1: origin diameter
-        los_w2: diameter at los end point
+        Integrates spectral radiance along a line-of-sight using SpectralRadiancePipeline0D.
 
-        The observer needs to be placed into a real viewport, so that it is not obstructedd by the 
-        vessel walls. Currently the default is the KT1V viewport, which should be fine for instruments
-        located in other top viewports
+        Parameters:
+            los_p1, los_p2: (R, Z) coordinates of the LOS start and end.
+            los_w1, los_w2: entrance and exit diameters of LOS (used to define acceptance angle).
+            min_wavelength_nm, max_wavelength_nm: spectral range in nanometers.
+            spectral_bins: number of wavelength bins.
+            pixel_samples: number of Monte Carlo samples per pixel.
+            spectral_rays: number of rays per wavelength bin.
+            display_progress: whether to show progress bar.
 
+        Returns:
+            Tuple of (spectrum, wavelengths):
+                - spectrum: ndarray of W / (sr * m² * nm)
+                - wavelengths: ndarray in nanometers
         '''
 
-        # Place the device in octant 8 viewport
+        # LOS geometry
         theta = -45.61 / 360 * (2 * pi)
         origin = Point3D(los_p1[0] * cos(theta), los_p1[0] * sin(theta), los_p1[1])
         endpoint = Point3D(los_p2[0] * cos(theta), los_p2[0] * sin(theta), los_p2[1])
-
-        # Calculating direction from origin to endpoint:
         direction = origin.vector_to(endpoint)
 
-        # Determine los cone angle (acceptance_angle)
-        # chord_length = ((los_p1[1]-los_p2[1])**2 + (los_p1[0]-los_p2[0])**2)**0.5
-        chord_length = origin.distance_to(endpoint) # This is to have the correct acceptance angle after shortening LOSs
-        acceptance_angle = 2. * atan( (los_w2/2.0) / chord_length) * 180. / np.pi
+        # Acceptance angle from los_w2 at LOS length
+        chord_length = origin.distance_to(endpoint)
+        acceptance_angle = 2. * atan((los_w2 / 2.0) / chord_length) * 180. / np.pi
 
-        # Define pipelines and observe
-        spectral_radiance = SpectralRadiancePipeline0D(display_progress=display_progress)
-        fibre = FibreOptic( [ spectral_radiance], acceptance_angle=acceptance_angle,  #total_radiance,
-                           radius=0.01, #width of the pinhole is not recorded anywhere, assume 1cm?
-                           spectral_bins=spectral_bins, spectral_rays=1, pixel_samples=pixel_samples,
-                           transform = translate(*origin) * rotate_basis(direction, 
-                           Vector3D(1, 0, 0)), parent = self.world)
+        # Setup spectral radiance pipeline
+        pipeline = SpectralRadiancePipeline0D(display_progress=display_progress)
+
+        # Observer (FibreOptic) using spectral pipeline
+        fibre = FibreOptic(
+            pipelines=[pipeline],
+            acceptance_angle=acceptance_angle,
+            radius=0.01,  # 1 cm pinhole
+            pixel_samples=pixel_samples,
+            spectral_rays=spectral_rays,
+            spectral_bins=spectral_bins,
+            transform=translate(*origin) * rotate_basis(direction, Vector3D(1, 0, 0)),
+            parent=self.world
+        )
+
+        # Set wavelength bounds
         fibre.min_wavelength = min_wavelength_nm
         fibre.max_wavelength = max_wavelength_nm
+
+        # Trace rays
         fibre.observe()
 
-        # convert from W/str/m^2 to ph/s/str/m^2
-        centre_wav_nm = (max_wavelength_nm - min_wavelength_nm)/2.0
-        #total_radiance_ph_s = PhotonToJ.inv(total_radiance.value.mean, centre_wav_nm)
-        if no_avg:
-            return spectral_radiance.samples.mean, spectral_radiance.wavelengths
-
-        if not (self.use_AMJUEL):
-            spectral_radiance_ph_s = PhotonToJ.inv(spectral_radiance.samples.mean, spectral_radiance.wavelengths)
-        else:
-            spectral_radiance_ph_s = spectral_radiance.samples.mean
-        #Average over spectral bins
+        # Return spectrum and wavelengths
+        return pipeline.samples.mean, pipeline.wavelengths
     
-        spectral_radiance_ph_s = np.sum(spectral_radiance_ph_s)*(max_wavelength_nm - min_wavelength_nm)/spectral_bins
-
-        return spectral_radiance_ph_s, spectral_radiance.wavelengths #total_radiance_ph_s, 
