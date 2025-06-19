@@ -133,33 +133,37 @@ def Bmn_coeff(transition):
     '''
     return A_coeff(transition)*FF(wavelength(transition))
 
-def calc_cross_sections(MARc, T = None, n = None, E = None):
-    '''
-    Returns the cross-sections for a given coefficient matrix MARc in T(,n or E)
-    if given either n or E (2D MARc), the shape of T and n or E must be the same
+def calc_cross_sections(MARc, T=None, n=None, E=None):
+    """
+    Returns the cross-sections for a given coefficient matrix MARc in T (and n or E).
+    If using a 2D MARc, T and n/E must be broadcastable to the same shape.
 
-    MARc: AMJUEL coefficient matrix, either 9 by 1, or 9 by 9
-    T: Temperature vector (eV)
-    n: electron density vector (cm^-3)
-    E: energy of the particle (J)
-    '''
-    # Calc 2d fit
-    cross_sections = np.empty(np.shape(MARc), dtype=np.ndarray)
-    if np.shape(MARc) == (9,9):
-        if (n is not None):
-            nE = n/1e8
-        else:
-            nE = E
-        for n in range(0,9):
-            for m in range(0,9):
-                cross_sections[n,m] = MARc[n,m]*np.power(np.log(T), n)*np.power(np.log(nE), m)
+    MARc: AMJUEL coefficient matrix, either shape (9,) or (9, 9)
+    T: Electron temperature (eV)
+    n: Electron density (cm^-3), optional
+    E: Particle energy (J), optional
+    """
+    logT = np.log(T)
+
+    if MARc.shape == (9, 9):
+        nE = n / 1e8 if n is not None else E
+        lognE = np.log(nE)
+
+        # Create powers of log(T) and log(nE) from 0 to 8
+        logT_pow = np.array([logT**i for i in range(9)])
+        lognE_pow = np.array([lognE**j for j in range(9)])
+
+        # Use tensordot to apply the double sum efficiently
+        cross_section_log = np.tensordot(MARc, logT_pow * lognE_pow[:, None], axes=([0,1], [0,1]))
+
+    elif MARc.shape == (9,):
+        logT_pow = np.array([logT**i for i in range(9)])
+        cross_section_log = np.dot(MARc, logT_pow)
+
     else:
-    # Calc 1d fit
-        for n in range(0,9):
-            cross_sections[n] =  MARc[n]*np.power(np.log(T), n)
+        raise ValueError("MARc must be of shape (9,) or (9,9)")
 
-    cross_sections = np.sum(cross_sections)
-    return np.exp(cross_sections)        
+    return np.exp(cross_section_log)
 
 def read_amjuel_1d(h_name, collisionName, **kwargs):
     '''
