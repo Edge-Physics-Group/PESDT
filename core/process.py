@@ -95,7 +95,7 @@ class ProcessEdgeSim:
         if run_cherab:
             logger.info("   Calculate emission via Cherab")
             # Currently the run cherab function uses the synth_diag to get the instrument and LOS details, so that needs to be generated
-            self.run_cherab_bridge()
+            self.run_cherab()
         else:
             logger.info("   Calcualte emission via cone integration")
             self.calc_H_emiss()
@@ -137,27 +137,25 @@ class ProcessEdgeSim:
             pickle.dump(self, output)
             output.close()
 
-    def run_cherab_bridge(self): 
+    def run_cherab(self): 
         # Inputs from cherab_bridge_input_dict
-        import_jet_surfaces = self.input_dict['cherab_options']['import_jet_surfaces']
-        include_reflections = self.input_dict['cherab_options']['include_reflections']
-        spectral_bins = self.input_dict['cherab_options']['spectral_bins']
-        pixel_samples = self.input_dict['cherab_options']['pixel_samples']
+        import_jet_surfaces = self.input_dict['cherab_options'].get('import_jet_surfaces', True)
+        include_reflections = self.input_dict['cherab_options'].get('include_reflections', True)
+        pixel_samples = self.input_dict['cherab_options'].get('pixel_samples', 1000)
         spec_line_dict = self.input_dict['spec_line_dict']
         diag_list = self.input_dict['diag_list']
-        use_AMJUEL = self.input_dict['run_options']['use_AMJUEL']
+        data_source = self.input_dict['run_options'].get('data_source', "AMJUEL")
         recalc_h2_pos = self.input_dict['run_options'].get("recalc_h2_pos", True)
         calc_stark_ne = self.input_dict['cherab_options'].get('calculate_stark_ne', False)
         stark_transition = self.input_dict['cherab_options'].get('stark_transition', None)
         ff_fb = self.input_dict['cherab_options'].get('ff_fb_emission', False)
-        #sion_H_transition = input_dict['cherab_options']['Sion_H_transition']
-        #srec_H_transition = input_dict['cherab_options']['Srec_H_transition']
+
         # Generate cherab plasma
         transitions = [(int(val[0]), int(val[1])) for _, val in spec_line_dict['1']['1'].items()]
         plasma = CherabPlasma(self, self.ADAS_dict, 
                               include_reflections = include_reflections,
                               import_jet_surfaces = import_jet_surfaces, 
-                              use_AMJUEL=use_AMJUEL, 
+                              data_source=data_source, 
                               recalc_h2_pos = recalc_h2_pos,
                               transitions=transitions)
 
@@ -190,23 +188,23 @@ class ProcessEdgeSim:
                     wavelength = float(H_line_key)/10. #nm
                     
 
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_excitation=True,  use_AMJUEL=use_AMJUEL)
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_excitation=True,  data_source=data_source)
                     exc_radiance, exc_radiance_std = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
 
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_recombination=True, use_AMJUEL=use_AMJUEL)
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_recombination=True, data_source=data_source)
                     rec_radiance, rec_radiance_std = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
                     
-                    if use_AMJUEL:
-                        plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_H2=True, use_AMJUEL=use_AMJUEL)
+                    if data_source == "AMJUEL":
+                        plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_H2=True, data_source=data_source)
                         h2_radiance, h2_radiance_std = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
 
-                        plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_H2_pos= True, use_AMJUEL=use_AMJUEL)
+                        plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_H2_pos= True, data_source=data_source)
                         h2_pos_radiance, h2_pos_radiance_std = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
                         
-                        plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_H3_pos=True, use_AMJUEL=use_AMJUEL)
+                        plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_H3_pos=True, data_source=data_source)
                         h3_pos_radiance, h3_pos_radiance_std  = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2,wavelength=wavelength,  pixel_samples=pixel_samples)
                         
-                        plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_H_neg=True, use_AMJUEL=use_AMJUEL)
+                        plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_H_neg=True, data_source=data_source)
                         h_neg_radiance, h_neg_radiance_std = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
                                                             
                         self.outdict[diag_key][str(diag_chord)]['los_int']['H_emiss'][H_line_key] = {
@@ -233,7 +231,7 @@ class ProcessEdgeSim:
                             plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
                                                     include_excitation=True, include_recombination=True, 
                                                     include_H2_pos= True, include_H2=True, include_H_neg=True,
-                                                    include_H3_pos=True, use_AMJUEL=use_AMJUEL,
+                                                    include_H3_pos=True, data_source=data_source,
                                                     include_stark=True)
                             spec_bins = 50
                             radiance,  wave_arr = plasma.integrate_los_spectral(los_p1, los_p2, los_w1, los_w2, 
@@ -248,7 +246,7 @@ class ProcessEdgeSim:
 
                     # Free-free + free-bound using adaslib/continuo
                 if ff_fb:
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, use_AMJUEL=use_AMJUEL, include_ff_fb=True)
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, data_source=data_source, include_ff_fb=True)
                     min_wave = 300
                     max_wave = 500
                     spec_bins = 50

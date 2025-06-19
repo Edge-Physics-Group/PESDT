@@ -41,13 +41,13 @@ logger = logging.getLogger(__name__)
 
 class CherabPlasma():
 
-    def __init__(self, PESDT_obj, ADAS_dict, include_reflections=False, import_jet_surfaces = False, use_AMJUEL = False, recalc_h2_pos =True, transitions = None):
+    def __init__(self, PESDT_obj, ADAS_dict, include_reflections=False, import_jet_surfaces = False, data_source = "AMJUEL", recalc_h2_pos =True, transitions = None):
 
         self.PESDT_obj = PESDT_obj
         self.include_reflections = include_reflections
         self.import_jet_surfaces = import_jet_surfaces
         self.ADAS_dict = ADAS_dict
-        self.use_AMJUEL = use_AMJUEL
+        self.data_source = data_source
         self.recalc_h2_pos = recalc_h2_pos 
         self.transitions = transitions
         self.sim_type = PESDT_obj.edge_code
@@ -73,7 +73,7 @@ class CherabPlasma():
         # Load PESDT object into cherab_edge2d module, which converts the edge_codes grid to cherab
         # format, and populates cherab plasma parameters
         convert_to_m3 = not (self.use_AMJUEL)
-        cherab = createCherabPlasma(self.PESDT_obj,transitions= self.transitions ,convert_denel_to_m3 = convert_to_m3, load_mol_data = self.use_AMJUEL, recalc_h2_pos = self.recalc_h2_pos)
+        cherab = createCherabPlasma(self.PESDT_obj,transitions= self.transitions ,convert_denel_to_m3 = convert_to_m3, data_source=self.data_source, recalc_h2_pos = self.recalc_h2_pos)
         if self.import_jet_surfaces:
             if self.include_reflections:
                 import_jet_mesh(self.world)
@@ -100,7 +100,7 @@ class CherabPlasma():
     def define_plasma_model(self, atnum=1, ion_stage=0, transition=(2, 1),
                             include_excitation=False, include_recombination=False,
                             include_H2 = False, include_H2_pos = False, include_H_neg = False,
-                            include_H3_pos = False, use_tot = False, use_AMJUEL = False,
+                            include_H3_pos = False, use_tot = False, data_source = "AMJUEL",
                             include_stark=False, include_ff_fb=False):
         # Define one transition at a time and 'observe' total radiance
         # If multiple transitions are fed into the plasma object, the total
@@ -114,7 +114,7 @@ class CherabPlasma():
         # Only deuterium supported at the moment
         if atnum == 1:
             
-            if use_AMJUEL:
+            if data_source == "AMJUEL":
                 model_list = []
                 if use_tot:
                     model_list.append()
