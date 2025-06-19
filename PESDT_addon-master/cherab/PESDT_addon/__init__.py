@@ -8,5 +8,5 @@ from .LineEmitters import DirectEmission, LineExcitation_AM, LineRecombination_A
 from .continuo import Continuo
 from .stark import StarkFunction, StarkBroadenedLine
 from .Maxwellian import PESDTMaxwellian
-from .Species import PESDTElement, PESDTSpecies
+from .Species import PESDTElement, PESDTSpecies, deuterium, hydrogen
 from .Line import PESDTLine

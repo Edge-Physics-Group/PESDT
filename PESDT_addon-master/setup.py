@@ -27,7 +27,16 @@ for root, dirs, files in os.walk(setup_path):
         if path.splitext(file)[1] == ".pyx":
             pyx_file = path.relpath(path.join(root, file), setup_path)
             module = path.splitext(pyx_file)[0].replace("/", ".")
-            extensions.append(Extension(module, [pyx_file], include_dirs=compilation_includes),)
+            extensions.append(
+                                Extension(
+                                    module,
+                                    [pyx_file],
+                                    include_dirs=compilation_includes,
+                                    extra_compile_args=["-O3", "-ffast-math", "-march=native"],
+                                    extra_link_args=[],
+                                )
+)
+
 
 if profile:
     directives = {"profile": True}
