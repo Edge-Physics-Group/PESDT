@@ -103,7 +103,7 @@ cdef class Continuo(PlasmaModel):
         wvl_A = wvl * 10.
         iz0=1
         iz1=1
-        contin, confff = continuo_(wvl_A , te , iz0 , iz1 )
+        continuo_(wvl_A , te , iz0 , iz1, contin, contff )
 
         return RECIP_4_PI*contin*(1e-6)*ne*ne*10
 
