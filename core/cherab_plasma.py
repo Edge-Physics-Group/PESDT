@@ -24,7 +24,7 @@ from cherab.core.utility.conversion import PhotonToJ
 from cherab.jet.machine.cad_files import import_jet_mesh
 
 
-import cherab.PESDT_addon.molecules as molecules
+
 from cherab.PESDT_addon.stark import StarkBroadenedLine
 from cherab.PESDT_addon.LineEmitters import DirectEmission, LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
 
