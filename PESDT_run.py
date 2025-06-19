@@ -2,7 +2,6 @@ from core import AnalyseSynthDiag
 import json, os, sys
 import argparse
 import logging
-logger = logging.getLogger(__name__)
 
 
 def run_PESDT(input_dict_str):
@@ -23,9 +22,28 @@ def run_PESDT(input_dict_str):
     AnalyseSynthDiag(input_dict)
 
 if __name__=='__main__':
+    # Create the logger
+    logger = logging.getLogger()
+    logger.setLevel(logging.INFO)  # Set the global logging level
+
+    # Remove any existing handlers (important!)
+    logger.handlers = []
+
+    # File handler
+    file_handler = logging.FileHandler('PESDT.log')
+    file_handler.setLevel(logging.INFO)
+    file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+
+    # Console (stream) handler
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setLevel(logging.INFO)
+    console_handler.setFormatter(logging.Formatter('%(levelname)s - %(message)s'))
+
+    # Add both handlers
+    logger.addHandler(file_handler)
+    logger.addHandler(console_handler)
+
     logging.basicConfig(filename='PESDT.log', level=logging.INFO)
-    # Print log into console 
-    logger.addHandler(logging.StreamHandler(sys.stdout))
     logger.info('PESDT started')
     
 
