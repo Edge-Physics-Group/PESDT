@@ -58,7 +58,7 @@ cdef class DirectEmission(PlasmaModel):
     def __repr__(self):
         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
 
-    cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum) nogil:
+    cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):
         cdef double radiance
         # cache data on first run
         if self._target_species is None:
