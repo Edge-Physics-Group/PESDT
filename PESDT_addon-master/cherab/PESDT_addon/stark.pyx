@@ -1,6 +1,6 @@
 # cython: language_level=3
 
-# Slightly modified StarkBroadenedLine to add support for molecular contributions
+# Modifed stark Broadening line for PESDT
 
 
 import numpy as np
@@ -83,76 +83,23 @@ cdef class StarkBroadenedLine(LineShapeModel):
     """
 
     STARK_MODEL_COEFFICIENTS_DEFAULT = {
-        Line(hydrogen, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),
-        Line(hydrogen, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),
-        Line(hydrogen, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),
-        Line(hydrogen, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),
-        Line(hydrogen, 0, (7, 2)): (6.258e-16, 0.712, 0.029),
-        Line(hydrogen, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),
-        Line(hydrogen, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),
-        Line(hydrogen, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),
-        Line(hydrogen, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),
-        Line(hydrogen, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),
-        Line(hydrogen, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),
-        Line(hydrogen, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),
-        Line(hydrogen, 0, (9, 3)): (5.588e-15, 0.7165, 0.033),
-        Line(deuterium, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),
-        Line(deuterium, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),
-        Line(deuterium, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),
-        Line(deuterium, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),
-        Line(deuterium, 0, (7, 2)): (6.258e-16, 0.712, 0.029),
-        Line(deuterium, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),
-        Line(deuterium, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),
-        Line(deuterium, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),
-        Line(deuterium, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),
-        Line(deuterium, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),
-        Line(deuterium, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),
-        Line(deuterium, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),
-        Line(deuterium, 0, (9, 3)): (5.588e-15, 0.7165, 0.033),
-        Line(tritium, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),
-        Line(tritium, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),
-        Line(tritium, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),
-        Line(tritium, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),
-        Line(tritium, 0, (7, 2)): (6.258e-16, 0.712, 0.029),
-        Line(tritium, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),
-        Line(tritium, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),
-        Line(tritium, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),
-        Line(tritium, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),
-        Line(tritium, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),
-        Line(tritium, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),
-        Line(tritium, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),
-        Line(tritium, 0, (9, 3)): (5.588e-15, 0.7165, 0.033),
-        # Add Molecules -> Use the same coeff as for parent atom, as the "molecule line" is just the contribution of the
-        # Molecule to the excited atomic polulation
-        Line(Deuterium2, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),
-        Line(Deuterium2, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),
-        Line(Deuterium2, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),
-        Line(Deuterium2, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),
-        Line(Deuterium2, 0, (7, 2)): (6.258e-16, 0.712, 0.029),
-        Line(Deuterium2, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),
-        Line(Deuterium2, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),
-        Line(Deuterium2, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),
-        Line(Deuterium2, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),
-        Line(Deuterium2, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),
-        Line(Deuterium2, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),
-        Line(Deuterium2, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),
-        Line(Deuterium2, 0, (9, 3)): (5.588e-15, 0.7165, 0.033),
-        Line(Tritium2, 0, (3, 2)): (3.71e-18, 0.7665, 0.064),
-        Line(Tritium2, 0, (4, 2)): (8.425e-18, 0.7803, 0.050),
-        Line(Tritium2, 0, (5, 2)): (1.31e-15, 0.6796, 0.030),
-        Line(Tritium2, 0, (6, 2)): (3.954e-16, 0.7149, 0.028),
-        Line(Tritium2, 0, (7, 2)): (6.258e-16, 0.712, 0.029),
-        Line(Tritium2, 0, (8, 2)): (7.378e-16, 0.7159, 0.032),
-        Line(Tritium2, 0, (9, 2)): (8.947e-16, 0.7177, 0.033),
-        Line(Tritium2, 0, (4, 3)): (1.330e-16, 0.7449, 0.045),
-        Line(Tritium2, 0, (5, 3)): (6.64e-16, 0.7356, 0.044),
-        Line(Tritium2, 0, (6, 3)): (2.481e-15, 0.7118, 0.016),
-        Line(Tritium2, 0, (7, 3)): (3.270e-15, 0.7137, 0.029),
-        Line(Tritium2, 0, (8, 3)): (4.343e-15, 0.7133, 0.032),
-        Line(Tritium2, 0, (9, 3)): (5.588e-15, 0.7165, 0.033),
+        (3, 2): (3.71e-18, 0.7665, 0.064),
+        (4, 2): (8.425e-18, 0.7803, 0.050),
+        (5, 2): (1.31e-15, 0.6796, 0.030),
+        (6, 2): (3.954e-16, 0.7149, 0.028),
+        (7, 2): (6.258e-16, 0.712, 0.029),
+        (8, 2): (7.378e-16, 0.7159, 0.032),
+        (9, 2): (8.947e-16, 0.7177, 0.033),
+        (4, 3): (1.330e-16, 0.7449, 0.045),
+        (5, 3): (6.64e-16, 0.7356, 0.044),
+        (6, 3): (2.481e-15, 0.7118, 0.016),
+        (7, 3): (3.270e-15, 0.7137, 0.029),
+        (8, 3): (4.343e-15, 0.7133, 0.032),
+        (9, 3): (5.588e-15, 0.7165, 0.033),
+
 
     }
-    #cdef double self._aij, self._cij, self._bij
+    
     cdef:
         double _aij, _bij, _cij
         double _fwhm_poly_coeff_gauss[7]
@@ -166,7 +113,7 @@ cdef class StarkBroadenedLine(LineShapeModel):
 
         try:
             # Fitted Stark Constants
-            cij, aij, bij = stark_model_coefficients[line]
+            cij, aij, bij = stark_model_coefficients[line.transition]
             if cij <= 0:
                 raise ValueError('Coefficient c_ij must be positive.')
             if aij <= 0:
