@@ -27,7 +27,7 @@ cdef class DirectEmission(PlasmaModel):
     cdef object _lineshape_class
     cdef object _lineshape_args
     cdef object _lineshape_kwargs
-    cdef PESDTSpecies _target_species
+    cdef Species _target_species
     cdef double _wavelength
     
     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
