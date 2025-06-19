@@ -197,8 +197,53 @@ class CherabPlasma():
         c = 299792458.0 # m/s
         center_wav_m = centre_wav_nm * 1.0e-09
         return W_str_m2_val * center_wav_m / (h*c)
-
+    
     def integrate_los(self, los_p1, los_p2, los_w1, los_w2,
+                  pixel_samples=100, display_progress=False,
+                  wavelength = 656.1):
+        """
+        Integrates radiance along a line-of-sight using Raysect's RadiancePipeline0D.
+        Parameters:
+            los_p1, los_p2: (R, Z) coordinates of the LOS start and end.
+            los_w1: LOS entrance diameter (not used directly here but could be logged or used in fiber setup).
+            los_w2: LOS exit diameter (used to calculate acceptance angle).
+            pixel_samples: Number of samples per pixel (Monte Carlo rays).
+            display_progress: Whether to display progress bar.
+        Returns:
+            Radiance in W / (sr * m^2)
+        """
+
+        # Define LOS direction and observer origin using KT1V viewport angle
+        theta = -45.61 / 360 * (2 * pi)
+        origin = Point3D(los_p1[0] * cos(theta), los_p1[0] * sin(theta), los_p1[1])
+        endpoint = Point3D(los_p2[0] * cos(theta), los_p2[0] * sin(theta), los_p2[1])
+        direction = origin.vector_to(endpoint)
+
+        # Calculate acceptance angle from los_w2 and LOS length
+        chord_length = origin.distance_to(endpoint)
+        acceptance_angle = 2. * atan((los_w2 / 2.0) / chord_length) * 180. / np.pi
+
+        # Setup radiance pipeline
+        pipeline = RadiancePipeline0D(display_progress=display_progress)
+
+        # Create fibre optic observer
+        fibre = FibreOptic(
+            pipelines=[pipeline],
+            acceptance_angle=acceptance_angle,
+            radius=0.01,  # Default pinhole size of 1 cm
+            pixel_samples=pixel_samples,
+            spectral_rays=1,  # Not used in RadiancePipeline0D, but required by FibreOptic
+            transform=translate(*origin) * rotate_basis(direction, Vector3D(1, 0, 0)),
+            parent=self.world
+        )
+
+        # Perform ray tracing
+        fibre.observe()
+
+        # Return scalar radiance
+        return PhotonToJ.inv(pipeline.value, wavelength)  # Units: W / (sr * m^2)
+
+    def integrate_los_old(self, los_p1, los_p2, los_w1, los_w2,
                       min_wavelength_nm, max_wavelength_nm,
                       spectral_bins=1000, pixel_samples=100,
                       display_progress=False, no_avg = False):
