@@ -43,7 +43,7 @@ class Edge2D(BackgroundPlasma):
         from an EDGE2D-EIRENE tran file
         '''
 
-        logger.info('Getting data from ' + self.tranfile )
+        logger.info(f"Getting data from  {self.tranfile}" )
         
         # Read in R,Z center, corner coordiantes
         self.rmesh = self.get_eproc_param("EprocDataRead", 'RMESH')
@@ -322,7 +322,7 @@ class Edge2D(BackgroundPlasma):
             elif type(par2str) == str:
                 cmd = 'ret=' + funstr +'(tranfile,'+ """'""" + parstr + """'""" + ','  + """'""" + par2str + """'""" + ',' + args + ')'
 
-            logger.info(cmd)
+            logger.info(f"{cmd}")
             if funstr == "EprocRow":
                 epdata = ep.row(self.tranfile,parstr,par2str)
             else:
@@ -332,7 +332,7 @@ class Edge2D(BackgroundPlasma):
         else:
             cmd = 'ret=' + funstr +'(tranfile,'+ """'""" + parstr + """'""" + ')'
             epdata = ep.data(self.tranfile,parstr)
-            logger.info(parstr, epdata.nPts)
+            logger.info(f"{parstr}, {epdata.nPts}")
             return {'data': epdata.data, 'npts': epdata.nPts}
     
     # def read_eirene_data(self):

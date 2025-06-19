@@ -95,7 +95,7 @@ class ProcessEdgeSim:
         if run_cherab:
             logger.info("   Calculate emission via Cherab")
             # Currently the run cherab function uses the synth_diag to get the instrument and LOS details, so that needs to be generated
-            self.run_cherab()
+            self.run_cherab_raytracing()
         else:
             logger.info("   Calcualte emission via cone integration")
             self.calc_H_emiss()
@@ -103,7 +103,7 @@ class ProcessEdgeSim:
             self.calc_ff_fb_emiss()
 
             if diag_list:
-                logger.info('       diag_list', diag_list)
+                logger.info(f"       diag_list: {diag_list}")
                 for key in diag_list:
                     if key in self.defs.diag_dict.keys():
                         self.synth_diag[key] = SynthDiag(self.defs, diag=key,
@@ -124,7 +124,7 @@ class ProcessEdgeSim:
                                     chord.calc_int_and_1d_los_quantities_AMJUEL_2()
                                 else:
                                     chord.calc_int_and_1d_los_quantities_2()
-                                logger.info('       Calculating synthetic spectra for diag: ', key)
+                                logger.info(f"       Calculating synthetic spectra for diag:  {key}")
                                 chord.calc_int_and_1d_los_synth_spectra()
 
             if save_synth_diag:
@@ -137,7 +137,7 @@ class ProcessEdgeSim:
             pickle.dump(self, output)
             output.close()
 
-    def run_cherab(self): 
+    def run_cherab_raytracing(self): 
         # Inputs from cherab_bridge_input_dict
         import_jet_surfaces = self.input_dict['cherab_options'].get('import_jet_surfaces', True)
         include_reflections = self.input_dict['cherab_options'].get('include_reflections', True)
@@ -181,7 +181,7 @@ class ProcessEdgeSim:
 
                 self.outdict[diag_key][str(diag_chord)]['los_int'] = {'H_emiss': {}}
 
-                logger.info(diag_key, los_p2)
+                print(diag_key, los_p2)
                 for H_line_key, val in H_lines.items():
                 
                     transition = (int(val[0]), int(val[1]))
@@ -344,7 +344,7 @@ class ProcessEdgeSim:
         with open (savefile, mode='w', encoding='utf-8') as f:
             json.dump(outdict, f, indent=2)
 
-        logger.info('Saving synthetic diagnostic data to:', savefile)
+        logger.info(f"Saving synthetic diagnostic data to:{savefile}")
 
         # pickle.dump(outdict, output)
         #
@@ -431,7 +431,7 @@ class ProcessEdgeSim:
             cell.ff_fb_radpwr = cell.ff_fb_radpwr_perm3 * cell_vol
 
             sum_ff_radpwr += cell.ff_radpwr
-        logger.info('Total ff radiated power:', sum_ff_radpwr, ' [W]')
+        logger.info(f"Total ff radiated power: {sum_ff_radpwr} [W] ")
 
     def calc_H_rad_power(self):
         # Te_rnge = [0.2, 5000]
@@ -451,7 +451,7 @@ class ProcessEdgeSim:
 
             sum_pwr += np.sum(np.asarray(cell.H_radpwr)) # sanity check. compare to eproc
         self.Prad_H = sum_pwr
-        logger.info('Total H radiated power:', sum_pwr, ' [W]')
+        logger.info(f"Total H radiated power: {sum_pwr} [W] ")
 
         if self.spec_line_dict_lytrap:
             logger.info('Calculating H radiated power for Ly trapping...')
@@ -469,8 +469,8 @@ class ProcessEdgeSim:
                 cell.H_radpwr_Lytrap_perm3 = (plt_contr + prb_contr) * 1.e06  # Watts m^-3
                 sum_pwr += np.sum(np.asarray(cell.H_radpwr_Lytrap))  # sanity check. compare to eproc
             self.Prad_H_Lytrap = sum_pwr
-            logger.info('Total H radiated power w/ Ly trapping:', sum_pwr, ' [W]')
-
+            logger.info(f"Total H radiated power w/ Ly trapping: {sum_pwr} [W] ")
+      
 
     def los_intersect(self, los):
         for cell in self.cells:
