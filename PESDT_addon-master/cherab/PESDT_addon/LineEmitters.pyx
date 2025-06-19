@@ -102,7 +102,6 @@ cdef class DirectEmission(PlasmaModel):
         # clear cache to force regeneration on first use
         self._target_species = None
         self._wavelength = 0.0
-        self._rates = None
         self._lineshape = None
 
 
