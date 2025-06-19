@@ -23,10 +23,10 @@ Cherab AMJUEL plasma models
 cdef class DummyLineShape(LineShapeModel):
 
     cpdef Spectrum add_line(self, double radiance, Point3D point, Vector3D direction, Spectrum spectrum):
-        cdef int i = spectrum.index(self._wavelength)
-        spectrum.samples_mv[i] += radiance
-        return spectrum
         
+        spectrum.samples_mv[0] += radiance
+        return spectrum
+
 cdef class DirectEmission(PlasmaModel):
     cdef dict __dict__
     cdef Line _line
