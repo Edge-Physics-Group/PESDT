@@ -8,7 +8,7 @@ from raysect.optical cimport Spectrum, Point3D, Vector3D
 from cherab.core cimport Line, Species, Plasma, Beam
 from cherab.core.model.lineshape cimport GaussianLine, LineShapeModel
 from cherab.core.utility.constants cimport RECIP_4_PI
-from .Species cimport PESDTSpecies
+
 
 import numpy as np
 
