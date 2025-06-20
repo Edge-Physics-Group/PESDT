@@ -464,7 +464,7 @@ class ProcessEdgeSim:
                     if wl not in diag_dict:
                         diag_dict[wl] = {}
                     for src_key in src_vals:
-                        if src_key not in diag_dict[wl]:
+                        if src_key not in diag_dict[wl] and src_key != "units":
                             diag_dict[wl][src_key] = []
 
             # Store data per chord
@@ -472,7 +472,8 @@ class ProcessEdgeSim:
                 # Fill in wavelength-integrated emission values
                 for wl, src_vals in chord.los_int.get("H_emiss", {}).items():
                     for src_key, val in src_vals.items():
-                        diag_dict[wl][src_key].append(val)
+                        if src_key != "units":
+                            diag_dict[wl][src_key].append(val)
 
                 # Create chord dictionary with geometry + los_1d + spectrum
                 chord_entry = {
