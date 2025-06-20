@@ -135,9 +135,160 @@ class ProcessEdgeSim:
             # pickle serialization of e2deirpostproc object
             output = open(data2d_save_file, 'wb')
             pickle.dump(self, output)
-            output.close()
+            output.close() 
 
-    def run_cherab_raytracing(self): 
+    def run_cherab_raytracing(self):
+        # === Load Configuration ===
+        cherab_opts = self.input_dict["cherab_options"]
+        run_opts = self.input_dict["run_options"]
+        spec_line_dict = self.input_dict["spec_line_dict"]
+        diag_list = self.input_dict["diag_list"]
+
+        pixel_samples = cherab_opts.get("pixel_samples", 1000)
+        include_reflections = cherab_opts.get("include_reflections", True)
+        import_jet_surfaces = cherab_opts.get("import_jet_surfaces", True)
+        calc_stark_ne = cherab_opts.get("calculate_stark_ne", False)
+        stark_transition = cherab_opts.get("stark_transition", None)
+        ff_fb = cherab_opts.get("ff_fb_emission", False)
+
+        data_source = run_opts.get("data_source", "AMJUEL")
+        recalc_h2_pos = run_opts.get("recalc_h2_pos", True)
+
+        diag_def = get_JETdefs().diag_dict
+        transitions = [(int(v[0]), int(v[1])) for _, v in spec_line_dict['1']['1'].items()]
+        
+        # === Initialize Plasma ===
+        plasma = CherabPlasma(self, self.ADAS_dict,
+                            include_reflections=include_reflections,
+                            import_jet_surfaces=import_jet_surfaces,
+                            data_source=data_source,
+                            recalc_h2_pos=recalc_h2_pos,
+                            transitions=transitions)
+        
+        # === Setup Observers ===
+        instrument_los_dict = {}
+        for diag in diag_list:
+            los_points = []
+            p1 = diag_def[diag]["p1"][0].tolist()
+            w1 = 0.0
+            w2 = diag_def[diag]["w"][0][1]
+            for p2 in diag_def[diag]["p2"]:
+                los_points.append((p1, p2.tolist(), w1, w2))
+            instrument_los_dict[diag] = los_points
+
+        plasma.setup_observers(instrument_los_dict, pixel_samples=pixel_samples)
+
+        # === Setup Spectral Observers if needed ===
+        # Figure out Stark wavelength from spec_line_dict
+        if calc_stark_ne:
+            stark_wavelength_nm = None
+            for line_key, val in spec_line_dict["1"]["1"].items():
+                if tuple(val) == tuple(stark_transition):
+                    stark_wavelength_nm = float(line_key) / 10.0
+                    break
+
+            if stark_wavelength_nm is not None:
+                min_wave = stark_wavelength_nm - 1.0
+                max_wave = stark_wavelength_nm + 1.0
+                plasma.setup_spectral_observers(instrument_los_dict,
+                                                min_wavelength_nm=min_wave,
+                                                max_wavelength_nm=max_wave,
+                                                destination="stark",
+                                                pixel_samples=pixel_samples)
+
+        if ff_fb:
+            plasma.setup_spectral_observers(instrument_los_dict,
+                                            min_wavelength_nm=300,
+                                            max_wavelength_nm=500,
+                                            destination="continuum",
+                                            pixel_samples=pixel_samples)
+
+        self.outdict = {}
+
+        # === Process Each Instrument ===
+        for diag in diag_list:
+            self.outdict[diag] = {}
+
+            p1 = diag_def[diag]["p1"][0].tolist()
+            w1 = 0.0
+            w2 = diag_def[diag]["w"][0][1]
+
+            los_coords = []
+            for p2 in diag_def[diag]["p2"]:
+                los_coords.append({"p1": p1, "p2": p2.tolist(), "w1": w1, "w2": w2})
+            self.outdict[diag]["coord"] = los_coords
+
+            H_lines = spec_line_dict['1']['1']
+            self.outdict[diag]["units"] = "ph s^-1 m^-2 sr^-1"
+
+            for line_key, trans in H_lines.items():
+                transition = (int(trans[0]), int(trans[1]))
+                wavelength = float(line_key) / 10.0  # to nm
+                self.outdict[diag][wavelength] = {}
+
+                # Excitation
+                logger.info("Excitation")
+                plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                        include_excitation=True, data_source=data_source)
+                excit = plasma.integrate_instrument(diag)
+                self.outdict[diag][wavelength]["excit"] = [x[0] for x in excit]
+
+                # Recombination
+                logger.info("Recombination")
+                plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                        include_recombination=True, data_source=data_source)
+                recom = plasma.integrate_instrument(diag)
+                self.outdict[diag][wavelength]["recom"] = [x[0] for x in recom]
+
+                # Molecular / negative H species
+                if data_source == "AMJUEL":
+                    logger.info("H2")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_H2=True, data_source=data_source)
+                    self.outdict[diag][wavelength]["h2"] = [x[0] for x in plasma.integrate_instrument(diag)]
+                    logger.info("H2+")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_H2_pos=True, data_source=data_source)
+                    self.outdict[diag][wavelength]["h2+"] = [x[0] for x in plasma.integrate_instrument(diag)]
+                    logger.info("H3+")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_H3_pos=True, data_source=data_source)
+                    self.outdict[diag][wavelength]["h3+"] = [x[0] for x in plasma.integrate_instrument(diag)]
+                    logger.info("H-")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_H_neg=True, data_source=data_source)
+                    self.outdict[diag][wavelength]["h-"] = [x[0] for x in plasma.integrate_instrument(diag)]
+
+                # === Optional Stark Spectrum ===
+                if calc_stark_ne and transition == tuple(stark_transition):
+                    logger.info("Stark")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_excitation=True, include_recombination=True,
+                                            include_H2=True, include_H2_pos=True,
+                                            include_H3_pos=True, include_H_neg=True,
+                                            include_stark=True, data_source=data_source)
+
+                    spec, wl = plasma.integrate_instrument_spectral(diag, destination="stark")
+                    self.outdict[diag]["stark"] = {
+                        "cwl": wavelength,
+                        "wave": wl[0].tolist(),
+                        "intensity": spec[0].tolist(),
+                        "units": "nm, ph s^-1 m^-2 sr^-1 nm^-1"
+                    }
+
+            # === Optional FF+FB Spectrum ===
+            if ff_fb:
+                logger.info("Continuum")
+                plasma.define_plasma_model(atnum=1, ion_stage=0, data_source=data_source, include_ff_fb=True)
+                spec, wl = plasma.integrate_instrument_spectral(diag, destination="continuum")
+                self.outdict[diag]["ff_fb_continuum"] = {
+                    "wave": wl[0].tolist(),
+                    "intensity": spec[0].tolist(),
+                    "units": "nm, ph s^-1 m^-2 sr^-1 nm^-1"
+                }
+
+
+    def run_cherab_raytracing_old(self): 
         # Inputs from cherab_bridge_input_dict
         import_jet_surfaces = self.input_dict['cherab_options'].get('import_jet_surfaces', True)
         include_reflections = self.input_dict['cherab_options'].get('include_reflections', True)
@@ -274,47 +425,6 @@ class ProcessEdgeSim:
     def __setstate__(self, dict):
         # TODO: Read external ADAS_dict object and add to dict for unpickling
         self.__dict__.update(dict)
-    '''
-    def interp_outlier_cells(self):
-        """
-            Replace outlier cell plasma properties with interpolated values from nearest specified neighbours.
-            Uses average of neighbouring cell values weighted by distance to these cells.
-        """
-        for outlier_cell in self.outlier_cell_dict:
-            for cell in self.cells:
-                if isclose(cell.R, outlier_cell['outlier_RZ'][0], rel_tol=1e-09, abs_tol=rz_match_tol) and \
-                        isclose(cell.Z, outlier_cell['outlier_RZ'][1], rel_tol=1e-09, abs_tol=rz_match_tol):
-                    R = cell.R
-                    Z = cell.Z
-                    neighbs_RZ = []
-                    neighb_ne = []
-                    neighb_ni = []
-                    neighb_n0 = []
-                    neighb_n2 = []
-                    neighb_Te = []
-                    neighb_Ti = []
-                    for i, neighb in enumerate(outlier_cell['neighbs_RZ']):
-                        for _cell in self.cells:
-                            if isclose(_cell.R, neighb[i][0], rel_tol=1e-09, abs_tol=rz_match_tol) and \
-                                    isclose(_cell.Z, neighb[i][1], rel_tol=1e-09, abs_tol=rz_match_tol):
-                                neighbs_RZ.append([_cell.R, _cell.Z])
-                                neighb_ne.append(_cell.ne)
-                                neighb_ni.append(_cell.ni)
-                                neighb_n0.append(_cell.n0)
-                                neighb_n2.append(_cell.n2)
-                                neighb_Te.append(_cell.Te)
-                                neighb_Ti.append(_cell.Ti)
-                                break
-
-                    # now interpolate
-                    cell.ne = interp_nearest_neighb([R,Z], neighbs_RZ, neighb_ne)
-                    cell.ni = interp_nearest_neighb([R,Z], neighbs_RZ, neighb_ni)
-                    cell.n0 = interp_nearest_neighb([R,Z], neighbs_RZ, neighb_n0)
-                    cell.n2 = interp_nearest_neighb([R,Z], neighbs_RZ, neighb_n2)
-                    cell.Te = interp_nearest_neighb([R,Z], neighbs_RZ, neighb_Te)
-                    cell.Ti = interp_nearest_neighb([R,Z], neighbs_RZ, neighb_Ti)
-                break
-    '''
 
     def save_synth_diag_data(self, savefile=None):
         # output = open(savefile, 'wb')

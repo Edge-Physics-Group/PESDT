@@ -1,22 +1,17 @@
 
 from ast import Raise
-import matplotlib.pyplot as plt
 import numpy as np
 import os, sys, pickle
 from scipy.constants import atomic_mass, electron_mass
 from math import sin, cos, pi, atan
 
-from raysect.primitive import Cylinder
 from raysect.optical import World, AbsorbingSurface
 from raysect.optical.observer import PinholeCamera, FibreOptic, RadiancePipeline0D, SpectralRadiancePipeline0D
 from raysect.core.math import Point3D, Vector3D, translate, rotate, rotate_basis#, Discrete2DMesh #Note: this was not being used, and caused a chrash (cannot be found)
-from raysect.optical.material.emitter.inhomogeneous import NumericalIntegrator
 
 from cherab.openadas import OpenADAS
 
 from cherab.core import Plasma, Species, Maxwellian, Line, elements
-from cherab.core.math.mappers import AxisymmetricMapper
-from cherab.core.math import Constant3D, ConstantVector3D
 #from cherab.core.model.lineshape import StarkBroadenedLine
 from cherab.core.model.plasma.impact_excitation import ExcitationLine
 from cherab.core.model.plasma.recombination import RecombinationLine
@@ -41,7 +36,12 @@ logger = logging.getLogger(__name__)
 
 class CherabPlasma():
 
-    def __init__(self, PESDT_obj, ADAS_dict, include_reflections=False, import_jet_surfaces = False, data_source = "AMJUEL", recalc_h2_pos =True, transitions = None):
+    def __init__(self, PESDT_obj, 
+                 ADAS_dict, include_reflections=False, 
+                 import_jet_surfaces = False, 
+                 data_source = "AMJUEL", 
+                 recalc_h2_pos =True, 
+                 transitions = None):
 
         self.PESDT_obj = PESDT_obj
         self.include_reflections = include_reflections
@@ -51,6 +51,11 @@ class CherabPlasma():
         self.recalc_h2_pos = recalc_h2_pos 
         self.transitions = transitions
         self.sim_type = PESDT_obj.edge_code
+
+        self.instrument_fibreoptics = {}
+        self.stark_fibreoptics = {}
+        self.continuum_fibreoptics = {}
+
 
         # Create CHERAB plasma from PESDT edge_codes object
         # Try loading for a pickled world definition
@@ -73,7 +78,11 @@ class CherabPlasma():
         # Load PESDT object into cherab_edge2d module, which converts the edge_codes grid to cherab
         # format, and populates cherab plasma parameters
         convert_to_m3 = not (self.data_source in ["AMJUEL", "YACORA"])
-        cherab = createCherabPlasma(self.PESDT_obj,transitions= self.transitions ,convert_denel_to_m3 = convert_to_m3, data_source=self.data_source, recalc_h2_pos = self.recalc_h2_pos)
+        cherab = createCherabPlasma(self.PESDT_obj,
+                                    transitions= self.transitions,
+                                    convert_denel_to_m3 = convert_to_m3, 
+                                    data_source=self.data_source, 
+                                    recalc_h2_pos = self.recalc_h2_pos)
         if self.import_jet_surfaces:
             if self.include_reflections:
                 import_jet_mesh(self.world)
@@ -104,7 +113,7 @@ class CherabPlasma():
                             include_excitation=False, include_recombination=False,
                             include_H2 = False, include_H2_pos = False, include_H_neg = False,
                             include_H3_pos = False, use_tot = False, data_source = "AMJUEL",
-                            include_stark=False, include_ff_fb=False):
+                            include_stark=False, include_ff_fb=False, user_models = None):
         # Define one transition at a time and 'observe' total radiance
         # If multiple transitions are fed into the plasma object, the total
         # observed radiance will be the sum of the defined spectral lines.
@@ -116,7 +125,6 @@ class CherabPlasma():
 
         # Only deuterium supported at the moment
         if atnum == 1:
-            
             if data_source == "AMJUEL":
                 model_list = []
                 if use_tot:
@@ -145,92 +153,72 @@ class CherabPlasma():
                         model_list.append(Continuo(h_line, lineshape = lineshape))
 
                 self.plasma.models = model_list
-                    
+            elif data_source == "YACORA":
+                pass        
             else:
-                h_line = Line(elements.deuterium, 0, transition)   
+                h_line = Line(D0, 0, transition)
+                model_list = []
+                if include_excitation:
+                    model_list.append(ExcitationLine(h_line, lineshape=lineshape))
+                if include_recombination:
+                    model_list.append(RecombinationLine(h_line, lineshape=lineshape))
                 if include_ff_fb:
-                    if include_excitation and include_recombination:
-                        self.plasma.models = [ExcitationLine(h_line, lineshape=lineshape),
-                                            RecombinationLine(h_line, lineshape=lineshape),
-                                            Continuo()]
-                    elif include_excitation and not include_recombination:
-                        self.plasma.models = [ExcitationLine(h_line, lineshape=lineshape),
-                                            Continuo()]
-                    elif not include_excitation and include_recombination:
-                        self.plasma.models = [RecombinationLine(h_line, lineshape=lineshape),
-                                            Continuo()]
-                    else:
-                        self.plasma.models = [Continuo()]
-                else:
-                    if include_excitation and include_recombination:
-                        self.plasma.models = [ExcitationLine(h_line, lineshape=lineshape),
-                                            RecombinationLine(h_line, lineshape=lineshape)]
-                    elif include_excitation and not include_recombination:
-                        self.plasma.models = [ExcitationLine(h_line, lineshape=lineshape)]
-                    elif not include_excitation and include_recombination:
-                        self.plasma.models = [RecombinationLine(h_line, lineshape=lineshape)]
-                    else:
-                        sys.exit('Cherab plasma model must include either (or both) excitation or recombination.')
+                    model_list.append(Continuo())
+                self.plasma.models = model_list
         else:
-            print('Cherab bridge only supports deuterium.')
-
-    def W_str_m2_to_ph_s_str_m2(self, centre_wav_nm, W_str_m2_val):
-        h = 6.626E-34 # J.s
-        c = 299792458.0 # m/s
-        center_wav_m = centre_wav_nm * 1.0e-09
-        return W_str_m2_val * center_wav_m / (h*c)
+            logger.info(f"Atnum: {atnum}, expecting a user supplied list of emission models using the arg 'user_models'.")
+            if user_models is not None:
+                self.plasma.models = user_models
+            else:
+                sys.exit("User did not supply emission models, aborting.")
     
-    def integrate_los(self, los_p1, los_p2, los_w1, los_w2,
-                  pixel_samples=100, display_progress=False,
-                  wavelength = 656.1):
+    def setup_observers(self, instrument_los_dict: dict, pixel_samples = 1000):
         """
-        Integrates radiance along a line-of-sight using Raysect's RadiancePipeline0D.
+        Creates fibreOptics, which are used to integrate radiance along a line-of-sight using Raysect's RadiancePipeline0D.
         Parameters:
             los_p1, los_p2: (R, Z) coordinates of the LOS start and end.
             los_w1: LOS entrance diameter (not used directly here but could be logged or used in fiber setup).
             los_w2: LOS exit diameter (used to calculate acceptance angle).
             pixel_samples: Number of samples per pixel (Monte Carlo rays).
-            display_progress: Whether to display progress bar.
-        Returns:
-            Radiance in W / (sr * m^2)
         """
+        for instrument in instrument_los_dict.keys():
+            fibreoptics = []
+            for los_p1, los_p2, los_w1, los_w2 in instrument_los_dict[instrument]:
+                 # Define LOS direction and observer origin using KT1V viewport angle
+                theta = -45.61 / 360 * (2 * pi)
+                origin = Point3D(los_p1[0] * cos(theta), los_p1[0] * sin(theta), los_p1[1])
+                endpoint = Point3D(los_p2[0] * cos(theta), los_p2[0] * sin(theta), los_p2[1])
+                direction = origin.vector_to(endpoint)
 
-        # Define LOS direction and observer origin using KT1V viewport angle
-        theta = -45.61 / 360 * (2 * pi)
-        origin = Point3D(los_p1[0] * cos(theta), los_p1[0] * sin(theta), los_p1[1])
-        endpoint = Point3D(los_p2[0] * cos(theta), los_p2[0] * sin(theta), los_p2[1])
-        direction = origin.vector_to(endpoint)
+                # Calculate acceptance angle from los_w2 and LOS length
+                chord_length = origin.distance_to(endpoint)
+                acceptance_angle = 2. * atan((los_w2 / 2.0) / chord_length) * 180. / np.pi
 
-        # Calculate acceptance angle from los_w2 and LOS length
-        chord_length = origin.distance_to(endpoint)
-        acceptance_angle = 2. * atan((los_w2 / 2.0) / chord_length) * 180. / np.pi
+                # Setup radiance pipeline
+                pipeline = RadiancePipeline0D()
 
-        # Setup radiance pipeline
-        pipeline = RadiancePipeline0D()
-
-        # Create fibre optic observer
-        fibre = FibreOptic(
-            pipelines=[pipeline],
-            acceptance_angle=acceptance_angle,
-            radius=0.01,  # Default pinhole size of 1 cm
-            pixel_samples=pixel_samples,
-            spectral_rays=1,  # Not used in RadiancePipeline0D, but required by FibreOptic
-            transform=translate(*origin) * rotate_basis(direction, Vector3D(1, 0, 0)),
-            parent=self.world
-        )
-
-        # Perform ray tracing
-        fibre.observe()
-
-        # Return scalar radiance
-        return pipeline.value.mean, pipeline.value.variance  
+                # Create fibre optic observer
+                fibreoptics.append((pipeline, FibreOptic(
+                    pipelines=[pipeline],
+                    acceptance_angle=acceptance_angle,
+                    radius=0.01,  # Default pinhole size of 1 cm
+                    pixel_samples=pixel_samples,
+                    spectral_rays=1,  # Not used in RadiancePipeline0D, but required by FibreOptic
+                    transform=translate(*origin) * rotate_basis(direction, Vector3D(1, 0, 0)),
+                    parent=self.world)))
+                
+            self.instrument_fibreoptics[instrument] = fibreoptics
+        return
     
-    def integrate_los_spectral(self, los_p1, los_p2, los_w1, los_w2,
-                           min_wavelength_nm, max_wavelength_nm,
-                           spectral_bins=1000, pixel_samples=100,
-                           spectral_rays=1, display_progress=False):
-        '''
-        Integrates spectral radiance along a line-of-sight using SpectralRadiancePipeline0D.
+    def setup_spectral_observers(self, instrument_los_dict: dict, 
+                                 min_wavelength_nm, 
+                                 max_wavelength_nm, 
+                                 destination = "stark",
+                                 pixel_samples = 1000, 
+                                 spectral_rays = 100, 
+                                 spectral_bins = 100):
+        """
+        Creates fibreOptics, which are used to integrate spectral radiance along a line-of-sight using SpectralRadiancePipeline0D.
 
         Parameters:
             los_p1, los_p2: (R, Z) coordinates of the LOS start and end.
@@ -239,46 +227,89 @@ class CherabPlasma():
             spectral_bins: number of wavelength bins.
             pixel_samples: number of Monte Carlo samples per pixel.
             spectral_rays: number of rays per wavelength bin.
-            display_progress: whether to show progress bar.
+        """
+        for instrument in instrument_los_dict.keys():
+            fibreoptics = []
+            for los_p1, los_p2, los_w1, los_w2 in instrument_los_dict[instrument]:
+                 # Define LOS direction and observer origin using KT1V viewport angle
+                theta = -45.61 / 360 * (2 * pi)
+                origin = Point3D(los_p1[0] * cos(theta), los_p1[0] * sin(theta), los_p1[1])
+                endpoint = Point3D(los_p2[0] * cos(theta), los_p2[0] * sin(theta), los_p2[1])
+                direction = origin.vector_to(endpoint)
 
+                # Calculate acceptance angle from los_w2 and LOS length
+                chord_length = origin.distance_to(endpoint)
+                acceptance_angle = 2. * atan((los_w2 / 2.0) / chord_length) * 180. / np.pi
+
+                # Setup radiance pipeline
+                pipeline = SpectralRadiancePipeline0D(display_progress=False)
+
+                # Create fibre optic observer
+                fibre = FibreOptic(
+                    pipelines=[pipeline],
+                    acceptance_angle=acceptance_angle,
+                    radius=0.01,  # 1 cm pinhole
+                    pixel_samples=pixel_samples,
+                    spectral_rays=spectral_rays,
+                    spectral_bins=spectral_bins,
+                    transform=translate(*origin) * rotate_basis(direction, Vector3D(1, 0, 0)),
+                    parent=self.world
+                )
+                # Set wavelength bounds
+                fibre.min_wavelength = min_wavelength_nm
+                fibre.max_wavelength = max_wavelength_nm
+                fibreoptics.append((pipeline, fibre))
+
+            if destination == "stark":
+                self.stark_fibreoptics[instrument] = fibreoptics
+            elif destination == "continuum":
+                self.continuum_fibreoptics[instrument] = fibreoptics
+            else:
+                #Assume the user want's to do spectral bins for regular line-emission
+                self.instrument_fibreoptics[instrument] = fibreoptics
+        return
+    
+    def integrate_instrument(self, instrument):
+        """
+        Iterates over the fibreOptics of an instrument
+        
+        Returns:
+            Radiance in ph/s/(sr*m^2)
+        """
+        res = []
+        for pipeline, fibre in self.instrument_fibreoptics[instrument]:
+            # Perform ray tracing
+            fibre.observe()
+            res.append([pipeline.value.mean, pipeline.value.variance])
+        # Return scalar radiance
+        return res
+    
+    def integrate_instrument_spectral(self, instrument, destination):
+        '''
+        Iterates over the fibreOptics of an instrument
         Returns:
             Tuple of (spectrum, wavelengths):
                 - spectrum: ndarray of W / (sr * m² * nm)
                 - wavelengths: ndarray in nanometers
         '''
-
-        # LOS geometry
-        theta = -45.61 / 360 * (2 * pi)
-        origin = Point3D(los_p1[0] * cos(theta), los_p1[0] * sin(theta), los_p1[1])
-        endpoint = Point3D(los_p2[0] * cos(theta), los_p2[0] * sin(theta), los_p2[1])
-        direction = origin.vector_to(endpoint)
-
-        # Acceptance angle from los_w2 at LOS length
-        chord_length = origin.distance_to(endpoint)
-        acceptance_angle = 2. * atan((los_w2 / 2.0) / chord_length) * 180. / np.pi
-
-        # Setup spectral radiance pipeline
-        pipeline = SpectralRadiancePipeline0D(display_progress=display_progress)
-
-        # Observer (FibreOptic) using spectral pipeline
-        fibre = FibreOptic(
-            pipelines=[pipeline],
-            acceptance_angle=acceptance_angle,
-            radius=0.01,  # 1 cm pinhole
-            pixel_samples=pixel_samples,
-            spectral_rays=spectral_rays,
-            spectral_bins=spectral_bins,
-            transform=translate(*origin) * rotate_basis(direction, Vector3D(1, 0, 0)),
-            parent=self.world
-        )
-
-        # Set wavelength bounds
-        fibre.min_wavelength = min_wavelength_nm
-        fibre.max_wavelength = max_wavelength_nm
-
-        # Trace rays
-        fibre.observe()
-
-        # Return spectrum and wavelengths
-        return pipeline.samples.mean, pipeline.wavelengths
+        src = None
+        if destination == "stark":
+            src = self.stark_fibreoptics[instrument]
+        elif destination == "continuum":
+            src = self.continuum_fibreoptics[instrument]
+        else:
+            src = self.instrument_fibreoptics[instrument]
+        res = []
+        for pipeline, fibre in src:
+            # Perform ray tracing
+            fibre.observe()
+            res.append([pipeline.samples.mean, pipeline.wavelengths])
+        # Return scalar radiance
+        return res
+        
     
+    def W_str_m2_to_ph_s_str_m2(self, centre_wav_nm, W_str_m2_val):
+        h = 6.626E-34 # J.s
+        c = 299792458.0 # m/s
+        center_wav_m = centre_wav_nm * 1.0e-09
+        return W_str_m2_val * center_wav_m / (h*c)
