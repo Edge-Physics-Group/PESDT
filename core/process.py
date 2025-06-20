@@ -183,7 +183,7 @@ class ProcessEdgeSim:
         if calc_stark_ne:
             stark_wavelength_nm = None
             for line_key, val in spec_line_dict["1"]["1"].items():
-                if tuple(val) == tuple(stark_transition):
+                if (int(val[0]), int(val[1])) == tuple(stark_transition):
                     stark_wavelength_nm = float(line_key) / 10.0
                     break
 
@@ -426,29 +426,19 @@ class ProcessEdgeSim:
         # TODO: Read external ADAS_dict object and add to dict for unpickling
         self.__dict__.update(dict)
 
-    def save_synth_diag_data(self, savefile=None):
+    def save_synth_diag_data_old(self, savefile=None):
         # output = open(savefile, 'wb')
         outdict = {}
         for diag_key in self.synth_diag:
             outdict[diag_key] = {}
             for chord in self.synth_diag[diag_key].chords:
                 outdict[diag_key].update({chord.chord_num:{}})
-                # outdict[diag_key][chord.chord_num].update({'H_emiss':chord.los_int['H_emiss']})
                 outdict[diag_key][chord.chord_num]['spec_line_dict'] = self.spec_line_dict
-                outdict[diag_key][chord.chord_num]['spec_line_dict_lytrap'] = self.spec_line_dict_lytrap
                 outdict[diag_key][chord.chord_num]['los_1d'] = chord.los_1d
                 outdict[diag_key][chord.chord_num]['los_int'] = chord.los_int
                 for spectrum in chord.los_int_spectra:
                     outdict[diag_key][chord.chord_num]['los_int'].update({spectrum:chord.los_int_spectra[spectrum]})
-                    # outdict[diag_key][chord.chord_num]['los_1d'].update({spectrum: chord.los_1d_spectra[spectrum]})
-                # outdict[diag_key][chord.chord_num]['Srec'] = chord.los_int['Srec']
-                # outdict[diag_key][chord.chord_num]['Sion'] = chord.los_int['Sion']
-                if chord.shply_intersects_w_sep and diag_key=='KT3':
-                    outdict[diag_key][chord.chord_num].update({'chord':{'p1':chord.p1, 'p2':chord.p2unmod, 'w1': chord.w1,'w2':chord.w2unmod, 'sep_intersect_below_xpt':[chord.shply_intersects_w_sep.coords.xy[0][0],chord.shply_intersects_w_sep.coords.xy[1][0]]}})
-                else:
-                    outdict[diag_key][chord.chord_num].update({'chord':{'p1':chord.p1, 'p2':chord.p2unmod, 'w1': chord.w1,'w2':chord.w2unmod, 'sep_intersect_below_xpt':None}})
-                if chord.los_angle:
-                    outdict[diag_key][chord.chord_num]['chord']['los_angle'] = chord.los_angle
+                outdict[diag_key][chord.chord_num].update({'chord':{'p1':chord.p1, 'p2':chord.p2unmod, 'w1': chord.w1,'w2':chord.w2unmod, 'sep_intersect_below_xpt':None}})
 
         # SAVE IN JSON FORMAT TO ENSURE PYTHON 2/3 COMPATIBILITY
         with open (savefile, mode='w', encoding='utf-8') as f:
@@ -456,9 +446,53 @@ class ProcessEdgeSim:
 
         logger.info(f"Saving synthetic diagnostic data to:{savefile}")
 
-        # pickle.dump(outdict, output)
-        #
-        # output.close()
+    def save_synth_diag_data(self, savefile=None):
+        """
+        Save synthetic diagnostic data in CHERAB-style format with:
+        - Emissivity data: dict[diag][wavelength][source]
+        - Chord geometry & per-chord data: dict[diag]["chord"] = [dicts]
+        - FF spectra and LOS 1D profiles per chord included
+        """
+        outdict = {}
+
+        for diag_key, diag_obj in self.synth_diag.items():
+            diag_dict = {"units": "ph.s^-1.m^-2.sr^-1", "chord": []}
+
+            # Prepare structure for each wavelength and emission type
+            for chord in diag_obj.chords:
+                for wl, src_vals in chord.los_int.get("H_emiss", {}).items():
+                    if wl not in diag_dict:
+                        diag_dict[wl] = {}
+                    for src_key in src_vals:
+                        if src_key not in diag_dict[wl]:
+                            diag_dict[wl][src_key] = []
+
+            # Store data per chord
+            for chord in diag_obj.chords:
+                # Fill in wavelength-integrated emission values
+                for wl, src_vals in chord.los_int.get("H_emiss", {}).items():
+                    for src_key, val in src_vals.items():
+                        diag_dict[wl][src_key].append(val)
+
+                # Create chord dictionary with geometry + los_1d + spectrum
+                chord_entry = {
+                    "p1": chord.p1,
+                    "p2": chord.p2unmod,
+                    "w1": chord.w1,
+                    "w2": chord.w2unmod,
+                    "los_1d": chord.los_1d,                         # 1D line-of-sight emission profile
+                    "wave": chord.los_int_spectra.get("wave", []),  # Spectral data (e.g., FF radiation)
+                    "intensity": chord.los_int_spectra.get("intensity", [])
+                }
+                diag_dict["chord"].append(chord_entry)
+
+            outdict[diag_key] = diag_dict
+
+        # Save to JSON
+        with open(savefile, mode="w", encoding="utf-8") as f:
+            json.dump(outdict, f, indent=2)
+
+        logger.info(f"Saved synthetic diagnostic data to: {savefile}")
 
 
     def calc_H_emiss(self):
@@ -606,13 +640,6 @@ class ProcessEdgeSim:
                     clipped_cell.ff_fb_radpwr_perm3 = cell.ff_fb_radpwr_perm3
                     los.cells.append(clipped_cell)
 
-        # Intersection of los centerline with separatrix: returns points where los crosses sep
-        # generate los centerline shapely object
-#        los.shply_cenline = LineString([(los.p1),(los.p2)])
-#        if los.los_poly.intersects(self.shply_sep_poly_below_xpt):
-#            los.shply_intersects_w_sep = None#los.shply_cenline.intersection(self.shply_sep_poly_below_xpt)
-
-
     def calc_qpol_div(self):
 
         """ TODO: CHECK THIS PROCEDURE WITH DEREK/JAMES"""
@@ -667,7 +694,6 @@ class ProcessEdgeSim:
               self.qpol_div_HFS*1.e-06, 'POWSOL (MW): ', 
               self.data.powsol['data'][ self.data.powsol['npts']-1]*1.e-06)
 
-
     def calc_region_aggregates(self):
 
         # Calculates for each region:
@@ -684,25 +710,6 @@ class ProcessEdgeSim:
                     # ionization/recombination * cell volume
                     region.Sion += cell.Sion * 2.*np.pi*cell.R * cell.poly.area
                     region.Srec += cell.Srec * 2.*np.pi*cell.R * cell.poly.area
-
-    def plot_region(self, name='LFS_DIV'):
-
-        fig, ax = plt.subplots(ncols=1)
-        region_patches = []
-        for regname, region in self.regions.items():
-            if regname == name:
-                for cell in region.cells:
-                    region_patches.append(patches.Polygon(cell.poly.exterior.coords, closed=False))
-
-        # region_patches.append(patches.Polygon(self.shply_sep_poly.exterior.coords, closed=False))
-        coll = PatchCollection(region_patches)
-        ax.add_collection(coll)
-        ax.set_xlim(1.8, 4.0)
-        ax.set_ylim(-2.0, 2.0)
-        ax.set_title(name)
-        ax.add_patch(self.sep_poly)
-        ax.add_patch(self.wall_poly)
-        plt.axes().set_aspect('equal')
 
 if __name__=='__main__':
     print('To run PESDT, use the "PESDT_run.py" script in the root of PESDT')
