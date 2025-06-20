@@ -481,8 +481,8 @@ class ProcessEdgeSim:
                     "w1": chord.w1,
                     "w2": chord.w2unmod,
                     "los_1d": chord.los_1d,                         # 1D line-of-sight emission profile
-                    "wave": chord.los_int_spectra.get("wave", []),  # Spectral data (e.g., FF radiation)
-                    "intensity": chord.los_int_spectra.get("intensity", [])
+                    "wave": chord.los_int_spectra.get('ff_fb_continuum', {}).get("wave", []),  # Spectral data (e.g., FF radiation)
+                    "intensity": chord.los_int_spectra.get('ff_fb_continuum', {}).get("intensity", [])
                 }
                 diag_dict["chord"].append(chord_entry)
 
