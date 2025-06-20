@@ -213,7 +213,8 @@ class AnalyseSynthDiag(ProcessEdgeSim):
 
                 wave_fffb = np.asarray(chord_data.get("wave", []))
                 synth_data_fffb = np.asarray(chord_data.get("intensity", []))
-
+                print("Printing wave_fffb")
+                print(wave_fffb)
                 if len(wave_fffb) == 0 or len(synth_data_fffb) == 0:
                     logger.warning(f"No spectrum found for {diag_key} chord {i}, skipping.")
                     continue
