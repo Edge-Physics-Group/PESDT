@@ -1,7 +1,7 @@
 
 from ast import Raise
 import numpy as np
-import os, sys, pickle
+import os, sys, pickle, gzip
 from scipy.constants import atomic_mass, electron_mass
 from math import sin, cos, pi, atan
 
@@ -63,7 +63,7 @@ class CherabPlasma():
             logger.info("Reading JET mesh from pickle file")
             try:
                 
-                with open(os.path.expanduser('~') +"/PESDTCache/JETworld.pkl", "rb") as f:
+                with gzip.open(os.path.expanduser('~') +"/PESDTCache/JETworld.pkl.gz", "rb") as f:
                     self.world = pickle.load(f)
                 self.import_jet_surfaces = False
                 logger.info("Mesh read!")
@@ -88,8 +88,8 @@ class CherabPlasma():
                 import_jet_mesh(self.world)
             else:
                 import_jet_mesh(self.world, override_material=AbsorbingSurface())
-            with open(os.path.expanduser('~') + "/PESDTCache/JETworld.pkl", "wb") as f:
-                pickle.dump(self.world,f)
+            with gzip.open(os.path.expanduser('~') + "/PESDTCache/JETworld.pkl.gz", "wb") as f:
+                pickle.dump(self.world,f, protocol=pickle.HIGHEST_PROTOCOL)
 
         # create atomic data source
         plasma = cherab.create_plasma(parent=self.world)
