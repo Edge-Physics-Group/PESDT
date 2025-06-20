@@ -277,10 +277,8 @@ def calc_photon_rate(transition, Temperature, el_density, n_density, mol_n_densi
     # Make sure everyhting is in np.array format
     Temperature = np.array(Temperature); el_density = np.array(el_density); n_density = np.array(n_density)
 
-    # Check if transition is typed in the expected format. If not reverse
-    if (int(transition[1])>int(transition[0])):
-        transition = (transition[0], transition[1])
-    
+    # Make sure the transition is int, not e.g. "3"
+    transition = (int(transition[0]), int(transition[1]))
     el_density = el_density*1e-6 # Convert to cm^-3
     n_density = n_density*1e-6 # Convert to cm^-3
 
