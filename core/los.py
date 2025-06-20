@@ -398,7 +398,7 @@ class LOS:
         ###############################################################
         # FREE-FREE AND FREE-BOUND CONTINUUM
         ###############################################################
-        logger.info('Calculating ff fb continuum spectra for chord', self.chord_num)
+        logger.info(f"Calculating ff fb continuum spectra for chord {self.chord_num}")
         wave_nm = np.linspace(300, 500, 50)
 
         # METHOD 1: SUM CELL-WISE (OK, good agreement with METHOD 2 below, so comment out)
@@ -430,7 +430,7 @@ class LOS:
         ###############################################################
         # STARK BROADENED H6-2 LINE
         ###############################################################
-        logger.info('Calculating Stark H6-2 spectra for chord ', self.chord_num)
+        logger.info(f"Calculating Stark H6-2 spectra for chord {self.chord_num}")
         # Generate modified lorentzian profile for each dl position along los (cf Lomanowski et al 2015, NF)
         for key in self.spec_line_dict['1']['1']:
             # H 6-2
