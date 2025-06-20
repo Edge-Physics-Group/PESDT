@@ -89,7 +89,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                          save_synth_diag=True,
                          synth_diag_save_file=self.synth_diag_save_file,
                          data2d_save_file=self.data2d_save_file,
-                         use_AMJUEL = input_dict['run_options'].get('use_AMJUEL', False),
+                         data_source = input_dict['run_options'].get('data_source', "AMJUEL"),
                          AMJUEL_date = input_dict['run_options'].get('AMJUEL_date', 2016), # Default to <2017 (no H3+)
                          recalc_h2_pos = input_dict['run_options'].get('recalc_h2_pos', True),# When set to true H2+ density is recalculated with AMJUEL H.12 2.0c
                          run_cherab = self.run_cherab, 
@@ -263,7 +263,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                         vals['delL']
 
     @staticmethod
-    def recover_line_int_Stark_ne(res_dict, use_AMJUEL = False):
+    def recover_line_int_Stark_ne(res_dict, data_source = "AMJUEL"):
         """
             RECOVER LINE-AVERAGED ELECTRON DENSITY FROM H6-2 STARK BROADENED SPECTRA
         """
@@ -287,7 +287,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
 
                         params = Parameters()
                         params.add('cwl', value=float(H_line_key) / 10.0)
-                        if use_AMJUEL:
+                        if data_source == "AMJUEL":
                             params.add('area', value=float(
                                 res_dict[diag_key][chord_key]['los_int']['H_emiss'][H_line_key]['excit'] +
                                 res_dict[diag_key][chord_key]['los_int']['H_emiss'][H_line_key]['recom'] +

@@ -7,7 +7,7 @@ class LOS:
 
     def __init__(self, diag, los_poly = None, chord_num=None, p1 = None, w1 = None, p2orig = None, p2 = None,
                  w2orig = None, w2 = None, l12 = None, theta=None, los_angle=None, spec_line_dict=None,
-                 spec_line_dict_lytrap=None, use_AMJUEL = False):
+                 spec_line_dict_lytrap=None, data_source = "AMJUEL"):
 
         self.diag = diag
 
@@ -25,7 +25,7 @@ class LOS:
         self.cells = []
         self.spec_line_dict = spec_line_dict
         self.spec_line_dict_lytrap = spec_line_dict_lytrap
-        self.use_AMJUEL = use_AMJUEL
+        self.data_source = data_source
 
         # center line shapely object
         self.shply_cenline = None
@@ -445,7 +445,7 @@ class LOS:
                     dl_stark[dl_idx] = 1. / ( np.power(np.abs(wave_nm-cwl), 5./2.) + np.power(stark_fwhm / 2., 5./2.) )
                     # normalise by emissivity
                     dl_emiss = self.los_1d['H_emiss'][key]['excit'][dl_idx] + self.los_1d['H_emiss'][key]['recom'][dl_idx]
-                    if self.use_AMJUEL:
+                    if self.data_source == "AMJUEL":
                         dl_emiss += self.los_1d['H_emiss'][key]['h2'][dl_idx]
                         dl_emiss += self.los_1d['H_emiss'][key]['h2+'][dl_idx]
                         dl_emiss += self.los_1d['H_emiss'][key]['h-'][dl_idx]

@@ -29,7 +29,7 @@ class ProcessEdgeSim:
     Currently the code is very edge2d spesific, i.e. reading SOLPS does not actually work
 
     '''
-    def __init__(self, ADAS_dict, edge_code_defs, use_AMJUEL = False, AMJUEL_date = 2016, ADAS_dict_lytrap=None,
+    def __init__(self, ADAS_dict, edge_code_defs, data_source = "AMJUEL", AMJUEL_date = 2016, ADAS_dict_lytrap=None,
                  machine='JET', pulse=90531, spec_line_dict=None, spec_line_dict_lytrap = None, 
                  diag_list=None, calc_synth_spec_features=None, save_synth_diag=False,
                  synth_diag_save_file=None, data2d_save_file=None, recalc_h2_pos=True, 
@@ -37,7 +37,7 @@ class ProcessEdgeSim:
 
         self.ADAS_dict = ADAS_dict
         self.AMJUEL_date = AMJUEL_date
-        self.use_AMJUEL = use_AMJUEL
+        self.data_source = data_source
         self.ADAS_dict_lytrap = ADAS_dict_lytrap
         self.spec_line_dict = spec_line_dict
         self.spec_line_dict_lytrap = spec_line_dict_lytrap
@@ -109,18 +109,18 @@ class ProcessEdgeSim:
                         self.synth_diag[key] = SynthDiag(self.defs, diag=key,
                                                         spec_line_dict = self.spec_line_dict,
                                                         spec_line_dict_lytrap=self.spec_line_dict_lytrap, 
-                                                        use_AMJUEL = self.use_AMJUEL)
+                                                        data_source = self.data_source)
                         for chord in self.synth_diag[key].chords:
                             # Basic LOS implementation using 2D polygons - no reflections
                             self.los_intersect(chord)
                             chord.orthogonal_polys()
-                            if self.use_AMJUEL:
+                            if self.data_source == "AMJUEL":
                                 chord.calc_int_and_1d_los_quantities_AMJUEL_1()
                             else:
                                 chord.calc_int_and_1d_los_quantities_1()
                             if calc_synth_spec_features:
                                 # Derived ne, te require information along LOS, calc emission again using _2 functions
-                                if self.use_AMJUEL:
+                                if self.data_source == "AMJUEL":
                                     chord.calc_int_and_1d_los_quantities_AMJUEL_2()
                                 else:
                                     chord.calc_int_and_1d_los_quantities_2()
@@ -465,14 +465,14 @@ class ProcessEdgeSim:
         '''
         Calculate the hydrogenic emission for spectral lines defined in the input
 
-        If Use_AMJUEL flag set to true, calculate the emission with contributions from molecules and H-
+        If data source is AMJUEL, calculate the emission with contributions from molecules and H-
         Otherwise used ADAS rates for contributions from el-impact excitation and recombination.
 
         TODO: addability to define path to AMJUEL.tex. Currently assume that the file is located in the home dir.
 
         '''
         logger.info('Calculating H emission...')
-        if self.use_AMJUEL:
+        if self.data_source == "AMJUEL":
             logger.info('Using AMJUEL data')
             debug = True
             h3 = False

@@ -7,14 +7,14 @@ from .los import LOS
 
 class SynthDiag:
 
-    def __init__(self, defs, diag, pulse=None, spec_line_dict=None, spec_line_dict_lytrap=None, use_AMJUEL = False):
+    def __init__(self, defs, diag, pulse=None, spec_line_dict=None, spec_line_dict_lytrap=None, data_source = "AMJUEL"):
 
         self.diag = diag
         self.pulse = pulse
         self.chords = []
         self.spec_line_dict = spec_line_dict
         self.spec_line_dict_lytrap = spec_line_dict_lytrap
-        self.use_AMJUEL = use_AMJUEL
+        self.data_source = data_source
         
         self.get_spec_geom(defs)
 
@@ -50,7 +50,7 @@ class SynthDiag:
                                        p2=[p2new[i, 0], p2new[i, 1]], w2orig=w2, w2=w2_elong, l12=chord_L_elong, theta=theta,
                                        los_angle = los_angle, spec_line_dict=self.spec_line_dict,
                                        spec_line_dict_lytrap=self.spec_line_dict_lytrap, 
-                                       use_AMJUEL = self.use_AMJUEL))
+                                       data_source = self.data_source))
 
     def plot_LOS(self, ax, color='w', lw='2.0', Rrng=None):
         for chord in self.chords:
