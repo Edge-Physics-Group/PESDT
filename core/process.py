@@ -204,8 +204,8 @@ class ProcessEdgeSim:
                                             max_wavelength_nm=500,
                                             destination="continuum",
                                             pixel_samples=pixel_samples,
-                                            spectral_bins= 50,
-                                            spectral_rays= 20)
+                                            spectral_bins= 1,
+                                            spectral_rays= 1)
 
         self.outdict = {}
 
