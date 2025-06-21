@@ -110,9 +110,9 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                     self.recover_line_int_Stark_ne(self.outdict)
                     if input_dict['cherab_options'].get('ff_fb_emission', False):
                         self.recover_line_int_ff_fb_Te(self.outdict)
-                except:
+                except Exception as e:
                     # SafeGuard for possible issues, so that not all comp. time is lost 
-                    logger.info('Something went wrong with AnalyseSynthDiag')
+                    logger.error(f'Something went wrong with AnalyseSynthDiag, error{e}')
                     pass
             # SAVE IN JSON FORMAT TO ENSURE PYTHON 2/3 COMPATIBILITY
             if self.input_dict["cherab_options"].get('include_reflections', False):
