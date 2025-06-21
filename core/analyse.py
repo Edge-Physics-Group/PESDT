@@ -206,14 +206,17 @@ class AnalyseSynthDiag(ProcessEdgeSim):
         cont_ratio_360_400 = continuo_read.get_fffb_intensity_ratio_fn_T(360.0, 400.0, 1.0, save_output=True, restore=False)
         cont_ratio_300_360 = continuo_read.get_fffb_intensity_ratio_fn_T(300.0, 360.0, 1.0, save_output=True, restore=False)
         cont_ratio_400_500 = continuo_read.get_fffb_intensity_ratio_fn_T(400.0, 500.0, 1.0, save_output=True, restore=False)
+        
         # Iterate over diagnostics, e.g. diag_key == "KT3A"
         for diag_key, diag_data in res_dict.items():
+           
             # Initialize result dict
             te_fffb = {"fit_te_360_400": [],
                         "fit_te_300_360": [],
                         "fit_te_400_500": [],
                         "delL_360_400": [],
                         "units": "eV"}
+           
             # Repeat for each LOS in diagnostic
             for i, _ in enumerate(diag_data["chord"]):
                 logger.info(f"Fitting ff+fb continuum spectra, LOS id = {diag_key}, chord index = {i}")
@@ -347,7 +350,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                                     cherab_ne_Te_KT3_resfile=None):
         """
         Estimate recombination/ionisation rates using ADF11 ACD, SCD coefficients.
-        CHERAB-compatible version using res_dict[diag_key]["chord"][i] structure.
+        DATA STRUCTURE HAS CHANGED; FUNCTION NEEDS TO BE ADJUSTED
         """
         # Choose appropriate ADAS datasets
         if self.ADAS_dict_lytrap:
@@ -433,6 +436,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
 
     def recover_delL_atomden_product(self, res_dict, sion_H_transition=[[2, 1], [3, 2]], excit_only=True):
         """
+        DATA STRUCTURE HAS CHANGED; FUNCTION NEEDS TO BE ADJUSTED
         Estimate delL * atomic density product from H-line intensity assuming excitation-dominated emission.
 
         Parameters:

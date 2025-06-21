@@ -194,14 +194,18 @@ class ProcessEdgeSim:
                                                 min_wavelength_nm=min_wave,
                                                 max_wavelength_nm=max_wave,
                                                 destination="stark",
-                                                pixel_samples=pixel_samples)
+                                                pixel_samples=pixel_samples,
+                                                spectral_bins= 50,
+                                                spectral_rays= 20)
 
         if ff_fb:
             plasma.setup_spectral_observers(instrument_los_dict,
                                             min_wavelength_nm=300,
                                             max_wavelength_nm=500,
                                             destination="continuum",
-                                            pixel_samples=pixel_samples)
+                                            pixel_samples=pixel_samples,
+                                            spectral_bins= 50,
+                                            spectral_rays= 20)
 
         self.outdict = {}
 
