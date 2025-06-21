@@ -227,54 +227,54 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                     logger.warning(f"No spectrum found for {diag_key} chord {i}, skipping.")
                     continue
 
-                #try:
-                idx_300, _ = AnalyseSynthDiag.find_nearest(wave_fffb, 300.0)
-                idx_360, _ = AnalyseSynthDiag.find_nearest(wave_fffb, 360.0)
-                idx_400, _ = AnalyseSynthDiag.find_nearest(wave_fffb, 400.0)
-                idx_500, _ = AnalyseSynthDiag.find_nearest(wave_fffb, 500.0)
+                try:
+                    idx_300, _ = AnalyseSynthDiag.find_nearest(wave_fffb, 300.0)
+                    idx_360, _ = AnalyseSynthDiag.find_nearest(wave_fffb, 360.0)
+                    idx_400, _ = AnalyseSynthDiag.find_nearest(wave_fffb, 400.0)
+                    idx_500, _ = AnalyseSynthDiag.find_nearest(wave_fffb, 500.0)
 
-                ratio_360_400 = synth_data_fffb[idx_360] / synth_data_fffb[idx_400]
-                ratio_300_360 = synth_data_fffb[idx_300] / synth_data_fffb[idx_360]
-                ratio_400_500 = synth_data_fffb[idx_400] / synth_data_fffb[idx_500]
+                    ratio_360_400 = synth_data_fffb[idx_360] / synth_data_fffb[idx_400]
+                    ratio_300_360 = synth_data_fffb[idx_300] / synth_data_fffb[idx_360]
+                    ratio_400_500 = synth_data_fffb[idx_400] / synth_data_fffb[idx_500]
 
-                # Match to precomputed tables
-                i360_400, _ = AnalyseSynthDiag.find_nearest(cont_ratio_360_400[:, 1], ratio_360_400)
-                i300_360, _ = AnalyseSynthDiag.find_nearest(cont_ratio_300_360[:, 1], ratio_300_360)
-                i400_500, _ = AnalyseSynthDiag.find_nearest(cont_ratio_400_500[:, 1], ratio_400_500)
+                    # Match to precomputed tables
+                    i360_400, _ = AnalyseSynthDiag.find_nearest(cont_ratio_360_400[:, 1], ratio_360_400)
+                    i300_360, _ = AnalyseSynthDiag.find_nearest(cont_ratio_300_360[:, 1], ratio_300_360)
+                    i400_500, _ = AnalyseSynthDiag.find_nearest(cont_ratio_400_500[:, 1], ratio_400_500)
 
-                fit_te_360_400 = cont_ratio_360_400[i360_400, 0]
-                fit_te_300_360 = cont_ratio_300_360[i300_360, 0]
-                fit_te_400_500 = cont_ratio_400_500[i400_500, 0]
+                    fit_te_360_400 = cont_ratio_360_400[i360_400, 0]
+                    fit_te_300_360 = cont_ratio_300_360[i300_360, 0]
+                    fit_te_400_500 = cont_ratio_400_500[i400_500, 0]
 
-                # Store results in the chord dictionary
-                te_fffb["fit_te_360_400"].append(fit_te_360_400)
-                te_fffb["fit_te_300_360"].append(fit_te_300_360)
-                te_fffb["fit_te_400_500"].append(fit_te_400_500)
+                    # Store results in the chord dictionary
+                    te_fffb["fit_te_360_400"].append(fit_te_360_400)
+                    te_fffb["fit_te_300_360"].append(fit_te_300_360)
+                    te_fffb["fit_te_400_500"].append(fit_te_400_500)
 
-                # Attempt delL fitting if ne is available
-                stark_fit = diag_data.get("stark", {}).get("fit", {})
-                if "ne" in stark_fit:
-                    fit_ne = stark_fit["ne"][i]
+                    # Attempt delL fitting if ne is available
+                    stark_fit = diag_data.get("stark", {}).get("fit", {})
+                    if "ne" in stark_fit:
+                        fit_ne = stark_fit["ne"][i]
 
-                    params = Parameters()
-                    params.add("delL", value=0.5, min=0.0001, max=10.0)
-                    params.add("te_360_400", value=fit_te_360_400, vary=False)
-                    params.add("ne", value=fit_ne, vary=False)
+                        params = Parameters()
+                        params.add("delL", value=0.5, min=0.0001, max=10.0)
+                        params.add("te_360_400", value=fit_te_360_400, vary=False)
+                        params.add("ne", value=fit_ne, vary=False)
 
-                    fit_result = minimize(
-                        AnalyseSynthDiag.residual_continuo,
-                        params,
-                        args=(wave_fffb, synth_data_fffb),
-                        method='leastsq'
-                    )
+                        fit_result = minimize(
+                            AnalyseSynthDiag.residual_continuo,
+                            params,
+                            args=(wave_fffb, synth_data_fffb),
+                            method='leastsq'
+                        )
 
-                    fit_report(fit_result)
-                    vals = fit_result.params.valuesdict()
-                    te_fffb["delL_360_400"].append(vals["delL"])
+                        fit_report(fit_result)
+                        vals = fit_result.params.valuesdict()
+                        te_fffb["delL_360_400"].append(vals["delL"])
 
-                #except Exception as e:
-                #    logger.warning(f"Error processing {diag_key} chord {i}: {e}")
-                #    continue
+                except Exception as e:
+                    logger.warning(f"Error processing {diag_key} chord {i}: {e}")
+                    continue
             # Add fit results
             diag_data["ff_fb_continuum"]["fit"] = te_fffb
 

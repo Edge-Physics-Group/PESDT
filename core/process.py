@@ -286,7 +286,7 @@ class ProcessEdgeSim:
                 plasma.define_plasma_model(atnum=1, ion_stage=0, data_source=data_source, include_ff_fb=True)
                 spec, wl = plasma.integrate_instrument_spectral(diag, destination="continuum")
                 self.outdict[diag]["ff_fb_continuum"] = {
-                    "wave": wl,
+                    "wave": wl[0],
                     "intensity": spec,
                     "units": "nm, ph s^-1 m^-2 sr^-1 nm^-1"
                 }
