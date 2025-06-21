@@ -299,13 +299,15 @@ class CherabPlasma():
             src = self.continuum_fibreoptics[instrument]
         else:
             src = self.instrument_fibreoptics[instrument]
-        res = []
+        res_mean = []
+        res_wl = []
         for pipeline, fibre in src:
             # Perform ray tracing
             fibre.observe()
-            res.append([pipeline.samples.mean, pipeline.wavelengths])
+            res_mean.append(list(pipeline.samples.mean))
+            res_wl.append(list(pipeline.wavelengths))
         # Return scalar radiance
-        return res
+        return res_mean, res_wl
         
     
     def W_str_m2_to_ph_s_str_m2(self, centre_wav_nm, W_str_m2_val):

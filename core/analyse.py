@@ -278,6 +278,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
         
         """
         mmm_coeff = {'6t2': {'C': 3.954E-16, 'a': 0.7149, 'b': 0.028}}
+        print(res_dict)
 
         for diag_key, diag_data in res_dict.items():
             for i, chord_data in enumerate(diag_data["chord"]):
@@ -285,6 +286,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                 logger.info(f"Fitting Stark broadened H6-2 spectra, LOS id = {diag_key}, chord index = {i}")
 
                 spec_dict = chord_data.get("spec_line_dict", {}).get("1", {}).get("1", {})
+                print(spec_dict)
                 for H_line_key, val in spec_dict.items():
                     if H_line_key.startswith("6") and H_line_key[1] == "2":
 

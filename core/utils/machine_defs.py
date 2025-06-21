@@ -85,7 +85,22 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     wall_poly = patches.Polygon(wall_coords, closed=False, ec='k', lw=2.0, fc='None', zorder=10)
 
     JET = MachineDefs('JET', wall_poly, pulse_ref = pulse_ref)
-
+    origin = [3.284220, 3.561660]
+    width = 0.017226946 # Not recorded on overlays_db.dat ...
+    p2 = np.array(([ 2.520510, -1.709300]))
+    test_los = np.zeros((len(p2), 3, 2))
+    for i in range(len(p2)):
+        test_los[i, 0] = origin
+        test_los[i, 1] = p2[i]
+        test_los[i, 2] = [0, width]
+    los_dict = {}
+    los_dict['p1'] = test_los[:,0]
+    los_dict['p2'] = test_los[:,1]
+    los_dict['w'] = test_los[:,2]
+    los_dict['id'] = []
+    for id in range(len(test_los)):
+        los_dict['id'].append(str(id+1))
+    JET.set_diag_los('TEST', los_dict)
     # DIAGNOSTIC LOS DEFINITIONS: [r1, z1], [r2, z2], [w1, w2] for each LOS
 
     ###############
