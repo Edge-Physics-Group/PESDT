@@ -55,6 +55,7 @@ class CherabPlasma():
         self.instrument_fibreoptics = {}
         self.stark_fibreoptics = {}
         self.continuum_fibreoptics = {}
+        self.instrument_los_coords = {}
 
 
         # Create CHERAB plasma from PESDT edge_codes object
@@ -183,7 +184,10 @@ class CherabPlasma():
         """
         for instrument in instrument_los_dict.keys():
             fibreoptics = []
+            los_coords = []
             for los_p1, los_p2, los_w1, los_w2 in instrument_los_dict[instrument]:
+                los_coords.append(los_p2)
+                 
                  # Define LOS direction and observer origin using KT1V viewport angle
                 theta = -45.61 / 360 * (2 * pi)
                 origin = Point3D(los_p1[0] * cos(theta), los_p1[0] * sin(theta), los_p1[1])
@@ -208,6 +212,7 @@ class CherabPlasma():
                     parent=self.world)))
                 
             self.instrument_fibreoptics[instrument] = fibreoptics
+            self.instrument_los_coords[instrument] = los_coords
         return
     
     def setup_spectral_observers(self, instrument_los_dict: dict, 
@@ -230,8 +235,10 @@ class CherabPlasma():
         """
         for instrument in instrument_los_dict.keys():
             fibreoptics = []
+            los_coords = []
             for los_p1, los_p2, los_w1, los_w2 in instrument_los_dict[instrument]:
-                 # Define LOS direction and observer origin using KT1V viewport angle
+                los_coords.append(los_p2)
+                # Define LOS direction and observer origin using KT1V viewport angle
                 theta = -45.61 / 360 * (2 * pi)
                 origin = Point3D(los_p1[0] * cos(theta), los_p1[0] * sin(theta), los_p1[1])
                 endpoint = Point3D(los_p2[0] * cos(theta), los_p2[0] * sin(theta), los_p2[1])
@@ -267,6 +274,7 @@ class CherabPlasma():
             else:
                 #Assume the user want's to do spectral bins for regular line-emission
                 self.instrument_fibreoptics[instrument] = fibreoptics
+            self.instrument_los_coords[instrument] = los_coords
         return
     
     def integrate_instrument(self, instrument):
@@ -277,10 +285,14 @@ class CherabPlasma():
             Radiance in ph/s/(sr*m^2)
         """
         res = []
+        los_coords = self.instrument_los_coords[instrument]
+        i = 0
         for pipeline, fibre in self.instrument_fibreoptics[instrument]:
+            logger.info(f"LOS: {los_coords[i]}")
             # Perform ray tracing
             fibre.observe()
             res.append([pipeline.value.mean, pipeline.value.variance])
+            i+=1
         # Return scalar radiance
         return res
     
@@ -301,11 +313,15 @@ class CherabPlasma():
             src = self.instrument_fibreoptics[instrument]
         res_mean = []
         res_wl = []
+        los_coords = self.instrument_los_coords[instrument]
+        i = 0
         for pipeline, fibre in src:
             # Perform ray tracing
+            logger.info(f"LOS: {los_coords[i]}")
             fibre.observe()
             res_mean.append(list(pipeline.samples.mean))
             res_wl.append(list(pipeline.wavelengths))
+            i+=1
         # Return scalar radiance
         return res_mean, res_wl
         
