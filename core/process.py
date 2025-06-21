@@ -277,7 +277,8 @@ class ProcessEdgeSim:
                         "intensity": spec,
                         "wave": wl[0], # same wavelengths for all chords
                         "units": "nm, ph s^-1 m^-2 sr^-1 nm^-1",
-                        "wavelength": wavelength
+                        "wavelength": wavelength,
+                        "cwl": 0.1*float(wavelength)
                         }
             # === Optional FF+FB Spectrum ===
             if ff_fb:
@@ -461,7 +462,7 @@ class ProcessEdgeSim:
         for diag_key, diag_obj in self.synth_diag.items():
             diag_dict = {"units": "ph.s^-1.m^-2.sr^-1", 
                          "chord": [], 
-                         "stark": {"cwl": "4101.2", "transition": [6,2], "wave": [], "intensity": []}, 
+                         "stark": {"cwl": 410.12, "wavelength": "4101.2", "transition": [6,2], "wave": [], "intensity": []}, 
                          "ff_fb_continuum": {"wave": [], "intensity": []}}
 
             # Prepare structure for each wavelength and emission type
@@ -474,7 +475,8 @@ class ProcessEdgeSim:
                             diag_dict[wl][src_key] = []
             
             # Get stark and ff_fb wave vectors
-            diag_dict["stark"]["cwl"] = diag_obj.chords[0].los_int_spectra.get('stark', {}).get("cwl", "4101.2")
+            diag_dict["stark"]["cwl"] = diag_obj.chords[0].los_int_spectra.get('stark', {}).get("cwl", 410.12)
+            diag_dict["stark"]["cwl"] = diag_obj.chords[0].los_int_spectra.get('stark', {}).get("wavelength", "4101.2")
             diag_dict["stark"]["wave"] = (diag_obj.chords[0].los_int_spectra.get('stark', {}).get("wave", []))
             diag_dict["ff_fb_continuum"]["wave"] = (diag_obj.chords[0].los_int_spectra.get('ff_fb_continuum', {}).get("wave", []))
 

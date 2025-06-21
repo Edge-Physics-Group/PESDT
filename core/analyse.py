@@ -291,13 +291,14 @@ class AnalyseSynthDiag(ProcessEdgeSim):
             num_chords = len(diag_data["chord"])
             wave_stark = np.asarray(diag_data["stark"]["wave"])
             synth_data_stark = diag_data["stark"]["intensity"]
-            wl = diag_data["stark"]["cwl"]
+            wl = diag_data["stark"]["wavelength"]
+            cwl = diag_data["stark"]["cwl"]
             # Fit parameters
             params = Parameters()
-            params.add("cwl", value=float(wl))
+            params.add("cwl", value=cwl)
 
             # Determine area based on emission source
-            H_emiss = diag_data[str(wl*10)]
+            H_emiss = diag_data[wl]
             if data_source == "AMJUEL":
                 area_val = np.asarray(H_emiss.get("excit", np.zeros(num_chords)))+ np.asarray(H_emiss.get("recom", np.zeros(num_chords)))+ np.asarray(H_emiss.get("h2", np.zeros(num_chords)))+ np.asarray(H_emiss.get("h2+", np.zeros(num_chords))) + np.asarray(H_emiss.get("h3+", np.zeros(num_chords))) + np.asarray(H_emiss.get("h-", np.zeros(num_chords)))
             else:

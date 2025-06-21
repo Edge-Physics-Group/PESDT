@@ -454,8 +454,8 @@ class LOS:
                     dl_stark[dl_idx] *= amp_scal
 
                 # store spectra
-                self.los_1d_spectra['stark'] = {'cwl':cwl, 'wave':wave_nm, 'intensity':dl_stark, 'units':'nm, ph s^-1 m^-2 sr^-1 nm^-1'}
-                self.los_int_spectra['stark'] = {'cwl':cwl, 'wave':wave_nm, 'intensity':np.sum(dl_stark, axis=0), 'units':'nm, ph s^-1 m^-2 sr^-1 nm^-1'}
+                self.los_1d_spectra['stark'] = {'wavelength': key,'cwl':cwl, 'wave':wave_nm, 'intensity':dl_stark, 'units':'nm, ph s^-1 m^-2 sr^-1 nm^-1'}
+                self.los_int_spectra['stark'] = {'wavelength': key,'cwl':cwl, 'wave':wave_nm, 'intensity':np.sum(dl_stark, axis=0), 'units':'nm, ph s^-1 m^-2 sr^-1 nm^-1'}
                 # convert numpy array to list for JSON serialization
                 self.los_1d_spectra['stark']['wave'] = list(self.los_1d_spectra['stark']['wave'])
                 self.los_1d_spectra['stark']['intensity'] = list(self.los_1d_spectra['stark']['intensity'])
