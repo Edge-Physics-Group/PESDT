@@ -476,7 +476,7 @@ class ProcessEdgeSim:
             
             # Get stark and ff_fb wave vectors
             diag_dict["stark"]["cwl"] = diag_obj.chords[0].los_int_spectra.get('stark', {}).get("cwl", 410.12)
-            diag_dict["stark"]["cwl"] = diag_obj.chords[0].los_int_spectra.get('stark', {}).get("wavelength", "4101.2")
+            diag_dict["stark"]["wavelength"] = diag_obj.chords[0].los_int_spectra.get('stark', {}).get("wavelength", "4101.2")
             diag_dict["stark"]["wave"] = (diag_obj.chords[0].los_int_spectra.get('stark', {}).get("wave", []))
             diag_dict["ff_fb_continuum"]["wave"] = (diag_obj.chords[0].los_int_spectra.get('ff_fb_continuum', {}).get("wave", []))
 
