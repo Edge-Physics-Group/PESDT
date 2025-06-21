@@ -227,7 +227,7 @@ class ProcessEdgeSim:
 
             for line_key, trans in H_lines.items():
                 transition = (int(trans[0]), int(trans[1]))
-                wavelength = float(line_key) / 10.0  # to nm
+                wavelength = line_key
                 self.outdict[diag][wavelength] = {}
 
                 # Excitation

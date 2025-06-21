@@ -87,7 +87,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     JET = MachineDefs('JET', wall_poly, pulse_ref = pulse_ref)
     origin = [3.284220, 3.561660]
     width = 0.017226946 # Not recorded on overlays_db.dat ...
-    p2 = np.array(([ 2.520510, -1.709300]))
+    p2 = np.array([[ 2.520510, -1.709300]])
     test_los = np.zeros((len(p2), 3, 2))
     for i in range(len(p2)):
         test_los[i, 0] = origin
