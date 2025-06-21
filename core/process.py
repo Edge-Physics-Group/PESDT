@@ -455,7 +455,10 @@ class ProcessEdgeSim:
         outdict = {}
 
         for diag_key, diag_obj in self.synth_diag.items():
-            diag_dict = {"units": "ph.s^-1.m^-2.sr^-1", "chord": []}
+            diag_dict = {"units": "ph.s^-1.m^-2.sr^-1", 
+                         "chord": [], 
+                         "stark": {"cwl": "4101.2", "transition": [6,2], "wave": [], "intensity": []}, 
+                         "ff_fb_continuum": {"wave": [], "intensity": []}}
 
             # Prepare structure for each wavelength and emission type
             for chord in diag_obj.chords:
@@ -465,6 +468,11 @@ class ProcessEdgeSim:
                     for src_key in src_vals:
                         if src_key not in diag_dict[wl] and src_key != "units":
                             diag_dict[wl][src_key] = []
+            
+            # Get stark and ff_fb wave vectors
+            diag_dict["stark"]["cwl"].append(diag_obj.chords[0].los_int_spectra.get('stark', {}).get("cwl", "4101.2"))
+            diag_dict["stark"]["wave"].append(diag_obj.chords[0].los_int_spectra.get('stark', {}).get("wave", []))
+            diag_dict["ff_fb_continuum"]["wave"].append(diag_obj.chords[0].los_int_spectra.get('ff_fb_continuum', {}).get("wave", []))
 
             # Store data per chord
             for chord in diag_obj.chords:
@@ -473,6 +481,9 @@ class ProcessEdgeSim:
                     for src_key, val in src_vals.items():
                         if src_key != "units":
                             diag_dict[wl][src_key].append(val)
+                # Fill stark emission and ff_fb_continuum
+                diag_dict["stark"]["intensity"].append(chord.los_int_spectra.get('stark', {}).get("intensity", []))
+                diag_dict["ff_fb_continuum"]["intensity"].append(chord.los_int_spectra.get('ff_fb_continuum', {}).get("intensity", []))
 
                 # Create chord dictionary with geometry + los_1d + spectrum
                 chord_entry = {
@@ -481,8 +492,6 @@ class ProcessEdgeSim:
                     "w1": chord.w1,
                     "w2": chord.w2unmod,
                     "los_1d": chord.los_1d,                         # 1D line-of-sight emission profile
-                    "wave": chord.los_int_spectra.get('ff_fb_continuum', {}).get("wave", []),  # Spectral data (e.g., FF radiation)
-                    "intensity": chord.los_int_spectra.get('ff_fb_continuum', {}).get("intensity", [])
                 }
                 diag_dict["chord"].append(chord_entry)
 

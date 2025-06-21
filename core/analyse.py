@@ -206,13 +206,20 @@ class AnalyseSynthDiag(ProcessEdgeSim):
         cont_ratio_360_400 = continuo_read.get_fffb_intensity_ratio_fn_T(360.0, 400.0, 1.0, save_output=True, restore=False)
         cont_ratio_300_360 = continuo_read.get_fffb_intensity_ratio_fn_T(300.0, 360.0, 1.0, save_output=True, restore=False)
         cont_ratio_400_500 = continuo_read.get_fffb_intensity_ratio_fn_T(400.0, 500.0, 1.0, save_output=True, restore=False)
-
+        # Iterate over diagnostics, e.g. diag_key == "KT3A"
         for diag_key, diag_data in res_dict.items():
-            for i, chord_data in enumerate(diag_data["chord"]):
+            # Initialize result dict
+            te_fffb = {"fit_te_360_400": [],
+                        "fit_te_300_360": [],
+                        "fit_te_400_500": [],
+                        "delL_360_400": [],
+                        "units": "eV"}
+            # Repeat for each LOS in diagnostic
+            for i, _ in enumerate(diag_data["chord"]):
                 logger.info(f"Fitting ff+fb continuum spectra, LOS id = {diag_key}, chord index = {i}")
 
-                wave_fffb = np.asarray(chord_data.get("wave", []))
-                synth_data_fffb = np.asarray(chord_data.get("intensity", []))
+                wave_fffb = np.asarray(diag_data.get("ff_fb_continuum", {}).get("wave", []))
+                synth_data_fffb = np.asarray(diag_data.get("ff_fb_continuum", {}).get("intensity", []))[i]
                 if len(wave_fffb) == 0 or len(synth_data_fffb) == 0:
                     logger.warning(f"No spectrum found for {diag_key} chord {i}, skipping.")
                     continue
@@ -236,19 +243,15 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                     fit_te_300_360 = cont_ratio_300_360[i300_360, 0]
                     fit_te_400_500 = cont_ratio_400_500[i400_500, 0]
 
-                    # Store results
-                    chord_data.setdefault("fit", {})
-                    chord_data["fit"]["te_fffb"] = {
-                        "fit_te_360_400": fit_te_360_400,
-                        "fit_te_300_360": fit_te_300_360,
-                        "fit_te_400_500": fit_te_400_500,
-                        "units": "eV"
-                    }
+                    # Store results in the chord dictionary
+                    te_fffb["fit_te_360_400"].append(fit_te_360_400)
+                    te_fffb["fit_te_300_360"].append(fit_te_300_360)
+                    te_fffb["fit_te_400_500"].append(fit_te_400_500)
 
                     # Attempt delL fitting if ne is available
-                    stark_fit = chord_data.get("los_1d", {}).get("stark", {}).get("fit", {})
+                    stark_fit = diag_data.get("stark", {}).get("fit", {})
                     if "ne" in stark_fit:
-                        fit_ne = stark_fit["ne"]
+                        fit_ne = stark_fit["ne"][i]
 
                         params = Parameters()
                         params.add("delL", value=0.5, min=0.0001, max=10.0)
@@ -264,13 +267,14 @@ class AnalyseSynthDiag(ProcessEdgeSim):
 
                         fit_report(fit_result)
                         vals = fit_result.params.valuesdict()
-
-                        chord_data["fit"]["te_fffb"]["delL_360_400"] = vals["delL"]
+                        te_fffb["delL_360_400"].append(vals["delL"])
 
                 except Exception as e:
                     logger.warning(f"Error processing {diag_key} chord {i}: {e}")
                     continue
-    
+            # Add fit results
+            diag_data["ff_fb_continuum"]["fit"] = te_fffb
+
     @staticmethod
     def recover_line_int_Stark_ne(res_dict, data_source="AMJUEL"):
         """
@@ -278,69 +282,65 @@ class AnalyseSynthDiag(ProcessEdgeSim):
         
         """
         mmm_coeff = {'6t2': {'C': 3.954E-16, 'a': 0.7149, 'b': 0.028}}
-        print(res_dict)
+        
 
         for diag_key, diag_data in res_dict.items():
-            for i, chord_data in enumerate(diag_data["chord"]):
+            num_chords = len(diag_data["chord"])
+            wave_stark = np.asarray(diag_data["stark"]["wave"])
+            synth_data_stark = diag_data["stark"]["intensity"]
+            wl = diag_data["stark"]["cwl"]
+            # Fit parameters
+            params = Parameters()
+            params.add("cwl", value=float(wl) / 10.0)
+
+            # Determine area based on emission source
+            H_emiss = diag_data[wl]
+            if data_source == "AMJUEL":
+                area_val = np.asarray(H_emiss.get("excit", np.zeros(num_chords)))+ np.asarray(H_emiss.get("recom", np.zeros(num_chords)))+ np.asarray(H_emiss.get("h2", np.zeros(num_chords)))+ np.asarray(H_emiss.get("h2+", np.zeros(num_chords))) + np.asarray(H_emiss.get("h3+", np.zeros(num_chords))) + np.asarray(H_emiss.get("h-", np.zeros(num_chords)))
+            else:
+                area_val = np.asarray(H_emiss.get("excit", np.zeros(num_chords))) + np.asarray(H_emiss.get("recom", np.zeros(num_chords)))
+
+            # Create results dict
+            res = {
+                "ne": [],
+                "units": "m^-3"
+            }
+            # calculate for each chord
+            for i, _ in enumerate(diag_data["chord"]):
 
                 logger.info(f"Fitting Stark broadened H6-2 spectra, LOS id = {diag_key}, chord index = {i}")
+        
+                try:
+                    
+                    params.add("area", value=float(area_val[i]))
+                    params.add("stark_fwhm", value=0.15, min=0.0001, max=10.0)
 
-                spec_dict = chord_data.get("spec_line_dict", {}).get("1", {}).get("1", {})
-                print(spec_dict)
-                for H_line_key, val in spec_dict.items():
-                    if H_line_key.startswith("6") and H_line_key[1] == "2":
+                    params["cwl"].vary = True
+                    params["area"].vary = True
 
-                        try:
-                            wave_stark = np.asarray(chord_data["los_1d"]["stark"]["wave"])
-                            synth_data_stark = np.asarray(chord_data["los_1d"]["stark"]["intensity"])
+                    # Perform fit
+                    fit_result = minimize(
+                        AnalyseSynthDiag.residual_lorentz_52,
+                        params,
+                        args=(wave_stark,),
+                        kws={"data": np.asarray(synth_data_stark[i])},
+                        method="leastsq"
+                    )
 
-                            # Fit parameters
-                            params = Parameters()
-                            params.add("cwl", value=float(H_line_key) / 10.0)
+                    fit_report(fit_result)
 
-                            # Determine area based on emission source
-                            H_emiss = chord_data.get("los_1d", {}).get("H_emiss", {}).get(H_line_key, {})
-                            if data_source == "AMJUEL":
-                                area_val = sum([
-                                    H_emiss.get("excit", 0.0),
-                                    H_emiss.get("recom", 0.0),
-                                    H_emiss.get("h2", 0.0),
-                                    H_emiss.get("h2+", 0.0),
-                                    H_emiss.get("h-", 0.0),
-                                ])
-                            else:
-                                area_val = H_emiss.get("excit", 0.0) + H_emiss.get("recom", 0.0)
+                    vals = fit_result.params.valuesdict()
 
-                            params.add("area", value=float(area_val))
-                            params.add("stark_fwhm", value=0.15, min=0.0001, max=10.0)
+                    # Calculate ne assuming Te = 1 eV
+                    fit_ne = (vals["stark_fwhm"] / mmm_coeff["6t2"]["C"])**(1.0 / mmm_coeff["6t2"]["a"])
 
-                            params["cwl"].vary = True
-                            params["area"].vary = True
+                    # Store results
+                    res["ne"].append(fit_ne)
 
-                            # Perform fit
-                            fit_result = minimize(
-                                AnalyseSynthDiag.residual_lorentz_52,
-                                params,
-                                args=(wave_stark,),
-                                kws={"data": synth_data_stark},
-                                method="leastsq"
-                            )
-
-                            fit_report(fit_result)
-
-                            vals = fit_result.params.valuesdict()
-
-                            # Calculate ne assuming Te = 1 eV
-                            fit_ne = (vals["stark_fwhm"] / mmm_coeff["6t2"]["C"])**(1.0 / mmm_coeff["6t2"]["a"])
-
-                            # Store results
-                            chord_data.setdefault("los_1d", {}).setdefault("stark", {}).setdefault("fit", {})
-                            chord_data["los_1d"]["stark"]["fit"]["ne"] = fit_ne
-                            chord_data["los_1d"]["stark"]["fit"]["units"] = "m^-3"
-
-                        except Exception as e:
-                            logger.warning(f"Stark fit failed for {diag_key} chord {i}, H_line={H_line_key}: {e}")
-                            continue       
+                except Exception as e:
+                    logger.warning(f"Stark fit failed for {diag_key} chord {i}, H_line={H_line_key}: {e}")
+                    continue     
+            diag_data["stark"]["fit"] = res  
 
     def recover_line_int_particle_bal(self, res_dict, sion_H_transition=[[2, 1], [3, 2]],
                                     srec_H_transition=[[7, 2]], ne_scal=1.0,
