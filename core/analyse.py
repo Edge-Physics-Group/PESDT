@@ -44,7 +44,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
         self.spec_line_dict = input_dict['spec_line_dict']
 
         # Option to run cherab
-        self.run_cherab = input_dict.get('run_cherab', False)
+        self.run_cherab = input_dict["run_options"].get('run_cherab', False)
 
         # Option to use cherab ne and Te fits rather than pyproc's. Use case - Lyman opacity adas data is not suppored
         # by cherab-bridge, so import cherab plasma parameter profiles with reflections impact here instead and apply
@@ -81,7 +81,6 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                          machine=input_dict['machine'],
                          pulse=input_dict['pulse'], 
                          outlier_cell_dict=outlier_cell_dict,
-                         interactive_plots = input_dict['interactive_plots'],
                          spec_line_dict=self.spec_line_dict,
                          spec_line_dict_lytrap = self.spec_line_dict_lytrap,
                          diag_list=input_dict['diag_list'],

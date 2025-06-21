@@ -149,8 +149,9 @@ class ProcessEdgeSim:
         import_jet_surfaces = cherab_opts.get("import_jet_surfaces", True)
         calc_stark_ne = cherab_opts.get("calculate_stark_ne", False)
         stark_transition = cherab_opts.get("stark_transition", None)
+        stark_bins = cherab_opts.get("stark_spectral_bins", 50)
         ff_fb = cherab_opts.get("ff_fb_emission", False)
-
+        ff_fb_bins = cherab_opts.get("ff_fb_spectral_bins", 20)
         data_source = run_opts.get("data_source", "AMJUEL")
         recalc_h2_pos = run_opts.get("recalc_h2_pos", True)
 
@@ -195,7 +196,7 @@ class ProcessEdgeSim:
                                                 max_wavelength_nm=max_wave,
                                                 destination="stark",
                                                 pixel_samples=pixel_samples,
-                                                spectral_bins= 50,
+                                                spectral_bins= stark_bins,
                                                 spectral_rays= 1)
 
         if ff_fb:
@@ -204,7 +205,7 @@ class ProcessEdgeSim:
                                             max_wavelength_nm=500,
                                             destination="continuum",
                                             pixel_samples=pixel_samples,
-                                            spectral_bins= 20,
+                                            spectral_bins= ff_fb_bins,
                                             spectral_rays= 1)
 
         self.outdict = {}

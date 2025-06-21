@@ -1,11 +1,34 @@
 {
     "machine": "JET",
+    "pulse": 81472,
     "edge_code": {"code": "edge2d", "sim_path": "/home/mgroth/cmg/catalog/edge2d/jet/81472/jul3122/seq#1/tran"},
+    "interactive_plots": false,
+    "read_ADAS": false,
+    "save_dir": "PESDT_cases/", 
+    "run_options": {
+        "run_cherab": false,
+        "calc_synth_spec_features": false,
+        "analyse_synth_spec_features": false,
+        "data_source": "AMJUEL",
+        "recalc_h2_pos": true,
+        "Sion_H_transition": [[2,1],[3,2]],
+        "Srec_H_transition": [[5,2]]
+      },
+    "cherab_options": {
+        "pixel_samples": 1,
+        "import_jet_surfaces": true,
+        "include_reflections": true,
+        "ray_extinction_prob": 0.33,
+        "calculate_stark_ne": true,
+        "stark_transition": [6,2],
+        "stark_spectral_bins": 50,
+        "ff_fb_emission": false,
+        "ff_fb_spectral_bins": 20
+    },
     "diag_list": [
       "KT3A"
     ],
-    "pulse": 81472,
-    "read_ADAS": false,
+    
     "spec_line_dict": {
       "1": {
         "1": {
@@ -23,27 +46,6 @@
           ]
         }
       }
-    },
-    "interactive_plots": false,
-    "save_dir": "PESDT_cases/", 
-    "run_cherab": false,
-    "run_options": {
-        "calc_synth_spec_features": false,
-        "analyse_synth_spec_features": false,
-        "use_AMJUEL": true,
-        "recalc_h2_pos": true,
-        "Sion_H_transition": [[2,1],[3,2]],
-        "Srec_H_transition": [[5,2]]
-      },
-    "cherab_options": {
-        "spectral_bins": 1,
-        "pixel_samples": 1,
-        "import_jet_surfaces": true,
-        "include_reflections": true,
-        "ray_extinction_prob": 0.33,
-        "stark_transition": [6,2],
-        "ff_fb_emission": false,
-        "analyse_synth_spec_features": false
     }
   }
   
