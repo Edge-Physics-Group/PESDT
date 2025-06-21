@@ -204,7 +204,7 @@ class ProcessEdgeSim:
                                             max_wavelength_nm=500,
                                             destination="continuum",
                                             pixel_samples=pixel_samples,
-                                            spectral_bins= 50,
+                                            spectral_bins= 20,
                                             spectral_rays= 1)
 
         self.outdict = {}
@@ -291,132 +291,6 @@ class ProcessEdgeSim:
                     "units": "nm, ph s^-1 m^-2 sr^-1 nm^-1"
                 }
 
-
-    def run_cherab_raytracing_old(self): 
-        # Inputs from cherab_bridge_input_dict
-        import_jet_surfaces = self.input_dict['cherab_options'].get('import_jet_surfaces', True)
-        include_reflections = self.input_dict['cherab_options'].get('include_reflections', True)
-        pixel_samples = self.input_dict['cherab_options'].get('pixel_samples', 1000)
-        spec_line_dict = self.input_dict['spec_line_dict']
-        diag_list = self.input_dict['diag_list']
-        data_source = self.input_dict['run_options'].get('data_source', "AMJUEL")
-        recalc_h2_pos = self.input_dict['run_options'].get("recalc_h2_pos", True)
-        calc_stark_ne = self.input_dict['cherab_options'].get('calculate_stark_ne', False)
-        stark_transition = self.input_dict['cherab_options'].get('stark_transition', None)
-        ff_fb = self.input_dict['cherab_options'].get('ff_fb_emission', False)
-
-        # Generate cherab plasma
-        transitions = [(int(val[0]), int(val[1])) for _, val in spec_line_dict['1']['1'].items()]
-        plasma = CherabPlasma(self, self.ADAS_dict, 
-                              include_reflections = include_reflections,
-                              import_jet_surfaces = import_jet_surfaces, 
-                              data_source=data_source, 
-                              recalc_h2_pos = recalc_h2_pos,
-                              transitions=transitions)
-
-        # Create output dict
-        self.outdict = {}
-
-        diag_dict = get_JETdefs().diag_dict
-
-        # Loop through diagnostics, their LOS, integrate over Lyman/Balmer
-        for diag_key in diag_list:
-            self.outdict[diag_key] = {}
-            for diag_chord, los_p2 in enumerate(diag_dict[diag_key]['p2']):
-                los_p2 = los_p2.tolist()
-                los_p1 = diag_dict[diag_key]['p1'][0].tolist()
-                los_w1 = 0.0 # unused
-                los_w2 = diag_dict[diag_key]['w'][0][1]
-                H_lines = spec_line_dict['1']['1']
-
-                self.outdict[diag_key][str(diag_chord)] = {
-                    'chord':{'p1':los_p1, 'p2':los_p2, 'w1':los_w1, 'w2':los_w2}
-                }
-                self.outdict[diag_key][str(diag_chord)]['spec_line_dict'] = spec_line_dict
-
-                self.outdict[diag_key][str(diag_chord)]['los_int'] = {'H_emiss': {}}
-
-                print(diag_key, los_p2)
-                for H_line_key, val in H_lines.items():
-                
-                    transition = (int(val[0]), int(val[1]))
-                    wavelength = float(H_line_key)/10. #nm
-                    
-
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_excitation=True,  data_source=data_source)
-                    exc_radiance, exc_radiance_std = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
-
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_recombination=True, data_source=data_source)
-                    rec_radiance, rec_radiance_std = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
-                    
-                    if data_source == "AMJUEL":
-                        plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_H2=True, data_source=data_source)
-                        h2_radiance, h2_radiance_std = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
-
-                        plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_H2_pos= True, data_source=data_source)
-                        h2_pos_radiance, h2_pos_radiance_std = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
-                        
-                        plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_H3_pos=True, data_source=data_source)
-                        h3_pos_radiance, h3_pos_radiance_std  = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2,wavelength=wavelength,  pixel_samples=pixel_samples)
-                        
-                        plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition, include_H_neg=True, data_source=data_source)
-                        h_neg_radiance, h_neg_radiance_std = plasma.integrate_los(los_p1, los_p2, los_w1, los_w2, wavelength=wavelength, pixel_samples=pixel_samples)
-                                                            
-                        self.outdict[diag_key][str(diag_chord)]['los_int']['H_emiss'][H_line_key] = {
-                            'excit':(np.array(exc_radiance)).tolist(),
-                            'recom':(np.array(rec_radiance)).tolist(),
-                            'h2': (np.array(h2_radiance)).tolist(),
-                            'h2+': (np.array(h2_pos_radiance)).tolist(),
-                            'h3+': (np.array(h3_pos_radiance)).tolist(),
-                            'h-': (np.array(h_neg_radiance)).tolist(),
-                            'units':'ph.s^-1.m^-2.sr^-1'
-                        }
-                    else:
-                        self.outdict[diag_key][str(diag_chord)]['los_int']['H_emiss'][H_line_key] = {
-                            'excit':(np.array(exc_radiance)).tolist(),
-                            'recom':(np.array(rec_radiance)).tolist(),
-                            'units':'ph.s^-1.m^-2.sr^-1'
-                        }
-
-                    if calc_stark_ne:
-                        if transition == tuple(stark_transition):
-                            min_wavelength = (wavelength)-1.0
-                            max_wavelength = (wavelength)+1.0
-                            print('Stark transition')
-                            plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
-                                                    include_excitation=True, include_recombination=True, 
-                                                    include_H2_pos= True, include_H2=True, include_H_neg=True,
-                                                    include_H3_pos=True, data_source=data_source,
-                                                    include_stark=True)
-                            spec_bins = 50
-                            radiance,  wave_arr = plasma.integrate_los_spectral(los_p1, los_p2, los_w1, los_w2, 
-                                                                                min_wavelength, max_wavelength,
-                                                                                spectral_bins=spec_bins,
-                                                                                pixel_samples=pixel_samples,
-                                                                                display_progress=False)
-
-                            self.outdict[diag_key][str(diag_chord)]['los_int']['stark']={'cwl': wavelength, 'wave': (np.array(wave_arr)).tolist(),
-                                                                            'intensity': (np.array(radiance)).tolist(),
-                                                                            'units': 'nm, ph s^-1 m^-2 sr^-1 nm^-1'}
-
-                    # Free-free + free-bound using adaslib/continuo
-                if ff_fb:
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, data_source=data_source, include_ff_fb=True)
-                    min_wave = 300
-                    max_wave = 500
-                    spec_bins = 50
-                    radiance,  wave_arr = plasma.integrate_los_spectral(los_p1, los_p2, los_w1, los_w2, #spectrum,
-                                                                            min_wave, max_wave,
-                                                                            spectral_bins=spec_bins,
-                                                                            pixel_samples=pixel_samples,
-                                                                            display_progress=False)
-
-                    self.outdict[diag_key][str(diag_chord)]['los_int']['ff_fb_continuum'] = {
-                            'wave': (np.array(wave_arr)).tolist(),
-                            'intensity': (np.array(radiance)).tolist(),
-                            'units': 'nm, ph s^-1 m^-2 sr^-1 nm^-1'}
-        #return outdict
-
     def __getstate__(self):
         """
             For removing the large ADAS_dict from the object for pickling
@@ -429,26 +303,6 @@ class ProcessEdgeSim:
     def __setstate__(self, dict):
         # TODO: Read external ADAS_dict object and add to dict for unpickling
         self.__dict__.update(dict)
-
-    def save_synth_diag_data_old(self, savefile=None):
-        # output = open(savefile, 'wb')
-        outdict = {}
-        for diag_key in self.synth_diag:
-            outdict[diag_key] = {}
-            for chord in self.synth_diag[diag_key].chords:
-                outdict[diag_key].update({chord.chord_num:{}})
-                outdict[diag_key][chord.chord_num]['spec_line_dict'] = self.spec_line_dict
-                outdict[diag_key][chord.chord_num]['los_1d'] = chord.los_1d
-                outdict[diag_key][chord.chord_num]['los_int'] = chord.los_int
-                for spectrum in chord.los_int_spectra:
-                    outdict[diag_key][chord.chord_num]['los_int'].update({spectrum:chord.los_int_spectra[spectrum]})
-                outdict[diag_key][chord.chord_num].update({'chord':{'p1':chord.p1, 'p2':chord.p2unmod, 'w1': chord.w1,'w2':chord.w2unmod, 'sep_intersect_below_xpt':None}})
-
-        # SAVE IN JSON FORMAT TO ENSURE PYTHON 2/3 COMPATIBILITY
-        with open (savefile, mode='w', encoding='utf-8') as f:
-            json.dump(outdict, f, indent=2)
-
-        logger.info(f"Saving synthetic diagnostic data to:{savefile}")
 
     def save_synth_diag_data(self, savefile=None):
         """
