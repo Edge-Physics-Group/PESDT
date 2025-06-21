@@ -195,8 +195,8 @@ class ProcessEdgeSim:
                                                 max_wavelength_nm=max_wave,
                                                 destination="stark",
                                                 pixel_samples=pixel_samples,
-                                                spectral_bins= 50,
-                                                spectral_rays= 20)
+                                                spectral_bins= 1,
+                                                spectral_rays= 1)
 
         if ff_fb:
             plasma.setup_spectral_observers(instrument_los_dict,
@@ -220,7 +220,7 @@ class ProcessEdgeSim:
             los_coords = []
             for p2 in diag_def[diag]["p2"]:
                 los_coords.append({"p1": p1, "p2": p2.tolist(), "w1": w1, "w2": w2})
-            self.outdict[diag]["coord"] = los_coords
+            self.outdict[diag]["chord"] = los_coords
 
             H_lines = spec_line_dict['1']['1']
             self.outdict[diag]["units"] = "ph s^-1 m^-2 sr^-1"
