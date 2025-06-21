@@ -342,7 +342,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                     res["ne"].append(fit_ne)
 
                 except Exception as e:
-                    logger.warning(f"Stark fit failed for {diag_key} chord {i}, H_line={H_line_key}: {e}")
+                    logger.warning(f"Stark fit failed for {diag_key} chord {i}, error: {e}")
                     continue     
             diag_data["stark"]["fit"] = res  
 
