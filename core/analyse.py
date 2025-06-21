@@ -219,7 +219,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                 logger.info(f"Fitting ff+fb continuum spectra, LOS id = {diag_key}, chord index = {i}")
 
                 wave_fffb = np.asarray(diag_data.get("ff_fb_continuum", {}).get("wave", []))
-                synth_data_fffb = np.asarray(diag_data.get("ff_fb_continuum", {}).get("intensity", []))[i]
+                synth_data_fffb = np.asarray(diag_data.get("ff_fb_continuum", {}).get("intensity", [])[i])
                 if len(wave_fffb) == 0 or len(synth_data_fffb) == 0:
                     logger.warning(f"No spectrum found for {diag_key} chord {i}, skipping.")
                     continue
