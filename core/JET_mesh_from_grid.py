@@ -47,40 +47,59 @@ def create_toroidal_wall_from_points(
 
 import numpy as np
 
-def modify_wall_polygon_for_observer(polygon, observer_pos, safety_distance=0.1):
+import numpy as np
+
+def modify_wall_polygon_for_observer_box_insert(polygon, observer_pos, safety_distance=0.1):
     """
-    Modifies wall polygon such that the observer is at least `safety_distance` inside it.
-    
+    Modifies a 2D RZ wall polygon to ensure the observer lies safely inside it
+    by replacing nearby points with a box-shaped expansion around the observer.
+
     Parameters:
         polygon (array-like): (N, 2) array of (R, Z) points forming the wall contour.
-        observer_pos (tuple): (R_obs, Z_obs) coordinates of the observer.
-        safety_distance (float): Minimum radial distance between observer and wall [m].
+        observer_pos (tuple): (R_obs, Z_obs) position of the observer.
+        safety_distance (float): Radius of the square patch to insert [m].
 
     Returns:
-        np.ndarray: Modified polygon.
+        np.ndarray: Modified polygon (still 2D).
     """
     polygon = np.asarray(polygon)
     R_obs, Z_obs = observer_pos
+    R = polygon[:, 0]
+    Z = polygon[:, 1]
 
-    modified_polygon = []
-    for R, Z in polygon:
-        vec = np.array([R - R_obs, Z - Z_obs])
-        dist = np.linalg.norm(vec)
+    # Create bounding box masks
+    mask = (
+        (R > R_obs - safety_distance) & (R < R_obs + safety_distance) &
+        (Z > Z_obs - safety_distance) & (Z < Z_obs + safety_distance)
+    )
 
-        # Ensure no division by zero
-        if dist == 0:
-            vec = np.array([1.0, 0.0])
-            dist = 1e-6
+    # Indices of points to remove
+    indices_to_remove = np.where(mask)[0]
+    if len(indices_to_remove) < 2:
+        print("Warning: Not enough points in wall polygon near observer to safely cut.")
+        return polygon  # Fall back to original polygon
 
-        # Push point outward if too close
-        if dist < safety_distance:
-            vec_normalized = vec / dist
-            new_point = np.array([R_obs, Z_obs]) + vec_normalized * safety_distance
-            modified_polygon.append(new_point)
-        else:
-            modified_polygon.append([R, Z])
+    # Determine slice to cut
+    start = indices_to_remove[0]
+    end = indices_to_remove[-1] + 1  # slice is exclusive at end
 
-    return np.array(modified_polygon)
+    # Define square around observer (insert points)
+    patch = np.array([
+        [R_obs + safety_distance, Z_obs + safety_distance],
+        [R_obs + safety_distance, Z_obs - safety_distance],
+        [R_obs - safety_distance, Z_obs - safety_distance],
+        [R_obs - safety_distance, Z_obs + safety_distance],
+    ])
+
+    # Insert patch into polygon in place of removed points
+    new_polygon = np.concatenate([
+        polygon[:start],
+        patch,
+        polygon[end:]
+    ])
+
+    return new_polygon
+
 
 
 def plot_wall_modification(original_polygon, modified_polygon, observer_pos, title="Wall Contour Adjustment"):
