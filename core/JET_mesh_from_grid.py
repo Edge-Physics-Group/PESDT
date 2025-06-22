@@ -45,46 +45,40 @@ def create_toroidal_wall_from_points(
     return mesh
 
 
-def modify_wall_polygon_for_observer(polygon, observer_pos, safety_distance=0.1, radius_limit=None):
-    """
-    Modifies wall contour points to ensure the observer is not inside or too close to the mesh.
+import numpy as np
 
-    Parameters:
-        polygon (list or array): Nx2 array of (R,Z) points defining the wall contour.
-        observer_pos (tuple): (R_obs, Z_obs) position of the spectroscopic observer.
-        safety_distance (float): Minimum distance required between wall and observer [m].
-        radius_limit (float or None): Optional radial cutoff (e.g., only modify points with R > limit).
+def modify_wall_polygon_for_observer(polygon, observer_pos, safety_distance=0.1):
+    """
+    Modifies wall polygon such that the observer is at least `safety_distance` inside it.
     
+    Parameters:
+        polygon (array-like): (N, 2) array of (R, Z) points forming the wall contour.
+        observer_pos (tuple): (R_obs, Z_obs) coordinates of the observer.
+        safety_distance (float): Minimum radial distance between observer and wall [m].
+
     Returns:
-        np.ndarray: Modified polygon with adjusted points.
+        np.ndarray: Modified polygon.
     """
-    polygon = np.array(polygon)
+    polygon = np.asarray(polygon)
     R_obs, Z_obs = observer_pos
+
     modified_polygon = []
+    for R, Z in polygon:
+        vec = np.array([R - R_obs, Z - Z_obs])
+        dist = np.linalg.norm(vec)
 
-    for r, z in polygon:
-        distance = np.sqrt((r - R_obs)**2 + (z - Z_obs)**2)
+        # Ensure no division by zero
+        if dist == 0:
+            vec = np.array([1.0, 0.0])
+            dist = 1e-6
 
-        if distance < safety_distance:
-            # Compute direction vector away from observer
-            dr = r - R_obs
-            dz = z - Z_obs
-            norm = np.sqrt(dr**2 + dz**2)
-            if norm == 0:
-                dr, dz = 1.0, 0.0  # arbitrary direction if on top of observer
-            else:
-                dr /= norm
-                dz /= norm
-
-            # Optionally limit which points can move (e.g., R > radius_limit)
-            if radius_limit is None or r > radius_limit:
-                r_new = R_obs + dr * safety_distance
-                z_new = Z_obs + dz * safety_distance
-                modified_polygon.append((r_new, z_new))
-                continue  # move on to next point
-
-        # If not close or not modified
-        modified_polygon.append((r, z))
+        # Push point outward if too close
+        if dist < safety_distance:
+            vec_normalized = vec / dist
+            new_point = np.array([R_obs, Z_obs]) + vec_normalized * safety_distance
+            modified_polygon.append(new_point)
+        else:
+            modified_polygon.append([R, Z])
 
     return np.array(modified_polygon)
 
