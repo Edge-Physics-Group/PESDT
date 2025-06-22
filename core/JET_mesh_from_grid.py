@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from raysect.optical import World
-from raysect import node
 from raysect.optical.material import RoughnessReflectiveMaterial
 from raysect.optical.library.metal import tungsten, beryllium
 from raysect.primitive import MeshVolume
@@ -9,7 +8,7 @@ from cherab.tools.primitives.toroidal_mesh import toroidal_mesh_from_polygon
 
 def create_toroidal_wall_from_points(
     points: np.ndarray, 
-    parent: node,
+    parent,
     z_split: float=0.0, 
     tungsten_roughness: float=0.29, # Roughness values used by the cherab/jet module
     beryllium_roughness: float=0.26,
