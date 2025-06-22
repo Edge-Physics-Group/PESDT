@@ -1,8 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from raysect.optical import World
-from raysect.optical.material import RoughnessReflectiveMaterial
-from raysect.optical.library.metal import tungsten, beryllium
+from raysect.optical.library.metal import RoughTungsten, RoughBeryllium
 from raysect.primitive import MeshVolume
 from cherab.tools.primitives.toroidal_mesh import toroidal_mesh_from_polygon
 
@@ -34,9 +33,9 @@ def create_toroidal_wall_from_points(
     materials = []
     for r, z in points:
         if z < z_split:
-            mat = RoughnessReflectiveMaterial(tungsten(), roughness=tungsten_roughness)
+            mat = RoughTungsten(tungsten_roughness)
         else:
-            mat = RoughnessReflectiveMaterial(beryllium(), roughness=beryllium_roughness)
+            mat = RoughBeryllium(beryllium_roughness)
         materials.append(mat)
 
     # Create toroidal mesh
@@ -54,8 +53,8 @@ def create_toroidal_wall_from_points(
     wall.material = None  # unset default
     for i, face in enumerate(wall.mesh.faces):
         r, z = np.mean(points[face.indices], axis=0)
-        mat = RoughnessReflectiveMaterial(tungsten(), tungsten_roughness) if z < z_split else \
-              RoughnessReflectiveMaterial(beryllium(), beryllium_roughness)
+        mat = RoughTungsten(tungsten_roughness) if z < z_split else \
+              RoughBeryllium(beryllium_roughness)
         face.material = mat
 
     return wall
