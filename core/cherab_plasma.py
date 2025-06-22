@@ -90,8 +90,8 @@ class CherabPlasma():
                 pickle.dump(self.world,f, protocol=pickle.HIGHEST_PROTOCOL)
         elif self.mesh_from_grid:
             observer_pos = [3.284220, 3.561660] # KT3 for now
-            mod_polygons = modify_wall_polygon_for_observer(self.PESDT_obj.wall_poly.get_xy(), observer_pos, safety_distance = 0.3 )
-            plot_wall_modification(self.PESDT_obj.wall_poly.get_xy(), mod_polygons, observer_pos)
+            mod_polygons = modify_wall_polygon_for_observer(self.PESDT_obj.data.wall_poly.get_xy(), observer_pos, safety_distance = 0.3 )
+            plot_wall_modification(self.PESDT_obj.data.wall_poly.get_xy(), mod_polygons, observer_pos)
             mesh = create_toroidal_wall_from_points(mod_polygons, self.world, z_split= -1.0)
 
         # create atomic data source
