@@ -158,15 +158,7 @@ class ProcessEdgeSim:
         diag_def = get_JETdefs().diag_dict
         transitions = [(int(v[0]), int(v[1])) for _, v in spec_line_dict['1']['1'].items()]
         
-        # === Initialize Plasma ===
-        plasma = CherabPlasma(self, self.ADAS_dict,
-                            include_reflections=include_reflections,
-                            import_jet_surfaces=import_jet_surfaces,
-                            data_source=data_source,
-                            recalc_h2_pos=recalc_h2_pos,
-                            transitions=transitions)
-        
-        # === Setup Observers ===
+        # === Create insrument LOS database ===
         instrument_los_dict = {}
         for diag in diag_list:
             los_points = []
@@ -177,6 +169,16 @@ class ProcessEdgeSim:
                 los_points.append((p1, p2.tolist(), w1, w2))
             instrument_los_dict[diag] = los_points
 
+        # === Initialize Plasma ===
+        plasma = CherabPlasma(self, self.ADAS_dict,
+                            include_reflections=include_reflections,
+                            import_jet_surfaces=import_jet_surfaces,
+                            data_source=data_source,
+                            recalc_h2_pos=recalc_h2_pos,
+                            transitions=transitions,
+                            instrument_los_dict = instrument_los_dict)
+        
+        # === Setup Observers ===
         plasma.setup_observers(instrument_los_dict, pixel_samples=pixel_samples)
 
         # === Setup Spectral Observers if needed ===

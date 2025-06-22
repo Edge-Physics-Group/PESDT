@@ -1,18 +1,12 @@
-
-from ast import Raise
 import numpy as np
 import os, sys, pickle, gzip
-from scipy.constants import atomic_mass, electron_mass
 from math import sin, cos, pi, atan
 
 from raysect.optical import World, AbsorbingSurface
 from raysect.optical.observer import PinholeCamera, FibreOptic, RadiancePipeline0D, SpectralRadiancePipeline0D
 from raysect.core.math import Point3D, Vector3D, translate, rotate, rotate_basis#, Discrete2DMesh #Note: this was not being used, and caused a chrash (cannot be found)
 
-from cherab.openadas import OpenADAS
-
 from cherab.core import Plasma, Species, Maxwellian, Line, elements
-#from cherab.core.model.lineshape import StarkBroadenedLine
 from cherab.core.model.plasma.impact_excitation import ExcitationLine
 from cherab.core.model.plasma.recombination import RecombinationLine
 from cherab.core.utility.conversion import PhotonToJ
@@ -26,7 +20,7 @@ from cherab.PESDT_addon.LineEmitters import DirectEmission, LineExcitation_AM, L
 from .cherab_AMJUEL_data import AMJUEL_Data
 from .cherab_atomic_data import PESDT_ADAS_Data
 from .createCherabPlasma import createCherabPlasma, D0, D2, D3
-
+from .JET_mesh_from_grid import create_toroidal_wall_from_points, modify_wall_polygon_for_observer,plot_wall_modification
 from cherab.PESDT_addon.continuo import Continuo
 from cherab.PESDT_addon import PESDTLine
 import logging
@@ -37,21 +31,23 @@ logger = logging.getLogger(__name__)
 class CherabPlasma():
 
     def __init__(self, PESDT_obj, 
-                 ADAS_dict, include_reflections=False, 
-                 import_jet_surfaces = False, 
+                 ADAS_dict, include_reflections: bool = False, 
+                 import_jet_surfaces: bool = False, 
                  data_source = "AMJUEL", 
-                 recalc_h2_pos =True, 
-                 transitions = None):
+                 recalc_h2_pos: bool = True, 
+                 transitions = None,
+                 instrument_los_dict: dict = None):
 
         self.PESDT_obj = PESDT_obj
         self.include_reflections = include_reflections
         self.import_jet_surfaces = import_jet_surfaces
+        self.mesh_from_grid = not import_jet_surfaces
         self.ADAS_dict = ADAS_dict
         self.data_source = data_source
         self.recalc_h2_pos = recalc_h2_pos 
         self.transitions = transitions
         self.sim_type = PESDT_obj.edge_code
-
+        self.instrument_los_dict = instrument_los_dict
         self.instrument_fibreoptics = {}
         self.stark_fibreoptics = {}
         self.continuum_fibreoptics = {}
@@ -71,7 +67,8 @@ class CherabPlasma():
             except:
                 logger.info("Could not read raysect-world object from a pkl, creating a new one.")
                 self.world = World()
-
+        else:
+            self.world = World()
         self.plasma = self.gen_cherab_plasma()
 
     def gen_cherab_plasma(self):
@@ -91,6 +88,11 @@ class CherabPlasma():
                 import_jet_mesh(self.world, override_material=AbsorbingSurface())
             with gzip.open(os.path.expanduser('~') + "/PESDTCache/JETworld.pkl.gz", "wb") as f:
                 pickle.dump(self.world,f, protocol=pickle.HIGHEST_PROTOCOL)
+        elif self.mesh_from_grid:
+            observer_pos = [3.284220, 3.561660] # KT3 for now
+            mod_polygons = modify_wall_polygon_for_observer(self.PESDT_obj.wall_poly.get_xy(), observer_pos, safety_distance = 0.3 )
+            plot_wall_modification(self.PESDT_obj.wall_poly.get_xy(), mod_polygons, observer_pos)
+            mesh = create_toroidal_wall_from_points(mod_polygons, self.world, z_split= -1.0)
 
         # create atomic data source
         plasma = cherab.create_plasma(parent=self.world)
