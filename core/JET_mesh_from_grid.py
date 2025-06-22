@@ -44,12 +44,11 @@ def create_toroidal_wall_from_points(
 
     return mesh
 
-
 def modify_wall_polygon_for_observer(polygon, observer_pos, safety_distance=0.1):
     """
     Modifies a wall polygon so the observer lies within it. Removes the closest slice
     intersecting the observer safety box and replaces it with two square points farthest
-    from the removed wall segment.
+    from the removed wall segment, in correct order.
 
     Parameters:
         polygon (array-like): (N, 2) array of (R, Z) coordinates defining the wall.
@@ -124,12 +123,24 @@ def modify_wall_polygon_for_observer(polygon, observer_pos, safety_distance=0.1)
     dists = np.array([
         np.min(np.linalg.norm(removed_segment - p, axis=1)) for p in square
     ])
-    replacement_points = square[np.argsort(dists)[-2:]]
+    farthest_indices = np.argsort(dists)[-2:]
+    replacement_points = square[farthest_indices]
 
-    # 7. Build final polygon
+    # 7. Ensure proper order of replacement points
+    segment_vec = polygon[end % len(polygon)] - polygon[start - 1]
+    seg_angle = np.arctan2(segment_vec[1], segment_vec[0])
+
+    def angle_from_seg(p):
+        vec = p - polygon[start - 1]
+        return np.arctan2(vec[1], vec[0]) - seg_angle
+
+    angles = [angle_from_seg(p) for p in replacement_points]
+    sorted_points = [p for _, p in sorted(zip(angles, replacement_points))]
+
+    # 8. Build final polygon
     new_polygon = np.concatenate([
         polygon[:start],
-        replacement_points,
+        sorted_points,
         polygon[end:]
     ])
 
