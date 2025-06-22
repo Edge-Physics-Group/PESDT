@@ -47,9 +47,9 @@ def create_toroidal_wall_from_points(
 
 def modify_wall_polygon_for_observer(polygon, observer_pos, safety_distance=0.1):
     """
-    Modifies a wall polygon so that the observer lies within the wall by removing
-    the nearest segment that intersects the observer's safety box and replacing it
-    with two farthest square points.
+    Modifies a wall polygon so the observer lies within it. Removes the closest slice
+    intersecting the observer safety box and replaces it with two square points farthest
+    from the removed wall segment.
 
     Parameters:
         polygon (array-like): (N, 2) array of (R, Z) coordinates defining the wall.
@@ -70,10 +70,8 @@ def modify_wall_polygon_for_observer(polygon, observer_pos, safety_distance=0.1)
         [R_obs - safety_distance, Z_obs - safety_distance],
         [R_obs - safety_distance, Z_obs + safety_distance]
     ])
-    distances = np.linalg.norm(square - np.array([R_obs, Z_obs]), axis=1)
-    replacement_points = square[np.argsort(distances)[-2:]]
 
-    # 2. Create separate masks
+    # 2. Create masks
     mask_R = (R > R_obs - safety_distance) & (R < R_obs + safety_distance)
     mask_Z = (Z > Z_obs - safety_distance) & (Z < Z_obs + safety_distance)
 
@@ -91,20 +89,19 @@ def modify_wall_polygon_for_observer(polygon, observer_pos, safety_distance=0.1)
         print("Warning: No polygon points near observer. Returning original.")
         return polygon
 
-    # 4. Find contiguous slices in active mask
+    # 4. Find continuous slices
     idx = np.where(active_mask)[0]
     if len(idx) == 0:
         print("Warning: No matching points found in mask.")
         return polygon
 
-    # Identify continuous blocks
     slices = []
     start = idx[0]
     for i in range(1, len(idx)):
         if idx[i] != idx[i - 1] + 1:
             slices.append((start, idx[i - 1] + 1))
             start = idx[i]
-    slices.append((start, idx[-1] + 1))  # add final slice
+    slices.append((start, idx[-1] + 1))
 
     # 5. Choose slice closest to observer
     min_dist = np.inf
@@ -120,8 +117,16 @@ def modify_wall_polygon_for_observer(polygon, observer_pos, safety_distance=0.1)
         print("Warning: Could not identify slice to remove.")
         return polygon
 
-    # 6. Replace closest slice with the two farthest square points
     start, end = best_slice
+    removed_segment = polygon[start:end]
+
+    # 6. Choose 2 farthest square points from removed_segment
+    dists = np.array([
+        np.min(np.linalg.norm(removed_segment - p, axis=1)) for p in square
+    ])
+    replacement_points = square[np.argsort(dists)[-2:]]
+
+    # 7. Build final polygon
     new_polygon = np.concatenate([
         polygon[:start],
         replacement_points,
