@@ -120,4 +120,5 @@ def plot_wall_modification(original_polygon, modified_polygon, observer_pos, tit
     plt.grid(True)
     plt.legend()
     plt.tight_layout()
+    plt.savefig("mesh_mod.png")
     plt.show()
