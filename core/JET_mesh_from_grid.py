@@ -49,7 +49,7 @@ import numpy as np
 
 import numpy as np
 
-def modify_wall_polygon_for_observer_box_insert(polygon, observer_pos, safety_distance=0.1):
+def modify_wall_polygon_for_observer(polygon, observer_pos, safety_distance=0.1):
     """
     Modifies a 2D RZ wall polygon to ensure the observer lies safely inside it
     by replacing nearby points with a box-shaped expansion around the observer.
