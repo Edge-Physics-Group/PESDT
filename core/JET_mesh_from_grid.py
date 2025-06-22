@@ -45,60 +45,80 @@ def create_toroidal_wall_from_points(
     return mesh
 
 
-import numpy as np
-
-import numpy as np
-
 def modify_wall_polygon_for_observer(polygon, observer_pos, safety_distance=0.1):
     """
-    Modifies a 2D RZ wall polygon to ensure the observer lies safely inside it
-    by replacing nearby points with a box-shaped expansion around the observer.
+    Modifies a wall polygon to ensure the observer lies within it by replacing
+    the closest obstructing segment with two farthest square points around the observer.
 
     Parameters:
-        polygon (array-like): (N, 2) array of (R, Z) points forming the wall contour.
-        observer_pos (tuple): (R_obs, Z_obs) position of the observer.
-        safety_distance (float): Radius of the square patch to insert [m].
+        polygon (array-like): (N, 2) array of (R, Z) coordinates defining wall contour.
+        observer_pos (tuple): (R_obs, Z_obs) coordinates of the observer.
+        safety_distance (float): Half-width of the box around observer for safe clearance.
 
     Returns:
-        np.ndarray: Modified polygon (still 2D).
+        np.ndarray: Modified polygon as (M, 2) array.
     """
     polygon = np.asarray(polygon)
     R_obs, Z_obs = observer_pos
-    R = polygon[:, 0]
-    Z = polygon[:, 1]
+    R, Z = polygon[:, 0], polygon[:, 1]
 
-    # Create bounding box masks
-    mask = (
-        (R > R_obs - safety_distance) & (R < R_obs + safety_distance) &
-        (Z > Z_obs - safety_distance) & (Z < Z_obs + safety_distance)
-    )
-
-    # Indices of points to remove
-    indices_to_remove = np.where(mask)[0]
-    if len(indices_to_remove) < 2:
-        print("Warning: Not enough points in wall polygon near observer to safely cut.")
-        return polygon  # Fall back to original polygon
-
-    # Determine slice to cut
-    start = indices_to_remove[0]
-    end = indices_to_remove[-1] + 1  # slice is exclusive at end
-
-    # Define square around observer (insert points)
-    patch = np.array([
+    # Build square around observer
+    square = np.array([
         [R_obs + safety_distance, Z_obs + safety_distance],
         [R_obs + safety_distance, Z_obs - safety_distance],
         [R_obs - safety_distance, Z_obs - safety_distance],
-        [R_obs - safety_distance, Z_obs + safety_distance],
+        [R_obs - safety_distance, Z_obs + safety_distance]
     ])
 
-    # Insert patch into polygon in place of removed points
+    # Compute distances from observer to square points
+    distances = np.linalg.norm(square - np.array([R_obs, Z_obs]), axis=1)
+    farthest_indices = np.argsort(distances)[-2:]  # indices of two farthest points
+    replacement_points = square[farthest_indices]
+
+    # Build separate masks
+    mask_R = (R > R_obs - safety_distance) & (R < R_obs + safety_distance)
+    mask_Z = (Z > Z_obs - safety_distance) & (Z < Z_obs + safety_distance)
+
+    # Choose which mask to use
+    if np.any(mask_R) and not np.any(mask_Z):
+        active_mask = mask_R
+        axis = 'R'
+    elif np.any(mask_Z) and not np.any(mask_R):
+        active_mask = mask_Z
+        axis = 'Z'
+    elif np.any(mask_R) and np.any(mask_Z):
+        # Both are populated, choose axis with closer points
+        dist_R = np.min(np.abs(R[mask_R] - R_obs))
+        dist_Z = np.min(np.abs(Z[mask_Z] - Z_obs))
+        if dist_R < dist_Z:
+            active_mask = mask_R
+            axis = 'R'
+        else:
+            active_mask = mask_Z
+            axis = 'Z'
+    else:
+        print("Warning: No polygon points found near observer — skipping modification.")
+        return polygon
+
+    # Find continuous block of active_mask
+    indices = np.where(active_mask)[0]
+    if len(indices) < 2:
+        print("Warning: Not enough points in active mask to replace. Returning original polygon.")
+        return polygon
+
+    # Find contiguous segment (assume polygon is ordered)
+    start = indices[0]
+    end = indices[-1] + 1  # exclusive
+
+    # Replace obstructing segment with farthest square points
     new_polygon = np.concatenate([
         polygon[:start],
-        patch,
+        replacement_points,
         polygon[end:]
     ])
 
     return new_polygon
+
 
 
 
