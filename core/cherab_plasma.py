@@ -89,10 +89,25 @@ class CherabPlasma():
             with gzip.open(os.path.expanduser('~') + "/PESDTCache/JETworld.pkl.gz", "wb") as f:
                 pickle.dump(self.world,f, protocol=pickle.HIGHEST_PROTOCOL)
         elif self.mesh_from_grid:
-            observer_pos = [3.284220, 3.561660] # KT3 for now
-            mod_polygons = modify_wall_polygon_for_observer(self.PESDT_obj.data.wall_poly.get_xy(), observer_pos, safety_distance = 0.3 )
+            # Find the highest observer
+            observer_coords = []
+            for instrument, los in self.instrument_los_dict.items():
+                observer_coords.append(los[0]) # Index 0 is p1
+            observer_pos = observer_coords[0]
+            for obs_pos in observer_coords:
+                if obs_pos[1] > observer_pos[1]:
+                    observer_pos = obs_pos
+            #determine safety_distance
+            dist = np.linalg.norm(np.array(observer_coords) - np.array(observer_pos), axis = 1)
+            max_dist = np.max(dist)
+            safety_distance = 0.3
+            if max_dist > safety_distance: safety_distance = max_dist +0.01
+
+            # Modify the polygons, create mesh
+            # Note that by default, the mesh is composed of W only
+            mod_polygons = modify_wall_polygon_for_observer(self.PESDT_obj.data.wall_poly.get_xy(), observer_pos, safety_distance = safety_distance )
             plot_wall_modification(self.PESDT_obj.data.wall_poly.get_xy(), mod_polygons, observer_pos)
-            mesh = create_toroidal_wall_from_points(mod_polygons, self.world)
+            self.mesh = create_toroidal_wall_from_points(mod_polygons, self.world)
             
 
         # create atomic data source
