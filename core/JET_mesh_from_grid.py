@@ -2,16 +2,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 from raysect.optical import World
 from raysect.optical.library.metal import RoughTungsten, RoughBeryllium
-from raysect.primitive import MeshVolume
+from raysect.primitive import Mesh
 from cherab.tools.primitives.toroidal_mesh import toroidal_mesh_from_polygon
 
 def create_toroidal_wall_from_points(
     points: np.ndarray, 
     parent,
-    z_split: float=0.0, 
     tungsten_roughness: float=0.29, # Roughness values used by the cherab/jet module
     beryllium_roughness: float=0.26,
-    toroidal_extent: float = 2.0*np.pi,
+    toroidal_extent: float = 360.0,
     num_toroidal_segments: int = 64
 ):
     """
@@ -29,15 +28,6 @@ def create_toroidal_wall_from_points(
     Returns:
         MeshVolume: The generated wall mesh.
     """
-    # Create material zones based on Z value
-    materials = []
-    for r, z in points:
-        if z < z_split:
-            mat = RoughTungsten(tungsten_roughness)
-        else:
-            mat = RoughBeryllium(beryllium_roughness)
-        materials.append(mat)
-
     # Create toroidal mesh
     mesh = toroidal_mesh_from_polygon(
         polygon=points,
@@ -47,17 +37,12 @@ def create_toroidal_wall_from_points(
     )
 
     # Build mesh volume and assign materials
-    wall = MeshVolume(mesh, parent=parent)
+    mesh.parent = parent
 
     # Assign materials per face (optional: same material for all if needed)
-    wall.material = None  # unset default
-    for i, face in enumerate(wall.mesh.faces):
-        r, z = np.mean(points[face.indices], axis=0)
-        mat = RoughTungsten(tungsten_roughness) if z < z_split else \
-              RoughBeryllium(beryllium_roughness)
-        face.material = mat
+    mesh.material = RoughTungsten(tungsten_roughness)
 
-    return wall
+    return mesh
 
 
 def modify_wall_polygon_for_observer(polygon, observer_pos, safety_distance=0.1, radius_limit=None):
