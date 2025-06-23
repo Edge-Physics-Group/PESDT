@@ -12,6 +12,8 @@ class YACORA():
         print(repr(h2_data_path))
         print(type(h_data_path))
         print(repr(h_data_path))
+        print("File exists:", os.path.exists(h2_data_path))
+        print("File exists:", os.path.exists(h_data_path))
         h_data, _ = self.read_yacora_rate(h_data_path.strip())
         h2_data,_ = self.read_yacora_rate(h2_data_path.strip())
         self.h_rates = {3: h_data}
