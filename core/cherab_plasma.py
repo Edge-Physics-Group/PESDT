@@ -119,7 +119,8 @@ class CherabPlasma():
             
             plasma.atomic_data = PESDT_AMJUEL_data
         elif self.data_source == "YACORA":
-            pass
+            plasma.atomic_data = AMJUEL_Data() # Using AMJUEL data here is fine, because emission is directly passed to cherab; it does not do anything
+            logger.info("Using YACORA")
         else:
             #ADAS
             PESDT_adas = PESDT_ADAS_Data(self.ADAS_dict)
