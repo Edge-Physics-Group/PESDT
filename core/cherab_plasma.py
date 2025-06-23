@@ -99,7 +99,7 @@ class CherabPlasma():
                     observer_pos = obs_pos
             #determine safety_distance
             dist = 0.0
-            if len(observer_coords > 1):
+            if len(observer_coords)>1:
                 dist = np.linalg.norm(np.array(observer_coords) - np.array(observer_pos), axis = 1)
             max_dist = np.max(dist)
             safety_distance = 0.3
