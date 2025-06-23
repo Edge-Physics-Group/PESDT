@@ -219,7 +219,7 @@ class CherabPlasma():
                 acceptance_angle = 2. * atan((los_w2 / 2.0) / chord_length) * 180. / np.pi
 
                 # Setup radiance pipeline
-                pipeline = RadiancePipeline0D()
+                pipeline = RadiancePipeline0D(accumulate = False)
 
                 # Create fibre optic observer
                 fibreoptics.append((pipeline, FibreOptic(
@@ -269,7 +269,7 @@ class CherabPlasma():
                 acceptance_angle = 2. * atan((los_w2 / 2.0) / chord_length) * 180. / np.pi
 
                 # Setup radiance pipeline
-                pipeline = SpectralRadiancePipeline0D(display_progress=False)
+                pipeline = SpectralRadiancePipeline0D(display_progress=False, accumulate = False)
 
                 # Create fibre optic observer
                 fibre = FibreOptic(
