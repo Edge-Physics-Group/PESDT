@@ -89,6 +89,7 @@ class YACORA():
         h2_emiss = acoeff*h2_rate_interp * ne * nh2 
 
         return h_emiss, h2_emiss
+    
     @staticmethod
     def interpolate_idw_vectorized(x, y, points, power=2):
         # NOT FUNCTIONAL
@@ -129,6 +130,7 @@ class YACORA():
         te_arr = np.fromiter(rate.keys(), dtype=float)
 
         te_idx = np.searchsorted(te_arr, te)
+        te_idx = np.clip(te_idx, 0, len(te_arr) - 2)
 
         te_lo = te_arr[te_idx]
         te_hi = te_arr[te_idx+1]
@@ -141,7 +143,9 @@ class YACORA():
 
 
         ne_idx_lo = np.searchsorted(ne_arr_lo, ne)
+        ne_idx_lo = np.clip(ne_idx_lo, 0, len(ne_arr_lo) - 2)
         ne_idx_hi = np.searchsorted(ne_arr_hi, ne)
+        ne_idx_hi = np.clip(ne_idx_hi, 0, len(ne_arr_lo) - 2)
 
         ne_lo_lo = ne_arr_lo[ne_idx_lo]
         ne_lo_hi = ne_arr_lo[ne_idx_lo+1]
