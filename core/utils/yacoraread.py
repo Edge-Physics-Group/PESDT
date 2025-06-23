@@ -8,7 +8,8 @@ class YACORA():
         
         h_data_path: str = os.path.join(data_path, "PopKoeff_n=3_from_H.txt")
         h2_data_path: str = os.path.join(data_path, "PopKoeff_n=3_from_H2.txt")
-
+        print(h2_data_path)
+        print(h_data_path)
         h_data, _ = self.read_yacora_rate(h_data_path)
         h2_data,_ = self.read_yacora_rate(h2_data_path)
         self.h_rates = {3: h_data}
