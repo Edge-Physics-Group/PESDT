@@ -76,7 +76,7 @@ class YACORA():
 
     def calc_photon_rate(self, transition: tuple, te: np.ndarray, ne: np.ndarray, nh: np.ndarray, nh2: np.ndarray):
         # Make sure that the transition is in integers
-        transition = (int(transition[0], int(transition[1])))
+        transition = (int(transition[0]), int(transition[1]))
         h_rate = self.h_rates.get(transition[0], None)
         h2_rate = self.h2_rates.get(transition[0], None)
         if h2_rate is None or h_rate is None:
