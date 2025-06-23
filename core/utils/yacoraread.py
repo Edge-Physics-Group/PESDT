@@ -12,6 +12,7 @@ class YACORA():
         h2_data,_ = self.read_yacora_rate(h2_data_path)
         self.h_rates = {3: h_data}
         self.h2_rates = {3: h2_data}
+    
     @staticmethod
     def A_coeff(transition):
         '''
