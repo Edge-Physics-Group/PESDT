@@ -92,15 +92,14 @@ class CherabPlasma():
             # Find the highest observer
             observer_coords = []
             for instrument, los in self.instrument_los_dict.items():
-                observer_coords.append(los[0]) # Index 0 is p1
+                observer_coords.append(los[0][0]) # Index 0 is p1
             observer_pos = observer_coords[0]
             for obs_pos in observer_coords:
                 if obs_pos[1] > observer_pos[1]:
                     observer_pos = obs_pos
             #determine safety_distance
             dist = 0.0
-            if len(observer_coords)>1:
-                dist = np.linalg.norm(np.array(observer_coords) - np.array(observer_pos), axis = 1)
+            dist = np.linalg.norm(np.array(observer_coords) - np.array(observer_pos), axis = 1)
             max_dist = np.max(dist)
             safety_distance = 0.3
             if max_dist > safety_distance: safety_distance = max_dist +0.01
