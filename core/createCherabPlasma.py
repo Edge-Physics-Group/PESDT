@@ -124,8 +124,9 @@ def createCherabPlasma(PESDT, transitions: list, convert_denel_to_m3 = True, dat
         
     elif data_source == "YACORA":
         yacora = YACORA(PESDT.YACORA_RATES_PATH)
-
+        
         num_species = 3
+        species_density = np.zeros((num_species, num_cells))
         species_density[2,:] = n2[:]
         species_list.append((D2, 0))
         logger.info("Precalculating emission")    
