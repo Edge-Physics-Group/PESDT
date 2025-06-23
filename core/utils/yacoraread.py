@@ -53,6 +53,7 @@ class YACORA():
             data[a] = grouped_data[i]
             i +=1
         return  data, raw_data
+    
     @staticmethod
     def interpolate_idw(x, y, points, power=2):
         """
