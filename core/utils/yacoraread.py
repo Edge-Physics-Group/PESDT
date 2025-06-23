@@ -8,14 +8,6 @@ class YACORA():
         
         h_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H.txt")
         h2_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H2.txt")
-        print(type(h2_data_path))
-        print("Is str?", isinstance(h2_data_path, str))
-        print(repr(h2_data_path))
-        print(type(h_data_path))
-        print("Is str?", isinstance(h_data_path, str))
-        print(repr(h_data_path))
-        print("File exists:", os.path.exists(h2_data_path))
-        print("File exists:", os.path.exists(h_data_path))
         h_data, _ = self.read_yacora_rate(str(h_data_path).strip())
         h2_data,_ = self.read_yacora_rate(str(h2_data_path).strip())
         self.h_rates = {3: h_data}
@@ -38,6 +30,7 @@ class YACORA():
         }
 
         return coeff_dict[transition[1]][transition[0]]
+    @staticmethod
     def read_yacora_rate(filename: str, header_size: int = 27):
         """
 
@@ -58,7 +51,7 @@ class YACORA():
             data[a] = grouped_data[i]
             i +=1
         return  data, raw_data
-
+    @staticmethod
     def interpolate_idw(x, y, points, power=2):
         """
         Interpolates z at (x, y) using inverse distance weighting from four points.
@@ -92,7 +85,7 @@ class YACORA():
         h2_emiss = acoeff*h2_rate_interp * ne * nh2 
 
         return h_emiss, h2_emiss
-
+    @staticmethod
     def interpolate_idw_vectorized(x, y, points, power=2):
         # NOT FUNCTIONAL
         """
@@ -118,7 +111,7 @@ class YACORA():
         weighted_vals = weights * zi       # shape (4, N)
 
         return np.sum(weighted_vals, axis=0) / np.sum(weights, axis=0)  # shape (N,)
-
+    
     def interpolate_yacora_rate_arr(self, te_arr_in, ne_arr_in, rate):
         ret = np.zeros(te_arr_in.shape)
         for i in range(len(te_arr_in)):
