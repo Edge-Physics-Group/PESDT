@@ -6,8 +6,8 @@ class YACORA():
     def __init__(self, data_path: str):
         self.data_path = data_path
         
-        h_data_path: str = os.path.join(data_path, "PopKoeff_n=3_from_H.txt")
-        h2_data_path: str = os.path.join(data_path, "PopKoeff_n=3_from_H2.txt")
+        h_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H.txt")
+        h2_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H2.txt")
         print(type(h2_data_path))
         print("Is str?", isinstance(h2_data_path, str))
         print(repr(h2_data_path))
