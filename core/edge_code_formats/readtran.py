@@ -129,60 +129,60 @@ class Tran :
         return data
 
     def readTran(self,filename):
-       self.offsets = {}
-       with open(filename,'rb') as f:
-          while(True):
-              string = self.readString(f)
-              if string[:9]=='*GEOMETRY':
-                  gridfile = self.readString(f)
-                  self.tran['gridfile'] = gridfile
-                  string = self.readString(f)
-                  geom = self.readInts(f)
-                  i=0
-                  for param in string.split(','):
-                      self.tran[param.strip()]=geom[i]
-                      i=i+1
-                  fieldType = '0D'
-              elif string[:12]=='*TIME TRACES' :
-                  fieldType = '1D'
+        self.offsets = {}
+        with open(filename,'rb') as f:
+            while(True):
+                string = self.readString(f)
+                if string[:9]=='*GEOMETRY':
+                    gridfile = self.readString(f)
+                    self.tran['gridfile'] = gridfile
+                    string = self.readString(f)
+                    geom = self.readInts(f)
+                    i=0
+                    for param in string.split(','):
+                        self.tran[param.strip()]=geom[i]
+                        i=i+1
+                    fieldType = '0D'
+                elif string[:12]=='*TIME TRACES' :
+                    fieldType = '1D'
 
-              elif string[0]=='#' :
-                  offset=f.tell()
-                  staggered = string[59]=='S'
-                  if(string.split()[1]=='I'): data = self.readInts(f)
-                  else : data = self.readFloats(f)
-                  if len(data)==self.tran['NP'] : fieldType = '2D'
-                  fieldname = string[1:].split()[0]
-                  self.offsets[fieldname]=offset
-                  self.tran[fieldname] = {
-                     'type':fieldType ,
-                     'staggered':staggered,
-                     'data':data,
-                     'desc':string[18:50].strip(),
-                     'unit':string[50:59].strip()}
+                elif string[0]=='#' :
+                    offset=f.tell()
+                    staggered = string[59]=='S'
+                    if(string.split()[1]=='I'): data = self.readInts(f)
+                    else : data = self.readFloats(f)
+                    if len(data)==self.tran['NP'] : fieldType = '2D'
+                    fieldname = string[1:].split()[0]
+                    self.offsets[fieldname]=offset
+                    self.tran[fieldname] = {
+                        'type':fieldType ,
+                        'staggered':staggered,
+                        'data':data,
+                        'desc':string[18:50].strip(),
+                        'unit':string[50:59].strip()}
 
-              elif string[0]=='%':
-                  fortranFormat = string.split()[0][1:]
-                  if fortranFormat[-1]=='I':
-                      data = self.readInts(f)
-                  elif fortranFormat[-1]=='R':
-                      data = self.readFloats(f)
+                elif string[0]=='%':
+                    fortranFormat = string.split()[0][1:]
+                    if fortranFormat[-1]=='I':
+                        data = self.readInts(f)
+                    elif fortranFormat[-1]=='R':
+                        data = self.readFloats(f)
 
-              elif string[0] in ['*',' ','-'] :
-                  if string[1:4]=='EOF':
-                      break
-                  if string[1:8]=='CATALOG':
-                      self.tran['CATID'] = '/'.join(self.readString(f).split())
-                  if string[1:15]=='TIME STEP DATA':
-                      tmp = self.readString(f).split()
-                      self.tran['TIME'] = float(tmp[2])
-                      self.tran['STEP'] = int(tmp[5])
-                      try :
-                          self.tran['TIMJET'] = float(tmp[9])
-                      except :
-                          pass
-              else :
-                  print('format not found',string)
+                elif string[0] in ['*',' ','-'] :
+                    if string[1:4]=='EOF':
+                        break
+                    if string[1:8]=='CATALOG':
+                        self.tran['CATID'] = '/'.join(self.readString(f).split())
+                    if string[1:15]=='TIME STEP DATA':
+                        tmp = self.readString(f).split()
+                        self.tran['TIME'] = float(tmp[2])
+                        self.tran['STEP'] = int(tmp[5])
+                        try :
+                            self.tran['TIMJET'] = float(tmp[9])
+                        except :
+                            pass
+                else :
+                    print('format not found',string)
 
     def getNames(self):
         return [field for field in self.tran]
@@ -191,10 +191,10 @@ class Tran :
         return self.tran[field]
 
     def fastRead(self,filename, fieldname):
-      with open(filename,'rb') as f:
-        f.seek(self.offsets[fieldname])
-        data = self.readFloats(f)
-        return data
+        with open(filename,'rb') as f:
+            f.seek(self.offsets[fieldname])
+            data = self.readFloats(f)
+            return data
       
     def load_data_1d(self, field: str = "TEVE", row_or_ring: bool = True, index = 12,**kwargs):
         ot = kwargs.get("ot", False)
@@ -253,59 +253,13 @@ class Tran :
         return x, r, data
 
     def plot1D(self, field: str = "TEVE", row_or_ring: bool = True, index = 12, ax = None, **kwargs): 
+
         new_figure = False
         if ax is None:
             new_figure = True
             fig, ax = plt.subplots()
 
-        ot = kwargs.get("ot", False)
-        it = kwargs.get("it", False)
-        
-        if ot: index = self.jjtarget[0] +1
-        if it: index = self.jjtarget[-1] +1
-
-        cells = []
-        if row_or_ring :
-            columns = range(self.ni2d)
-            for ii in columns :
-                k = self.korxy[ii,index-1]
-                if k == 0 : continue
-                if k > self.np  : continue
-                if self.itag[k-1,3] >= 0 : 
-                    cells.append(k-1)
-
-        if not row_or_ring :
-            for j in range(self.nj[index-1]):
-                k = self.kory[index-1,j]
-                cells.append(k)
-
-
-        data = [k+1 for k in cells]
-        data = getattr(self,field.lower())[cells]
-        
-        if row_or_ring :
-            x=[];y=[]
-            isep = 0
-            rsep = 0
-            zsep = 0
-            for ii in range(len(data)):
-                k = cells[ii]
-                x.append(self.rmesh[k])
-                y.append(self.zmesh[k])
-                if ii > 0 :
-                    k1 = cells[ii-1]
-                    if self.ikor[k] == self.ilc :
-                        isep = ii
-                        rsep = 0.5*(self.rmesh[k] + self.rmesh[k1])
-                        zsep = 0.5*(self.zmesh[k] + self.zmesh[k1])
-            x = [-np.sqrt((x[i]-rsep)**2+(y[i]-zsep)**2) if i<isep else np.sqrt((x[i]-rsep)**2+(y[i]-zsep)**2) for i in range(len(x))]
-            if new_figure:
-                ax.set_xlabel('Distance to separatrix (m)')
-                ax.axvline(x=0,color='k',linestyle='dotted', label='_nolegend_')
-        elif not row_or_ring :
-            x=range(len(cells))
-            if new_figure:
-                ax.set_xlabel('Index number (-)')
+        x, r, data = self.load_data_1d(field, row_or_ring=row_or_ring, index=index, **kwargs)
 
         line = ax.plot(x,data,label=self.catid,color='r',marker='+')
         lns = []+line
