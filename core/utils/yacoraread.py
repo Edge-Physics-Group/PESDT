@@ -85,8 +85,8 @@ class YACORA():
         acoeff = self.A_coeff(transition)
         h_rate_interp = self.interpolate_yacora_rate_arr(te, ne, h_rate)
         h2_rate_interp = self.interpolate_yacora_rate_arr(te, ne, h2_rate)
-        h_emiss = acoeff*h_rate_interp * ne * nh 
-        h2_emiss = acoeff*h2_rate_interp * ne * nh2 
+        h_emiss = acoeff*h_rate_interp * ne * nh /(4.0*np.pi)
+        h2_emiss = acoeff*h2_rate_interp * ne * nh2 /(4.0*np.pi)
 
         return h_emiss, h2_emiss
     
