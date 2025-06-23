@@ -238,21 +238,20 @@ class ProcessEdgeSim:
                 transition = (int(trans[0]), int(trans[1]))
                 wavelength = line_key
                 self.outdict[diag][wavelength] = {}
+                if data_source in ["ADAS", "AMJUEL"]:
+                    # Excitation
+                    logger.info("Excitation")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_excitation=True, data_source=data_source)
+                    excit = plasma.integrate_instrument(diag)
+                    self.outdict[diag][wavelength]["excit"] = [x[0] for x in excit]
 
-                # Excitation
-                logger.info("Excitation")
-                plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
-                                        include_excitation=True, data_source=data_source)
-                excit = plasma.integrate_instrument(diag)
-                self.outdict[diag][wavelength]["excit"] = [x[0] for x in excit]
-
-                # Recombination
-                logger.info("Recombination")
-                plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
-                                        include_recombination=True, data_source=data_source)
-                recom = plasma.integrate_instrument(diag)
-                self.outdict[diag][wavelength]["recom"] = [x[0] for x in recom]
-
+                    # Recombination
+                    logger.info("Recombination")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_recombination=True, data_source=data_source)
+                    recom = plasma.integrate_instrument(diag)
+                    self.outdict[diag][wavelength]["recom"] = [x[0] for x in recom]
                 # Molecular / negative H species
                 if data_source == "AMJUEL":
                     logger.info("H2")
@@ -272,6 +271,17 @@ class ProcessEdgeSim:
                                             include_H_neg=True, data_source=data_source)
                     self.outdict[diag][wavelength]["h-"] = [x[0] for x in plasma.integrate_instrument(diag)]
 
+                if data_source == "YACORA":
+                    logger.info("YACORA - ATOMIC")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_excitation=True, data_source=data_source)
+                    excit = plasma.integrate_instrument(diag)
+                    self.outdict[diag][wavelength]["excit"] = [x[0] for x in excit]
+                    logger.info("YACORA - MOLECULAR")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_H2=True, data_source=data_source)
+                    self.outdict[diag][wavelength]["h2"] = [x[0] for x in plasma.integrate_instrument(diag)]
+                    
                 # === Optional Stark Spectrum ===
                 if calc_stark_ne and transition == tuple(stark_transition):
                     logger.info("Stark")
