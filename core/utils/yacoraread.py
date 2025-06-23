@@ -8,8 +8,8 @@ class YACORA():
         
         h_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H.txt")
         h2_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H2.txt")
-        h_data, _ = self.read_yacora_rate(str(h_data_path).strip())
-        h2_data,_ = self.read_yacora_rate(str(h2_data_path).strip())
+        h_data, _ = self.read_yacora_rate(h_data_path)
+        h2_data,_ = self.read_yacora_rate(h2_data_path)
         self.h_rates = {3: h_data}
         self.h2_rates = {3: h2_data}
 
@@ -30,6 +30,8 @@ class YACORA():
         }
 
         return coeff_dict[transition[1]][transition[0]]
+    
+    
     @staticmethod
     def read_yacora_rate(filename: str, header_size: int = 27):
         """
@@ -111,7 +113,7 @@ class YACORA():
         weighted_vals = weights * zi       # shape (4, N)
 
         return np.sum(weighted_vals, axis=0) / np.sum(weights, axis=0)  # shape (N,)
-    
+
     def interpolate_yacora_rate_arr(self, te_arr_in, ne_arr_in, rate):
         ret = np.zeros(te_arr_in.shape)
         for i in range(len(te_arr_in)):
