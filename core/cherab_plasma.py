@@ -174,7 +174,18 @@ class CherabPlasma():
 
                 self.plasma.models = model_list
             elif data_source == "YACORA":
-                pass        
+                model_list = []
+                if include_excitation or include_recombination:
+                    # Current YACORA dataset does not separate between exc and rec
+                    h_line = PESDTLine(D0, 0, transition)
+                    model_list.append(DirectEmission(h_line, lineshape=lineshape))
+                if include_H2:
+                    h_line = PESDTLine(D2, 1, transition) # Increment charge by one 
+                    model_list.append(DirectEmission(h_line, lineshape=lineshape))
+                if include_ff_fb:
+                    h_line = PESDTLine(D0, 0, transition)
+                    model_list.append(Continuo(h_line, lineshape = lineshape))
+                self.plasma.models = model_list
             else:
                 h_line = Line(D0, 0, transition)
                 model_list = []

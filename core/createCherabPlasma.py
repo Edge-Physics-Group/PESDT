@@ -4,7 +4,7 @@ from raysect.core.math.function.float.function2d.interpolate import Discrete2DMe
 from cherab.edge2d.mesh_geometry import Edge2DMesh
 from cherab.PESDT_addon import PESDTSimulation, PESDTElement, deuterium
 
-from .utils import read_amjuel_1d,read_amjuel_2d,reactions, calc_cross_sections, calc_photon_rate
+from .utils import read_amjuel_1d,read_amjuel_2d,reactions, calc_cross_sections, calc_photon_rate, YACORA
 import logging
 logger = logging.getLogger(__name__)
 
@@ -123,6 +123,8 @@ def createCherabPlasma(PESDT, transitions: list, convert_denel_to_m3 = True, dat
             emission[5][transitions[i]] = em_h_neg
         
     elif data_source == "YACORA":
+        yacora = YACORA(PESDT.YACORA_RATES_PATH)
+
         num_species = 3
         species_density[2,:] = n2[:]
         species_list.append((D2, 0))
@@ -130,6 +132,10 @@ def createCherabPlasma(PESDT, transitions: list, convert_denel_to_m3 = True, dat
         emission = [{} for _ in range(len(species_density))]
         for i in range(len(transitions)):
             logger.info(f"Calculating emission for line: {transitions[i]}")
+            h_emiss, h2_emiss = yacora.calc_photon_rate(transitions[i], te, ne, n0[:], n2[:])
+            emission[0][transitions[i]] = h_emiss
+            emission[1][transitions[i]] = np.zeros(h_emiss.shape)
+            emission[2][transitions[i]] = h2_emiss
     else:
         #ADAS
         num_species = 2

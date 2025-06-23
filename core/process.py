@@ -2,8 +2,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 # import pandas as pd
-import pickle
-import json
+import pickle, json, os
 
 from matplotlib.collections import PatchCollection
 from matplotlib import patches
@@ -48,7 +47,13 @@ class ProcessEdgeSim:
         self.recalc_h2_pos = recalc_h2_pos
         self.input_dict = input_dict
         self.regions = {}
-
+        if self.data_source == "AMJUEL":
+            pass # Need to modify code to be able to pass 
+        elif self.data_source == "YACORA":
+            # Look for YACORA rates in the home folder, unless specified otherwise in the input
+            self.YACORA_RATES_PATH = self.input_dict.get("YACORA_RATES_PATH", os.path.join(os.path.expanduser("~"), "YACORA_RATES/" ))
+        elif self.data_source == "ADAS":
+            pass
         # Dictionary for storing synthetic diagnostic objects
         self.synth_diag = {}
         
@@ -210,7 +215,8 @@ class ProcessEdgeSim:
                                             spectral_bins= ff_fb_bins,
                                             spectral_rays= 1)
 
-        self.outdict = {}
+        self.outdict = {"description": f"CHERAB, REFLECTIONS: {include_reflections}, JET-MESH: {import_jet_surfaces}, DATA SOURCE: {data_source}"}
+        
 
         # === Process Each Instrument ===
         for diag in diag_list:
