@@ -94,14 +94,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                          run_cherab = self.run_cherab, 
                          input_dict = self.input_dict)   
 
-        if self.input_dict['run_options']['analyse_synth_spec_features']:
-            # Read synth diag saved data
-            try:
-                with open(self.synth_diag_save_file, 'r') as f:
-                    res_dict = json.load(f)
-                self.analyse_synth_spectra(res_dict)
-            except IOError as e:
-                raise
+        
         
         if self.run_cherab:
             if input_dict['cherab_options'].get('analyse_synth_spec_features', False):
@@ -122,7 +115,15 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                 savefile = self.savedir + '/cherab.synth_diag.json'
             with open(savefile, mode='w', encoding='utf-8') as f:
                 json.dump(self.outdict, f, indent=2)
-
+                
+        elif self.input_dict['run_options']['analyse_synth_spec_features']:
+            # Read synth diag saved data
+            try:
+                with open(self.synth_diag_save_file, 'r') as f:
+                    res_dict = json.load(f)
+                self.analyse_synth_spectra(res_dict)
+            except IOError as e:
+                raise
 
     # Analyse synthetic spectra
     def analyse_synth_spectra(self, res_dict, stark_ne = True, cont_Te = True, line_int_part_bal = False, delL_atomden = False):
