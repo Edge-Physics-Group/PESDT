@@ -5,7 +5,7 @@ from math import sin, cos, pi, atan
 from raysect.optical import World, AbsorbingSurface
 from raysect.optical.observer import PinholeCamera, FibreOptic, RadiancePipeline0D, SpectralRadiancePipeline0D
 from raysect.core.math import Point3D, Vector3D, translate, rotate, rotate_basis#, Discrete2DMesh #Note: this was not being used, and caused a chrash (cannot be found)
-
+from raysect.core import SerialEngine
 from cherab.core import Plasma, Species, Maxwellian, Line, elements
 from cherab.core.model.plasma.impact_excitation import ExcitationLine
 from cherab.core.model.plasma.recombination import RecombinationLine
@@ -231,16 +231,17 @@ class CherabPlasma():
 
                 # Setup radiance pipeline
                 pipeline = RadiancePipeline0D(accumulate = False)
-
-                # Create fibre optic observer
-                fibreoptics.append((pipeline, FibreOptic(
+                fibreoptic = FibreOptic(
                     pipelines=[pipeline],
                     acceptance_angle=acceptance_angle,
                     radius=0.01,  # Default pinhole size of 1 cm
                     pixel_samples=pixel_samples,
                     spectral_rays=1,  # Not used in RadiancePipeline0D, but required by FibreOptic
                     transform=translate(*origin) * rotate_basis(direction, Vector3D(1, 0, 0)),
-                    parent=self.world)))
+                    parent=self.world)
+                fibreoptic.render_engine = SerialEngine()
+                # Create fibre optic observer
+                fibreoptics.append((pipeline, ))
                 
             self.instrument_fibreoptics[instrument] = fibreoptics
             self.instrument_los_coords[instrument] = los_coords
