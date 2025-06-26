@@ -36,9 +36,7 @@ To install Cherab, you'll need a functioning version of the "cython module".
 
 To install Cherab, first install the core package with pip:
 
-*pip install cherab==1.4.0* **NOTE** There are issues with cherab 1.5.0 and raysect 0.8.1, cherab 1.4.0 should work
-
-**NO
+*pip install cherab* 
 
 Then, you'll need the cherab/edge2d, cherab/solps, and cherab/jet modules. You can find the files on github. Download the folders to your home, and install via pip: (example)
 
