@@ -241,7 +241,7 @@ class CherabPlasma():
                     parent=self.world)
                 fibreoptic.render_engine = SerialEngine()
                 # Create fibre optic observer
-                fibreoptics.append((pipeline, ))
+                fibreoptics.append((pipeline, fibreoptic))
                 
             self.instrument_fibreoptics[instrument] = fibreoptics
             self.instrument_los_coords[instrument] = los_coords
