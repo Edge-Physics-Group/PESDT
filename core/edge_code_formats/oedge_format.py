@@ -222,7 +222,7 @@ class OEDGE(BackgroundPlasma):
             shply_poly = Polygon(poly.get_xy())
             self.cells.append(Cell(self.R[i], self.Z[i], row = self.mesh_idxs[i][1], ring = self.mesh_idxs[i][0], poly =shply_poly, 
                                    te = self.te[i], ti = self.ti[i], ne = self.ne[i], ni = self.ni[i], n0 = self.n0[i], n2 = self.n2[i], 
-                                   Srec= self.rec[i], Sion= self.ioz[i]))
+                                   n2p= 0.0 ,Srec= self.rec[i], Sion= self.ioz[i]))
 
     def create_wall_poly(self):
         Rpts = self.rvesm[0][:self.nvesm]
