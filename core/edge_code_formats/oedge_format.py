@@ -45,13 +45,13 @@ class OEDGE(BackgroundPlasma):
         valid_indices = self.korpg[valid_irs, valid_iks] - 1  # Convert 1-based to 0-based
 
         # Get corner coordinates (first 4) and center coordinates (5th)
-        self.r_corners = self.rvertp[valid_indices, :4]
-        self.z_corners = self.zvertp[valid_indices, :4]
+        self.rv = self.rvertp[valid_indices, :4]
+        self.zv = self.zvertp[valid_indices, :4]
         self.R = self.rvertp[valid_indices, 4]
         self.Z = self.zvertp[valid_indices, 4]
 
         # Build list of 4-tuples for mesh (corners of each polygon)
-        self.mesh = [list(zip(r, z)) for r, z in zip(self.r_corners, self.z_corners)]
+        self.mesh = [list(zip(r, z)) for r, z in zip(self.rv, self.zv)]
 
         # Store the (ir, ik) indices of each valid cell
         self.mesh_idxs = list(zip(valid_irs, valid_iks))
@@ -213,10 +213,10 @@ class OEDGE(BackgroundPlasma):
         self.patches = []
 
         for i in range(self.num_cells):
-            rv = list(self.r_corners[i])
-            rv.append(self.r_corners[i][0])
-            zv = list(self.z_corners[i])
-            zv.append(self.z_corners[i][0])
+            rv = list(self.rv[i])
+            rv.append(self.rv[i][0])
+            zv = list(self.zv[i])
+            zv.append(self.zv[i][0])
             poly = patches.Polygon(list(zip(rv, zv)))
             self.patches.append(poly)
             shply_poly = Polygon(poly.get_xy())
