@@ -13,7 +13,7 @@ from .utils.amread import calc_photon_rate
 
 from .utils.machine_defs import get_DIIIDdefs, get_JETdefs
 from pyADASread import adas_adf11_read, adas_adf15_read, continuo_read
-from .edge_code_formats import BackgroundPlasma, Cell, Edge2D, SOLPS
+from .edge_code_formats import BackgroundPlasma, Cell, Edge2D, SOLPS, OEDGE
 from .cherab_plasma import CherabPlasma
 
 
@@ -71,9 +71,7 @@ class ProcessEdgeSim:
         elif self.edge_code == "solps":
             self.data = SOLPS(self.sim_path)
         elif self.edge_code == "oedge":
-            '''
-            TODO
-            '''
+            self.data = OEDGE(self.sim_path)
         elif self.edge_code == "custom":
             try:
                 from custom import Custom

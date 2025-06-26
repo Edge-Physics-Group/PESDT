@@ -261,6 +261,10 @@ def read_amjuel_2d(h_name, collisionName, **kwargs):
                         break                    
         
     return MARc
+def calc_H2_fulcher_band_emission(Temperature, el_density, mol_n_density):
+
+    return
+
 
 def calc_photon_rate(transition, Temperature, el_density, n_density, mol_n_density = None, molp_n_density = None, p_density = None, h3 = True, recalc_h2_pos = True, **kwargs):
 
