@@ -26,6 +26,7 @@ class OEDGE(BackgroundPlasma):
         self.read_data()
         self.get_sep()
         self.create_cells()
+        self.create_wall_poly()
 
     def read_data(self):
         #######################################################
