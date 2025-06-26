@@ -79,10 +79,10 @@ class OEDGE(BackgroundPlasma):
         self.crmb = float(self.nc["CRMB"]["data"])  # Mass of plasma species in amu
         
         # JET grid
-        if self.JET_grid:
-            self.Z = -self.Z
-            self.zvertp = -self.zvertp
-            self.zvesm = -self.zvesm
+        #if self.JET_grid:
+        #    self.Z = -self.Z
+        #    self.zvertp = -self.zvertp
+        #    self.zvesm = -self.zvesm
         # Plasma parameters
         self.ne = self.read_data_2d("KNBS")
         self.ni = self.ne # only one plasma species, no impurities
