@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from shapely.geometry import Polygon
 from raysect.optical import World
 from raysect.optical.library.metal import RoughTungsten, RoughBeryllium
 from raysect.primitive import Mesh
@@ -128,19 +127,22 @@ def modify_wall_polygon_for_observer(polygon, observer_pos, safety_distance=0.1)
     replacement_points = square[farthest_indices]
 
     # 7. Ensure proper order of replacement points by trial and error
+    segment_vec = polygon[end % len(polygon)] - polygon[start - 1]
+    seg_angle = np.arctan2(segment_vec[1], segment_vec[0])
+
+    def angle_from_seg(p):
+        vec = p - polygon[start - 1]
+        return np.arctan2(vec[1], vec[0]) - seg_angle
+
+    angles = [angle_from_seg(p) for p in replacement_points]
+    sorted_points = [p for _, p in sorted(zip(angles, replacement_points))]
+
+    # 8. Build final polygon
     new_polygon = np.concatenate([
         polygon[:start],
-        replacement_points,
+        sorted_points,
         polygon[end:]
     ])
-    poly = Polygon(new_polygon)
-    if poly.is_simple:
-        return new_polygon
-    else:
-        new_polygon = np.concatenate([
-        polygon[:start],
-        np.flip(replacement_points),
-        polygon[end:]])
 
     return new_polygon
 
