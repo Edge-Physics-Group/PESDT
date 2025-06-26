@@ -126,16 +126,16 @@ def modify_wall_polygon_for_observer(polygon, observer_pos, safety_distance=0.1)
     farthest_indices = np.argsort(dists)[-2:]
     replacement_points = square[farthest_indices]
 
-    # 7. Ensure proper order of replacement points by trial and error
-    segment_vec = polygon[end % len(polygon)] - polygon[start - 1]
-    seg_angle = np.arctan2(segment_vec[1], segment_vec[0])
+    # 7. Ensure proper order of replacement points
+    def is_polygon_clockwise(poly):
+        shifted = np.roll(poly, -1, axis=0)
+        return np.sum((shifted[:, 0] - poly[:, 0]) * (shifted[:, 1] + poly[:, 1])) > 0
 
-    def angle_from_seg(p):
-        vec = p - polygon[start - 1]
-        return np.arctan2(vec[1], vec[0]) - seg_angle
-
-    angles = [angle_from_seg(p) for p in replacement_points]
-    sorted_points = [p for _, p in sorted(zip(angles, replacement_points))]
+    clockwise = is_polygon_clockwise(polygon)
+    if clockwise:
+        sorted_points = replacement_points[np.argsort(replacement_points[:, 0])]
+    else:
+        sorted_points = replacement_points[np.argsort(replacement_points[:, 0])[::-1]]
 
     # 8. Build final polygon
     new_polygon = np.concatenate([
