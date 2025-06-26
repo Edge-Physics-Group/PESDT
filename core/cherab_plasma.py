@@ -107,7 +107,7 @@ class CherabPlasma():
             # Modify the polygons, create mesh
             # Note that by default, the mesh is composed of W only
             mod_polygons = modify_wall_polygon_for_observer(self.PESDT_obj.data.wall_poly.get_xy(), observer_pos, safety_distance = safety_distance )
-            #plot_wall_modification(self.PESDT_obj.data.wall_poly.get_xy(), mod_polygons, observer_pos)
+            plot_wall_modification(self.PESDT_obj.data.wall_poly.get_xy(), mod_polygons, observer_pos)
             self.mesh = create_toroidal_wall_from_points(mod_polygons, self.world)
             
 
