@@ -5,7 +5,7 @@ from math import sin, cos, pi, atan
 from raysect.optical import World, AbsorbingSurface
 from raysect.optical.observer import PinholeCamera, FibreOptic, RadiancePipeline0D, SpectralRadiancePipeline0D
 from raysect.core.math import Point3D, Vector3D, translate, rotate, rotate_basis#, Discrete2DMesh #Note: this was not being used, and caused a chrash (cannot be found)
-from raysect.core import SerialEngine
+from raysect.core import SerialEngine, MulticoreEngine
 from cherab.core import Plasma, Species, Maxwellian, Line, elements
 from cherab.core.model.plasma.impact_excitation import ExcitationLine
 from cherab.core.model.plasma.recombination import RecombinationLine
@@ -231,7 +231,7 @@ class CherabPlasma():
 
                 # Setup radiance pipeline
                 pipeline = RadiancePipeline0D(accumulate = False)
-                fibreoptic = FibreOptic(
+                fibre = FibreOptic(
                     pipelines=[pipeline],
                     acceptance_angle=acceptance_angle,
                     radius=0.01,  # Default pinhole size of 1 cm
@@ -239,9 +239,9 @@ class CherabPlasma():
                     spectral_rays=1,  # Not used in RadiancePipeline0D, but required by FibreOptic
                     transform=translate(*origin) * rotate_basis(direction, Vector3D(1, 0, 0)),
                     parent=self.world)
-                fibreoptic.render_engine = SerialEngine()
+                fibre.render_engine = MulticoreEngine(processes=8)
                 # Create fibre optic observer
-                fibreoptics.append((pipeline, fibreoptic))
+                fibreoptics.append((pipeline, fibre))
                 
             self.instrument_fibreoptics[instrument] = fibreoptics
             self.instrument_los_coords[instrument] = los_coords
@@ -297,6 +297,7 @@ class CherabPlasma():
                 # Set wavelength bounds
                 fibre.min_wavelength = min_wavelength_nm
                 fibre.max_wavelength = max_wavelength_nm
+                fibre.render_engine = MulticoreEngine(processes=8)
                 fibreoptics.append((pipeline, fibre))
 
             if destination == "stark":
