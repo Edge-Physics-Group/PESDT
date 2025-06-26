@@ -213,8 +213,10 @@ class OEDGE(BackgroundPlasma):
         self.patches = []
 
         for i in range(self.num_cells):
-            rv = list(self.r_corners[i]).append(self.r_corners[i][0])
-            zv = list(self.z_corners[i]).append(self.z_corners[i][0])
+            rv = list(self.r_corners[i])
+            rv.append(self.r_corners[i][0])
+            zv = list(self.z_corners[i])
+            zv.append(self.z_corners[i][0])
             poly = patches.Polygon(list(zip(rv, zv)))
             self.patches.append(poly)
             shply_poly = Polygon(poly.get_xy())
