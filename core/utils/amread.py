@@ -99,9 +99,9 @@ def H2_reactions(band: str = "fulcher"):
     Dictionary of H2 excitation emission bands. Returns the rate names, and the associated average Einstein Coefficient.
     """
     dct: dict =  {
-        "fulcher": ["H.12", "2.2.5fu", 2.43e7],
-        "werner":  ["H.12", "2.2.5we", 1.04e9],
-        "lyman":   ["H.12", "2.2.5ly", 0.84e9]
+        "fulcher": ("H.12", "2.2.5fu", 2.43e7),
+        "werner":  ("H.12", "2.2.5we", 1.04e9),
+        "lyman":   ("H.12", "2.2.5ly", 0.84e9)
     }
     return dict[band.lower()]
 
