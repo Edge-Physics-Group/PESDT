@@ -103,7 +103,7 @@ def H2_reactions(band: str = "fulcher"):
         "werner":  ("H.12", "2.2.5we", 1.04e9),
         "lyman":   ("H.12", "2.2.5ly", 0.84e9)
     }
-    return dict[band.lower()]
+    return dct[band.lower()]
 
 def wavelength(transition):
     '''
