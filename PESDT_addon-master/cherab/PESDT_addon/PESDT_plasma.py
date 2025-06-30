@@ -46,6 +46,9 @@ from cherab.solps.eirene import Eirene
 from cherab.solps.solps_2d_functions import SOLPSFunction2D, SOLPSVectorFunction2D
 from cherab.solps.mesh_geometry import SOLPSMesh
 
+# Add logger:
+import logging
+logger = logging.getLogger(__name__)
 
 class PESDTSimulation:
 
@@ -172,15 +175,18 @@ class PESDTSimulation:
         self._emission_f2d = {}
         self._emission_f3d = {}
         for k, sp in enumerate(self._species_list):
-            _emission_f2d = {}
-            _emission_f3d = {}
-            for key in self._lines:
-                _emission_f2d[key] = Edge2DFunction.instance(self._inside_mesh, value[k][key])
-                _emission_f3d[key] = AxisymmetricMapper(_emission_f2d[key])
-            self._emission_f2d[k] = _emission_f2d
-            self._emission_f2d[sp] = self._emission_f2d[k]
-            self._emission_f3d[k] = _emission_f3d
-            self._emission_f3d[sp] = self._emission_f3d[k]
+            try:
+                _emission_f2d = {}
+                _emission_f3d = {}
+                for key in self._lines:
+                    _emission_f2d[key] = Edge2DFunction.instance(self._inside_mesh, value[k][key])
+                    _emission_f3d[key] = AxisymmetricMapper(_emission_f2d[key])
+                self._emission_f2d[k] = _emission_f2d
+                self._emission_f2d[sp] = self._emission_f2d[k]
+                self._emission_f3d[k] = _emission_f3d
+                self._emission_f3d[sp] = self._emission_f3d[k]
+            except Exception as e:
+                logger.warning(f"Error: {e}. Ignore if molecular bands are turned on")
 
 
 
