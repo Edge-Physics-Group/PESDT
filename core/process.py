@@ -147,6 +147,11 @@ class ProcessEdgeSim:
         spec_line_dict = self.input_dict["spec_line_dict"]
         diag_list = self.input_dict["diag_list"]
 
+        # === Run Options ===
+        data_source = run_opts.get("data_source", "AMJUEL")
+        recalc_h2_pos = run_opts.get("recalc_h2_pos", True)
+
+        # === Cherab Options ===
         pixel_samples = cherab_opts.get("pixel_samples", 1000)
         include_reflections = cherab_opts.get("include_reflections", True)
         import_jet_surfaces = cherab_opts.get("import_jet_surfaces", True)
@@ -155,8 +160,10 @@ class ProcessEdgeSim:
         stark_bins = cherab_opts.get("stark_spectral_bins", 50)
         ff_fb = cherab_opts.get("ff_fb_emission", False)
         ff_fb_bins = cherab_opts.get("ff_fb_spectral_bins", 20)
-        data_source = run_opts.get("data_source", "AMJUEL")
-        recalc_h2_pos = run_opts.get("recalc_h2_pos", True)
+        mol_exc_emission = cherab_opts.get("mol_exc_emission", False)
+        mol_exc_emission_bands = cherab_opts.get("mol_exc_emission_bands", ["fulcher"])
+
+        
 
         diag_def = get_JETdefs().diag_dict
         transitions = [(int(v[0]), int(v[1])) for _, v in spec_line_dict['1']['1'].items()]
@@ -307,6 +314,12 @@ class ProcessEdgeSim:
                     "intensity": spec,
                     "units": "nm, ph s^-1 m^-2 sr^-1 nm^-1"
                 }
+            if mol_exc_emission:
+                for band in mol_exc_emission_bands:
+                    logger.info(f"Molecular Excitation Emission for {band} band")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=band, data_source=data_source, include_mol_exc = True)
+                    self.outdict[diag][band] = [x[0] for x in plasma.integrate_instrument(diag)]
+
 
     def __getstate__(self):
         """

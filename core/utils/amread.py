@@ -94,11 +94,33 @@ def reactions(excitation_level):
     }
     return react_dict[excitation_level]
 
+def H2_reactions(band: str = "fulcher"):
+    """
+    Dictionary of H2 excitation emission bands. Returns the rate names, and the associated average Einstein Coefficient.
+    """
+    dct: dict =  {
+        "fulcher": ["H.12", "2.2.5fu", 2.43e7],
+        "werner":  ["H.12", "2.2.5we", 1.04e9],
+        "lyman":   ["H.12", "2.2.5ly", 0.84e9]
+    }
+    return dict[band.lower()]
+
 def wavelength(transition):
     '''
     Returns the wavelength for hydrogen line transition using the Rydberg formula in nm
     '''
     return (1.096677e7*(1/int(transition[1])**2 -1/int(transition[0])**2))**(-1)*1e9 
+
+def H2_wavelength(band: str = "fulcher"):
+    '''
+    Returns the average wavelength of a H2 excitation band from a tabulated dictionary
+    '''
+    dct: dict = {
+        "fulcher": 620.0,
+        "werner":  130.0,
+        "lyman":   150.0
+        }
+    return dct[band]
 
 def FF(l):
     v = c/l
@@ -261,9 +283,15 @@ def read_amjuel_2d(h_name, collisionName, **kwargs):
                         break                    
         
     return MARc
-def calc_H2_fulcher_band_emission(Temperature, el_density, mol_n_density):
 
-    return
+def calc_H2_band_emission(Temperature, el_density, mol_n_density, band = "fulcher"):
+    """
+    calculates the H2 Fulcher/Werner/Lyman band emission
+    """
+    h_name, collisionName, acoeff = H2_reactions(band=band)
+    MARc = read_amjuel_2d(h_name, collisionName)
+    cs = calc_cross_sections(MARc, Temperature, n = el_density)
+    return acoeff * cs * mol_n_density
 
 
 def calc_photon_rate(transition, Temperature, el_density, n_density, mol_n_density = None, molp_n_density = None, p_density = None, h3 = True, recalc_h2_pos = True, **kwargs):

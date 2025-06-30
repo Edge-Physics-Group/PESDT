@@ -15,14 +15,14 @@ from cherab.jet.machine.cad_files import import_jet_mesh
 
 
 from cherab.PESDT_addon.stark import StarkBroadenedLine
-from cherab.PESDT_addon.LineEmitters import DirectEmission, LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
+from cherab.PESDT_addon.LineEmitters import DirectEmission, DirectEmissionMol, LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
 
 from .cherab_AMJUEL_data import AMJUEL_Data
 from .cherab_atomic_data import PESDT_ADAS_Data
-from .createCherabPlasma import createCherabPlasma, D0, D2, D3
+from .createCherabPlasma import createCherabPlasma, D0, D2, D3, D2vibr
 from .JET_mesh_from_grid import create_toroidal_wall_from_points, modify_wall_polygon_for_observer,plot_wall_modification
 from cherab.PESDT_addon.continuo import Continuo
-from cherab.PESDT_addon import PESDTLine
+from cherab.PESDT_addon import PESDTLine, PESDTLineMol
 import logging
 logger = logging.getLogger(__name__)
 
@@ -134,7 +134,7 @@ class CherabPlasma():
                             include_excitation=False, include_recombination=False,
                             include_H2 = False, include_H2_pos = False, include_H_neg = False,
                             include_H3_pos = False, use_tot = False, data_source = "AMJUEL",
-                            include_stark=False, include_ff_fb=False, user_models = None):
+                            include_stark=False, include_ff_fb=False, include_mol_exc = False, user_models = None):
         # Define one transition at a time and 'observe' total radiance
         # If multiple transitions are fed into the plasma object, the total
         # observed radiance will be the sum of the defined spectral lines.
@@ -172,6 +172,9 @@ class CherabPlasma():
                     if include_ff_fb:
                         h_line = PESDTLine(D0, 0, transition)
                         model_list.append(Continuo(h_line, lineshape = lineshape))
+                    if include_mol_exc:
+                        h_line = PESDTLineMol(D2vibr, 0, transition)
+                        model_list.append(DirectEmissionMol(h_line, lineshape = lineshape))
 
                 self.plasma.models = model_list
             elif data_source == "YACORA":

@@ -4,16 +4,21 @@ from raysect.core.math.function.float.function2d.interpolate import Discrete2DMe
 from cherab.edge2d.mesh_geometry import Edge2DMesh
 from cherab.PESDT_addon import PESDTSimulation, PESDTElement, deuterium
 
-from .utils import read_amjuel_1d,read_amjuel_2d,reactions, calc_cross_sections, calc_photon_rate, YACORA
+from .utils import read_amjuel_1d,read_amjuel_2d,reactions, calc_cross_sections, calc_photon_rate, H2_wavelength, calc_H2_band_emission, YACORA
 import logging
 logger = logging.getLogger(__name__)
 
 BaseD = deuterium
 D0 = PESDTElement("Deuterium", "D", 1.0, 2.0, BaseD)
 D2 = PESDTElement("Deuterium2", "D2", 2.0, 4.0, BaseD)
+D2vibr = PESDTElement("Deuterium2vibr", "D2", 2.0, 4.0, BaseD)
 D3 = PESDTElement("Deuterium3+", "D3", 3.0, 6.0, BaseD)
 
-def createCherabPlasma(PESDT, transitions: list, convert_denel_to_m3 = True, data_source = "AMJUEL", recalc_h2_pos = True, ):
+def createCherabPlasma(PESDT, transitions: list, 
+                       convert_denel_to_m3 = True, 
+                       data_source = "AMJUEL", 
+                       recalc_h2_pos = True,
+                       mol_exc_bands = None):
     '''
     Creates a cherab compatible PLASMA simulation object
     
@@ -85,8 +90,12 @@ def createCherabPlasma(PESDT, transitions: list, convert_denel_to_m3 = True, dat
 
         '''
 
-        print("Loading H2, H2+, H3+ and H-")
+        logger.info("Loading H2, H2+, H3+ and H-")
         num_species = 6
+        if mol_exc_bands is not None:
+            logger.info(f"Allocating space for molecular band emission, num. bands {len(mol_exc_bands)}")
+            #
+            num_species += 1
         species_density = np.zeros((num_species, num_cells))
         species_list.append((D2, 0))
         
@@ -113,7 +122,7 @@ def createCherabPlasma(PESDT, transitions: list, convert_denel_to_m3 = True, dat
         emission = [{} for _ in range(len(species_density))]
         logger.info("Precalculating emission")    
         for i in range(len(transitions)):
-            logger.info(f"Calculating emission for line: {transitions[i]}")
+            logger.info(f"   Calculating emission for line: {transitions[i]}")
             em_n_exc, em_n_rec, em_mol, em_h2_pos, em_h3_pos, em_h_neg, _ = calc_photon_rate(transitions[i], te, ne, n0[:], n2[:], h2_pos_den[:], debug = True)
             emission[0][transitions[i]] = em_n_exc
             emission[1][transitions[i]] = em_n_rec
@@ -121,7 +130,12 @@ def createCherabPlasma(PESDT, transitions: list, convert_denel_to_m3 = True, dat
             emission[3][transitions[i]] = em_h2_pos
             emission[4][transitions[i]] = em_h3_pos
             emission[5][transitions[i]] = em_h_neg
-        
+        if mol_exc_bands is not None:
+            logger.info("Precalculating molecular band emission")
+            species_list.append((D2vibr, 0))
+            for band in mol_exc_bands:
+                logger.info(f"   Band: {band}")
+                emission[6][band] = calc_H2_band_emission(te, ne, n2[:], band=band)
     elif data_source == "YACORA":
         yacora = YACORA(PESDT.YACORA_RATES_PATH)
         
@@ -132,7 +146,7 @@ def createCherabPlasma(PESDT, transitions: list, convert_denel_to_m3 = True, dat
         logger.info("Precalculating emission")    
         emission = [{} for _ in range(len(species_density))]
         for i in range(len(transitions)):
-            logger.info(f"Calculating emission for line: {transitions[i]}")
+            logger.info(f"   Calculating emission for line: {transitions[i]}")
             h_emiss, h2_emiss = yacora.calc_photon_rate(transitions[i], te, ne, n0[:], n2[:])
             emission[0][transitions[i]] = h_emiss
             emission[1][transitions[i]] = np.zeros(h_emiss.shape)
