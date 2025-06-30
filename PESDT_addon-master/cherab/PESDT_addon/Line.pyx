@@ -21,7 +21,7 @@ cdef class PESDTLine(Line):
       provider package to define the exact notation.
 
     """
-
+    
     def __init__(self, Element element, int charge, tuple transition):
         self.element = element
         self.charge = charge
@@ -61,17 +61,17 @@ cdef class PESDTLineMol(Line):
     :param int charge: The charge state of the element/isotope that emits this line.
     :param str transition: the name of the emission band, e.g "fulcher"
     """
-
-    def __init__(self, Element element, int charge, str transition):
+    cdef object mol_transition
+    def __init__(self, Element element, int charge, object transition):
         self.element = element
         self.charge = charge
-        self.transition = transition
+        self.mol_transition = transition
 
     def __repr__(self):
-        return '<Line: {}, {}, {}>'.format(self.element.name, self.charge, self.transition)
+        return '<Line: {}, {}, {}>'.format(self.element.name, self.charge, self.mol_transition)
 
     def __hash__(self):
-        return hash((self.element, self.charge, self.transition))
+        return hash((self.element, self.charge, self.mol_transition))
 
     def __richcmp__(self, object other, int op):
 
@@ -82,8 +82,8 @@ cdef class PESDTLineMol(Line):
 
         line = <Line> other
         if op == 2:     # __eq__()
-            return self.element == line.element and self.charge == line.charge and self.transition == line.transition
+            return self.element == line.element and self.charge == line.charge and self.mol_transition == line.mol_transition
         elif op == 3:   # __ne__()
-            return self.element != line.element or self.charge != line.charge or self.transition != line.transition
+            return self.element != line.element or self.charge != line.charge or self.mol_transition != line.mol_transition
         else:
             return NotImplemented

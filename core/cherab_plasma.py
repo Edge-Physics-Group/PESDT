@@ -36,7 +36,8 @@ class CherabPlasma():
                  data_source = "AMJUEL", 
                  recalc_h2_pos: bool = True, 
                  transitions = None,
-                 instrument_los_dict: dict = None):
+                 instrument_los_dict: dict = None,
+                 mol_exc_bands = None):
 
         self.PESDT_obj = PESDT_obj
         self.include_reflections = include_reflections
@@ -52,6 +53,7 @@ class CherabPlasma():
         self.stark_fibreoptics = {}
         self.continuum_fibreoptics = {}
         self.instrument_los_coords = {}
+        self.mol_exc_bands = mol_exc_bands
 
 
         # Create CHERAB plasma from PESDT edge_codes object
@@ -80,7 +82,8 @@ class CherabPlasma():
                                     transitions= self.transitions,
                                     convert_denel_to_m3 = convert_to_m3, 
                                     data_source=self.data_source, 
-                                    recalc_h2_pos = self.recalc_h2_pos)
+                                    recalc_h2_pos = self.recalc_h2_pos, 
+                                    mol_exc_bands= self.mol_exc_bands)
         if self.import_jet_surfaces:
             if self.include_reflections:
                 import_jet_mesh(self.world)

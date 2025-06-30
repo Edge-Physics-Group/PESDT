@@ -161,7 +161,7 @@ class ProcessEdgeSim:
         ff_fb = cherab_opts.get("ff_fb_emission", False)
         ff_fb_bins = cherab_opts.get("ff_fb_spectral_bins", 20)
         mol_exc_emission = cherab_opts.get("mol_exc_emission", False)
-        mol_exc_emission_bands = cherab_opts.get("mol_exc_emission_bands", ["fulcher"])
+        mol_exc_emission_bands = cherab_opts.get("mol_exc_emission_bands", None)
 
         
 
@@ -186,7 +186,8 @@ class ProcessEdgeSim:
                             data_source=data_source,
                             recalc_h2_pos=recalc_h2_pos,
                             transitions=transitions,
-                            instrument_los_dict = instrument_los_dict)
+                            instrument_los_dict = instrument_los_dict,
+                            mol_exc_bands= mol_exc_emission_bands)
         
         # === Setup Observers ===
         plasma.setup_observers(instrument_los_dict, pixel_samples=pixel_samples)
