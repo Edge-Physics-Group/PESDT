@@ -6,7 +6,15 @@ Either using git, or just downloading the .zip file from github (https://github.
 
 in your .bashrc (if on JET-JDC), you should have the following lines:
 
+*module load jet*
+
 *export PYTHONPATH=$PYTHONPATH:"/home/adas/python/"*
+
+*export ADASHOME="home/adas"*
+
+*export ADASFORT="home/adas/bin64"*
+
+*export ADASCENT="home/adas/adas"*
 
 *export PYTHONPATH=$PYTHONPATH:$HOME/PESDT*
 
@@ -16,7 +24,7 @@ in your .bashrc (if on JET-JDC), you should have the following lines:
 
 *export CHERAB_CADMESH='/common/cadmesh/'*
 
-*export PATH="$HOME/.local/bin:$PATH*
+*export PATH="$HOME/.local/bin:$PATH"*
 
 *export CFLAGS="-std=c99"
 
