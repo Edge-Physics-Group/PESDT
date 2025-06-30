@@ -61,7 +61,8 @@ cdef class PESDTLineMol(Line):
     :param int charge: The charge state of the element/isotope that emits this line.
     :param str transition: the name of the emission band, e.g "fulcher"
     """
-    cdef object mol_transition
+    cdef object _mol_transition
+
     def __init__(self, Element element, int charge, object transition):
         self.element = element
         self.charge = charge
@@ -87,3 +88,11 @@ cdef class PESDTLineMol(Line):
             return self.element != line.element or self.charge != line.charge or self.mol_transition != line.mol_transition
         else:
             return NotImplemented
+
+    @property
+    def mol_transition(self):
+        return self._mol_transition
+
+    @mol_transition.setter
+    def mol_transition(self, val):
+        self._mol_transition = val
