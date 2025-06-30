@@ -171,6 +171,7 @@ class PESDTSimulation:
     def emission(self, value: np.ndarray):
         
         self._lines = list(value[0].keys())
+        print(self._lines)
         self._emission = value
         self._emission_f2d = {}
         self._emission_f3d = {}
