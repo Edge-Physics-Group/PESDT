@@ -187,7 +187,7 @@ class PESDTSimulation:
                 self._emission_f3d[k] = _emission_f3d
                 self._emission_f3d[sp] = self._emission_f3d[k]
             except Exception as e:
-                logger.warning(f"Error: {e}. Ignore if molecular bands are turned on")
+                logger.warning(f"Error: {e}. Ignore if molecular bands are turned on\n Error at {k}, {sp}, {key}")
 
 
 
