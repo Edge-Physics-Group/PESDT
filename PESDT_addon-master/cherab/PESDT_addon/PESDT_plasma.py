@@ -180,7 +180,7 @@ class PESDTSimulation:
                 _emission_f2d = {}
                 _emission_f3d = {}
                 for key in self._lines:
-                    _emission_f2d[key] = Edge2DFunction.instance(self._inside_mesh, value[k][key])
+                    _emission_f2d[key] = Edge2DFunction.instance(self._inside_mesh, value[1][k][key])
                     _emission_f3d[key] = AxisymmetricMapper(_emission_f2d[key])
                 self._emission_f2d[k] = _emission_f2d
                 self._emission_f2d[sp] = self._emission_f2d[k]
