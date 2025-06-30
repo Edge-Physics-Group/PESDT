@@ -171,7 +171,6 @@ class PESDTSimulation:
     def emission(self, value: list):
         
         self._lines = value[0]
-        print(self._lines)
         self._emission = value[1]
         self._emission_f2d = {}
         self._emission_f3d = {}

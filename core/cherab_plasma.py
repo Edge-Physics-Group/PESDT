@@ -245,7 +245,8 @@ class CherabPlasma():
                     spectral_rays=1,  # Not used in RadiancePipeline0D, but required by FibreOptic
                     transform=translate(*origin) * rotate_basis(direction, Vector3D(1, 0, 0)),
                     parent=self.world)
-                fibre.render_engine = MulticoreEngine(processes=8)
+                #fibre.render_engine = MulticoreEngine(processes=8)
+                fibre.render_engine = SerialEngine()
                 # Create fibre optic observer
                 fibreoptics.append((pipeline, fibre))
                 

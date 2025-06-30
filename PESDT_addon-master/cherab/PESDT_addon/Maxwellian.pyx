@@ -36,8 +36,6 @@ cdef class PESDTMaxwellian(DistributionFunction):
         self._temperature = autowrap_function3d(temperature)
         self._velocity = autowrap_vectorfunction3d(velocity)
         self._emission_dict = emission
-        print(emission)
-        print(emission.keys())
         self._emission = autowrap_function3d(self._emission_dict[next(iter(self._emission_dict))])
         self._atomic_mass = atomic_mass
 
