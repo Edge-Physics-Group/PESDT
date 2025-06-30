@@ -168,11 +168,11 @@ class PESDTSimulation:
         return self._emission_f3d
 
     @emission.setter
-    def emission(self, value: np.ndarray):
+    def emission(self, value: list):
         
-        self._lines = list(value[0].keys())
+        self._lines = value[0]
         print(self._lines)
-        self._emission = value
+        self._emission = value[1]
         self._emission_f2d = {}
         self._emission_f3d = {}
         for k, sp in enumerate(self._species_list):

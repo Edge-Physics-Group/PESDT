@@ -82,7 +82,7 @@ def createCherabPlasma(PESDT, transitions: list,
     zv = np.transpose(zv)
 
     species_list = [(D0, 0), (D0, 1)]
-    
+    emission_keys = transitions
     if data_source == "AMJUEL":
         '''
         Calculate the H2+, H3+, and H- densities through AMJUEL rates, and add the molecular density 
@@ -133,6 +133,7 @@ def createCherabPlasma(PESDT, transitions: list,
         if mol_exc_bands is not None:
             logger.info("Precalculating molecular band emission")
             species_list.append((D2vibr, 0))
+            emission_keys +=mol_exc_bands
             for band in mol_exc_bands:
                 logger.info(f"   Band: {band}")
                 emission[6][band], species_density[6, :] = calc_H2_band_emission(te, ne, n2[:], band=band)
@@ -169,6 +170,6 @@ def createCherabPlasma(PESDT, transitions: list,
     sim.species_density = species_density
 
     if data_source in ["AMJUEL", "YACORA"]:
-        sim.emission = emission
+        sim.emission = [emission_keys, emission]
 
     return sim
