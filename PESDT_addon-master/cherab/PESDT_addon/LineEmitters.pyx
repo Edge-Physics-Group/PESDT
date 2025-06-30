@@ -144,7 +144,7 @@ cdef class DirectEmissionMol(PlasmaModel):
             "werner":  130.0,
             "lyman":   150.0
             }
-        return dict[band]
+        return dct[band]
 
     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):
         cdef double radiance
