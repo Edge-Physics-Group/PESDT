@@ -286,12 +286,14 @@ def read_amjuel_2d(h_name, collisionName, **kwargs):
 
 def calc_H2_band_emission(Temperature, el_density, mol_n_density, band = "fulcher"):
     """
-    calculates the H2 Fulcher/Werner/Lyman band emission
+    calculates the H2 Fulcher/Werner/Lyman band emission, and the density of the excited population
     """
     h_name, collisionName, acoeff = H2_reactions(band=band)
     MARc = read_amjuel_2d(h_name, collisionName)
     cs = calc_cross_sections(MARc, Temperature, n = el_density)
-    return acoeff * cs * mol_n_density
+    den = cs * mol_n_density
+    em = acoeff*den
+    return em, cs
 
 
 def calc_photon_rate(transition, Temperature, el_density, n_density, mol_n_density = None, molp_n_density = None, p_density = None, h3 = True, recalc_h2_pos = True, **kwargs):
