@@ -23,7 +23,9 @@
         "stark_transition": [6,2],
         "stark_spectral_bins": 50,
         "ff_fb_emission": false,
-        "ff_fb_spectral_bins": 20
+        "ff_fb_spectral_bins": 20,
+        "mol_exc_emission": true,
+        "mol_exc_emission_bands": ["fulcher"] 
     },
     "diag_list": [
       "KT3A"
