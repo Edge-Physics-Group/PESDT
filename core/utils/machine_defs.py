@@ -382,8 +382,45 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     # for id in range(len(ks3i_los)):
     #     los_dict['id'].append(str(id+1))
     # JET.set_diag_los('KS3I', los_dict)
-
-
+    ###############
+    # KS8D
+    ###############
+    origin = [3.300, 3.500]
+    width = 0.230
+    p2 = np.array([[2.701, -1.641]])
+    ks8d_los = np.zeros((len(p2), 3, 2))
+    for i in range(len(p2)):
+        ks8d_los[i, 0] = origin
+        ks8d_los[i, 1] = p2[i]
+        ks8d_los[i, 2] = [0, width]
+    los_dict = {}
+    los_dict['p1'] = ks8d_los[:,0]
+    los_dict['p2'] = ks8d_los[:,1]
+    los_dict['w'] = ks8d_los[:,2]
+    los_dict['id'] = []
+    for id in range(len(ks8d_los)):
+        los_dict['id'].append(str(id+1))
+    JET.set_diag_los('KS8D', los_dict)
+    
+    ###############
+    # KG1/LID4
+    ###############
+    origin = [3.7438, 3.354]
+    width = 0.095
+    p2 = np.array([[3.7438, -2.0]])
+    kg1_los = np.zeros((len(p2), 3, 2))
+    for i in range(len(p2)):
+        kg1_los[i, 0] = origin
+        kg1_los[i, 1] = p2[i]
+        kg1_los[i, 2] = [0, width]
+    los_dict = {}
+    los_dict['p1'] = kg1_los[:,0]
+    los_dict['p2'] = kg1_los[:,1]
+    los_dict['w'] = kg1_los[:,2]
+    los_dict['id'] = []
+    for id in range(len(kg1_los)):
+        los_dict['id'].append(str(id+1))
+    JET.set_diag_los('KG1/LID4', los_dict)
     ###############
     # KT1J
     ###############
