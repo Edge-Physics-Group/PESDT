@@ -18,7 +18,7 @@ Ry = 13.58 #eV, Rydberg energy (ionization potential) for hydrogen
 h = 4.1357e-15 #(eV s), Planck's constant in eV
 c = 299792458 # m/s, speed of light
 k = 8.617e-5 # eV/K, Boltzmann constant in eV
-amjuel_path = os.path.expanduser('~') +'/AMJUEL.tex'
+amjuel_path =  os.environ.get( "AMJUEL_PATH",os.path.expanduser('~') +'/AMJUEL.tex')
 
 """
 In this file the hydrogenic transition is typed as "n"->"m", i.e.

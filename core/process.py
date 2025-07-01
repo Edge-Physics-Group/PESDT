@@ -152,6 +152,7 @@ class ProcessEdgeSim:
         recalc_h2_pos = run_opts.get("recalc_h2_pos", True)
 
         # === Cherab Options ===
+        num_processes = cherab_opts.get("num_processes", 1)
         pixel_samples = cherab_opts.get("pixel_samples", 1000)
         include_reflections = cherab_opts.get("include_reflections", True)
         import_jet_surfaces = cherab_opts.get("import_jet_surfaces", True)
@@ -190,7 +191,7 @@ class ProcessEdgeSim:
                             mol_exc_bands= mol_exc_emission_bands)
         
         # === Setup Observers ===
-        plasma.setup_observers(instrument_los_dict, pixel_samples=pixel_samples)
+        plasma.setup_observers(instrument_los_dict, pixel_samples=pixel_samples, num_processes = num_processes)
 
         # === Setup Spectral Observers if needed ===
         # Figure out Stark wavelength from spec_line_dict
@@ -210,7 +211,8 @@ class ProcessEdgeSim:
                                                 destination="stark",
                                                 pixel_samples=pixel_samples,
                                                 spectral_bins= stark_bins,
-                                                spectral_rays= 1)
+                                                spectral_rays= 1,
+                                                num_processes = num_processes)
 
         if ff_fb:
             plasma.setup_spectral_observers(instrument_los_dict,
@@ -219,7 +221,8 @@ class ProcessEdgeSim:
                                             destination="continuum",
                                             pixel_samples=pixel_samples,
                                             spectral_bins= ff_fb_bins,
-                                            spectral_rays= 1)
+                                            spectral_rays= 1,
+                                            num_processes = num_processes)
 
         self.outdict = {"description": f"CHERAB, REFLECTIONS: {include_reflections}, JET-MESH: {import_jet_surfaces}, DATA SOURCE: {data_source}"}
         
@@ -315,6 +318,7 @@ class ProcessEdgeSim:
                     "intensity": spec,
                     "units": "nm, ph s^-1 m^-2 sr^-1 nm^-1"
                 }
+            # === Optional molecular band emission ===
             if mol_exc_emission:
                 for band in mol_exc_emission_bands:
                     logger.info(f"Molecular Excitation Emission for {band} band")

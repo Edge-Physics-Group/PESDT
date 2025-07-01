@@ -210,7 +210,7 @@ class CherabPlasma():
             else:
                 sys.exit("User did not supply emission models, aborting.")
     
-    def setup_observers(self, instrument_los_dict: dict, pixel_samples = 1000):
+    def setup_observers(self, instrument_los_dict: dict, pixel_samples = 1000, num_processes = 1):
         """
         Creates fibreOptics, which are used to integrate radiance along a line-of-sight using Raysect's RadiancePipeline0D.
         Parameters:
@@ -245,8 +245,10 @@ class CherabPlasma():
                     spectral_rays=1,  # Not used in RadiancePipeline0D, but required by FibreOptic
                     transform=translate(*origin) * rotate_basis(direction, Vector3D(1, 0, 0)),
                     parent=self.world)
-                #fibre.render_engine = MulticoreEngine(processes=8)
-                fibre.render_engine = SerialEngine()
+                if num_processes > 1:
+                    fibre.render_engine = MulticoreEngine(processes=int(num_processes))
+                else:
+                    fibre.render_engine = SerialEngine()
                 # Create fibre optic observer
                 fibreoptics.append((pipeline, fibre))
                 
@@ -260,7 +262,8 @@ class CherabPlasma():
                                  destination = "stark",
                                  pixel_samples = 1000, 
                                  spectral_rays = 100, 
-                                 spectral_bins = 100):
+                                 spectral_bins = 100,
+                                 num_processes = 1):
         """
         Creates fibreOptics, which are used to integrate spectral radiance along a line-of-sight using SpectralRadiancePipeline0D.
 
@@ -304,7 +307,10 @@ class CherabPlasma():
                 # Set wavelength bounds
                 fibre.min_wavelength = min_wavelength_nm
                 fibre.max_wavelength = max_wavelength_nm
-                fibre.render_engine = MulticoreEngine(processes=8)
+                if num_processes > 1:
+                    fibre.render_engine = MulticoreEngine(processes=int(num_processes))
+                else:
+                    fibre.render_engine = SerialEngine()
                 fibreoptics.append((pipeline, fibre))
 
             if destination == "stark":
