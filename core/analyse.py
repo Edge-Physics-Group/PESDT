@@ -68,7 +68,8 @@ class AnalyseSynthDiag(ProcessEdgeSim):
             self.spec_line_dict_lytrap = None
 
         # Also get standard ADAS data
-        self.ADAS_dict = get_ADAS_dict(input_dict['save_dir'],
+        self.cache_dir = os.environ.get("PESDTCacheDir", os.path.join(os.path.expanduser('~'), "PESDTCache/"))
+        self.ADAS_dict = get_ADAS_dict(self.cache_dir,
                                        self.spec_line_dict, adf11_year=12, restore=not input_dict['read_ADAS'])
 
         # Check for any outlier cells to be 

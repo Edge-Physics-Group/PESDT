@@ -15,6 +15,7 @@
         "Srec_H_transition": [[5,2]]
       },
     "cherab_options": {
+        "num_processes": 8,
         "pixel_samples": 1,
         "import_jet_surfaces": true,
         "include_reflections": true,

@@ -36,20 +36,20 @@ def stdchannel_redirected(stdchannel, dest_filename):
         if dest_file is not None:
             dest_file.close()
 
-def get_ADAS_dict(save_dir, spec_line_dict, num_samples=100, restore=False, lytrap=False,
+def get_ADAS_dict(cache_dir, spec_line_dict, num_samples=100, restore=False, lytrap=False,
                   adf11_year=12, lytrap_adf11_dir=False, lytrap_pec_file=False):
     if restore:
         # Try to restore ADAS_dict
         if lytrap:
             try:
-                with open(save_dir + 'ADAS_dict_lytrap.pkl', 'rb') as f:
+                with open(cache_dir + 'ADAS_dict_lytrap.pkl', 'rb') as f:
                     ADAS_dict = pickle.load(f)
             except IOError as e:
                 logger.info('ADAS dictionary not found. Set [read_ADAS_lytrap] to True.')
                 raise
         else:
             try:
-                with open(save_dir + 'ADAS_dict.pkl', 'rb') as f:
+                with open(cache_dir + 'ADAS_dict.pkl', 'rb') as f:
                     ADAS_dict = pickle.load(f)
             except IOError as e:
                 logger.info('ADAS dictionary not found. Set [read_ADAS] to True.')
@@ -109,9 +109,9 @@ def get_ADAS_dict(save_dir, spec_line_dict, num_samples=100, restore=False, lytr
                                                                                             custom_dir=lytrap_adf11_dir)
                 # Pickle ADAS dictionary to save_dir
                 if lytrap_adf11_dir:
-                    output = open(save_dir + 'ADAS_dict_lytrap.pkl', 'wb')
+                    output = open(cache_dir + 'ADAS_dict_lytrap.pkl', 'wb')
                 else:
-                    output = open(save_dir + 'ADAS_dict.pkl', 'wb')
+                    output = open(cache_dir + 'ADAS_dict.pkl', 'wb')
                 pickle.dump(ADAS_dict, output)
                 output.close()
 
