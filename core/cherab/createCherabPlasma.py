@@ -136,7 +136,7 @@ def createCherabPlasma(PESDT, transitions: list,
             emission_keys +=mol_exc_bands
             for band in mol_exc_bands:
                 logger.info(f"   Band: {band}")
-                emission[6][band], species_density[6, :] = calc_H2_band_emission(te, ne, n2[:], band=band)
+                emission[6][band], species_density[6, :] = 1e6* calc_H2_band_emission(te, ne*1e-6, n2[:]*1e-6, band=band)
     elif data_source == "YACORA":
         yacora = YACORA(PESDT.YACORA_RATES_PATH)
         

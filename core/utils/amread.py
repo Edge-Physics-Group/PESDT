@@ -288,6 +288,8 @@ def read_amjuel_2d(h_name, collisionName, **kwargs):
 def calc_H2_band_emission(Temperature, el_density, mol_n_density, band = "fulcher"):
     """
     calculates the H2 Fulcher/Werner/Lyman band emission, and the density of the excited population
+    DENSITIES IN CM^-3
+    EMISSION IN PH/S/CM^3
     """
     h_name, collisionName, acoeff = H2_reactions(band=band)
     MARc = read_amjuel_2d(h_name, collisionName)
