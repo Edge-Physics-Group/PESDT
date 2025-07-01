@@ -14,7 +14,7 @@ from .utils.amread import calc_photon_rate
 from .utils.machine_defs import get_DIIIDdefs, get_JETdefs
 from pyADASread import adas_adf11_read, adas_adf15_read, continuo_read
 from .edge_code_formats import BackgroundPlasma, Cell, Edge2D, SOLPS, OEDGE
-from .cherab_plasma import CherabPlasma
+from .cherab import CherabPlasma
 
 
 import logging

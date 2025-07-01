@@ -4,7 +4,7 @@ from raysect.core.math.function.float.function2d.interpolate import Discrete2DMe
 from cherab.edge2d.mesh_geometry import Edge2DMesh
 from cherab.PESDT_addon import PESDTSimulation, PESDTElement, deuterium
 
-from .utils import read_amjuel_1d,read_amjuel_2d,reactions, calc_cross_sections, calc_photon_rate, H2_wavelength, calc_H2_band_emission, YACORA
+from ..utils import read_amjuel_1d,read_amjuel_2d,reactions, calc_cross_sections, calc_photon_rate, H2_wavelength, calc_H2_band_emission, YACORA
 import logging
 logger = logging.getLogger(__name__)
 

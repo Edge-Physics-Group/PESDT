@@ -20,7 +20,7 @@ from cherab.PESDT_addon.LineEmitters import DirectEmission, DirectEmissionMol, L
 from .cherab_AMJUEL_data import AMJUEL_Data
 from .cherab_atomic_data import PESDT_ADAS_Data
 from .createCherabPlasma import createCherabPlasma, D0, D2, D3, D2vibr
-from .JET_mesh_from_grid import create_toroidal_wall_from_points, modify_wall_polygon_for_observer,plot_wall_modification
+from ..utils.JET_mesh_from_grid import create_toroidal_wall_from_points, modify_wall_polygon_for_observer,plot_wall_modification
 from cherab.PESDT_addon.continuo import Continuo
 from cherab.PESDT_addon import PESDTLine, PESDTLineMol
 import logging
