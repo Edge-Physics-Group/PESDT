@@ -62,7 +62,7 @@ Finally, the PESDT add-on module for Cherab, which adds support for AMJUEL data 
 
 *pip install ./PESDT/PESDT_addon-master*
 
-This completes the installation process. Note that to use AMJUEL data, you need to supply the AMJUEL.tex data file yourself. Currently, PESDT assumes that AMJUEL.tex is located in the user home folder. (Stupid I know, at some point there will be an option to specify a path, but at this point I (V-P) just can't be bothered.) **You also need to create the folders PESDTCache, and PESDT_casess in your home**
+This completes the installation process. Note that to use AMJUEL data, you need to supply the AMJUEL.tex data file yourself. Currently, PESDT assumes that AMJUEL.tex is located in the user home folder, but you may point to the correct directory by setting the environment variable **AMJUEL_PATH** to the AMJUEL directory. **You also need to create the folders PESDTCache, and PESDT_casess in your home**
 
 # RUNNING PESDT
 
@@ -87,5 +87,10 @@ PESDT should now run, and you should find, after a while, the output pickle and 
 
 The plotting scripts are a mess, and need to be cleaned up. Use your own to read and plot the result JSON files.
 
+# PESDT environment variables
+
+**PESDTCacheDir**: points to the folder where PESDT should cache things like the mesh, or ADAS data
+
+**AMJUEL_PATH**: points to the directory where AMJUEL.tex is located
 
 
