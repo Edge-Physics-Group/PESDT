@@ -106,7 +106,7 @@ cdef class StarkBroadenedLine(LineShapeModel):
         double _fwhm_poly_coeff_lorentz[7]
         double _weight_poly_coeff[6]
 
-    def __init__(self, Line line, double wavelength, Species target_species, Plasma plasma, AtomicData atomic_data = None,
+    def __init__(self, Line line, double wavelength, Species target_species, Plasma plasma, AtomicData atomic_data,
                  dict stark_model_coefficients=None, integrator=GaussianQuadrature()):
 
         stark_model_coefficients = stark_model_coefficients or self.STARK_MODEL_COEFFICIENTS_DEFAULT
@@ -126,7 +126,7 @@ cdef class StarkBroadenedLine(LineShapeModel):
         except IndexError:
             raise ValueError('Stark broadening coefficients for {} is not currently available.'.format(line))
 
-        super().__init__(line, wavelength, target_species, plasma, integrator)
+        super().__init__(line, wavelength, target_species, plasma, atomic_data, integrator)
 
     def show_supported_transitions(self):
         """ Prints all supported transitions."""
