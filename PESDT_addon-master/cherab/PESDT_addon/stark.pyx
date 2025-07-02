@@ -19,7 +19,7 @@ from cherab.core cimport Line, Species, Plasma, Beam
 from cherab.core.math.integrators cimport GaussianQuadrature
 from cherab.core.utility.constants cimport ATOMIC_MASS, ELEMENTARY_CHARGE, SPEED_OF_LIGHT
 from cherab.core.model.lineshape cimport GaussianLine, LineShapeModel
-
+from cherab.core cimport AtomicData
 
 cimport cython
 
