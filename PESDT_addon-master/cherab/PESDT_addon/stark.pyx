@@ -52,7 +52,7 @@ cdef class StarkFunction(Function1D):
         self._norm = (0.5 * lambda_1_2)**1.5 / <double> self.STARK_NORM_COEFFICIENT
 
     @cython.cdivision(True)
-    cdef double evaluate(self, double x) except? -1e999:
+    cdef double evaluate(self, double x):# except? -1e999:
 
         return self._norm / ((fabs(x - self._x0))**2.5 + self._a)
 
@@ -106,7 +106,7 @@ cdef class StarkBroadenedLine(LineShapeModel):
         double _fwhm_poly_coeff_lorentz[7]
         double _weight_poly_coeff[6]
 
-    def __init__(self, Line line, double wavelength, Species target_species, Plasma plasma, AtomicData atomic_data,
+    def __init__(self, Line line, double wavelength, Species target_species, Plasma plasma, AtomicData atomic_data = None,
                  dict stark_model_coefficients=None, integrator=GaussianQuadrature()):
 
         stark_model_coefficients = stark_model_coefficients or self.STARK_MODEL_COEFFICIENTS_DEFAULT
