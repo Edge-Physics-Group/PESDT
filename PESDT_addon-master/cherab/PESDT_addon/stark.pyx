@@ -52,7 +52,7 @@ cdef class StarkFunction(Function1D):
         self._norm = (0.5 * lambda_1_2)**1.5 / <double> self.STARK_NORM_COEFFICIENT
 
     @cython.cdivision(True)
-    cdef double evaluate(self, double x): except? -1e999:
+    cdef double evaluate(self, double x) except? -1e999:
 
         return self._norm / ((fabs(x - self._x0))**2.5 + self._a)
 
