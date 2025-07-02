@@ -182,7 +182,7 @@ cdef class DirectEmissionMol(PlasmaModel):
         self._wavelength = self.H2_wavelength(self._line.mol_transition)
 
         # instance line shape renderer
-        self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma, self._atomic_data,
+        self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma, atomic_data = self._atomic_data,
                                                 *self._lineshape_args, **self._lineshape_kwargs)
         
 
