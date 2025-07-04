@@ -295,7 +295,7 @@ def calc_H2_band_emission(Temperature, el_density, mol_n_density, band = "fulche
     MARc = read_amjuel_2d(h_name, collisionName)
     cs = calc_cross_sections(MARc, Temperature, n = el_density)
     den = cs * mol_n_density
-    em = acoeff*den
+    em = acoeff*den/(4*np.pi)
     return em, cs
 
 

@@ -233,7 +233,7 @@ class CherabPlasma():
 
                 # Calculate acceptance angle from los_w2 and LOS length
                 chord_length = origin.distance_to(endpoint)
-                acceptance_angle = 2. * atan((los_w2 / 2.0) / chord_length) * 180. / np.pi
+                acceptance_angle = atan((los_w2 / 2.0) / chord_length) * 180. / np.pi
 
                 # Setup radiance pipeline
                 pipeline = RadiancePipeline0D(accumulate = False)
@@ -288,7 +288,7 @@ class CherabPlasma():
 
                 # Calculate acceptance angle from los_w2 and LOS length
                 chord_length = origin.distance_to(endpoint)
-                acceptance_angle = 2. * atan((los_w2 / 2.0) / chord_length) * 180. / np.pi
+                acceptance_angle =  atan((los_w2 / 2.0) / chord_length) * 180. / np.pi
 
                 # Setup radiance pipeline
                 pipeline = SpectralRadiancePipeline0D(display_progress=False, accumulate = False)
