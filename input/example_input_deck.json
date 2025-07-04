@@ -7,7 +7,6 @@
     "save_dir": "PESDT_cases/", 
     "run_options": {
         "run_cherab": false,
-        "calc_synth_spec_features": false,
         "analyse_synth_spec_features": false,
         "data_source": "AMJUEL",
         "recalc_h2_pos": true,

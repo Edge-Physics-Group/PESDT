@@ -85,7 +85,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
                          spec_line_dict=self.spec_line_dict,
                          spec_line_dict_lytrap = self.spec_line_dict_lytrap,
                          diag_list=input_dict['diag_list'],
-                         calc_synth_spec_features=input_dict['run_options']['calc_synth_spec_features'],
+                         calc_synth_spec_features=input_dict['run_options']['analyse_synth_spec_features'],
                          save_synth_diag=True,
                          synth_diag_save_file=self.synth_diag_save_file,
                          data2d_save_file=self.data2d_save_file,
@@ -98,7 +98,7 @@ class AnalyseSynthDiag(ProcessEdgeSim):
         
         
         if self.run_cherab:
-            if input_dict['cherab_options'].get('analyse_synth_spec_features', False):
+            if input_dict['run_options'].get('analyse_synth_spec_features', False):
                 try:
                     self.recover_line_int_Stark_ne(self.outdict)
                     if input_dict['cherab_options'].get('ff_fb_emission', False):
