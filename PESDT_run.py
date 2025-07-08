@@ -5,19 +5,8 @@ import logging
 
 
 def run_PESDT(input_dict_str):
-
     with open(input_dict_str, mode='r', encoding='utf-8') as f:
-        # Remove comments
-        with open("temp.json", 'w') as wf:
-            for line in f.readlines():
-                if line[0:2] == '//' or line[0:1] == '#':
-                    continue
-                wf.write(line)
-
-    with open("temp.json", 'r') as f:
         input_dict = json.load(f)
-
-    os.remove('temp.json')
 
     AnalyseSynthDiag(input_dict)
 
