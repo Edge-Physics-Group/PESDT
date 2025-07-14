@@ -496,7 +496,7 @@ class Tran :
 
         points = []
 
-        for i in range(len(rsepx) - 1):
+        for i in range(len(rsepx)):
             points.append([rsepx[i], -zsepx[i]])
 
         self._sepx = np.array(points)
