@@ -201,7 +201,6 @@ class ProcessEdgeSim:
 
         # === Run Options ===
         data_source = run_opts.get("data_source", "AMJUEL")
-        print(data_source)
         recalc_h2_pos = run_opts.get("recalc_h2_pos", True)
 
         # === Cherab Options ===
@@ -494,8 +493,6 @@ class ProcessEdgeSim:
         Otherwise used ADAS rates for contributions from el-impact excitation and recombination.
         '''
         logger.info('Calculating H emission...')
-        print("self.data_source == AMJUEL: ", self.data_source == "AMJUEL")
-        print(self.data_source)
         if self.data_source == "AMJUEL":
             logger.info('Using AMJUEL data')
             debug = True
