@@ -73,7 +73,6 @@ class ProcessEdgeSim:
                 json.dump(self.outdict, f, indent=2)
         else:
             logger.info("   Calculate emission via cone integration")
-            print(self.data_source)
             self.run_cone_integration()
             if self.input_dict['run_options']['analyse_synth_spec_features']:
             # Read synth diag saved data
