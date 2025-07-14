@@ -114,6 +114,7 @@ class Edge2D(BackgroundPlasma):
         self.cells = []
         self.patches = []
         npts = np.max(self.tran.korpg)
+        print(npts)
         self.row = np.zeros((npts), dtype=int)
         self.ring = np.zeros((npts), dtype=int)
         self.rv = np.zeros((npts, 5))
@@ -130,7 +131,7 @@ class Edge2D(BackgroundPlasma):
        
     
         k = 0
-        for i in range(self.tran .np):
+        for i in range(self.tran.np):
             j = self.korpg[i] - 1 # gotcha: convert from fortran indexing to idl/python
             if j >= 0:
                 j*=5
