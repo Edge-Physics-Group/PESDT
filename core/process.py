@@ -72,7 +72,7 @@ class ProcessEdgeSim:
             with open(savefile, mode='w', encoding='utf-8') as f:
                 json.dump(self.outdict, f, indent=2)
         else:
-            logger.info("   Calcualte emission via cone integration")
+            logger.info("   Calculate emission via cone integration")
             print(self.data_source)
             self.run_cone_integration()
             if self.input_dict['run_options']['analyse_synth_spec_features']:
@@ -201,6 +201,7 @@ class ProcessEdgeSim:
 
         # === Run Options ===
         data_source = run_opts.get("data_source", "AMJUEL")
+        print(data_source)
         recalc_h2_pos = run_opts.get("recalc_h2_pos", True)
 
         # === Cherab Options ===
