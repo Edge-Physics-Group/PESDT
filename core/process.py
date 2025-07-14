@@ -127,8 +127,8 @@ class ProcessEdgeSim:
         self.cherab_ne_Te_KT3_resfile = self.input_dict['run_options'].get('use_cherab_resfile_for_KT3_ne_Te_fits', None)
         self.diag_list = self.input_dict['diag_list'],
         self.calc_synth_spec_features = self.input_dict['run_options']['analyse_synth_spec_features'],
-        self.AMJUEL_date = self.input_dict['run_options'].get('AMJUEL_date', 2016), # Default to <2017 (no H3+)
-        self.data_source = self.input_dict['run_options'].get('data_source', "AMJUEL"),
+        self.AMJUEL_date = self.input_dict['run_options'].get("AMJUEL_date", 2016), # Default to <2017 (no H3+)
+        self.data_source = self.input_dict['run_options'].get("data_source", "AMJUEL"),
         self.edge_code = self.input_dict['edge_code']['code']
         self.sim_path = self.input_dict['edge_code']['sim_path']
         self.machine = self.input_dict.get('machine', "JET")
