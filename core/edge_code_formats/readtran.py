@@ -519,6 +519,3 @@ class Tran :
         osp = [rtmp[0], ztmp[0]]
         isp = [rtmp[-1], ztmp[-1]]
         self._sp = (osp, isp)
-
-
-

@@ -90,7 +90,6 @@ class Edge2D(BackgroundPlasma):
         self.geom = {'rpx':self.tran.rpx,'zpx':self.tran.zpx}
         self.geom['zpx']*=-1.0
         
-
         # GET MID-PLANE PROFILE
         self.ne_OMP = self.tran.load_data1d('DENEL', omp = True)
         self.te_OMP = self.tran.load_data1d('TEVE', omp = True)
