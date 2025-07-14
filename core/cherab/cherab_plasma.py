@@ -31,7 +31,7 @@ logger = logging.getLogger(__name__)
 class CherabPlasma():
 
     def __init__(self, PESDT_obj, 
-                 ADAS_dict, include_reflections: bool = False, 
+                 include_reflections: bool = False, 
                  import_jet_surfaces: bool = False, 
                  data_source = "AMJUEL", 
                  recalc_h2_pos: bool = True, 
@@ -43,8 +43,8 @@ class CherabPlasma():
         self.include_reflections = include_reflections
         self.import_jet_surfaces = import_jet_surfaces
         self.mesh_from_grid = not import_jet_surfaces
-        self.ADAS_dict = ADAS_dict
         self.data_source = data_source
+        self.ADAS_dict = PESDT_obj.ADAS_dict if self.data_source == "ADAS" else None
         self.recalc_h2_pos = recalc_h2_pos 
         self.transitions = transitions
         self.sim_type = PESDT_obj.edge_code

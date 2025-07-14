@@ -83,7 +83,7 @@ class ProcessEdgeSim:
             with open(self.synth_diag_save_file, mode='w', encoding='utf-8') as f:
                 json.dump(self.outdict, f, indent=2)
             logger.info(f"Saved synthetic diagnostic data to: {self.synth_diag_save_file}")
-            
+
         if self.data2d_save_file:
             # pickle serialization of e2deirpostproc object
             output = open(self.data2d_save_file, 'wb')
@@ -232,7 +232,7 @@ class ProcessEdgeSim:
             instrument_los_dict[diag] = los_points
 
         # === Initialize Plasma ===
-        plasma = CherabPlasma(self, self.ADAS_dict,
+        plasma = CherabPlasma(self, 
                             include_reflections=include_reflections,
                             import_jet_surfaces=import_jet_surfaces,
                             data_source=data_source,
