@@ -130,7 +130,7 @@ class Edge2D(BackgroundPlasma):
        
     
         k = 0
-        for i in range(self.korpg['npts']):
+        for i in range(self.tran.np):
             j = int(self.korpg[i] - 1) # gotcha: convert from fortran indexing to idl/python
             if j >= 0:
                 j*=5
