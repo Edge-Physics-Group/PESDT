@@ -521,7 +521,8 @@ class Tran :
     @sp.setter
     def sp(self, value):
         _, _, rtmp = self.load_data1d('RMESH', row_or_ring=False, index=self.iopen -1)
-        _, _, ztmp = -1.0* self.load_data1d('ZMESH', row_or_ring=False, index=self.iopen -1) 
+        _, _, ztmp =  self.load_data1d('ZMESH', row_or_ring=False, index=self.iopen -1) 
+        ztmp = -1.0*ztmp
         osp = [rtmp[0], ztmp[0]]
         isp = [rtmp[-1], ztmp[-1]]
         self._sp = (osp, isp)
