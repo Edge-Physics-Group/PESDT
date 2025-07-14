@@ -63,10 +63,6 @@ class Edge2D(BackgroundPlasma):
         # Read in recombination and ionization sources
         self.sirec = self.tran.load_data2d( 'SIREC')
         self.soun = self.tran.load_data2d( 'SOUN')
-        
-        
-        for i in range(self.korpg['npts']):
-            self.korpg[i] = floatToBits(self.korpg[i])
             
         # GET INNER AND OUTER TARGET DATA
         self.psi_OT = self.tran.load_data1d('PSI', ot=True, )

@@ -17,7 +17,7 @@ class Tran :
         self.readTran(tranfile)
         if 'ITAG' not in self.tran :
             print('Tran file version not compatible. Use eproc instead')
-            exit()
+            raise Exception("Tran file version not compatible. Use eproc instead")
 
         # Copy each field in an attribute for direct use
         for f in self.tran :
