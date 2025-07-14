@@ -414,7 +414,7 @@ class Tran :
         return self._mesh, self._pol2k
     
     @mesh.setter
-    def set_mesh(self):
+    def mesh(self):
         mesh=[]
         pol2k={}
         
@@ -441,7 +441,7 @@ class Tran :
         return self._wall
     
     @wall.setter
-    def set_wall(self):
+    def wall(self):
         rtmp1=self.rvesm1
         ztmp1=-self.zvesm1
         rtmp2=self.rvesm2
@@ -482,7 +482,7 @@ class Tran :
 
     
     @sepx.setter
-    def set_sepx(self):
+    def sepx(self):
         rsepx=self.rsepx
         zsepx=self.zsepx
         segments = 0
@@ -509,7 +509,8 @@ class Tran :
 
 
     @sp.setter
-    def set_sp(self):
+    def sp(self):
+        print("setting sp")
         _, _, rtmp = self.load_data1d('RMESH', row_or_ring=False, index=self.iopen -1)
         _, _, ztmp = -1.0* self.load_data1d('ZMESH', row_or_ring=False, index=self.iopen -1) 
         osp = [rtmp[0], ztmp[0]]
