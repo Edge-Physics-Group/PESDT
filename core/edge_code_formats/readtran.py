@@ -21,7 +21,7 @@ class Tran :
 
         # Copy each field in an attribute for direct use
         for f in self.tran :
-            setattr(self, f.lower(), self.tran[f]['data'] if type(self.tran[f]) is dict else self.tran[f])
+            setattr(self, f.lower(), self.tran[f] if type(self.tran[f]) is dict else self.tran[f])
         
         # Fill some derived signals
         self.nzs = 0
@@ -31,7 +31,7 @@ class Tran :
             self.denztot.append(np.zeros(self.np))
             for iz in range(nz):
                 idz = idz+1
-                self.denztot[-1] = self.denztot[-1] + self.tran['DENZ{:02d}'.format(idz)]['data']
+                self.denztot[-1] = self.denztot[-1] + self.tran['DENZ{:02d}'.format(idz)]
         for izs in range(len(self.nz)):
             fieldname = 'DENZTOT{:d}'.format(izs+1)
             self.tran[fieldname] = {
@@ -40,7 +40,7 @@ class Tran :
                      'data':self.denztot[izs],
                      'desc':"Tot. imp density",
                      'unit':'M-3'}
-            setattr(self, fieldname.lower(), self.tran[fieldname]['data'])
+            setattr(self, fieldname.lower(), self.tran[fieldname])
 
         self.nj2d = self.nrow-1
         self.ilc = self.ni2d - (self.nxw - self.iopen + 1)
@@ -454,27 +454,27 @@ class Tran :
         ztmp2=-self.zvesm2
 
         # remove non connected segments
-        useSegment = np.zeros((rtmp1['npts']))
+        useSegment = np.zeros(len(rtmp1))
         nsegs = 0
-        for i in range(rtmp1['npts']):
+        for i in range(len(rtmp1)):
             check = 0
             if i != 0:
-                if ((rtmp1['data'][i] == rtmp2['data'][i-1]) and (ztmp1['data'][i] == ztmp2['data'][i-1])) or \
-                    ((rtmp2['data'][i] == rtmp1['data'][i-1]) and (ztmp2['data'][i] == ztmp1['data'][i-1])):
+                if ((rtmp1[i] == rtmp2[i-1]) and (ztmp1[i] == ztmp2[i-1])) or \
+                    ((rtmp2[i] == rtmp1[i-1]) and (ztmp2[i] == ztmp1[i-1])):
                     check = 1
-            if i != (rtmp1['npts']):
-                if ((rtmp1['data'][i] == rtmp2['data'][i+1]) and (ztmp1['data'][i] == ztmp2['data'][i+1])) or \
-                    ((rtmp2['data'][i] == rtmp1['data'][i+1]) and (ztmp2['data'][i] == ztmp1['data'][i+1])):
+            if i != (len(rtmp1)):
+                if ((rtmp1[i] == rtmp2[i+1]) and (ztmp1[i] == ztmp2[i+1])) or \
+                    ((rtmp2[i] == rtmp1[i+1]) and (ztmp2[i] == ztmp1[i+1])):
                     check = 1
             if check:
                 useSegment[i] = 1
                 nsegs += 1
 
         wall_poly_pts = []
-        for i in range(rtmp1['npts']):
+        for i in range(len(rtmp1)):
             if useSegment[i]:
-                wall_poly_pts.append((rtmp1['data'][i],ztmp1['data'][i]))
-                wall_poly_pts.append((rtmp2['data'][i],ztmp2['data'][i]))
+                wall_poly_pts.append((rtmp1[i],ztmp1[i]))
+                wall_poly_pts.append((rtmp2[i],ztmp2[i]))
         wall_poly_pts.append(wall_poly_pts[0]) # connect last point to first to complete wall polygon
         self._wall = Polygon(wall_poly_pts, closed=False, ec='k', lw=2.0, fc='None', zorder=10)
         
