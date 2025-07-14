@@ -109,6 +109,8 @@ class Tran :
         for i in range(self.nc) :
             self.regkor[self.np+i] = self.regkor[self.kory[i,0]]
 
+        
+
     def readString(self,f):
        ndata = np.fromfile(f, dtype=np.int32, count = 1)
        data  = np.fromfile(f, dtype=np.byte, count = ndata[0])
@@ -411,10 +413,12 @@ class Tran :
         return 0
     @property
     def mesh(self):
+        if not hasattr(self, '_mesh'):
+            self.mesh = None  # Trigger the setter
         return self._mesh, self._pol2k
     
     @mesh.setter
-    def mesh(self):
+    def mesh(self, value):
         mesh=[]
         pol2k={}
         
@@ -438,10 +442,12 @@ class Tran :
         """
         Returns the wall polygon
         """
+        if not hasattr(self, '_wall'):
+            self.wall = None  # Trigger the setter
         return self._wall
     
     @wall.setter
-    def wall(self):
+    def wall(self, value):
         rtmp1=self.rvesm1
         ztmp1=-self.zvesm1
         rtmp2=self.rvesm2
@@ -478,11 +484,13 @@ class Tran :
         """
         Returns the separatrix
         """
+        if not hasattr(self, '_sepx'):
+            self.sepx = None  # Trigger the setter
         return self._sepx
 
     
     @sepx.setter
-    def sepx(self):
+    def sepx(self, value):
         rsepx=self.rsepx
         zsepx=self.zsepx
         segments = 0
@@ -505,12 +513,13 @@ class Tran :
         """
         Returns the outer and inner strikepoint coords
         """
+        if not hasattr(self, '_sp'):
+            self.sp = None  # Trigger the setter
         return self._sp
 
 
     @sp.setter
-    def sp(self):
-        print("setting sp")
+    def sp(self, value):
         _, _, rtmp = self.load_data1d('RMESH', row_or_ring=False, index=self.iopen -1)
         _, _, ztmp = -1.0* self.load_data1d('ZMESH', row_or_ring=False, index=self.iopen -1) 
         osp = [rtmp[0], ztmp[0]]
