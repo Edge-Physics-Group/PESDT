@@ -73,6 +73,7 @@ class ProcessEdgeSim:
                 json.dump(self.outdict, f, indent=2)
         else:
             logger.info("   Calcualte emission via cone integration")
+            print(self.data_source)
             self.run_cone_integration()
             if self.input_dict['run_options']['analyse_synth_spec_features']:
             # Read synth diag saved data
@@ -492,6 +493,7 @@ class ProcessEdgeSim:
         Otherwise used ADAS rates for contributions from el-impact excitation and recombination.
         '''
         logger.info('Calculating H emission...')
+        print("self.data_source == AMJUEL: ", self.data_source == "AMJUEL")
         if self.data_source == "AMJUEL":
             logger.info('Using AMJUEL data')
             debug = True
