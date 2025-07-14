@@ -50,19 +50,19 @@ class Edge2D(BackgroundPlasma):
         self.rvertp = self.tran.rvertp
         self.zvertp = self.tran.zvertp
         # Read in Te, Ti, ni, ne
-        self.teve = self.tran.load_data2d( 'TEVE')
-        self.tev = self.tran.load_data2d( 'TEV')
-        self.den = self.tran.load_data2d( 'DEN')
-        self.denel = self.tran.load_data2d( 'DENEL')
+        self.teve = self.tran.teve
+        self.tev = self.tran.tev
+        self.den = self.tran.den
+        self.denel = self.tran.denel
         # Read in na and nm (atomic, molecular)
-        self.da = self.tran.load_data2d( 'DA')
-        self.dm = self.tran.load_data2d( 'DM')
+        self.da = self.tran.da
+        self.dm = self.tran.dm
         #self.di = self.tran.load_data2d( 'DI')
         # Cell indices
         self.korpg = self.tran.korpg
         # Read in recombination and ionization sources
-        self.sirec = self.tran.load_data2d( 'SIREC')
-        self.soun = self.tran.load_data2d( 'SOUN')
+        self.sirec = self.tran.sirec
+        self.soun = self.tran.soun
             
         # GET INNER AND OUTER TARGET DATA
         self.psi_OT = self.tran.load_data1d('PSI', ot=True, )
