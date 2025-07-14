@@ -421,7 +421,8 @@ class ProcessEdgeSim:
             See: https://docs/python/org/2/library/pickle.html#example
         """
         odict = self.__dict__.copy() # copy the dict since we change it
-        del odict['ADAS_dict']
+        if self.data_source == "ADAS":
+            del odict['ADAS_dict']
         return odict
 
     def __setstate__(self, dict):
