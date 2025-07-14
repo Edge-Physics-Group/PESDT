@@ -2,7 +2,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 # import pandas as pd
-import pickle, json, os
+import pickle, json, os, errno
 
 from matplotlib.collections import PatchCollection
 from matplotlib import patches
@@ -10,11 +10,12 @@ from scipy.interpolate import interp1d
 from .synth_diag import SynthDiag
 from .utils.utils import isclose, interp_nearest_neighb, find_nearest
 from .utils.amread import calc_photon_rate
-
+from .utils import get_ADAS_dict
 from .utils.machine_defs import get_DIIIDdefs, get_JETdefs
 from pyADASread import adas_adf11_read, adas_adf15_read, continuo_read
 from .edge_code_formats import BackgroundPlasma, Cell, Edge2D, SOLPS, OEDGE
 from .cherab import CherabPlasma
+from .analyse import recover_line_int_ff_fb_Te, recover_line_int_Stark_ne, recover_line_int_particle_bal, recover_delL_atomden_product
 
 
 import logging
@@ -22,41 +23,21 @@ logger = logging.getLogger(__name__)
     
 class ProcessEdgeSim:
     '''
-    Class to read and store background plasma results from supported edge codes
+    Class to read and store background plasma results from supported edge codes, and run
 
-    First all properties to be loaded are initialized as "None"
-    Currently the code is very edge2d spesific, i.e. reading SOLPS does not actually work
 
     '''
-    def __init__(self, ADAS_dict, edge_code_defs, data_source = "AMJUEL", AMJUEL_date = 2016, ADAS_dict_lytrap=None,
-                 machine='JET', pulse=90531, spec_line_dict=None, spec_line_dict_lytrap = None, 
-                 diag_list=None, calc_synth_spec_features=None, save_synth_diag=False,
-                 synth_diag_save_file=None, data2d_save_file=None, recalc_h2_pos=True, 
-                 run_cherab = False, input_dict = None, **kwargs):
-
-        self.ADAS_dict = ADAS_dict
-        self.AMJUEL_date = AMJUEL_date
-        self.data_source = data_source
-        self.ADAS_dict_lytrap = ADAS_dict_lytrap
-        self.spec_line_dict = spec_line_dict
-        self.spec_line_dict_lytrap = spec_line_dict_lytrap
-        self.edge_code = edge_code_defs['code']
-        self.sim_path = edge_code_defs['sim_path']
-        self.machine = machine
-        self.pulse = pulse
-        self.recalc_h2_pos = recalc_h2_pos
+    def __init__(self, input_dict):
         self.input_dict = input_dict
-        self.regions = {}
-        if self.data_source == "AMJUEL":
-            pass # Need to modify code to be able to pass 
-        elif self.data_source == "YACORA":
-            # Look for YACORA rates in the home folder, unless specified otherwise in the input
-            self.YACORA_RATES_PATH = self.input_dict.get("YACORA_RATES_PATH", os.path.join(os.path.expanduser("~"), "YACORA_RATES/" ))
-        elif self.data_source == "ADAS":
-            pass
+        # READ ENV VARIABLES
+        self.cache_dir = os.environ.get("PESDTCacheDir", os.path.join(os.path.expanduser('~'), "PESDTCache/"))
+        # Read input deck and populate run parameters
+        self.parse_input_deck()
+        # Read neutral data source
+        self.load_neutral_data_sources()
         # Dictionary for storing synthetic diagnostic objects
         self.synth_diag = {}
-        
+        # Load machine definitions
         if self.machine == 'JET':
             self.defs = get_JETdefs(pulse_ref=self.pulse)
         elif self.machine == 'DIIID':
@@ -64,7 +45,131 @@ class ProcessEdgeSim:
         else:
             raise Exception("Unsupported machine. Currently supported machines are JET and DIIID")
 
+        self.load_edge_data()
         
+
+        logger.info("Emission evaluation")
+        if self.run_cherab:
+            logger.info("   Calculate emission via Cherab")
+            # Currently the run cherab function uses the synth_diag to get the instrument and LOS details, so that needs to be generated
+            self.run_cherab_raytracing()
+            if self.calc_synth_spec_features:
+                try:
+                    recover_line_int_Stark_ne(self.outdict)
+                    if input_dict['cherab_options'].get('ff_fb_emission', False):
+                        recover_line_int_ff_fb_Te(self.outdict)
+                except Exception as e:
+                    # SafeGuard for possible issues, so that not all comp. time is lost 
+                    logger.error(f'Something went wrong with AnalyseSynthDiag, error{e}')
+                    pass
+            # SAVE IN JSON FORMAT TO ENSURE PYTHON 2/3 COMPATIBILITY
+            if self.input_dict["cherab_options"].get('include_reflections', False):
+                logger.info("Saving cherab reflections")
+                savefile = self.savedir + '/cherab_refl.synth_diag.json'
+            else:
+                logger.info("Saving cherab no reflections")
+                savefile = self.savedir + '/cherab.synth_diag.json'
+            with open(savefile, mode='w', encoding='utf-8') as f:
+                json.dump(self.outdict, f, indent=2)
+        else:
+            logger.info("   Calcualte emission via cone integration")
+            self.run_cone_integration()
+            if self.input_dict['run_options']['analyse_synth_spec_features']:
+            # Read synth diag saved data
+                try:
+                    self.analyse_synth_spectra(self.outdict)
+                except IOError as e:
+                    raise
+            with open(self.synth_diag_save_file, mode='w', encoding='utf-8') as f:
+                json.dump(self.outdict, f, indent=2)
+            logger.info(f"Saved synthetic diagnostic data to: {self.synth_diag_save_file}")
+            
+        if self.data2d_save_file:
+            # pickle serialization of e2deirpostproc object
+            output = open(self.data2d_save_file, 'wb')
+            pickle.dump(self, output)
+            output.close() 
+
+    def parse_input_deck(self):
+        """
+        Reads the input deck and populates run parameters
+        """
+
+        tmpstr = self.input_dict['edge_code']['sim_path'].replace('/','_')
+        logger.info(f"{self.input_dict['edge_code']['sim_path']}")
+        if tmpstr[:3] == '_u_':
+            tmpstr = tmpstr[3:]
+        elif tmpstr[:6] == '_work_':
+            tmpstr = tmpstr[6:]
+        else:
+            tmpstr = tmpstr[1:]
+
+        self.savedir = self.input_dict['save_dir'] + tmpstr + '/'
+
+        # Create dir from tran file, if it does not exist
+        try:
+            os.makedirs(self.savedir)
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise
+
+        self.data2d_save_file = self.savedir +'PESDT.2ddata.pkl'
+        self.synth_diag_save_file = self.savedir + 'PESDT.synth_diag.json'
+        self.spec_line_dict = self.input_dict['spec_line_dict']
+
+        # Option to run cherab
+        self.run_cherab = self.input_dict["run_options"].get('run_cherab', False)
+
+        # Option to use cherab ne and Te fits rather than pyproc's. Use case - Lyman opacity adas data is not suppored
+        # by cherab-bridge, so import cherab plasma parameter profiles with reflections impact here instead and apply
+        # to Siz and Srec estimates with modified Ly-trapping adas data
+        self.cherab_ne_Te_KT3_resfile = self.input_dict['run_options'].get('use_cherab_resfile_for_KT3_ne_Te_fits', None)
+        self.diag_list = self.input_dict['diag_list'],
+        self.calc_synth_spec_features = self.input_dict['run_options']['analyse_synth_spec_features'],
+        self.AMJUEL_date = self.input_dict['run_options'].get('AMJUEL_date', 2016), # Default to <2017 (no H3+)
+        self.data_source = self.input_dict['run_options'].get('data_source', "AMJUEL"),
+        self.edge_code = self.input_dict['edge_code']['code']
+        self.sim_path = self.input_dict['edge_code']['sim_path']
+        self.machine = self.input_dict.get('machine', "JET")
+        self.pulse = self.input_dict.get('pulse', 81472)
+        self.recalc_h2_pos = self.input_dict['run_options'].get('recalc_h2_pos', True)
+        self.run_cherab = self.input_dict['run_options'].get('run_cherab', False)
+
+        # Location of adf15 and adf11 ADAS data modified for Ly-series opacity with escape factor method
+        self.adas_lytrap = self.input_dict.get('read_ADAS_lytrap', None)
+        if self.adas_lytrap is not None:
+            self.spec_line_dict_lytrap = self.adas_lytrap['spec_line_dict']
+        else:
+            self.spec_line_dict_lytrap = None
+
+    def load_neutral_data_sources(self):
+        """
+        Reads the
+        """
+        if self.data_source == "AMJUEL":
+            pass # we have amread, and the user needs to supply the .tex file
+        elif self.data_source == "YACORA":
+            # Look for YACORA rates in the home folder, unless specified otherwise in the input
+            self.YACORA_RATES_PATH = self.input_dict.get("YACORA_RATES_PATH", os.path.join(os.path.expanduser("~"), "YACORA_RATES/" ))
+        elif self.data_source == "ADAS":
+            
+            # Look for Lyman trapping modified ADAS data
+            if self.adas_lytrap is not None:
+                self.ADAS_dict_lytrap = get_ADAS_dict(self.savedir,
+                                                    self.spec_line_dict_lytrap,
+                                                    restore=not self.input_dict['read_ADAS_lytrap']['read'],
+                                                    adf11_year = self.adas_lytrap['adf11_year'],
+                                                    lytrap_adf11_dir=self.adas_lytrap['adf11_dir'],
+                                                    lytrap_pec_file=self.adas_lytrap['pec_file'])
+
+            # Also get standard ADAS data
+            self.ADAS_dict = get_ADAS_dict(self.cache_dir,
+                                        self.spec_line_dict, adf11_year=12, restore=not self.input_dict['read_ADAS'])
+
+
+        logger.info(f"diag_list: {self.input_dict['diag_list']}")
+
+    def load_edge_data(self):
         logger.info(f"Loading {self.edge_code} BG plasma from {self.sim_path}.")
         if self.edge_code == "edge2d":
             self.data = Edge2D(self.sim_path)
@@ -72,13 +177,6 @@ class ProcessEdgeSim:
             self.data = SOLPS(self.sim_path)
         elif self.edge_code == "oedge":
             self.data = OEDGE(self.sim_path)
-        elif self.edge_code == "custom":
-            try:
-                from custom import Custom
-                self.data = Custom(self.sim_path)
-            except ImportError:
-                logger.info("Could not load custom data format. Try creating a folder named \"custom\", \n and in the folder have \"__init__.py\", where you import your custom BG-plasma format.")
-                raise ImportError
         else:
             logger.info("Edge code not supported")
             raise Exception("Edge code not supported")
@@ -92,53 +190,6 @@ class ProcessEdgeSim:
         self.n2p = self.data.n2p
 
         self.cells = self.data.cells   
-
-        logger.info("Emission evaluation")
-        # TODO: Add opacity calcs
-        if run_cherab:
-            logger.info("   Calculate emission via Cherab")
-            # Currently the run cherab function uses the synth_diag to get the instrument and LOS details, so that needs to be generated
-            self.run_cherab_raytracing()
-        else:
-            logger.info("   Calcualte emission via cone integration")
-            self.calc_H_emiss()
-            self.calc_H_rad_power()
-            self.calc_ff_fb_emiss()
-
-            if diag_list:
-                logger.info(f"       diag_list: {diag_list}")
-                for key in diag_list:
-                    if key in self.defs.diag_dict.keys():
-                        self.synth_diag[key] = SynthDiag(self.defs, diag=key,
-                                                        spec_line_dict = self.spec_line_dict,
-                                                        spec_line_dict_lytrap=self.spec_line_dict_lytrap, 
-                                                        data_source = self.data_source)
-                        for chord in self.synth_diag[key].chords:
-                            # Basic LOS implementation using 2D polygons - no reflections
-                            self.los_intersect(chord)
-                            chord.orthogonal_polys()
-                            if self.data_source == "AMJUEL":
-                                chord.calc_int_and_1d_los_quantities_AMJUEL_1()
-                            else:
-                                chord.calc_int_and_1d_los_quantities_1()
-                            if calc_synth_spec_features:
-                                # Derived ne, te require information along LOS, calc emission again using _2 functions
-                                if self.data_source == "AMJUEL":
-                                    chord.calc_int_and_1d_los_quantities_AMJUEL_2()
-                                else:
-                                    chord.calc_int_and_1d_los_quantities_2()
-                                logger.info(f"       Calculating synthetic spectra for diag:  {key}")
-                                chord.calc_int_and_1d_los_synth_spectra()
-
-            if save_synth_diag:
-                if self.synth_diag:
-                    self.save_synth_diag_data(savefile=synth_diag_save_file)
-
-        if data2d_save_file:
-            # pickle serialization of e2deirpostproc object
-            output = open(data2d_save_file, 'wb')
-            pickle.dump(self, output)
-            output.close() 
 
     def run_cherab_raytracing(self):
         # === Load Configuration ===
@@ -325,6 +376,44 @@ class ProcessEdgeSim:
                     plasma.define_plasma_model(atnum=1, ion_stage=0, transition=band, data_source=data_source, include_mol_exc = True)
                     self.outdict[diag][band] = [x[0] for x in plasma.integrate_instrument(diag)]
 
+    def run_cone_integration(self):
+        """
+        Do a cone integral over the LOS of the diagnostic instruments
+        """
+        # Populate the H emission cache of the cells
+        self.calc_H_emiss()
+        # Only ADAS contains the total radiated power data
+        if self.data_source == "ADAS":
+            self.calc_H_rad_power()
+        # Populate the ff-fb cache of the cells
+        self.calc_ff_fb_emiss()
+
+        if self.diag_list:
+            logger.info(f"       diag_list: {self.diag_list}")
+            for key in self.diag_list:
+                if key in self.defs.diag_dict.keys():
+                    self.synth_diag[key] = SynthDiag(self.defs, diag=key,
+                                                    spec_line_dict = self.spec_line_dict,
+                                                    spec_line_dict_lytrap=self.spec_line_dict_lytrap, 
+                                                    data_source = self.data_source)
+                    for chord in self.synth_diag[key].chords:
+                        # Basic LOS implementation using 2D polygons - no reflections
+                        self.los_intersect(chord)
+                        chord.orthogonal_polys()
+                        if self.data_source == "AMJUEL":
+                            chord.calc_int_and_1d_los_quantities_AMJUEL_1()
+                        else:
+                            chord.calc_int_and_1d_los_quantities_1()
+                        if self.calc_synth_spec_features:
+                            # Derived ne, te require information along LOS, calc emission again using _2 functions
+                            if self.data_source == "AMJUEL":
+                                chord.calc_int_and_1d_los_quantities_AMJUEL_2()
+                            else:
+                                chord.calc_int_and_1d_los_quantities_2()
+                            logger.info(f"       Calculating synthetic spectra for diag:  {key}")
+                            chord.calc_int_and_1d_los_synth_spectra()
+
+        self.gen_synth_diag_data()
 
     def __getstate__(self):
         """
@@ -339,9 +428,9 @@ class ProcessEdgeSim:
         # TODO: Read external ADAS_dict object and add to dict for unpickling
         self.__dict__.update(dict)
 
-    def save_synth_diag_data(self, savefile=None):
+    def gen_synth_diag_data(self):
         """
-        Save synthetic diagnostic data in CHERAB-style format with:
+        Generate synthetic diagnostic data in CHERAB-style format with:
         - Emissivity data: dict[diag][wavelength][source]
         - Chord geometry & per-chord data: dict[diag]["chord"] = [dicts]
         - FF spectra and LOS 1D profiles per chord included
@@ -392,12 +481,7 @@ class ProcessEdgeSim:
 
             outdict[diag_key] = diag_dict
 
-        # Save to JSON
-        with open(savefile, mode="w", encoding="utf-8") as f:
-            json.dump(outdict, f, indent=2)
-
-        logger.info(f"Saved synthetic diagnostic data to: {savefile}")
-
+        self.outdict = outdict
 
     def calc_H_emiss(self):
         '''
@@ -405,9 +489,6 @@ class ProcessEdgeSim:
 
         If data source is AMJUEL, calculate the emission with contributions from molecules and H-
         Otherwise used ADAS rates for contributions from el-impact excitation and recombination.
-
-        TODO: addability to define path to AMJUEL.tex. Currently assume that the file is located in the home dir.
-
         '''
         logger.info('Calculating H emission...')
         if self.data_source == "AMJUEL":
@@ -435,7 +516,6 @@ class ProcessEdgeSim:
                 for line_key in self.spec_line_dict_lytrap['1']['1']:
                     E_excit, E_recom= adas_adf15_read.get_H_line_emiss(line_key, self.ADAS_dict_lytrap['adf15']['1']['1'], cell.te, cell.ne*1.0E-06, cell.ni*1.0E-06, cell.n0*1.0E-06)
                     cell.H_emiss[line_key] = {'excit':E_excit, 'recom':E_recom, 'units':'ph.s^-1.m^-3.sr^-1'}
-
 
     def calc_ff_fb_filtered_emiss(self, filter_wv_nm, filter_tran):
         # TODO: ADD ZEFF CAPABILITY
@@ -519,7 +599,6 @@ class ProcessEdgeSim:
             self.Prad_H_Lytrap = sum_pwr
             logger.info(f"Total H radiated power w/ Ly trapping: {sum_pwr} [W] ")
       
-
     def los_intersect(self, los):
         for cell in self.cells:
             # check if cell lies within los.poly
@@ -615,5 +694,34 @@ class ProcessEdgeSim:
                     region.Sion += cell.Sion * 2.*np.pi*cell.R * cell.poly.area
                     region.Srec += cell.Srec * 2.*np.pi*cell.R * cell.poly.area
 
+    def analyse_synth_spectra(self, res_dict, stark_ne = True, cont_Te = True, line_int_part_bal = False, delL_atomden = False):
+
+        sion_H_transition = self.input_dict['run_options'].get('Sion_H_transition',[[2,1],[3,2]])
+        srec_H_transition = self.input_dict['run_options'].get('Srec_H_transition',[[5,2]])
+
+        # Estimate parameters and update res_dict. Call order matters since ne and Te
+        # are needed as constraints
+        #
+        # Electron density estimate from Stark broadening of H6-2 line
+        if stark_ne:
+            recover_line_int_Stark_ne(res_dict)
+
+        # Electron temperature estimate from ff+fb continuum
+        if cont_Te:
+            recover_line_int_ff_fb_Te(res_dict)
+
+        # Recombination and Ionization
+        if line_int_part_bal:
+            recover_line_int_particle_bal(self, res_dict, sion_H_transition=sion_H_transition,
+                                           srec_H_transition=srec_H_transition, ne_scal=1.0,
+                                           cherab_ne_Te_KT3_resfile=self.cherab_ne_Te_KT3_resfile)
+
+        # delL * neutral density assuming excitation dominated
+        if delL_atomden:
+            recover_delL_atomden_product(self, res_dict, sion_H_transition=sion_H_transition)
+
+        
+    
+    
 if __name__=='__main__':
     print('To run PESDT, use the "PESDT_run.py" script in the root of PESDT')

@@ -1,4 +1,4 @@
-from core import AnalyseSynthDiag
+from core import ProcessEdgeSim
 import json, os, sys
 import argparse
 import logging
@@ -8,7 +8,7 @@ def run_PESDT(input_dict_str):
     with open(input_dict_str, mode='r', encoding='utf-8') as f:
         input_dict = json.load(f)
 
-    AnalyseSynthDiag(input_dict)
+    ProcessEdgeSim(input_dict)
 
 if __name__=='__main__':
     # Create the logger
