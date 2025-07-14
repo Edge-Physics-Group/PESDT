@@ -1,9 +1,9 @@
+
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
 from matplotlib.collections import PatchCollection
 from mpl_toolkits.axes_grid1 import make_axes_locatable
-from matplotlib.backend_bases import MouseEvent
 from matplotlib.colors import SymLogNorm, ListedColormap
 import matplotlib.cm as cm
 
@@ -196,12 +196,15 @@ class Tran :
             data = self.readFloats(f)
             return data
       
-    def load_data_1d(self, field: str = "TEVE", row_or_ring: bool = True, index = 12,**kwargs):
+    def load_data1d(self, field: str, row_or_ring: bool = True, index = 12,**kwargs):
         ot = kwargs.get("ot", False)
         it = kwargs.get("it", False)
-        
+        omp = kwargs.get("omp", False)
+        imp = kwargs.get("imp", False)
         if ot: index = self.jjtarget[0] +1
         if it: index = self.jjtarget[-1] +1
+        if omp: index = self.find_midplane_index()
+        if imp: index = self.find_midplane_index(inner=True)
         
 
         if field in ["JSAT", "jsat"]:
@@ -252,14 +255,23 @@ class Tran :
             x=range(len(cells))
         return x, r, data
 
-    def plot1D(self, field: str = "TEVE", row_or_ring: bool = True, index = 12, ax = None, **kwargs): 
+    def load_data2d(self, param: str):
+        data = getattr(self,param.lower())
+        field=np.zeros(len(self.nvertp))
+        for i in range(len(data)):
+            if i >= len(self.korpg) : continue
+            if self.korpg[i] > 0:
+                field[self.korpg[i]-1]=data[i]
+        return field
+
+    def plot1D(self, field: str, row_or_ring: bool = True, index = 12, ax = None, **kwargs): 
 
         new_figure = False
         if ax is None:
             new_figure = True
             fig, ax = plt.subplots()
 
-        x, r, data = self.load_data_1d(field, row_or_ring=row_or_ring, index=index, **kwargs)
+        x, r, data = self.load_data1d(field, row_or_ring=row_or_ring, index=index, **kwargs)
 
         line = ax.plot(x,data,label=self.catid,color='r',marker='+')
         lns = []+line
@@ -278,33 +290,26 @@ class Tran :
             return x, data, fig, ax
         return x, data, ax
 
-    def plot2d(self, param: str = "TEVE", ax = None, cell = None,row=None, **kwargs):
+    def plot2D(self, param: str, ax = None, cell = None,row=None, **kwargs):
         data  = self.regkor
         if param != "MESH" :
             data = getattr(self,param.lower())
         if ax is None:
             fig, ax = plt.subplots(figsize=(4.5,7.5))
-        mesh=[]
-        pol2k={}
-        i = 0
+        mesh, pol2k = self.mesh
+        
         highlighted_polygons = []
         highlight_color = 'yellow'  # or 'red' or a colormap
         for k in range(self.np):
             if self.korpg[k] != 0 :
                 i = self.korpg[k] - 1
-                if i not in pol2k : 
-                    pol2k[i] = [k]
-                else : 
-                    pol2k[i].append(k)
                 if i > k - self.nj[0] +1 : continue
-                points = np.transpose(np.concatenate(([self.rvertp[i*5:i*5+4]], [-self.zvertp[i*5:i*5+4]]), axis=0))
-                polygon = Polygon(points, closed=True)
                 if row is not None:
                     if self.jkor[k] == row:
+                        points = np.transpose(np.concatenate(([self.rvertp[i*5:i*5+4]], [-self.zvertp[i*5:i*5+4]]), axis=0))
+                        polygon = Polygon(points, closed=True)
                         highlighted_polygons.append(polygon)
 
-                mesh.append(polygon)
-                pol2k[i].append(k)
 
         field=np.zeros(len(self.nvertp))
         for i in range(len(data)):
@@ -351,6 +356,130 @@ class Tran :
             if rves2[i]==0.0 : continue
             ax.plot([rves[i],rves2[i]],[zves[i],zves2[i]],'black')
 
+        sep = self.sepx
+        for i in range(len(sep)):
+            ax.plot(sep[i][0],sep[i][1],'black', linewidth = 0.75)
+        
+        lims=ax.axis('image')
+        
+        return ax
+    
+    def plot2D_data(self, data, ax = None, cell = None,row=None, **kwargs):
+        if ax is None:
+                fig, ax = plt.subplots(figsize=(4.5,7.5))
+        mesh, pol2k = self.mesh
+        cmap = plt.get_cmap('plasma', 100)
+        if kwargs.get("log", False) :
+            if kwargs.get("vmin", False):
+                p = PatchCollection(mesh,cmap=cmap,norm=SymLogNorm(linthresh=float(kwargs["log"]), vmin = kwargs["vmin"]))
+            else:
+                p = PatchCollection(mesh,cmap=cmap,norm=SymLogNorm(linthresh=float(kwargs["log"])))
+        else :
+            p = PatchCollection(mesh,cmap=cmap)
+        p.set_edgecolor('face')
+        p.set_array(data)
+        divider = make_axes_locatable(ax)
+        cax = divider.append_axes("right", size="5%", pad=0.05)
+        plt.colorbar(p, cax=cax)
+        ax.add_collection(p)
+        rves=self.rvesm1
+        zves=-self.zvesm1
+        rves2=self.rvesm2
+        zves2=-self.zvesm2
+        for i in range(len(rves)):
+            if rves2[i]==0.0 : continue
+            ax.plot([rves[i],rves2[i]],[zves[i],zves2[i]],'black')
+
+        sep = self.sepx
+        for i in range(len(sep)):
+            ax.plot(sep[i][0],sep[i][1],'black', linewidth = 0.75)
+        
+        lims=ax.axis('image')
+        
+        return ax
+    
+    def find_midplane_index(self, inner = False, midplane_Z = 0.0):
+        """
+        Finds the midplane index
+        inner = False --> outer
+
+        midplane_Z: the z coordinate, which defines the midplane location
+        """
+        return 0
+    @property
+    def mesh(self):
+        return self._mesh, self._pol2k
+    
+    @mesh.setter
+    def set_mesh(self):
+        mesh=[]
+        pol2k={}
+        
+        for k in range(self.np):
+            if self.korpg[k] != 0 :
+                i = self.korpg[k] - 1
+                if i not in pol2k : 
+                    pol2k[i] = [k]
+                else : 
+                    pol2k[i].append(k)
+                if i > k - self.nj[0] +1 : continue
+                points = np.transpose(np.concatenate(([self.rvertp[i*5:i*5+4]], [-self.zvertp[i*5:i*5+4]]), axis=0))
+                polygon = Polygon(points, closed=True)
+                mesh.append(polygon)
+                
+        self._mesh = mesh
+        self._pol2k = pol2k
+
+    @property
+    def wall(self):
+        """
+        Returns the wall polygon
+        """
+        return self._wall
+    
+    @wall.setter
+    def set_wall(self):
+        rtmp1=self.rvesm1
+        ztmp1=-self.zvesm1
+        rtmp2=self.rvesm2
+        ztmp2=-self.zvesm2
+
+        # remove non connected segments
+        useSegment = np.zeros((rtmp1['npts']))
+        nsegs = 0
+        for i in range(rtmp1['npts']):
+            check = 0
+            if i != 0:
+                if ((rtmp1['data'][i] == rtmp2['data'][i-1]) and (ztmp1['data'][i] == ztmp2['data'][i-1])) or \
+                    ((rtmp2['data'][i] == rtmp1['data'][i-1]) and (ztmp2['data'][i] == ztmp1['data'][i-1])):
+                    check = 1
+            if i != (rtmp1['npts']):
+                if ((rtmp1['data'][i] == rtmp2['data'][i+1]) and (ztmp1['data'][i] == ztmp2['data'][i+1])) or \
+                    ((rtmp2['data'][i] == rtmp1['data'][i+1]) and (ztmp2['data'][i] == ztmp1['data'][i+1])):
+                    check = 1
+            if check:
+                useSegment[i] = 1
+                nsegs += 1
+
+        wall_poly_pts = []
+        for i in range(rtmp1['npts']):
+            if useSegment[i]:
+                wall_poly_pts.append((rtmp1['data'][i],ztmp1['data'][i]))
+                wall_poly_pts.append((rtmp2['data'][i],ztmp2['data'][i]))
+        wall_poly_pts.append(wall_poly_pts[0]) # connect last point to first to complete wall polygon
+        self._wall = Polygon(wall_poly_pts, closed=False, ec='k', lw=2.0, fc='None', zorder=10)
+        
+    
+    @property
+    def sepx(self):
+        """
+        Returns the separatrix
+        """
+        return self._sepx
+
+    
+    @sepx.setter
+    def set_sepx(self):
         rsepx=self.rsepx
         zsepx=self.zsepx
         segments = 0
@@ -366,9 +495,23 @@ class Tran :
                 sep.append([])
                 sep[segments].append([])
                 sep[segments].append([])
-        for i in range(segments+1):
-            ax.plot(sep[i][0],sep[i][1],'black', linewidth = 0.75)
-        
-        lims=ax.axis('image')
-        
-        return ax
+        self._sepx = sep
+    
+    @property
+    def sp(self):
+        """
+        Returns the outer and inner strikepoint coords
+        """
+        return self._sp
+
+
+    @sp.setter
+    def set_sp(self):
+        rtmp = self.load_data1d('RMESH', row_or_ring=False, index=self.iopen -1)
+        ztmp = -1.0* self.load_data1d('ZMESH', row_or_ring=False, index=self.iopen -1) 
+        osp = [rtmp[0], ztmp[0]]
+        isp = [rtmp[-1], ztmp[-1]]
+        self._sp = (osp, isp)
+
+
+
