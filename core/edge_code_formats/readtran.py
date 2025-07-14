@@ -491,24 +491,15 @@ class Tran :
     
     @sepx.setter
     def sepx(self, value):
-        rsepx=self.rsepx
-        zsepx=self.zsepx
-        segments = 0
-        sep=[]
-        sep.append([])
-        sep[0].append([])
-        sep[0].append([])
-        for i in range(len(rsepx)-1):
-            sep[segments][0].append(rsepx[i])
-            sep[segments][1].append(-zsepx[i])
-            if np.sqrt((rsepx[i+1]-rsepx[i])**2+(zsepx[i+1]-zsepx[i])**2) > 0.5 : #(m)
-                segments = segments + 1
-                sep.append([])
-                sep[segments].append([])
-                sep[segments].append([])
-        self._sepx = np.array(sep).T
-        print(self._sepx)
-        print(self._sepx.shape)
+        rsepx = self.rsepx
+        zsepx = self.zsepx
+
+        points = []
+
+        for i in range(len(rsepx) - 1):
+            points.append([rsepx[i], -zsepx[i]])
+
+        self._sepx = np.array(points)
     
     @property
     def sp(self):
