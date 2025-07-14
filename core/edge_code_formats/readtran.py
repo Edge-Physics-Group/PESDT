@@ -462,7 +462,7 @@ class Tran :
                 if ((rtmp1[i] == rtmp2[i-1]) and (ztmp1[i] == ztmp2[i-1])) or \
                     ((rtmp2[i] == rtmp1[i-1]) and (ztmp2[i] == ztmp1[i-1])):
                     check = 1
-            if i != len(rtmp1):
+            if i != len(rtmp1-1):
                 if ((rtmp1[i] == rtmp2[i+1]) and (ztmp1[i] == ztmp2[i+1])) or \
                     ((rtmp2[i] == rtmp1[i+1]) and (ztmp2[i] == ztmp1[i+1])):
                     check = 1
