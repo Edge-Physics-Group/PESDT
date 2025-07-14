@@ -506,7 +506,7 @@ class Tran :
                 sep.append([])
                 sep[segments].append([])
                 sep[segments].append([])
-        self._sepx = np.asarray(sep).T
+        self._sepx = np.array(sep).T
         print(self._sepx)
         print(self._sepx.shape)
     
