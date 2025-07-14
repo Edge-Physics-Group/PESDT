@@ -113,24 +113,24 @@ class Edge2D(BackgroundPlasma):
 
         self.cells = []
         self.patches = []
-        
-        self.row = np.zeros((self.tran.np), dtype=int)
-        self.ring = np.zeros((self.tran.np), dtype=int)
-        self.rv = np.zeros((self.tran.np, 5))
-        self.zv = np.zeros((self.tran.np, 5))
-        self.te = np.zeros((self.tran.np))
-        self.ti = np.zeros((self.tran.np))
-        self.ne = np.zeros((self.tran.np))
-        self.ni = np.zeros((self.tran.np))
-        self.n0 = np.zeros((self.tran.np))
-        self.n2 = np.zeros((self.tran.np))
-        self.n2p = np.zeros((self.tran.np))
-        self.srec = np.zeros((self.tran.np))
-        self.sion = np.zeros((self.tran.np))
+        npts = np.max(self.tran.korpg)
+        self.row = np.zeros((npts), dtype=int)
+        self.ring = np.zeros((npts), dtype=int)
+        self.rv = np.zeros((npts, 5))
+        self.zv = np.zeros((npts, 5))
+        self.te = np.zeros((npts))
+        self.ti = np.zeros((npts))
+        self.ne = np.zeros((npts))
+        self.ni = np.zeros((npts))
+        self.n0 = np.zeros((npts))
+        self.n2 = np.zeros((npts))
+        self.n2p = np.zeros((npts))
+        self.srec = np.zeros((npts))
+        self.sion = np.zeros((npts))
        
     
         k = 0
-        for i in range(self.tran.np):
+        for i in range(self.tran .np):
             j = self.korpg[i] - 1 # gotcha: convert from fortran indexing to idl/python
             if j >= 0:
                 j*=5
