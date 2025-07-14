@@ -114,19 +114,19 @@ class Edge2D(BackgroundPlasma):
         self.cells = []
         self.patches = []
 
-        self.row = np.zeros((self.tran.np), dtype=int)
-        self.ring = np.zeros((self.tran.np), dtype=int)
-        self.rv = np.zeros((self.tran.np, 5))
-        self.zv = np.zeros((self.tran.np, 5))
-        self.te = np.zeros((self.tran.np))
-        self.ti = np.zeros((self.tran.np))
-        self.ne = np.zeros((self.tran.np))
-        self.ni = np.zeros((self.tran.np))
-        self.n0 = np.zeros((self.tran.np))
-        self.n2 = np.zeros((self.tran.np))
-        self.n2p = np.zeros((self.tran.np))
-        self.srec = np.zeros((self.tran.np))
-        self.sion = np.zeros((self.tran.np))
+        self.row = np.zeros((self.tran.np+1), dtype=int)
+        self.ring = np.zeros((self.tran.np+1), dtype=int)
+        self.rv = np.zeros((self.tran.np+1, 5))
+        self.zv = np.zeros((self.tran.np+1, 5))
+        self.te = np.zeros((self.tran.np+1))
+        self.ti = np.zeros((self.tran.np+1))
+        self.ne = np.zeros((self.tran.np+1))
+        self.ni = np.zeros((self.tran.np+1))
+        self.n0 = np.zeros((self.tran.np+1))
+        self.n2 = np.zeros((self.tran.np+1))
+        self.n2p = np.zeros((self.tran.np+1))
+        self.srec = np.zeros((self.tran.np+1))
+        self.sion = np.zeros((self.tran.np+1))
        
     
         k = 0
