@@ -22,15 +22,15 @@ import logging
 logger = logging.getLogger(__name__)
     
 class ProcessEdgeSim:
-    """
+    '''
     Class to read and store background plasma results from supported edge codes, and run
 
 
-    """
+    '''
     def __init__(self, input_dict):
         self.input_dict = input_dict
         # READ ENV VARIABLES
-        self.cache_dir = os.environ.get("PESDTCacheDir", os.path.join(os.path.expanduser("~"), "PESDTCache/"))
+        self.cache_dir = os.environ.get("PESDTCacheDir", os.path.join(os.path.expanduser('~'), "PESDTCache/"))
         # Read input deck and populate run parameters
         self.parse_input_deck()
         # Read neutral data source
@@ -38,9 +38,9 @@ class ProcessEdgeSim:
         # Dictionary for storing synthetic diagnostic objects
         self.synth_diag = {}
         # Load machine definitions
-        if self.machine == "JET":
+        if self.machine == 'JET':
             self.defs = get_JETdefs(pulse_ref=self.pulse)
-        elif self.machine == "DIIID":
+        elif self.machine == 'DIIID':
             self.defs = get_DIIIDdefs()
         else:
             raise Exception("Unsupported machine. Currently supported machines are JET and DIIID")
@@ -56,38 +56,38 @@ class ProcessEdgeSim:
             if self.calc_synth_spec_features:
                 try:
                     recover_line_int_Stark_ne(self.outdict)
-                    if input_dict["cherab_options"].get("ff_fb_emission", False):
+                    if input_dict['cherab_options'].get('ff_fb_emission', False):
                         recover_line_int_ff_fb_Te(self.outdict)
                 except Exception as e:
                     # SafeGuard for possible issues, so that not all comp. time is lost 
-                    logger.error(f"Something went wrong with AnalyseSynthDiag, error{e}")
+                    logger.error(f'Something went wrong with AnalyseSynthDiag, error{e}')
                     pass
             # SAVE IN JSON FORMAT TO ENSURE PYTHON 2/3 COMPATIBILITY
-            if self.input_dict["cherab_options"].get("include_reflections", False):
+            if self.input_dict["cherab_options"].get('include_reflections', False):
                 logger.info("Saving cherab reflections")
-                savefile = self.savedir + "/cherab_refl.synth_diag.json"
+                savefile = self.savedir + '/cherab_refl.synth_diag.json'
             else:
                 logger.info("Saving cherab no reflections")
-                savefile = self.savedir + "/cherab.synth_diag.json"
-            with open(savefile, mode="w", encoding="utf-8") as f:
+                savefile = self.savedir + '/cherab.synth_diag.json'
+            with open(savefile, mode='w', encoding='utf-8') as f:
                 json.dump(self.outdict, f, indent=2)
         else:
             logger.info("   Calculate emission via cone integration")
             print(self.data_source)
             self.run_cone_integration()
-            if self.input_dict["run_options"]["analyse_synth_spec_features"]:
+            if self.input_dict['run_options']['analyse_synth_spec_features']:
             # Read synth diag saved data
                 try:
                     self.analyse_synth_spectra(self.outdict)
                 except IOError as e:
                     raise
-            with open(self.synth_diag_save_file, mode="w", encoding="utf-8") as f:
+            with open(self.synth_diag_save_file, mode='w', encoding='utf-8') as f:
                 json.dump(self.outdict, f, indent=2)
             logger.info(f"Saved synthetic diagnostic data to: {self.synth_diag_save_file}")
 
         if self.data2d_save_file:
             # pickle serialization of e2deirpostproc object
-            output = open(self.data2d_save_file, "wb")
+            output = open(self.data2d_save_file, 'wb')
             pickle.dump(self, output)
             output.close() 
 
@@ -96,16 +96,16 @@ class ProcessEdgeSim:
         Reads the input deck and populates run parameters
         """
 
-        tmpstr = self.input_dict["edge_code"]["sim_path"].replace("/","_")
-        logger.info(f"{self.input_dict["edge_code"]["sim_path"]}")
-        if tmpstr[:3] == "_u_":
+        tmpstr = self.input_dict['edge_code']['sim_path'].replace('/','_')
+        logger.info(f"{self.input_dict['edge_code']['sim_path']}")
+        if tmpstr[:3] == '_u_':
             tmpstr = tmpstr[3:]
-        elif tmpstr[:6] == "_work_":
+        elif tmpstr[:6] == '_work_':
             tmpstr = tmpstr[6:]
         else:
             tmpstr = tmpstr[1:]
 
-        self.savedir = self.input_dict["save_dir"] + tmpstr + "/"
+        self.savedir = self.input_dict['save_dir'] + tmpstr + '/'
 
         # Create dir from tran file, if it does not exist
         try:
@@ -114,32 +114,32 @@ class ProcessEdgeSim:
             if e.errno != errno.EEXIST:
                 raise
 
-        self.data2d_save_file = self.savedir +"PESDT.2ddata.pkl"
-        self.synth_diag_save_file = self.savedir + "PESDT.synth_diag.json"
-        self.spec_line_dict = self.input_dict["spec_line_dict"]
+        self.data2d_save_file = self.savedir +'PESDT.2ddata.pkl'
+        self.synth_diag_save_file = self.savedir + 'PESDT.synth_diag.json'
+        self.spec_line_dict = self.input_dict['spec_line_dict']
 
         # Option to run cherab
-        self.run_cherab = self.input_dict["run_options"].get("run_cherab", False)
+        self.run_cherab = self.input_dict["run_options"].get('run_cherab', False)
 
-        # Option to use cherab ne and Te fits rather than pyproc"s. Use case - Lyman opacity adas data is not suppored
+        # Option to use cherab ne and Te fits rather than pyproc's. Use case - Lyman opacity adas data is not suppored
         # by cherab-bridge, so import cherab plasma parameter profiles with reflections impact here instead and apply
         # to Siz and Srec estimates with modified Ly-trapping adas data
-        self.cherab_ne_Te_KT3_resfile = self.input_dict["run_options"].get("use_cherab_resfile_for_KT3_ne_Te_fits", None)
-        self.diag_list = self.input_dict["diag_list"],
-        self.calc_synth_spec_features = self.input_dict["run_options"]["analyse_synth_spec_features"],
-        self.AMJUEL_date = self.input_dict["run_options"].get("AMJUEL_date", 2016), # Default to <2017 (no H3+)
+        self.cherab_ne_Te_KT3_resfile = self.input_dict['run_options'].get('use_cherab_resfile_for_KT3_ne_Te_fits', None)
+        self.diag_list = self.input_dict['diag_list']
+        self.calc_synth_spec_features = self.input_dict['run_options']['analyse_synth_spec_features']
+        self.AMJUEL_date = self.input_dict['run_options'].get("AMJUEL_date", 2016) # Default to <2017 (no H3+)
         self.data_source = self.input_dict["run_options"].get("data_source", "AMJUEL")
-        self.edge_code = self.input_dict["edge_code"]["code"]
-        self.sim_path = self.input_dict["edge_code"]["sim_path"]
-        self.machine = self.input_dict.get("machine", "JET")
-        self.pulse = self.input_dict.get("pulse", 81472)
-        self.recalc_h2_pos = self.input_dict["run_options"].get("recalc_h2_pos", True)
-        self.run_cherab = self.input_dict["run_options"].get("run_cherab", False)
+        self.edge_code = self.input_dict['edge_code']['code']
+        self.sim_path = self.input_dict['edge_code']['sim_path']
+        self.machine = self.input_dict.get('machine', "JET")
+        self.pulse = self.input_dict.get('pulse', 81472)
+        self.recalc_h2_pos = self.input_dict['run_options'].get('recalc_h2_pos', True)
+        self.run_cherab = self.input_dict['run_options'].get('run_cherab', False)
 
         # Location of adf15 and adf11 ADAS data modified for Ly-series opacity with escape factor method
-        self.adas_lytrap = self.input_dict.get("read_ADAS_lytrap", None)
+        self.adas_lytrap = self.input_dict.get('read_ADAS_lytrap', None)
         if self.adas_lytrap is not None:
-            self.spec_line_dict_lytrap = self.adas_lytrap["spec_line_dict"]
+            self.spec_line_dict_lytrap = self.adas_lytrap['spec_line_dict']
         else:
             self.spec_line_dict_lytrap = None
 
@@ -158,17 +158,17 @@ class ProcessEdgeSim:
             if self.adas_lytrap is not None:
                 self.ADAS_dict_lytrap = get_ADAS_dict(self.savedir,
                                                     self.spec_line_dict_lytrap,
-                                                    restore=not self.input_dict["read_ADAS_lytrap"]["read"],
-                                                    adf11_year = self.adas_lytrap["adf11_year"],
-                                                    lytrap_adf11_dir=self.adas_lytrap["adf11_dir"],
-                                                    lytrap_pec_file=self.adas_lytrap["pec_file"])
+                                                    restore=not self.input_dict['read_ADAS_lytrap']['read'],
+                                                    adf11_year = self.adas_lytrap['adf11_year'],
+                                                    lytrap_adf11_dir=self.adas_lytrap['adf11_dir'],
+                                                    lytrap_pec_file=self.adas_lytrap['pec_file'])
 
             # Also get standard ADAS data
             self.ADAS_dict = get_ADAS_dict(self.cache_dir,
-                                        self.spec_line_dict, adf11_year=12, restore=not self.input_dict["read_ADAS"])
+                                        self.spec_line_dict, adf11_year=12, restore=not self.input_dict['read_ADAS'])
 
 
-        logger.info(f"diag_list: {self.input_dict["diag_list"]}")
+        logger.info(f"diag_list: {self.input_dict['diag_list']}")
 
     def load_edge_data(self):
         logger.info(f"Loading {self.edge_code} BG plasma from {self.sim_path}.")
@@ -220,7 +220,7 @@ class ProcessEdgeSim:
         
 
         diag_def = get_JETdefs().diag_dict
-        transitions = [(int(v[0]), int(v[1])) for _, v in spec_line_dict["1"]["1"].items()]
+        transitions = [(int(v[0]), int(v[1])) for _, v in spec_line_dict['1']['1'].items()]
         
         # === Create insrument LOS database ===
         instrument_los_dict = {}
@@ -293,7 +293,7 @@ class ProcessEdgeSim:
                 los_coords.append({"p1": p1, "p2": p2.tolist(), "w1": w1, "w2": w2})
             self.outdict[diag]["chord"] = los_coords
 
-            H_lines = spec_line_dict["1"]["1"]
+            H_lines = spec_line_dict['1']['1']
             self.outdict[diag]["units"] = "ph s^-1 m^-2 sr^-1"
 
             for line_key, trans in H_lines.items():
@@ -424,7 +424,7 @@ class ProcessEdgeSim:
         """
         odict = self.__dict__.copy() # copy the dict since we change it
         if self.data_source == "ADAS":
-            del odict["ADAS_dict"]
+            del odict['ADAS_dict']
         return odict
 
     def __setstate__(self, dict):
@@ -456,10 +456,10 @@ class ProcessEdgeSim:
                             diag_dict[wl][src_key] = []
             
             # Get stark and ff_fb wave vectors
-            diag_dict["stark"]["cwl"] = diag_obj.chords[0].los_int_spectra.get("stark", {}).get("cwl", 410.12)
-            diag_dict["stark"]["wavelength"] = diag_obj.chords[0].los_int_spectra.get("stark", {}).get("wavelength", "4101.2")
-            diag_dict["stark"]["wave"] = (diag_obj.chords[0].los_int_spectra.get("stark", {}).get("wave", []))
-            diag_dict["ff_fb_continuum"]["wave"] = (diag_obj.chords[0].los_int_spectra.get("ff_fb_continuum", {}).get("wave", []))
+            diag_dict["stark"]["cwl"] = diag_obj.chords[0].los_int_spectra.get('stark', {}).get("cwl", 410.12)
+            diag_dict["stark"]["wavelength"] = diag_obj.chords[0].los_int_spectra.get('stark', {}).get("wavelength", "4101.2")
+            diag_dict["stark"]["wave"] = (diag_obj.chords[0].los_int_spectra.get('stark', {}).get("wave", []))
+            diag_dict["ff_fb_continuum"]["wave"] = (diag_obj.chords[0].los_int_spectra.get('ff_fb_continuum', {}).get("wave", []))
 
             # Store data per chord
             for chord in diag_obj.chords:
@@ -469,8 +469,8 @@ class ProcessEdgeSim:
                         if src_key != "units":
                             diag_dict[wl][src_key].append(val)
                 # Fill stark emission and ff_fb_continuum
-                diag_dict["stark"]["intensity"].append(chord.los_int_spectra.get("stark", {}).get("intensity", []))
-                diag_dict["ff_fb_continuum"]["intensity"].append(chord.los_int_spectra.get("ff_fb_continuum", {}).get("intensity", []))
+                diag_dict["stark"]["intensity"].append(chord.los_int_spectra.get('stark', {}).get("intensity", []))
+                diag_dict["ff_fb_continuum"]["intensity"].append(chord.los_int_spectra.get('ff_fb_continuum', {}).get("intensity", []))
 
                 # Create chord dictionary with geometry + los_1d + spectrum
                 chord_entry = {
@@ -487,47 +487,47 @@ class ProcessEdgeSim:
         self.outdict = outdict
 
     def calc_H_emiss(self):
-        """
+        '''
         Calculate the hydrogenic emission for spectral lines defined in the input
 
         If data source is AMJUEL, calculate the emission with contributions from molecules and H-
         Otherwise used ADAS rates for contributions from el-impact excitation and recombination.
-        """
-        logger.info("Calculating H emission...")
+        '''
+        logger.info('Calculating H emission...')
         print("self.data_source == AMJUEL: ", self.data_source == "AMJUEL")
         print(self.data_source)
         if self.data_source == "AMJUEL":
-            logger.info("Using AMJUEL data")
+            logger.info('Using AMJUEL data')
             debug = True
             h3 = False
             if self.AMJUEL_date >= 2017:
                 h3 = True
-            for line_key in self.spec_line_dict["1"]["1"]:
-                E_excit, E_recom, E_mol, E_h2_pos, E_h3_pos, E_h_neg, E_tot = calc_photon_rate(self.spec_line_dict["1"]["1"][line_key], self.te, self.ne, self.n0, mol_n_density=self.n2,molp_n_density=self.n2p,p_density=self.ni, h3=h3, recalc_h2_pos=self.recalc_h2_pos, debug=debug)
+            for line_key in self.spec_line_dict['1']['1']:
+                E_excit, E_recom, E_mol, E_h2_pos, E_h3_pos, E_h_neg, E_tot = calc_photon_rate(self.spec_line_dict['1']['1'][line_key], self.te, self.ne, self.n0, mol_n_density=self.n2,molp_n_density=self.n2p,p_density=self.ni, h3=h3, recalc_h2_pos=self.recalc_h2_pos, debug=debug)
                 for k in range(len(self.cells)):
-                    self.cells[k].H_emiss[line_key] = {"excit": E_excit[k], "recom": E_recom[k], "h2": E_mol[k], "h2+": E_h2_pos[k], "h3+": E_h3_pos[k], "h-": E_h_neg[k], "tot": E_tot[k], 
-                    "units": "ph.s^-1.m^-3.sr^-1"}
+                    self.cells[k].H_emiss[line_key] = {'excit': E_excit[k], 'recom': E_recom[k], "h2": E_mol[k], "h2+": E_h2_pos[k], "h3+": E_h3_pos[k], "h-": E_h_neg[k], "tot": E_tot[k], 
+                    "units": 'ph.s^-1.m^-3.sr^-1'}
                                       
         else: 
             logger.info("Using Adas")
             for cell in self.cells:
-                for line_key in self.spec_line_dict["1"]["1"]:
-                    E_excit, E_recom= adas_adf15_read.get_H_line_emiss(line_key, self.ADAS_dict["adf15"]["1"]["1"], cell.te, cell.ne*1.0E-06, cell.ni*1.0E-06, cell.n0*1.0E-06)
-                    cell.H_emiss[line_key] = {"excit":E_excit, "recom":E_recom, "units":"ph.s^-1.m^-3.sr^-1"}
+                for line_key in self.spec_line_dict['1']['1']:
+                    E_excit, E_recom= adas_adf15_read.get_H_line_emiss(line_key, self.ADAS_dict['adf15']['1']['1'], cell.te, cell.ne*1.0E-06, cell.ni*1.0E-06, cell.n0*1.0E-06)
+                    cell.H_emiss[line_key] = {'excit':E_excit, 'recom':E_recom, 'units':'ph.s^-1.m^-3.sr^-1'}
 
         if self.spec_line_dict_lytrap:
-            logger.info("Calculating H emission for Ly trapping...")
+            logger.info('Calculating H emission for Ly trapping...')
             for cell in self.cells:
-                for line_key in self.spec_line_dict_lytrap["1"]["1"]:
-                    E_excit, E_recom= adas_adf15_read.get_H_line_emiss(line_key, self.ADAS_dict_lytrap["adf15"]["1"]["1"], cell.te, cell.ne*1.0E-06, cell.ni*1.0E-06, cell.n0*1.0E-06)
-                    cell.H_emiss[line_key] = {"excit":E_excit, "recom":E_recom, "units":"ph.s^-1.m^-3.sr^-1"}
+                for line_key in self.spec_line_dict_lytrap['1']['1']:
+                    E_excit, E_recom= adas_adf15_read.get_H_line_emiss(line_key, self.ADAS_dict_lytrap['adf15']['1']['1'], cell.te, cell.ne*1.0E-06, cell.ni*1.0E-06, cell.n0*1.0E-06)
+                    cell.H_emiss[line_key] = {'excit':E_excit, 'recom':E_recom, 'units':'ph.s^-1.m^-3.sr^-1'}
 
     def calc_ff_fb_filtered_emiss(self, filter_wv_nm, filter_tran):
         # TODO: ADD ZEFF CAPABILITY
 
         wave_nm = np.linspace(filter_wv_nm[0], filter_wv_nm[-1], 10)
 
-        logger.info("Calculating FF+FB filtered emission...")
+        logger.info('Calculating FF+FB filtered emission...')
         for cell in self.cells:
             ff_only, ff_fb_tot = continuo_read.adas_continuo_py(wave_nm, cell.te, 1, 1)
             f = interp1d(wave_nm, ff_fb_tot)
@@ -538,15 +538,15 @@ class ProcessEdgeSim:
             ff_fb_tot_interp *= filter_tran
             # Integrate over wavelength
             ff_fb_tot_emiss = np.trapz(ff_fb_tot_interp, filter_wv_nm)
-            cell.ff_fb_filtered_emiss = {"ff_fb":ff_fb_tot_emiss, "units":"ph.s^-1.m^-3.sr^-1",
-                                "filter_wv_nm":filter_wv_nm, "filter_tran":filter_tran}
+            cell.ff_fb_filtered_emiss = {'ff_fb':ff_fb_tot_emiss, 'units':'ph.s^-1.m^-3.sr^-1',
+                                'filter_wv_nm':filter_wv_nm, 'filter_tran':filter_tran}
 
     def calc_ff_fb_emiss(self):
         # TODO: ADD ZEFF !
 
         wave_nm = np.logspace((0.001), np.log10(100000), 500)
 
-        logger.info("Calculating FF+FB emission...")
+        logger.info('Calculating FF+FB emission...')
         sum_ff_radpwr = 0
         for cell in self.cells:
             ff_only, ff_fb = continuo_read.adas_continuo_py(wave_nm, cell.te, 1, 1, output_in_ph_s=False)
@@ -570,14 +570,14 @@ class ProcessEdgeSim:
         # Te_rnge = [0.2, 5000]
         # ne_rnge = [1.0e11, 1.0e15]
         # self.H_adf11 = adas_adf11_utils.get_adas_H_adf11_interp(Te_rnge, ne_rnge, npts=self.ADAS_npts, npts_interp=1000, pwr=True)
-        logger.info("Calculating H radiated power...")
+        logger.info('Calculating H radiated power...')
         sum_pwr = 0
         for cell in self.cells:
-            iTe, vTe = find_nearest(self.ADAS_dict["adf11"]["1"].Te_arr, cell.te)
-            ine, vne = find_nearest(self.ADAS_dict["adf11"]["1"].ne_arr, cell.ne*1.0e-06)
+            iTe, vTe = find_nearest(self.ADAS_dict['adf11']['1'].Te_arr, cell.te)
+            ine, vne = find_nearest(self.ADAS_dict['adf11']['1'].ne_arr, cell.ne*1.0e-06)
             # plt/prb absolute rad pow contr in units W.cm^3
-            plt_contr = self.ADAS_dict["adf11"]["1"].plt[iTe,ine]*(1.0e-06*cell.n0)*(1.0e-06*cell.ne) #W.cm^-3
-            prb_contr = self.ADAS_dict["adf11"]["1"].prb[iTe,ine]*(1.0e-06*cell.ni)*(1.0e-06*cell.ne) #W.cm^-3
+            plt_contr = self.ADAS_dict['adf11']['1'].plt[iTe,ine]*(1.0e-06*cell.n0)*(1.0e-06*cell.ne) #W.cm^-3
+            prb_contr = self.ADAS_dict['adf11']['1'].prb[iTe,ine]*(1.0e-06*cell.ni)*(1.0e-06*cell.ne) #W.cm^-3
             cell_vol = cell.poly.area * 2.0 * np.pi * cell.R # m^3
             cell.H_radpwr = (plt_contr+prb_contr) * 1.e06 * cell_vol # Watts
             cell.H_radpwr_perm3 = (plt_contr+prb_contr) * 1.e06 # Watts m^-3
@@ -587,15 +587,15 @@ class ProcessEdgeSim:
         logger.info(f"Total H radiated power: {sum_pwr} [W] ")
 
         if self.spec_line_dict_lytrap:
-            logger.info("Calculating H radiated power for Ly trapping...")
+            logger.info('Calculating H radiated power for Ly trapping...')
             sum_pwr = 0
             for cell in self.cells:
-                iTe, vTe = find_nearest(self.ADAS_dict_lytrap["adf11"]["1"].Te_arr, cell.te)
-                ine, vne = find_nearest(self.ADAS_dict_lytrap["adf11"]["1"].ne_arr, cell.ne * 1.0e-06)
+                iTe, vTe = find_nearest(self.ADAS_dict_lytrap['adf11']['1'].Te_arr, cell.te)
+                ine, vne = find_nearest(self.ADAS_dict_lytrap['adf11']['1'].ne_arr, cell.ne * 1.0e-06)
                 # plt/prb absolute rad pow contr in units W.cm^3
-                plt_contr = self.ADAS_dict_lytrap["adf11"]["1"].plt[iTe, ine] * (1.0e-06 * cell.n0) * (
+                plt_contr = self.ADAS_dict_lytrap['adf11']['1'].plt[iTe, ine] * (1.0e-06 * cell.n0) * (
                             1.0e-06 * cell.ne)  # W.cm^-3
-                prb_contr = self.ADAS_dict_lytrap["adf11"]["1"].prb[iTe, ine] * (1.0e-06 * cell.ni) * (
+                prb_contr = self.ADAS_dict_lytrap['adf11']['1'].prb[iTe, ine] * (1.0e-06 * cell.ni) * (
                             1.0e-06 * cell.ne)  # W.cm^-3
                 cell_vol = cell.poly.area * 2.0 * np.pi * cell.R  # m^3
                 cell.H_radpwr_Lytrap = (plt_contr + prb_contr) * 1.e06 * cell_vol  # Watts
@@ -612,7 +612,7 @@ class ProcessEdgeSim:
             # check if cell interstects with los.poly
             elif los.los_poly.intersects(cell.poly):
                 clipped_poly = los.los_poly.intersection(cell.poly)
-                if clipped_poly.geom_type == "Polygon":
+                if clipped_poly.geom_type == 'Polygon':
                     centroid_p = clipped_poly.centroid
                     clipped_cell = Cell(centroid_p.x, centroid_p.y, poly=clipped_poly, te=cell.te, ne=cell.ne, ni=cell.ni, n0=cell.n0, Srec=cell.Srec, Sion=cell.Sion)
                     clipped_cell.H_emiss = cell.H_emiss
@@ -633,54 +633,54 @@ class ProcessEdgeSim:
         """ TODO: CHECK THIS PROCEDURE WITH DEREK/JAMES"""
 
         # LFS
-        endidx = self.data.qpartot_LFS["npts"]
-        xidx, = np.where(np.array(self.data.qpartot_LFS["xdata"][0:endidx]) > 0.0)
+        endidx = self.data.qpartot_LFS['npts']
+        xidx, = np.where(np.array(self.data.qpartot_LFS['xdata'][0:endidx]) > 0.0)
         # CONVERT QPAR TO QPOL (QPOL = QPAR * Btheta/Btot)
-        qpol_LFS = np.array(self.data.qpartot_LFS["ydata"])[xidx] * np.array(self.data.bpol_btot_LFS["ydata"])[xidx]
+        qpol_LFS = np.array(self.data.qpartot_LFS['ydata'])[xidx] * np.array(self.data.bpol_btot_LFS['ydata'])[xidx]
         # calculate DR from neighbours
         dR_LFS = np.zeros((len(xidx)))
         for idx, val in enumerate(xidx):
-            left_neighb = np.sqrt(((self.data.qpartot_LFS_rmesh["ydata"][val]-
-                                    self.data.qpartot_LFS_rmesh["ydata"][val-1])**2)+
-                                  ((self.data.qpartot_LFS_zmesh["ydata"][val]-
-                                    self.data.qpartot_LFS_zmesh["ydata"][val-1])**2))
+            left_neighb = np.sqrt(((self.data.qpartot_LFS_rmesh['ydata'][val]-
+                                    self.data.qpartot_LFS_rmesh['ydata'][val-1])**2)+
+                                  ((self.data.qpartot_LFS_zmesh['ydata'][val]-
+                                    self.data.qpartot_LFS_zmesh['ydata'][val-1])**2))
             if val != xidx[-1]:
-                right_neighb = np.sqrt(((self.data.qpartot_LFS_rmesh["ydata"][val+1]-
-                                         self.data.qpartot_LFS_rmesh["ydata"][val])**2)+
-                                       ((self.data.qpartot_LFS_zmesh["ydata"][val+1]-
-                                         self.data.qpartot_LFS_zmesh["ydata"][val])**2))
+                right_neighb = np.sqrt(((self.data.qpartot_LFS_rmesh['ydata'][val+1]-
+                                         self.data.qpartot_LFS_rmesh['ydata'][val])**2)+
+                                       ((self.data.qpartot_LFS_zmesh['ydata'][val+1]-
+                                         self.data.qpartot_LFS_zmesh['ydata'][val])**2))
             else:
                 right_neighb = left_neighb
             dR_LFS[idx] = (left_neighb+right_neighb)/2.0
-        area = 2. * np.pi * np.array(self.data.qpartot_LFS_rmesh["ydata"])[xidx] * dR_LFS
+        area = 2. * np.pi * np.array(self.data.qpartot_LFS_rmesh['ydata'])[xidx] * dR_LFS
         self.qpol_div_LFS = np.sum(qpol_LFS*area)
 
         # HFS
-        endidx = self.data.qpartot_HFS["npts"]
-        xidx, = np.where(np.array(self.data.qpartot_HFS["xdata"])[0:endidx] > 0.0)
+        endidx = self.data.qpartot_HFS['npts']
+        xidx, = np.where(np.array(self.data.qpartot_HFS['xdata'])[0:endidx] > 0.0)
         # CONVERT QPAR TO QPOL (QPOL = QPAR * Btheta/Btot)
-        qpol_HFS = np.array(self.data.qpartot_HFS["ydata"])[xidx] * np.array(self.data.bpol_btot_HFS["ydata"])[xidx]
+        qpol_HFS = np.array(self.data.qpartot_HFS['ydata'])[xidx] * np.array(self.data.bpol_btot_HFS['ydata'])[xidx]
         # calculate dR from neighbours
         dR_HFS = np.zeros((len(xidx)))
         for idx, val in enumerate(xidx):
-            left_neighb = np.sqrt(((self.data.qpartot_HFS_rmesh["ydata"][val]-
-                                    self.data.qpartot_HFS_rmesh["ydata"][val-1])**2)+
-                                  ((self.data.qpartot_HFS_zmesh["ydata"][val]-
-                                    self.data.qpartot_HFS_zmesh["ydata"][val-1])**2))
+            left_neighb = np.sqrt(((self.data.qpartot_HFS_rmesh['ydata'][val]-
+                                    self.data.qpartot_HFS_rmesh['ydata'][val-1])**2)+
+                                  ((self.data.qpartot_HFS_zmesh['ydata'][val]-
+                                    self.data.qpartot_HFS_zmesh['ydata'][val-1])**2))
             if val != xidx[-1]:
-                right_neighb = np.sqrt(((self.data.qpartot_HFS_rmesh["ydata"][val+1]-
-                                         self.data.qpartot_HFS_rmesh["ydata"][val])**2)+
-                                       ((self.data.qpartot_HFS_zmesh["ydata"][val+1]-
-                                         self.data.qpartot_HFS_zmesh["ydata"][val])**2))
+                right_neighb = np.sqrt(((self.data.qpartot_HFS_rmesh['ydata'][val+1]-
+                                         self.data.qpartot_HFS_rmesh['ydata'][val])**2)+
+                                       ((self.data.qpartot_HFS_zmesh['ydata'][val+1]-
+                                         self.data.qpartot_HFS_zmesh['ydata'][val])**2))
             else:
                 right_neighb = left_neighb
             dR_HFS[idx] = (left_neighb+right_neighb)/2.0
-        area = 2. * np.pi * np.array(self.data.qpartot_HFS_rmesh["ydata"])[xidx] * dR_HFS
+        area = 2. * np.pi * np.array(self.data.qpartot_HFS_rmesh['ydata'])[xidx] * dR_HFS
         self.qpol_div_HFS = np.sum(qpol_HFS*area)
 
-        print("Pdiv_LFS (MW): ", self.qpol_div_LFS*1.e-06, "Pdiv_HFS (MW): ", 
-              self.qpol_div_HFS*1.e-06, "POWSOL (MW): ", 
-              self.data.powsol["data"][ self.data.powsol["npts"]-1]*1.e-06)
+        print('Pdiv_LFS (MW): ', self.qpol_div_LFS*1.e-06, 'Pdiv_HFS (MW): ', 
+              self.qpol_div_HFS*1.e-06, 'POWSOL (MW): ', 
+              self.data.powsol['data'][ self.data.powsol['npts']-1]*1.e-06)
 
     def calc_region_aggregates(self):
 
@@ -691,7 +691,7 @@ class ProcessEdgeSim:
             for cell in self.cells:
                 if region.cell_in_region(cell, self.data.shply_sep_poly):
                     region.cells.append(cell)
-                    region.Prad_units = "W"
+                    region.Prad_units = 'W'
                     region.Prad_H += cell.H_radpwr
                     if self.spec_line_dict_lytrap:
                         region.Prad_H_Lytrap += cell.H_radpwr_Lytrap
@@ -701,8 +701,8 @@ class ProcessEdgeSim:
 
     def analyse_synth_spectra(self, res_dict, stark_ne = True, cont_Te = True, line_int_part_bal = False, delL_atomden = False):
 
-        sion_H_transition = self.input_dict["run_options"].get("Sion_H_transition",[[2,1],[3,2]])
-        srec_H_transition = self.input_dict["run_options"].get("Srec_H_transition",[[5,2]])
+        sion_H_transition = self.input_dict['run_options'].get('Sion_H_transition',[[2,1],[3,2]])
+        srec_H_transition = self.input_dict['run_options'].get('Srec_H_transition',[[5,2]])
 
         # Estimate parameters and update res_dict. Call order matters since ne and Te
         # are needed as constraints
@@ -728,5 +728,5 @@ class ProcessEdgeSim:
         
     
     
-if __name__=="__main__":
-    print("To run PESDT, use the 'PESDT_run.py' script in the root of PESDT")
+if __name__=='__main__':
+    print('To run PESDT, use the "PESDT_run.py" script in the root of PESDT')
