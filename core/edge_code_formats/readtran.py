@@ -21,7 +21,7 @@ class Tran :
 
         # Copy each field in an attribute for direct use
         for f in self.tran :
-            setattr(self, f.lower(), self.tran[f] if type(self.tran[f]) is dict else self.tran[f])
+            setattr(self, f.lower(), self.tran[f]['data'] if type(self.tran[f]) is dict else self.tran[f])
         
         # Fill some derived signals
         self.nzs = 0
@@ -31,7 +31,7 @@ class Tran :
             self.denztot.append(np.zeros(self.np))
             for iz in range(nz):
                 idz = idz+1
-                self.denztot[-1] = self.denztot[-1] + self.tran['DENZ{:02d}'.format(idz)]
+                self.denztot[-1] = self.denztot[-1] + self.tran['DENZ{:02d}'.format(idz)]['data']
         for izs in range(len(self.nz)):
             fieldname = 'DENZTOT{:d}'.format(izs+1)
             self.tran[fieldname] = {
@@ -40,7 +40,7 @@ class Tran :
                      'data':self.denztot[izs],
                      'desc':"Tot. imp density",
                      'unit':'M-3'}
-            setattr(self, fieldname.lower(), self.tran[fieldname])
+            setattr(self, fieldname.lower(), self.tran[fieldname]['data'])
 
         self.nj2d = self.nrow-1
         self.ilc = self.ni2d - (self.nxw - self.iopen + 1)
@@ -462,7 +462,7 @@ class Tran :
                 if ((rtmp1[i] == rtmp2[i-1]) and (ztmp1[i] == ztmp2[i-1])) or \
                     ((rtmp2[i] == rtmp1[i-1]) and (ztmp2[i] == ztmp1[i-1])):
                     check = 1
-            if i != (len(rtmp1)):
+            if i != len(rtmp1):
                 if ((rtmp1[i] == rtmp2[i+1]) and (ztmp1[i] == ztmp2[i+1])) or \
                     ((rtmp2[i] == rtmp1[i+1]) and (ztmp2[i] == ztmp1[i+1])):
                     check = 1
