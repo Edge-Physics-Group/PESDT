@@ -494,6 +494,7 @@ class ProcessEdgeSim:
         '''
         logger.info('Calculating H emission...')
         print("self.data_source == AMJUEL: ", self.data_source == "AMJUEL")
+        print(self.data_source)
         if self.data_source == "AMJUEL":
             logger.info('Using AMJUEL data')
             debug = True
