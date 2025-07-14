@@ -252,7 +252,10 @@ class Tran :
             x = [-np.sqrt((x[i]-rsep)**2+(y[i]-zsep)**2) if i<isep else np.sqrt((x[i]-rsep)**2+(y[i]-zsep)**2) for i in range(len(x))]
             r = [-np.sqrt((r[i]-rsep)**2) if i<isep else np.sqrt((r[i]-rsep)**2) for i in range(len(r))]
         elif not row_or_ring :
+            # TODO
+            # Read/calculate distance along the field line
             x=range(len(cells))
+            r = x
         return x, r, data
 
     def load_data2d(self, param: str):
@@ -507,8 +510,8 @@ class Tran :
 
     @sp.setter
     def set_sp(self):
-        rtmp = self.load_data1d('RMESH', row_or_ring=False, index=self.iopen -1)
-        ztmp = -1.0* self.load_data1d('ZMESH', row_or_ring=False, index=self.iopen -1) 
+        _, _, rtmp = self.load_data1d('RMESH', row_or_ring=False, index=self.iopen -1)
+        _, _, ztmp = -1.0* self.load_data1d('ZMESH', row_or_ring=False, index=self.iopen -1) 
         osp = [rtmp[0], ztmp[0]]
         isp = [rtmp[-1], ztmp[-1]]
         self._sp = (osp, isp)
