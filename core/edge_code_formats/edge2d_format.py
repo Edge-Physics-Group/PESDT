@@ -45,10 +45,10 @@ class Edge2D(BackgroundPlasma):
         logger.info(f"Getting data from  {self.tranfile}" )
         
         # Read in R,Z center, corner coordiantes
-        self.rmesh = self.tran.load_data2d('RMESH')
-        self.zmesh = self.tran.load_data2d( 'ZMESH')
-        self.rvertp = self.tran.load_data2d('RVERTP')
-        self.zvertp = self.tran.load_data2d('ZVERTP')
+        self.rmesh = self.tran.rmesh
+        self.zmesh = self.tran.zmesh
+        self.rvertp = self.tran.rvertp
+        self.zvertp = self.tran.zvertp
         # Read in Te, Ti, ni, ne
         self.teve = self.tran.load_data2d( 'TEVE')
         self.tev = self.tran.load_data2d( 'TEV')
@@ -59,7 +59,7 @@ class Edge2D(BackgroundPlasma):
         self.dm = self.tran.load_data2d( 'DM')
         #self.di = self.tran.load_data2d( 'DI')
         # Cell indices
-        self.korpg = self.tran.load_data2d( 'KORPG')
+        self.korpg = self.tran.korpg
         # Read in recombination and ionization sources
         self.sirec = self.tran.load_data2d( 'SIREC')
         self.soun = self.tran.load_data2d( 'SOUN')
@@ -113,25 +113,25 @@ class Edge2D(BackgroundPlasma):
 
         self.cells = []
         self.patches = []
-        npts = np.max(self.tran.korpg)
-        self.row = np.zeros((npts), dtype=int)
-        self.ring = np.zeros((npts), dtype=int)
-        self.rv = np.zeros((npts, 5))
-        self.zv = np.zeros((npts, 5))
-        self.te = np.zeros((npts))
-        self.ti = np.zeros((npts))
-        self.ne = np.zeros((npts))
-        self.ni = np.zeros((npts))
-        self.n0 = np.zeros((npts))
-        self.n2 = np.zeros((npts))
-        self.n2p = np.zeros((npts))
-        self.srec = np.zeros((npts))
-        self.sion = np.zeros((npts))
+        
+        self.row = np.zeros((self.tran.np), dtype=int)
+        self.ring = np.zeros((self.tran.np), dtype=int)
+        self.rv = np.zeros((self.tran.np, 5))
+        self.zv = np.zeros((self.tran.np, 5))
+        self.te = np.zeros((self.tran.np))
+        self.ti = np.zeros((self.tran.np))
+        self.ne = np.zeros((self.tran.np))
+        self.ni = np.zeros((self.tran.np))
+        self.n0 = np.zeros((self.tran.np))
+        self.n2 = np.zeros((self.tran.np))
+        self.n2p = np.zeros((self.tran.np))
+        self.srec = np.zeros((self.tran.np))
+        self.sion = np.zeros((self.tran.np))
        
     
         k = 0
-        for i in range(npts):
-            j = int(self.korpg[i] - 1) # gotcha: convert from fortran indexing to idl/python
+        for i in range(self.tran.np):
+            j = self.korpg[i] - 1 # gotcha: convert from fortran indexing to idl/python
             if j >= 0:
                 j*=5
                 self.rv[k] = [self.rvertp[j],  self.rvertp[j+1], self.rvertp[j+2], self.rvertp[j+3], self.rvertp[j]]
