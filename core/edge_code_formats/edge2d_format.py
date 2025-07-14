@@ -83,8 +83,8 @@ class Edge2D(BackgroundPlasma):
         self.da_IT = self.tran.load_data1d('DA', it=True)
         self.dm_OT = self.tran.load_data1d('DM', ot=True)
         self.dm_IT = self.tran.load_data1d('DM', it=True)
-        self.di_OT = self.tran.load_data1d('DI', ot=True)
-        self.di_IT = self.tran.load_data1d('DI', it=True)
+        #self.di_OT = self.tran.load_data1d('DI', ot=True)
+        #self.di_IT = self.tran.load_data1d('DI', it=True)
 
         # GET GEOM INFO
         self.geom = {'rpx':self.tran.rpx,'zpx':self.tran.zpx}
@@ -98,7 +98,7 @@ class Edge2D(BackgroundPlasma):
         self.ti_OMP = self.tran.load_data1d('TEV', omp = True)
         self.da_OMP = self.tran.load_data1d('DA', omp = True)
         self.dm_OMP = self.tran.load_data1d('DM', omp = True)
-        self.di_OMP = self.tran.load_data1d('DI', omp = True)
+        #self.di_OMP = self.tran.load_data1d('DI', omp = True)
         self.psi_OMP = self.tran.load_data1d('PSI', omp = True)
 
         # GET POWER CROSSING THE SEPARATRIX
