@@ -266,30 +266,20 @@ class Tran :
                 field[self.korpg[i]-1]=data[i]
         return field
 
-    def plot1D(self, field: str, row_or_ring: bool = True, index = 12, ax = None, **kwargs): 
+    def plot1D(self, field, x: np.ndarray= None, row_or_ring: bool = True, index = 12, ax = None, **kwargs): 
+        
+        if isinstance(field, str):
+            x, r, data = self.load_data1d(field, row_or_ring=row_or_ring, index=index, **kwargs)
+            
+        else:
+            # Given user supplied field the user must supply the x vector
+            data = field
+            x = x
 
-        new_figure = False
         if ax is None:
-            new_figure = True
             fig, ax = plt.subplots()
 
-        x, r, data = self.load_data1d(field, row_or_ring=row_or_ring, index=index, **kwargs)
-
-        line = ax.plot(x,data,label=self.catid,color='r',marker='+')
-        lns = []+line
-        label = self.tran[field]['desc'].capitalize()
-        if self.tran[field]['unit'] != '':
-            label = label + ' ('+self.tran[field]['unit'].lower()+')'
-        if new_figure:
-            ax.set_ylabel(label)
-
-
-        labs = [l.get_label() for l in lns]
-        ax.legend(lns, labs)
-        if kwargs.get("log", False):
-            ax.set_yscale('symlog')
-        if new_figure:
-            return x, data, fig, ax
+        ax.plot(x,data,label=self.catid,color='r',marker='+')
         return x, data, ax
 
     def plot2D(self, param, ax = None, **kwargs):
@@ -330,7 +320,7 @@ class Tran :
 
         ax.add_collection(p)
         wall = self.wall
-        wall.set(color = "black")
+        wall.set(color = "black", fill = False)
         ax.add_patch(wall)
 
         sep = self.sepx
@@ -348,7 +338,19 @@ class Tran :
 
         midplane_Z: the z coordinate, which defines the midplane location
         """
-        return 0
+        _, _, ztmp =  self.load_data1d('ZMESH', row_or_ring=False, index=self.iopen) 
+        midpoint = len(ztmp)//2
+        if inner:
+            
+            ztmp = ztmp[midpoint:-1]
+
+            index = np.argmin(ztmp**2)
+            return index + midpoint
+        else:
+            ztmp = ztmp[:midpoint]
+
+            index = np.argmin(ztmp**2)
+            return index 
     
     @property
     def mesh(self):
@@ -449,8 +451,8 @@ class Tran :
 
     @sp.setter
     def sp(self, value):
-        _, _, rtmp = self.load_data1d('RMESH', row_or_ring=False, index=self.iopen -1)
-        _, _, ztmp =  self.load_data1d('ZMESH', row_or_ring=False, index=self.iopen -1) 
+        _, _, rtmp = self.load_data1d('RMESH', row_or_ring=False, index=self.iopen)
+        _, _, ztmp =  self.load_data1d('ZMESH', row_or_ring=False, index=self.iopen) 
         ztmp = -1.0*ztmp
         osp = [rtmp[0], ztmp[0]]
         isp = [rtmp[-1], ztmp[-1]]
