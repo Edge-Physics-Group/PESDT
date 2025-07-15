@@ -60,7 +60,7 @@ class ProcessEdgeSim:
                         recover_line_int_ff_fb_Te(self.outdict)
                 except Exception as e:
                     # SafeGuard for possible issues, so that not all comp. time is lost 
-                    logger.error(f'Something went wrong with AnalyseSynthDiag, error{e}')
+                    logger.error(f'Something went wrong with Line integrated Stark ne, or continuum Te, error{e}')
                     pass
             # SAVE IN JSON FORMAT TO ENSURE PYTHON 2/3 COMPATIBILITY
             if self.input_dict["cherab_options"].get('include_reflections', False):
@@ -311,8 +311,8 @@ class ProcessEdgeSim:
                                             include_recombination=True, data_source=data_source)
                     recom = plasma.integrate_instrument(diag)
                     self.outdict[diag][wavelength]["recom"] = [x[0] for x in recom]
-                # Molecular / negative H species
-                if data_source == "AMJUEL":
+                    # Molecular / negative H species
+                
                     logger.info("H2")
                     plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
                                             include_H2=True, data_source=data_source)

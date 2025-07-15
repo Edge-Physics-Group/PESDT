@@ -143,7 +143,7 @@ def createCherabPlasma(PESDT, transitions: list,
         
         num_species = 6
         species_density = np.zeros((num_species, num_cells))
-        species_density[2,:] = n2[:]
+        
         species_list.append((D2, 0))
         # USE AMJUEL TO CALCULATE SPECIES DENSITY
         reac = reactions(2) # The densities are independent of the hydrogenic excited state
@@ -161,7 +161,10 @@ def createCherabPlasma(PESDT, transitions: list,
         MARc_h_neg_den = read_amjuel_1d(reac["den_H-"][0],reac["den_H-"][1])
         h_neg_den = calc_cross_sections(MARc_h_neg_den, T = te, n = ne*1e-6)*n2
         species_list.append((D0, -1)) 
-
+        species_density[2,:] = n2[:]
+        species_density[3, :] = h2_pos_den[:]
+        species_density[4, :] = h3_pos_den[:]
+        species_density[5, :] = h_neg_den[:]
         logger.info("Precalculating emission")    
         emission = [{} for _ in range(len(species_density))]
         for i in range(len(transitions)):
