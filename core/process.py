@@ -172,7 +172,13 @@ class ProcessEdgeSim:
     def load_edge_data(self):
         logger.info(f"Loading {self.edge_code} BG plasma from {self.sim_path}.")
         if self.edge_code == "edge2d":
-            self.data = Edge2D(self.sim_path)
+            try:
+                self.data = Edge2D(self.sim_path)
+            except Exception as e:
+                logger.warning(f"   Error: {e}")
+                logger.info("   Trying to load with eproc")
+                from .edge_code_formats.edge2d_format_old import Edge2D_old
+                self.data = Edge2D_old(self.sim_path)
         elif self.edge_code == "solps":
             self.data = SOLPS(self.sim_path)
         elif self.edge_code == "oedge":

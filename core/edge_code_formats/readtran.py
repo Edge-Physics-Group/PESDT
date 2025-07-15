@@ -109,8 +109,6 @@ class Tran :
         for i in range(self.nc) :
             self.regkor[self.np+i] = self.regkor[self.kory[i,0]]
 
-        
-
     def readString(self,f):
        ndata = np.fromfile(f, dtype=np.int32, count = 1)
        data  = np.fromfile(f, dtype=np.byte, count = ndata[0])
@@ -230,7 +228,6 @@ class Tran :
                 k = self.kory[index-1,j]
                 cells.append(k)
 
-
         data = [k+1 for k in cells]
         data = getattr(self,field.lower())[cells]
         
@@ -295,84 +292,28 @@ class Tran :
             return x, data, fig, ax
         return x, data, ax
 
-    def plot2D(self, param: str, ax = None, cell = None,row=None, **kwargs):
-        data  = self.regkor
-        if param != "MESH" :
+    def plot2D(self, param, ax = None, **kwargs):
+        """
+        Create a 2D plot of the given plasma parameter
+        if param is of type str, look for the param in 
+        the tran file, else assume that it is a valid
+        2D map on the grid.
+        """
+        if isinstance(param, str):
+        
             data = getattr(self,param.lower())
-        if ax is None:
-            fig, ax = plt.subplots(figsize=(4.5,7.5))
-        mesh, pol2k = self.mesh
-        
-        highlighted_polygons = []
-        highlight_color = 'yellow'  # or 'red' or a colormap
-        for k in range(self.np):
-            if self.korpg[k] != 0 :
-                i = self.korpg[k] - 1
-                if i > k - self.nj[0] +1 : continue
-                if row is not None:
-                    if self.jkor[k] == row:
-                        points = np.transpose(np.concatenate(([self.rvertp[i*5:i*5+4]], [-self.zvertp[i*5:i*5+4]]), axis=0))
-                        polygon = Polygon(points, closed=True)
-                        highlighted_polygons.append(polygon)
-
-
-        field=np.zeros(len(self.nvertp))
-        for i in range(len(data)):
-            if i >= len(self.korpg) : continue
-            if self.korpg[i] > 0:
-                field[self.korpg[i]-1]=data[i]
-        
-        if param == "MESH":
-            cmap = plt.get_cmap('plasma', 100)
-            cmap = ListedColormap(cm.tab10.colors[:100])
-            p = PatchCollection(mesh, alpha=0.4,cmap=cmap)
-            p.set_array(field)
-            p.set_clim([0, 8])
-        else :
             field=np.zeros(len(self.nvertp))
             for i in range(len(data)):
                 if i >= len(self.korpg) : continue
                 if self.korpg[i] > 0:
                     field[self.korpg[i]-1]=data[i]
-            cmap = plt.get_cmap('plasma', 100)
-            if kwargs.get("log", False) :
-                if kwargs.get("vmin", False):
-                    p = PatchCollection(mesh,cmap=cmap,norm=SymLogNorm(linthresh=float(kwargs["log"]), vmin = kwargs["vmin"]))
-                else:
-                    p = PatchCollection(mesh,cmap=cmap,norm=SymLogNorm(linthresh=float(kwargs["log"])))
-            else :
-                p = PatchCollection(mesh,cmap=cmap)
-            p.set_edgecolor('face')
-            p.set_array(field)
-            divider = make_axes_locatable(ax)
-            cax = divider.append_axes("right", size="5%", pad=0.05)
-            plt.colorbar(p, cax=cax)
-            
+        else:
+            field = param
 
-        ax.add_collection(p)
-        if highlighted_polygons:
-            highlight_patch = PatchCollection(highlighted_polygons, facecolor=highlight_color, edgecolor='black', alpha=0.8, linewidths=1.0)
-            ax.add_collection(highlight_patch)
-        rves=self.rvesm1
-        zves=-self.zvesm1
-        rves2=self.rvesm2
-        zves2=-self.zvesm2
-        for i in range(len(rves)):
-            if rves2[i]==0.0 : continue
-            ax.plot([rves[i],rves2[i]],[zves[i],zves2[i]],'black')
-
-        sep = self.sepx
-        for i in range(len(sep)):
-            ax.plot(sep[i][0],sep[i][1],'black', linewidth = 0.75)
-        
-        lims=ax.axis('image')
-        
-        return ax
-    
-    def plot2D_data(self, data, ax = None, cell = None,row=None, **kwargs):
         if ax is None:
-                fig, ax = plt.subplots(figsize=(4.5,7.5))
+            fig, ax = plt.subplots(figsize=(4.5,7.5))
         mesh, pol2k = self.mesh
+    
         cmap = plt.get_cmap('plasma', 100)
         if kwargs.get("log", False) :
             if kwargs.get("vmin", False):
@@ -382,18 +323,15 @@ class Tran :
         else :
             p = PatchCollection(mesh,cmap=cmap)
         p.set_edgecolor('face')
-        p.set_array(data)
+        p.set_array(field)
         divider = make_axes_locatable(ax)
         cax = divider.append_axes("right", size="5%", pad=0.05)
         plt.colorbar(p, cax=cax)
+
         ax.add_collection(p)
-        rves=self.rvesm1
-        zves=-self.zvesm1
-        rves2=self.rvesm2
-        zves2=-self.zvesm2
-        for i in range(len(rves)):
-            if rves2[i]==0.0 : continue
-            ax.plot([rves[i],rves2[i]],[zves[i],zves2[i]],'black')
+        wall = self.wall
+        wall.set(color = "black")
+        ax.add_patch(wall)
 
         sep = self.sepx
         for i in range(len(sep)):
@@ -411,6 +349,7 @@ class Tran :
         midplane_Z: the z coordinate, which defines the midplane location
         """
         return 0
+    
     @property
     def mesh(self):
         if not hasattr(self, '_mesh'):
@@ -493,9 +432,7 @@ class Tran :
     def sepx(self, value):
         rsepx = self.rsepx
         zsepx = self.zsepx
-
         points = []
-
         for i in range(len(rsepx)):
             points.append([rsepx[i], -zsepx[i]])
 
@@ -509,7 +446,6 @@ class Tran :
         if not hasattr(self, '_sp'):
             self.sp = None  # Trigger the setter
         return self._sp
-
 
     @sp.setter
     def sp(self, value):

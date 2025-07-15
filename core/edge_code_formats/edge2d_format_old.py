@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 class Edge2D_old(BackgroundPlasma):
     '''
-    A class to handle reading EDGE2D-EIRENE simulation results. To initialize, give
+    A class to handle reading (old) EDGE2D-EIRENE simulation results. To initialize, give
     "tranfile", i.e. the directory path to the result tran file, as a string (str)
     
     __init__: 

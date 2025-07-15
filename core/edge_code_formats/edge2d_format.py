@@ -57,7 +57,7 @@ class Edge2D(BackgroundPlasma):
         # Read in na and nm (atomic, molecular)
         self.da = self.tran.da
         self.dm = self.tran.dm
-        #self.di = self.tran.load_data2d( 'DI')
+
         # Cell indices
         self.korpg = self.tran.korpg
         # Read in recombination and ionization sources
@@ -83,8 +83,6 @@ class Edge2D(BackgroundPlasma):
         self.da_IT = self.tran.load_data1d('DA', it=True)
         self.dm_OT = self.tran.load_data1d('DM', ot=True)
         self.dm_IT = self.tran.load_data1d('DM', it=True)
-        #self.di_OT = self.tran.load_data1d('DI', ot=True)
-        #self.di_IT = self.tran.load_data1d('DI', it=True)
 
         # GET GEOM INFO
         self.geom = {'rpx':self.tran.rpx,'zpx':self.tran.zpx}
@@ -97,7 +95,6 @@ class Edge2D(BackgroundPlasma):
         self.ti_OMP = self.tran.load_data1d('TEV', omp = True)
         self.da_OMP = self.tran.load_data1d('DA', omp = True)
         self.dm_OMP = self.tran.load_data1d('DM', omp = True)
-        #self.di_OMP = self.tran.load_data1d('DI', omp = True)
         self.psi_OMP = self.tran.load_data1d('PSI', omp = True)
 
         # GET POWER CROSSING THE SEPARATRIX
@@ -140,7 +137,7 @@ class Edge2D(BackgroundPlasma):
                 self.ne[k] = self.denel[i]
                 self.n0[k] = self.da[i]
                 self.n2[k] = self.dm[i]
-                self.n2p[k] = 0.0 #self.di[i]
+                self.n2p[k] = 0.0 
                 self.srec[k] = self.sirec[i]
                 self.sion[k] = self.soun[i]
 
