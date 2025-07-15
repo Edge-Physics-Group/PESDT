@@ -5,13 +5,30 @@ class YACORA():
 
     def __init__(self, data_path: str):
         self.data_path = data_path
-        
+        # Create data paths
         h_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H.txt")
+        h_rec_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H+.txt")
         h2_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H2.txt")
+        h2_pos_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H2+.txt")
+        h3_pos_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H3+.txt")
+        hneg1_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H-_with_H2+.txt")
+        hneg2_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H-_with_H+.txt")
+        # Read data
         h_data, _ = self.read_yacora_rate(h_data_path)
-        h2_data,_ = self.read_yacora_rate(h2_data_path)
+        h_rec_data,_ = self.read_yacora_rate(h_rec_data_path)
+        h2_data, _ = self.read_yacora_rate(h2_data_path)
+        h2_pos_data,_ = self.read_yacora_rate(h2_pos_data_path)
+        h3_pos_data, _ = self.read_yacora_rate(h3_pos_data_path)
+        hneg1_data,_ = self.read_yacora_rate(hneg1_data_path)
+        hneg2_data,_ = self.read_yacora_rate(hneg2_data_path)
+        # Assing to dicts for calculating rates
         self.h_rates = {3: h_data}
+        self.h_rec_rates = {3: h_rec_data}
         self.h2_rates = {3: h2_data}
+        self.h2_pos_rates = {3: h2_pos_data}
+        self.h3_pos_rates = {3: h3_pos_data}
+        self.hneg1_rates = {3: hneg1_data}
+        self.hneg2_rates = {3: hneg2_data}
     
     @staticmethod
     def A_coeff(transition):
@@ -75,47 +92,49 @@ class YACORA():
             denom += weight
         return num / denom
 
-    def calc_photon_rate(self, transition: tuple, te: np.ndarray, ne: np.ndarray, nh: np.ndarray, nh2: np.ndarray):
+    def calc_photon_rate(self, 
+                         transition: tuple, 
+                         te: np.ndarray, 
+                         ne: np.ndarray, 
+                         nh: np.ndarray, 
+                         nh2: np.ndarray, 
+                         nh2_pos: np.ndarray, 
+                         nh3_pos: np.ndarray, 
+                         nhneg: np.ndarray):
         # Make sure that the transition is in integers
         transition = (int(transition[0]), int(transition[1]))
         h_rate = self.h_rates.get(transition[0], None)
+        h_rec_rate = self.h_rec_rates.get(transition[0], None)
         h2_rate = self.h2_rates.get(transition[0], None)
+        h2_pos_rate = self.h2_pos_rates.get(transition[0], None)
+        h3_pos_rate = self.h3_pos_rates.get(transition[0], None)
+        hneg1_rate = self.hneg1_rates.get(transition[0], None)
+        hneg2_rate = self.hneg2_rates.get(transition[0], None)
+
         if h2_rate is None or h_rate is None:
             raise Exception(f"Transition {transition} not found in YACORA data. Check your transitions and YACORA database. \nYACORA data path: {self.data_path}")
         acoeff = self.A_coeff(transition)
+
         h_rate_interp = self.interpolate_yacora_rate_arr(te, ne, h_rate)
+        h_rec_rate_interp = self.interpolate_yacora_rate_arr(te, ne, h_rec_rate)
         h2_rate_interp = self.interpolate_yacora_rate_arr(te, ne, h2_rate)
+        h2_pos_rate_interp = self.interpolate_yacora_rate_arr(te, ne, h2_pos_rate)
+        h3_pos_rate_interp = self.interpolate_yacora_rate_arr(te, ne, h3_pos_rate)
+        hneg1_rate_interp = self.interpolate_yacora_rate_arr(te, ne, hneg1_rate)
+        hneg2_rate_interp = self.interpolate_yacora_rate_arr(te, ne, hneg2_rate)
+        hneg_tot = hneg1_rate_interp + hneg2_rate_interp
+
         h_emiss = acoeff*h_rate_interp * ne * nh /(4.0*np.pi)
+        h_rec_emiss = acoeff*h_rec_rate_interp * ne * ne /(4.0*np.pi)
         h2_emiss = acoeff*h2_rate_interp * ne * nh2 /(4.0*np.pi)
+        h2_pos_emiss = acoeff*h2_pos_rate_interp * ne * nh2_pos /(4.0*np.pi)
+        h3_pos_emiss = acoeff*h3_pos_rate_interp * ne * nh3_pos /(4.0*np.pi)
+        hneg_emiss = acoeff*hneg_tot * ne * nhneg /(4.0*np.pi)
 
-        return h_emiss, h2_emiss
-    
-    @staticmethod
-    def interpolate_idw_vectorized(x, y, points, power=2):
-        # NOT FUNCTIONAL
-        """
-        Vectorized inverse distance weighting interpolation for arrays x, y.
+        tot = h_emiss + h_rec_emiss + h2_emiss + h2_pos_emiss + h3_pos_emiss + hneg_emiss
 
-        points: shape (n_points, 3), with columns [xi, yi, zi]
-        x, y: arrays of shape (N,)
-        Returns: array of shape (N,)
-        """
-        xi = points[:, 0][:, None]  # shape (4, 1)
-        yi = points[:, 1][:, None]  # shape (4, 1)
-        zi = points[:, 2][:, None]  # shape (4, 1)
 
-        dx = x[None, :] - xi        # shape (4, N)
-        dy = y[None, :] - yi        # shape (4, N)
-        dist_sq = dx**2 + dy**2     # shape (4, N)
-
-        # Avoid division by zero
-        eps = 1e-12
-        dist_sq = np.where(dist_sq == 0, eps, dist_sq)
-
-        weights = 1 / dist_sq**(power / 2)  # shape (4, N)
-        weighted_vals = weights * zi       # shape (4, N)
-
-        return np.sum(weighted_vals, axis=0) / np.sum(weights, axis=0)  # shape (N,)
+        return h_emiss, h_rec_emiss, h2_emiss, h2_pos_emiss, h3_pos_emiss, hneg_emiss, tot
 
     def interpolate_yacora_rate_arr(self, te_arr_in, ne_arr_in, rate):
         ret = np.zeros(te_arr_in.shape)
@@ -162,60 +181,4 @@ class YACORA():
         points = [(te_lo, ne_lo_lo, pop_lo_lo), (te_lo, ne_lo_hi, pop_lo_hi), (te_hi, ne_hi_lo, pop_hi_lo), (te_hi, ne_hi_hi, pop_hi_hi)]
         return self.interpolate_idw(te, ne, points)
 
-    def interpolate_yacora_rate_vectorized(self, te_arr_in, ne_arr_in, rate):
-        te_grid = np.array(sorted(rate.keys()))  # sorted Te values
-        te_arr_in = np.asarray(te_arr_in)
-        ne_arr_in = np.asarray(ne_arr_in)
-
-        idx_te = np.searchsorted(te_grid, te_arr_in, side='right') - 1
-        idx_te = np.clip(idx_te, 0, len(te_grid) - 2)  # ensure idx and idx+1 are valid
-
-        te_lo = te_grid[idx_te]
-        te_hi = te_grid[idx_te + 1]
-
-        N = len(te_arr_in)
-        pop_lo_lo = np.empty(N)
-        pop_lo_hi = np.empty(N)
-        pop_hi_lo = np.empty(N)
-        pop_hi_hi = np.empty(N)
-        ne_lo_lo = np.empty(N)
-        ne_lo_hi = np.empty(N)
-        ne_hi_lo = np.empty(N)
-        ne_hi_hi = np.empty(N)
-
-        for i in range(N):
-            te0 = te_lo[i]
-            te1 = te_hi[i]
-
-            ne_vals0 = rate[te0][:, 0]
-            pop_vals0 = rate[te0][:, 1]
-            ne_vals1 = rate[te1][:, 0]
-            pop_vals1 = rate[te1][:, 1]
-
-            ne_idx0 = np.searchsorted(ne_vals0, ne_arr_in[i], side='right') - 1
-            ne_idx1 = np.searchsorted(ne_vals1, ne_arr_in[i], side='right') - 1
-
-            ne_idx0 = np.clip(ne_idx0, 0, len(ne_vals0) - 2)
-            ne_idx1 = np.clip(ne_idx1, 0, len(ne_vals1) - 2)
-
-            ne_lo_lo[i] = ne_vals0[ne_idx0]
-            ne_lo_hi[i] = ne_vals0[ne_idx0 + 1]
-            pop_lo_lo[i] = pop_vals0[ne_idx0]
-            pop_lo_hi[i] = pop_vals0[ne_idx0 + 1]
-
-            ne_hi_lo[i] = ne_vals1[ne_idx1]
-            ne_hi_hi[i] = ne_vals1[ne_idx1 + 1]
-            pop_hi_lo[i] = pop_vals1[ne_idx1]
-            pop_hi_hi[i] = pop_vals1[ne_idx1 + 1]
-
-        # Pack the 4 surrounding points
-        points = np.stack([
-            np.stack([te_lo, ne_lo_lo, pop_lo_lo], axis=1),
-            np.stack([te_lo, ne_lo_hi, pop_lo_hi], axis=1),
-            np.stack([te_hi, ne_hi_lo, pop_hi_lo], axis=1),
-            np.stack([te_hi, ne_hi_hi, pop_hi_hi], axis=1),
-        ])  # shape (4, N, 3)
-
-        # Reshape for interpolation function: (4, N, 3) → (4, 3) x N cases
-        interpolated = self.interpolate_idw_vectorized(te_arr_in, ne_arr_in, points.reshape(4, -1, 3))
-        return interpolated
+    

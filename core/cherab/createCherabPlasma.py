@@ -141,18 +141,38 @@ def createCherabPlasma(PESDT, transitions: list,
     elif data_source == "YACORA":
         yacora = YACORA(PESDT.YACORA_RATES_PATH)
         
-        num_species = 3
+        num_species = 6
         species_density = np.zeros((num_species, num_cells))
         species_density[2,:] = n2[:]
         species_list.append((D2, 0))
+        # USE AMJUEL TO CALCULATE SPECIES DENSITY
+        reac = reactions(2) # The densities are independent of the hydrogenic excited state
+        if recalc_h2_pos:
+            MARc_h2_pos_den = read_amjuel_2d(reac["den_H2+"][0],reac["den_H2+"][1])
+            h2_pos_den = calc_cross_sections(MARc_h2_pos_den, T = te, n = ne*1e-6)*n2
+        else:
+            h2_pos_den = n2p[:]
+        species_list.append((D2, 1))
+        
+        MARc_h3_pos_den = read_amjuel_1d(reac["den_H3+"][0],reac["den_H3+"][1])
+        h3_pos_den = calc_cross_sections(MARc_h3_pos_den, T = te, n = ne*1e-6)*n2*h2_pos_den/ne
+        species_list.append((D3, 1))
+        
+        MARc_h_neg_den = read_amjuel_1d(reac["den_H-"][0],reac["den_H-"][1])
+        h_neg_den = calc_cross_sections(MARc_h_neg_den, T = te, n = ne*1e-6)*n2
+        species_list.append((D0, -1)) 
+
         logger.info("Precalculating emission")    
         emission = [{} for _ in range(len(species_density))]
         for i in range(len(transitions)):
             logger.info(f"   Calculating emission for line: {transitions[i]}")
-            h_emiss, h2_emiss = yacora.calc_photon_rate(transitions[i], te, ne, n0[:], n2[:])
+            h_emiss, h_rec_emiss, h2_emiss, h2_pos_emiss, h3_pos_emiss, hneg_emiss, tot = yacora.calc_photon_rate(transitions[i], te, ne, n0[:], n2[:], h2_pos_den, h3_pos_den, h_neg_den)
             emission[0][transitions[i]] = h_emiss
-            emission[1][transitions[i]] = np.zeros(h_emiss.shape)
+            emission[1][transitions[i]] = h_rec_emiss
             emission[2][transitions[i]] = h2_emiss
+            emission[3][transitions[i]] = h2_pos_emiss
+            emission[4][transitions[i]] = h3_pos_emiss
+            emission[5][transitions[i]] = hneg_emiss
     else:
         #ADAS
         num_species = 2

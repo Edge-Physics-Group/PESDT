@@ -149,7 +149,7 @@ class CherabPlasma():
 
         # Only deuterium supported at the moment
         if atnum == 1:
-            if data_source == "AMJUEL":
+            if data_source in ["AMJUEL", "YACORA"]:
                 model_list = []
                 if use_tot:
                     model_list.append()
@@ -175,23 +175,10 @@ class CherabPlasma():
                     if include_ff_fb:
                         h_line = PESDTLine(D0, 0, transition)
                         model_list.append(Continuo(h_line, lineshape = lineshape))
-                    if include_mol_exc:
+                    if include_mol_exc and data_source != "YACORA":
                         h_line = PESDTLineMol(D2vibr, 0, transition)
                         model_list.append(DirectEmissionMol(h_line, lineshape = lineshape))
 
-                self.plasma.models = model_list
-            elif data_source == "YACORA":
-                model_list = []
-                if include_excitation or include_recombination:
-                    # Current YACORA dataset does not separate between exc and rec
-                    h_line = PESDTLine(D0, 0, transition)
-                    model_list.append(DirectEmission(h_line, lineshape=lineshape))
-                if include_H2:
-                    h_line = PESDTLine(D2, 0, transition) # Increment charge by one 
-                    model_list.append(DirectEmission(h_line, lineshape=lineshape))
-                if include_ff_fb:
-                    h_line = PESDTLine(D0, 0, transition)
-                    model_list.append(Continuo(h_line, lineshape = lineshape))
                 self.plasma.models = model_list
             else:
                 h_line = Line(D0, 0, transition)
