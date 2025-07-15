@@ -7,8 +7,6 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 from matplotlib.colors import SymLogNorm, ListedColormap
 import matplotlib.cm as cm
 
-
-
 class Tran :
     def __init__(self,tranfile='tran'):
 
@@ -419,7 +417,6 @@ class Tran :
         wall_poly_pts.append(wall_poly_pts[0]) # connect last point to first to complete wall polygon
         self._wall = Polygon(wall_poly_pts, closed=False, ec='k', lw=2.0, fc='None', zorder=10)
         
-    
     @property
     def sepx(self):
         """
@@ -429,7 +426,6 @@ class Tran :
             self.sepx = None  # Trigger the setter
         return self._sepx
 
-    
     @sepx.setter
     def sepx(self, value):
         rsepx = self.rsepx
