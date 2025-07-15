@@ -84,12 +84,6 @@ class ProcessEdgeSim:
                 json.dump(self.outdict, f, indent=2)
             logger.info(f"Saved synthetic diagnostic data to: {self.synth_diag_save_file}")
 
-        if self.data2d_save_file:
-            # pickle serialization of e2deirpostproc object
-            output = open(self.data2d_save_file, 'wb')
-            pickle.dump(self, output)
-            output.close() 
-
     def parse_input_deck(self):
         """
         Reads the input deck and populates run parameters
@@ -113,7 +107,6 @@ class ProcessEdgeSim:
             if e.errno != errno.EEXIST:
                 raise
 
-        self.data2d_save_file = self.savedir +'PESDT.2ddata.pkl'
         self.synth_diag_save_file = self.savedir + 'PESDT.synth_diag.json'
         self.spec_line_dict = self.input_dict['spec_line_dict']
 
