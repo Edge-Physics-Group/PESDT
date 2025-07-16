@@ -5,22 +5,18 @@ from PyQt5.QtWidgets import (
 )
 import matplotlib
 matplotlib.use('Qt5Agg')  # Or 'QtAgg' depending on your version
-#from core.utils import get_JETdefs, get_DIIIDdefs
+#
 
 test_dict = {"KT3A": 0, "KS3": 0, "KT1V": 0}
 test_dict2 = {"VIS": 0, "VUV": 0, "TEST": 0}
-#jet_dict = get_JETdefs().diag_dict
-#dIIId_dict = get_DIIIDdefs().diag_dict
+#j
 class Base(QWidget):
-    def __init__(self):
+    def __init__(self, machine_dict = None):
         super().__init__()
         layout = QVBoxLayout()
         self.setLayout(layout)
 
-        self.machine_diags = {
-            "JET":  test_dict,# jet_dict,
-            "DIII-D": test_dict2#dIIId_dict}
-        }
+        self.machine_diags = machine_dict
         # Machine dropdown
         machine_layout = QHBoxLayout()
         machine_label = QLabel("Machine:")
@@ -149,14 +145,14 @@ class CherabSettings(QWidget):
         self.setLayout(layout)        
 
 class Main(QWidget):
-    def __init__(self):
+    def __init__(self, machine_dict = None):
         super().__init__()
         layout = QVBoxLayout()
         self.label = QLabel("NOT YET FUNCTIONAL, USE PESDT_run.py")
         self.button = QPushButton("Submit job")
         self.button.clicked.connect(self.on_click)
         self.tabs = QTabWidget()
-        self.tabs.addTab(Base(), "Run Settings")
+        self.tabs.addTab(Base(machine_dict = machine_dict), "Run Settings")
         self.tabs.addTab(EmissionLines(), "Emission lines")
         self.tabs.addTab(CherabSettings(), "Cherab settings")
         layout.addWidget(self.tabs)
@@ -184,13 +180,13 @@ class PostProcess(QWidget):
         #self.label.setText("Tab 2 Button Clicked!")
 
 class PESDTGui(QWidget):
-    def __init__(self):
+    def __init__(self, machine_dict = None):
         super().__init__()
 
         self.setWindowTitle("PESDT 2.0")
         self.setGeometry(1000, 1000, 1000, 1000)
         self.tabs = QTabWidget()
-        self.tabs.addTab(Main(), "Main")
+        self.tabs.addTab(Main(machine_dict = machine_dict), "Main")
         self.tabs.addTab(PostProcess(), "Post-processor")
 
         # Main layout
@@ -201,6 +197,15 @@ class PESDTGui(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = PESDTGui()
+
+    from core.utils import get_JETdefs, get_DIIIDdefs
+    jet_dict = get_JETdefs().diag_dict
+    dIIId_dict = get_DIIIDdefs().diag_dict
+    machine_dict = {
+            "JET":   jet_dict,
+            "DIII-D": dIIId_dict
+        }
+    window = PESDTGui(machine_dict = machine_dict)
+    
     window.show()
     sys.exit(app.exec())
