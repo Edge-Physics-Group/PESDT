@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import (
     QVBoxLayout, QHBoxLayout, QComboBox, QPushButton, QTabWidget, QSpinBox, QAbstractItemView, QListWidget
 )
 
-#from core.utils import get_JETdefs, get_DIIIDdefs
+from core.utils import get_JETdefs, get_DIIIDdefs
 test_dict = {"KT3A": 0, "KS3": 0, "KT1V": 0}
 test_dict2 = {"VIS": 0, "VUV": 0, "TEST": 0}
 
@@ -15,8 +15,8 @@ class Base(QWidget):
         self.setLayout(layout)
 
         self.machine_diags = {
-            "JET": test_dict,
-            "DIII-D": test_dict2}
+            "JET": get_JETdefs().diag_dict() ,
+            "DIII-D": get_DIIIDdefs().diag_dict()}
 
         # Machine dropdown
         machine_layout = QHBoxLayout()
