@@ -16,9 +16,9 @@ class Base(QWidget):
         self.setLayout(layout)
 
         self.machine_diags = {
-            "JET":  jet_dict,
-            "DIII-D": dIIId_dict}
-
+            "JET":  test_dict,# jet_dict,
+            "DIII-D": test_dict2#dIIId_dict}
+        }
         # Machine dropdown
         machine_layout = QHBoxLayout()
         machine_label = QLabel("Machine:")
