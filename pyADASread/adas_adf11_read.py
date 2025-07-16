@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from adaslib import *
-from adas4xx import *
+try:
+    from adaslib import *
+    from adas4xx import *
+except ModuleNotFoundError as e:
+    print(f"Adaslib unavailable, Error: {e}")
 from scipy.interpolate import interp1d, interp2d
 import json, os
 

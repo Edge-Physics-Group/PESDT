@@ -2,7 +2,10 @@
 
 import numpy as np
 from scipy import interpolate
-from adaslib import *
+try:
+    from adaslib import *
+except ModuleNotFoundError as e:
+    print(f"Adaslib unavailable, Error: {e}")
 import json, os
 
 # MAIN H SET

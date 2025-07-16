@@ -5,9 +5,11 @@ from scipy.interpolate import interp1d
 from subprocess import Popen, PIPE
 import os
 import scipy.io as io
-from adaslib import *
-from adaslib.atomic import continuo
-
+try:
+    from adaslib import *
+    from adaslib.atomic import continuo
+except ModuleNotFoundError as e:
+    print(f"Adaslib unavailable, continuo unavailable. Error: {e}")
 h = 6.626E-34 # 'J.s'
 c = 299792458.0 # 'm/s'
 
