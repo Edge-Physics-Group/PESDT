@@ -6,11 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import json, pickle, os
 from core.edge_code_formats import Edge2D, SOLPS, OEDGE, EIRENE
-
-
-
-
-
+ 
 class PESDTPostProcessor:
     colors = ["black", "red", "blue"]
     colors2 = ["black", "red", "blue", "green", "orange", "purple"]

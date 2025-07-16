@@ -3,7 +3,8 @@ from PyQt5.QtWidgets import (
     QApplication, QWidget, QLabel, QLineEdit, QCheckBox,
     QVBoxLayout, QHBoxLayout, QComboBox, QPushButton, QTabWidget, QSpinBox, QAbstractItemView, QListWidget
 )
-
+import matplotlib
+matplotlib.use('Qt5Agg')  # Or 'QtAgg' depending on your version
 #from core.utils import get_JETdefs, get_DIIIDdefs
 
 test_dict = {"KT3A": 0, "KS3": 0, "KT1V": 0}
