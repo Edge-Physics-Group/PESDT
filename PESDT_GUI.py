@@ -7,8 +7,8 @@ from PyQt5.QtWidgets import (
 from core.utils import get_JETdefs, get_DIIIDdefs
 test_dict = {"KT3A": 0, "KS3": 0, "KT1V": 0}
 test_dict2 = {"VIS": 0, "VUV": 0, "TEST": 0}
-jet_dict = get_JETdefs().diag_dict()
-dIIId_dict = get_DIIIDdefs().diag_dict()
+jet_dict = get_JETdefs().diag_dict
+dIIId_dict = get_DIIIDdefs().diag_dict
 class Base(QWidget):
     def __init__(self):
         super().__init__()
