@@ -95,7 +95,6 @@ class Base(QWidget):
         diag_label = QLabel("Diagnostic:")
         self.diag_list = QListWidget()
         self.diag_list.setSelectionMode(QAbstractItemView.MultiSelection)
-        #self.diag_combo.addItems(test_dict)
         self.update_diagnostics()
         diag_layout.addWidget(diag_label)
         diag_layout.addWidget(self.diag_list)
@@ -143,6 +142,33 @@ class CherabSettings(QWidget):
         super().__init__()
         layout = QVBoxLayout()
         self.setLayout(layout)        
+
+        self.import_jet_surfaces = QCheckBox("Import full mesh (JET only)")
+        self.import_jet_surfaces.setChecked(False)
+        layout.addWidget(self.import_jet_surfaces)
+
+        self.include_reflections = QCheckBox("Include reflections")
+        self.include_reflections.setChecked(False)
+        layout.addWidget(self.include_reflections)
+
+
+        stark_spectral_bins_layout = QHBoxLayout()
+        stark_spectral_bins_label = QLabel("Number of spectral bins for Stark broadening:")
+        self.stark_spectral_bins = QSpinBox()
+        self.stark_spectral_bins.setMaximum(1000)
+        self.stark_spectral_bins.setValue(50)
+        stark_spectral_bins_layout.addWidget(stark_spectral_bins_label)
+        stark_spectral_bins_layout.addWidget(self.stark_spectral_bins)
+        layout.addLayout(stark_spectral_bins_layout)
+
+        ff_fb_spectral_bins_layout = QHBoxLayout()
+        ff_fb_spectral_bins_label = QLabel("Number of spectral bins for continuum emission:")
+        self.ff_fb_spectral_bins = QSpinBox()
+        self.ff_fb_spectral_bins.setMaximum(1000)
+        self.ff_fb_spectral_bins.setValue(50)
+        ff_fb_spectral_bins_layout.addWidget(ff_fb_spectral_bins_label)
+        ff_fb_spectral_bins_layout.addWidget(self.ff_fb_spectral_bins)
+        layout.addLayout(ff_fb_spectral_bins_layout)
 
 class Main(QWidget):
     def __init__(self, machine_dict = None):
