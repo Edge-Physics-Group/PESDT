@@ -851,7 +851,7 @@ def get_DIIIDdefs(plot_defs=False):
     # determine end point width using half angle between adjacent sight lines
     bolo_cams = ['bolo1', 'bolo2', 'bolo3', 'bolo4']
     for cam in bolo_cams:
-        print(cam)
+        #print(cam)
         for i, los in enumerate(bolo_ids[cam]):
             if los == bolo_ids[cam][-1]:
                 neigh_index = los-1
@@ -965,7 +965,7 @@ def get_DIIIDdefs(plot_defs=False):
     # determine end point width using half angle between adjacent sight lines
     bolo_hr_cams = ['bolo1_hr', 'bolo2_hr', 'bolo3_hr', 'bolo4_hr']
     for cam in bolo_hr_cams:
-        print(cam)
+        #print(cam)
         for i, los in enumerate(bolo_hr_ids[cam]):
             if los == bolo_hr_ids[cam][-1]:
                 neigh_index = los-1
