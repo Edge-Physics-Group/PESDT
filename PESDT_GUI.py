@@ -99,7 +99,7 @@ class Base(QWidget):
         #self.diag_combo.addItems(test_dict)
         self.update_diagnostics()
         diag_layout.addWidget(diag_label)
-        diag_layout.addWidget(self.diag_combo)
+        diag_layout.addWidget(self.diag_list)
         layout.addLayout(diag_layout)
 
     def update_diagnostics(self):
