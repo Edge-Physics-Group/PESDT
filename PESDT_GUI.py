@@ -438,10 +438,16 @@ class Main(QWidget):
         settings_dict["cherab_options"] = self.cherab_tab.get_settings()
         settings_dict["spec_line_dict"] = {"1": self.em_tab.get_selected_lines}
 
-        save_dir = os.path.join(os.path.expanduser("~"), self.input_path.text())
+        # Get full path from input field
+        save_path = os.path.expanduser(self.input_path.text())
+        save_path = os.path.abspath(save_path)
+
+        # Ensure the parent directory exists
+        save_dir = os.path.dirname(save_path)
         Path(save_dir).mkdir(parents=True, exist_ok=True)
 
-        with open(save_dir, "w") as f:
+
+        with open(save_path, "w") as f:
             json.dump(settings_dict, f, indent=2)
 
         #self.label.setText("Tab 1 Button Clicked!")
