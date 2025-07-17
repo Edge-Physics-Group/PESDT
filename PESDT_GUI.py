@@ -445,7 +445,7 @@ class JobInfo(QWidget):
         # Input file name
         input_layout = QHBoxLayout()
         input_label = QLabel("Input JSON filename:")
-        self.input_filename = QLineEdit("inputfile.json")
+        self.input_filename = QLineEdit("PESDT_input/inputfile.json")
         input_layout.addWidget(input_label)
         input_layout.addWidget(self.input_filename)
         layout.addLayout(input_layout)
@@ -578,7 +578,7 @@ class Main(QWidget):
         # Paths for output and error
         stdout_path = f"/home/{username}/PESDTBatchJobs/out/{stdout}.out"
         stderr_path = f"/home/{username}/PESDTBatchJobs/err/{stderr}.err"
-        input_path = f"/home/{username}/PESDT_input/{input_file}"
+        input_path = f"/home/{username}/{input_file}"
         script_path = "/home/{}/PESDT/PESDT_run.py".format(username)
 
         # Ensure directory exists
