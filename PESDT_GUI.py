@@ -1,4 +1,4 @@
-import sys, json, os
+import sys, json, os, subprocess
 from pathlib import Path
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QLabel, QLineEdit, QCheckBox,
@@ -453,7 +453,7 @@ class JobInfo(QWidget):
         # Path to save the .cmd script
         path_layout = QHBoxLayout()
         path_label = QLabel("Command File Save Path:")
-        self.cmd_path = QLineEdit(f"/home/{username}/PESDTBatchJobs/scripts/")
+        self.cmd_path = QLineEdit(f"/home/{username}/PESDTBatchJobs/")
         path_layout.addWidget(path_label)
         path_layout.addWidget(self.cmd_path)
         layout.addLayout(path_layout)
@@ -537,6 +537,10 @@ class Main(QWidget):
 
         self.create_cmd_file()
         
+        job_name = job_info["job_name"]
+        cmd_dir = os.path.expanduser(job_info["cmd_path"])
+        cmd_path = os.path.join(cmd_dir, f"{job_name}.cmd")
+        subprocess.Popen(["qsub", cmd_path])
 
     def on_click2(self):
         job_info = self.jobinfo_tab.get_job_info()
@@ -582,28 +586,28 @@ class Main(QWidget):
 
         # Create .cmd script
         content = f"""#!/bin/bash
-    #$ -S /bin/bash
-    #$ -cwd
-    #$ -N {job_name}
-    #$ -o {stdout_path}
-    #$ -e {stderr_path}
-    #$ -M {email}
-    #$ -m e
-    #$ -V
+#$ -S /bin/bash
+#$ -cwd
+#$ -N {job_name}
+#$ -o {stdout_path}
+#$ -e {stderr_path}
+#$ -M {email}
+#$ -m e
+#$ -V
 
-    echo "Running PESDT via batch"
-    source /etc/profile.d/modules.sh
-    source /home/{username}/.bashrc
+echo "Running PESDT via batch"
+source /etc/profile.d/modules.sh
+source /home/{username}/.bashrc
 
-    echo "Python3 version:"
-    python3 --version
+echo "Python3 version:"
+python3 --version
 
-    echo "Python (default) version:"
-    python --version
+echo "Python (default) version:"
+python --version
 
-    python3 {script_path} {input_path}
+python3 {script_path} {input_path}
 
-    echo "Run finished"
+echo "Run finished"
     """
 
         # Write to file
