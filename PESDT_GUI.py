@@ -181,7 +181,7 @@ class Base(QWidget):
 
 
 class EmissionLines(QWidget):
-    def __init__(self, db: spectroscopic_lines_db):
+    def __init__(self, db):
         super().__init__()
         self.db = db
         self.setLayout(QVBoxLayout())
