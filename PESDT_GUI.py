@@ -1,7 +1,8 @@
 import sys
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QLabel, QLineEdit, QCheckBox,
-    QVBoxLayout, QHBoxLayout, QComboBox, QPushButton, QTabWidget, QSpinBox, QAbstractItemView, QListWidget
+    QVBoxLayout, QHBoxLayout, QComboBox, QPushButton, QTabWidget, QSpinBox, QGridLayout, 
+    QDoubleSpinBox, QScrollArea
 )
 import matplotlib
 matplotlib.use('Qt5Agg')  # Or 'QtAgg' depending on your version
@@ -90,22 +91,54 @@ class Base(QWidget):
         save_layout.addWidget(self.save_input)
         layout.addLayout(save_layout)
 
-        # diag_list dropdown populated from dictionary keys
-        diag_layout = QHBoxLayout()
-        diag_label = QLabel("Diagnostic:")
-        self.diag_list = QListWidget()
-        self.diag_list.setSelectionMode(QAbstractItemView.MultiSelection)
-        self.update_diagnostics()
+        # Diagnostics area (will hold grid of diagnostics)
+        diag_layout = QVBoxLayout()
+        diag_label = QLabel("Diagnostics:")
         diag_layout.addWidget(diag_label)
-        diag_layout.addWidget(self.diag_list)
+
+        self.diag_grid_widget = QWidget()
+        self.diag_grid = QGridLayout()
+        self.diag_grid.setSpacing(10)
+        self.diag_grid_widget.setLayout(self.diag_grid)
+
+        # Optional: make the diagnostic area scrollable
+        scroll_area = QScrollArea()
+        scroll_area.setWidgetResizable(True)
+        scroll_area.setWidget(self.diag_grid_widget)
+
+        diag_layout.addWidget(scroll_area)
         layout.addLayout(diag_layout)
 
+        self.update_diagnostics()
+
     def update_diagnostics(self):
+        # Clear the old diagnostics
+        while self.diag_grid.count():
+            item = self.diag_grid.takeAt(0)
+            widget = item.widget()
+            if widget:
+                widget.deleteLater()
+
         machine = self.machine_combo.currentText()
         diag_dict = self.machine_diags.get(machine, {})
-        
-        self.diag_list.clear()
-        self.diag_list.addItems(diag_dict.keys())
+
+        # Populate diagnostics in grid
+        items = list(diag_dict.keys())
+        columns = 3
+        for index, diag in enumerate(items):
+            row = index // columns
+            col = index % columns
+
+            diag_widget = QWidget()
+            h_layout = QHBoxLayout()
+            h_layout.setContentsMargins(5, 5, 5, 5)
+            h_layout.addWidget(QLabel(diag))
+            h_layout.addStretch()
+            checkbox = QCheckBox()
+            h_layout.addWidget(checkbox)
+            diag_widget.setLayout(h_layout)
+
+            self.diag_grid.addWidget(diag_widget, row, col)
 
     def get_settings(self):
         return {
@@ -141,7 +174,35 @@ class CherabSettings(QWidget):
     def __init__(self):
         super().__init__()
         layout = QVBoxLayout()
-        self.setLayout(layout)        
+        self.setLayout(layout)
+
+        num_processes_layout = QHBoxLayout()
+        num_processes_label = QLabel("Number of processes (threads): ")
+        self.num_processes = QSpinBox()
+        self.num_processes.setMaximum(24)
+        self.num_processes.setValue(8)
+        num_processes_layout.addWidget(num_processes_label)
+        num_processes_layout.addWidget(self.num_processes)
+        layout.addLayout(num_processes_layout)
+
+        pixel_samples_layout = QHBoxLayout()
+        pixel_samples_label = QLabel("Number of pixel samples (Number of MC rays):")
+        self.pixel_samples = QSpinBox()
+        self.pixel_samples.setMaximum(999999)
+        self.pixel_samples.setValue(81472)
+        pixel_samples_layout.addWidget(pixel_samples_label)
+        pixel_samples_layout.addWidget(self.pixel_samples)
+        layout.addLayout(pixel_samples_layout)
+
+        ray_extinction_prob_layout = QHBoxLayout()
+        ray_extinction_prob_label = QLabel("Ray extinction probability (0,1]: ")
+        self.ray_extinction_prob = QDoubleSpinBox()
+        self.ray_extinction_prob.setMaximum(1.0)
+        self.ray_extinction_prob.setMinimum(0.001)
+        self.ray_extinction_prob.setValue(0.01)
+        ray_extinction_prob_layout.addWidget(ray_extinction_prob_label)
+        ray_extinction_prob_layout.addWidget(self.ray_extinction_prob)
+        layout.addLayout(ray_extinction_prob_layout)        
 
         self.import_jet_surfaces = QCheckBox("Import full mesh (JET only)")
         self.import_jet_surfaces.setChecked(False)
@@ -151,6 +212,17 @@ class CherabSettings(QWidget):
         self.include_reflections.setChecked(False)
         layout.addWidget(self.include_reflections)
 
+        self.calculate_stark_ne = QCheckBox("Calculate Stark broadening (needed for ne estimate)")
+        self.calculate_stark_ne.setChecked(False)
+        layout.addWidget(self.calculate_stark_ne)
+
+        self.ff_fb_emission = QCheckBox("Calculate continuum emission (300-500 nm, needed for Te estimate)")
+        self.ff_fb_emission.setChecked(False)
+        layout.addWidget(self.ff_fb_emission)
+
+        self.mol_exc_emission = QCheckBox("Calculate molecular excitation emission")
+        self.mol_exc_emission.setChecked(False)
+        layout.addWidget(self.mol_exc_emission)
 
         stark_spectral_bins_layout = QHBoxLayout()
         stark_spectral_bins_label = QLabel("Number of spectral bins for Stark broadening:")
@@ -170,6 +242,22 @@ class CherabSettings(QWidget):
         ff_fb_spectral_bins_layout.addWidget(self.ff_fb_spectral_bins)
         layout.addLayout(ff_fb_spectral_bins_layout)
 
+    def get_settings(self):
+        return {
+            "num_processes": self.num_processes.value(),
+            "pixel_samples": self.pixel_samples.value(),
+            "import_jet_surfaces": self.import_jet_surfaces.isChecked(),
+            "include_reflections": self.include_reflections.isChecked(),
+            "ray_extinction_prob": self.ray_extinction_prob.value(),
+            "calculate_stark_ne": self.calculate_stark_ne.isChecked(),
+            "stark_transition": [6,2],
+            "stark_spectral_bins": self.stark_spectral_bins.value(),
+            "ff_fb_emission": self.ff_fb_emission.isChecked(),
+            "ff_fb_spectral_bins": self.ff_fb_spectral_bins.value(),
+            "mol_exc_emission": self.mol_exc_emission.isChecked(),
+            "mol_exc_emission_bands": ["fulcher"] 
+            
+        }
 class Main(QWidget):
     def __init__(self, machine_dict = None):
         super().__init__()
