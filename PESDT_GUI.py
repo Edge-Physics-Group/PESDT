@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QLabel, QLineEdit, QCheckBox,
     QVBoxLayout, QHBoxLayout, QComboBox, QPushButton, QTabWidget, QSpinBox, QGridLayout, 
-    QDoubleSpinBox, QScrollArea
+    QDoubleSpinBox, QScrollArea, QGroupBox, QFrame
 )
 import matplotlib
 matplotlib.use('Qt5Agg')  # Or 'QtAgg' depending on your version
@@ -178,11 +178,69 @@ class Base(QWidget):
     def get_selected_diagnostics(self):
         return [item.text() for item in self.diag_list.selectedItems()]
 
+
+
 class EmissionLines(QWidget):
-    def __init__(self):
+    def __init__(self, db: spectroscopic_lines_db):
         super().__init__()
-        layout = QVBoxLayout()
-        self.setLayout(layout)
+        self.db = db
+        self.setLayout(QVBoxLayout())
+
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        content = QWidget()
+        self.content_layout = QVBoxLayout()
+        content.setLayout(self.content_layout)
+        scroll.setWidget(content)
+        self.layout().addWidget(scroll)
+
+        self.checkboxes = {}  # {(atom_num, wavelength): QCheckBox}
+
+        self.populate()
+
+    def populate(self):
+        for element_name in ['H', 'He', 'C', 'Be', 'N', 'W']:
+            data = getattr(self.db, f"{element_name}_lines", None)
+            if not data:
+                continue
+            atom_num = data.get("ATOM_NUM")
+            group_box = QGroupBox(f"{element_name} (Z={atom_num})")
+            group_box.setCheckable(True)
+            group_box.setChecked(True)
+            group_box.setLayout(QVBoxLayout())
+
+            for series_name, lines in data.items():
+                if series_name == "ATOM_NUM":
+                    continue
+
+                # Label for series
+                group_box.layout().addWidget(QLabel(f"{series_name}:"))
+
+                # Horizontal layout for lines
+                line_row = QHBoxLayout()
+                for wl, pn in lines.items():
+                    box = QCheckBox(wl)
+                    self.checkboxes[(atom_num, wl)] = (box, pn)
+                    line_row.addWidget(box)
+                group_box.layout().addLayout(line_row)
+
+                # Optional separator
+                separator = QFrame()
+                separator.setFrameShape(QFrame.HLine)
+                separator.setFrameShadow(QFrame.Sunken)
+                group_box.layout().addWidget(separator)
+
+            self.content_layout.addWidget(group_box)
+
+        self.content_layout.addStretch()
+
+    def get_selected_lines(self):
+        result = {}
+        for (atom_num, wl), (box, pn) in self.checkboxes.items():
+            if box.isChecked():
+                result.setdefault(atom_num, {})[wl] = pn
+        return result
+
 
 class CherabSettings(QWidget):
     def __init__(self):
@@ -202,8 +260,8 @@ class CherabSettings(QWidget):
         pixel_samples_layout = QHBoxLayout()
         pixel_samples_label = QLabel("Number of pixel samples (Number of MC rays):")
         self.pixel_samples = QSpinBox()
-        self.pixel_samples.setMaximum(999999)
-        self.pixel_samples.setValue(81472)
+        self.pixel_samples.setMaximum(1000000)
+        self.pixel_samples.setValue(1000)
         pixel_samples_layout.addWidget(pixel_samples_label)
         pixel_samples_layout.addWidget(self.pixel_samples)
         layout.addLayout(pixel_samples_layout)
@@ -273,7 +331,7 @@ class CherabSettings(QWidget):
             
         }
 class Main(QWidget):
-    def __init__(self, machine_dict = None):
+    def __init__(self, machine_dict = None, spect_db = None):
         super().__init__()
         layout = QVBoxLayout()
         self.label = QLabel("NOT YET FUNCTIONAL, USE PESDT_run.py")
@@ -281,7 +339,7 @@ class Main(QWidget):
         self.button.clicked.connect(self.on_click)
         self.tabs = QTabWidget()
         self.tabs.addTab(Base(machine_dict = machine_dict), "Run Settings")
-        self.tabs.addTab(EmissionLines(), "Emission lines")
+        self.tabs.addTab(EmissionLines(spect_db), "Emission lines")
         self.tabs.addTab(CherabSettings(), "Cherab settings")
         layout.addWidget(self.tabs)
         layout.addWidget(self.label)
@@ -308,13 +366,13 @@ class PostProcess(QWidget):
         #self.label.setText("Tab 2 Button Clicked!")
 
 class PESDTGui(QWidget):
-    def __init__(self, machine_dict = None):
+    def __init__(self, machine_dict = None, spect_db = None):
         super().__init__()
 
         self.setWindowTitle("PESDT 2.0")
         self.setGeometry(1000, 1000, 1000, 1000)
         self.tabs = QTabWidget()
-        self.tabs.addTab(Main(machine_dict = machine_dict), "Main")
+        self.tabs.addTab(Main(machine_dict = machine_dict, spect_db = spect_db), "Main")
         self.tabs.addTab(PostProcess(), "Post-processor")
 
         # Main layout
@@ -327,13 +385,14 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     from core.utils import get_JETdefs, get_DIIIDdefs
+    from core.database import spectroscopic_lines_db
     jet_dict = get_JETdefs().diag_dict
     dIIId_dict = get_DIIIDdefs().diag_dict
     machine_dict = {
             "JET":   jet_dict,
             "DIII-D": dIIId_dict
         }
-    window = PESDTGui(machine_dict = machine_dict)
+    window = PESDTGui(machine_dict = machine_dict, spect_db = spectroscopic_lines_db())
     
     window.show()
     sys.exit(app.exec())
