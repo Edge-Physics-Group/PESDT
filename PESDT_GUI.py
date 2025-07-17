@@ -330,11 +330,8 @@ class CherabSettings(QWidget):
             item_layout.setContentsMargins(0, 0, 0, 0)
             item_layout.setSpacing(0)  
 
-            checkbox = QCheckBox()
-            label = QLabel(item)
-
+            checkbox = QCheckBox(item)
             item_layout.addWidget(checkbox)
-            item_layout.addWidget(label)
 
             bands_layout.addWidget(item_widget)
             self.molecular_bands_boxes.append((checkbox, item))
