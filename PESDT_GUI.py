@@ -201,7 +201,6 @@ class Base(QWidget):
     def get_selected_diagnostics(self):
         return [item.text() for item in self.diag_list.selectedItems()]
 
-
 class EmissionLines(QWidget):
     def __init__(self, db):
         super().__init__()
@@ -262,7 +261,7 @@ class EmissionLines(QWidget):
         return result
 
 class CherabSettings(QWidget):
-    def __init__(self):
+    def __init__(self, emission_lines_widget: EmissionLines):
         super().__init__()
         layout = QVBoxLayout()
         self.setLayout(layout)
@@ -333,6 +332,27 @@ class CherabSettings(QWidget):
         ff_fb_spectral_bins_layout.addWidget(self.ff_fb_spectral_bins)
         layout.addLayout(ff_fb_spectral_bins_layout)
 
+        self.emission_lines = emission_lines_widget
+
+
+
+        stark_transition = QLabel("Line for Stark transition:")
+        layout.addWidget(stark_transition)
+
+        self.stark_transition_combo = QComboBox()
+        layout.addWidget(self.stark_transition_combo)
+
+        self.refresh_btn = QPushButton("Refresh from selected lines")
+        self.refresh_btn.clicked.connect(self.update_lines)
+        layout.addWidget(self.refresh_btn)
+
+    def update_lines(self):
+        selected = self.emission_lines.get_selected_lines()
+        self.stark_transition_combo.clear()
+        # Flatten to a list of strings like: "1: 1215.2"
+        for atom_num, lines in selected.items():
+            for wl in lines.keys():
+                self.stark_transition_combo.addItem(f"{atom_num}: {wl}", userData=(atom_num, wl))
     def get_settings(self):
         return {
             "num_processes": self.num_processes.value(),
