@@ -1,4 +1,5 @@
-import sys
+import sys, json, os
+from pathlib import Path
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QLabel, QLineEdit, QCheckBox,
     QVBoxLayout, QHBoxLayout, QComboBox, QPushButton, QTabWidget, QSpinBox, QGridLayout, 
@@ -402,15 +403,25 @@ class Main(QWidget):
         super().__init__()
         layout = QVBoxLayout()
         self.label = QLabel("NOT YET FUNCTIONAL, USE PESDT_run.py")
+
+        input_layout = QHBoxLayout()
+        input_label = QLabel("Input file path:")
+        self.input_path = QLineEdit("PESDT_input/")
+        input_layout.addWidget(input_label)
+        input_layout.addWidget(self.input_path)
+        layout.addLayout(input_layout)
+
         self.button = QPushButton("Submit job")
+        self.button2 = QPushButton("Save input")
         self.button.clicked.connect(self.on_click)
+        self.button2.clicked.connect(self.on_click)
         self.tabs = QTabWidget()
-        base_tab = Base(machine_dict = machine_dict)
-        em_tab = EmissionLines(spect_db)
-        cherab_tab = CherabSettings(em_tab)
-        self.tabs.addTab(base_tab, "Run Settings")
-        self.tabs.addTab(em_tab, "Emission lines")
-        self.tabs.addTab(cherab_tab, "Cherab settings")
+        self.base_tab = Base(machine_dict = machine_dict)
+        self.em_tab = EmissionLines(spect_db)
+        self.cherab_tab = CherabSettings(self.em_tab)
+        self.tabs.addTab(self.base_tab, "Run Settings")
+        self.tabs.addTab(self.em_tab, "Emission lines")
+        self.tabs.addTab(self.cherab_tab, "Cherab settings")
         layout.addWidget(self.tabs)
         layout.addWidget(self.label)
         layout.addWidget(self.button)
@@ -419,7 +430,18 @@ class Main(QWidget):
     def on_click(self):
         pass
         #self.label.setText("Tab 1 Button Clicked!")
+    def on_click2(self):
+        settings_dict = self.base_tab.get_settings()
+        settings_dict["cherab_options"] = self.cherab_tab.get_settings()
+        settings_dict["spec_line_dict"] = {"1": self.em_tab.get_selected_lines}
 
+        save_dir = os.path.join(os.path.expanduser("~"), self.input_path.text())
+        Path(save_dir).mkdir(parents=True, exist_ok=True)
+
+        with open(save_dir, "w") as f:
+            json.dump(settings_dict, f, indent=2)
+
+        #self.label.setText("Tab 1 Button Clicked!")
 class PostProcess(QWidget):
     def __init__(self):
         super().__init__()
