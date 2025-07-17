@@ -314,6 +314,19 @@ class CherabSettings(QWidget):
         self.mol_exc_emission.setChecked(False)
         layout.addWidget(self.mol_exc_emission)
 
+        mol_lines = ["lyman", "werner", "fulcher"]
+        molecular_bands = QLabel("Molecular bands: ")
+        layout.addWidget(molecular_bands)
+        self.molecular_bands_boxes = []
+        for item in mol_lines:
+            row = QHBoxLayout()
+            checkbox = QCheckBox()
+            label = QLabel(item)
+            row.addWidget(checkbox)
+            row.addWidget(label)
+            layout.addLayout(row)
+            self.molecular_bands_boxes.append((checkbox, item))
+
         stark_spectral_bins_layout = QHBoxLayout()
         stark_spectral_bins_label = QLabel("Number of spectral bins for Stark broadening:")
         self.stark_spectral_bins = QSpinBox()
@@ -352,7 +365,13 @@ class CherabSettings(QWidget):
         # Flatten to a list of strings like: "1: 1215.2"
         for atom_num, lines in selected.items():
             for wl in lines.keys():
-                self.stark_transition_combo.addItem(f"{atom_num}: {wl}", userData=(atom_num, wl))
+                transition = lines[wl]  # [p, n]
+                label = f"{atom_num}: {wl}"
+                self.stark_transition_combo.addItem(label, userData=transition)
+
+    def get_selected(self):
+        return [item for checkbox, item in self.molecular_bands_boxes if checkbox.isChecked()]
+
     def get_settings(self):
         return {
             "num_processes": self.num_processes.value(),
@@ -361,12 +380,12 @@ class CherabSettings(QWidget):
             "include_reflections": self.include_reflections.isChecked(),
             "ray_extinction_prob": self.ray_extinction_prob.value(),
             "calculate_stark_ne": self.calculate_stark_ne.isChecked(),
-            "stark_transition": [6,2],
+            "stark_transition": self.stark_transition_combo.currentData(),
             "stark_spectral_bins": self.stark_spectral_bins.value(),
             "ff_fb_emission": self.ff_fb_emission.isChecked(),
             "ff_fb_spectral_bins": self.ff_fb_spectral_bins.value(),
             "mol_exc_emission": self.mol_exc_emission.isChecked(),
-            "mol_exc_emission_bands": ["fulcher"] 
+            "mol_exc_emission_bands": self.get_selected()
             
         }
 class Main(QWidget):
