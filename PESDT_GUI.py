@@ -327,7 +327,7 @@ class CherabSettings(QWidget):
         for item in mol_lines:
             item_widget = QWidget()
             item_layout = QHBoxLayout(item_widget)
-            item_layout.setContentsMargins(5, 0, 5, 0)
+            item_layout.setContentsMargins(0, 0, 0, 0)
 
             checkbox = QCheckBox()
             label = QLabel(item)
