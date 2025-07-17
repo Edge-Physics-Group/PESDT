@@ -2,15 +2,38 @@ import sys
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QLabel, QLineEdit, QCheckBox,
     QVBoxLayout, QHBoxLayout, QComboBox, QPushButton, QTabWidget, QSpinBox, QGridLayout, 
-    QDoubleSpinBox, QScrollArea, QGroupBox, QFrame
+    QDoubleSpinBox, QScrollArea, QGroupBox, QFrame, QSizePolicy
 )
 import matplotlib
 matplotlib.use('Qt5Agg')  # Or 'QtAgg' depending on your version
 #
 
-test_dict = {"KT3A": 0, "KS3": 0, "KT1V": 0}
-test_dict2 = {"VIS": 0, "VUV": 0, "TEST": 0}
-#j
+class CollapsibleBox(QWidget):
+    def __init__(self, title=""):
+        super().__init__()
+        self.toggle_button = QPushButton(title)
+        self.toggle_button.setCheckable(True)
+        self.toggle_button.setChecked(True)
+        self.toggle_button.setStyleSheet("text-align: left;")
+        self.toggle_button.clicked.connect(self.toggle_content)
+
+        self.content_area = QWidget()
+        self.content_area.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        self.content_layout = QVBoxLayout()
+        self.content_area.setLayout(self.content_layout)
+
+        main_layout = QVBoxLayout()
+        main_layout.setContentsMargins(0, 0, 0, 0)
+        main_layout.addWidget(self.toggle_button)
+        main_layout.addWidget(self.content_area)
+        self.setLayout(main_layout)
+
+    def toggle_content(self):
+        self.content_area.setVisible(self.toggle_button.isChecked())
+
+    def layout(self):
+        return self.content_layout
+
 class Base(QWidget):
     def __init__(self, machine_dict = None):
         super().__init__()
@@ -179,7 +202,6 @@ class Base(QWidget):
         return [item.text() for item in self.diag_list.selectedItems()]
 
 
-
 class EmissionLines(QWidget):
     def __init__(self, db):
         super().__init__()
@@ -204,27 +226,25 @@ class EmissionLines(QWidget):
             if not data:
                 continue
             atom_num = data.get("ATOM_NUM")
-            group_box = QGroupBox(f"{element_name} (Z={atom_num})")
-            group_box.setCheckable(True)
-            group_box.setChecked(True)
-            group_box.setLayout(QVBoxLayout())
+
+            group_box = CollapsibleBox(f"{element_name} (Z={atom_num})")
 
             for series_name, lines in data.items():
                 if series_name == "ATOM_NUM":
                     continue
 
-                # Label for series
                 group_box.layout().addWidget(QLabel(f"{series_name}:"))
 
-                # Horizontal layout for lines
                 line_row = QHBoxLayout()
                 for wl, pn in lines.items():
                     box = QCheckBox(wl)
                     self.checkboxes[(atom_num, wl)] = (box, pn)
                     line_row.addWidget(box)
-                group_box.layout().addLayout(line_row)
 
-                # Optional separator
+                container = QWidget()
+                container.setLayout(line_row)
+                group_box.layout().addWidget(container)
+
                 separator = QFrame()
                 separator.setFrameShape(QFrame.HLine)
                 separator.setFrameShadow(QFrame.Sunken)
@@ -240,7 +260,6 @@ class EmissionLines(QWidget):
             if box.isChecked():
                 result.setdefault(atom_num, {})[wl] = pn
         return result
-
 
 class CherabSettings(QWidget):
     def __init__(self):
