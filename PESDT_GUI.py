@@ -328,6 +328,7 @@ class CherabSettings(QWidget):
             item_widget = QWidget()
             item_layout = QHBoxLayout(item_widget)
             item_layout.setContentsMargins(0, 0, 0, 0)
+            item_layout.setSpacing(2)  
 
             checkbox = QCheckBox()
             label = QLabel(item)
