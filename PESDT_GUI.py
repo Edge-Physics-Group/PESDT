@@ -317,14 +317,25 @@ class CherabSettings(QWidget):
         mol_lines = ["lyman", "werner", "fulcher"]
         molecular_bands = QLabel("Molecular bands: ")
         layout.addWidget(molecular_bands)
+
+        
+        bands_layout = QHBoxLayout()
+        layout.addLayout(bands_layout)
+
         self.molecular_bands_boxes = []
+
         for item in mol_lines:
-            row = QHBoxLayout()
+            item_widget = QWidget()
+            item_layout = QHBoxLayout(item_widget)
+            item_layout.setContentsMargins(5, 0, 5, 0)
+
             checkbox = QCheckBox()
             label = QLabel(item)
-            row.addWidget(checkbox)
-            row.addWidget(label)
-            layout.addLayout(row)
+
+            item_layout.addWidget(checkbox)
+            item_layout.addWidget(label)
+
+            bands_layout.addWidget(item_widget)
             self.molecular_bands_boxes.append((checkbox, item))
 
         stark_spectral_bins_layout = QHBoxLayout()
