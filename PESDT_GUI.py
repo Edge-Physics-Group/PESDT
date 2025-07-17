@@ -435,7 +435,7 @@ class Main(QWidget):
         #self.label.setText("Tab 1 Button Clicked!")
     def on_click2(self):
         settings_dict = self.base_tab.get_settings()
-        settings_dict["cherab_options"] = self.cherab_tab.get_settings()
+        #settings_dict["cherab_options"] = self.cherab_tab.get_settings()
         settings_dict["spec_line_dict"] = {"1": self.em_tab.get_selected_lines}
 
         # Get full path from input field
