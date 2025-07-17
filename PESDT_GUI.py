@@ -414,7 +414,7 @@ class Main(QWidget):
         self.button = QPushButton("Submit job")
         self.button2 = QPushButton("Save input")
         self.button.clicked.connect(self.on_click)
-        self.button2.clicked.connect(self.on_click)
+        self.button2.clicked.connect(self.on_click2)
         self.tabs = QTabWidget()
         self.base_tab = Base(machine_dict = machine_dict)
         self.em_tab = EmissionLines(spect_db)
