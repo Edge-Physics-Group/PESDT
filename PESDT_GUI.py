@@ -132,14 +132,28 @@ class Base(QWidget):
             diag_widget = QWidget()
             h_layout = QHBoxLayout()
             h_layout.setContentsMargins(5, 5, 5, 5)
-            h_layout.addWidget(QLabel(diag))
-            h_layout.addStretch()
+            
             checkbox = QCheckBox()
             h_layout.addWidget(checkbox)
+            h_layout.addWidget(QLabel(diag))
+            h_layout.addStretch()
             diag_widget.setLayout(h_layout)
 
             self.diag_grid.addWidget(diag_widget, row, col)
 
+    def get_selected_diagnostics(self):
+        selected = []
+        for i in range(self.diag_grid.count()):
+            item = self.diag_grid.itemAt(i)
+            widget = item.widget()
+            if widget:
+                layout = widget.layout()
+                label = layout.itemAt(0).widget().text()
+                checkbox = layout.itemAt(2).widget()
+                if checkbox.isChecked():
+                    selected.append(label)
+        return selected
+    
     def get_settings(self):
         return {
             "machine": self.machine_combo.currentText(),
