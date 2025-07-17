@@ -512,8 +512,9 @@ class Main(QWidget):
         
         layout.addWidget(self.button)
         layout.addWidget(self.button2)
-        self.setLayout(layout)
+        
         '''
+        self.setLayout(layout)
     def on_click(self):
         # Save the input dict
         settings_dict = self.base_tab.get_settings()
