@@ -399,6 +399,79 @@ class CherabSettings(QWidget):
             "mol_exc_emission_bands": self.get_selected()
             
         }
+    
+import os
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit
+
+class JobInfo(QWidget):
+    def __init__(self):
+        super().__init__()
+        layout = QVBoxLayout()
+        self.setLayout(layout)
+
+        username = os.environ.get("USER", "unknown")
+
+        # Job Name
+        job_name_layout = QHBoxLayout()
+        job_name_label = QLabel("Job Name:")
+        self.job_name_input = QLineEdit("PESDTJob")
+        job_name_layout.addWidget(job_name_label)
+        job_name_layout.addWidget(self.job_name_input)
+        layout.addLayout(job_name_layout)
+
+        # Email
+        email_layout = QHBoxLayout()
+        email_label = QLabel("User Email:")
+        self.email_input = QLineEdit("your_email@example.com")
+        email_layout.addWidget(email_label)
+        email_layout.addWidget(self.email_input)
+        layout.addLayout(email_layout)
+
+        # Output name base
+        stdout_layout = QHBoxLayout()
+        stdout_label = QLabel("Stdout file name:")
+        self.stdout_name_input = QLineEdit("stdout")
+        stdout_layout.addWidget(stdout_label)
+        stdout_layout.addWidget(self.stdout_name_input)
+        layout.addLayout(stdout_layout)
+
+        stderr_layout = QHBoxLayout()
+        stderr_label = QLabel("Stderr file name:")
+        self.stderr_name_input = QLineEdit("stderr")
+        stderr_layout.addWidget(stderr_label)
+        stderr_layout.addWidget(self.stderr_name_input)
+        layout.addLayout(stderr_layout)
+        
+        # Input file name
+        input_layout = QHBoxLayout()
+        input_label = QLabel("Input JSON filename:")
+        self.input_filename = QLineEdit("inputfile.json")
+        input_layout.addWidget(input_label)
+        input_layout.addWidget(self.input_filename)
+        layout.addLayout(input_layout)
+
+        # Path to save the .cmd script
+        path_layout = QHBoxLayout()
+        path_label = QLabel("Command File Save Path:")
+        self.cmd_path = QLineEdit(f"/home/{username}/PESDTBatchJobs/scripts/")
+        path_layout.addWidget(path_label)
+        path_layout.addWidget(self.cmd_path)
+        layout.addLayout(path_layout)
+
+        self.username = username
+
+    def get_job_info(self):
+        return {
+            "job_name": self.job_name_input.text(),
+            "email": self.email_input.text(),
+            "stdout": self.stdout_name_input.text(),
+            "stderr": self.stderr_name_input.text(),
+            "input_file": self.input_filename.text(),
+            "cmd_path": self.cmd_path.text(),
+            "username": self.username
+        }
+
+
 class Main(QWidget):
     def __init__(self, machine_dict = None, spect_db = None):
         super().__init__()
@@ -415,24 +488,53 @@ class Main(QWidget):
         self.base_tab = Base(machine_dict = machine_dict)
         self.em_tab = EmissionLines(spect_db)
         self.cherab_tab = CherabSettings(self.em_tab)
+        self.jobinfo_tab = JobInfo()
         self.tabs.addTab(self.base_tab, "Run Settings")
         self.tabs.addTab(self.em_tab, "Emission lines")
         self.tabs.addTab(self.cherab_tab, "Cherab settings")
+        self.tabs.addTab(self.jobinfo_tab, "Job Info")
         layout.addWidget(self.tabs)
         layout.addWidget(self.label)
+        '''
         input_layout = QHBoxLayout()
         input_label = QLabel("Input file path:")
-        self.input_path = QLineEdit("PESDT_input/")
+        self.input_path = QLineEdit("PESDT_input/input.json")
         input_layout.addWidget(input_label)
         input_layout.addWidget(self.input_path)
         layout.addLayout(input_layout)
+
+        cmd_layout = QHBoxLayout()
+        cmd_label = QLabel("CMD file path:")
+        self.cmd_path = QLineEdit("PESDTBatchJobs/job.cmd")
+        cmd_layout.addWidget(cmd_label)
+        cmd_layout.addWidget(self.cmd_path)
+        layout.addLayout(cmd_layout)
+        
         layout.addWidget(self.button)
         layout.addWidget(self.button2)
         self.setLayout(layout)
-
+        '''
     def on_click(self):
-        pass
-        #self.label.setText("Tab 1 Button Clicked!")
+        # Save the input dict
+        settings_dict = self.base_tab.get_settings()
+        settings_dict["cherab_options"] = self.cherab_tab.get_settings()
+        settings_dict["spec_line_dict"] = {"1": self.em_tab.get_selected_lines()}
+
+        # Get full path from input field
+        save_path = os.path.expanduser(self.input_path.text())
+        save_path = os.path.abspath(save_path)
+
+        # Ensure the parent directory exists
+        save_dir = os.path.dirname(save_path)
+        Path(save_dir).mkdir(parents=True, exist_ok=True)
+
+
+        with open(save_path, "w") as f:
+            json.dump(settings_dict, f, indent=2)
+
+        self.create_cmd_file()
+        
+
     def on_click2(self):
         settings_dict = self.base_tab.get_settings()
         settings_dict["cherab_options"] = self.cherab_tab.get_settings()
@@ -451,6 +553,60 @@ class Main(QWidget):
             json.dump(settings_dict, f, indent=2)
 
         #self.label.setText("Tab 1 Button Clicked!")
+
+    def create_cmd_file(self):
+        job_info = self.jobinfo_tab.get_job_info()
+
+        # Paths and filenames
+        username = job_info["username"]
+        job_name = job_info["job_name"]
+        email = job_info["email"]
+        stdout = job_info["stdout"]
+        stderr = job_info["stderr"]
+        input_file = job_info["input_file"]
+        cmd_dir = os.path.expanduser(job_info["cmd_path"])
+        cmd_path = os.path.join(cmd_dir, f"{job_name}.cmd")
+
+        # Paths for output and error
+        stdout_path = f"/home/{username}/PESDTBatchJobs/out/{stdout}.out"
+        stderr_path = f"/home/{username}/PESDTBatchJobs/err/{stderr}.err"
+        input_path = f"/home/{username}/PESDT_input/{input_file}"
+        script_path = "/home/{}/PESDT/PESDT_run.py".format(username)
+
+        # Ensure directory exists
+        Path(cmd_dir).mkdir(parents=True, exist_ok=True)
+
+        # Create .cmd script
+        content = f"""#!/bin/bash
+    #$ -S /bin/bash
+    #$ -cwd
+    #$ -N {job_name}
+    #$ -o {stdout_path}
+    #$ -e {stderr_path}
+    #$ -M {email}
+    #$ -m e
+    #$ -V
+
+    echo "Running PESDT via batch"
+    source /etc/profile.d/modules.sh
+    source /home/{username}/.bashrc
+
+    echo "Python3 version:"
+    python3 --version
+
+    echo "Python (default) version:"
+    python --version
+
+    python3 {script_path} {input_path}
+
+    echo "Run finished"
+    """
+
+        # Write to file
+        with open(cmd_path, "w") as f:
+            f.write(content)
+
+        print(f"Command file written to: {cmd_path}")
 class PostProcess(QWidget):
     def __init__(self):
         super().__init__()
