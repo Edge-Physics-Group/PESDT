@@ -404,12 +404,7 @@ class Main(QWidget):
         layout = QVBoxLayout()
         self.label = QLabel("NOT YET FUNCTIONAL, USE PESDT_run.py")
 
-        input_layout = QHBoxLayout()
-        input_label = QLabel("Input file path:")
-        self.input_path = QLineEdit("PESDT_input/")
-        input_layout.addWidget(input_label)
-        input_layout.addWidget(self.input_path)
-        layout.addLayout(input_layout)
+        
 
         self.button = QPushButton("Submit job")
         self.button2 = QPushButton("Save input")
@@ -424,7 +419,14 @@ class Main(QWidget):
         self.tabs.addTab(self.cherab_tab, "Cherab settings")
         layout.addWidget(self.tabs)
         layout.addWidget(self.label)
+        input_layout = QHBoxLayout()
+        input_label = QLabel("Input file path:")
+        self.input_path = QLineEdit("PESDT_input/")
+        input_layout.addWidget(input_label)
+        input_layout.addWidget(self.input_path)
+        layout.addLayout(input_layout)
         layout.addWidget(self.button)
+        layout.addWidget(self.butto2)
         self.setLayout(layout)
 
     def on_click(self):
