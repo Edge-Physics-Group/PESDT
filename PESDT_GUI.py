@@ -199,8 +199,7 @@ class Base(QWidget):
             }
     }
 
-    def get_selected_diagnostics(self):
-        return [item.text() for item in self.diag_list.selectedItems()]
+    
 
 class EmissionLines(QWidget):
     def __init__(self, db):
