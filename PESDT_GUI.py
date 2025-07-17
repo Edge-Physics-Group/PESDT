@@ -510,19 +510,21 @@ class Main(QWidget):
         cmd_layout.addWidget(self.cmd_path)
         layout.addLayout(cmd_layout)
         
-        layout.addWidget(self.button)
-        layout.addWidget(self.button2)
+        
         
         '''
+        layout.addWidget(self.button)
+        layout.addWidget(self.button2)
         self.setLayout(layout)
     def on_click(self):
+        job_info = self.jobinfo_tab.get_job_info()
         # Save the input dict
         settings_dict = self.base_tab.get_settings()
         settings_dict["cherab_options"] = self.cherab_tab.get_settings()
         settings_dict["spec_line_dict"] = {"1": self.em_tab.get_selected_lines()}
 
         # Get full path from input field
-        save_path = os.path.expanduser(self.input_path.text())
+        save_path = os.path.expanduser(job_info["input_file"])
         save_path = os.path.abspath(save_path)
 
         # Ensure the parent directory exists
@@ -537,12 +539,13 @@ class Main(QWidget):
         
 
     def on_click2(self):
+        job_info = self.jobinfo_tab.get_job_info()
         settings_dict = self.base_tab.get_settings()
         settings_dict["cherab_options"] = self.cherab_tab.get_settings()
         settings_dict["spec_line_dict"] = {"1": self.em_tab.get_selected_lines()}
 
         # Get full path from input field
-        save_path = os.path.expanduser(self.input_path.text())
+        save_path = os.path.expanduser(job_info["input_file"])
         save_path = os.path.abspath(save_path)
 
         # Ensure the parent directory exists
