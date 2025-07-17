@@ -440,7 +440,7 @@ class PESDTGui(QWidget):
         super().__init__()
 
         self.setWindowTitle("PESDT 2.0")
-        self.setGeometry(1000, 1000, 1000, 1000)
+        self.setGeometry(100, 100, 300, 300)
         self.tabs = QTabWidget()
         self.tabs.addTab(Main(machine_dict = machine_dict, spect_db = spect_db), "Main")
         self.tabs.addTab(PostProcess(), "Post-processor")
