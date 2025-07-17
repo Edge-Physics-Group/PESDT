@@ -172,11 +172,13 @@ class Base(QWidget):
             widget = item.widget()
             if widget:
                 layout = widget.layout()
-                label = layout.itemAt(0).widget().text()
-                checkbox = layout.itemAt(2).widget()
-                if checkbox.isChecked():
-                    selected.append(label)
-        return selected
+
+                checkbox = layout.itemAt(0).widget()
+                label_widget = layout.itemAt(1).widget()
+
+                if isinstance(checkbox, QCheckBox) and checkbox.isChecked():
+                    if isinstance(label_widget, QLabel):
+                        selected.append(label_widget.text())
     
     def get_settings(self):
         return {
