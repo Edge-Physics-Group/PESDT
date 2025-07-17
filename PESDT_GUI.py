@@ -426,7 +426,7 @@ class Main(QWidget):
         input_layout.addWidget(self.input_path)
         layout.addLayout(input_layout)
         layout.addWidget(self.button)
-        layout.addWidget(self.butto2)
+        layout.addWidget(self.button2)
         self.setLayout(layout)
 
     def on_click(self):
