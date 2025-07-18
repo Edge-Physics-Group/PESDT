@@ -665,48 +665,48 @@ class PESDTGui(QWidget):
             with open(save_path, "r") as f:
                 settings = json.load(f)
 
-        # run options
+            # run options
 
-        self.main_tab.base_tab.pulse_spin.setValue(settings.get("pulse", 81472))
-        self.main_tab.base_tab.machine_combo.setCurrentText(settings.get("machine", "JET"))
-        self.main_tab.base_tab.edge_code_combo.setCurrentText(settings["edge_code"].get("code", "edge2d"))
-        self.main_tab.base_tab.read_adas_checkbox.setChecked(settings.get("read_ADAS", False))
-        self.main_tab.base_tab.save_input.setText(settings.get("save_dir", "PESDT_cases/"))
-        self.main_tab.base_tab.run_cherab.setChecked(settings["run_options"].get("run_cherab", False))
-        self.main_tab.base_tab.analyse_synth_spec_features.setChecked(settings["run_options"].get("analyse_synth_spec_features", False))
-        self.main_tab.base_tab.data_source_combo.setCurrentText(settings["run_options"].get("data_source", "AMJUEL"))
-        self.main_tab.base_tab.recalc_h2_pos.setChecked(settings["run_options"].get("recalc_h2_pos", True))
-        self.main_tab.base_tab.update_diagnostics()
-        # Diag list
-        self.main_tab.base_tab.set_selected_diagnostics(settings.get("diag_list", []))
-        # Emission lines
-        self.main_tab.em_tab.set_selected_lines(settings.get("spec_line_dict", {}).get("1", {}))
+            self.main_tab.base_tab.pulse_spin.setValue(settings.get("pulse", 81472))
+            self.main_tab.base_tab.machine_combo.setCurrentText(settings.get("machine", "JET"))
+            self.main_tab.base_tab.edge_code_combo.setCurrentText(settings["edge_code"].get("code", "edge2d"))
+            self.main_tab.base_tab.read_adas_checkbox.setChecked(settings.get("read_ADAS", False))
+            self.main_tab.base_tab.save_input.setText(settings.get("save_dir", "PESDT_cases/"))
+            self.main_tab.base_tab.run_cherab.setChecked(settings["run_options"].get("run_cherab", False))
+            self.main_tab.base_tab.analyse_synth_spec_features.setChecked(settings["run_options"].get("analyse_synth_spec_features", False))
+            self.main_tab.base_tab.data_source_combo.setCurrentText(settings["run_options"].get("data_source", "AMJUEL"))
+            self.main_tab.base_tab.recalc_h2_pos.setChecked(settings["run_options"].get("recalc_h2_pos", True))
+            self.main_tab.base_tab.update_diagnostics()
+            # Diag list
+            self.main_tab.base_tab.set_selected_diagnostics(settings.get("diag_list", []))
+            # Emission lines
+            self.main_tab.em_tab.set_selected_lines(settings.get("spec_line_dict", {}).get("1", {}))
 
-        # Cherab options
-        self.main_tab.cherab_tab.num_processes.setValue(settings.get("cherab_options", {}).get("num_processes", 1))
-        self.main_tab.cherab_tab.pixel_samples.setValue(settings.get("cherab_options", {}).get("pixel_samples", 1000))
-        
-        self.main_tab.cherab_tab.import_jet_surfaces.setChecked(settings.get("cherab_options", {}).get("import_jet_surfaces", False))
-        self.main_tab.cherab_tab.include_reflections.setChecked(settings.get("cherab_options", {}).get("include_reflections", False))
-        self.main_tab.cherab_tab.calculate_stark_ne.setChecked(settings.get("cherab_options", {}).get("calculate_stark_ne", False))
-        self.main_tab.cherab_tab.ff_fb_emission.setChecked(settings.get("cherab_options", {}).get("ff_fb_emission", False))
-        self.main_tab.cherab_tab.mol_exc_emission.setChecked(settings.get("cherab_options", {}).get("mol_exc_emission", False))
-        self.main_tab.cherab_tab.update_lines()
-        # bands
-        self.main_tab.cherab_tab.set_selected(settings.get("cherab_options", {}).get("mol_exc_emission_bands", []))
-        # stark transition
-        self.main_tab.cherab_tab.set_stark_line(settings.get("cherab_options", {}).get("stark_transition", [6,2]))
+            # Cherab options
+            self.main_tab.cherab_tab.num_processes.setValue(settings.get("cherab_options", {}).get("num_processes", 1))
+            self.main_tab.cherab_tab.pixel_samples.setValue(settings.get("cherab_options", {}).get("pixel_samples", 1000))
+            
+            self.main_tab.cherab_tab.import_jet_surfaces.setChecked(settings.get("cherab_options", {}).get("import_jet_surfaces", False))
+            self.main_tab.cherab_tab.include_reflections.setChecked(settings.get("cherab_options", {}).get("include_reflections", False))
+            self.main_tab.cherab_tab.calculate_stark_ne.setChecked(settings.get("cherab_options", {}).get("calculate_stark_ne", False))
+            self.main_tab.cherab_tab.ff_fb_emission.setChecked(settings.get("cherab_options", {}).get("ff_fb_emission", False))
+            self.main_tab.cherab_tab.mol_exc_emission.setChecked(settings.get("cherab_options", {}).get("mol_exc_emission", False))
+            self.main_tab.cherab_tab.update_lines()
+            # bands
+            self.main_tab.cherab_tab.set_selected(settings.get("cherab_options", {}).get("mol_exc_emission_bands", []))
+            # stark transition
+            self.main_tab.cherab_tab.set_stark_line(settings.get("cherab_options", {}).get("stark_transition", [6,2]))
 
-        self.main_tab.cherab_tab.stark_spectral_bins.setValue(settings.get("cherab_options", {}).get("stark_spectral_bins", 50))
-        self.main_tab.cherab_tab.ff_fb_spectral_bins.setValue(settings.get("cherab_options", {}).get("ff_fb_spectral_bins", 50))
+            self.main_tab.cherab_tab.stark_spectral_bins.setValue(settings.get("cherab_options", {}).get("stark_spectral_bins", 50))
+            self.main_tab.cherab_tab.ff_fb_spectral_bins.setValue(settings.get("cherab_options", {}).get("ff_fb_spectral_bins", 50))
 
-        # Job info
-        self.main_tab.jobinfo_tab.job_name_input.setText(settings.get("job_info", {}).get("job_name", "")),
-        self.main_tab.jobinfo_tab.email_input.setText(settings.get("job_info", {}).get("email", "")),
-        self.main_tab.jobinfo_tab.stdout_name_input.setText(settings.get("job_info", {}).get("stdout", "")),
-        self.main_tab.jobinfo_tab.stderr_name_input.setText(settings.get("job_info", {}).get("stderr", "")),
-        self.main_tab.jobinfo_tab.input_filename.setText(settings.get("job_info", {}).get("input_file", "")),
-        self.main_tab.jobinfo_tab.cmd_path.setText(settings.get("job_info", {}).get("cmd_path", "")),
+            # Job info
+            self.main_tab.jobinfo_tab.job_name_input.setText(settings.get("job_info", {}).get("job_name", "")),
+            self.main_tab.jobinfo_tab.email_input.setText(settings.get("job_info", {}).get("email", "")),
+            self.main_tab.jobinfo_tab.stdout_name_input.setText(settings.get("job_info", {}).get("stdout", "")),
+            self.main_tab.jobinfo_tab.stderr_name_input.setText(settings.get("job_info", {}).get("stderr", "")),
+            self.main_tab.jobinfo_tab.input_filename.setText(settings.get("job_info", {}).get("input_file", "")),
+            self.main_tab.jobinfo_tab.cmd_path.setText(settings.get("job_info", {}).get("cmd_path", "")),
 
 
     def closeEvent(self, event):
