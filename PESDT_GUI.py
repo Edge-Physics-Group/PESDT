@@ -202,8 +202,6 @@ class Base(QWidget):
             }
     }
 
-    
-
 class EmissionLines(QWidget):
     def __init__(self, db):
         super().__init__()
@@ -400,9 +398,6 @@ class CherabSettings(QWidget):
             "mol_exc_emission_bands": self.get_selected()
             
         }
-    
-import os
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit
 
 class JobInfo(QWidget):
     def __init__(self):
@@ -472,14 +467,11 @@ class JobInfo(QWidget):
             "username": self.username
         }
 
-
 class Main(QWidget):
     def __init__(self, machine_dict = None, spect_db = None):
         super().__init__()
         layout = QVBoxLayout()
-        self.label = QLabel("NOT YET FUNCTIONAL, USE PESDT_run.py")
-
-        
+        self.label = QLabel("BETA")
 
         self.button = QPushButton("Submit job")
         self.button2 = QPushButton("Save input")
@@ -496,34 +488,17 @@ class Main(QWidget):
         self.tabs.addTab(self.jobinfo_tab, "Job Info")
         layout.addWidget(self.tabs)
         layout.addWidget(self.label)
-        '''
-        input_layout = QHBoxLayout()
-        input_label = QLabel("Input file path:")
-        self.input_path = QLineEdit("PESDT_input/input.json")
-        input_layout.addWidget(input_label)
-        input_layout.addWidget(self.input_path)
-        layout.addLayout(input_layout)
-
-        cmd_layout = QHBoxLayout()
-        cmd_label = QLabel("CMD file path:")
-        self.cmd_path = QLineEdit("PESDTBatchJobs/job.cmd")
-        cmd_layout.addWidget(cmd_label)
-        cmd_layout.addWidget(self.cmd_path)
-        layout.addLayout(cmd_layout)
-        
-        
-        
-        '''
         layout.addWidget(self.button)
         layout.addWidget(self.button2)
         self.setLayout(layout)
+
     def on_click(self):
         job_info = self.jobinfo_tab.get_job_info()
         # Save the input dict
         settings_dict = self.base_tab.get_settings()
         settings_dict["cherab_options"] = self.cherab_tab.get_settings()
         settings_dict["spec_line_dict"] = {"1": self.em_tab.get_selected_lines()}
-
+        settings_dict["job_name"] = job_info["job_name"]
         # Get full path from input field
         save_path = os.path.expanduser(job_info["input_file"])
         save_path = os.path.abspath(save_path)
@@ -548,6 +523,7 @@ class Main(QWidget):
         settings_dict = self.base_tab.get_settings()
         settings_dict["cherab_options"] = self.cherab_tab.get_settings()
         settings_dict["spec_line_dict"] = {"1": self.em_tab.get_selected_lines()}
+        settings_dict["job_name"] = job_info["job_name"]
 
         # Get full path from input field
         save_path = os.path.expanduser(job_info["input_file"])
@@ -580,7 +556,7 @@ class Main(QWidget):
         stdout_path = f"/home/{username}/PESDTBatchJobs/out/{stdout}.out"
         stderr_path = f"/home/{username}/PESDTBatchJobs/err/{stderr}.err"
         input_path = f"/home/{username}/{input_file}"
-        script_path = "/home/{}/PESDT/PESDT_run.py".format(username)
+        script_path = f"/home/{username}/PESDT/PESDT_run.py"
 
         # Ensure directory exists
         Path(cmd_dir).mkdir(parents=True, exist_ok=True)
@@ -616,6 +592,7 @@ echo "Run finished"
             f.write(content)
 
         print(f"Command file written to: {cmd_path}")
+
 class PostProcess(QWidget):
     def __init__(self):
         super().__init__()
@@ -638,14 +615,74 @@ class PESDTGui(QWidget):
         self.setWindowTitle("PESDT 2.0")
         self.setGeometry(100, 100, 300, 300)
         self.tabs = QTabWidget()
-        self.tabs.addTab(Main(machine_dict = machine_dict, spect_db = spect_db), "Main")
-        self.tabs.addTab(PostProcess(), "Post-processor")
+        self.main_tab = Main(machine_dict = machine_dict, spect_db = spect_db)
+        self.post_proc_tab = PostProcess()
+        self.tabs.addTab(self.main_tab, "Main")
+        self.tabs.addTab(self.post_proc_tab, "Post-processor")
 
         # Main layout
         main_layout = QVBoxLayout()
         main_layout.addWidget(self.tabs)
         self.setLayout(main_layout)
 
+    def load_cache(self):
+        save_path = os.path.join(os.path.expanduser("~"), "PESDTCache/gui_state.json")
+        if os.path.exists(save_path):
+            with open(save_path, "r") as f:
+                settings = json.load(f)
+
+        # run options
+
+        self.main_tab.base_tab.pulse_spin.setValue(settings.get("pulse", 81472))
+        self.main_tab.base_tab.machine_combo.setCurrentText(settings.get("machine", "JET"))
+        self.main_tab.base_tab.edge_code_combo.setCurrentText(settings["edge_code"].get("code", "edge2d"))
+        self.main_tab.base_tab.read_adas_checkbox.setChecked(settings.get("read_ADAS", False))
+        self.main_tab.base_tab.save_input.setText(settings.get("save_dir", "PESDT_cases/"))
+        self.main_tab.base_tab.run_cherab.setChecked(settings["run_options"].get("run_cherab", False))
+        self.main_tab.base_tab.analyse_synth_spec_features.setChecked(settings["run_options"].get("analyse_synth_spec_features", False))
+        self.main_tab.base_tab.data_source_combo.setCurrentText(settings["run_options"].get("data_source", "AMJUEL"))
+        self.main_tab.base_tab.recalc_h2_pos.setChecked(settings["run_options"].get("recalc_h2_pos", True))
+        self.main_tab.base_tab.update_diagnostics()
+        # Diag list
+
+        # Emission lines
+
+        # Cherab options
+        self.main_tab.cherab_tab.num_processes.setValue(settings.get["cherab_options", {}].get("num_processes", 1))
+        self.main_tab.cherab_tab.pixel_samples.setValue(settings.get["cherab_options", {}].get("pixel_samples", 1000))
+        
+        self.main_tab.cherab_tab.import_jet_surfaces.setChecked(settings.get["cherab_options", {}].get("import_jet_surfaces", False))
+        self.main_tab.cherab_tab.include_reflections.setChecked(settings.get["cherab_options", {}].get("include_reflections", False))
+        self.main_tab.cherab_tab.calculate_stark_ne.setChecked(settings.get["cherab_options", {}].get("calculate_stark_ne", False))
+        self.main_tab.cherab_tab.ff_fb_emission.setChecked(settings.get["cherab_options", {}].get("ff_fb_emission", False))
+        self.main_tab.cherab_tab.mol_exc_emission.setChecked(settings.get["cherab_options", {}].get("mol_exc_emission", False))
+        self.main_tab.cherab_tab.update_lines()
+        # bands
+        # stark transition
+        self.main_tab.cherab_tab.stark_spectral_bins.setValue(settings.get["cherab_options", {}].get("stark_spectral_bins", 50))
+        self.main_tab.cherab_tab.ff_fb_spectral_bins.setValue(settings.get["cherab_options", {}].get("ff_fb_spectral_bins", 50))
+
+        # Job info
+        self.main_tab.jobinfo_tab.job_name_input.setText(settings.get("job_info", {}).get("job_name", "")),
+        self.main_tab.jobinfo_tab.email_input.setText(settings.get("job_info", {}).get("email", "")),
+        self.main_tab.jobinfo_tab.stdout_name_input.setText(settings.get("job_info", {}).get("stdout", "")),
+        self.main_tab.jobinfo_tab.stderr_name_input.setText(settings.get("job_info", {}).get("stderr", "")),
+        self.main_tab.jobinfo_tab.input_filename.setText(settings.get("job_info", {}).get("input_file", "")),
+        self.main_tab.jobinfo_tab.cmd_path.setText(settings.get("job_info", {}).get("cmd_path", "")),
+
+
+    def closeEvent(self, event):
+
+        save_path = os.path.join(os.path.expanduser("~"), "PESDTCache/gui_state.json")
+        settings_dict = self.main_tab.base_tab.get_settings()
+        settings_dict["cherab_options"] = self.main_tab.cherab_tab.get_settings()
+        settings_dict["spec_line_dict"] = {"1": self.main_tab.em_tab.get_selected_lines()}
+        settings_dict["job_info"] = self.main_tab.jobinfo_tab.get_job_info()
+
+        with open(save_path, "w") as f:
+            json.dump(settings_dict, f)
+        event.accept()
+        
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
