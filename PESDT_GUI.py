@@ -179,6 +179,7 @@ class Base(QWidget):
                 if isinstance(checkbox, QCheckBox) and checkbox.isChecked():
                     if isinstance(label_widget, QLabel):
                         selected.append(label_widget.text())
+        return selected 
     
     def get_settings(self):
         return {
