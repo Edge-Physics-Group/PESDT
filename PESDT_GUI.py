@@ -649,19 +649,19 @@ class PESDTGui(QWidget):
         # Emission lines
 
         # Cherab options
-        self.main_tab.cherab_tab.num_processes.setValue(settings.get["cherab_options", {}].get("num_processes", 1))
-        self.main_tab.cherab_tab.pixel_samples.setValue(settings.get["cherab_options", {}].get("pixel_samples", 1000))
+        self.main_tab.cherab_tab.num_processes.setValue(settings.get("cherab_options", {}).get("num_processes", 1))
+        self.main_tab.cherab_tab.pixel_samples.setValue(settings.get("cherab_options", {}).get("pixel_samples", 1000))
         
-        self.main_tab.cherab_tab.import_jet_surfaces.setChecked(settings.get["cherab_options", {}].get("import_jet_surfaces", False))
-        self.main_tab.cherab_tab.include_reflections.setChecked(settings.get["cherab_options", {}].get("include_reflections", False))
-        self.main_tab.cherab_tab.calculate_stark_ne.setChecked(settings.get["cherab_options", {}].get("calculate_stark_ne", False))
-        self.main_tab.cherab_tab.ff_fb_emission.setChecked(settings.get["cherab_options", {}].get("ff_fb_emission", False))
-        self.main_tab.cherab_tab.mol_exc_emission.setChecked(settings.get["cherab_options", {}].get("mol_exc_emission", False))
+        self.main_tab.cherab_tab.import_jet_surfaces.setChecked(settings.get("cherab_options", {}).get("import_jet_surfaces", False))
+        self.main_tab.cherab_tab.include_reflections.setChecked(settings.get("cherab_options", {}).get("include_reflections", False))
+        self.main_tab.cherab_tab.calculate_stark_ne.setChecked(settings.get("cherab_options", {}).get("calculate_stark_ne", False))
+        self.main_tab.cherab_tab.ff_fb_emission.setChecked(settings.get("cherab_options", {}).get("ff_fb_emission", False))
+        self.main_tab.cherab_tab.mol_exc_emission.setChecked(settings.get("cherab_options", {}).get("mol_exc_emission", False))
         self.main_tab.cherab_tab.update_lines()
         # bands
         # stark transition
-        self.main_tab.cherab_tab.stark_spectral_bins.setValue(settings.get["cherab_options", {}].get("stark_spectral_bins", 50))
-        self.main_tab.cherab_tab.ff_fb_spectral_bins.setValue(settings.get["cherab_options", {}].get("ff_fb_spectral_bins", 50))
+        self.main_tab.cherab_tab.stark_spectral_bins.setValue(settings.get("cherab_options", {}).get("stark_spectral_bins", 50))
+        self.main_tab.cherab_tab.ff_fb_spectral_bins.setValue(settings.get("cherab_options", {}).get("ff_fb_spectral_bins", 50))
 
         # Job info
         self.main_tab.jobinfo_tab.job_name_input.setText(settings.get("job_info", {}).get("job_name", "")),
