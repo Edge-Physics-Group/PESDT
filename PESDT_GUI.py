@@ -181,6 +181,20 @@ class Base(QWidget):
                         selected.append(label_widget.text())
         return selected 
     
+    def set_selected_diagnostics(self, selected_list):
+        for i in range(self.diag_grid.count()):
+            item = self.diag_grid.itemAt(i)
+            widget = item.widget()
+            if widget:
+                layout = widget.layout()
+
+                checkbox = layout.itemAt(0).widget()
+                label_widget = layout.itemAt(1).widget()
+
+                if isinstance(checkbox, QCheckBox) and isinstance(label_widget, QLabel):
+                    diag_name = label_widget.text()
+                    checkbox.setChecked(diag_name in selected_list)
+
     def get_settings(self):
         return {
             "machine": self.machine_combo.currentText(),
@@ -253,6 +267,13 @@ class EmissionLines(QWidget):
             self.content_layout.addWidget(group_box)
 
         self.content_layout.addStretch()
+
+    def set_selected_lines(self, selected_dict):
+        for (atom_num, wl), (checkbox, _) in self.checkboxes.items():
+            if atom_num in selected_dict and wl in selected_dict[atom_num]:
+                checkbox.setChecked(True)
+            else:
+                checkbox.setChecked(False)
 
     def get_selected_lines(self):
         result = {}
@@ -379,8 +400,20 @@ class CherabSettings(QWidget):
                 label = f"{atom_num}: {wl}"
                 self.stark_transition_combo.addItem(label, userData=transition)
 
+    def set_stark_line(self, target_transition):
+        target_transition = [f"{target_transition[0]}",f"{target_transition[1]}"]
+        for i in range(self.stark_transition_combo.count()):
+            data = self.stark_transition_combo.itemData(i)
+            if data == target_transition:
+                self.stark_transition_combo.setCurrentIndex(i)
+                return
+
     def get_selected(self):
         return [item for checkbox, item in self.molecular_bands_boxes if checkbox.isChecked()]
+    
+    def set_selected(self, selected_list):
+        for checkbox, item in self.molecular_bands_boxes:
+            checkbox.setChecked(item in selected_list)
 
     def get_settings(self):
         return {
@@ -645,8 +678,9 @@ class PESDTGui(QWidget):
         self.main_tab.base_tab.recalc_h2_pos.setChecked(settings["run_options"].get("recalc_h2_pos", True))
         self.main_tab.base_tab.update_diagnostics()
         # Diag list
-
+        self.main_tab.base_tab.set_selected_diagnostics(settings.get("diag_list", []))
         # Emission lines
+        self.main_tab.em_tab.set_selected_lines(settings.get("spec_line_dict", {}).get("1", {}))
 
         # Cherab options
         self.main_tab.cherab_tab.num_processes.setValue(settings.get("cherab_options", {}).get("num_processes", 1))
@@ -659,7 +693,10 @@ class PESDTGui(QWidget):
         self.main_tab.cherab_tab.mol_exc_emission.setChecked(settings.get("cherab_options", {}).get("mol_exc_emission", False))
         self.main_tab.cherab_tab.update_lines()
         # bands
+        self.main_tab.cherab_tab.set_selected(settings.get("cherab_options", {}).get("mol_exc_emission_bands", []))
         # stark transition
+        self.main_tab.cherab_tab.set_stark_line(settings.get("cherab_options", {}).get("stark_transition", [6,2]))
+
         self.main_tab.cherab_tab.stark_spectral_bins.setValue(settings.get("cherab_options", {}).get("stark_spectral_bins", 50))
         self.main_tab.cherab_tab.ff_fb_spectral_bins.setValue(settings.get("cherab_options", {}).get("ff_fb_spectral_bins", 50))
 
