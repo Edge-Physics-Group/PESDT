@@ -624,6 +624,7 @@ class PESDTGui(QWidget):
         main_layout = QVBoxLayout()
         main_layout.addWidget(self.tabs)
         self.setLayout(main_layout)
+        self.load_cache()
 
     def load_cache(self):
         save_path = os.path.join(os.path.expanduser("~"), "PESDTCache/gui_state.json")
