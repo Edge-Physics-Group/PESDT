@@ -63,13 +63,7 @@ class ProcessEdgeSim:
                     logger.error(f'Something went wrong with Line integrated Stark ne, or continuum Te, error{e}')
                     pass
             # SAVE IN JSON FORMAT TO ENSURE PYTHON 2/3 COMPATIBILITY
-            if self.input_dict["cherab_options"].get('include_reflections', False):
-                logger.info("Saving cherab reflections")
-                savefile = self.savedir + '/cherab_refl.synth_diag.json'
-            else:
-                logger.info("Saving cherab no reflections")
-                savefile = self.savedir + '/cherab.synth_diag.json'
-            with open(savefile, mode='w', encoding='utf-8') as f:
+            with open(self.synth_diag_save_file, mode='w', encoding='utf-8') as f:
                 json.dump(self.outdict, f, indent=2)
         else:
             logger.info("   Calculate emission via cone integration")
@@ -88,26 +82,11 @@ class ProcessEdgeSim:
         """
         Reads the input deck and populates run parameters
         """
+        self.savedir = os.path.join( os.path.expanduser("~"), self.input_dict.get('save_dir',"PESDT_cases") )
+        # Create dir
+        os.makedirs(self.savedir, exist_ok=True)
 
-        tmpstr = self.input_dict['edge_code']['sim_path'].replace('/','_')
-        logger.info(f"{self.input_dict['edge_code']['sim_path']}")
-        if tmpstr[:3] == '_u_':
-            tmpstr = tmpstr[3:]
-        elif tmpstr[:6] == '_work_':
-            tmpstr = tmpstr[6:]
-        else:
-            tmpstr = tmpstr[1:]
-
-        self.savedir = self.input_dict['save_dir'] + tmpstr + '/'
-
-        # Create dir from tran file, if it does not exist
-        try:
-            os.makedirs(self.savedir)
-        except OSError as e:
-            if e.errno != errno.EEXIST:
-                raise
-
-        self.synth_diag_save_file = self.savedir + 'PESDT.synth_diag.json'
+        self.synth_diag_save_file =os.path.join(self.savedir, self.input_dict.get("job_name", "PESDTJobOut") + ".json")
         self.spec_line_dict = self.input_dict['spec_line_dict']
 
         # Option to run cherab
@@ -118,7 +97,7 @@ class ProcessEdgeSim:
         # to Siz and Srec estimates with modified Ly-trapping adas data
         self.cherab_ne_Te_KT3_resfile = self.input_dict['run_options'].get('use_cherab_resfile_for_KT3_ne_Te_fits', None)
         self.diag_list = self.input_dict['diag_list']
-        self.calc_synth_spec_features = self.input_dict['run_options']['analyse_synth_spec_features']
+        self.calc_synth_spec_features = self.input_dict['run_options'].get('analyse_synth_spec_features', False)
         self.AMJUEL_date = self.input_dict['run_options'].get("AMJUEL_date", 2016) # Default to <2017 (no H3+)
         self.data_source = self.input_dict["run_options"].get("data_source", "AMJUEL")
         self.edge_code = self.input_dict['edge_code']['code']
