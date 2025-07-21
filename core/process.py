@@ -65,6 +65,8 @@ class ProcessEdgeSim:
             # SAVE IN JSON FORMAT TO ENSURE PYTHON 2/3 COMPATIBILITY
             with open(self.synth_diag_save_file, mode='w', encoding='utf-8') as f:
                 json.dump(self.outdict, f, indent=2)
+            logger.info(f"Saved synthetic diagnostic data to: {self.synth_diag_save_file}")
+
         else:
             logger.info("   Calculate emission via cone integration")
             self.run_cone_integration()
