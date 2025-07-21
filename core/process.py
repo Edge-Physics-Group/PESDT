@@ -191,7 +191,10 @@ class ProcessEdgeSim:
         ff_fb = cherab_opts.get("ff_fb_emission", False)
         ff_fb_bins = cherab_opts.get("ff_fb_spectral_bins", 20)
         mol_exc_emission = cherab_opts.get("mol_exc_emission", False)
-        mol_exc_emission_bands = cherab_opts.get("mol_exc_emission_bands", None)
+        if mol_exc_emission:
+            mol_exc_emission_bands = cherab_opts.get("mol_exc_emission_bands", ["Fulcher"])
+        else:
+            mol_exc_emission_bands = None
 
         
 
