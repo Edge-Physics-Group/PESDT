@@ -474,7 +474,7 @@ class JobInfo(QWidget):
         # Input file name
         input_layout = QHBoxLayout()
         input_label = QLabel("Input JSON filename:")
-        self.input_filename = QLineEdit("PESDT_input/inputfile.json")
+        self.input_filename = QLineEdit(f"/home/{username}/PESDT_input/inputfile.json")
         input_layout.addWidget(input_label)
         input_layout.addWidget(self.input_filename)
         layout.addLayout(input_layout)
@@ -559,7 +559,7 @@ class Main(QWidget):
         settings_dict["job_name"] = job_info["job_name"]
 
         # Get full path from input field
-        save_path = os.path.expanduser(job_info["input_file"])
+        save_path = os.path.join(os.path.expanduser("~"),job_info["input_file"])
         save_path = os.path.abspath(save_path)
 
         # Ensure the parent directory exists
@@ -588,7 +588,7 @@ class Main(QWidget):
         # Paths for output and error
         stdout_path = f"/home/{username}/PESDTBatchJobs/out/{stdout}.out"
         stderr_path = f"/home/{username}/PESDTBatchJobs/err/{stderr}.err"
-        input_path = f"/home/{username}/{input_file}"
+        input_path = input_file
         script_path = f"/home/{username}/PESDT/PESDT_run.py"
 
         # Ensure directory exists
@@ -670,6 +670,7 @@ class PESDTGui(QWidget):
             self.main_tab.base_tab.pulse_spin.setValue(settings.get("pulse", 81472))
             self.main_tab.base_tab.machine_combo.setCurrentText(settings.get("machine", "JET"))
             self.main_tab.base_tab.edge_code_combo.setCurrentText(settings["edge_code"].get("code", "edge2d"))
+            self.main_tab.base_tab.edge_path_input.setText(settings["edge_code"].get("sim_path", ""))
             self.main_tab.base_tab.read_adas_checkbox.setChecked(settings.get("read_ADAS", False))
             self.main_tab.base_tab.save_input.setText(settings.get("save_dir", "PESDT_cases/"))
             self.main_tab.base_tab.run_cherab.setChecked(settings["run_options"].get("run_cherab", False))
