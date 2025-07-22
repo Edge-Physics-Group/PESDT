@@ -189,6 +189,8 @@ class ProcessEdgeSim:
         import_jet_surfaces = cherab_opts.get("import_jet_surfaces", True)
         calc_stark_ne = cherab_opts.get("calculate_stark_ne", False)
         stark_transition = cherab_opts.get("stark_transition", None)
+        if stark_transition is not None:
+            stark_transition = (int(stark_transition[0]), int(stark_transition[1]))
         stark_bins = cherab_opts.get("stark_spectral_bins", 50)
         ff_fb = cherab_opts.get("ff_fb_emission", False)
         ff_fb_bins = cherab_opts.get("ff_fb_spectral_bins", 20)
@@ -330,7 +332,7 @@ class ProcessEdgeSim:
                     self.outdict[diag][wavelength]["recom"] = [x[0] for x in recom]
                     
                 # === Optional Stark Spectrum ===
-                if calc_stark_ne and transition == tuple(stark_transition):
+                if calc_stark_ne and transition == stark_transition:
                     logger.info("Stark")
                     plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
                                             include_excitation=True, include_recombination=True,
