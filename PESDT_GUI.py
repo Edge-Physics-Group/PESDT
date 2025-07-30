@@ -533,8 +533,7 @@ class Main(QWidget):
         settings_dict["spec_line_dict"] = {"1": self.em_tab.get_selected_lines()}
         settings_dict["job_name"] = job_info["job_name"]
         # Get full path from input field
-        save_path = os.path.expanduser(job_info["input_file"])
-        save_path = os.path.abspath(save_path)
+        save_path = job_info["input_file"]
 
         # Ensure the parent directory exists
         save_dir = os.path.dirname(save_path)
@@ -547,8 +546,9 @@ class Main(QWidget):
         self.create_cmd_file()
         
         job_name = job_info["job_name"]
-        cmd_dir = os.path.expanduser(job_info["cmd_path"])
+        cmd_dir = job_info["cmd_path"]
         cmd_path = os.path.join(cmd_dir, f"{job_name}.cmd")
+
         subprocess.Popen(["qsub", cmd_path])
 
     def on_click2(self):
@@ -559,8 +559,7 @@ class Main(QWidget):
         settings_dict["job_name"] = job_info["job_name"]
 
         # Get full path from input field
-        save_path = os.path.join(os.path.expanduser("~"),job_info["input_file"])
-        save_path = os.path.abspath(save_path)
+        save_path = job_info["input_file"]
 
         # Ensure the parent directory exists
         save_dir = os.path.dirname(save_path)
@@ -582,7 +581,7 @@ class Main(QWidget):
         stdout = job_info["stdout"]
         stderr = job_info["stderr"]
         input_file = job_info["input_file"]
-        cmd_dir = os.path.expanduser(job_info["cmd_path"])
+        cmd_dir = job_info["cmd_path"]
         cmd_path = os.path.join(cmd_dir, f"{job_name}.cmd")
 
         # Paths for output and error
