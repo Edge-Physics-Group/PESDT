@@ -170,7 +170,8 @@ def calc_cross_sections(MARc, T=None, n=None, E=None):
     """
 
     logT = np.log(T)
-
+    if n is not None:
+        n[n<1e10] = 1e10 # Set a density limit, going below this might cause issues
     if MARc.shape == (9, 9):
         lognE = np.log(n*1e-8) if n is not None else np.log(E)
 
