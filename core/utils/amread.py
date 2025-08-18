@@ -190,7 +190,7 @@ def calc_cross_sections(MARc, T=None, n=None, E=None):
 
     ret = np.exp(total)
     ret[np.isinf(ret)] = 0.0
-    return 
+    return ret
 
 def read_amjuel_1d(h_name, collisionName, **kwargs):
     '''
