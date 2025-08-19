@@ -386,7 +386,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     # KS8D
     ###############
     origin = [3.300, 3.500]
-    width = 0.230
+    width = 0.230/2
     p2 = np.array([[2.701, -1.641]])
     ks8d_los = np.zeros((len(p2), 3, 2))
     for i in range(len(p2)):
