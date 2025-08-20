@@ -49,7 +49,7 @@ cdef class PESDTLine(Line):
             return NotImplemented
     @property
     def arb_transition(self):
-        return self.arb_transition
+        return self._arb_transition
 
     @arb_transition.setter
     def arb_transition(self, val):
