@@ -190,8 +190,8 @@ def calc_cross_sections(MARc, T=None, n=None, E=None):
         raise ValueError("MARc must be of shape (9,) or (9,9)")
 
     ret = np.exp(total)
-    #ret[np.isinf(ret)] = 0.0
-    #ret[np.isnan(ret)] = 0.0
+    ret[np.isinf(ret)] = 0.0
+    ret[np.isnan(ret)] = 0.0
     return ret
 
 def read_amjuel_1d(h_name, collisionName, **kwargs):

@@ -123,6 +123,7 @@ def createCherabPlasma(PESDT, transitions: list,
         logger.info("Precalculating emission")    
         for i in range(len(transitions)):
             logger.info(f"   Calculating emission for line: {transitions[i]}")
+            logger.info(f"Mean: {np.mean(tot)}")
             em_n_exc, em_n_rec, em_mol, em_h2_pos, em_h3_pos, em_h_neg, _ = calc_photon_rate(transitions[i], te, ne, n0[:], n2[:], h2_pos_den[:], debug = True)
             emission[0][transitions[i]] = em_n_exc
             emission[1][transitions[i]] = em_n_rec
@@ -170,6 +171,7 @@ def createCherabPlasma(PESDT, transitions: list,
         for i in range(len(transitions)):
             logger.info(f"   Calculating emission for line: {transitions[i]}")
             h_emiss, h_rec_emiss, h2_emiss, h2_pos_emiss, h3_pos_emiss, hneg_emiss, tot = yacora.calc_photon_rate(transitions[i], te, ne, n0[:], n2[:], h2_pos_den, h3_pos_den, h_neg_den)
+            logger.info(f"Mean: {np.mean(tot)}")
             emission[0][transitions[i]] = h_emiss
             emission[1][transitions[i]] = h_rec_emiss
             emission[2][transitions[i]] = h2_emiss
