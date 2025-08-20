@@ -184,6 +184,7 @@ class PESDTSimulation:
                     try:
                         print(value[1][k][key])
                         _emission_f2d[key] = Edge2DFunction.instance(self._inside_mesh, value[1][k][key])
+                        print(_emission_f2d[key])
                         _emission_f3d[key] = AxisymmetricMapper(_emission_f2d[key])
                     except Exception as e:
                         logger.warning(f"Error: {e}. Ignore if molecular bands are turned on\n Error at {k}, {sp}, {key}")
