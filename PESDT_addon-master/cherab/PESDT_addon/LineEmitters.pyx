@@ -14,6 +14,22 @@ from cherab.core.utility.constants cimport RECIP_4_PI
     As long as you pass emission on to the plasma (i.e. use PESDTSimulation),
     you can use any data source you want.
 """
+def wl(transition):
+    '''
+    Returns the wavelength for hydrogen line transition using the Rydberg formula in nm
+    '''
+    return (1.096677e7*(1/int(transition[1])**2 -1/int(transition[0])**2))**(-1)*1e9 
+
+def wavelength(self, discard_1, discard_2,  transition):
+        '''
+        The cdef of Atomic data requires 4 input arguments, so use placeholders
+        '''
+        #transition = self.transition_check(transition)
+        if type(transition) is str:
+            n,p = transition.split()
+            return wl((n,p))
+        return wl(transition)
+
 cdef class DirectEmission(PlasmaModel):
 
     cdef Line _line
@@ -84,7 +100,7 @@ cdef class DirectEmission(PlasmaModel):
             raise RuntimeError("The plasma object does not contain the ion species for the specified line "
                                "(element={}, ionisation={}).".format(self._line.element.symbol, self._line.charge))
         # identify wavelength
-        self._wavelength = self._atomic_data.wavelength(self._line.element, self._line.charge, self._line.arb_transition)
+        self._wavelength = wavelength(self._line.element, self._line.charge, self._line.arb_transition)#self._atomic_data.wavelength(self._line.element, self._line.charge, self._line.arb_transition)
 
         # instance line shape renderer
         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma, self._atomic_data,
