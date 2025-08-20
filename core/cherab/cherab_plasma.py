@@ -229,6 +229,8 @@ class CherabPlasma():
                     acceptance_angle=acceptance_angle,
                     radius=0.01,  # Default pinhole size of 1 cm
                     pixel_samples=pixel_samples,
+                    min_wavelength = 1.0,
+                    max_wavelenght = 1e20,
                     spectral_rays=1,  # Not used in RadiancePipeline0D, but required by FibreOptic
                     transform=translate(*origin) * rotate_basis(direction, Vector3D(1, 0, 0)),
                     parent=self.world)
@@ -288,6 +290,8 @@ class CherabPlasma():
                     pixel_samples=pixel_samples,
                     spectral_rays=spectral_rays,
                     spectral_bins=spectral_bins,
+                    min_wavelength = 1.0,
+                    max_wavelenght = 1e20,
                     transform=translate(*origin) * rotate_basis(direction, Vector3D(1, 0, 0)),
                     parent=self.world
                 )
