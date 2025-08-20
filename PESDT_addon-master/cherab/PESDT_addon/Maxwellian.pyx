@@ -124,6 +124,4 @@ cdef class PESDTMaxwellian(DistributionFunction):
         """
         Updates the emission to the current transition
         """
-        print(transition)
-        print(self._emission_dict[transition])
         self._emission = autowrap_function3d(self._emission_dict[transition])
