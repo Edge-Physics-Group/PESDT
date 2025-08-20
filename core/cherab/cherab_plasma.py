@@ -148,6 +148,7 @@ class CherabPlasma():
             lineshape = None
 
         # Only deuterium supported at the moment
+        transition = f"{transition[0]}, {transition[1]}"
         if atnum == 1:
             if data_source in ["AMJUEL", "YACORA"]:
                 model_list = []

@@ -126,12 +126,13 @@ def createCherabPlasma(PESDT, transitions: list,
             
             em_n_exc, em_n_rec, em_mol, em_h2_pos, em_h3_pos, em_h_neg, tot = calc_photon_rate(transitions[i], te, ne, n0[:], n2[:], h2_pos_den[:], debug = True)
             logger.info(f"Mean: {np.mean(tot)}")
-            emission[0][transitions[i]] = em_n_exc
-            emission[1][transitions[i]] = em_n_rec
-            emission[2][transitions[i]] = em_mol
-            emission[3][transitions[i]] = em_h2_pos
-            emission[4][transitions[i]] = em_h3_pos
-            emission[5][transitions[i]] = em_h_neg
+            key = f"{transitions[i][0]}, {transitions[i][1]}"
+            emission[0][key] = em_n_exc
+            emission[1][key] = em_n_rec
+            emission[2][key] = em_mol
+            emission[3][key] = em_h2_pos
+            emission[4][key] = em_h3_pos
+            emission[5][key] = em_h_neg
         if mol_exc_bands is not None:
             logger.info("Precalculating molecular band emission")
             species_list.append((D2vibr, 0))
