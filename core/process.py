@@ -180,6 +180,7 @@ class ProcessEdgeSim:
 
         # === Run Options ===
         data_source = run_opts.get("data_source", "AMJUEL")
+        impurity_data_source = run_opts.get("imp_data_source", None)
         recalc_h2_pos = run_opts.get("recalc_h2_pos", True)
 
         # === Cherab Options ===
@@ -281,6 +282,7 @@ class ProcessEdgeSim:
 
             for line_key, trans in H_lines.items():
                 transition = (int(trans[0]), int(trans[1]))
+                logger.info(f"Transition: ({transition[0]}, {transition[1]})")
                 wavelength = line_key
                 self.outdict[diag][wavelength] = {}
                 if data_source in ["YACORA", "AMJUEL"]:
