@@ -130,7 +130,9 @@ def createCherabPlasma(PESDT, transitions: list,
             emission_keys.append(key)
             print(key)
             emission[0][key] = em_n_exc
+            print(em_n_exc)
             emission[1][key] = em_n_rec
+            print(em_n_rec)
             emission[2][key] = em_mol
             emission[3][key] = em_h2_pos
             emission[4][key] = em_h3_pos
