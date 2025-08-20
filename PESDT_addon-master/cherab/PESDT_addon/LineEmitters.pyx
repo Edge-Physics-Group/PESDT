@@ -14,22 +14,6 @@ from cherab.core.utility.constants cimport RECIP_4_PI
     As long as you pass emission on to the plasma (i.e. use PESDTSimulation),
     you can use any data source you want.
 """
-def wl(transition):
-    '''
-    Returns the wavelength for hydrogen line transition using the Rydberg formula in nm
-    '''
-    return (1.096677e7*(1/int(transition[1])**2 -1/int(transition[0])**2))**(-1)*1e9 
-
-def wavelength(transition):
-        '''
-        The cdef of Atomic data requires 4 input arguments, so use placeholders
-        '''
-        #transition = self.transition_check(transition)
-        if type(transition) is str:
-            n,p = transition.split(", ")
-            return wl((int(n),int(p)))
-        return wl(transition)
-
 cdef class DirectEmission(PlasmaModel):
 
     cdef Line _line
@@ -65,7 +49,7 @@ cdef class DirectEmission(PlasmaModel):
         self._change()
 
     def __repr__(self):
-        return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.arb_transition)
+        return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
 
     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):
         cdef double radiance
@@ -95,12 +79,12 @@ cdef class DirectEmission(PlasmaModel):
         # set the emission to the current transition
         try:
             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge)
-            self._target_species.distribution.update_emission(self._line.arb_transition)
+            self._target_species.distribution.update_emission(self._line.transition)
         except ValueError:
             raise RuntimeError("The plasma object does not contain the ion species for the specified line "
                                "(element={}, ionisation={}).".format(self._line.element.symbol, self._line.charge))
         # identify wavelength
-        self._wavelength = wavelength(self._line.arb_transition)#self._atomic_data.wavelength(self._line.element, self._line.charge, self._line.arb_transition)
+        self._wavelength = self._atomic_data.wavelength(self._line.element, self._line.charge, self._line.transition)
 
         # instance line shape renderer
         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma, self._atomic_data,

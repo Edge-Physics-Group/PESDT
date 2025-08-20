@@ -32,9 +32,6 @@ class AMJUEL_Data(AtomicData):
         The cdef of Atomic data requires 4 input arguments, so use placeholders
         '''
         #transition = self.transition_check(transition)
-        if type(transition) is str:
-            n,p = transition.split()
-            return wl((n,p))
         return wl(transition)
 
     def H_excit(self, transition):
