@@ -26,7 +26,7 @@ def wavelength(transition):
         '''
         #transition = self.transition_check(transition)
         if type(transition) is str:
-            n,p = transition.split()
+            n,p = transition.split(", ")
             return wl((int(n),int(p)))
         return wl(transition)
 
