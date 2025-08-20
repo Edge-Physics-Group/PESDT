@@ -21,17 +21,17 @@ cdef class PESDTLine(Line):
       provider package to define the exact notation.
 
     """
-    
+    cdef object _arb_transition
     def __init__(self, Element element, int charge, tuple transition):
         self.element = element
         self.charge = charge
-        self.transition = transition
+        self.arb_transition = transition
 
     def __repr__(self):
-        return '<Line: {}, {}, {}>'.format(self.element.name, self.charge, self.transition)
+        return '<Line: {}, {}, {}>'.format(self.element.name, self.charge, self.arb_transition)
 
     def __hash__(self):
-        return hash((self.element, self.charge, self.transition))
+        return hash((self.element, self.charge, self.arb_transition))
 
     def __richcmp__(self, object other, int op):
 
@@ -42,12 +42,18 @@ cdef class PESDTLine(Line):
 
         line = <Line> other
         if op == 2:     # __eq__()
-            return self.element == line.element and self.charge == line.charge and self.transition == line.transition
+            return self.element == line.element and self.charge == line.charge and self.arb_transition == line.arb_transition
         elif op == 3:   # __ne__()
-            return self.element != line.element or self.charge != line.charge or self.transition != line.transition
+            return self.element != line.element or self.charge != line.charge or self.arb_transition != line.arb_transition
         else:
             return NotImplemented
+    @property
+    def arb_transition(self):
+        return self.arb_transition
 
+    @arb_transition.setter
+    def arb_transition(self, val):
+        self._arb_transition = val
 cdef class PESDTLineMol(Line):
     """
     A class fully specifies an observed spectroscopic emission line.
