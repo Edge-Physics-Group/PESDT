@@ -82,7 +82,7 @@ def createCherabPlasma(PESDT, transitions: list,
     zv = np.transpose(zv)
 
     species_list = [(D0, 0), (D0, 1)]
-    emission_keys = transitions
+    emission_keys = []#transitions
     if data_source == "AMJUEL":
         '''
         Calculate the H2+, H3+, and H- densities through AMJUEL rates, and add the molecular density 
@@ -127,6 +127,8 @@ def createCherabPlasma(PESDT, transitions: list,
             em_n_exc, em_n_rec, em_mol, em_h2_pos, em_h3_pos, em_h_neg, tot = calc_photon_rate(transitions[i], te, ne, n0[:], n2[:], h2_pos_den[:], debug = True)
             logger.info(f"Mean: {np.mean(tot)}")
             key = f"{transitions[i][0]}, {transitions[i][1]}"
+            emission_keys.append(key)
+            print(key)
             emission[0][key] = em_n_exc
             emission[1][key] = em_n_rec
             emission[2][key] = em_mol
