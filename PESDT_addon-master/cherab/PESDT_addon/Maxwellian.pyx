@@ -120,7 +120,7 @@ cdef class PESDTMaxwellian(DistributionFunction):
 
         return self._emission.evaluate(x, y, z)
 
-    cpdef void update_emission(self, transition) except? -1e999:
+    cpdef void update_emission(self, transition):
         """
         Updates the emission to the current transition
         """
