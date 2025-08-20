@@ -22,7 +22,7 @@ cdef class PESDTLine(Line):
 
     """
     cdef object _arb_transition
-    def __init__(self, Element element, int charge, tuple transition):
+    def __init__(self, Element element, int charge, object transition):
         self.element = element
         self.charge = charge
         self.arb_transition = transition
