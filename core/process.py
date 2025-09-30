@@ -379,6 +379,8 @@ class ProcessEdgeSim:
 
         # === Process Each Camera ===
         for diag, settings in camera_los_dict.items():
+            self.outdict[diag] = {}
+
             logger.info(f"Processing camera {diag}")
             H_lines = spec_line_dict['1']['1']
             for line_key, trans in H_lines.items():
