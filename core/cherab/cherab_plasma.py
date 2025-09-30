@@ -331,7 +331,6 @@ class CherabPlasma():
 
             ccd = PinholeCamera(pixels = defs["pixels"],pipelines=[pipeline],
                 fov=2*acceptance_angle,
-                radius=0.01,  # 1 cm pinhole
                 pixel_samples=pixel_samples,
                 min_wavelength = 1.0,
                 max_wavelength = 1e20,
