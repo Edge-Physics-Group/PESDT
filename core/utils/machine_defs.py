@@ -728,7 +728,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     pixels = np.array([1000, 1000]) # This is the number of pixels recorded in the JPF
 
     los_dict = {"p1": origin, "p2": end, "angle": angle, "pixels": pixels, "type": "CCD"}
-    JET.set_diag_los("KL1")
+    JET.set_diag_los("KL1", los_dict)
 
     return JET
 
