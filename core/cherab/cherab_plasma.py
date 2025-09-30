@@ -331,12 +331,11 @@ class CherabPlasma():
 
             ccd = PinholeCamera(pixels = defs["pixels"],pipelines=[pipeline],
                 fov=2*acceptance_angle,
-                pixel_samples=pixel_samples,
                 min_wavelength = 1.0,
                 max_wavelength = 1e20,
                 transform=translate(*origin) * rotate_basis(direction, Vector3D(1, 0, 0)),
                 parent=self.world)
-            self.cameras
+            ccd.pixel_samples = pixel_samples
 
             if num_processes > 1:
                 ccd.render_engine = MulticoreEngine(processes=int(num_processes))
