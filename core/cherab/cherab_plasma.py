@@ -365,11 +365,16 @@ class CherabPlasma():
         return res
     
     def observe_camera(self, instrument):
-        pipepline, camera = self.cameras[instrument]
+        pipeline, camera = self.cameras[instrument]
         camera.observe()
-        res = [[pipepline.value.mean, pipepline.value.variance]]
+        # pipeline.frame is a RaysectImage with per-pixel statistics
+        frame = pipeline.frame
 
-        return res
+        # numpy arrays of mean and variance
+        mean_array = frame.mean.numpy()
+        var_array  = frame.variance.numpy()
+
+        return [mean_array, var_array]
 
     def integrate_instrument_spectral(self, instrument, destination):
         '''
