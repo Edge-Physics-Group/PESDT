@@ -274,7 +274,7 @@ class ProcessEdgeSim:
         
 
         # === Process Each Instrument ===
-        for diag in diag_list:
+        for diag, _ in instrument_los_dict.items():
             self.outdict[diag] = {}
 
             p1 = diag_def[diag]["p1"][0].tolist()
