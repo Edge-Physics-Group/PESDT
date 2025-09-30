@@ -3,7 +3,7 @@ import os, sys, pickle, gzip
 from math import sin, cos, pi, atan
 
 from raysect.optical import World, AbsorbingSurface
-from raysect.optical.observer import PinholeCamera, FibreOptic, RadiancePipeline0D, SpectralRadiancePipeline0D
+from raysect.optical.observer import PinholeCamera, FibreOptic, RadiancePipeline0D, RadiancePipeline2D,SpectralRadiancePipeline0D
 from raysect.core.math import Point3D, Vector3D, translate, rotate, rotate_basis#, Discrete2DMesh #Note: this was not being used, and caused a chrash (cannot be found)
 from raysect.core import SerialEngine, MulticoreEngine
 from cherab.core import Plasma, Species, Maxwellian, Line, elements
@@ -53,6 +53,7 @@ class CherabPlasma():
         self.stark_fibreoptics = {}
         self.continuum_fibreoptics = {}
         self.instrument_los_coords = {}
+        self.cameras = {}
         self.mol_exc_bands = mol_exc_bands
 
 
@@ -314,6 +315,38 @@ class CherabPlasma():
             self.instrument_los_coords[instrument] = los_coords
         return
     
+    def setup_cameras(self, camera_los_dict: dict, pixel_samples = 250, num_processes = 8):
+        
+        for instrument, defs in camera_los_dict.items():
+            pipeline = RadiancePipeline2D(display_progress=False, accumulate = False)
+            los_p1 = defs["p1"]
+            los_p2 = defs["p2"]
+            theta_p1 = defs["p1"][2]
+            theta_p2 = defs["p2"][2]
+
+            origin = Point3D(los_p1[0] * cos(theta_p1), los_p1[0] * sin(theta_p1), los_p1[1])
+            endpoint = Point3D(los_p2[0] * cos(theta_p2), los_p2[0] * sin(theta_p2), los_p2[1])
+            direction = origin.vector_to(endpoint)
+            acceptance_angle = defs["angle"]
+
+            ccd = PinholeCamera(pixels = defs["pixels"],pipelines=[pipeline],
+                fov=2*acceptance_angle,
+                radius=0.01,  # 1 cm pinhole
+                pixel_samples=pixel_samples,
+                min_wavelength = 1.0,
+                max_wavelength = 1e20,
+                transform=translate(*origin) * rotate_basis(direction, Vector3D(1, 0, 0)),
+                parent=self.world)
+            self.cameras
+
+            if num_processes > 1:
+                ccd.render_engine = MulticoreEngine(processes=int(num_processes))
+            else:
+                ccd.render_engine = SerialEngine()
+            self.cameras[instrument] = (pipeline, ccd)
+
+        return
+
     def integrate_instrument(self, instrument):
         """
         Iterates over the fibreOptics of an instrument
@@ -333,6 +366,13 @@ class CherabPlasma():
         # Return scalar radiance
         return res
     
+    def observe_camera(self, instrument):
+        pipepline, camera = self.cameras[instrument]
+        camera.observe()
+        res = [[pipepline.value.mean, pipepline.value.variance]]
+
+        return res
+
     def integrate_instrument_spectral(self, instrument, destination):
         '''
         Iterates over the fibreOptics of an instrument

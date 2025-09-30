@@ -102,49 +102,6 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
         los_dict['id'].append(str(id+1))
     JET.set_diag_los('TEST', los_dict)
     # DIAGNOSTIC LOS DEFINITIONS: [r1, z1], [r2, z2], [w1, w2] for each LOS
-
-    ###############
-    # KT3A
-    ###############
-    # These defenitions don't match the ones in home/flush/surf/input/overlays_db.dat
-    # --> rewrite KT3A, KT3B
-    #origin = [3.28422, 3.56166]
-    #width = 0.017226946
-    #p2 = np.array(([2.55361, -1.59557],
-    #               [2.57123, -1.60076],
-    #               [2.58885, -1.60595],
-    #               [2.60647, -1.61114],
-    #               [2.62408, -1.61633],
-    #               [2.64170, -1.62152],
-    #               [2.65932, -1.62671],
-    #               [2.67694, -1.63190],
-    #               [2.69456, -1.63709],
-    #               [2.71218, -1.64228],
-    #               [2.72979, -1.64747],
-    #               [2.74741, -1.65266],
-    #               [2.76503, -1.65785],
-    #               [2.78265, -1.66304],
-    #               [2.80027, -1.66823],
-    #               [2.81789, -1.67343],
-    #               [2.83551, -1.67862],
-    #               [2.85312, -1.68381],
-    #               [2.87074, -1.68900],
-    #               [2.88836, -1.69419],
-    #               [2.90598, -1.69938],
-    #               [2.92360, -1.70457]))
-    #kt3a_los = np.zeros((len(p2), 3, 2))
-    #for i in range(len(p2)):
-    #    kt3a_los[i, 0] = origin
-    #    kt3a_los[i, 1] = p2[i]
-    #    kt3a_los[i, 2] = [0, width]
-    #los_dict = {}
-    #los_dict['p1'] = kt3a_los[:,0]
-    #los_dict['p2'] = kt3a_los[:,1]
-    #los_dict['w'] = kt3a_los[:,2]
-    #los_dict['id'] = []
-    #for id in range(len(kt3a_los)):
-    #    los_dict['id'].append(str(id+1))
-    #JET.set_diag_los('KT3', los_dict)
     ###############
     # KT3A
     ###############
@@ -761,68 +718,17 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     los_dict['angle'] = B3E4_los_angle
     JET.set_diag_los('B3E4', los_dict)
 
-    if plot_defs:
-        plt.gca().add_patch(wall_poly)
-        diag = 'B3E4'
-        for i, los in enumerate(JET.diag_dict[diag]['id']):
-            plt.plot([JET.diag_dict[diag]['p1'][i,0], JET.diag_dict[diag]['p2'][i, 0]],
-                     [JET.diag_dict[diag]['p1'][i,1], JET.diag_dict[diag]['p2'][i, 1]],
-                     '-k')
-            p2_rot = rotate_los(JET.diag_dict[diag]['p1'][i],
-                                JET.diag_dict[diag]['p2'][i], JET.diag_dict[diag]['half_angular_extent'][i])
-            plt.plot([JET.diag_dict[diag]['p1'][i, 0], p2_rot[0]],
-                    [JET.diag_dict[diag]['p1'][i, 1], p2_rot[1]], ':m')
-            plt.text(1.7,1.7, diag, color='k')
+    ######################
+    ### KL1 CCD Camera ###
+    ######################
+    # R, Z, Theta
+    origin = np.array([3.805, -0.766, 2.086902229])
+    end  = np.array([3.805, -0.766, 3.871840507])
+    angle = 0.271815658
+    pixels = np.array([1000, 1000]) # This is the number of pixels recorded in the JPF
 
-        diag = 'B3D4'
-        for i, los in enumerate(JET.diag_dict[diag]['id']):
-            plt.plot([JET.diag_dict[diag]['p1'][i,0], JET.diag_dict[diag]['p2'][i, 0]],
-                     [JET.diag_dict[diag]['p1'][i,1], JET.diag_dict[diag]['p2'][i, 1]],
-                     '-k')
-            p2_rot = rotate_los(JET.diag_dict[diag]['p1'][i],
-                                JET.diag_dict[diag]['p2'][i], JET.diag_dict[diag]['half_angular_extent'][i])
-            plt.plot([JET.diag_dict[diag]['p1'][i, 0], p2_rot[0]],
-                    [JET.diag_dict[diag]['p1'][i, 1], p2_rot[1]], ':m')
-            plt.text(1.7,1.7, diag, color='k')
-
-        # for i, los in enumerate(JET.diag_dict['KT1V']['id']):
-        #     plt.plot([JET.diag_dict['KT1V']['p1'][i,0], JET.diag_dict['KT1V']['p2'][i, 0]],
-        #              [JET.diag_dict['KT1V']['p1'][i,1], JET.diag_dict['KT1V']['p2'][i, 1]],
-        #              '-r')
-        #     plt.text(1.7,1.7+0.2, 'KT1V', color='red')
-        #     p2_rot = rotate_los(JET.diag_dict['KT1V']['p1'][i],
-        #                         JET.diag_dict['KT1V']['p2'][i], kt1v_los_half_angle[i])
-        #     plt.plot([JET.diag_dict['KT1V']['p1'][i,0], p2_rot[0]],
-        #              [JET.diag_dict['KT1V']['p1'][i,1], p2_rot[1]], ':r')
-        #     p2_rot2 = rotate_los(JET.diag_dict['KT1V']['p1'][i],
-        #                          JET.diag_dict['KT1V']['p2'][i], -1.0*kt1v_los_half_angle[i])
-        #     plt.plot([JET.diag_dict['KT1V']['p1'][i,0], p2_rot2[0]],
-        #              [JET.diag_dict['KT1V']['p1'][i,1], p2_rot2[1]], ':r')
-
-        # for i, los in enumerate(JET.diag_dict['KB5V']['id']):
-        #     if i+1 >= 1 and i+1 <=24:
-        #         plt.plot([JET.diag_dict['KB5V']['p1'][i, 0], JET.diag_dict['KB5V']['p2'][i, 0]],
-        #                  [JET.diag_dict['KB5V']['p1'][i, 1], JET.diag_dict['KB5V']['p2'][i, 1]],
-        #                  '-m')
-        #         plt.text(1.7, 1.7 + 0.4, 'KB5V', color='m')
-        #         p2_rot = rotate_los(JET.diag_dict['KB5V']['p1'][i],
-        #                             JET.diag_dict['KB5V']['p2'][i], kb5v_los_half_angular_extent[i])
-        #         #plt.plot([JET.diag_dict['KB5V']['p1'][i, 0], p2_rot[0]],
-        #         #         [JET.diag_dict['KB5V']['p1'][i, 1], p2_rot[1]], ':m')
-        #
-        # for i, los in enumerate(JET.diag_dict['KB5H']['id']):
-        #     if i+1 >= 1 and i+1 <=24:
-        #         plt.plot([JET.diag_dict['KB5H']['p1'][i, 0], JET.diag_dict['KB5H']['p2'][i, 0]],
-        #                  [JET.diag_dict['KB5H']['p1'][i, 1], JET.diag_dict['KB5H']['p2'][i, 1]],
-        #                  '-g')
-        #         plt.text(1.7, 1.7 + 0.6, 'KB5H', color='g')
-        #         p2_rot = rotate_los(JET.diag_dict['KB5H']['p1'][i],
-        #                             JET.diag_dict['KB5H']['p2'][i], kb5h_los_half_angular_extent[i])
-        #         #plt.plot([JET.diag_dict['KB5H']['p1'][i, 0], p2_rot[0]],
-        #         #         [JET.diag_dict['KB5H']['p1'][i, 1], p2_rot[1]], ':g')
-
-        plt.axes().set_aspect('equal')
-        plt.show()
+    los_dict = {"p1": origin, "p2": end, "angle": angle, "pixels": pixels, "type": "CCD"}
+    JET.set_diag_los("KL1")
 
     return JET
 

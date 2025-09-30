@@ -208,14 +208,22 @@ class ProcessEdgeSim:
         
         # === Create insrument LOS database ===
         instrument_los_dict = {}
+        camera_los_dict = {}
         for diag in diag_list:
-            los_points = []
-            p1 = diag_def[diag]["p1"][0].tolist()
-            w1 = 0.0
-            w2 = diag_def[diag]["w"][0][1]
-            for p2 in diag_def[diag]["p2"]:
-                los_points.append((p1, p2.tolist(), w1, w2))
-            instrument_los_dict[diag] = los_points
+            diag_type = diag_def[diag].get("type", "LOS")
+            if diag_type == "LOS":
+                los_points = []
+                p1 = diag_def[diag]["p1"][0].tolist()
+                w1 = 0.0
+                w2 = diag_def[diag]["w"][0][1]
+                for p2 in diag_def[diag]["p2"]:
+                    los_points.append((p1, p2.tolist(), w1, w2))
+                instrument_los_dict[diag] = los_points
+            elif diag_type == "CCD":
+                camera_los_dict[diag] = diag_def[diag]
+            else:
+                pass
+
 
         # === Initialize Plasma ===
         plasma = CherabPlasma(self, 
@@ -229,6 +237,7 @@ class ProcessEdgeSim:
         
         # === Setup Observers ===
         plasma.setup_observers(instrument_los_dict, pixel_samples=pixel_samples, num_processes = num_processes)
+        plasma.setup_cameras(camera_los_dict, pixel_samples = pixel_samples, num_processes = num_processes)
 
         # === Setup Spectral Observers if needed ===
         # Figure out Stark wavelength from spec_line_dict
@@ -367,6 +376,23 @@ class ProcessEdgeSim:
                     plasma.define_plasma_model(atnum=1, ion_stage=0, transition=band, data_source=data_source, include_mol_exc = True)
                     self.outdict[diag][band] = [x[0] for x in plasma.integrate_instrument(diag)]
 
+
+        # === Process Each Camera ===
+        for diag, settings in camera_los_dict.items():
+            logger.info(f"Processing camera {diag}")
+            for line_key, trans in H_lines.items():
+                transition = (int(trans[0]), int(trans[1]))
+                logger.info(f"Transition: ({transition[0]}, {transition[1]})")
+                wavelength = line_key
+                self.outdict[diag][wavelength] = {}
+                if data_source in ["YACORA", "AMJUEL"]:
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_excitation=True, include_recombination= True, include_H2=True,
+                                             include_H2_pos=True, include_H3_pos=True, include_H_neg=False, data_source=data_source)
+                    em = plasma.observe_camera(diag)
+                    self.outdict[diag][wavelength]["total"] = [x[0] for x in em]
+                    self.outdict[diag][wavelength]["variance"] = [x[1] for x in em]
+            
     def run_cone_integration(self):
         """
         Do a cone integral over the LOS of the diagnostic instruments
