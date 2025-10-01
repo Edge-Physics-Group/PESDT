@@ -730,6 +730,22 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     los_dict = {"p1": origin, "p2": end, "angle": angle, "pixels": pixels, "type": "CCD"}
     JET.set_diag_los("KL1", los_dict)
 
+    origin = np.array([3.705, 0.0, 3.662266432])#np.array([3.705, 0.0, 2.086902229])#
+    end  = np.array([3.705, 0.0, 5.445427266])#np.array([3.705, 0.0, 3.871840507])#np.array([3.805, -0.766, 3.871840507])
+    angle = 0.271815658
+    pixels = np.array([1000, 1000]) # This is the number of pixels recorded in the JPF
+
+    los_dict = {"p1": origin, "p2": end, "angle": angle, "pixels": pixels, "type": "CCD"}
+    JET.set_diag_los("KL1_V2", los_dict)
+
+    origin = np.array([3.705, 0.0, 3.662266432])#np.array([3.705, 0.0, 2.086902229])#
+    end  = np.array([3.705, 0.0, 5.445427266])#np.array([3.705, 0.0, 3.871840507])#np.array([3.805, -0.766, 3.871840507])
+    angle = 0.271815658
+    pixels = np.array([250, 250]) # This is the number of pixels recorded in the JPF
+
+    los_dict = {"p1": origin, "p2": end, "angle": angle, "pixels": pixels, "type": "CCD"}
+    JET.set_diag_los("KL1_V2_reduced", los_dict)
+
     return JET
 
 
