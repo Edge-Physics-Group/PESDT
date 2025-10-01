@@ -723,7 +723,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     ######################
     # R, Z, Theta
     origin = np.array([3.805, -0.766, 0.516105903])#np.array([3.705, 0.0, 2.086902229])#
-    end  = p.array([3.805, -0.766, 2.30104418])#np.array([3.705, 0.0, 3.871840507])#np.array([3.805, -0.766, 3.871840507])
+    end  = np.array([3.805, -0.766, 2.30104418])#np.array([3.705, 0.0, 3.871840507])#np.array([3.805, -0.766, 3.871840507])
     angle = 0.271815658
     pixels = np.array([1000, 1000]) # This is the number of pixels recorded in the JPF
 
