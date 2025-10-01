@@ -393,8 +393,8 @@ class ProcessEdgeSim:
                                             include_excitation=True, include_recombination= True, include_H2=True,
                                              include_H2_pos=True, include_H3_pos=True, include_H_neg=False, data_source=data_source)
                     em = plasma.observe_camera(diag)
-                    self.outdict[diag][wavelength]["total"] = [x[0] for x in em]
-                    self.outdict[diag][wavelength]["variance"] = [x[1] for x in em]
+                    self.outdict[diag][wavelength]["total"] = em[0].tolist()
+                    self.outdict[diag][wavelength]["variance"] = em[1].tolist()
             
     def run_cone_integration(self):
         """

@@ -370,11 +370,7 @@ class CherabPlasma():
         # pipeline.frame is a RaysectImage with per-pixel statistics
         frame = pipeline.frame
 
-        # numpy arrays of mean and variance
-        mean_array = frame.mean.numpy()
-        var_array  = frame.variance.numpy()
-
-        return [mean_array, var_array]
+        return [frame.mean, frame.variance]
 
     def integrate_instrument_spectral(self, instrument, destination):
         '''
