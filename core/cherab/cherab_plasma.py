@@ -327,10 +327,10 @@ class CherabPlasma():
             origin = Point3D(los_p1[0] * cos(theta_p1), los_p1[0] * sin(theta_p1), los_p1[1])
             endpoint = Point3D(los_p2[0] * cos(theta_p2), los_p2[0] * sin(theta_p2), los_p2[1])
             direction = origin.vector_to(endpoint)
-            acceptance_angle = defs["angle"]
+            fov = defs["angle"]
 
             ccd = PinholeCamera(pixels = defs["pixels"],pipelines=[pipeline],
-                fov=2*acceptance_angle,
+                fov=fov,
                 transform=translate(*origin) * rotate_basis(direction, Vector3D(0, 0, -1)),
                 parent=self.world)
             ccd.pixel_samples = pixel_samples
