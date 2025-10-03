@@ -389,9 +389,13 @@ class ProcessEdgeSim:
                 wavelength = line_key
                 self.outdict[diag][wavelength] = {}
                 if data_source in ["YACORA", "AMJUEL"]:
+                    #plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                    #                        include_excitation=True, include_recombination= True, include_H2=True,
+                    #                         include_H2_pos=True, include_H3_pos=True, include_H_neg=False, data_source=data_source)
+                    # Need to create an option to choose hydrogen radiation components
                     plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
-                                            include_excitation=True, include_recombination= True, include_H2=True,
-                                             include_H2_pos=True, include_H3_pos=True, include_H_neg=False, data_source=data_source)
+                                            include_excitation=True, include_recombination= True, include_H2=False,
+                                             include_H2_pos=False, include_H3_pos=False, include_H_neg=False, data_source=data_source)
                     em = plasma.observe_camera(diag)
                     self.outdict[diag][wavelength]["total"] = em[0].tolist()
                     self.outdict[diag][wavelength]["variance"] = em[1].tolist()
