@@ -61,15 +61,26 @@ class CherabPlasma():
         # Try loading for a pickled world definition
         if self.import_jet_surfaces:
             logger.info("Reading JET mesh from pickle file")
-            try:
-                
-                with gzip.open(os.path.expanduser('~') +"/PESDTCache/JETworld.pkl.gz", "rb") as f:
-                    self.world = pickle.load(f)
-                self.import_jet_surfaces = False
-                logger.info("Mesh read!")
-            except:
-                logger.info("Could not read raysect-world object from a pkl, creating a new one.")
-                self.world = World()
+            if self.include_reflections:
+                try:
+                    
+                    with gzip.open(os.path.expanduser('~') +"/PESDTCache/JETworld.pkl.gz", "rb") as f:
+                        self.world = pickle.load(f)
+                    self.import_jet_surfaces = False
+                    logger.info("Mesh read!")
+                except:
+                    logger.info("Could not read raysect-world object from a pkl, creating a new one.")
+                    self.world = World()
+            else: 
+                try:
+                    
+                    with gzip.open(os.path.expanduser('~') +"/PESDTCache/JETworld_no_refl.pkl.gz", "rb") as f:
+                        self.world = pickle.load(f)
+                    self.import_jet_surfaces = False
+                    logger.info("Mesh read!")
+                except:
+                    logger.info("Could not read raysect-world with no reflections object from a pkl, creating a new one.")
+                    self.world = World()
         else:
             self.world = World()
         self.plasma = self.gen_cherab_plasma()
@@ -88,10 +99,13 @@ class CherabPlasma():
         if self.import_jet_surfaces:
             if self.include_reflections:
                 import_jet_mesh(self.world)
+                with gzip.open(os.path.expanduser('~') + "/PESDTCache/JETworld.pkl.gz", "wb") as f:
+                    pickle.dump(self.world,f, protocol=pickle.HIGHEST_PROTOCOL)
             else:
                 import_jet_mesh(self.world, override_material=AbsorbingSurface())
-            with gzip.open(os.path.expanduser('~') + "/PESDTCache/JETworld.pkl.gz", "wb") as f:
-                pickle.dump(self.world,f, protocol=pickle.HIGHEST_PROTOCOL)
+                with gzip.open(os.path.expanduser('~') + "/PESDTCache/JETworld_no_refl.pkl.gz", "wb") as f:
+                    pickle.dump(self.world,f, protocol=pickle.HIGHEST_PROTOCOL)
+            
         elif self.mesh_from_grid:
             # Find the highest observer
             observer_coords = []
