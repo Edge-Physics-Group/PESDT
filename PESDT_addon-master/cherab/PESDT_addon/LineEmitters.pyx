@@ -2,8 +2,8 @@
 from cherab.core.atomic cimport AtomicData
 from cherab.core.plasma cimport PlasmaModel
 
-from .LineShapes import DeltaLine, OpaqueDeltaLine
-from .spectrum import OpaqueSpectrum
+from .LineShapes cimport DeltaLine, OpaqueDeltaLine
+from .spectrum cimport OpaqueSpectrum
 from raysect.optical cimport Spectrum, Point3D, Vector3D
 from cherab.core cimport Line, Species, Plasma, Beam
 from cherab.core.model.lineshape cimport GaussianLine, LineShapeModel
