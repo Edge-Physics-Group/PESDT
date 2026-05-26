@@ -79,7 +79,7 @@ cdef class OpaqueSpectrum(Spectrum):
         self._wavelengths = None
 
     
-    cpdef OpaqueSpectrum new_spectrum(self):
+    cpdef OpaqueSpectrum _new_spectrum(self):
         """
         Returns a new Spectrum compatible with the same spectral settings.
 
@@ -87,6 +87,9 @@ cdef class OpaqueSpectrum(Spectrum):
         """
 
         return new_spectrum(self.min_wavelength, self.max_wavelength, self.bins)
+
+    cpdef Spectrum new_spectrum(self):
+        return self._new_spectrum()
 
     @cython.boundscheck(False)
     @cython.wraparound(False)
@@ -186,41 +189,6 @@ cdef class OpaqueSpectrum(Spectrum):
         cdef npy_intp index
         for index in range(self.samples_mv.shape[0]):
             self.samples_mv[index] /= array[index]
-
-    # low level spectrum maths functions
-    cdef void add_spectrum(self, OpaqueSpectrum spectrum) nogil:
-        self.add_array(spectrum.samples_mv)
-
-    cdef void sub_spectrum(self, OpaqueSpectrum spectrum) nogil:
-        self.sub_array(spectrum.samples_mv)
-
-    cdef void mul_spectrum(self, OpaqueSpectrum spectrum) nogil:
-        self.mul_array(spectrum.samples_mv)
-
-    cdef void div_spectrum(self, OpaqueSpectrum spectrum) nogil:
-        self.div_array(spectrum.samples_mv)
-
-    # multiply and add
-    @cython.boundscheck(False)
-    @cython.wraparound(False)
-    @cython.cdivision(True)
-    @cython.initializedcheck(False)
-    cdef void mad_array(self, double[::1] a, double[::1] b) nogil:
-
-        cdef npy_intp index
-        for index in range(self.samples_mv.shape[0]):
-            self.samples_mv[index] += a[index] * b[index]    # low level array maths functions
-
-    @cython.boundscheck(False)
-    @cython.wraparound(False)
-    @cython.cdivision(True)
-    @cython.initializedcheck(False)
-    cdef void mad_scalar(self, double scalar, double[::1] array) nogil:
-
-        cdef npy_intp index
-        for index in range(self.samples_mv.shape[0]):
-            self.samples_mv[index] += scalar * array[index]
-
 
 cdef OpaqueSpectrum new_spectrum(double min_wavelength, double max_wavelength, int bins):
 

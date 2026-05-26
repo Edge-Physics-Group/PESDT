@@ -16,5 +16,5 @@ cdef class OpaqueSpectrum(Spectrum):
         double[::1] absorbances_mv
         bint prev_init
         Point3D prev_point
-
+    cpdef OpaqueSpectrum _new_spectrum(self)
 cdef OpaqueSpectrum new_spectrum(double min_wavelength, double max_wavelength, int bins)
