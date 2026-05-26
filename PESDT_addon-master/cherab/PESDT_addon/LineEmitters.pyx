@@ -221,12 +221,12 @@ cdef class OpaqueDirectEmission(PlasmaModel):
             
         absorbance = self._target_species.distribution.absorbance(point.x, point.y, point.z)
         # add emission line to spectrum
-        return self._lineshape.add_line(radiance, absorbance, point, direction, spectrum)
+        return self._lineshape._add_line(radiance, absorbance, point, direction, spectrum)
 
     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):
 
         return self._emission(point, direction, spectrum)
-        
+
     cdef int _populate_cache(self) except -1:
 
         # sanity checks
