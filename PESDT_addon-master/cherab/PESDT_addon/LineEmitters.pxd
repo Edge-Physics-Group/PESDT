@@ -1,7 +1,7 @@
 # cython: language_level=3
 from cherab.core.atomic cimport AtomicData
 from cherab.core.plasma cimport PlasmaModel
-
+from .PlasmaModel cimport OpaquePlasmaModel
 from .LineShapes cimport DeltaLine, OpaqueDeltaLine, OpaqueLine
 from .spectrum cimport OpaqueSpectrum
 from raysect.optical cimport Spectrum, Point3D, Vector3D
@@ -38,7 +38,7 @@ cdef class DirectEmissionMol(PlasmaModel):
 
     cdef double H2_wavelength(self, str band=?)
 
-cdef class OpaqueDirectEmission(PlasmaModel):
+cdef class OpaqueDirectEmission(OpaquePlasmaModel):
 
     cdef:
          Line _line
