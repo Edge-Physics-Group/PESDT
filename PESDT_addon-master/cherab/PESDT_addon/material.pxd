@@ -1,6 +1,6 @@
 
 from raysect.optical cimport World, Primitive, Ray, Spectrum, SpectralFunction, Point3D, Vector3D, AffineMatrix3D
-from raysect.optical.material.emitter cimport InhomogeneousVolumeEmitter
+from .inhomogenous cimport InhomogeneousVolumeEmitter
 
 from .node cimport OpaquePlasma
 from cherab.core.atomic cimport AtomicData
