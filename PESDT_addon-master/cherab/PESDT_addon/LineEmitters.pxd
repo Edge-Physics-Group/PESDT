@@ -118,18 +118,6 @@ cdef class LineH_neg_AM(PlasmaModel):
 
     cdef int _populate_cache(self) except -1
 
-cdef class LineH_neg_AM(PlasmaModel):
-
-    cdef:
-         Line _line
-         object _lineshape_class
-         object _lineshape_args
-         object _lineshape_kwargs
-         Species _target_species
-         double _wavelength
-         LineShapeModel _lineshape
-
-    cdef int _populate_cache(self) except -1
 
 cdef class LineH3_pos_AM(PlasmaModel):
 
