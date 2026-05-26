@@ -51,7 +51,6 @@ cdef class OpaqueDirectEmission(PlasmaModel):
 
     cdef int _populate_cache(self) except -1
     
-    cpdef OpaqueSpectrum _emission(self, Point3D point, Vector3D direction, OpaqueSpectrum spectrum)
 
 cdef class LineExcitation_AM(PlasmaModel):
 

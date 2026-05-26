@@ -4,6 +4,7 @@ from cherab.core.plasma cimport PlasmaModel
 
 from .LineShapes cimport DeltaLine, OpaqueDeltaLine
 from .spectrum cimport OpaqueSpectrum
+from .PlasmaModel cimport OpaquePlasmaModel
 from raysect.optical cimport Spectrum, Point3D, Vector3D
 from cherab.core cimport Line, Species, Plasma, Beam
 from cherab.core.model.lineshape cimport GaussianLine, LineShapeModel
@@ -178,7 +179,7 @@ cdef class DirectEmissionMol(PlasmaModel):
         self._wavelength = 0.0
         self._lineshape = None
 
-cdef class OpaqueDirectEmission(PlasmaModel):
+cdef class OpaqueDirectEmission(OpaquePlasmaModel):
 
     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
                  object lineshape_args=None, object lineshape_kwargs=None):
@@ -207,7 +208,7 @@ cdef class OpaqueDirectEmission(PlasmaModel):
     def __repr__(self):
         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
 
-    cpdef OpaqueSpectrum _emission(self, Point3D point, Vector3D direction, OpaqueSpectrum spectrum):
+    cpdef OpaqueSpectrum emission(self, Point3D point, Vector3D direction, OpaqueSpectrum spectrum):
         cdef: 
             double radiance
             double absorbance
@@ -217,15 +218,11 @@ cdef class OpaqueDirectEmission(PlasmaModel):
 
         radiance = self._target_species.distribution.emission(point.x, point.y, point.z)
         if radiance <= 0.0:
-            return self._lineshape._add_line(0.0, 0.0, point, direction, spectrum) # Keep track of previous point
+            return self._lineshape.add_line(0.0, 0.0, point, direction, spectrum) # Keep track of previous point
             
         absorbance = self._target_species.distribution.absorbance(point.x, point.y, point.z)
         # add emission line to spectrum
-        return self._lineshape._add_line(radiance, absorbance, point, direction, spectrum)
-
-    cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):
-
-        return self._emission(point, direction, spectrum)
+        return self._lineshape.add_line(radiance, absorbance, point, direction, spectrum)
 
     cdef int _populate_cache(self) except -1:
 

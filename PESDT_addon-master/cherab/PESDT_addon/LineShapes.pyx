@@ -27,14 +27,36 @@ np.import_array()
 
 DEF GAUSSIAN_CUTOFF_SIGMA = 10.0
 
-cdef class OpaqueLine(LineShapeModel):
-    cpdef OpaqueSpectrum _add_line(self,
+cdef class OpaqueLine:
+    """
+    A base class for building line shapes.
+
+    :param Line line: The emission line object for this line shape.
+    :param float wavelength: The rest wavelength for this emission line.
+    :param Species target_species: The target plasma species that is emitting.
+    :param Plasma plasma: The emitting plasma object.
+    :param AtomicData atomic_data: The atomic data provider.
+    :param Integrator1D integrator: Integrator1D instance to integrate the line shape
+        over the spectral bin. Default is None.
+    """
+
+    def __init__(self, Line line, double wavelength, Species target_species, Plasma plasma, AtomicData atomic_data, Integrator1D integrator=None):
+
+        self.line = line
+        self.wavelength = wavelength
+        self.target_species = target_species
+        self.plasma = plasma
+        self.atomic_data = atomic_data
+        self.integrator = integrator
+
+    cpdef OpaqueSpectrum add_line(self,
                             double radiance,
                             double absorbance,
                             Point3D point,
                             Vector3D direction,
                             OpaqueSpectrum spectrum):
-        raise NotImplementedError("The add_line() method has not been implemented.")
+        raise NotImplementedError('Child lineshape class must implement this method.')
+
 
 cpdef OpaqueGaussianLine add_opaque_gaussian_line(double radiance, double absorbance, double Td, double ds, double wavelength, double sigma, OpaqueSpectrum spectrum):
     r"""
@@ -112,7 +134,7 @@ cdef class OpaqueGaussianLine(OpaqueLine):
     @cython.wraparound(False)
     @cython.initializedcheck(False)
     @cython.cdivision(True)
-    cpdef OpaqueSpectrum _add_line(self,
+    cpdef OpaqueSpectrum add_line(self,
                             double radiance,
                             double absorbance,
                             Point3D point,
@@ -171,7 +193,7 @@ cdef class OpaqueDeltaLine(OpaqueLine):
     @cython.wraparound(False)
     @cython.initializedcheck(False)
     @cython.cdivision(True)
-    cpdef OpaqueSpectrum _add_line(self,
+    cpdef OpaqueSpectrum add_line(self,
                             double radiance,
                             double absorbance,
                             Point3D point,
