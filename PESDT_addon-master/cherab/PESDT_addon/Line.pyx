@@ -61,7 +61,6 @@ cdef class PESDTLineMol(Line):
     :param int charge: The charge state of the element/isotope that emits this line.
     :param str transition: the name of the emission band, e.g "fulcher"
     """
-    cdef object _mol_transition
 
     def __init__(self, Element element, int charge, object transition):
         self.element = element

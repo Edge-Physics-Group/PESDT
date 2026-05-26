@@ -6,5 +6,6 @@ from .PESDT_plasma import PESDTSimulation
 from .RateFunctions import RateFunction, NullRateFunction
 from .Species import PESDTElement, PESDTSpecies, deuterium, hydrogen
 from .RateFunctions import RateFunction, NullRateFunction
-from .stark import StarkFunction, StarkBroadenedLine
-
+#from .stark import StarkFunction, StarkBroadenedLine
+from .LineShapes import StarkFunction, StarkBroadenedLine, DeltaLine
+from .spectrum import OpaqueSpectrum

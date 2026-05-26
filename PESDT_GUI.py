@@ -68,7 +68,7 @@ class Base(QWidget):
         edge_code_code_layout = QHBoxLayout()
         edge_code_code_label = QLabel("Edge Code:")
         self.edge_code_combo = QComboBox()
-        self.edge_code_combo.addItems(["edge2d", "solps", "oedge"])
+        self.edge_code_combo.addItems(["edge2d", "solps", "oedge", "eirene"])
         edge_code_code_layout.addWidget(edge_code_code_label)
         edge_code_code_layout.addWidget(self.edge_code_combo)
         layout.addLayout(edge_code_code_layout)
@@ -324,6 +324,18 @@ class CherabSettings(QWidget):
         self.include_reflections.setChecked(False)
         layout.addWidget(self.include_reflections)
 
+        self.include_opacity = QCheckBox("Include opacity")
+        self.include_opacity.setChecked(False)
+        layout.addWidget(self.include_opacity)
+
+        opacity_mode_layout = QHBoxLayout()
+        opacity_mode_label = QLabel("Calculate opacity using:")
+        self.opacity_mode_combo = QComboBox()
+        self.opacity_mode_combo.addItems(["Ideal opacity", "Center-line opacity", "Full Doppler"])
+        opacity_mode_layout.addWidget(opacity_mode_label)
+        opacity_mode_layout.addWidget(self.opacity_mode_combo)
+        layout.addLayout(opacity_mode_layout)
+
         self.calculate_stark_ne = QCheckBox("Calculate Stark broadening (needed for ne estimate)")
         self.calculate_stark_ne.setChecked(False)
         layout.addWidget(self.calculate_stark_ne)
@@ -362,7 +374,7 @@ class CherabSettings(QWidget):
         stark_spectral_bins_label = QLabel("Number of spectral bins for Stark broadening:")
         self.stark_spectral_bins = QSpinBox()
         self.stark_spectral_bins.setMaximum(1000)
-        self.stark_spectral_bins.setValue(50)
+        self.stark_spectral_bins.setValue(21)
         stark_spectral_bins_layout.addWidget(stark_spectral_bins_label)
         stark_spectral_bins_layout.addWidget(self.stark_spectral_bins)
         layout.addLayout(stark_spectral_bins_layout)
@@ -371,10 +383,20 @@ class CherabSettings(QWidget):
         ff_fb_spectral_bins_label = QLabel("Number of spectral bins for continuum emission:")
         self.ff_fb_spectral_bins = QSpinBox()
         self.ff_fb_spectral_bins.setMaximum(1000)
-        self.ff_fb_spectral_bins.setValue(50)
+        self.ff_fb_spectral_bins.setValue(21)
         ff_fb_spectral_bins_layout.addWidget(ff_fb_spectral_bins_label)
         ff_fb_spectral_bins_layout.addWidget(self.ff_fb_spectral_bins)
         layout.addLayout(ff_fb_spectral_bins_layout)
+
+        opacity_spectral_bins_layout = QHBoxLayout()
+        opacity_spectral_bins_label = QLabel("Number of spectral bins for full Doppler Opacity:")
+        self.opacity_spectral_bins = QSpinBox()
+        self.opacity_spectral_bins.setMaximum(1000)
+        self.opacity_spectral_bins.setValue(21)
+        opacity_spectral_bins_layout.addWidget(opacity_spectral_bins_label)
+        opacity_spectral_bins_layout.addWidget(self.opacity_spectral_bins)
+        layout.addLayout(opacity_spectral_bins_layout)
+
 
         self.emission_lines = emission_lines_widget
 
@@ -428,8 +450,10 @@ class CherabSettings(QWidget):
             "ff_fb_emission": self.ff_fb_emission.isChecked(),
             "ff_fb_spectral_bins": self.ff_fb_spectral_bins.value(),
             "mol_exc_emission": self.mol_exc_emission.isChecked(),
-            "mol_exc_emission_bands": self.get_selected()
-            
+            "mol_exc_emission_bands": self.get_selected(),
+            "opacity": self.include_opacity.isChecked(),
+            "opacity_mode": self.opacity_mode_combo.currentIndex(),
+            "opacity_spectral_bins": self.opacity_spectral_bins.value(),
         }
 
 class JobInfo(QWidget):

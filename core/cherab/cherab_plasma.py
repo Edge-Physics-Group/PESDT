@@ -14,8 +14,8 @@ from cherab.jet.machine.cad_files import import_jet_mesh
 
 
 
-from cherab.PESDT_addon.stark import StarkBroadenedLine
-from cherab.PESDT_addon.LineEmitters import DirectEmission, DirectEmissionMol, LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
+from cherab.PESDT_addon.LineShapes import StarkBroadenedLine, OpaqueGaussianLine, OpaqueDeltaLine, DeltaLine
+from cherab.PESDT_addon.LineEmitters import DirectEmission, DirectEmissionMol, OpaqueDirectEmission, LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
 
 from .cherab_AMJUEL_data import AMJUEL_Data
 from .cherab_atomic_data import PESDT_ADAS_Data
@@ -26,7 +26,7 @@ from cherab.PESDT_addon import PESDTLine, PESDTLineMol
 import logging
 logger = logging.getLogger(__name__)
 
-#from PESDT.cherab_bridge import molecules
+OPAQUE_MODES = [OpaqueDeltaLine, OpaqueDeltaLine, OpaqueGaussianLine] # Total, Center, Full Doppler
 
 class CherabPlasma():
 
@@ -37,7 +37,9 @@ class CherabPlasma():
                  recalc_h2_pos: bool = True, 
                  transitions = None,
                  instrument_los_dict: dict = None,
-                 mol_exc_bands = None):
+                 mol_exc_bands = None,
+                 opaque = False,
+                 opaque_mode = 0):
 
         self.PESDT_obj = PESDT_obj
         self.include_reflections = include_reflections
@@ -55,7 +57,8 @@ class CherabPlasma():
         self.instrument_los_coords = {}
         self.cameras = {}
         self.mol_exc_bands = mol_exc_bands
-
+        self.opaque = opaque
+        self.opaque_mode = opaque_mode
 
         # Create CHERAB plasma from PESDT edge_codes object
         # Try loading for a pickled world definition
@@ -95,7 +98,9 @@ class CherabPlasma():
                                     convert_denel_to_m3 = convert_to_m3, 
                                     data_source=self.data_source, 
                                     recalc_h2_pos = self.recalc_h2_pos, 
-                                    mol_exc_bands= self.mol_exc_bands)
+                                    mol_exc_bands= self.mol_exc_bands,
+                                    opaque= self.opaque,
+                                    opaque_mode = self.opaque_mode)
         if self.import_jet_surfaces:
             if self.include_reflections:
                 import_jet_mesh(self.world)
@@ -130,7 +135,7 @@ class CherabPlasma():
             
 
         # create atomic data source
-        plasma = cherab.create_plasma(parent=self.world)
+        plasma = cherab.create_plasma(parent=self.world, opaque = self.opaque)
         if self.data_source == "AMJUEL":
             PESDT_AMJUEL_data = AMJUEL_Data()
             logger.info("Using AMJUEL")
@@ -151,7 +156,7 @@ class CherabPlasma():
     def define_plasma_model(self, atnum=1, ion_stage=0, transition=(2, 1),
                             include_excitation=False, include_recombination=False,
                             include_H2 = False, include_H2_pos = False, include_H_neg = False,
-                            include_H3_pos = False, use_tot = False, data_source = "AMJUEL",
+                            include_H3_pos = False, include_ph = False,use_tot = False, data_source = "AMJUEL",
                             include_stark=False, include_ff_fb=False, include_mol_exc = False, user_models = None):
         # Define one transition at a time and 'observe' total radiance
         # If multiple transitions are fed into the plasma object, the total
@@ -161,7 +166,12 @@ class CherabPlasma():
             lineshape = StarkBroadenedLine
         else:
             lineshape = None
-
+        if self.opaque:
+            line_emitter = OpaqueDirectEmission 
+            lineshape = OPAQUE_MODES[self.opaque_mode]
+        else:
+            line_emitter = DirectEmission
+            lineshape = None
         # Only deuterium supported at the moment
         if atnum == 1:
             if data_source in ["AMJUEL", "YACORA"]:
@@ -171,22 +181,25 @@ class CherabPlasma():
                 else:
                     if include_excitation:
                         h_line = PESDTLine(D0, 0, transition)
-                        model_list.append(DirectEmission(h_line, lineshape=lineshape)) #, plasma=self.plasma, atomic_data=self.plasma.atomic_data
+                        model_list.append(line_emitter(h_line, lineshape=lineshape)) #, plasma=self.plasma, atomic_data=self.plasma.atomic_data
                     if include_recombination:
                         h_line = PESDTLine(D0, 1, transition)
-                        model_list.append(DirectEmission(h_line, lineshape=lineshape))
+                        model_list.append(line_emitter(h_line, lineshape=lineshape))
                     if include_H2:
                         h_line = PESDTLine(D2, 0, transition)
-                        model_list.append(DirectEmission(h_line, lineshape=lineshape))
+                        model_list.append(line_emitter(h_line, lineshape=lineshape))
                     if include_H2_pos:
                         h_line = PESDTLine(D2, 1, transition) # Increment charge by one 
-                        model_list.append(DirectEmission(h_line, lineshape=lineshape))
+                        model_list.append(line_emitter(h_line, lineshape=lineshape))
                     if include_H3_pos:
                         h_line = PESDTLine(D3, 1, transition) # Increment charge by one 
-                        model_list.append(DirectEmission(h_line, lineshape=lineshape))
+                        model_list.append(line_emitter(h_line, lineshape=lineshape))
                     if include_H_neg:
                         h_line = PESDTLine(D0, -1, transition) #Implemented via H proxy
-                        model_list.append(DirectEmission(h_line, lineshape=lineshape))
+                        model_list.append(line_emitter(h_line, lineshape=lineshape))
+                    if include_ph and self.opaque:
+                        h_line = PESDTLine(D0, 2, transition)
+                        model_list.append(line_emitter(h_line, lineshape=lineshape))
                     if include_ff_fb:
                         h_line = PESDTLine(D0, 0, transition)
                         model_list.append(Continuo(h_line, lineshape = lineshape))
@@ -391,7 +404,7 @@ class CherabPlasma():
         Iterates over the fibreOptics of an instrument
         Returns:
             Tuple of (spectrum, wavelengths):
-                - spectrum: ndarray of W / (sr * m² * nm)
+                - spectrum: ndarray of ph / (sr * m² * nm)
                 - wavelengths: ndarray in nanometers
         '''
         src = None

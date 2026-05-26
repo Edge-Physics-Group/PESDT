@@ -31,10 +31,6 @@ cdef class RateFunction():
     # returns the cross-section/ratio multiplied by an Einstein coefficient, i.e. all that is need is to multiply the result by the correct
     #
 
-    cdef np.ndarray _MARc
-    cdef double _A_coeff
-    cdef double res
-
     def __init__(self, MARc, transition):
         self._MARc = MARc
         self._A_coeff = A_coeff(transition)
@@ -61,12 +57,10 @@ cdef class RateFunction():
         res = np.sum(cross_sections)
         return self._A_coeff*exp(res)
 
-    def evaluate(self, ne, T):
+    cpdef evaluate(self, double ne, double T):
         return self._evaluate(ne, T)   
 
 cdef class NullRateFunction():
-    
-    cdef dict __dict__
 
     def __init__(self, MARc, transition):
         self.MARC = None # Do not accept any coeff

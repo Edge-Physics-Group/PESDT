@@ -4,4 +4,4 @@ from .solps_format      import SOLPS
 from .cell              import Cell
 from .oedge_format      import OEDGE
 from .readtran          import Tran
-from .eirene_format     import EIRENE
+from .solps_eirene_format     import EIRENE

@@ -5,7 +5,7 @@ class BackgroundPlasma():
     '''
         Interface base class for loading background plasma data from different edge plasma codes
         
-        The background plasma does not need any mehtods, only some data fields, which are listed here.
+        The background plasma does not need any methods, only some data fields, which are listed here.
         Additional fields can be loaded, but are not required for running PESDT
     '''
 

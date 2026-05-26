@@ -31,7 +31,7 @@ from raysect.primitive import Cylinder
 # CHERAB core imports
 from cherab.core import Plasma, Maxwellian
 # Override CHERAB definitions
-from .Maxwellian import PESDTMaxwellian
+from .Maxwellian import PESDTMaxwellian, PESDTOpaqueMaxwellian
 from .Species import PESDTSpecies
 
 from cherab.core.math.function import ConstantVector3D
@@ -45,6 +45,9 @@ from cherab.edge2d.mesh_geometry import Edge2DMesh
 from cherab.solps.eirene import Eirene
 from cherab.solps.solps_2d_functions import SOLPSFunction2D, SOLPSVectorFunction2D
 from cherab.solps.mesh_geometry import SOLPSMesh
+
+from .eirene_functions import EIRENEFunction2D, EIRENEVectorFunction2D
+from mesh_geometry import EIRENEMesh
 
 # Add logger:
 import logging
@@ -62,6 +65,9 @@ class PESDTSimulation:
         elif isinstance(mesh, SOLPSMesh):
             self._mesh = mesh
             self.code = 2
+        elif isinstance(mesh, EIRENEMesh):
+            self._mesh = mesh
+            self.code = 3
         else:
             raise ValueError('Argument "mesh" must be a Edge2DMesh or SOLPSMesh instance.')
         
@@ -79,21 +85,32 @@ class PESDTSimulation:
             inside_outside_data = np.ones(self._mesh.n)
             self._inside_mesh = Edge2DFunction(self._mesh.vertex_coordinates, self._mesh.triangles,
                                             self._mesh.triangle_to_grid_map, inside_outside_data)
-
+            self.Code2DFunction = Edge2DFunction
             # Creating a sample Edge2DVectorFunction for KDtree to use later
             sample_vector = np.ones((3, self._mesh.n))
             self._sample_vector_f2d = Edge2DVectorFunction(self._mesh.vertex_coordinates, self._mesh.triangles,
                                                         self._mesh.triangle_to_grid_map, sample_vector)
+            self.Code2DVectorFunction = Edge2DVectorFunction
         elif self.code ==2:
             inside_outside_data = np.ones((self._mesh.ny, self._mesh.nx))
             self._inside_mesh = SOLPSFunction2D(self._mesh.vertex_coordinates, self._mesh.triangles,
                                                 self._mesh.triangle_to_grid_map, inside_outside_data)
-
+            self.Code2DFunction = SOLPSFunction2D
             # Creating a sample SOLPSVectorFunction2D for KDtree to use later
             sample_vector = np.ones((3, self._mesh.ny, self._mesh.nx))
             self._sample_vector_f2d = SOLPSVectorFunction2D(self._mesh.vertex_coordinates, self._mesh.triangles,
                                                             self._mesh.triangle_to_grid_map, sample_vector)
-        
+            self.Code2DVectorFunction = SOLPSVectorFunction2D
+        elif self.code == 3:
+            inside_outside_data = np.ones((self._mesh.ny, self._mesh.nx))
+            self._inside_mesh = EIRENEFunction2D(self._mesh.vertex_coordinates, self._mesh.triangles,
+                                                self._mesh.triangle_to_grid_map, inside_outside_data)
+            self.Code2DFunction = EIRENEFunction2D
+            # Creating a sample SOLPSVectorFunction2D for KDtree to use later
+            sample_vector = np.ones((3, self._mesh.ny, self._mesh.nx))
+            self._sample_vector_f2d = EIRENEVectorFunction2D(self._mesh.vertex_coordinates, self._mesh.triangles,
+                                                            self._mesh.triangle_to_grid_map, sample_vector)
+            self.Code2DVectorFunction = SOLPSVectorFunction2D
         self._neutral_list = tuple([sp for sp in self._species_list if sp[1] == 0])
 
         self._electron_temperature = None
@@ -133,6 +150,10 @@ class PESDTSimulation:
         self._emission = None
         self._emission_f2d = None
         self._emission_f3d = None
+
+        self._absorbance = None
+        self._absorbance_f2d = None
+        self._absorbance_f3d = None
         self._lines = None
 
 
@@ -181,7 +202,7 @@ class PESDTSimulation:
                 
                 for key in self._lines:
                     try:
-                        _emission_f2d[key] = Edge2DFunction.instance(self._inside_mesh, value[1][k][key])
+                        _emission_f2d[key] = self.Code2DFunction.instance(self._inside_mesh, value[1][k][key])
                         _emission_f3d[key] = AxisymmetricMapper(_emission_f2d[key])
                     except Exception as e:
                         logger.warning(f"Error: {e}. Ignore if molecular bands are turned on\n Error at {k}, {sp}, {key}")
@@ -190,7 +211,59 @@ class PESDTSimulation:
                 self._emission_f3d[k] = _emission_f3d
                 self._emission_f3d[sp] = self._emission_f3d[k]
             
+    @property
+    def absorbance(self):
+        """
+        Simulated neutral atom (effective) temperatures at each mesh cell.
+        Array of shape (na, n).
+        :return:
+        """
+        return self._absorbance
 
+    @property
+    def absorbance_f2d(self):
+        """
+        Dictionary of Function2D interpolators for neutral atom (effective) temperatures.
+        Accessed by neutral atom index or neutral_list elements.
+        E.g., neutral_temperature_f2d[0] or neutral_temperature_f2d[('deuterium', 0))].
+        Each entry returns neutral atom (effective) temperature at a given point (R, Z).
+        :return:
+        """
+        return self._absorbance_f2d
+
+    @property
+    def absorbance_f3d(self):
+        """
+        Dictionary of Function3D interpolators for emission of different lines.
+        Accessed by neutral atom index or neutral_list elements.
+        E.g., emission_f3d[0][emission_key] emission_f3d[('deuterium', 0))][emission_key].
+        Each entry returns line emission at a given point (x, y, z).
+        :return:
+        """
+        return self._absorbance_f3d
+
+    @absorbance.setter
+    def absorbance(self, value: list):
+        
+        self._lines = value[0]
+        self._absorbance = value[1]
+        self._absorbance_f2d = {}
+        self._absorbance_f3d = {}
+        for k, sp in enumerate(self._species_list):
+            
+                _absorbance_f2d = {}
+                _absorbance_f3d = {}
+                
+                for key in self._lines:
+                    try:
+                        _absorbance_f2d[key] = self.Code2DFunction.instance(self._inside_mesh, value[1][k][key])
+                        _absorbance_f3d[key] = AxisymmetricMapper(_absorbance_f2d[key])
+                    except Exception as e:
+                        logger.warning(f"Error: {e}. Ignore if molecular bands are turned on\n Error at {k}, {sp}, {key}")
+                self._absorbance_f2d[k] = _absorbance_f2d
+                self._absorbance_f2d[sp] = self._absorbance_f2d[k]
+                self._absorbance_f3d[k] = _absorbance_f3d
+                self._absorbance_f3d[sp] = self._absorbance_f3d[k]
 
 
     @property
@@ -250,7 +323,7 @@ class PESDTSimulation:
         #_check_shape("electron_temperature", value, (self._inside_mesh))
         _check_shape("electron_temperature", value, (self.mesh.n,))
         self._electron_temperature = value
-        self._electron_temperature_f2d = Edge2DFunction.instance(self._inside_mesh, value)
+        self._electron_temperature_f2d = self.Code2DFunction.instance(self._inside_mesh, value)
         self._electron_temperature_f3d = AxisymmetricMapper(self._electron_temperature_f2d)
 
     @property
@@ -285,7 +358,7 @@ class PESDTSimulation:
         value = np.array(value, dtype=np.float64, copy=False)
         _check_shape("ion_temperature", value, (self.mesh.n,))
         self._ion_temperature = value
-        self._ion_temperature_f2d = Edge2DFunction.instance(self._inside_mesh, value)
+        self._ion_temperature_f2d = self.Code2DFunction.instance(self._inside_mesh, value)
         self._ion_temperature_f3d = AxisymmetricMapper(self._ion_temperature_f2d)
 
     @property
@@ -327,7 +400,7 @@ class PESDTSimulation:
         self._neutral_temperature_f2d = {}
         self._neutral_temperature_f3d = {}
         for k, sp in enumerate(self._neutral_list):
-            self._neutral_temperature_f2d[k] = Edge2DFunction.instance(self._inside_mesh, value[k])
+            self._neutral_temperature_f2d[k] = self.Code2DFunction.instance(self._inside_mesh, value[k])
             self._neutral_temperature_f2d[sp] = self._neutral_temperature_f2d[k]
             self._neutral_temperature_f3d[k] = AxisymmetricMapper(self._neutral_temperature_f2d[k])
             self._neutral_temperature_f3d[sp] = self._neutral_temperature_f3d[k]
@@ -364,7 +437,7 @@ class PESDTSimulation:
         value = np.array(value, dtype=np.float64, copy=False)
         _check_shape("electron_density", value, (self.mesh.n,))
         self._electron_density = value
-        self._electron_density_f2d = Edge2DFunction.instance(self._inside_mesh, value)
+        self._electron_density_f2d = self.Code2DFunction.instance(self._inside_mesh, value)
         self._electron_density_f3d = AxisymmetricMapper(self._electron_density_f2d)
 
     @property
@@ -389,7 +462,7 @@ class PESDTSimulation:
 
         self._electron_velocities = value
         self._electron_velocities_cylindrical = velocities_cylindrical
-        self._electron_velocities_cylindrical_f2d = Edge2DVectorFunction.instance(self._sample_vector_f2d, velocities_cylindrical)
+        self._electron_velocities_cylindrical_f2d = self.Code2DVectorFunction.instance(self._sample_vector_f2d, velocities_cylindrical)
         self._electron_velocities_cartesian = VectorAxisymmetricMapper(self._electron_velocities_cylindrical_f2d)
 
     @property
@@ -413,7 +486,7 @@ class PESDTSimulation:
 
         self._electron_velocities_cylindrical = value
         self._electron_velocities = velocities
-        self._electron_velocities_cylindrical_f2d = Edge2DVectorFunction.instance(self._sample_vector_f2d, value)
+        self._electron_velocities_cylindrical_f2d = self.Code2DVectorFunction.instance(self._sample_vector_f2d, value)
         self._electron_velocities_cartesian = VectorAxisymmetricMapper(self._electron_velocities_cylindrical_f2d)
 
     @property
@@ -473,7 +546,7 @@ class PESDTSimulation:
         self._species_density_f2d = {}
         self._species_density_f3d = {}
         for k, sp in enumerate(self._species_list):
-            self._species_density_f2d[k] = Edge2DFunction.instance(self._inside_mesh, value[k])
+            self._species_density_f2d[k] = self.Code2DFunction.instance(self._inside_mesh, value[k])
             self._species_density_f2d[sp] = self._species_density_f2d[k]
             self._species_density_f3d[k] = AxisymmetricMapper(self._species_density_f2d[k])
             self._species_density_f3d[sp] = self._species_density_f3d[k]
@@ -504,7 +577,7 @@ class PESDTSimulation:
         self._velocities_cylindrical_f2d = {}
         self._velocities_cartesian = {}
         for k, sp in enumerate(self._species_list):
-            self._velocities_cylindrical_f2d[k] = Edge2DVectorFunction.instance(self._sample_vector_f2d, velocities_cylindrical[k])
+            self._velocities_cylindrical_f2d[k] = self.Code2DVectorFunction.instance(self._sample_vector_f2d, velocities_cylindrical[k])
             self._velocities_cylindrical_f2d[sp] = self._velocities_cylindrical_f2d[k]
             self._velocities_cartesian[k] = VectorAxisymmetricMapper(self._velocities_cylindrical_f2d[k])
             self._velocities_cartesian[sp] = self._velocities_cartesian[k]
@@ -534,7 +607,7 @@ class PESDTSimulation:
         self._velocities_cylindrical_f2d = {}
         self._velocities_cartesian = {}
         for k, sp in enumerate(self._species_list):
-            self._velocities_cylindrical_f2d[k] = Edge2DVectorFunction.instance(self._sample_vector_f2d, value[k])
+            self._velocities_cylindrical_f2d[k] = self.Code2DVectorFunction.instance(self._sample_vector_f2d, value[k])
             self._velocities_cylindrical_f2d[sp] = self._velocities_cylindrical_f2d[k]
             self._velocities_cartesian[k] = VectorAxisymmetricMapper(self._velocities_cylindrical_f2d[k])
             self._velocities_cartesian[sp] = self._velocities_cartesian[k]
@@ -613,7 +686,7 @@ class PESDTSimulation:
         value = np.array(value, dtype=np.float64, copy=False)
         _check_shape("total_radiation", value, (self.mesh.n,))
         self._total_radiation = value
-        self._total_radiation_f2d = Edge2DFunction.instance(self._inside_mesh, value)
+        self._total_radiation_f2d = self.Code2DFunction.instance(self._inside_mesh, value)
         self._total_radiation_f3d = AxisymmetricMapper(self._total_radiation_f2d)
 
     @property
@@ -650,7 +723,7 @@ class PESDTSimulation:
         value = np.array(value, dtype=np.float64, copy=False)
         _check_shape("halpha_total_radiation", value, (self.mesh.n,))
         self._halpha_radiation = value
-        self._halpha_radiation_f2d = Edge2DFunction.instance(self._inside_mesh, value)
+        self._halpha_radiation_f2d = self.Code2DFunction.instance(self._inside_mesh, value)
         self._halpha_radiation_f3d = AxisymmetricMapper(self._halpha_radiation_f2d)
 
     @property
@@ -674,7 +747,7 @@ class PESDTSimulation:
 
         self._b_field_cylindrical = b_field_cylindrical
         self._b_field = value
-        self._b_field_cylindrical_f2d = Edge2DVectorFunction.instance(self._sample_vector_f2d, b_field_cylindrical)
+        self._b_field_cylindrical_f2d = self.Code2DVectorFunction.instance(self._sample_vector_f2d, b_field_cylindrical)
         self._b_field_cartesian = VectorAxisymmetricMapper(self._b_field_cylindrical_f2d)
 
     @property
@@ -716,7 +789,7 @@ class PESDTSimulation:
 
         self._b_field = b_field
         self._b_field_cylindrical = value
-        self._b_field_cylindrical_f2d = Edge2DVectorFunction.instance(self._sample_vector_f2d, value)
+        self._b_field_cylindrical_f2d = self.Code2DVectorFunction.instance(self._sample_vector_f2d, value)
         self._b_field_cartesian = VectorAxisymmetricMapper(self._b_field_cylindrical_f2d)
 
     def __getstate__(self):
@@ -763,7 +836,8 @@ class PESDTSimulation:
             self.halpha_radiation = state['halpha_radiation']
         if state['emission'] is not None:
             self.emission = state['emission']
-
+        if state['absorbance'] is not None:
+            self.emission = state['absorbance']
     def save(self, filename):
         """
         Saves Edge2DSimulation object to file.
@@ -781,7 +855,7 @@ class PESDTSimulation:
 
         return sim
 
-    def create_plasma(self, parent=None, transform=None, name=None):
+    def create_plasma(self, parent=None, transform=None, name=None, opaque = False):
         """
         Make a CHERAB plasma object from this EDGE2D simulation.
 
@@ -790,6 +864,7 @@ class PESDTSimulation:
         of the plasma in the world.
         :param str name: User friendly name for this plasma (default = "EDGE2D Plasma").
         :rtype: Plasma
+        :param bool opaque: Wheather to include opacity in the simulation or not.
         """
 
         # Checking if the minimal required data is available to create a plasma object
@@ -841,15 +916,23 @@ class PESDTSimulation:
                 velocity = self.velocities_cartesian[k]
             else:
                 velocity = ConstantVector3D(Vector3D(0, 0, 0))
+            if opaque:
+                if charge or self.neutral_temperature is None:  # ions or neutral atoms (neutral temperature is not available)
+                    distribution = PESDTOpaqueMaxwellian(self.species_density_f3d[k], self.ion_temperature_f3d, velocity, self.emission_f3d[k],
+                                            self.absorbance_f3d[k], species_type.atomic_weight * atomic_mass)
 
-            if charge or self.neutral_temperature is None:  # ions or neutral atoms (neutral temperature is not available)
-                distribution = PESDTMaxwellian(self.species_density_f3d[k], self.ion_temperature_f3d, velocity, self.emission_f3d[k],
-                                          species_type.atomic_weight * atomic_mass)
+                else:  # neutral atoms with neutral temperature
+                    distribution = PESDTOpaqueMaxwellian(self.species_density_f3d[k], self._neutral_temperature_f3d[neutral_i], velocity, self.emission_f3d[k],
+                                            self.absorbance_f3d[k], species_type.atomic_weight * atomic_mass)
+            else:
+                if charge or self.neutral_temperature is None:  # ions or neutral atoms (neutral temperature is not available)
+                    distribution = PESDTMaxwellian(self.species_density_f3d[k], self.ion_temperature_f3d, velocity, self.emission_f3d[k],
+                                            species_type.atomic_weight * atomic_mass)
 
-            else:  # neutral atoms with neutral temperature
-                distribution = PESDTMaxwellian(self.species_density_f3d[k], self._neutral_temperature_f3d[neutral_i], velocity, self.emission_f3d[k],
-                                          species_type.atomic_weight * atomic_mass)
-                neutral_i += 1
+                else:  # neutral atoms with neutral temperature
+                    distribution = PESDTMaxwellian(self.species_density_f3d[k], self._neutral_temperature_f3d[neutral_i], velocity, self.emission_f3d[k],
+                                            species_type.atomic_weight * atomic_mass)
+                    neutral_i += 1
 
             plasma.composition.add(PESDTSpecies(species_type, charge, distribution))
 

@@ -44,7 +44,6 @@ cdef class PESDTElement(Element):
     The atomic number and weight could be confused with helium, but instead we may pass the base
     element, which is a "valid" element.
     """
-    cdef Element _base_element
     def __init__(self, str name, str symbol, int atomic_number, double atomic_weight, Element base_element):
 
         super().__init__(name, symbol, atomic_number, atomic_weight)

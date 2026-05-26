@@ -51,5 +51,8 @@ setup(
     namespace_packages=['cherab'],
     packages=find_packages(),
     include_package_data=True,
-    ext_modules=cythonize(extensions, force=force, compiler_directives=directives)
+    package_data={
+        "": ["*.pxd", "*.pyx"]
+    },
+    ext_modules=cythonize(extensions, force=force, compiler_directives=directives, language_level=3)
 )

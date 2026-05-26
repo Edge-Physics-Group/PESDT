@@ -9,7 +9,12 @@ from .background_plasma import BackgroundPlasma
 
 import logging
 #import netCDF4 as nc
-from omfit_classes.omfit_nc import OMFITnc as nc
+try:
+    from omfit_classes.omfit_nc import OMFITnc as nc
+except Exception as e:
+    print(f"Exception in \"oedge_format.py\": {e}")
+    print(f"OEDGE cannot be used as a data source. Check installation of \"omfit_classes\"")
+    
 logger = logging.getLogger(__name__)
 
 class OEDGE(BackgroundPlasma):

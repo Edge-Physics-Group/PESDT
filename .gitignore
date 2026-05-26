@@ -10,3 +10,6 @@ PESDT_addon-master/build
 PESDT_addon-master/cherab_PESDT_addon.egg-info
 *.nc
 
+fort.*
+intal*
+outtal*

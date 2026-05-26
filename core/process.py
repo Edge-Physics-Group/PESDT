@@ -13,7 +13,7 @@ from .utils.amread import calc_photon_rate
 from .utils import get_ADAS_dict
 from .utils.machine_defs import get_DIIIDdefs, get_JETdefs
 from pyADASread import adas_adf11_read, adas_adf15_read, continuo_read
-from .edge_code_formats import BackgroundPlasma, Cell, Edge2D, SOLPS, OEDGE
+from .edge_code_formats import BackgroundPlasma, Cell, Edge2D, SOLPS, OEDGE, EIRENE
 from .cherab import CherabPlasma
 from .analyse import recover_line_int_ff_fb_Te, recover_line_int_Stark_ne, recover_line_int_particle_bal, recover_delL_atomden_product
 
@@ -108,7 +108,7 @@ class ProcessEdgeSim:
         self.pulse = self.input_dict.get('pulse', 81472)
         self.recalc_h2_pos = self.input_dict['run_options'].get('recalc_h2_pos', True)
         self.run_cherab = self.input_dict['run_options'].get('run_cherab', False)
-
+        
         # Location of adf15 and adf11 ADAS data modified for Ly-series opacity with escape factor method
         self.adas_lytrap = self.input_dict.get('read_ADAS_lytrap', None)
         if self.adas_lytrap is not None:
@@ -157,6 +157,8 @@ class ProcessEdgeSim:
             self.data = SOLPS(self.sim_path)
         elif self.edge_code == "oedge":
             self.data = OEDGE(self.sim_path)
+        elif self.edge_code == "eirene":
+            self.data = EIRENE(self.sim_path)
         else:
             logger.info("Edge code not supported")
             raise Exception("Edge code not supported")
@@ -173,7 +175,7 @@ class ProcessEdgeSim:
 
     def run_cherab_raytracing(self):
         # === Load Configuration ===
-        cherab_opts = self.input_dict["cherab_options"]
+        cherab_opts: dict = self.input_dict["cherab_options"]
         run_opts = self.input_dict["run_options"]
         spec_line_dict = self.input_dict["spec_line_dict"]
         diag_list = self.input_dict["diag_list"]
@@ -200,8 +202,9 @@ class ProcessEdgeSim:
             mol_exc_emission_bands = cherab_opts.get("mol_exc_emission_bands", ["Fulcher"])
         else:
             mol_exc_emission_bands = None
-
-        
+        self.opaque = cherab_opts.get("opacity", False)
+        if self.opaque:
+            self.opaque_mode = cherab_opts.get("opacity_mode", 0) #0 total, 1 center, 2 full spectrum
 
         diag_def = get_JETdefs().diag_dict
         transitions = [(int(v[0]), int(v[1])) for _, v in spec_line_dict['1']['1'].items()]
@@ -233,8 +236,32 @@ class ProcessEdgeSim:
                             recalc_h2_pos=recalc_h2_pos,
                             transitions=transitions,
                             instrument_los_dict = instrument_los_dict,
-                            mol_exc_bands= mol_exc_emission_bands)
+                            mol_exc_bands= mol_exc_emission_bands,
+                            opaque= self.opaque)
         
+        # For full Doppler, need to setup spectrometers for each camera
+        # Do it in a different function
+        # Ideal and central are okay here
+        if self.opaque and self.opaque_mode == 2:
+            logger.info("Full Doppler opacity mode on, skipping cameras")
+            opaque_bins = cherab_opts.get("opacity_spectral_bins", 21)
+            self.opaque_tracing(plasma, 
+                       include_reflections, 
+                       import_jet_surfaces, 
+                       data_source, 
+                       instrument_los_dict, 
+                       pixel_samples, 
+                       num_processes,
+                       calc_stark_ne,
+                       spec_line_dict,
+                       stark_transition,
+                       stark_bins,
+                       ff_fb,
+                       ff_fb_bins,
+                       mol_exc_emission,
+                       mol_exc_emission_bands,
+                       opaque_bins)
+            return
         # === Setup Observers ===
         plasma.setup_observers(instrument_los_dict, pixel_samples=pixel_samples, num_processes = num_processes)
         plasma.setup_cameras(camera_los_dict, pixel_samples = pixel_samples, num_processes = num_processes)
@@ -327,6 +354,11 @@ class ProcessEdgeSim:
                                             include_H_neg=True, data_source=data_source)
                     self.outdict[diag][wavelength]["h-"] = [x[0] for x in plasma.integrate_instrument(diag)]
 
+                    if self.opaque:
+                        logger.info("Photons (due to opacity)")
+                        plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_ph=True, data_source=data_source)
+                    self.outdict[diag][wavelength]["ph"] = [x[0] for x in plasma.integrate_instrument(diag)]
                 if data_source == "ADAS":
                     # Excitation
                     logger.info("Excitation")
@@ -399,7 +431,202 @@ class ProcessEdgeSim:
                     em = plasma.observe_camera(diag)
                     self.outdict[diag][wavelength]["total"] = em[0].tolist()
                     self.outdict[diag][wavelength]["variance"] = em[1].tolist()
-            
+    
+    def opaque_tracing(self, plasma: CherabPlasma, 
+                       include_reflections, 
+                       import_jet_surfaces, 
+                       data_source, 
+                       instrument_los_dict, 
+                       pixel_samples, 
+                       num_processes,
+                       calc_stark_ne,
+                       spec_line_dict,
+                       stark_transition,
+                       stark_bins,
+                       ff_fb,
+                       ff_fb_bins,
+                       mol_exc_emission,
+                       mol_exc_emission_bands,
+                       opaque_bins):
+        diag_def = get_JETdefs().diag_dict
+        self.outdict = {"description": f"CHERAB, REFLECTIONS: {include_reflections}, JET-MESH: {import_jet_surfaces}, DATA SOURCE: {data_source}"}
+                
+        # === Setup Spectral Observers if needed ===
+        # Figure out Stark wavelength from spec_line_dict
+        if calc_stark_ne:
+            stark_wavelength_nm = None
+            for line_key, val in spec_line_dict["1"]["1"].items():
+                if (int(val[0]), int(val[1])) == tuple(stark_transition):
+                    stark_wavelength_nm = float(line_key) / 10.0
+                    break
+
+            if stark_wavelength_nm is not None:
+                min_wave = stark_wavelength_nm - 1.0
+                max_wave = stark_wavelength_nm + 1.0
+                plasma.setup_spectral_observers(instrument_los_dict,
+                                                min_wavelength_nm=min_wave,
+                                                max_wavelength_nm=max_wave,
+                                                destination="stark",
+                                                pixel_samples=pixel_samples,
+                                                spectral_bins= stark_bins,
+                                                spectral_rays= 1,
+                                                num_processes = num_processes)
+
+        if ff_fb:
+            plasma.setup_spectral_observers(instrument_los_dict,
+                                            min_wavelength_nm=300,
+                                            max_wavelength_nm=500,
+                                            destination="continuum",
+                                            pixel_samples=pixel_samples,
+                                            spectral_bins= ff_fb_bins,
+                                            spectral_rays= 1,
+                                            num_processes = num_processes)
+
+        self.outdict = {"description": f"CHERAB, REFLECTIONS: {include_reflections}, JET-MESH: {import_jet_surfaces}, DATA SOURCE: {data_source}"}
+        
+
+        # === Process Each Instrument ===
+        for diag, vals in instrument_los_dict.items():
+            self.outdict[diag] = {}
+
+            p1 = diag_def[diag]["p1"][0].tolist()
+            w1 = 0.0
+            w2 = diag_def[diag]["w"][0][1]
+
+            los_coords = []
+            for p2 in diag_def[diag]["p2"]:
+                los_coords.append({"p1": p1, "p2": p2.tolist(), "w1": w1, "w2": w2})
+            self.outdict[diag]["chord"] = los_coords
+
+            H_lines = spec_line_dict['1']['1']
+            self.outdict[diag]["units"] = "ph s^-1 m^-2 sr^-1"
+
+            for line_key, trans in H_lines.items():
+                transition = (int(trans[0]), int(trans[1]))
+                logger.info(f"Transition: ({transition[0]}, {transition[1]})")
+                wavelength = line_key
+                self.outdict[diag][wavelength] = {}
+                # Setup observer here because wl bounds need to be adjusted each time.
+                plasma.setup_spectral_observers({diag: vals}, 
+                                                min_wavelength_nm= wavelength-1.0, 
+                                                max_wavelength_nm= wavelength+1.0, 
+                                                pixel_samples=pixel_samples, 
+                                                destination=None, 
+                                                spectral_bins=opaque_bins,
+                                                spectral_rays=1, 
+                                                num_processes = num_processes)
+
+                if data_source in ["YACORA", "AMJUEL"]:
+                    # Excitation
+                    logger.info("Excitation")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_excitation=True, data_source=data_source)
+                    spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
+                    spec = np.array(spec)
+                    wls = np.array(wl[0]) # each chord has the same wave array, just use the first one
+                    ints = [np.sum(s*wls) for s in spec]
+                    self.outdict[diag][wavelength]["excit"] = ints
+
+                    # Recombination
+                    logger.info("Recombination")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_recombination=True, data_source=data_source)
+                    spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
+                    spec = np.array(spec)
+                    wls = np.array(wl[0]) # each chord has the same wave array, just use the first one
+                    ints = [np.sum(s*wls) for s in spec]
+                    self.outdict[diag][wavelength]["recom"] = ints
+                    # Molecular / negative H species
+                
+                    logger.info("H2")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_H2=True, data_source=data_source)
+                    spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
+                    spec = np.array(spec)
+                    wls = np.array(wl[0]) # each chord has the same wave array, just use the first one
+                    ints = [np.sum(s*wls) for s in spec]
+                    self.outdict[diag][wavelength]["h2"] = ints
+                    logger.info("H2+")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_H2_pos=True, data_source=data_source)
+                    spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
+                    spec = np.array(spec)
+                    wls = np.array(wl[0]) # each chord has the same wave array, just use the first one
+                    ints = [np.sum(s*wls) for s in spec]
+                    self.outdict[diag][wavelength]["h2+"] = ints
+                    logger.info("H3+")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_H3_pos=True, data_source=data_source)
+                    spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
+                    spec = np.array(spec)
+                    wls = np.array(wl[0]) # each chord has the same wave array, just use the first one
+                    ints = [np.sum(s*wls) for s in spec]
+                    self.outdict[diag][wavelength]["h3+"] = ints
+                    logger.info("H-")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_H_neg=True, data_source=data_source)
+                    spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
+                    spec = np.array(spec)
+                    wls = np.array(wl[0]) # each chord has the same wave array, just use the first one
+                    ints = [np.sum(s*wls) for s in spec]
+                    self.outdict[diag][wavelength]["h-"] = ints
+
+                if data_source == "ADAS":
+                    # Excitation
+                    logger.info("Excitation")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_excitation=True, data_source=data_source)
+                    spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
+                    spec = np.array(spec)
+                    wls = np.array(wl[0]) # each chord has the same wave array, just use the first one
+                    ints = [np.sum(s*wls) for s in spec]
+                    self.outdict[diag][wavelength]["excit"] = ints
+
+                    # Recombination
+                    logger.info("Recombination")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_recombination=True, data_source=data_source)
+                    spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
+                    spec = np.array(spec)
+                    wls = np.array(wl[0]) # each chord has the same wave array, just use the first one
+                    ints = [np.sum(s*wls) for s in spec]
+                    self.outdict[diag][wavelength]["recom"] = ints
+                    
+                # === Optional Stark Spectrum ===
+                if calc_stark_ne and transition == stark_transition:
+                    logger.info("Stark")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                                            include_excitation=True, include_recombination=True,
+                                            include_H2=True, include_H2_pos=True,
+                                            include_H3_pos=True, include_H_neg=True,
+                                            include_stark=True, data_source=data_source)
+
+                    spec, wl = plasma.integrate_instrument_spectral(diag, destination="stark")
+                    self.outdict[diag]["stark"] = {
+                        "intensity": spec,
+                        "wave": wl[0], # same wavelengths for all chords
+                        "units": "nm, ph s^-1 m^-2 sr^-1 nm^-1",
+                        "wavelength": wavelength,
+                        "cwl": 0.1*float(wavelength)
+                        }
+            # === Optional FF+FB Spectrum ===
+            if ff_fb:
+                logger.info("Continuum")
+                plasma.define_plasma_model(atnum=1, ion_stage=0, data_source=data_source, include_ff_fb=True)
+                spec, wl = plasma.integrate_instrument_spectral(diag, destination="continuum")
+                self.outdict[diag]["ff_fb_continuum"] = {
+                    "wave": wl[0],
+                    "intensity": spec,
+                    "units": "nm, ph s^-1 m^-2 sr^-1 nm^-1"
+                }
+            # === Optional molecular band emission ===
+            if mol_exc_emission:
+                for band in mol_exc_emission_bands:
+                    logger.info(f"Molecular Excitation Emission for {band} band")
+                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=band, data_source=data_source, include_mol_exc = True)
+                    self.outdict[diag][band] = [x[0] for x in plasma.integrate_instrument(diag)]
+        return
+
     def run_cone_integration(self):
         """
         Do a cone integral over the LOS of the diagnostic instruments

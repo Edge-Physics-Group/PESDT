@@ -2,7 +2,8 @@
 from cherab.core.atomic cimport AtomicData
 from cherab.core.plasma cimport PlasmaModel
 
-
+from .LineShapes import DeltaLine, OpaqueDeltaLine
+from .spectrum import OpaqueSpectrum
 from raysect.optical cimport Spectrum, Point3D, Vector3D
 from cherab.core cimport Line, Species, Plasma, Beam
 from cherab.core.model.lineshape cimport GaussianLine, LineShapeModel
@@ -15,14 +16,6 @@ from cherab.core.utility.constants cimport RECIP_4_PI
     you can use any data source you want.
 """
 cdef class DirectEmission(PlasmaModel):
-
-    cdef Line _line
-    cdef object _lineshape_class
-    cdef object _lineshape_args
-    cdef object _lineshape_kwargs
-    cdef Species _target_species
-    cdef double _wavelength
-    cdef LineShapeModel _lineshape
     
     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
                  object lineshape_args=None, object lineshape_kwargs=None):
@@ -32,7 +25,7 @@ cdef class DirectEmission(PlasmaModel):
 
         self._line = line
 
-        self._lineshape_class = lineshape or GaussianLine
+        self._lineshape_class = lineshape or DeltaLine#GaussianLine
         if not issubclass(self._lineshape_class, LineShapeModel):
             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
 
@@ -100,14 +93,6 @@ cdef class DirectEmission(PlasmaModel):
 
 cdef class DirectEmissionMol(PlasmaModel):
 
-    cdef Line _line
-    cdef object _lineshape_class
-    cdef object _lineshape_args
-    cdef object _lineshape_kwargs
-    cdef Species _target_species
-    cdef double _wavelength
-    cdef LineShapeModel _lineshape
-    
     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
                  object lineshape_args=None, object lineshape_kwargs=None):
         
@@ -116,7 +101,7 @@ cdef class DirectEmissionMol(PlasmaModel):
 
         self._line = line
 
-        self._lineshape_class = lineshape or GaussianLine
+        self._lineshape_class = lineshape or DeltaLine#GaussianLine
         if not issubclass(self._lineshape_class, LineShapeModel):
             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
 
@@ -193,6 +178,84 @@ cdef class DirectEmissionMol(PlasmaModel):
         self._wavelength = 0.0
         self._lineshape = None
 
+cdef class OpaqueDirectEmission(PlasmaModel):
+
+    def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
+                 object lineshape_args=None, object lineshape_kwargs=None):
+        
+
+        super().__init__(plasma, atomic_data)
+
+        self._line = line
+
+        self._lineshape_class = lineshape or OpaqueDeltaLine#GaussianLine
+        if not issubclass(self._lineshape_class, LineShapeModel):
+            raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
+
+        if lineshape_args:
+            self._lineshape_args = lineshape_args
+        else:
+            self._lineshape_args = []
+        if lineshape_kwargs:
+            self._lineshape_kwargs = lineshape_kwargs
+        else:
+            self._lineshape_kwargs = {}
+
+        # ensure that cache is initialised
+        self._change()
+
+    def __repr__(self):
+        return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
+
+    cpdef OpaqueSpectrum emission(self, Point3D point, Vector3D direction, OpaqueSpectrum spectrum):
+        cdef: 
+            double radiance
+            double absorbance
+        # cache data on first run
+        if self._target_species is None:
+            self._populate_cache()
+
+        radiance = self._target_species.distribution.emission(point.x, point.y, point.z)
+        if radiance <= 0.0:
+            return self._lineshape.add_line(0.0, 0.0, point, direction, spectrum) # Keep track of previous point
+            
+        absorbance = self._target_species.distribution.absorbance(point.x, point.y, point.z)
+        # add emission line to spectrum
+        return self._lineshape.add_line(radiance, absorbance, point, direction, spectrum)
+
+    cdef int _populate_cache(self) except -1:
+
+        # sanity checks
+        if self._plasma is None:
+            raise RuntimeError("The emission model is not connected to a plasma object.")
+        if self._atomic_data is None:
+            raise RuntimeError("The emission model is not connected to an atomic data source.")
+
+        if self._line is None:
+            raise RuntimeError("The emission line has not been set.")
+
+        # locate target species
+        # set the emission to the current transition
+        try:
+            self._target_species = self._plasma.composition.get(self._line.element, self._line.charge)
+            self._target_species.distribution.update_emission(self._line.transition)
+        except ValueError:
+            raise RuntimeError("The plasma object does not contain the ion species for the specified line "
+                               "(element={}, ionisation={}).".format(self._line.element.symbol, self._line.charge))
+        # identify wavelength
+        self._wavelength = self._atomic_data.wavelength(self._line.element, self._line.charge, self._line.transition)
+
+        # instance line shape renderer
+        self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma, self._atomic_data,
+                                                *self._lineshape_args, **self._lineshape_kwargs)
+        
+
+    def _change(self):
+
+        # clear cache to force regeneration on first use
+        self._target_species = None
+        self._wavelength = 0.0
+        self._lineshape = None
 
 '''
 Cherab AMJUEL plasma models
@@ -204,7 +267,6 @@ Cherab AMJUEL plasma models
 
 
 cdef class LineExcitation_AM(PlasmaModel):
-    cdef dict __dict__ 
 
     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
                  object lineshape_args=None, object lineshape_kwargs=None):
@@ -295,7 +357,6 @@ cdef class LineExcitation_AM(PlasmaModel):
 
 
 cdef class LineRecombination_AM(PlasmaModel):
-    cdef dict __dict__ 
 
     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
                  object lineshape_args=None, object lineshape_kwargs=None):
@@ -382,7 +443,6 @@ cdef class LineRecombination_AM(PlasmaModel):
         self._lineshape = None
 
 cdef class LineH2_AM(PlasmaModel):
-    cdef dict __dict__ 
 
     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
                  object lineshape_args=None, object lineshape_kwargs=None):
@@ -472,7 +532,6 @@ cdef class LineH2_AM(PlasmaModel):
         self._lineshape = None
 
 cdef class LineH2_pos_AM(PlasmaModel):
-    cdef dict __dict__ 
 
     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
                  object lineshape_args=None, object lineshape_kwargs=None):
@@ -560,7 +619,6 @@ cdef class LineH2_pos_AM(PlasmaModel):
         self._lineshape = None
 
 cdef class LineH_neg_AM(PlasmaModel):
-    cdef dict __dict__ 
 
     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
                  object lineshape_args=None, object lineshape_kwargs=None):
@@ -651,8 +709,7 @@ cdef class LineH_neg_AM(PlasmaModel):
         self._rates = None
         self._lineshape = None
 
-cdef class LineH3_pos_AM(PlasmaModel):
-    cdef dict __dict__ 
+cdef class LineH3_pos_AM(PlasmaModel): 
 
     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
                  object lineshape_args=None, object lineshape_kwargs=None):

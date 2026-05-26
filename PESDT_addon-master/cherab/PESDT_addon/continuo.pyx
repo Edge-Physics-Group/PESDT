@@ -25,14 +25,7 @@ cdef class Continuo(PlasmaModel):
     adaslib/continuo.f function.
 
     """
-    cdef Line _line
-    cdef object _lineshape_class
-    cdef object _lineshape_args
-    cdef object _lineshape_kwargs
-    cdef Species _target_species
-    cdef double _wavelength
-    cdef LineShapeModel _lineshape
-
+    
     def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
                  object lineshape_args=None, object lineshape_kwargs=None):
         

@@ -1,10 +1,22 @@
 
 import numpy as np
 from raysect.core.math.function.float.function2d.interpolate import Discrete2DMesh
-from cherab.edge2d.mesh_geometry import Edge2DMesh
-from cherab.PESDT_addon import PESDTSimulation, PESDTElement, deuterium
 
-from ..utils import read_amjuel_1d,read_amjuel_2d,reactions, calc_cross_sections, calc_photon_rate, H2_wavelength, calc_H2_band_emission, YACORA
+from cherab.edge2d.mesh_geometry import Edge2DMesh
+from cherab.PESDT_addon import PESDTSimulation, PESDTElement, deuterium, EIRENEMesh
+
+from ..utils import (read_amjuel_1d,
+                     read_amjuel_2d,reactions, 
+                     calc_cross_sections, 
+                     calc_photon_rate,
+                     A_coeff, 
+                     H2_wavelength, 
+                     wavelength,
+                     calc_H2_band_emission, 
+                     YACORA,
+                     doppler_absorbance,
+                     cen_absorbance,
+                     ideal_absorbance)
 import logging
 logger = logging.getLogger(__name__)
 
@@ -13,21 +25,21 @@ D0 = PESDTElement("Deuterium", "D", 1.0, 2.0, BaseD)
 D2 = PESDTElement("Deuterium2", "D2", 2.0, 4.0, BaseD)
 D2vibr = PESDTElement("Deuterium2vibr", "D2", 2.0, 4.0, BaseD)
 D3 = PESDTElement("Deuterium3+", "D3", 3.0, 6.0, BaseD)
-
+M_D = 3.344e-27
 def createCherabPlasma(PESDT, transitions: list, 
                        convert_denel_to_m3 = True, 
                        data_source = "AMJUEL", 
                        recalc_h2_pos = True,
-                       mol_exc_bands = None):
+                       mol_exc_bands = None,
+                       opaque = False,
+                       opaque_mode = 0,
+                       opaque_bins = 21):
     '''
     Creates a cherab compatible PLASMA simulation object
     
     convert_denel_to_m3: When using adas data, you need to explicitly convert to the right units
-    load_mol_data: Load and pass molecular data based on AMJUEL rates to the object
-        recalc_h2_pos: Recalculate the H2+ denisity according to AMJUEL H.12 2.0c. Should only be used, if
-                       the molecular ion density is not available in the simualtion output
-    quick (BETA): Pre calculate emission, and pass directly to cherab
-    **kwargs: used in passing data required for 'quick'
+    recalc_h2_pos: Recalculate the H2+ denisity according to AMJUEL H.12 2.0c. Should only be used, if
+                   the molecular ion density is not available in the simualtion output
     
     '''
 
@@ -35,9 +47,13 @@ def createCherabPlasma(PESDT, transitions: list,
     # Start by loading in all the data from the PESDT object #
 
     num_cells = len(PESDT.cells)
-
+    
     rv = np.zeros((num_cells, 4))
     zv = np.zeros((num_cells, 4))
+    # Eirene uses triangles
+    if PESDT.edge_code == "eirene":
+        rv = np.zeros((num_cells, 3))
+        zv = np.zeros((num_cells, 3))
     rc = np.zeros(num_cells)
     zc = np.zeros(num_cells)
 
@@ -80,7 +96,10 @@ def createCherabPlasma(PESDT, transitions: list,
     # Now load the simulation object with plasma values #
     rv = np.transpose(rv)
     zv = np.transpose(zv)
-
+    if PESDT.edge_code in ["solps", "edge2d", "oedge"]:
+        mesh = Edge2DMesh(rv, zv) #, rc, zc)
+    elif PESDT.edge_code in ["eirene"]:
+        mesh = EIRENEMesh(PESDT.data.vertices, PESDT.data.triangles)
     species_list = [(D0, 0), (D0, 1)]
     emission_keys = transitions
     if data_source == "AMJUEL":
@@ -124,7 +143,7 @@ def createCherabPlasma(PESDT, transitions: list,
         for i in range(len(transitions)):
             logger.info(f"   Calculating emission for line: {transitions[i]}")
             
-            em_n_exc, em_n_rec, em_mol, em_h2_pos, em_h3_pos, em_h_neg, tot = calc_photon_rate(transitions[i], te, ne, n0[:], n2[:], h2_pos_den[:], debug = True)
+            em_n_exc, em_n_rec, em_mol, em_h2_pos, em_h3_pos, em_h_neg, tot = calc_photon_rate(transitions[i], te, ne, n0[:], n2[:], debug = True, mol_p_density = h2_pos_den[:],recalc_h2_pos = recalc_h2_pos)
             logger.info(f"Mean: {np.mean(tot)}")
             emission[0][transitions[i]] = em_n_exc
             emission[1][transitions[i]] = em_n_rec
@@ -138,8 +157,8 @@ def createCherabPlasma(PESDT, transitions: list,
             emission_keys +=mol_exc_bands
             for band in mol_exc_bands:
                 logger.info(f"   Band: {band}")
-                em, den = calc_H2_band_emission(te, ne*1e-6, n2[:]*1e-6, band=band)
-                emission[6][band], species_density[6, :] = 1e6* em, 1e6*den
+                em, den = calc_H2_band_emission(te, ne, n2[:], band=band)
+                emission[6][band], species_density[6, :] = em, den
     elif data_source == "YACORA":
         yacora = YACORA(PESDT.YACORA_RATES_PATH)
         
@@ -183,14 +202,84 @@ def createCherabPlasma(PESDT, transitions: list,
         #ADAS
         num_species = 2
         species_density = np.zeros((num_species, num_cells))
+    
+    if opaque:
+        num_species +=1
+        _species_density = np.zeros((num_species, num_cells))
+        _species_density[:-1, :] = species_density
+        species_density = _species_density # resize, no density for photons
 
+        emission.append({})
+        species_list.append((D0, 2))
+        for tra in transitions:
+            if PESDT.edge_code == "eirene":
+                n0_N2 = PESDT.data.n0_ph2 # Contrib. of opacity to N=2
+                n0_N3 = PESDT.data.n0_ph3 # Contrib. of opacity to N=3
+            else:
+                n0_N2 = np.zeros((num_cells,)) 
+                n0_N3 = np.zeros((num_cells,)) 
+            if tra[0] == 2:
+                emission[7][tra] = n0_N2*A_coeff(tra)*1/(4.0*np.pi)
+            elif tra[0] ==3:
+                emission[7][tra] = n0_N3*A_coeff(tra)*1/(4.0*np.pi)
+            else:
+                emission[7][tra] = np.zeros((num_cells,))
+        absorbance = emission.copy() # Same shape
+        # Reset array
+        
+
+        if opaque_mode == 0:
+            absorb_ = {}
+            for tra in transitions:
+                absorb_[tra] = ideal_absorbance(tra, None, species_density[2,:], M_D)
+            for i in range(len(absorbance)):
+                for key, _ in absorbance[i].keys():
+                    absorbance[i][key] = absorb_[key] # absorbance is the same for each contribution
+        elif opaque_mode == 1:
+            try:
+                t0 = PESDT.data.t0
+            except:
+                logger.warning("No Td available, using Ti")
+                t0 = PESDT.data.ti
+            absorb_ = {}
+            for tra in transitions:
+
+                absorb_[tra] = cen_absorbance(tra, t0, species_density[2,:], M_D)
+            for i in range(len(absorbance)):
+                for key, _ in absorbance[i].keys():
+                    absorbance[i][key] = absorb_[key]
+        elif opaque_mode == 2:
+            
+            try:
+                t0 = PESDT.data.t0
+            except:
+                logger.warning("No Td available, using Ti")
+                t0 = PESDT.data.ti
+            absorb_ = {}
+            
+            for tra in transitions:
+                start = wavelength(tra) - 1.0 / 2
+                bin_width = 1.0 / opaque_bins
+
+                centers = start + (np.arange(opaque_bins) + 0.5) * bin_width
+                absorb_[tra] = doppler_absorbance(centers, tra, t0, species_density[2,:], M_D)
+            for i in range(len(absorbance)):
+                for key, _ in absorbance[i].keys():
+                    absorbance[i][key] = absorb_[key]
+        else:
+            raise Exception("unknown opaque mode")
+    else:
+        absorbance = emission.copy() # Same shape
+        for i in range(len(absorbance)):
+            for key, values in absorbance[i].keys():
+                absorbance[i][key] = np.zeros_like(values)
     species_density[0, :] = n0[:]  # neutral density D0
     species_density[1, :] = ni[:]  # ion density D+1
-    edge2d_mesh = Edge2DMesh(rv, zv) #, rc, zc)
+    
 
     print(species_list)
 
-    sim = PESDTSimulation(edge2d_mesh, species_list ) #[['D0', 0], ['D+1', 1]])
+    sim = PESDTSimulation(mesh, species_list ) #[['D0', 0], ['D+1', 1]])
     sim.electron_temperature = te
     sim.electron_density = ne
     sim.ion_temperature = ti
