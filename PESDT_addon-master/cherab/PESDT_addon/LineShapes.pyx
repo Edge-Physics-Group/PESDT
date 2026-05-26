@@ -283,7 +283,7 @@ cdef class StarkBroadenedLine(LineShapeModel):
 
 
     }
-
+    STARK_NORM_COEFFICIENT = 4 * LORENZIAN_CUTOFF_GAMMA * hyp2f1(0.4, 1, 1.4, -(2 * LORENZIAN_CUTOFF_GAMMA)**2.5)
 
     def __init__(self, Line line, double wavelength, Species target_species, Plasma plasma, AtomicData atomic_data,
                  dict stark_model_coefficients=None, integrator=GaussianQuadrature()):

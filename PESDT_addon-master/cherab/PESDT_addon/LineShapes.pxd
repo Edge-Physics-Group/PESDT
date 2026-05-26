@@ -25,7 +25,7 @@ cdef class DeltaLine(LineShapeModel):
 cdef class StarkFunction(Function1D):
     cdef double _a, _x0, _norm
 
-    cdef double STARK_NORM_COEFFICIENT = 4 * LORENZIAN_CUTOFF_GAMMA * hyp2f1(0.4, 1, 1.4, -(2 * LORENZIAN_CUTOFF_GAMMA)**2.5)
+    cdef double STARK_NORM_COEFFICIENT
 
 cdef class StarkBroadenedLine(LineShapeModel):
     
