@@ -13,4 +13,4 @@ cdef class Continuo(PlasmaModel):
          double _wavelength
          LineShapeModel _lineshape
 
-    cdef double _continuo(self, double wvl, double te, double ne, double zeff = 1.0)
+    cdef double _continuo(self, double wvl, double te, double ne, double zeff=?)
