@@ -221,11 +221,12 @@ cdef class OpaqueDirectEmission(PlasmaModel):
             
         absorbance = self._target_species.distribution.absorbance(point.x, point.y, point.z)
         # add emission line to spectrum
-        return self._lineshape._add_line(radiance, absorbance, point, direction, spectrum)
+        return self._lineshape.add_line(radiance, absorbance, point, direction, spectrum)
 
     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):
 
         return self._emission(point, direction, spectrum)
+        
     cdef int _populate_cache(self) except -1:
 
         # sanity checks
@@ -242,6 +243,7 @@ cdef class OpaqueDirectEmission(PlasmaModel):
         try:
             self._target_species = self._plasma.composition.get(self._line.element, self._line.charge)
             self._target_species.distribution.update_emission(self._line.transition)
+            self._target_species.distribution.update_absorbance(self._line.transition)
         except ValueError:
             raise RuntimeError("The plasma object does not contain the ion species for the specified line "
                                "(element={}, ionisation={}).".format(self._line.element.symbol, self._line.charge))

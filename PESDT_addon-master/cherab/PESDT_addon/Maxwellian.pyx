@@ -137,11 +137,7 @@ cdef class PESDTOpaqueMaxwellian(DistributionFunction):
     :param double atomic_mass: Atomic mass of the species in kg.
 
     """
-    cdef :
-            Function3D _density, _temperature, _emission
-            VectorFunction3D _velocity
-            double _atomic_mass
-            dict _emission_dict
+    
     def __init__(self, object density, object temperature, object velocity, object emission, object absorbance, double atomic_mass):
         
             
