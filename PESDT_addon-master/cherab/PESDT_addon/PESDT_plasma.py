@@ -47,7 +47,7 @@ from cherab.solps.solps_2d_functions import SOLPSFunction2D, SOLPSVectorFunction
 from cherab.solps.mesh_geometry import SOLPSMesh
 
 from .eirene_functions import EIRENEFunction2D, EIRENEVectorFunction2D
-from mesh_geometry import EIRENEMesh
+from .mesh_geometry import EIRENEMesh
 
 # Add logger:
 import logging
