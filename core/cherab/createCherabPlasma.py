@@ -286,7 +286,7 @@ def createCherabPlasma(PESDT, transitions: list,
 
     print(species_list)
 
-    sim = PESDTSimulation(mesh, species_list ) #[['D0', 0], ['D+1', 1]])
+    sim = PESDTSimulation(mesh, species_list , opaque = opaque) #[['D0', 0], ['D+1', 1]])
     sim.electron_temperature = te
     sim.electron_density = ne
     sim.ion_temperature = ti
