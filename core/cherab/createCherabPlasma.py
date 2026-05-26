@@ -278,7 +278,7 @@ def createCherabPlasma(PESDT, transitions: list,
     
 
     num_neut = 2 if data_source in ["AMJUEL", "YACORA"] else 1
-    neutral_temperature = np.zeros_like((num_neut, num_cells))
+    neutral_temperature = np.zeros((num_neut, num_cells))
     neutral_temperature[0, :] = t0[:]
     neutral_temperature[-1, :] = t0[:]
 
