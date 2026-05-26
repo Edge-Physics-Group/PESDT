@@ -36,7 +36,7 @@ cdef class DirectEmissionMol(PlasmaModel):
 
     cdef int _populate_cache(self) except -1
 
-    cdef double H2_wavelength(self, band: str = "fulcher")
+    cdef double H2_wavelength(self, str band=?)
 
 cdef class OpaqueDirectEmission(PlasmaModel):
 

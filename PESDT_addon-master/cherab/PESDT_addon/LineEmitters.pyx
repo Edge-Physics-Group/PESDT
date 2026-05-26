@@ -120,7 +120,7 @@ cdef class DirectEmissionMol(PlasmaModel):
     def __repr__(self):
         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.mol_transition)
     
-    cdef double H2_wavelength(self, band: str = "fulcher"):
+    cdef double H2_wavelength(self, str band = "fulcher"):
         '''
         Returns the average wavelength of a H2 excitation band from a tabulated dictionary
         '''
