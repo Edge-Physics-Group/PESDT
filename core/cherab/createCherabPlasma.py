@@ -236,7 +236,7 @@ def createCherabPlasma(PESDT, transitions: list,
             for tra in transitions:
                 absorb_[tra] = ideal_absorbance(tra, None, species_density[2,:], M_D)
             for i in range(len(absorbance)):
-                for key, _ in absorbance[i].keys():
+                for key in absorbance[i].keys():
                     absorbance[i][key] = absorb_[key] # absorbance is the same for each contribution
         elif opaque_mode == 1:
             try:
@@ -249,7 +249,7 @@ def createCherabPlasma(PESDT, transitions: list,
 
                 absorb_[tra] = cen_absorbance(tra, t0, species_density[2,:], M_D)
             for i in range(len(absorbance)):
-                for key, _ in absorbance[i].keys():
+                for key in absorbance[i].keys():
                     absorbance[i][key] = absorb_[key]
         elif opaque_mode == 2:
             
@@ -264,7 +264,7 @@ def createCherabPlasma(PESDT, transitions: list,
                 
                 absorb_[tra] = doppler_absorbance(tra, t0, species_density[2,:], M_D)
             for i in range(len(absorbance)):
-                for key, _ in absorbance[i].keys():
+                for key in absorbance[i].keys():
                     absorbance[i][key] = absorb_[key]
         else:
             raise Exception("unknown opaque mode")
