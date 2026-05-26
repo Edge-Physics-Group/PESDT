@@ -222,11 +222,11 @@ def createCherabPlasma(PESDT, transitions: list,
                 n0_N2 = np.zeros((num_cells,)) 
                 n0_N3 = np.zeros((num_cells,)) 
             if tra[0] == 2:
-                emission[7][tra] = n0_N2*A_coeff(tra)*1/(4.0*np.pi)
+                emission[num_species-1][tra] = n0_N2*A_coeff(tra)*1/(4.0*np.pi)
             elif tra[0] ==3:
-                emission[7][tra] = n0_N3*A_coeff(tra)*1/(4.0*np.pi)
+                emission[num_species-1][tra] = n0_N3*A_coeff(tra)*1/(4.0*np.pi)
             else:
-                emission[7][tra] = np.zeros((num_cells,))
+                emission[num_species-1][tra] = np.zeros((num_cells,))
         absorbance = emission.copy() # Same shape
         # Reset array
         
