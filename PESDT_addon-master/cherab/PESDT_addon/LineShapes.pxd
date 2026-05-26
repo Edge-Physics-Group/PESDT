@@ -17,13 +17,12 @@ cdef double LORENZIAN_CUTOFF_GAMMA = 50.0
 cpdef OpaqueGaussianLine add_opaque_gaussian_line(double radiance, double absorbance, double Td, double ds, double wavelength, double sigma, OpaqueSpectrum spectrum)
 
 cdef class OpaqueLine(LineShapeModel):
-    cdef inline OpaqueSpectrum add_line(self,
+    cpdef OpaqueSpectrum add_line(self,
                             double radiance,
                             double absorbance,
                             Point3D point,
                             Vector3D direction,
-                            OpaqueSpectrum spectrum):
-        raise NotImplementedError("The add_line() method has not been implemented.")
+                            OpaqueSpectrum spectrum)
 
 cdef class OpaqueGaussianLine(OpaqueLine):
     pass

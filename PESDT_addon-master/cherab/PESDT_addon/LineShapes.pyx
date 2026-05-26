@@ -27,6 +27,14 @@ np.import_array()
 
 DEF GAUSSIAN_CUTOFF_SIGMA = 10.0
 
+cdef class OpaqueLine(LineShapeModel):
+    cpdef OpaqueSpectrum add_line(self,
+                            double radiance,
+                            double absorbance,
+                            Point3D point,
+                            Vector3D direction,
+                            OpaqueSpectrum spectrum):
+        raise NotImplementedError("The add_line() method has not been implemented.")
 
 cpdef OpaqueGaussianLine add_opaque_gaussian_line(double radiance, double absorbance, double Td, double ds, double wavelength, double sigma, OpaqueSpectrum spectrum):
     r"""
