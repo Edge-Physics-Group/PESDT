@@ -295,5 +295,5 @@ def createCherabPlasma(PESDT, transitions: list,
 
     if data_source in ["AMJUEL", "YACORA"]:
         sim.emission = [emission_keys, emission]
-
+        sim.absorbance = [emission_keys, absorbance]
     return sim
