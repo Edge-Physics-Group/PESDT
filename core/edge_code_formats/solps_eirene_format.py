@@ -4,8 +4,8 @@ from matplotlib.collections import PatchCollection
 import numpy as np
 import sys, os
 from shapely.geometry import Polygon
-from cell import Cell
-from background_plasma import BackgroundPlasma
+from .cell import Cell
+from .background_plasma import BackgroundPlasma
 
 import logging
 logger = logging.getLogger(__name__)
