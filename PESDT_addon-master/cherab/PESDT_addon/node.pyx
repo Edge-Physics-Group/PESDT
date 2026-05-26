@@ -219,7 +219,7 @@ cdef class OpaquePlasma(Node):
         self._geometry_transform = None
 
         # setup emission model handler and trigger geometry rebuilding if the models change
-        self._models = ModelManager()
+        self._models = OpaqueModelManager()
         self._models.notifier.add(self._configure_geometry)
 
         # emission model integrator
