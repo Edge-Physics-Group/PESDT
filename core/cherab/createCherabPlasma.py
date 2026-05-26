@@ -276,12 +276,13 @@ def createCherabPlasma(PESDT, transitions: list,
     species_density[0, :] = n0[:]  # neutral density D0
     species_density[1, :] = ni[:]  # ion density D+1
     
-    neutral_temperature = np.zeros_like(species_density)
-    neutral_temperature[0, :] = t0[:]
-    neutral_temperature[1, :] = ti[:]
 
-    for i in range(neutral_temperature.shape[0]-2):
-        neutral_temperature[i+2, :] = t0[:] # Assing neutral atom temperature to all others
+    num_neut = 2 if data_source in ["AMJUEL", "YACORA"] else 1
+    neutral_temperature = np.zeros_like(num_neut)
+    neutral_temperature[0, :] = t0[:]
+    neutral_temperature[-1, :] = t0[:]
+
+    
 
     print(species_list)
 
