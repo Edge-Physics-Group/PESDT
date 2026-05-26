@@ -19,6 +19,7 @@ from cherab.core.math cimport VectorFunction3D
 from cherab.core.plasma.model cimport PlasmaModel
 from .spectrum cimport OpaqueSpectrum
 from .PlasmaModel cimport OpaquePlasmaModel
+from .material cimport OpaquePlasmaMaterial
 cimport cython
 
 
@@ -421,7 +422,7 @@ cdef class OpaquePlasma(Node):
             local_to_plasma = None
 
         # build plasma material
-        self._geometry.material = PlasmaMaterial(self, self._atomic_data, list(self._models), self.integrator, local_to_plasma)
+        self._geometry.material = OpaquePlasmaMaterial(self, self._atomic_data, list(self._models), self.integrator, local_to_plasma)
 
     def _modified(self):
         """
