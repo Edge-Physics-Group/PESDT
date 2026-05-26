@@ -82,7 +82,7 @@ cpdef OpaqueGaussianLine add_opaque_gaussian_line(double radiance, double absorb
 
         upper_wavelength = spectrum.min_wavelength + spectrum.delta_wavelength * (i + 1)
         upper_integral = erf((upper_wavelength - wavelength) * temp)
-        spectrum.absorbances_mv[i] += absorbance[i]*expl(-((spectrum._wavelengths[i]-lambda_0)/(delta_lambda_D)))*ds/delta_lambda_D
+        spectrum.absorbances_mv[i] += absorbance*expl(-((spectrum._wavelengths[i]-lambda_0)/(delta_lambda_D)))*ds/delta_lambda_D
         spectrum.samples_mv[i] += radiance*expl(-spectrum.absorbances_mv[i]) * 0.5 * (upper_integral - lower_integral) / spectrum.delta_wavelength
 
         lower_wavelength = upper_wavelength
