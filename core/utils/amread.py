@@ -155,7 +155,7 @@ def oscillator_strength(transition):
     gu_gl = (2.0*transition[0]+1)/(2.0*transition[1]+1)
     A = A_coeff(transition)
 
-    return 8.0*np.pi*e**2*(wl*1e-9)**2/(m_e*c*epsilon_0)*gu_gl*A_coeff
+    return 8.0*np.pi*e**2*(wl*1e-9)**2/(m_e*c*epsilon_0)*gu_gl*A
 
 def doppler_absorbance_wave(transition, wave, T_D, n_D, m_D):
     '''
