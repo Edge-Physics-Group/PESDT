@@ -102,15 +102,26 @@ class PESDTSimulation:
                                                             self._mesh.triangle_to_grid_map, sample_vector)
             self.Code2DVectorFunction = SOLPSVectorFunction2D
         elif self.code == 3:
-            inside_outside_data = np.ones((self._mesh.ny, self._mesh.nx))
-            self._inside_mesh = EIRENEFunction2D(self._mesh.vertex_coordinates, self._mesh.triangles,
-                                                self._mesh.triangle_to_grid_map, inside_outside_data)
+            inside_outside_data = np.ones(self._mesh.num_triangles)
+
+            self._inside_mesh = EIRENEFunction2D(
+                self._mesh.vertex_coordinates,
+                self._mesh.triangles,
+                inside_outside_data
+            )
+
             self.Code2DFunction = EIRENEFunction2D
-            # Creating a sample SOLPSVectorFunction2D for KDtree to use later
-            sample_vector = np.ones((3, self._mesh.ny, self._mesh.nx))
-            self._sample_vector_f2d = EIRENEVectorFunction2D(self._mesh.vertex_coordinates, self._mesh.triangles,
-                                                            self._mesh.triangle_to_grid_map, sample_vector)
-            self.Code2DVectorFunction = SOLPSVectorFunction2D
+
+
+            sample_vector = np.ones((3, self._mesh.num_triangles))
+
+            self._sample_vector_f2d = EIRENEVectorFunction2D(
+                self._mesh.vertex_coordinates,
+                self._mesh.triangles,
+                sample_vector
+            )
+
+            self.Code2DVectorFunction = EIRENEVectorFunction2D
         self._neutral_list = tuple([sp for sp in self._species_list if sp[1] == 0])
 
         self._electron_temperature = None
