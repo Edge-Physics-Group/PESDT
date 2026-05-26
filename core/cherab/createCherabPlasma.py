@@ -59,6 +59,7 @@ def createCherabPlasma(PESDT, transitions: list,
 
     te = np.zeros(num_cells)
     ti = np.zeros(num_cells)
+    t0 = np.zeros(num_cells)
     ne = np.zeros(num_cells)
     ni = np.zeros(num_cells)
     n0 = np.zeros(num_cells)
@@ -84,6 +85,7 @@ def createCherabPlasma(PESDT, transitions: list,
 
         te[ith_cell] = cell.te
         ti[ith_cell] = cell.te
+        t0[ith_cell] = cell.te if cell.t0 is None else cell.t0
         # Multiply by 1e-6, I think cherab wants densities in cm^-3
         
         ni[ith_cell] = cell.ni*multi
@@ -258,11 +260,8 @@ def createCherabPlasma(PESDT, transitions: list,
             absorb_ = {}
             
             for tra in transitions:
-                start = wavelength(tra) - 1.0 / 2
-                bin_width = 1.0 / opaque_bins
-
-                centers = start + (np.arange(opaque_bins) + 0.5) * bin_width
-                absorb_[tra] = doppler_absorbance(centers, tra, t0, species_density[2,:], M_D)
+                
+                absorb_[tra] = doppler_absorbance(tra, t0, species_density[2,:], M_D)
             for i in range(len(absorbance)):
                 for key, _ in absorbance[i].keys():
                     absorbance[i][key] = absorb_[key]
@@ -276,6 +275,12 @@ def createCherabPlasma(PESDT, transitions: list,
     species_density[0, :] = n0[:]  # neutral density D0
     species_density[1, :] = ni[:]  # ion density D+1
     
+    neutral_temperature = np.zeros_like(species_density)
+    neutral_temperature[0, :] = t0[:]
+    neutral_temperature[1, :] = ti[:]
+
+    for i in range(neutral_temperature.shape[0]-2):
+        neutral_temperature[i+2, :] = t0[:] # Assing neutral atom temperature to all others
 
     print(species_list)
 
@@ -283,6 +288,7 @@ def createCherabPlasma(PESDT, transitions: list,
     sim.electron_temperature = te
     sim.electron_density = ne
     sim.ion_temperature = ti
+    sim.neutral_temperature = neutral_temperature
     sim.species_density = species_density
 
     if data_source in ["AMJUEL", "YACORA"]:

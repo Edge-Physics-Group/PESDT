@@ -27,7 +27,7 @@ np.import_array()
 
 DEF GAUSSIAN_CUTOFF_SIGMA = 10.0
 
-cpdef OpaqueGaussianLine add_opaque_gaussian_line(double radiance, double[:] absorbance, double ds, double wavelength, double sigma, OpaqueSpectrum spectrum):
+cpdef OpaqueGaussianLine add_opaque_gaussian_line(double radiance, double absorbance, double Td, double ds, double wavelength, double sigma, OpaqueSpectrum spectrum):
     r"""
     Adds a Gaussian line to the given spectrum and returns the new spectrum.
 
@@ -46,6 +46,8 @@ cpdef OpaqueGaussianLine add_opaque_gaussian_line(double radiance, double[:] abs
     cdef double lower_wavelength, upper_wavelength
     cdef double lower_integral, upper_integral
     cdef int start, end, i
+    cdef double lambda_0 = 0.5*(spectrum.min_wavelength+spectrum.max_wavelength)*1e-9
+    cdef double delta_lambda_D = lambda_0 * np.sqrt(2*ELEMENTARY_CHARGE*Td/(3.344e-27*SPEED_OF_LIGHT**2))
 
     if sigma <= 0:
         return spectrum
@@ -71,7 +73,7 @@ cpdef OpaqueGaussianLine add_opaque_gaussian_line(double radiance, double[:] abs
 
         upper_wavelength = spectrum.min_wavelength + spectrum.delta_wavelength * (i + 1)
         upper_integral = erf((upper_wavelength - wavelength) * temp)
-        spectrum.absorbances_mv[i] += absorbance[i]*ds
+        spectrum.absorbances_mv[i] += absorbance[i]*expl(-((spectrum._wavelengths[i]-lambda_0)/(delta_lambda_D)))*ds/delta_lambda_D
         spectrum.samples_mv[i] += radiance*expl(-spectrum.absorbances_mv[i]) * 0.5 * (upper_integral - lower_integral) / spectrum.delta_wavelength
 
         lower_wavelength = upper_wavelength
@@ -107,9 +109,10 @@ cdef class OpaqueGaussianLine(LineShapeModel):
                             Point3D point,
                             Vector3D direction,
                             OpaqueSpectrum spectrum):
-        cdef double ts, sigma, shifted_wavelength
+        cdef double ts, sigma, shifted_wavelength, Td
         cdef Vector3D ion_velocity
         cdef double ds = 0.0
+
         if spectrum.prev_init:
             ds = point.distance_to(spectrum.prev_point)
             spectrum.prev_point = point.copy()
@@ -123,14 +126,14 @@ cdef class OpaqueGaussianLine(LineShapeModel):
             return spectrum
 
         ion_velocity = self.target_species.distribution.bulk_velocity(point.x, point.y, point.z)
-
+        
         # calculate emission line central wavelength, doppler shifted along observation direction
         shifted_wavelength = doppler_shift(self.wavelength, direction, ion_velocity)
-
+        Td = self.target_species.distribution.neutral_temperature(point.x, point.y, point.z)
         # calculate the line width
         sigma = thermal_broadening(self.wavelength, ts, self.line.element.atomic_weight)
 
-        return add_opaque_gaussian_line(radiance, absorbance, ds, shifted_wavelength, sigma, spectrum)
+        return add_opaque_gaussian_line(radiance, absorbance, Td, ds, shifted_wavelength, sigma, spectrum)
         
 
 

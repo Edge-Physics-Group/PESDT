@@ -157,7 +157,7 @@ def oscillator_strength(transition):
 
     return 8.0*np.pi*e**2*(wl*1e-9)**2/(m_e*c*epsilon_0)*gu_gl*A_coeff
 
-def doppler_absorbance(transition, wave, T_D, n_D, m_D):
+def doppler_absorbance_wave(transition, wave, T_D, n_D, m_D):
     '''
     Absorbance per wavelength of a Doppler broadened line.
     
@@ -173,6 +173,24 @@ def doppler_absorbance(transition, wave, T_D, n_D, m_D):
     delta_lambda_D = lambda_0 * np.sqrt(2*e*T_D/(m_D*c**2))
 
     return np.sqrt(np.pi)*e**2/(m_e*c*delta_lambda_D[:, None]) *oscillator_strength(transition)*n_D[:, None]*np.exp(-((wave-lambda_0)/delta_lambda_D)**2)
+
+def doppler_absorbance(transition, T_D, n_D, m_D):
+    '''
+    Absorbance per wavelength of a Doppler broadened line.
+    
+    :param tuple[int, int] transition:
+    :param np.ndarry T_d: [eV], dim n
+    :param np.ndarry n_d: [m^-3], dim n
+    :param float m_D: [kg]
+
+    return np.ndarray dim (n)
+
+    Multiply by 1/DeltaLambda_D * exp(-((lambda0-wave)((delta_lambda_D))**2) to get absorbance per wl
+    '''
+
+    return np.sqrt(np.pi)*e**2/(m_e*c) *oscillator_strength(transition)*n_D
+
+
 def ideal_absorbance(transition, T_D, n_D, m_D):
     '''
     Ideal absorbance of the emission line
