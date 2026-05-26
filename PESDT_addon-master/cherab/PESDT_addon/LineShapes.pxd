@@ -1,6 +1,6 @@
 # cython: language_level=3
 # raysect imports
-
+from raysect.optical cimport Spectrum, Point3D, Vector3D
 from raysect.core.math.function.float cimport Function1D
 
 from cherab.core.model.lineshape cimport LineShapeModel
@@ -16,10 +16,19 @@ cdef double LORENZIAN_CUTOFF_GAMMA = 50.0
 
 cpdef OpaqueGaussianLine add_opaque_gaussian_line(double radiance, double absorbance, double Td, double ds, double wavelength, double sigma, OpaqueSpectrum spectrum)
 
-cdef class OpaqueGaussianLine(LineShapeModel):
+cdef class OpaqueLine(LineShapeModel):
+    cpdef OpaqueSpectrum add_line(self,
+                            double radiance,
+                            double absorbance,
+                            Point3D point,
+                            Vector3D direction,
+                            OpaqueSpectrum spectrum):
+        raise NotImplementedError("The add_line() method has not been implemented.")
+
+cdef class OpaqueGaussianLine(OpaqueLine):
     pass
 
-cdef class OpaqueDeltaLine(LineShapeModel):
+cdef class OpaqueDeltaLine(OpaqueLine):
     pass
 
 cdef class DeltaLine(LineShapeModel):

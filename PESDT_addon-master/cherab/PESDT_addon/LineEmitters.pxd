@@ -2,7 +2,7 @@
 from cherab.core.atomic cimport AtomicData
 from cherab.core.plasma cimport PlasmaModel
 
-from .LineShapes cimport DeltaLine, OpaqueDeltaLine
+from .LineShapes cimport DeltaLine, OpaqueDeltaLine, OpaqueLine
 from .spectrum cimport OpaqueSpectrum
 from raysect.optical cimport Spectrum, Point3D, Vector3D
 from cherab.core cimport Line, Species, Plasma, Beam
@@ -47,7 +47,7 @@ cdef class OpaqueDirectEmission(PlasmaModel):
          object _lineshape_kwargs
          Species _target_species
          double _wavelength
-         LineShapeModel _lineshape
+         OpaqueLine _lineshape
 
     cdef int _populate_cache(self) except -1
     

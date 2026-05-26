@@ -27,6 +27,7 @@ np.import_array()
 
 DEF GAUSSIAN_CUTOFF_SIGMA = 10.0
 
+
 cpdef OpaqueGaussianLine add_opaque_gaussian_line(double radiance, double absorbance, double Td, double ds, double wavelength, double sigma, OpaqueSpectrum spectrum):
     r"""
     Adds a Gaussian line to the given spectrum and returns the new spectrum.
@@ -105,7 +106,7 @@ cdef class OpaqueGaussianLine(LineShapeModel):
     @cython.cdivision(True)
     cpdef OpaqueSpectrum add_line(self,
                             double radiance,
-                            double[:] absorbance,
+                            double absorbance,
                             Point3D point,
                             Vector3D direction,
                             OpaqueSpectrum spectrum):

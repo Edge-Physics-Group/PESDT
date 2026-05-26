@@ -189,8 +189,8 @@ cdef class OpaqueDirectEmission(PlasmaModel):
         self._line = line
 
         self._lineshape_class = lineshape or OpaqueDeltaLine#GaussianLine
-        if not issubclass(self._lineshape_class, LineShapeModel):
-            raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
+        if not issubclass(self._lineshape_class, OpaqueLine):
+            raise TypeError("The attribute lineshape must be a subclass of OpaqueLine.")
 
         if lineshape_args:
             self._lineshape_args = lineshape_args
