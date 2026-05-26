@@ -3,7 +3,7 @@ class Cell:
 
     def __init__(self, R=None, Z=None, row=None, ring=None,
                  poly=None, te=None, ti=None, ne=None, ni=None, n0=None,  n2 = None, n2p = None,
-                 Srec=None, Sion=None, td = None):
+                 Srec=None, Sion=None, t0 = None):
 
         self.R = R # m
         self.Z = Z # m
@@ -12,7 +12,7 @@ class Cell:
         self.poly = poly
         self.te = te # eV
         self.ti = ti # eV
-        self.td = td # eV
+        self.t0 = t0 # eV
         self.ni = ni # m^-3
         self.ne = ne # m^-3
         self.n0 = n0 # m^-3

@@ -71,7 +71,7 @@ class EIRENE(BackgroundPlasma):
 
         self.poly = [Polygon(self.tria[i]) for i in range(self.ntria)]
         self.cells = [
-            Cell(self.R[i, :], self.Z[i, :], None, None, self.poly[i], self.te[i], self.ti[i], self.ne[i], self.ni[i], self.n0[i], self.n2[i], self.n2p[i], td = self.t0[i])
+            Cell(self.R[i, :], self.Z[i, :], None, None, self.poly[i], self.te[i], self.ti[i], self.ne[i], self.ni[i], self.n0[i], self.n2[i], self.n2p[i], t0 = self.t0[i])
             for i in range(self.ntria)
         ]
 
