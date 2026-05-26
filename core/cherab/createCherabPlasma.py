@@ -54,8 +54,7 @@ def createCherabPlasma(PESDT, transitions: list,
     if PESDT.edge_code == "eirene":
         rv = np.zeros((num_cells, 3))
         zv = np.zeros((num_cells, 3))
-    rc = np.zeros(num_cells)
-    zc = np.zeros(num_cells)
+    
 
     te = np.zeros(num_cells)
     ti = np.zeros(num_cells)
@@ -70,17 +69,18 @@ def createCherabPlasma(PESDT, transitions: list,
         multi = 1e-6
 
     for ith_cell, cell in enumerate(PESDT.cells):
-        # extract cell centres and vertices
-        rc[ith_cell] = cell.R
-        zc[ith_cell] = cell.Z
+        
 
         if PESDT.edge_code == "solps":
             coords = np.array(cell.poly.exterior.coords).transpose()
             rv[ith_cell, :] = coords[0]
             zv[ith_cell, :] = coords[1]
-        else:
+        elif PESDT.edge_code in ["edge2d", "oedge"]:
             rv[ith_cell, :] = PESDT.data.rv[ith_cell, 0:4]
             zv[ith_cell, :] = PESDT.data.zv[ith_cell, 0:4]
+        else:
+            pass
+            #Eirene grid is created directly from vertices
         # Pull over plasma values to new CHERAB arrays
 
         te[ith_cell] = cell.te
@@ -96,10 +96,11 @@ def createCherabPlasma(PESDT, transitions: list,
 
     #####################################################
     # Now load the simulation object with plasma values #
-    rv = np.transpose(rv)
-    zv = np.transpose(zv)
+    
     if PESDT.edge_code in ["solps", "edge2d", "oedge"]:
-        mesh = Edge2DMesh(rv, zv) #, rc, zc)
+        rv = np.transpose(rv)
+        zv = np.transpose(zv)
+        mesh = Edge2DMesh(rv, zv) 
     elif PESDT.edge_code in ["eirene"]:
         mesh = EIRENEMesh(PESDT.data.vertices, PESDT.data.triangles)
     species_list = [(D0, 0), (D0, 1)]
