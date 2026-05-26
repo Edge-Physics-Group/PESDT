@@ -15,6 +15,9 @@ cdef class PESDTMaxwellian(DistributionFunction):
             VectorFunction3D _velocity
             double _atomic_mass
             dict _emission_dict
+    cpdef double emission(self, double x, double y, double z) except? -1e999
+    
+    cpdef void update_emission(self, transition)
 
 cdef class PESDTOpaqueMaxwellian(DistributionFunction):
 
@@ -23,3 +26,10 @@ cdef class PESDTOpaqueMaxwellian(DistributionFunction):
             VectorFunction3D _velocity
             double _atomic_mass
             dict _emission_dict
+    cpdef double emission(self, double x, double y, double z) except? -1e999
+
+    cpdef void update_emission(self, transition)
+    
+    cpdef double absorbance(self, double x, double y, double z) except? -1e999
+
+    cpdef void update_absorbance(self, transition)
