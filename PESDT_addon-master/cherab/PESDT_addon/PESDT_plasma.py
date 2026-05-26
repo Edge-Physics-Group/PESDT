@@ -33,7 +33,7 @@ from cherab.core import Plasma, Maxwellian
 # Override CHERAB definitions
 from .Maxwellian import PESDTMaxwellian, PESDTOpaqueMaxwellian
 from .Species import PESDTSpecies
-
+from .node import OpaquePlasma
 from cherab.core.math.function import ConstantVector3D
 from cherab.core.math.mappers import AxisymmetricMapper, VectorAxisymmetricMapper
 
@@ -55,10 +55,11 @@ logger = logging.getLogger(__name__)
 
 class PESDTSimulation:
 
-    def __init__(self, mesh, species_list):
+    def __init__(self, mesh, species_list, opaque = False):
 
         # Mesh and species_list cannot be changed after initialisation
         self.code = None
+        self.opaque = opaque
         if isinstance(mesh, Edge2DMesh):
             self._mesh = mesh
             self.code = 1
@@ -890,7 +891,10 @@ class PESDTSimulation:
 
         mesh = self.mesh
         name = name or "EDGE2D Plasma"
-        plasma = Plasma(parent=parent, transform=transform, name=name)
+        if self.opaque:
+            plasma = OpaquePlasma(parent=parent, transform=transform, name=name)
+        else:
+            plasma = Plasma(parent=parent, transform=transform, name=name)
         radius = mesh.mesh_extent['maxr']
         height = mesh.mesh_extent['maxz'] - mesh.mesh_extent['minz']
         plasma.geometry = Cylinder(radius, height)

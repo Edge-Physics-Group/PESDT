@@ -10,3 +10,4 @@ from RateFunctions cimport RateFunction, NullRateFunction
 #from .stark import StarkFunction, StarkBroadenedLine
 from LineShapes cimport StarkFunction, StarkBroadenedLine, DeltaLine
 from spectrum cimport OpaqueSpectrum
+from PlasmaModel cimport OpaquePlasmaModel
