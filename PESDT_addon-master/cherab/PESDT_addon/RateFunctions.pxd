@@ -15,6 +15,8 @@ cdef class RateFunction():
     cdef double _A_coeff
     cdef double res
     cpdef evaluate(self, double ne, double T)
+
+    cdef double _evaluate(self, double ne, double T)
 cdef class NullRateFunction():
     #
     # Generalized rate function for calculating emission from 2D AMJUEL rate coefficients
@@ -24,4 +26,4 @@ cdef class NullRateFunction():
     cdef object _MARc
     cdef object _A_coeff
     cdef double res
-    cpdef evaluate(self, double ne, double T)
+    cpdef double evaluate(self, double ne, double T)

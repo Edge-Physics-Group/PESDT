@@ -66,5 +66,5 @@ cdef class NullRateFunction():
         self.MARC = None # Do not accept any coeff
         self.A_coeff = None
 
-    cpdef double evaluate(self, double T, double ne):
+    cpdef double evaluate(self, double ne, double T):
         return 0.0
