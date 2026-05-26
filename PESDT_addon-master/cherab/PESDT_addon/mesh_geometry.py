@@ -48,7 +48,7 @@ class EIRENEMesh:
 
         self._num_vertices = vertices.shape[0]
         self._num_tris = triangles.shape[0]
-
+        self.n = self._num_tris #alias
         # mesh extent
         self._mesh_extent = {
             "minr": vertices[:, 0].min(),
