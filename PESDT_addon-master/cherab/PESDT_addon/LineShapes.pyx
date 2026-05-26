@@ -90,7 +90,7 @@ cpdef OpaqueGaussianLine add_opaque_gaussian_line(double radiance, double absorb
 
     return spectrum
 
-cdef class OpaqueGaussianLine(LineShapeModel):
+cdef class OpaqueGaussianLine(OpaqueLine):
     """
     Implements a Gaussian line shape with opacity tracking
 
@@ -146,7 +146,7 @@ cdef class OpaqueGaussianLine(LineShapeModel):
         
 
 
-cdef class OpaqueDeltaLine(LineShapeModel):
+cdef class OpaqueDeltaLine(OpaqueLine):
     """
     Infinitely narrow spectral line ("delta-function" line shape).
 
