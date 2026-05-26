@@ -207,7 +207,7 @@ cdef class OpaqueDirectEmission(PlasmaModel):
     def __repr__(self):
         return '<ExcitationLine: element={}, charge={}, transition={}>'.format(self._line.element.name, self._line.charge, self._line.transition)
 
-    cpdef OpaqueSpectrum emission(self, Point3D point, Vector3D direction, OpaqueSpectrum spectrum):
+    cpdef OpaqueSpectrum _emission(self, Point3D point, Vector3D direction, OpaqueSpectrum spectrum):
         cdef: 
             double radiance
             double absorbance
@@ -223,6 +223,9 @@ cdef class OpaqueDirectEmission(PlasmaModel):
         # add emission line to spectrum
         return self._lineshape.add_line(radiance, absorbance, point, direction, spectrum)
 
+    cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):
+
+        return self._emission(point, direction, spectrum)
     cdef int _populate_cache(self) except -1:
 
         # sanity checks
