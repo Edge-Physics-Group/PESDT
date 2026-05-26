@@ -217,11 +217,11 @@ cdef class OpaqueDirectEmission(PlasmaModel):
 
         radiance = self._target_species.distribution.emission(point.x, point.y, point.z)
         if radiance <= 0.0:
-            return self._lineshape.add_line(0.0, 0.0, point, direction, spectrum) # Keep track of previous point
+            return self._lineshape._add_line(0.0, 0.0, point, direction, spectrum) # Keep track of previous point
             
         absorbance = self._target_species.distribution.absorbance(point.x, point.y, point.z)
         # add emission line to spectrum
-        return self._lineshape.add_line(radiance, absorbance, point, direction, spectrum)
+        return self._lineshape._add_line(radiance, absorbance, point, direction, spectrum)
 
     cpdef Spectrum emission(self, Point3D point, Vector3D direction, Spectrum spectrum):
 

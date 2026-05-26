@@ -28,7 +28,7 @@ np.import_array()
 DEF GAUSSIAN_CUTOFF_SIGMA = 10.0
 
 cdef class OpaqueLine(LineShapeModel):
-    cpdef OpaqueSpectrum add_line(self,
+    cpdef OpaqueSpectrum _add_line(self,
                             double radiance,
                             double absorbance,
                             Point3D point,
@@ -112,7 +112,7 @@ cdef class OpaqueGaussianLine(LineShapeModel):
     @cython.wraparound(False)
     @cython.initializedcheck(False)
     @cython.cdivision(True)
-    cpdef OpaqueSpectrum add_line(self,
+    cpdef OpaqueSpectrum _add_line(self,
                             double radiance,
                             double absorbance,
                             Point3D point,
@@ -171,7 +171,7 @@ cdef class OpaqueDeltaLine(LineShapeModel):
     @cython.wraparound(False)
     @cython.initializedcheck(False)
     @cython.cdivision(True)
-    cpdef OpaqueSpectrum add_line(self,
+    cpdef OpaqueSpectrum _add_line(self,
                             double radiance,
                             double absorbance,
                             Point3D point,
