@@ -505,7 +505,7 @@ class ProcessEdgeSim:
             for line_key, trans in H_lines.items():
                 transition = (int(trans[0]), int(trans[1]))
                 logger.info(f"Transition: ({transition[0]}, {transition[1]})")
-                wavelength = line_key
+                wavelength = calc_wavelength(transition)
                 self.outdict[diag][wavelength] = {}
                 # Setup observer here because wl bounds need to be adjusted each time.
                 plasma.setup_spectral_observers({diag: vals}, 
