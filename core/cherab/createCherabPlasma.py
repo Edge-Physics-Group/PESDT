@@ -238,6 +238,7 @@ def createCherabPlasma(PESDT, transitions: list,
                 absorb_[tra] = ideal_absorbance(tra, None, species_density[2,:], M_D)
             for i in range(len(absorbance)):
                 for key in absorbance[i].keys():
+                    print(np.mean(absorb_[key]), np.min(absorb_[key]), np.max(absorb_[key]))
                     absorbance[i][key] = absorb_[key] # absorbance is the same for each contribution
         elif opaque_mode == 1:
             try:
