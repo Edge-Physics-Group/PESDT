@@ -525,6 +525,7 @@ class ProcessEdgeSim:
                     spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
                     spec = np.array(spec)
                     wls = np.array(wl[0]) # each chord has the same wave array, just use the first one
+                    bin_width = wls[1] - wls[0]
                     ints = [np.sum(s*bin_width) for s in spec]
                     self.outdict[diag][wavelength]["excit"] = ints
 
@@ -535,6 +536,7 @@ class ProcessEdgeSim:
                     spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
                     spec = np.array(spec)
                     wls = np.array(wl[0]) # each chord has the same wave array, just use the first one
+                    bin_width = wls[1] - wls[0]
                     ints = [np.sum(s*bin_width) for s in spec]
                     self.outdict[diag][wavelength]["recom"] = ints
                     # Molecular / negative H species
@@ -545,6 +547,7 @@ class ProcessEdgeSim:
                     spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
                     spec = np.array(spec)
                     wls = np.array(wl[0]) # each chord has the same wave array, just use the first one
+                    bin_width = wls[1] - wls[0]
                     ints = [np.sum(s*bin_width) for s in spec]
                     self.outdict[diag][wavelength]["h2"] = ints
                     logger.info("H2+")
@@ -553,6 +556,7 @@ class ProcessEdgeSim:
                     spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
                     spec = np.array(spec)
                     wls = np.array(wl[0]) # each chord has the same wave array, just use the first one
+                    bin_width = wls[1] - wls[0]
                     ints = [np.sum(s*bin_width) for s in spec]
                     self.outdict[diag][wavelength]["h2+"] = ints
                     logger.info("H3+")
@@ -561,6 +565,7 @@ class ProcessEdgeSim:
                     spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
                     spec = np.array(spec)
                     wls = np.array(wl[0]) # each chord has the same wave array, just use the first one
+                    bin_width = wls[1] - wls[0]
                     ints = [np.sum(s*bin_width) for s in spec]
                     self.outdict[diag][wavelength]["h3+"] = ints
                     logger.info("H-")
@@ -569,6 +574,7 @@ class ProcessEdgeSim:
                     spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
                     spec = np.array(spec)
                     wls = np.array(wl[0]) # each chord has the same wave array, just use the first one
+                    bin_width = wls[1] - wls[0]
                     ints = [np.sum(s*bin_width) for s in spec]
                     self.outdict[diag][wavelength]["h-"] = ints
 
