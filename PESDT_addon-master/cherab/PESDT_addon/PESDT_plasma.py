@@ -33,6 +33,7 @@ from cherab.core import Plasma, Maxwellian
 # Override CHERAB definitions
 from .Maxwellian import PESDTMaxwellian, PESDTOpaqueMaxwellian
 from .Species import PESDTSpecies
+
 from cherab.core.math.function import ConstantVector3D
 from cherab.core.math.mappers import AxisymmetricMapper, VectorAxisymmetricMapper
 
@@ -266,11 +267,11 @@ class PESDTSimulation:
                 _absorbance_f3d = {}
                 
                 for key in self._lines:
-                    try:
-                        _absorbance_f2d[key] = self.Code2DFunction.instance(self._inside_mesh, value[1][k][key])
-                        _absorbance_f3d[key] = AxisymmetricMapper(_absorbance_f2d[key])
-                    except Exception as e:
-                        logger.warning(f"Error: {e}. Ignore if molecular bands are turned on\n Error at {k}, {sp}, {key}")
+                    #try:
+                    _absorbance_f2d[key] = self.Code2DFunction.instance(self._inside_mesh, value[1][k][key])
+                    _absorbance_f3d[key] = AxisymmetricMapper(_absorbance_f2d[key])
+                    #except Exception as e:
+                    #    logger.warning(f"Error: {e}. Ignore if molecular bands are turned on\n Error at {k}, {sp}, {key}")
                 self._absorbance_f2d[k] = _absorbance_f2d
                 self._absorbance_f2d[sp] = self._absorbance_f2d[k]
                 self._absorbance_f3d[k] = _absorbance_f3d
