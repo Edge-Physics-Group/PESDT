@@ -167,7 +167,7 @@ class CherabPlasma():
             if self.opaque_mode in [0, 1]:
                 line_emitter = OpaqueDeltaDirectEmission 
             elif self.opaque_mode == 2:
-                line_emitter = OpaqueGaussianDirectEmission
+                line_emitter = DirectEmission
         else:
             line_emitter = DirectEmission
             lineshape = None
