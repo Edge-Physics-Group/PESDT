@@ -12,10 +12,8 @@ from cherab.core.model.plasma.recombination import RecombinationLine
 from cherab.core.utility.conversion import PhotonToJ
 from cherab.jet.machine.cad_files import import_jet_mesh
 
-
-
-from cherab.PESDT_addon.LineShapes import StarkBroadenedLine, OpaqueGaussianLine, OpaqueDeltaLine, DeltaLine
-from cherab.PESDT_addon.LineEmitters import DirectEmission, DirectEmissionMol, OpaqueDirectEmission, LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
+from cherab.PESDT_addon.LineShapes import StarkBroadenedLine, DeltaLine
+from cherab.PESDT_addon.LineEmitters import DirectEmission, DirectEmissionMol, OpaqueGaussianDirectEmission, OpaqueDeltaDirectEmission, LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
 
 from .cherab_AMJUEL_data import AMJUEL_Data
 from .cherab_atomic_data import PESDT_ADAS_Data
@@ -26,7 +24,6 @@ from cherab.PESDT_addon import PESDTLine, PESDTLineMol
 import logging
 logger = logging.getLogger(__name__)
 
-OPAQUE_MODES = [OpaqueDeltaLine, OpaqueDeltaLine, OpaqueGaussianLine] # Total, Center, Full Doppler
 
 class CherabPlasma():
 
@@ -167,8 +164,10 @@ class CherabPlasma():
         else:
             lineshape = None
         if self.opaque:
-            line_emitter = OpaqueDirectEmission 
-            lineshape = OPAQUE_MODES[self.opaque_mode]
+            if self.opaque_mode in [0, 1]:
+                line_emitter = OpaqueDeltaDirectEmission 
+            elif self.opaque_mode == 2:
+                line_emitter = OpaqueGaussianDirectEmission
         else:
             line_emitter = DirectEmission
             lineshape = None
