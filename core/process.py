@@ -10,6 +10,7 @@ from scipy.interpolate import interp1d
 from .synth_diag import SynthDiag
 from .utils.utils import isclose, interp_nearest_neighb, find_nearest
 from .utils.amread import calc_photon_rate
+from .utils.amread import wavelength as calc_wavelength
 from .utils import get_ADAS_dict
 from .utils.machine_defs import get_DIIIDdefs, get_JETdefs
 from pyADASread import adas_adf11_read, adas_adf15_read, continuo_read
@@ -319,7 +320,7 @@ class ProcessEdgeSim:
             for line_key, trans in H_lines.items():
                 transition = (int(trans[0]), int(trans[1]))
                 logger.info(f"Transition: ({transition[0]}, {transition[1]})")
-                wavelength = line_key
+                wavelength = calc_wavelength(transition)
                 self.outdict[diag][wavelength] = {}
                 if data_source in ["YACORA", "AMJUEL"]:
                     # Excitation
