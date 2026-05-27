@@ -229,7 +229,17 @@ cdef class OpaqueDeltaDirectEmission(PlasmaModel):
 
         radiance = self._target_species.distribution.emission(point.x, point.y, point.z)
         if radiance <= 0.0:
-            return self._lineshape.add_line(0.0, 0.0, point, direction, spectrum) # Keep track of previous point
+            if self.prev_init:
+                ds = point.distance_to(self.prev_point)
+                self.prev_point = point.copy()
+                if ds > 0.1: # New ray, jump to origin. Not sure if needed
+                    PyArray_FILLWBYTE(self.absorbances, 0)
+                    self.absorbances_mv = self.absorbances
+            else:
+                self.prev_point = point.copy()
+                self.prev_init = True
+                ds = 0.0
+            return spectrum # Keep track of previous point
             
         absorbance = self._target_species.distribution.absorbance(point.x, point.y, point.z)
         # add emission line to spectrum
@@ -335,7 +345,17 @@ cdef class OpaqueGaussianDirectEmission(PlasmaModel):
 
         radiance = self._target_species.distribution.emission(point.x, point.y, point.z)
         if radiance <= 0.0:
-            return self._lineshape.add_line(0.0, 0.0, point, direction, spectrum) # Keep track of previous point
+            if self.prev_init:
+                ds = point.distance_to(self.prev_point)
+                self.prev_point = point.copy()
+                if ds > 0.1: # New ray, jump to origin. Not sure if needed
+                    PyArray_FILLWBYTE(self.absorbances, 0)
+                    self.absorbances_mv = self.absorbances
+            else:
+                self.prev_point = point.copy()
+                self.prev_init = True
+                ds = 0.0
+            return spectrum # Keep track of previous point
             
         absorbance = self._target_species.distribution.absorbance(point.x, point.y, point.z)
         # add emission line to spectrum
