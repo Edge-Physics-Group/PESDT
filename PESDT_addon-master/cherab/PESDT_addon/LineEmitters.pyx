@@ -31,7 +31,7 @@ cdef class DirectEmission(PlasmaModel):
 
         self._line = line
 
-        self._lineshape_class = lineshape or DeltaLine#GaussianLine
+        self._lineshape_class = lineshape or GaussianLine
         if not issubclass(self._lineshape_class, LineShapeModel):
             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
 
@@ -107,7 +107,7 @@ cdef class DirectEmissionMol(PlasmaModel):
 
         self._line = line
 
-        self._lineshape_class = lineshape or DeltaLine#GaussianLine
+        self._lineshape_class = lineshape or GaussianLine
         if not issubclass(self._lineshape_class, LineShapeModel):
             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
 
@@ -194,7 +194,7 @@ cdef class OpaqueDeltaDirectEmission(PlasmaModel):
 
         self._line = line
         self.prev_init = False
-        self._lineshape_class = DeltaLine
+        self._lineshape_class = GaussianLine
         if not issubclass(self._lineshape_class, LineShapeModel):
             raise TypeError("The attribute lineshape must be a subclass of LineShapeModel.")
 

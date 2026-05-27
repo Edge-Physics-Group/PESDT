@@ -4,7 +4,7 @@ from raysect.core.math.function.float.function2d.interpolate import Discrete2DMe
 
 from cherab.edge2d.mesh_geometry import Edge2DMesh
 from cherab.PESDT_addon import PESDTSimulation, PESDTElement, deuterium, EIRENEMesh
-
+import copy
 from ..utils import (read_amjuel_1d,
                      read_amjuel_2d,reactions, 
                      calc_cross_sections, 
@@ -269,10 +269,10 @@ def createCherabPlasma(PESDT, transitions: list,
         else:
             raise Exception("unknown opaque mode")
     else:
-        absorbance = emission.copy() # Same shape
-        for i in range(len(absorbance)):
-            for key, values in absorbance[i].keys():
-                absorbance[i][key] = np.zeros_like(values)
+        absorbance = copy.deepcopy(emission) # Same shape
+        for d in absorbance:
+            for key, values in d.items():
+                d[key] = np.zeros_like(values)
     species_density[0, :] = n0[:]  # neutral density D0
     species_density[1, :] = ni[:]  # ion density D+1
     
