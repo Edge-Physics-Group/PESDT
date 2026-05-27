@@ -214,6 +214,8 @@ class PESDTSimulation:
                 
                 for key in self._lines:
                     #try:
+                    print(type(value[1][k][key]))
+                    print(np.shape(value[1][k][key]))
                     _emission_f2d[key] = self.Code2DFunction.instance(self._inside_mesh, value[1][k][key])
                     _emission_f3d[key] = AxisymmetricMapper(_emission_f2d[key])
                     #except Exception as e:
