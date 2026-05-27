@@ -207,6 +207,7 @@ def createCherabPlasma(PESDT, transitions: list,
         species_density = np.zeros((num_species, num_cells))
     
     if opaque:
+        logger.info(f"Opaque mode == {opaque_mode}: Calculating absorbance")
         num_species +=1
         _species_density = np.zeros((num_species, num_cells))
         _species_density[:-1, :] = species_density
@@ -227,7 +228,7 @@ def createCherabPlasma(PESDT, transitions: list,
                 emission[num_species-1][tra] = n0_N3*A_coeff(tra)*1/(4.0*np.pi)
             else:
                 emission[num_species-1][tra] = np.zeros((num_cells,))
-        absorbance = emission.copy() # Same shape
+        absorbance = copy.deepcopy(emission) # Same shape
         # Reset array
         
 
