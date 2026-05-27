@@ -1,15 +1,15 @@
+# Folders
+PESDT_addon-master/build
+PESDT_addon-master/cherab_PESDT_addon.egg-info
+__pycache__
+scratch/
+
+# Files
 *.pyc
-cherab_bridge/batch/
 *.npy
 *~
-cherab_bridge/inputs_for_psi26/
-cherab_bridge/scrap
-__pycache__
-PESDT_addon-master/build
 *.c
-PESDT_addon-master/cherab_PESDT_addon.egg-info
 *.nc
-
 fort.*
 intal*
 outtal*

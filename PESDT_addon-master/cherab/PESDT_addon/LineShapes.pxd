@@ -17,32 +17,6 @@ cimport cython
 
 cdef double LORENZIAN_CUTOFF_GAMMA = 50.0
 
-cpdef OpaqueGaussianLine add_opaque_gaussian_line(double radiance, double absorbance, double Td, double ds, double wavelength, double sigma, OpaqueSpectrum spectrum)
-
-cdef class OpaqueLine:
-
-    cdef:
-        Line line
-        double wavelength
-        Species target_species
-        Plasma plasma
-        AtomicData atomic_data
-        Integrator1D integrator
-
-    cpdef OpaqueSpectrum add_line(self,
-                            double radiance,
-                            double absorbance,
-                            Point3D point,
-                            Vector3D direction,
-                            OpaqueSpectrum spectrum)
-
-
-cdef class OpaqueGaussianLine(OpaqueLine):
-    pass
-
-cdef class OpaqueDeltaLine(OpaqueLine):
-    pass
-
 cdef class DeltaLine(LineShapeModel):
     pass
 

@@ -8,5 +8,4 @@ from .Species import PESDTElement, PESDTSpecies, deuterium, hydrogen
 from .RateFunctions import RateFunction, NullRateFunction
 #from .stark import StarkFunction, StarkBroadenedLine
 from .LineShapes import StarkFunction, StarkBroadenedLine, DeltaLine
-from .spectrum import OpaqueSpectrum
 from .mesh_geometry import EIRENEMesh
