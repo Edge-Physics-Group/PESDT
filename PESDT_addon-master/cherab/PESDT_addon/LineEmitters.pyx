@@ -469,7 +469,7 @@ cdef class OpaqueGaussianDirectEmission(PlasmaModel):
             upper_wavelength = spectrum.min_wavelength + spectrum.delta_wavelength * (i + 1)
             upper_integral = erf((upper_wavelength - wavelength) * temp)
             self.absorbances_mv[i] += absorbance*expl(-((upper_wavelength-wavelength)/(delta_lambda_D))**2)*ds/(delta_lambda_D*1e-9)
-            spectrum.samples_mv[i] += radiance*expl(-self.absorbances_mv[i]) * 0.5 * (upper_integral - lower_integral) / spectrum.delta_wavelength
+            spectrum.samples_mv[i] += radiance * 0.5 * (upper_integral - lower_integral) / spectrum.delta_wavelength #*expl(-self.absorbances_mv[i])
 
             lower_wavelength = upper_wavelength
             lower_integral = upper_integral
