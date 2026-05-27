@@ -268,11 +268,7 @@ def createCherabPlasma(PESDT, transitions: list,
                     absorbance[i][key] = absorb_[key]
         else:
             raise Exception("unknown opaque mode")
-    else:
-        absorbance = copy.deepcopy(emission) # Same shape
-        for d in absorbance:
-            for key, values in d.items():
-                d[key] = np.zeros_like(values)
+    
     species_density[0, :] = n0[:]  # neutral density D0
     species_density[1, :] = ni[:]  # ion density D+1
     
@@ -295,5 +291,6 @@ def createCherabPlasma(PESDT, transitions: list,
 
     if data_source in ["AMJUEL", "YACORA"]:
         sim.emission = [emission_keys, emission]
-        sim.absorbance = [emission_keys, absorbance]
+        if opaque:
+            sim.absorbance = [emission_keys, absorbance]
     return sim
