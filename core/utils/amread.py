@@ -368,7 +368,7 @@ def calc_photon_rate(transition, Temperature, el_density, n_density, **kwargs):
     h2_pos = kwargs.get("h2_pos", True)
     recalc_h2_pos = kwargs.get("recalc_h2_pos")
     h3 = kwargs.get("h3", True)
-    h_neg = kwargs.get("h_neg", False)
+    h_neg = kwargs.get("h_neg", True)
     separate_contributions = kwargs.get("separate_contributions", kwargs.get("debug", False)) # Support old "debug" flag for separate contributions
     # Make sure everyhting is in np.array format
     Temperature = np.array(Temperature); el_density = np.array(el_density); n_density = np.array(n_density)
@@ -410,7 +410,7 @@ def calc_photon_rate(transition, Temperature, el_density, n_density, **kwargs):
         MARc_h2 = read_amjuel_2d(reac["H2"][0],reac["H2"][1])
         em_mol = A_coeff(transition)*calc_cross_sections(MARc_h2, T = Temperature, n = el_density)*mol_n_density/(4*np.pi)
         
-        em_h2_pos = 0
+        em_h2_pos = np.zeros_like(mol_n_density)
         # H2+
         if h2_pos:
             if recalc_h2_pos or mol_p_density is None:
@@ -423,7 +423,7 @@ def calc_photon_rate(transition, Temperature, el_density, n_density, **kwargs):
 
         # H3+
         # H3+ rates may not be generally available, as they're supplied only in (relatively) recent editions of AMJUEL(>=2017)
-        em_h3_pos = 0
+        em_h3_pos = np.zeros_like(mol_n_density)
         if h3:
             MARc_h3_pos_den = read_amjuel_1d(reac["den_H3+"][0],reac["den_H3+"][1])
             h3_pos_den = calc_cross_sections(MARc_h3_pos_den, T = Temperature)*mol_n_density*h2_pos_den/el_density
@@ -432,7 +432,7 @@ def calc_photon_rate(transition, Temperature, el_density, n_density, **kwargs):
             em_h3_pos = A_coeff(transition)*calc_cross_sections(MARc_h3_pos, T = Temperature, n = el_density)*h3_pos_den/(4*np.pi)
 
         # H-
-        em_h_neg = 0
+        em_h_neg = np.zeros_like(mol_n_density)
         if h_neg:
             MARc_h_neg_den = read_amjuel_1d(reac["den_H-"][0],reac["den_H-"][1])
             h_neg_den = calc_cross_sections(MARc_h_neg_den, T = Temperature)*mol_n_density
