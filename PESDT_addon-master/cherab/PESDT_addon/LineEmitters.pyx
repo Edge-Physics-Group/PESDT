@@ -441,8 +441,7 @@ cdef class OpaqueGaussianDirectEmission(PlasmaModel):
         cdef double lower_wavelength, upper_wavelength
         cdef double lower_integral, upper_integral
         cdef int start, end, i
-        cdef double lambda_0 = 0.5*(spectrum.min_wavelength+spectrum.max_wavelength)*1e-9
-        cdef double delta_lambda_D = lambda_0 * np.sqrt(2*ELEMENTARY_CHARGE*Td/(3.344e-27*SPEED_OF_LIGHT**2))
+        cdef double delta_lambda_D = wavelength * np.sqrt(2*ELEMENTARY_CHARGE*Td/(3.344e-27*SPEED_OF_LIGHT**2))
 
         if sigma <= 0:
             return spectrum
@@ -468,7 +467,7 @@ cdef class OpaqueGaussianDirectEmission(PlasmaModel):
 
             upper_wavelength = spectrum.min_wavelength + spectrum.delta_wavelength * (i + 1)
             upper_integral = erf((upper_wavelength - wavelength) * temp)
-            self.absorbances_mv[i] += absorbance*expl(-((spectrum._wavelengths[i]-lambda_0)/(delta_lambda_D)))*ds/delta_lambda_D
+            self.absorbances_mv[i] += absorbance*expl(-((spectrum._wavelengths[i]-wavelength)/(delta_lambda_D))**2)*ds/(delta_lambda_D*1e-9)
             spectrum.samples_mv[i] += radiance*expl(-self.absorbances_mv[i]) * 0.5 * (upper_integral - lower_integral) / spectrum.delta_wavelength
 
             lower_wavelength = upper_wavelength
