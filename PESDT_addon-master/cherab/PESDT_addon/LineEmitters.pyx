@@ -384,8 +384,7 @@ cdef class OpaqueGaussianDirectEmission(PlasmaModel):
         # calculate the line width
         sigma = thermal_broadening(self.wavelength, ts, self.line.element.atomic_weight)
 
-
-        return self.add_opaque_gaussian_line(radiance, absorbance, Td, ds, self._wavelength, sigma, spectrum)
+        return self.add_opaque_gaussian_line(radiance, absorbance, Td, ds, shifted_wavelength, sigma, spectrum)
 
     cdef int _populate_cache(self) except -1:
 
@@ -441,7 +440,7 @@ cdef class OpaqueGaussianDirectEmission(PlasmaModel):
         cdef double lower_wavelength, upper_wavelength
         cdef double lower_integral, upper_integral
         cdef int start, end, i
-        cdef double delta_lambda_D = wavelength * np.sqrt(2*ELEMENTARY_CHARGE*Td/(3.344e-27*SPEED_OF_LIGHT**2))
+        cdef double delta_lambda_D = wavelength * sqrt(2*ELEMENTARY_CHARGE*Td/(3.344e-27*SPEED_OF_LIGHT**2))
 
         if sigma <= 0:
             return spectrum
@@ -467,7 +466,7 @@ cdef class OpaqueGaussianDirectEmission(PlasmaModel):
 
             upper_wavelength = spectrum.min_wavelength + spectrum.delta_wavelength * (i + 1)
             upper_integral = erf((upper_wavelength - wavelength) * temp)
-            self.absorbances_mv[i] += absorbance*expl(-((spectrum._wavelengths[i]-wavelength)/(delta_lambda_D))**2)*ds/(delta_lambda_D*1e-9)
+            self.absorbances_mv[i] += absorbance*expl(-((upper_wavelength-wavelength)/(delta_lambda_D))**2)*ds/(delta_lambda_D*1e-9)
             spectrum.samples_mv[i] += radiance*expl(-self.absorbances_mv[i]) * 0.5 * (upper_integral - lower_integral) / spectrum.delta_wavelength
 
             lower_wavelength = upper_wavelength
