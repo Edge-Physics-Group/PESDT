@@ -249,6 +249,7 @@ cdef class OpaqueDeltaDirectEmission(PlasmaModel):
             if ds > 0.1: # New ray, jump to origin. Not sure if needed
                 PyArray_FILLWBYTE(self.absorbances, 0)
                 self.absorbances_mv = self.absorbances
+                ds = 0.0
         else:
             self.prev_point = point.copy()
             self.prev_init = True
@@ -351,6 +352,7 @@ cdef class OpaqueGaussianDirectEmission(PlasmaModel):
                 if ds > 0.1: # New ray, jump to origin. Not sure if needed
                     PyArray_FILLWBYTE(self.absorbances, 0)
                     self.absorbances_mv = self.absorbances
+                    ds = 0.0
             else:
                 self.prev_point = point.copy()
                 self.prev_init = True
@@ -379,10 +381,10 @@ cdef class OpaqueGaussianDirectEmission(PlasmaModel):
         ion_velocity = self.target_species.distribution.bulk_velocity(point.x, point.y, point.z)
         
         # calculate emission line central wavelength, doppler shifted along observation direction
-        shifted_wavelength = doppler_shift(self.wavelength, direction, ion_velocity)
+        shifted_wavelength = doppler_shift(self._wavelength, direction, ion_velocity)
         Td = self.target_species.distribution.neutral_temperature(point.x, point.y, point.z)
         # calculate the line width
-        sigma = thermal_broadening(self.wavelength, ts, self.line.element.atomic_weight)
+        sigma = thermal_broadening(self._wavelength, ts, self._line.element.atomic_weight)
 
         return self.add_opaque_gaussian_line(radiance, absorbance, Td, ds, shifted_wavelength, sigma, spectrum)
 
