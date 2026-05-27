@@ -213,11 +213,11 @@ class PESDTSimulation:
                 _emission_f3d = {}
                 
                 for key in self._lines:
-                    try:
-                        _emission_f2d[key] = self.Code2DFunction.instance(self._inside_mesh, value[1][k][key])
-                        _emission_f3d[key] = AxisymmetricMapper(_emission_f2d[key])
-                    except Exception as e:
-                        logger.warning(f"Error: {e}. Ignore if molecular bands are turned on\n Error at {k}, {sp}, {key}")
+                    #try:
+                    _emission_f2d[key] = self.Code2DFunction.instance(self._inside_mesh, value[1][k][key])
+                    _emission_f3d[key] = AxisymmetricMapper(_emission_f2d[key])
+                    #except Exception as e:
+                    logger.warning(f"Error: {e}. Ignore if molecular bands are turned on\n Error at {k}, {sp}, {key}")
                 self._emission_f2d[k] = _emission_f2d
                 self._emission_f2d[sp] = self._emission_f2d[k]
                 self._emission_f3d[k] = _emission_f3d
@@ -267,11 +267,11 @@ class PESDTSimulation:
                 _absorbance_f3d = {}
                 
                 for key in self._lines:
-                    #try:
-                    _absorbance_f2d[key] = self.Code2DFunction.instance(self._inside_mesh, value[1][k][key])
-                    _absorbance_f3d[key] = AxisymmetricMapper(_absorbance_f2d[key])
-                    #except Exception as e:
-                    #    logger.warning(f"Error: {e}. Ignore if molecular bands are turned on\n Error at {k}, {sp}, {key}")
+                    try:
+                        _absorbance_f2d[key] = self.Code2DFunction.instance(self._inside_mesh, value[1][k][key])
+                        _absorbance_f3d[key] = AxisymmetricMapper(_absorbance_f2d[key])
+                    except Exception as e:
+                        logger.warning(f"Error: {e}. Ignore if molecular bands are turned on\n Error at {k}, {sp}, {key}")
                 self._absorbance_f2d[k] = _absorbance_f2d
                 self._absorbance_f2d[sp] = self._absorbance_f2d[k]
                 self._absorbance_f3d[k] = _absorbance_f3d
