@@ -282,7 +282,11 @@ def createCherabPlasma(PESDT, transitions: list,
     neutral_temperature[0, :] = t0[:]
     neutral_temperature[-1, :] = t0[:]
 
-    
+    # Test with zero absorbance
+    absorbance = copy.deepcopy(emission)
+    for d in absorbance:
+        for key, values in d.items():
+            d[key] = np.zeros_like(values)
 
     print(species_list)
 
