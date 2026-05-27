@@ -1,7 +1,7 @@
 # cython: language_level=3
 from cherab.core.atomic cimport AtomicData
 from cherab.core.plasma cimport PlasmaModel
-from .LineShapes cimport DeltaLine, OpaqueDeltaLine, OpaqueLine
+from .LineShapes cimport DeltaLine
 from raysect.optical cimport Spectrum, Point3D, Vector3D
 from cherab.core cimport Line, Species, Plasma, Beam
 from cherab.core.model.lineshape cimport GaussianLine, LineShapeModel

@@ -4,7 +4,6 @@ from raysect.optical cimport Spectrum, Point3D, Vector3D
 from raysect.core.math.function.float cimport Function1D
 from cherab.core.math.integrators cimport Integrator1D
 from cherab.core.model.lineshape cimport LineShapeModel
-from .spectrum cimport OpaqueSpectrum
 from cherab.core.atomic cimport Line
 from cherab.core.species cimport Species
 from cherab.core.plasma cimport Plasma
