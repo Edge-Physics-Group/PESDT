@@ -58,7 +58,7 @@ cdef class DeltaLine(LineShapeModel):
 
 
         # deposit all radiance into one bin
-        spectrum.samples_mv[0] += radiance
+        spectrum.samples_mv[0] += radiance/spectrum.delta_wavelength
 
         return spectrum
 
