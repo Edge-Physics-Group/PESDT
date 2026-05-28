@@ -29,7 +29,7 @@ class EIRENE(BackgroundPlasma):
         self.intal2 = os.path.join(sim_path, f"intal_2_1-{num_species}")
         self.intal3 = os.path.join(sim_path, "intal_3_1-1")
         self.intal4 = os.path.join(sim_path, f"intal_4_1-{num_species}")
-
+        self.outtal3 = os.path.join(sim_path, "outtal_0_3_1-1")
         self.vertices = self.read_ft33(self.fort33) 
         self.triangles, self.ntria = self.read_ft34(self.fort34)
         self.triangles -=1 #convert F to C indexing
@@ -52,19 +52,19 @@ class EIRENE(BackgroundPlasma):
         t_data = read_intal(self.intal2)
         ne_data = read_intal(self.intal3)
         n_data = read_intal(self.intal4)
-
+        n2p_data = read_outtal(self.outtal3)
         # temperatures [eV]
         self.te = te_data["data"][1, :]
         self.ti = t_data["data"][1, :]
         self.t0 = t_data["data"][2, :]
         self.t2 = t_data["data"][5, :]
-        self.t2p = t_data["data"][6, :]
+        self.t2p = t_data["data"][5, :] #Use T_H2+ = T_H2
         # Densities [cm^-3], convert to m^-3
         self.ne = ne_data["data"][1, :]*1e6
         self.ni = n_data["data"][1, :]*1e6
         self.n0 = n_data["data"][2, :]*1e6
         self.n2 = n_data["data"][5, :]*1e6
-        self.n2p = n_data["data"][6, :]*1e6
+        self.n2p = n2p_data["data"][1, :]*1e6
 
         self.n0_ph2 = n_data["data"][-2, :]*1e6 # ph. contribution to N=2
         self.n0_ph3 = n_data["data"][-1, :]*1e6 # ph. contribution to N=3
@@ -1178,6 +1178,33 @@ def read_intal(file):
 
     return ret
 
-                
+def read_outtal(file):
+    with open(file, "r") as f:
+        lines = f.readlines()
+        line = lines[0]
+        while ("NCELLS" not in line):
+            lines.pop(0)
+            line = lines[0]
+        ncells = int(lines.pop(0).split()[1])
+        nspecies = int(lines.pop(0).split()[1])
+        
+        
+        line = lines[0]
+        while ("=================================================" not in line):
+            lines.pop(0)
+            line = lines[0]
+        lines.pop(0)
+        # Begin of data
+        data = np.zeros((nspecies+1, ncells))
+
+        
+        i = 0
+        while ("=================================================" not in lines[i]):
+            row_vals = np.array([np.float64(x) for x in lines[i].split()])
+            idx = int(row_vals[0])
+            data[:, idx] = row_vals
+            i+=1
+
+    return {"data":data}
 if __name__ == "__main__":
     eir = EIRENE("read_test/eirene_wg/")
