@@ -57,14 +57,14 @@ class EIRENE(BackgroundPlasma):
         self.te = te_data["data"][1, :]
         self.ti = t_data["data"][1, :]
         self.t0 = t_data["data"][2, :]
-        self.t2 = t_data["data"][3, :]
-        self.t2p = t_data["data"][4, :]
+        self.t2 = t_data["data"][5, :]
+        self.t2p = t_data["data"][6, :]
         # Densities [cm^-3], convert to m^-3
         self.ne = ne_data["data"][1, :]*1e6
         self.ni = n_data["data"][1, :]*1e6
         self.n0 = n_data["data"][2, :]*1e6
-        self.n2 = n_data["data"][3, :]*1e6
-        self.n2p = n_data["data"][4, :]*1e6
+        self.n2 = n_data["data"][5, :]*1e6
+        self.n2p = n_data["data"][6, :]*1e6
 
         self.n0_ph2 = n_data["data"][-2, :]*1e6 # ph. contribution to N=2
         self.n0_ph3 = n_data["data"][-1, :]*1e6 # ph. contribution to N=3
