@@ -12,15 +12,16 @@ from cherab.core.model.plasma.recombination import RecombinationLine
 from cherab.core.utility.conversion import PhotonToJ
 from cherab.jet.machine.cad_files import import_jet_mesh
 
+from cherab.core.model.lineshape import GaussianLine
 from cherab.PESDT_addon.LineShapes import StarkBroadenedLine, DeltaLine
 from cherab.PESDT_addon.LineEmitters import DirectEmission, DirectEmissionMol, OpaqueGaussianDirectEmission, OpaqueDeltaDirectEmission, LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
-
+from cherab.PESDT_addon.continuo import Continuo
+from cherab.PESDT_addon import PESDTLine, PESDTLineMol
 from .cherab_AMJUEL_data import AMJUEL_Data
 from .cherab_atomic_data import PESDT_ADAS_Data
 from .createCherabPlasma import createCherabPlasma, D0, D2, D3, D2vibr
 from ..utils.JET_mesh_from_grid import create_toroidal_wall_from_points, modify_wall_polygon_for_observer,plot_wall_modification
-from cherab.PESDT_addon.continuo import Continuo
-from cherab.PESDT_addon import PESDTLine, PESDTLineMol
+
 import logging
 logger = logging.getLogger(__name__)
 
@@ -161,6 +162,8 @@ class CherabPlasma():
 
         if include_stark:
             lineshape = StarkBroadenedLine
+        elif include_ff_fb:
+            lineshape = GaussianLine
         else:
             lineshape = None
         if self.opaque:

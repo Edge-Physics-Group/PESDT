@@ -203,7 +203,7 @@ class ProcessEdgeSim:
             mol_exc_emission_bands = cherab_opts.get("mol_exc_emission_bands", ["Fulcher"])
         else:
             mol_exc_emission_bands = None
-        self.opaque = cherab_opts.get("opacity", False)
+        self.opaque = False#cherab_opts.get("opacity", False)
         if self.opaque:
             self.opaque_mode = cherab_opts.get("opacity_mode", 0) #0 total, 1 center, 2 full spectrum
 
