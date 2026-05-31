@@ -47,7 +47,8 @@ def createCherabPlasma(PESDT, transitions: list,
     # Start by loading in all the data from the PESDT object #
 
     num_cells = len(PESDT.cells)
-    
+    num_neut = 2 if data_source in ["AMJUEL", "YACORA"] else 1
+
     rv = np.zeros((num_cells, 4))
     zv = np.zeros((num_cells, 4))
     # Eirene uses triangles
@@ -157,6 +158,7 @@ def createCherabPlasma(PESDT, transitions: list,
         if mol_exc_bands is not None:
             logger.info("Precalculating molecular band emission")
             species_list.append((D2vibr, 0))
+            num_neut +=1
             emission_keys +=mol_exc_bands
             for band in mol_exc_bands:
                 logger.info(f"   Band: {band}")
@@ -277,10 +279,12 @@ def createCherabPlasma(PESDT, transitions: list,
     species_density[1, :] = ni[:]  # ion density D+1
     
 
-    num_neut = 2 if data_source in ["AMJUEL", "YACORA"] else 1
+    
+
     neutral_temperature = np.zeros((num_neut, num_cells))
-    neutral_temperature[0, :] = t0[:]
-    neutral_temperature[-1, :] = t0[:]
+    for i in range(num_neut):
+        neutral_temperature[i, :] = t0[:] # just use T_n0 for now
+    #neutral_temperature[-1, :] = t0[:]
 
     # Test with zero absorbance
     absorbance = copy.deepcopy(emission)
