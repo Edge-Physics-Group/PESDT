@@ -6,29 +6,45 @@ class YACORA():
     def __init__(self, data_path: str):
         self.data_path = data_path
         # Create data paths
-        h_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H.txt")
-        h_rec_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H+.txt")
-        h2_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H2.txt")
-        h2_pos_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H2+.txt")
-        h3_pos_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H3+.txt")
-        hneg1_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H-_with_H2+.txt")
-        hneg2_data_path: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H-_with_H+.txt")
+        h_data_path3: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H.txt")
+        h_rec_data_path3: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H+.txt")
+        h2_data_path3: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H2.txt")
+        h2_pos_data_path3: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H2+.txt")
+        h3_pos_data_path3: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H3+.txt")
+        hneg1_data_path3: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H-_with_H2+.txt")
+        hneg2_data_path3: str = os.path.join(str(data_path), "PopKoeff_n=3_from_H-_with_H+.txt")
+
+        h_data_path5: str = os.path.join(str(data_path), "PopKoeff_n=5_from_H.txt")
+        h_rec_data_path5: str = os.path.join(str(data_path), "PopKoeff_n=5_from_H+.txt")
+        h2_data_path5: str = os.path.join(str(data_path), "PopKoeff_n=5_from_H2.txt")
+        h2_pos_data_path5: str = os.path.join(str(data_path), "PopKoeff_n=5_from_H2+.txt")
+        h3_pos_data_path5: str = os.path.join(str(data_path), "PopKoeff_n=5_from_H3+.txt")
+        hneg1_data_path5: str = os.path.join(str(data_path), "PopKoeff_n=5_from_H-_with_H2+.txt")
+        hneg2_data_path5: str = os.path.join(str(data_path), "PopKoeff_n=5_from_H-_with_H+.txt")
         # Read data
-        h_data, _ = self.read_yacora_rate(h_data_path)
-        h_rec_data,_ = self.read_yacora_rate(h_rec_data_path)
-        h2_data, _ = self.read_yacora_rate(h2_data_path)
-        h2_pos_data,_ = self.read_yacora_rate(h2_pos_data_path)
-        h3_pos_data, _ = self.read_yacora_rate(h3_pos_data_path)
-        hneg1_data,_ = self.read_yacora_rate(hneg1_data_path)
-        hneg2_data,_ = self.read_yacora_rate(hneg2_data_path)
+        h_data3, _ = self.read_yacora_rate(h_data_path3)
+        h_rec_data3,_ = self.read_yacora_rate(h_rec_data_path3)
+        h2_data3, _ = self.read_yacora_rate(h2_data_path3)
+        h2_pos_data3,_ = self.read_yacora_rate(h2_pos_data_path3)
+        h3_pos_data3, _ = self.read_yacora_rate(h3_pos_data_path3)
+        hneg1_data3,_ = self.read_yacora_rate(hneg1_data_path3)
+        hneg2_data3,_ = self.read_yacora_rate(hneg2_data_path3)
+
+        h_data5, _ = self.read_yacora_rate(h_data_path5)
+        h_rec_data5,_ = self.read_yacora_rate(h_rec_data_path5)
+        h2_data5, _ = self.read_yacora_rate(h2_data_path5)
+        h2_pos_data5,_ = self.read_yacora_rate(h2_pos_data_path5)
+        h3_pos_data5, _ = self.read_yacora_rate(h3_pos_data_path5)
+        hneg1_data5,_ = self.read_yacora_rate(hneg1_data_path5)
+        hneg2_data5,_ = self.read_yacora_rate(hneg2_data_path5)
         # Assing to dicts for calculating rates
-        self.h_rates = {3: h_data}
-        self.h_rec_rates = {3: h_rec_data}
-        self.h2_rates = {3: h2_data}
-        self.h2_pos_rates = {3: h2_pos_data}
-        self.h3_pos_rates = {3: h3_pos_data}
-        self.hneg1_rates = {3: hneg1_data}
-        self.hneg2_rates = {3: hneg2_data}
+        self.h_rates = {3: h_data3, 5: h_data5}
+        self.h_rec_rates = {3: h_rec_data3, 5: h_rec_data5}
+        self.h2_rates = {3: h2_data3, 5: h2_data5}
+        self.h2_pos_rates = {3: h2_pos_data3, 5: h2_pos_data5}
+        self.h3_pos_rates = {3: h3_pos_data3, 5: h3_pos_data5}
+        self.hneg1_rates = {3: hneg1_data3, 5: hneg1_data5}
+        self.hneg2_rates = {3: hneg2_data3, 5: hneg2_data5}
     
     @staticmethod
     def A_coeff(transition):
