@@ -359,7 +359,7 @@ class ProcessEdgeSim:
                         logger.info("Photons (due to opacity)")
                         plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
                                             include_ph=True, data_source=data_source)
-                    self.outdict[diag][wavelength]["ph"] = [x[0] for x in plasma.integrate_instrument(diag)]
+                        self.outdict[diag][wavelength]["ph"] = [x[0] for x in plasma.integrate_instrument(diag)]
                 if data_source == "ADAS":
                     # Excitation
                     logger.info("Excitation")
