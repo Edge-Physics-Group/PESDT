@@ -483,35 +483,35 @@ class JobInfo(QWidget):
         layout.addLayout(email_layout)
 
         # Output name base
-        stdout_layout = QHBoxLayout()
-        stdout_label = QLabel("Stdout file name:")
-        self.stdout_name_input = QLineEdit("stdout")
-        stdout_layout.addWidget(stdout_label)
-        stdout_layout.addWidget(self.stdout_name_input)
-        layout.addLayout(stdout_layout)
+        #stdout_layout = QHBoxLayout()
+        #stdout_label = QLabel("Stdout file name:")
+        #self.stdout_name_input = QLineEdit("stdout")
+        #stdout_layout.addWidget(stdout_label)
+        #stdout_layout.addWidget(self.stdout_name_input)
+        #layout.addLayout(stdout_layout)
 
-        stderr_layout = QHBoxLayout()
-        stderr_label = QLabel("Stderr file name:")
-        self.stderr_name_input = QLineEdit("stderr")
-        stderr_layout.addWidget(stderr_label)
-        stderr_layout.addWidget(self.stderr_name_input)
-        layout.addLayout(stderr_layout)
+        #stderr_layout = QHBoxLayout()
+        #stderr_label = QLabel("Stderr file name:")
+        #self.stderr_name_input = QLineEdit("stderr")
+        #stderr_layout.addWidget(stderr_label)
+        #stderr_layout.addWidget(self.stderr_name_input)
+        #layout.addLayout(stderr_layout)
         
         # Input file name
-        input_layout = QHBoxLayout()
-        input_label = QLabel("Input JSON filename:")
-        self.input_filename = QLineEdit(f"inputfile.json")
-        input_layout.addWidget(input_label)
-        input_layout.addWidget(self.input_filename)
-        layout.addLayout(input_layout)
+        #input_layout = QHBoxLayout()
+        #input_label = QLabel("Input JSON filename:")
+        #self.input_filename = QLineEdit(f"inputfile.json")
+        #input_layout.addWidget(input_label)
+        #input_layout.addWidget(self.input_filename)
+        #layout.addLayout(input_layout)
 
         # Path to save the .cmd script
-        path_layout = QHBoxLayout()
-        path_label = QLabel("Command File Save Path:")
-        self.cmd_path = QLineEdit(f"PESDTBatchJobs/")
-        path_layout.addWidget(path_label)
-        path_layout.addWidget(self.cmd_path)
-        layout.addLayout(path_layout)
+        #path_layout = QHBoxLayout()
+        #path_label = QLabel("Command File Save Path:")
+        #self.cmd_path = QLineEdit(f"PESDTBatchJobs/")
+        #path_layout.addWidget(path_label)
+        #path_layout.addWidget(self.cmd_path)
+        #layout.addLayout(path_layout)
 
         self.username = username
 
@@ -519,10 +519,10 @@ class JobInfo(QWidget):
         return {
             "job_name": self.job_name_input.text(),
             "email": self.email_input.text(),
-            "stdout": self.stdout_name_input.text(),
-            "stderr": self.stderr_name_input.text(),
-            "input_file": self.input_filename.text(),
-            "cmd_path": self.cmd_path.text(),
+            "stdout": self.job_name_input.text() ,
+            "stderr": self.job_name_input.text() ,
+            "input_file": self.job_name_input.text(),
+            "cmd_name": self.job_name_input.text(),
             "username": self.username
         }
 
@@ -554,18 +554,18 @@ class Main(QWidget):
     def on_click(self):
         job_info = self.jobinfo_tab.get_job_info()
         base_info = self.base_tab.get_settings()
+        job_name = job_info["job_name"]
         # Save the input dict
         settings_dict = self.base_tab.get_settings()
         settings_dict["cherab_options"] = self.cherab_tab.get_settings()
         settings_dict["spec_line_dict"] = {"1": self.em_tab.get_selected_lines()}
-        settings_dict["job_name"] = job_info["job_name"]
+        settings_dict["job_name"] = job_name
         # Get full path from input field, using save_input directory
-        save_path = os.path.join(base_info["save_dir"], job_info["input_file"])
+        save_path = os.path.join(base_info["save_dir"], job_name, f"{job_info["input_file"]}.json")
 
         # Ensure the parent directory exists
         save_dir = os.path.dirname(save_path)
         Path(save_dir).mkdir(parents=True, exist_ok=True)
-
 
         with open(save_path, "w") as f:
             json.dump(settings_dict, f, indent=2)
@@ -579,8 +579,8 @@ class Main(QWidget):
             elif is_sge:
                 self.create_cmd_file()
 
-        job_name = job_info["job_name"]
-        cmd_dir = os.path.join(base_info["save_dir"],job_info["cmd_path"])
+        
+        cmd_dir = os.path.join(base_info["save_dir"],job_name)
 
         if is_slurm:
             cmd_path = os.path.join(cmd_dir, f"{job_name}.slurm")
@@ -618,14 +618,14 @@ class Main(QWidget):
         email = job_info["email"]
         stdout = job_info["stdout"]
         stderr = job_info["stderr"]
-        input_file = os.path.join(base_info["save_dir"], job_info["input_file"])
-        cmd_dir = os.path.join(base_info["save_dir"], job_info["cmd_path"])
+        input_file = os.path.join(base_info["save_dir"], job_info["job_name"], f"{job_info["input_file"]}.json")
+        cmd_dir = os.path.join(base_info["save_dir"], job_info["job_name"])
         cmd_path = os.path.join(cmd_dir, f"{job_name}.cmd")
 
         # Paths for output and error
         pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~'))
-        stdout_path = f"{cmd_dir}/out/{stdout}.out"
-        stderr_path = f"{cmd_dir}/err/{stderr}.err"
+        stdout_path = f"{cmd_dir}/{stdout}.out"
+        stderr_path = f"{cmd_dir}/{stderr}.err"
         input_path = input_file
         script_path = f"{pesdt_home}/PESDT/PESDT_run.py"
 
@@ -665,21 +665,28 @@ echo "Run finished"
         print(f"Command file written to: {cmd_path}")
 
     def create_cmd_file_slurm(self):
+
         job_info = self.jobinfo_tab.get_job_info()
         base_info = self.base_tab.get_settings()
-
+        # Paths and filenames
         username = job_info["username"]
         job_name = job_info["job_name"]
         email = job_info["email"]
         stdout = job_info["stdout"]
         stderr = job_info["stderr"]
-        input_file = os.path.join(base_info["save_dir"], job_info["input_file"])
-        cmd_dir = os.path.join(base_info["save_dir"], job_info["cmd_path"])
-        cmd_path = os.path.join(cmd_dir, f"{job_name}.slurm")
+        input_file = os.path.join(base_info["save_dir"], job_info["job_name"], f"{job_info["input_file"]}.json")
+        cmd_dir = os.path.join(base_info["save_dir"], job_info["job_name"])
+        cmd_path = os.path.join(cmd_dir, f"{job_name}.cmd")
+
+        # Paths for output and error
         pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~'))
         stdout_path = f"{cmd_dir}/{stdout}.out"
         stderr_path = f"{cmd_dir}/{stderr}.err"
-        script_path = f"{pesdt_home}/PESDT_run.py"
+        input_path = input_file
+        script_path = f"{pesdt_home}/PESDT/PESDT_run.py"
+
+        # Ensure directory exists
+        Path(cmd_dir).mkdir(parents=True, exist_ok=True)
 
         cpus = 1
         try:
