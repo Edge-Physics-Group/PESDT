@@ -1311,3 +1311,4 @@ def get_DIIIDdefs(plot_defs=False):
 if __name__=='__main__':
 
     print('Contains some useful geometry and instrument definitions for supported experimental devices.')
+    d3d = get_DIIIDdefs()

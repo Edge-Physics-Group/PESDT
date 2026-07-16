@@ -206,8 +206,12 @@ class ProcessEdgeSim:
         self.opaque = False#cherab_opts.get("opacity", False)
         if self.opaque:
             self.opaque_mode = cherab_opts.get("opacity_mode", 0) #0 total, 1 center, 2 full spectrum
-
-        diag_def = get_JETdefs().diag_dict
+        if self.machine == "JET":
+            diag_def = get_JETdefs().diag_dict
+        elif self.machine == "DIIID":
+            diag_def = get_DIIIDdefs().diag_dict
+        else:
+            pass # Will just crash later on
         transitions = [(int(v[0]), int(v[1])) for _, v in spec_line_dict['1']['1'].items()]
         
         # === Create insrument LOS database ===
