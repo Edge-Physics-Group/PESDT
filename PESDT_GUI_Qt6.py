@@ -596,9 +596,11 @@ class Main(QWidget):
         settings_dict["cherab_options"] = self.cherab_tab.get_settings()
         settings_dict["spec_line_dict"] = {"1": self.em_tab.get_selected_lines()}
         settings_dict["job_name"] = job_info["job_name"]
-
+        base_info = self.base_tab.get_settings()
+        job_name = job_info["job_name"]
+        input_file_name = job_info["input_file"]
         # Get full path from input field
-        save_path = job_info["input_file"]
+        save_path = os.path.join(base_info["save_dir"], job_name, f"{input_file_name}.json")
 
         # Ensure the parent directory exists
         save_dir = os.path.dirname(save_path)
