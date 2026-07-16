@@ -89,7 +89,7 @@ class ProcessEdgeSim:
         # Create dir
         os.makedirs(self.savedir, exist_ok=True)
 
-        self.synth_diag_save_file =os.path.join(self.savedir, self.input_dict.get("job_name", "PESDTJobOut") + ".json")
+        self.synth_diag_save_file =os.path.join(self.savedir, self.input_dict.get("job_name", "PESDTJobOut"), "output.json")
         self.spec_line_dict = self.input_dict['spec_line_dict']
 
         # Option to run cherab
