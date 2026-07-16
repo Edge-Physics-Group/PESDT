@@ -841,7 +841,7 @@ if __name__ == "__main__":
     dIIId_dict = get_DIIIDdefs().diag_dict
     machine_dict = {
             "JET":   jet_dict,
-            "DIII-D": dIIId_dict
+            "DIIID": dIIId_dict
         }
     window = PESDTGui(machine_dict = machine_dict, spect_db = spectroscopic_lines_db())
     
