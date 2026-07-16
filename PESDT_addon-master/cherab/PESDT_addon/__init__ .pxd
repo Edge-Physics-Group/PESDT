@@ -8,4 +8,4 @@ from Species cimport PESDTElement, PESDTSpecies, deuterium, hydrogen
 from RateFunctions cimport RateFunction, NullRateFunction
 #from .stark import StarkFunction, StarkBroadenedLine
 from LineShapes cimport StarkFunction, StarkBroadenedLine, DeltaLine
-
+from quadrilateral_functions cimport Quadrilateral2DFunction, Quadrilateral2DVectorFunction

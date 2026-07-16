@@ -1,7 +1,3 @@
-'''
-Copy of cherab/edge2d Edge2DSimulation - modified to include molecules
-
-'''
 # Copyright 2016-2021 Euratom
 # Copyright 2016-2021 United Kingdom Atomic Energy Authority
 # Copyright 2016-2021 Centro de Investigaciones Energéticas, Medioambientales y Tecnológicas
@@ -37,17 +33,10 @@ from .Species import PESDTSpecies
 from cherab.core.math.function import ConstantVector3D
 from cherab.core.math.mappers import AxisymmetricMapper, VectorAxisymmetricMapper
 
-# This EDGE2D package imports
-from cherab.edge2d.edge2d_functions import Edge2DFunction, Edge2DVectorFunction
-from cherab.edge2d.mesh_geometry import Edge2DMesh
-
-# This SOLPS package imports
-from cherab.solps.eirene import Eirene
-from cherab.solps.solps_2d_functions import SOLPSFunction2D, SOLPSVectorFunction2D
-from cherab.solps.mesh_geometry import SOLPSMesh
 
 from .eirene_functions import EIRENEFunction2D, EIRENEVectorFunction2D
-from .mesh_geometry import EIRENEMesh
+from .quadrilateral_functions import Quadrilateral2DFunction, Quadrilateral2DVectorFunction
+from .mesh_geometry import EIRENEMesh, QuadMesh
 
 # Add logger:
 import logging
@@ -60,17 +49,17 @@ class PESDTSimulation:
         # Mesh and species_list cannot be changed after initialisation
         self.code = None
         self.opaque = opaque
-        if isinstance(mesh, Edge2DMesh):
+        if isinstance(mesh, QuadMesh):
             self._mesh = mesh
             self.code = 1
-        elif isinstance(mesh, SOLPSMesh):
+        elif isinstance(mesh, QuadMesh):
             self._mesh = mesh
             self.code = 2
         elif isinstance(mesh, EIRENEMesh):
             self._mesh = mesh
             self.code = 3
         else:
-            raise ValueError('Argument "mesh" must be a Edge2DMesh or SOLPSMesh instance.')
+            raise ValueError('Argument "mesh" must be a QuadMesh or EIRENEMesh instance.')
         
 
         if not len(species_list):
@@ -82,26 +71,16 @@ class PESDTSimulation:
     def _initial_setup(self):
         # Make Mesh Interpolator function for inside/outside mesh test.
         
-        if self.code == 1:
+        if self.code in [1, 2]:
             inside_outside_data = np.ones(self._mesh.n)
-            self._inside_mesh = Edge2DFunction(self._mesh.vertex_coordinates, self._mesh.triangles,
+            self._inside_mesh = Quadrilateral2DFunction(self._mesh.vertex_coordinates, self._mesh.triangles,
                                             self._mesh.triangle_to_grid_map, inside_outside_data)
-            self.Code2DFunction = Edge2DFunction
-            # Creating a sample Edge2DVectorFunction for KDtree to use later
+            self.Code2DFunction = Quadrilateral2DFunction
+            # Creating a sample Quadrilateral2DVectorFunction for KDtree to use later
             sample_vector = np.ones((3, self._mesh.n))
-            self._sample_vector_f2d = Edge2DVectorFunction(self._mesh.vertex_coordinates, self._mesh.triangles,
+            self._sample_vector_f2d = Quadrilateral2DVectorFunction(self._mesh.vertex_coordinates, self._mesh.triangles,
                                                         self._mesh.triangle_to_grid_map, sample_vector)
-            self.Code2DVectorFunction = Edge2DVectorFunction
-        elif self.code ==2:
-            inside_outside_data = np.ones((self._mesh.ny, self._mesh.nx))
-            self._inside_mesh = SOLPSFunction2D(self._mesh.vertex_coordinates, self._mesh.triangles,
-                                                self._mesh.triangle_to_grid_map, inside_outside_data)
-            self.Code2DFunction = SOLPSFunction2D
-            # Creating a sample SOLPSVectorFunction2D for KDtree to use later
-            sample_vector = np.ones((3, self._mesh.ny, self._mesh.nx))
-            self._sample_vector_f2d = SOLPSVectorFunction2D(self._mesh.vertex_coordinates, self._mesh.triangles,
-                                                            self._mesh.triangle_to_grid_map, sample_vector)
-            self.Code2DVectorFunction = SOLPSVectorFunction2D
+            self.Code2DVectorFunction = Quadrilateral2DVectorFunction
         elif self.code == 3:
             inside_outside_data = np.ones(self._mesh.num_triangles)
 
@@ -110,18 +89,13 @@ class PESDTSimulation:
                 self._mesh.triangles,
                 inside_outside_data
             )
-
             self.Code2DFunction = EIRENEFunction2D
-
-
             sample_vector = np.ones((3, self._mesh.num_triangles))
-
             self._sample_vector_f2d = EIRENEVectorFunction2D(
                 self._mesh.vertex_coordinates,
                 self._mesh.triangles,
                 sample_vector
             )
-
             self.Code2DVectorFunction = EIRENEVectorFunction2D
         self._neutral_list = tuple([sp for sp in self._species_list if sp[1] == 0])
 
@@ -281,7 +255,7 @@ class PESDTSimulation:
     @property
     def mesh(self):
         """
-        Edge2DMesh instance.
+        Mesh instance.
         :return:
         """
         return self._mesh
@@ -852,7 +826,7 @@ class PESDTSimulation:
             self.emission = state['absorbance']
     def save(self, filename):
         """
-        Saves Edge2DSimulation object to file.
+        Saves PESDTSimulation object to file.
         """
         with open(filename, 'wb') as file_handle:
             pickle.dump(self, file_handle)
@@ -860,7 +834,7 @@ class PESDTSimulation:
     @classmethod
     def load(cls, filename):
         """
-        Loads Edge2DSimulation object from file.
+        Loads PESDTSimulation object from file.
         """
         with open(filename, 'rb') as file_handle:
             sim = pickle.load(file_handle)
@@ -869,12 +843,12 @@ class PESDTSimulation:
 
     def create_plasma(self, parent=None, transform=None, name=None, opaque = False):
         """
-        Make a CHERAB plasma object from this EDGE2D simulation.
+        Make a CHERAB plasma object from this PESDT simulation.
 
         :param Node parent: The plasma's parent node in the scenegraph, e.g. a World object.
         :param AffineMatrix3D transform: Affine matrix describing the location and orientation
         of the plasma in the world.
-        :param str name: User friendly name for this plasma (default = "EDGE2D Plasma").
+        :param str name: User friendly name for this plasma (default = "PESDT Plasma").
         :rtype: Plasma
         :param bool opaque: Wheather to include opacity in the simulation or not.
         """
@@ -890,7 +864,7 @@ class PESDTSimulation:
             raise RuntimeError("Unable to create plasma object: ion temperature is not set.")
 
         mesh = self.mesh
-        name = name or "EDGE2D Plasma"
+        name = name or "PESDT Plasma"
         plasma = Plasma(parent=parent, transform=transform, name=name)
         radius = mesh.mesh_extent['maxr']
         height = mesh.mesh_extent['maxz'] - mesh.mesh_extent['minz']
@@ -953,7 +927,7 @@ class PESDTSimulation:
 
 def _check_shape(name, value, shape):
     if value.shape != shape:
-        raise ValueError('Shape of "{0}": {1} mismatch the shape of EDGE2D grid: {2}.'.format(name, value.shape, shape))
+        raise ValueError('Shape of "{0}": {1} mismatch the shape of grid: {2}.'.format(name, value.shape, shape))
 
 
 def prefer_element(isotope):
