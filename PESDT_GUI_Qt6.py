@@ -808,10 +808,10 @@ class PESDTGui(QWidget):
             # Job info
             self.main_tab.jobinfo_tab.job_name_input.setText(settings.get("job_info", {}).get("job_name", "")),
             self.main_tab.jobinfo_tab.email_input.setText(settings.get("job_info", {}).get("email", "")),
-            self.main_tab.jobinfo_tab.stdout_name_input.setText(settings.get("job_info", {}).get("stdout", "")),
-            self.main_tab.jobinfo_tab.stderr_name_input.setText(settings.get("job_info", {}).get("stderr", "")),
-            self.main_tab.jobinfo_tab.input_filename.setText(settings.get("job_info", {}).get("input_file", "")),
-            self.main_tab.jobinfo_tab.cmd_path.setText(settings.get("job_info", {}).get("cmd_path", "")),
+            #self.main_tab.jobinfo_tab.stdout_name_input.setText(settings.get("job_info", {}).get("stdout", "")),
+            #self.main_tab.jobinfo_tab.stderr_name_input.setText(settings.get("job_info", {}).get("stderr", "")),
+            #self.main_tab.jobinfo_tab.input_filename.setText(settings.get("job_info", {}).get("input_file", "")),
+            #self.main_tab.jobinfo_tab.cmd_path.setText(settings.get("job_info", {}).get("cmd_path", "")),
 
 
     def closeEvent(self, event):
