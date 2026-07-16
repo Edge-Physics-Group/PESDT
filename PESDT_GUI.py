@@ -521,7 +521,7 @@ class JobInfo(QWidget):
             "email": self.email_input.text(),
             "stdout": self.job_name_input.text() ,
             "stderr": self.job_name_input.text() ,
-            "input_file": self.job_name_input.text(),
+            "input_file": "input_file",
             "cmd_name": self.job_name_input.text(),
             "username": self.username
         }
