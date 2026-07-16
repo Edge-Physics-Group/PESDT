@@ -10,12 +10,16 @@ from cherab.core import Plasma, Species, Maxwellian, Line, elements
 from cherab.core.model.plasma.impact_excitation import ExcitationLine
 from cherab.core.model.plasma.recombination import RecombinationLine
 from cherab.core.utility.conversion import PhotonToJ
-from cherab.jet.machine.cad_files import import_jet_mesh
-
+#from cherab.jet.machine.cad_files import import_jet_mesh
+from .jet_cad_mesh import import_jet_mesh
 from cherab.core.model.lineshape import GaussianLine
 from cherab.PESDT_addon.LineShapes import StarkBroadenedLine, DeltaLine
 from cherab.PESDT_addon.LineEmitters import DirectEmission, DirectEmissionMol, OpaqueGaussianDirectEmission, OpaqueDeltaDirectEmission, LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
-from cherab.PESDT_addon.continuo import Continuo
+# Will fail if adaslib not available
+try:
+    from cherab.PESDT_addon.continuo import Continuo
+except:
+    pass
 from cherab.PESDT_addon import PESDTLine, PESDTLineMol
 from .cherab_AMJUEL_data import AMJUEL_Data
 from .cherab_atomic_data import PESDT_ADAS_Data

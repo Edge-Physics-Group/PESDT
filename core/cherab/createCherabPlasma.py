@@ -2,8 +2,7 @@
 import numpy as np
 from raysect.core.math.function.float.function2d.interpolate import Discrete2DMesh
 
-from cherab.edge2d.mesh_geometry import Edge2DMesh
-from cherab.PESDT_addon import PESDTSimulation, PESDTElement, deuterium, EIRENEMesh
+from cherab.PESDT_addon import PESDTSimulation, PESDTElement, deuterium, EIRENEMesh, QuadMesh
 import copy
 from ..utils import (read_amjuel_1d,
                      read_amjuel_2d,reactions, 
@@ -101,7 +100,7 @@ def createCherabPlasma(PESDT, transitions: list,
     if PESDT.edge_code in ["solps", "edge2d", "oedge"]:
         rv = np.transpose(rv)
         zv = np.transpose(zv)
-        mesh = Edge2DMesh(rv, zv) 
+        mesh = QuadMesh(rv, zv) 
     elif PESDT.edge_code in ["eirene"]:
         mesh = EIRENEMesh(PESDT.data.vertices, PESDT.data.triangles)
     species_list = [(D0, 0), (D0, 1)]
