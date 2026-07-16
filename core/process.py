@@ -231,6 +231,7 @@ class ProcessEdgeSim:
 
         # === Initialize Plasma ===
         plasma = CherabPlasma(self, 
+                            machine= self.machine,
                             include_reflections=include_reflections,
                             import_jet_surfaces=import_jet_surfaces,
                             data_source=data_source,

@@ -500,7 +500,7 @@ class JobInfo(QWidget):
         # Input file name
         input_layout = QHBoxLayout()
         input_label = QLabel("Input JSON filename:")
-        self.input_filename = QLineEdit(f"/home/{username}/PESDT_input/inputfile.json")
+        self.input_filename = QLineEdit(f"inputfile.json")
         input_layout.addWidget(input_label)
         input_layout.addWidget(self.input_filename)
         layout.addLayout(input_layout)
@@ -508,7 +508,7 @@ class JobInfo(QWidget):
         # Path to save the .cmd script
         path_layout = QHBoxLayout()
         path_label = QLabel("Command File Save Path:")
-        self.cmd_path = QLineEdit(f"/home/{username}/PESDTBatchJobs/")
+        self.cmd_path = QLineEdit(f"PESDTBatchJobs/")
         path_layout.addWidget(path_label)
         path_layout.addWidget(self.cmd_path)
         layout.addLayout(path_layout)
@@ -553,13 +553,14 @@ class Main(QWidget):
 
     def on_click(self):
         job_info = self.jobinfo_tab.get_job_info()
+        base_info = self.base_tab.get_settings()
         # Save the input dict
         settings_dict = self.base_tab.get_settings()
         settings_dict["cherab_options"] = self.cherab_tab.get_settings()
         settings_dict["spec_line_dict"] = {"1": self.em_tab.get_selected_lines()}
         settings_dict["job_name"] = job_info["job_name"]
-        # Get full path from input field
-        save_path = job_info["input_file"]
+        # Get full path from input field, using save_input directory
+        save_path = os.path.join(base_info["save_dir"], job_info["input_file"])
 
         # Ensure the parent directory exists
         save_dir = os.path.dirname(save_path)
@@ -569,13 +570,24 @@ class Main(QWidget):
         with open(save_path, "w") as f:
             json.dump(settings_dict, f, indent=2)
 
-        self.create_cmd_file()
-        
-        job_name = job_info["job_name"]
-        cmd_dir = job_info["cmd_path"]
-        cmd_path = os.path.join(cmd_dir, f"{job_name}.cmd")
+            is_slurm = any(key.startswith("SLURM_") for key in os.environ)
 
-        subprocess.Popen(["qsub", cmd_path])
+            is_sge = any(key.startswith("SGE_") for key in os.environ)
+
+            if is_slurm:
+                self.create_cmd_file_slurm()
+            elif is_sge:
+                self.create_cmd_file()
+
+        job_name = job_info["job_name"]
+        cmd_dir = os.path.join(base_info["save_dir"],job_info["cmd_path"])
+
+        if is_slurm:
+            cmd_path = os.path.join(cmd_dir, f"{job_name}.slurm")
+            subprocess.Popen(["sbatch", cmd_path])
+        elif is_sge:
+            cmd_path = os.path.join(cmd_dir, f"{job_name}.cmd")
+            subprocess.Popen(["qsub", cmd_path])
 
     def on_click2(self):
         job_info = self.jobinfo_tab.get_job_info()
@@ -599,22 +611,23 @@ class Main(QWidget):
 
     def create_cmd_file(self):
         job_info = self.jobinfo_tab.get_job_info()
-
+        base_info = self.base_tab.get_settings()
         # Paths and filenames
         username = job_info["username"]
         job_name = job_info["job_name"]
         email = job_info["email"]
         stdout = job_info["stdout"]
         stderr = job_info["stderr"]
-        input_file = job_info["input_file"]
-        cmd_dir = job_info["cmd_path"]
+        input_file = os.path.join(base_info["save_dir"], job_info["input_file"])
+        cmd_dir = os.path.join(base_info["save_dir"], job_info["cmd_path"])
         cmd_path = os.path.join(cmd_dir, f"{job_name}.cmd")
 
         # Paths for output and error
-        stdout_path = f"/home/{username}/PESDTBatchJobs/out/{stdout}.out"
-        stderr_path = f"/home/{username}/PESDTBatchJobs/err/{stderr}.err"
+        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~'))
+        stdout_path = f"{cmd_dir}/out/{stdout}.out"
+        stderr_path = f"{cmd_dir}/err/{stderr}.err"
         input_path = input_file
-        script_path = f"/home/{username}/PESDT/PESDT_run.py"
+        script_path = f"{pesdt_home}/PESDT/PESDT_run.py"
 
         # Ensure directory exists
         Path(cmd_dir).mkdir(parents=True, exist_ok=True)
@@ -651,6 +664,63 @@ echo "Run finished"
 
         print(f"Command file written to: {cmd_path}")
 
+    def create_cmd_file_slurm(self):
+        job_info = self.jobinfo_tab.get_job_info()
+        base_info = self.base_tab.get_settings()
+
+        username = job_info["username"]
+        job_name = job_info["job_name"]
+        email = job_info["email"]
+        stdout = job_info["stdout"]
+        stderr = job_info["stderr"]
+        input_file = os.path.join(base_info["save_dir"], job_info["input_file"])
+        cmd_dir = os.path.join(base_info["save_dir"], job_info["cmd_path"])
+        cmd_path = os.path.join(cmd_dir, f"{job_name}.slurm")
+        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~'))
+        stdout_path = f"{cmd_dir}/{stdout}.out"
+        stderr_path = f"{cmd_dir}/{stderr}.err"
+        script_path = f"{pesdt_home}/PESDT_run.py"
+
+        cpus = 1
+        try:
+            cpus = int(self.cherab_tab.num_processes.value())
+        except Exception:
+            pass
+
+        Path(cmd_dir).mkdir(parents=True, exist_ok=True)
+
+        content = f"""#!/bin/bash
+#SBATCH --job-name={job_name}
+#SBATCH --output={stdout_path}
+#SBATCH --error={stderr_path}
+#SBATCH --mail-user={email}
+#SBATCH --mail-type=END,FAIL
+#SBATCH --export=ALL
+#SBATCH --cpus-per-task={cpus}
+#SBATCH --mem-per-cpu=4G
+
+echo "Running PESDT via SLURM"
+source /etc/profile.d/modules.sh
+source /home/{username}/.bashrc
+
+export OMP_NUM_THREADS=${{SLURM_CPUS_PER_TASK:-1}}
+
+echo "Python3 version:"
+python3 --version
+
+echo "Python (default) version:"
+python --version
+
+python3 {script_path} {input_file}
+
+echo "Run finished"
+"""
+
+        with open(cmd_path, "w") as f:
+            f.write(content)
+
+        print(f"SLURM command file written to: {cmd_path}")
+
 class PostProcess(QWidget):
     def __init__(self):
         super().__init__()
@@ -685,7 +755,8 @@ class PESDTGui(QWidget):
         self.load_cache()
 
     def load_cache(self):
-        save_path = os.path.join(os.path.expanduser("~"), "PESDTCache/gui_state.json")
+        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~'))
+        save_path = os.path.join(pesdt_home, "PESDTCache/gui_state.json")
         if os.path.exists(save_path):
             with open(save_path, "r") as f:
                 settings = json.load(f)
@@ -721,10 +792,10 @@ class PESDTGui(QWidget):
             # bands
             self.main_tab.cherab_tab.set_selected(settings.get("cherab_options", {}).get("mol_exc_emission_bands", []))
             # stark transition
-            self.main_tab.cherab_tab.set_stark_line(settings.get("cherab_options", {}).get("stark_transition", [6,2]))
+#            self.main_tab.cherab_tab.set_stark_line(settings.get("cherab_options", {}).get("stark_transition", [6,2]))
 
-            self.main_tab.cherab_tab.stark_spectral_bins.setValue(settings.get("cherab_options", {}).get("stark_spectral_bins", 50))
-            self.main_tab.cherab_tab.ff_fb_spectral_bins.setValue(settings.get("cherab_options", {}).get("ff_fb_spectral_bins", 50))
+#            self.main_tab.cherab_tab.stark_spectral_bins.setValue(settings.get("cherab_options", {}).get("stark_spectral_bins", 50))
+#            self.main_tab.cherab_tab.ff_fb_spectral_bins.setValue(settings.get("cherab_options", {}).get("ff_fb_spectral_bins", 50))
 
             # Job info
             self.main_tab.jobinfo_tab.job_name_input.setText(settings.get("job_info", {}).get("job_name", "")),
@@ -736,8 +807,8 @@ class PESDTGui(QWidget):
 
 
     def closeEvent(self, event):
-
-        save_path = os.path.join(os.path.expanduser("~"), "PESDTCache/gui_state.json")
+        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~'))
+        save_path = os.path.join(pesdt_home, "PESDTCache/gui_state.json")
         settings_dict = self.main_tab.base_tab.get_settings()
         settings_dict["cherab_options"] = self.main_tab.cherab_tab.get_settings()
         settings_dict["spec_line_dict"] = {"1": self.main_tab.em_tab.get_selected_lines()}
@@ -753,6 +824,7 @@ if __name__ == "__main__":
 
     from core.utils import get_JETdefs, get_DIIIDdefs
     from core.database import spectroscopic_lines_db
+    import shutil
     jet_dict = get_JETdefs().diag_dict
     dIIId_dict = get_DIIIDdefs().diag_dict
     machine_dict = {

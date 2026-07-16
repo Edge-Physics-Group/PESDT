@@ -21,14 +21,15 @@ from .cherab_AMJUEL_data import AMJUEL_Data
 from .cherab_atomic_data import PESDT_ADAS_Data
 from .createCherabPlasma import createCherabPlasma, D0, D2, D3, D2vibr
 from ..utils.JET_mesh_from_grid import create_toroidal_wall_from_points, modify_wall_polygon_for_observer,plot_wall_modification
-
+from ..utils.D3D_mesh import construct_DIIID_mesh
 import logging
 logger = logging.getLogger(__name__)
 
 
 class CherabPlasma():
 
-    def __init__(self, PESDT_obj, 
+    def __init__(self, PESDT_obj,
+                 machine = "JET", 
                  include_reflections: bool = False, 
                  import_jet_surfaces: bool = False, 
                  data_source = "AMJUEL", 
@@ -40,6 +41,7 @@ class CherabPlasma():
                  opaque_mode = 0):
 
         self.PESDT_obj = PESDT_obj
+        self.machine = machine
         self.include_reflections = include_reflections
         self.import_jet_surfaces = import_jet_surfaces
         self.mesh_from_grid = not import_jet_surfaces
@@ -60,30 +62,34 @@ class CherabPlasma():
 
         # Create CHERAB plasma from PESDT edge_codes object
         # Try loading for a pickled world definition
-        if self.import_jet_surfaces:
-            logger.info("Reading JET mesh from pickle file")
-            if self.include_reflections:
-                try:
-                    
-                    with gzip.open(os.path.expanduser('~') +"/PESDTCache/JETworld.pkl.gz", "rb") as f:
-                        self.world = pickle.load(f)
-                    self.import_jet_surfaces = False
-                    logger.info("Mesh read!")
-                except:
-                    logger.info("Could not read raysect-world object from a pkl, creating a new one.")
-                    self.world = World()
-            else: 
-                try:
-                    
-                    with gzip.open(os.path.expanduser('~') +"/PESDTCache/JETworld_no_refl.pkl.gz", "rb") as f:
-                        self.world = pickle.load(f)
-                    self.import_jet_surfaces = False
-                    logger.info("Mesh read!")
-                except:
-                    logger.info("Could not read raysect-world with no reflections object from a pkl, creating a new one.")
-                    self.world = World()
-        else:
+        if machine == "JET":
+            if self.import_jet_surfaces:
+                logger.info("Reading JET mesh from pickle file")
+                if self.include_reflections:
+                    try:
+                        
+                        with gzip.open(os.path.expanduser('~') +"/PESDTCache/JETworld.pkl.gz", "rb") as f:
+                            self.world = pickle.load(f)
+                        self.import_jet_surfaces = False
+                        logger.info("Mesh read!")
+                    except:
+                        logger.info("Could not read raysect-world object from a pkl, creating a new one.")
+                        self.world = World()
+                else: 
+                    try:
+                        
+                        with gzip.open(os.path.expanduser('~') +"/PESDTCache/JETworld_no_refl.pkl.gz", "rb") as f:
+                            self.world = pickle.load(f)
+                        self.import_jet_surfaces = False
+                        logger.info("Mesh read!")
+                    except:
+                        logger.info("Could not read raysect-world with no reflections object from a pkl, creating a new one.")
+                        self.world = World()
+            else:
+                self.world = World()
+        elif machine == "DIIID":
             self.world = World()
+            construct_DIIID_mesh(self.world)
         self.plasma = self.gen_cherab_plasma()
 
     def gen_cherab_plasma(self):
@@ -99,38 +105,39 @@ class CherabPlasma():
                                     mol_exc_bands= self.mol_exc_bands,
                                     opaque= self.opaque,
                                     opaque_mode = self.opaque_mode)
-        if self.import_jet_surfaces:
-            if self.include_reflections:
-                import_jet_mesh(self.world)
-                with gzip.open(os.path.expanduser('~') + "/PESDTCache/JETworld.pkl.gz", "wb") as f:
-                    pickle.dump(self.world,f, protocol=pickle.HIGHEST_PROTOCOL)
-            else:
-                import_jet_mesh(self.world, override_material=AbsorbingSurface())
-                with gzip.open(os.path.expanduser('~') + "/PESDTCache/JETworld_no_refl.pkl.gz", "wb") as f:
-                    pickle.dump(self.world,f, protocol=pickle.HIGHEST_PROTOCOL)
-            
-        elif self.mesh_from_grid:
-            # Find the highest observer
-            observer_coords = []
-            for instrument, los in self.instrument_los_dict.items():
-                observer_coords.append(los[0][0]) # Index 0 is p1
-            observer_pos = observer_coords[0]
-            for obs_pos in observer_coords:
-                if obs_pos[1] > observer_pos[1]:
-                    observer_pos = obs_pos
-            #determine safety_distance
-            dist = 0.0
-            dist = np.linalg.norm(np.array(observer_coords) - np.array(observer_pos), axis = 1)
-            max_dist = np.max(dist)
-            safety_distance = 0.3
-            if max_dist > safety_distance: safety_distance = max_dist +0.01
+        if self.machine == "JET":
+            if self.import_jet_surfaces:
+                if self.include_reflections:
+                    import_jet_mesh(self.world)
+                    with gzip.open(os.path.expanduser('~') + "/PESDTCache/JETworld.pkl.gz", "wb") as f:
+                        pickle.dump(self.world,f, protocol=pickle.HIGHEST_PROTOCOL)
+                else:
+                    import_jet_mesh(self.world, override_material=AbsorbingSurface())
+                    with gzip.open(os.path.expanduser('~') + "/PESDTCache/JETworld_no_refl.pkl.gz", "wb") as f:
+                        pickle.dump(self.world,f, protocol=pickle.HIGHEST_PROTOCOL)
+                
+            elif self.mesh_from_grid:
+                # Find the highest observer
+                observer_coords = []
+                for instrument, los in self.instrument_los_dict.items():
+                    observer_coords.append(los[0][0]) # Index 0 is p1
+                observer_pos = observer_coords[0]
+                for obs_pos in observer_coords:
+                    if obs_pos[1] > observer_pos[1]:
+                        observer_pos = obs_pos
+                #determine safety_distance
+                dist = 0.0
+                dist = np.linalg.norm(np.array(observer_coords) - np.array(observer_pos), axis = 1)
+                max_dist = np.max(dist)
+                safety_distance = 0.3
+                if max_dist > safety_distance: safety_distance = max_dist +0.01
 
-            # Modify the polygons, create mesh
-            # Note that by default, the mesh is composed of W only
-            mod_polygons = modify_wall_polygon_for_observer(self.PESDT_obj.data.wall_poly.get_xy(), observer_pos, safety_distance = safety_distance )
-            #plot_wall_modification(self.PESDT_obj.data.wall_poly.get_xy(), mod_polygons, observer_pos)
-            self.mesh = create_toroidal_wall_from_points(mod_polygons, self.world)
-            
+                # Modify the polygons, create mesh
+                # Note that by default, the mesh is composed of W only
+                mod_polygons = modify_wall_polygon_for_observer(self.PESDT_obj.data.wall_poly.get_xy(), observer_pos, safety_distance = safety_distance )
+                #plot_wall_modification(self.PESDT_obj.data.wall_poly.get_xy(), mod_polygons, observer_pos)
+                self.mesh = create_toroidal_wall_from_points(mod_polygons, self.world)
+                
 
         # create atomic data source
         plasma = cherab.create_plasma(parent=self.world, opaque = self.opaque)
