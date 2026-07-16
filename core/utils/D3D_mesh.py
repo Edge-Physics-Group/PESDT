@@ -4,6 +4,7 @@ from raysect.primitive import Mesh
 from raysect.optical.material import AbsorbingSurface
 from cherab.tools.primitives.toroidal_mesh import toroidal_mesh_from_polygon
 from cherab.tools.primitives.axisymmetric_mesh import axisymmetric_mesh_from_polygon
+import os
 def read_D3D_dat():
     def read_structs(lines: list[str], num_structs):
         ptr = 0
@@ -20,7 +21,7 @@ def read_D3D_dat():
             structs[i] = st
             ptr += num_pairs
         return structs
-    
+    filepath = os.path.join(os.environ.get('PESDT_HOME', os.path.expanduser('~')) + "/PESDT/devices/DIIID/structure.dat")
     with open("../../devices/DIIID/structure.dat", "r") as f:
         lines = f.readlines()
         num_structs = int(lines.pop(0)); lines.pop(0)
