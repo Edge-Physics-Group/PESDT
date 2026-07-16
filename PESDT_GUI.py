@@ -555,13 +555,14 @@ class Main(QWidget):
         job_info = self.jobinfo_tab.get_job_info()
         base_info = self.base_tab.get_settings()
         job_name = job_info["job_name"]
+        input_file_name = job_info["input_file"]
         # Save the input dict
         settings_dict = self.base_tab.get_settings()
         settings_dict["cherab_options"] = self.cherab_tab.get_settings()
         settings_dict["spec_line_dict"] = {"1": self.em_tab.get_selected_lines()}
         settings_dict["job_name"] = job_name
         # Get full path from input field, using save_input directory
-        save_path = os.path.join(base_info["save_dir"], job_name, f"{job_info["input_file"]}.json")
+        save_path = os.path.join(base_info["save_dir"], job_name, f"{input_file_name}.json")
 
         # Ensure the parent directory exists
         save_dir = os.path.dirname(save_path)
@@ -618,7 +619,8 @@ class Main(QWidget):
         email = job_info["email"]
         stdout = job_info["stdout"]
         stderr = job_info["stderr"]
-        input_file = os.path.join(base_info["save_dir"], job_info["job_name"], f"{job_info["input_file"]}.json")
+        input_file_name = job_info["input_file"]
+        input_file = os.path.join(base_info["save_dir"], job_info["job_name"], f"{input_file_name}.json")
         cmd_dir = os.path.join(base_info["save_dir"], job_info["job_name"])
         cmd_path = os.path.join(cmd_dir, f"{job_name}.cmd")
 
@@ -674,7 +676,8 @@ echo "Run finished"
         email = job_info["email"]
         stdout = job_info["stdout"]
         stderr = job_info["stderr"]
-        input_file = os.path.join(base_info["save_dir"], job_info["job_name"], f"{job_info["input_file"]}.json")
+        input_file_name = job_info["input_file"]
+        input_file = os.path.join(base_info["save_dir"], job_info["job_name"], f"{input_file_name}.json")
         cmd_dir = os.path.join(base_info["save_dir"], job_info["job_name"])
         cmd_path = os.path.join(cmd_dir, f"{job_name}.cmd")
 
