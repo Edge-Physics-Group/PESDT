@@ -22,7 +22,7 @@ def read_D3D_dat():
             ptr += num_pairs
         return structs
     filepath = os.path.join(os.environ.get('PESDT_HOME', os.path.expanduser('~')) + "/PESDT/devices/DIIID/structure.dat")
-    with open("../../devices/DIIID/structure.dat", "r") as f:
+    with open(filepath, "r") as f:
         lines = f.readlines()
         num_structs = int(lines.pop(0)); lines.pop(0)
         structs = read_structs(lines, num_structs)
