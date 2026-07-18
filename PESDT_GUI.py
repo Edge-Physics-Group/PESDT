@@ -698,7 +698,7 @@ echo "Run finished"
         input_file_name = job_info["input_file"]
         input_file = os.path.join(base_info["save_dir"], job_info["job_name"], f"{input_file_name}.json")
         cmd_dir = os.path.join(base_info["save_dir"], job_info["job_name"])
-        cmd_path = os.path.join(cmd_dir, f"{job_name}.cmd")
+        cmd_path = os.path.join(cmd_dir, f"{job_name}.slurm")
 
         # Paths for output and error
         pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~'))
