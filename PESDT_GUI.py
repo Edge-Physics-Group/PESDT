@@ -295,7 +295,7 @@ class CherabSettings(QWidget):
         num_processes_label = QLabel("Number of processes (threads): ")
         self.num_processes = QSpinBox()
         self.num_processes.setMaximum(24)
-        self.num_processes.setValue(8)
+        self.num_processes.setValue(4)
         num_processes_layout.addWidget(num_processes_label)
         num_processes_layout.addWidget(self.num_processes)
         layout.addLayout(num_processes_layout)
@@ -487,7 +487,7 @@ class JobInfo(QWidget):
 
         mem_layout = QHBoxLayout()
         mem_label = QLabel("Mem per CPU (e.g. 700M or 1G):")
-        self.mem_input = QLineEdit("700M")
+        self.mem_input = QLineEdit("2G")
         mem_layout.addWidget(mem_label)
         mem_layout.addWidget(self.mem_input)
         layout.addLayout(mem_layout)
