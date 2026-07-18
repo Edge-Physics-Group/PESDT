@@ -750,6 +750,11 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
 
     return JET
 
+def get_AUGdefs(pulse_ref = 30000):
+    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/")
+    AUG = MachineDefs('AUG', None, pulse_ref = pulse_ref)
+
+    return AUG
 
 def get_DIIIDdefs(plot_defs=False):
     pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/")

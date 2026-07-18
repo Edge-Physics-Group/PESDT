@@ -25,7 +25,7 @@ from .cherab_AMJUEL_data import AMJUEL_Data
 from .cherab_atomic_data import PESDT_ADAS_Data
 from .createCherabPlasma import createCherabPlasma, D0, D2, D3, D2vibr
 from ..utils.JET_mesh_from_grid import create_toroidal_wall_from_points, modify_wall_polygon_for_observer,plot_wall_modification
-from ..utils.D3D_mesh import construct_DIIID_mesh
+from .D3D_mesh import construct_DIIID_mesh
 import logging
 logger = logging.getLogger(__name__)
 
