@@ -63,7 +63,7 @@ class CherabPlasma():
         self.mol_exc_bands = mol_exc_bands
         self.opaque = opaque
         self.opaque_mode = opaque_mode
-        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "/PESDT/")
+        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/")
         # Create CHERAB plasma from PESDT edge_codes object
         # Try loading for a pickled world definition
         if machine in ["JET", "AUG"]:
@@ -75,7 +75,8 @@ class CherabPlasma():
                             self.world = pickle.load(f)
                         self.import_surfaces = False
                         logger.info("Mesh read!")
-                    except:
+                    except Exception as e:
+                        logger.error(f"Exception: {e}")
                         logger.info("Could not read raysect-world object from a pkl, creating a new one.")
                         self.world = World()
                 else: 
@@ -85,7 +86,8 @@ class CherabPlasma():
                             self.world = pickle.load(f)
                         self.import_surfaces = False
                         logger.info("Mesh read!")
-                    except:
+                    except Exception as e:
+                        logger.error(f"Exception: {e}")
                         logger.info("Could not read raysect-world with no reflections object from a pkl, creating a new one.")
                         self.world = World()
             else:
@@ -108,7 +110,7 @@ class CherabPlasma():
                                     mol_exc_bands= self.mol_exc_bands,
                                     opaque= self.opaque,
                                     opaque_mode = self.opaque_mode)
-        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "/PESDT/")
+        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/")
         if self.machine in ["JET", "AUG"]:
             if self.import_surfaces:
                 if self.include_reflections:
