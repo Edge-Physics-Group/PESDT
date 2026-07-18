@@ -7,7 +7,7 @@ scratch/
 scratch.py
 tallyplot/
 read_idl_tally.py
-pesdt-env
+pesdt_venv
 users/*
 dep_src/*
 # Files
