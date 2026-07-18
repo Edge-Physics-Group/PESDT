@@ -1,6 +1,7 @@
 # Folders
 PESDT_addon-master/build
 PESDT_addon-master/cherab_PESDT_addon.egg-info
+PESDTCache
 __pycache__
 scratch/
 scratch.py

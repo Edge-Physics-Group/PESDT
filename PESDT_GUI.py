@@ -40,6 +40,8 @@ class Base(QWidget):
         super().__init__()
         layout = QVBoxLayout()
         self.setLayout(layout)
+        username = os.environ.get("USER", "unknown")
+        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "/PESDT/")
 
         self.machine_diags = machine_dict
         # Machine dropdown
@@ -110,7 +112,8 @@ class Base(QWidget):
         # Save dir
         save_layout = QHBoxLayout()
         save_label = QLabel("Save Dir:")
-        self.save_input = QLineEdit("PESDT_cases/")
+        #self.save_input = QLineEdit("PESDT_cases/")
+        self.save_input = QLineEdit(os.path.join(pesdt_home), "users/", username)
         save_layout.addWidget(save_label)
         save_layout.addWidget(self.save_input)
         layout.addLayout(save_layout)
@@ -482,6 +485,19 @@ class JobInfo(QWidget):
         email_layout.addWidget(self.email_input)
         layout.addLayout(email_layout)
 
+        mem_layout = QHBoxLayout()
+        mem_label = QLabel("Mem per CPU (e.g. 700M or 1G):")
+        self.mem_input = QLineEdit("700M")
+        mem_layout.addWidget(mem_label)
+        mem_layout.addWidget(self.mem_input)
+        layout.addLayout(mem_layout)
+
+        comp_time_layout = QHBoxLayout()
+        comp_time_label = QLabel("Computation time limit (HH:MM:SS) [remember : as separator!]")
+        self.comp_time_input = QLineEdit("00:30:00")
+        comp_time_layout.addWidget(comp_time_label)
+        comp_time_layout.addWidget(self.comp_time_input)
+        layout.addLayout(comp_time_layout)
         # Output name base
         #stdout_layout = QHBoxLayout()
         #stdout_label = QLabel("Stdout file name:")
@@ -523,7 +539,9 @@ class JobInfo(QWidget):
             "stderr": self.job_name_input.text() ,
             "input_file": "input_file",
             "cmd_name": self.job_name_input.text(),
-            "username": self.username
+            "username": self.username,
+            "mem": self.mem_input.text(),
+            "time": self.comp_time_input.text()
         }
 
 class Main(QWidget):
@@ -673,7 +691,6 @@ echo "Run finished"
         job_info = self.jobinfo_tab.get_job_info()
         base_info = self.base_tab.get_settings()
         # Paths and filenames
-        username = job_info["username"]
         job_name = job_info["job_name"]
         email = job_info["email"]
         stdout = job_info["stdout"]
@@ -698,7 +715,9 @@ echo "Run finished"
             cpus = int(self.cherab_tab.num_processes.value())
         except Exception:
             pass
-
+        mem = job_info["mem"]
+        HH, MM, SS = job_info["time"].split(":")
+        
         Path(cmd_dir).mkdir(parents=True, exist_ok=True)
 
         content = f"""#!/bin/bash
@@ -709,11 +728,14 @@ echo "Run finished"
 #SBATCH --mail-type=END,FAIL
 #SBATCH --export=ALL
 #SBATCH --cpus-per-task={cpus}
-#SBATCH --mem-per-cpu=4G
+#SBATCH --mem-per-cpu={mem}
+#SBATCH --time={HH}:{MM}:{SS}
 
 echo "Running PESDT via SLURM"
 source /etc/profile.d/modules.sh
-source /home/{username}/.bashrc
+
+source /scratch/phys/fusion/PESDT/pesdt-env/bin/activate
+source /scratch/phys/fusion/PESDT/PESDT_env
 
 export OMP_NUM_THREADS=${{SLURM_CPUS_PER_TASK:-1}}
 
@@ -767,66 +789,75 @@ class PESDTGui(QWidget):
         self.load_cache()
 
     def load_cache(self):
-        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~'))
-        save_path = os.path.join(pesdt_home, "PESDTCache/gui_state.json")
-        if os.path.exists(save_path):
-            with open(save_path, "r") as f:
-                settings = json.load(f)
+        username = os.environ.get("USER", "unknown")
+        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "/PESDT/")
+        save_path_user = os.path.join(pesdt_home, "users/",username,"gui_state.json")
+        save_path_global = os.path.join(pesdt_home, "PESDTCache/gui_state.json")
 
-            # run options
+        if os.path.exists(save_path_user): save_path = save_path_user
+        elif os.path.exists(save_path_global): save_path = save_path_global
+        else: return
+        
+        with open(save_path, "r") as f:
+            settings = json.load(f)
 
-            self.main_tab.base_tab.pulse_spin.setValue(settings.get("pulse", 81472))
-            self.main_tab.base_tab.machine_combo.setCurrentText(settings.get("machine", "JET"))
-            self.main_tab.base_tab.edge_code_combo.setCurrentText(settings["edge_code"].get("code", "edge2d"))
-            self.main_tab.base_tab.edge_path_input.setText(settings["edge_code"].get("sim_path", ""))
-            self.main_tab.base_tab.read_adas_checkbox.setChecked(settings.get("read_ADAS", False))
-            self.main_tab.base_tab.save_input.setText(settings.get("save_dir", "PESDT_cases/"))
-            self.main_tab.base_tab.run_cherab.setChecked(settings["run_options"].get("run_cherab", False))
-            self.main_tab.base_tab.analyse_synth_spec_features.setChecked(settings["run_options"].get("analyse_synth_spec_features", False))
-            self.main_tab.base_tab.data_source_combo.setCurrentText(settings["run_options"].get("data_source", "AMJUEL"))
-            self.main_tab.base_tab.recalc_h2_pos.setChecked(settings["run_options"].get("recalc_h2_pos", True))
-            self.main_tab.base_tab.update_diagnostics()
-            # Diag list
-            self.main_tab.base_tab.set_selected_diagnostics(settings.get("diag_list", []))
-            # Emission lines
-            self.main_tab.em_tab.set_selected_lines(settings.get("spec_line_dict", {}).get("1", {}))
+        # run options
+        self.main_tab.base_tab.pulse_spin.setValue(settings.get("pulse", 81472))
+        self.main_tab.base_tab.machine_combo.setCurrentText(settings.get("machine", "JET"))
+        self.main_tab.base_tab.edge_code_combo.setCurrentText(settings["edge_code"].get("code", "edge2d"))
+        self.main_tab.base_tab.edge_path_input.setText(settings["edge_code"].get("sim_path", ""))
+        self.main_tab.base_tab.read_adas_checkbox.setChecked(settings.get("read_ADAS", False))
+        self.main_tab.base_tab.save_input.setText(settings.get("save_dir", "PESDT_cases/"))
+        self.main_tab.base_tab.run_cherab.setChecked(settings["run_options"].get("run_cherab", False))
+        self.main_tab.base_tab.analyse_synth_spec_features.setChecked(settings["run_options"].get("analyse_synth_spec_features", False))
+        self.main_tab.base_tab.data_source_combo.setCurrentText(settings["run_options"].get("data_source", "AMJUEL"))
+        self.main_tab.base_tab.recalc_h2_pos.setChecked(settings["run_options"].get("recalc_h2_pos", True))
+        self.main_tab.base_tab.update_diagnostics()
+        # Diag list
+        self.main_tab.base_tab.set_selected_diagnostics(settings.get("diag_list", []))
+        # Emission lines
+        self.main_tab.em_tab.set_selected_lines(settings.get("spec_line_dict", {}).get("1", {}))
 
-            # Cherab options
-            self.main_tab.cherab_tab.num_processes.setValue(settings.get("cherab_options", {}).get("num_processes", 1))
-            self.main_tab.cherab_tab.pixel_samples.setValue(settings.get("cherab_options", {}).get("pixel_samples", 1000))
-            
-            self.main_tab.cherab_tab.import_jet_surfaces.setChecked(settings.get("cherab_options", {}).get("import_jet_surfaces", False))
-            self.main_tab.cherab_tab.include_reflections.setChecked(settings.get("cherab_options", {}).get("include_reflections", False))
-            self.main_tab.cherab_tab.calculate_stark_ne.setChecked(settings.get("cherab_options", {}).get("calculate_stark_ne", False))
-            self.main_tab.cherab_tab.ff_fb_emission.setChecked(settings.get("cherab_options", {}).get("ff_fb_emission", False))
-            self.main_tab.cherab_tab.mol_exc_emission.setChecked(settings.get("cherab_options", {}).get("mol_exc_emission", False))
-            self.main_tab.cherab_tab.update_lines()
-            # bands
-            self.main_tab.cherab_tab.set_selected(settings.get("cherab_options", {}).get("mol_exc_emission_bands", []))
-            # stark transition
+        # Cherab options
+        self.main_tab.cherab_tab.num_processes.setValue(settings.get("cherab_options", {}).get("num_processes", 1))
+        self.main_tab.cherab_tab.pixel_samples.setValue(settings.get("cherab_options", {}).get("pixel_samples", 1000))
+        
+        self.main_tab.cherab_tab.import_jet_surfaces.setChecked(settings.get("cherab_options", {}).get("import_jet_surfaces", False))
+        self.main_tab.cherab_tab.include_reflections.setChecked(settings.get("cherab_options", {}).get("include_reflections", False))
+        self.main_tab.cherab_tab.calculate_stark_ne.setChecked(settings.get("cherab_options", {}).get("calculate_stark_ne", False))
+        self.main_tab.cherab_tab.ff_fb_emission.setChecked(settings.get("cherab_options", {}).get("ff_fb_emission", False))
+        self.main_tab.cherab_tab.mol_exc_emission.setChecked(settings.get("cherab_options", {}).get("mol_exc_emission", False))
+        self.main_tab.cherab_tab.update_lines()
+        # bands
+        self.main_tab.cherab_tab.set_selected(settings.get("cherab_options", {}).get("mol_exc_emission_bands", []))
+        # stark transition
 #            self.main_tab.cherab_tab.set_stark_line(settings.get("cherab_options", {}).get("stark_transition", [6,2]))
 
 #            self.main_tab.cherab_tab.stark_spectral_bins.setValue(settings.get("cherab_options", {}).get("stark_spectral_bins", 50))
 #            self.main_tab.cherab_tab.ff_fb_spectral_bins.setValue(settings.get("cherab_options", {}).get("ff_fb_spectral_bins", 50))
 
-            # Job info
-            self.main_tab.jobinfo_tab.job_name_input.setText(settings.get("job_info", {}).get("job_name", "")),
-            self.main_tab.jobinfo_tab.email_input.setText(settings.get("job_info", {}).get("email", "")),
-            #self.main_tab.jobinfo_tab.stdout_name_input.setText(settings.get("job_info", {}).get("stdout", "")),
-            #self.main_tab.jobinfo_tab.stderr_name_input.setText(settings.get("job_info", {}).get("stderr", "")),
-            #self.main_tab.jobinfo_tab.input_filename.setText(settings.get("job_info", {}).get("input_file", "")),
-            #self.main_tab.jobinfo_tab.cmd_path.setText(settings.get("job_info", {}).get("cmd_path", "")),
+        # Job info
+        self.main_tab.jobinfo_tab.job_name_input.setText(settings.get("job_info", {}).get("job_name", "")),
+        self.main_tab.jobinfo_tab.email_input.setText(settings.get("job_info", {}).get("email", "")),
+        self.main_tab.jobinfo_tab.mem_input.setText(settings.get("job_info", {}).get("mem", "")),
+        self.main_tab.jobinfo_tab.comp_time_input.setText(settings.get("job_info", {}).get("time", "")),
+        #self.main_tab.jobinfo_tab.stdout_name_input.setText(settings.get("job_info", {}).get("stdout", "")),
+        #self.main_tab.jobinfo_tab.stderr_name_input.setText(settings.get("job_info", {}).get("stderr", "")),
+        #self.main_tab.jobinfo_tab.input_filename.setText(settings.get("job_info", {}).get("input_file", "")),
+        #self.main_tab.jobinfo_tab.cmd_path.setText(settings.get("job_info", {}).get("cmd_path", "")),
 
 
     def closeEvent(self, event):
-        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~'))
-        save_path = os.path.join(pesdt_home, "PESDTCache/gui_state.json")
+        username = os.environ.get("USER", "unknown")
+        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "/PESDT/")
+        save_path_user = os.path.join(pesdt_home, "users/",username,"gui_state.json")
+        
         settings_dict = self.main_tab.base_tab.get_settings()
         settings_dict["cherab_options"] = self.main_tab.cherab_tab.get_settings()
         settings_dict["spec_line_dict"] = {"1": self.main_tab.em_tab.get_selected_lines()}
         settings_dict["job_info"] = self.main_tab.jobinfo_tab.get_job_info()
 
-        with open(save_path, "w") as f:
+        with open(save_path_user, "w") as f:
             json.dump(settings_dict, f)
         event.accept()
         
