@@ -645,11 +645,11 @@ class Main(QWidget):
         cmd_path = os.path.join(cmd_dir, f"{job_name}.cmd")
 
         # Paths for output and error
-        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~'))
+        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "/PESDT/")
         stdout_path = f"{cmd_dir}/{stdout}.out"
         stderr_path = f"{cmd_dir}/{stderr}.err"
         input_path = input_file
-        script_path = f"{pesdt_home}/PESDT/PESDT_run.py"
+        script_path = os.path.join(f"{pesdt_home}", "PESDT_run.py")
 
         # Ensure directory exists
         Path(cmd_dir).mkdir(parents=True, exist_ok=True)
@@ -701,11 +701,11 @@ echo "Run finished"
         cmd_path = os.path.join(cmd_dir, f"{job_name}.slurm")
 
         # Paths for output and error
-        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~'))
+        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "/PESDT")
         stdout_path = f"{cmd_dir}/{stdout}.out"
         stderr_path = f"{cmd_dir}/{stderr}.err"
         input_path = input_file
-        script_path = f"{pesdt_home}/PESDT/PESDT_run.py"
+        script_path = os.path.join(f"{pesdt_home}", "PESDT_run.py")
 
         # Ensure directory exists
         Path(cmd_dir).mkdir(parents=True, exist_ok=True)
