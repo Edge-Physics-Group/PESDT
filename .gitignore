@@ -4,7 +4,11 @@ PESDT_addon-master/cherab_PESDT_addon.egg-info
 __pycache__
 scratch/
 scratch.py
-
+tallyplot/
+read_idl_tally.py
+pesdt-env
+users/*
+dep_src/*
 # Files
 *.pyc
 *.npy
@@ -14,3 +18,5 @@ scratch.py
 fort.*
 intal*
 outtal*
+!users/README_USERS.md
+!dep_src/README_DEP.MD
