@@ -35,20 +35,20 @@ class CherabPlasma():
     def __init__(self, PESDT_obj,
                  machine = "JET", 
                  include_reflections: bool = False, 
-                 import_jet_surfaces: bool = False, 
+                 import_surfaces: bool = False, 
                  data_source = "AMJUEL", 
                  recalc_h2_pos: bool = True, 
                  transitions = None,
                  instrument_los_dict: dict = None,
                  mol_exc_bands = None,
                  opaque = False,
-                 opaque_mode = 0):
+                 opaque_mode = 0,):
 
         self.PESDT_obj = PESDT_obj
         self.machine = machine
         self.include_reflections = include_reflections
-        self.import_jet_surfaces = import_jet_surfaces
-        self.mesh_from_grid = not import_jet_surfaces
+        self.import_surfaces = import_surfaces
+        self.mesh_from_grid = not import_surfaces
         self.data_source = data_source
         self.ADAS_dict = PESDT_obj.ADAS_dict if self.data_source == "ADAS" else None
         self.recalc_h2_pos = recalc_h2_pos 
@@ -63,18 +63,17 @@ class CherabPlasma():
         self.mol_exc_bands = mol_exc_bands
         self.opaque = opaque
         self.opaque_mode = opaque_mode
-
+        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "/PESDT/")
         # Create CHERAB plasma from PESDT edge_codes object
         # Try loading for a pickled world definition
-        if machine == "JET":
-            if self.import_jet_surfaces:
+        if machine in ["JET", "AUG"]:
+            if self.import_surfaces:
                 logger.info("Reading JET mesh from pickle file")
                 if self.include_reflections:
                     try:
-                        
-                        with gzip.open(os.path.expanduser('~') +"/PESDTCache/JETworld.pkl.gz", "rb") as f:
+                        with gzip.open(pesdt_home +f"/PESDTCache/{self.machine}world.pkl.gz", "rb") as f:
                             self.world = pickle.load(f)
-                        self.import_jet_surfaces = False
+                        self.import_surfaces = False
                         logger.info("Mesh read!")
                     except:
                         logger.info("Could not read raysect-world object from a pkl, creating a new one.")
@@ -82,9 +81,9 @@ class CherabPlasma():
                 else: 
                     try:
                         
-                        with gzip.open(os.path.expanduser('~') +"/PESDTCache/JETworld_no_refl.pkl.gz", "rb") as f:
+                        with gzip.open(pesdt_home +f"/PESDTCache/{self.machine}world_no_refl.pkl.gz", "rb") as f:
                             self.world = pickle.load(f)
-                        self.import_jet_surfaces = False
+                        self.import_surfaces = False
                         logger.info("Mesh read!")
                     except:
                         logger.info("Could not read raysect-world with no reflections object from a pkl, creating a new one.")
@@ -109,15 +108,16 @@ class CherabPlasma():
                                     mol_exc_bands= self.mol_exc_bands,
                                     opaque= self.opaque,
                                     opaque_mode = self.opaque_mode)
-        if self.machine == "JET":
-            if self.import_jet_surfaces:
+        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "/PESDT/")
+        if self.machine in ["JET", "AUG"]:
+            if self.import_surfaces:
                 if self.include_reflections:
                     import_jet_mesh(self.world)
-                    with gzip.open(os.path.expanduser('~') + "/PESDTCache/JETworld.pkl.gz", "wb") as f:
+                    with gzip.open(pesdt_home + f"/PESDTCache/{self.machine}world.pkl.gz", "wb") as f:
                         pickle.dump(self.world,f, protocol=pickle.HIGHEST_PROTOCOL)
                 else:
                     import_jet_mesh(self.world, override_material=AbsorbingSurface())
-                    with gzip.open(os.path.expanduser('~') + "/PESDTCache/JETworld_no_refl.pkl.gz", "wb") as f:
+                    with gzip.open(pesdt_home + f"/PESDTCache/{self.machine}world_no_refl.pkl.gz", "wb") as f:
                         pickle.dump(self.world,f, protocol=pickle.HIGHEST_PROTOCOL)
                 
             elif self.mesh_from_grid:
@@ -141,7 +141,7 @@ class CherabPlasma():
                 mod_polygons = modify_wall_polygon_for_observer(self.PESDT_obj.data.wall_poly.get_xy(), observer_pos, safety_distance = safety_distance )
                 #plot_wall_modification(self.PESDT_obj.data.wall_poly.get_xy(), mod_polygons, observer_pos)
                 self.mesh = create_toroidal_wall_from_points(mod_polygons, self.world)
-                
+         
 
         # create atomic data source
         plasma = cherab.create_plasma(parent=self.world, opaque = self.opaque)

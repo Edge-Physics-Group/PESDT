@@ -31,7 +31,8 @@ class ProcessEdgeSim:
     def __init__(self, input_dict):
         self.input_dict = input_dict
         # READ ENV VARIABLES
-        self.cache_dir = os.environ.get("PESDTCacheDir", os.path.join(os.path.expanduser('~'), "PESDTCache/"))
+        pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "/PESDT/")
+        self.cache_dir = os.path.join(pesdt_home, "PESDTCache/")
         # Read input deck and populate run parameters
         self.parse_input_deck()
         # Read neutral data source
@@ -237,7 +238,7 @@ class ProcessEdgeSim:
         plasma = CherabPlasma(self, 
                             machine= self.machine,
                             include_reflections=include_reflections,
-                            import_jet_surfaces=import_jet_surfaces,
+                            import_surfaces=import_jet_surfaces,
                             data_source=data_source,
                             recalc_h2_pos=recalc_h2_pos,
                             transitions=transitions,

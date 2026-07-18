@@ -18,7 +18,8 @@ Define constants
 
 h = h/e #(eV s), Planck's constant in eV
 k = k/e # eV/K, Boltzmann constant in eV
-amjuel_path = os.path.expanduser('~') +'/AMJUEL.tex'
+amjuel_dir =  os.environ.get( "AMJUEL_PATH",os.path.expanduser('~') )
+amjuel_path  = os.path.join(amjuel_dir, 'AMJUEL.tex')
 
 """
 In this file the hydrogenic transition is typed as "n"->"m", i.e.

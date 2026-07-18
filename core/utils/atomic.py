@@ -81,11 +81,12 @@ def get_ADAS_dict(cache_dir, spec_line_dict, num_samples=100, restore=False, lyt
         with stdchannel_redirected(sys.stderr, os.devnull):
             with stdchannel_redirected(sys.stdout, os.devnull):
                 # Read all necessary ADAS data here and store in dict
+                pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "/PESDT/")
                 ADAS_dict = {}
                 Te_rnge = [0.05, 5000]
                 ne_rnge = [1.0e10, 1.0e16]
                 num_samples = 100
-                line_blocks =adas_adf15_read.get_adf15_input_dict(os.path.expanduser('~') + '/PESDT/input/adas_adf15_input.json')
+                line_blocks =adas_adf15_read.get_adf15_input_dict(os.path.join(pesdt_home, '/input/adas_adf15_input.json'))
                 ADAS_dict['adf15'] = adas_adf15_read.get_adas_imp_PECs_interp(spec_line_dict, line_blocks, Te_rnge,
                                                                               ne_rnge, npts=num_samples,
                                                                               npts_interp=1000,
@@ -95,7 +96,7 @@ def get_ADAS_dict(cache_dir, spec_line_dict, num_samples=100, restore=False, lyt
                 # TODO: add interpolation capability to the adf11 reader so that adf15 and adf11 are on the same Te, ne grid
                 Te_arr_adf11 = np.logspace(np.log10(Te_rnge[0]), np.log10(Te_rnge[1]), 500)
                 ne_arr_adf11 = np.logspace(np.log10(ne_rnge[0]), np.log10(ne_rnge[1]), 30)
-                adf11_files_dict = adas_adf11_read.get_adf11_input_dict(os.path.expanduser('~') + '/PESDT/input/adas_adf11_input.json')
+                adf11_files_dict = adas_adf11_read.get_adf11_input_dict(os.path.join(pesdt_home, '/PESDT/input/adas_adf11_input.json'))
                 ADAS_dict['adf11'] = {}
                 for atnum in spec_line_dict:
                     if int(atnum) > 1:
