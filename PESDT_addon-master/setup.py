@@ -50,6 +50,7 @@ setup(
     license="EUPL 1.1",
     namespace_packages=['cherab'],
     packages=find_packages(),
+    install_requires=["numpy>=2.0", "scipy", "cherab==1.5.0.1", "raysect>=0.9.1", "Cython>=3.0"],
     include_package_data=True,
     package_data={
         "": ["*.pxd", "*.pyx"]
