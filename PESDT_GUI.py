@@ -113,7 +113,7 @@ class Base(QWidget):
         save_layout = QHBoxLayout()
         save_label = QLabel("Save Dir:")
         #self.save_input = QLineEdit("PESDT_cases/")
-        self.save_input = QLineEdit(os.path.join(pesdt_home), "users/", username)
+        self.save_input = QLineEdit(os.path.join(pesdt_home, "users/", username))
         save_layout.addWidget(save_label)
         save_layout.addWidget(self.save_input)
         layout.addLayout(save_layout)
