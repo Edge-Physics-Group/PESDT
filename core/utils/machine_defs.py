@@ -80,7 +80,7 @@ def poloidal_angle(p1, p2):
 
 def get_JETdefs(plot_defs = False, pulse_ref = 90531):
 
-    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~'))
+    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "/PESDT/")
     fwall = pesdt_home+ '/devices/JET/wall.txt'
     wall_coords = np.genfromtxt(fwall, delimiter=' ')
     wall_poly = patches.Polygon(wall_coords, closed=False, ec='k', lw=2.0, fc='None', zorder=10)
@@ -572,7 +572,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     # KB5 (including pulse dependent configurations)
     ###############
     #Default vs. re-configured sight line config
-    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~'))
+    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "/PESDT/")
     if JET.pulse_ref >=73758 and JET.pulse_ref <=82263:
         file = os.path.join(pesdt_home, '/devices/JET/KB5_Bolometer_LOS_73758_82263.txt')
     else:
@@ -655,7 +655,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     # Half angle for all chords: 5.85 deg
     ###############
     half_angle= 5.85 * np.pi / 180.
-    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~'))
+    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "/PESDT/")
     file = os.path.join(pesdt_home, '/devices/JET/B3D4_Bolometer_LOS.txt')
     lines = np.genfromtxt(file, dtype=list, delimiter="\t", skip_header=3)
 
@@ -690,7 +690,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     # Half angle for all chords: 5.85 deg
     ###############
     half_angle= 5.85 * np.pi / 180.
-    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~'))
+    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "/PESDT/")
     file = os.path.join( pesdt_home, '/devices/JET/B3E4_Bolometer_LOS.txt')
     lines = np.genfromtxt(file, dtype=list, delimiter="\t", skip_header=3)
 
