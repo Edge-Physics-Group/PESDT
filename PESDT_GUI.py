@@ -77,7 +77,7 @@ class Base(QWidget):
 
         edge_path_layout = QHBoxLayout()
         edge_path_label = QLabel("  Sim Path:")
-        self.edge_path_input = QLineEdit("/home/mgroth/cmg/catalog/edge2d/jet/81472/jul3122/seq#1/tran")
+        self.edge_path_input = QLineEdit(f"{pesdt_home}" + "/test_cases/edge2d/runD_1.4MW_0.7e19_Be_JET/tran")
         edge_path_layout.addWidget(edge_path_label)
         edge_path_layout.addWidget(self.edge_path_input)
         layout.addLayout(edge_path_layout)
