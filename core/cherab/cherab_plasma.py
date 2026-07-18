@@ -71,7 +71,7 @@ class CherabPlasma():
                 logger.info("Reading JET mesh from pickle file")
                 if self.include_reflections:
                     try:
-                        with gzip.open(pesdt_home +f"/PESDTCache/{self.machine}world.pkl.gz", "rb") as f:
+                        with gzip.open(pesdt_home +f"PESDTCache/{self.machine}world.pkl.gz", "rb") as f:
                             self.world = pickle.load(f)
                         self.import_surfaces = False
                         logger.info("Mesh read!")
@@ -81,7 +81,7 @@ class CherabPlasma():
                 else: 
                     try:
                         
-                        with gzip.open(pesdt_home +f"/PESDTCache/{self.machine}world_no_refl.pkl.gz", "rb") as f:
+                        with gzip.open(pesdt_home +f"PESDTCache/{self.machine}world_no_refl.pkl.gz", "rb") as f:
                             self.world = pickle.load(f)
                         self.import_surfaces = False
                         logger.info("Mesh read!")
@@ -113,11 +113,11 @@ class CherabPlasma():
             if self.import_surfaces:
                 if self.include_reflections:
                     import_jet_mesh(self.world)
-                    with gzip.open(pesdt_home + f"/PESDTCache/{self.machine}world.pkl.gz", "wb") as f:
+                    with gzip.open(pesdt_home + f"PESDTCache/{self.machine}world.pkl.gz", "wb") as f:
                         pickle.dump(self.world,f, protocol=pickle.HIGHEST_PROTOCOL)
                 else:
                     import_jet_mesh(self.world, override_material=AbsorbingSurface())
-                    with gzip.open(pesdt_home + f"/PESDTCache/{self.machine}world_no_refl.pkl.gz", "wb") as f:
+                    with gzip.open(pesdt_home + f"PESDTCache/{self.machine}world_no_refl.pkl.gz", "wb") as f:
                         pickle.dump(self.world,f, protocol=pickle.HIGHEST_PROTOCOL)
                 
             elif self.mesh_from_grid:
