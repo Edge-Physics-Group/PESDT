@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 from matplotlib import patches
 from matplotlib.collections import PatchCollection
 import numpy as np
-import sys, os
+import sys, os, pathlib
 
 from shapely.geometry import Polygon
 
@@ -322,13 +322,18 @@ class SOLPS(BackgroundPlasma):
             RuntimeError("simulation_path must be a valid directory")
     
         mesh_file_path = os.path.join(self.sim_path, 'b2fgmtry')
+        sim_path_parent = str(pathlib.Path(self.sim_path).parents[0])
+        mesh_file_path_baserun = os.path.join(sim_path_parent, 'baserun/b2fgmtry')
+
         b2_state_file = os.path.join(self.sim_path, 'b2fstate')
         eirene_fort44_file = os.path.join(self.sim_path, "fort.44")
     
         if not os.path.isfile(mesh_file_path):
-            logger.info("No B2 b2fgmtry file found in SOLPS output directory")
-            raise RuntimeError("No B2 b2fgmtry file found in SOLPS output directory")
-    
+            logger.info("No B2 b2fgmtry file found in SOLPS output directory, looking for baserun")
+            if not os.path.isfile(mesh_file_path_baserun):
+                raise RuntimeError("No B2 b2fgmtry file found in SOLPS output directory or baserun")
+            else:
+                mesh_file_path = mesh_file_path_baserun
         if not(os.path.isfile(b2_state_file)):
             logger.info("No B2 b2fstate file found in SOLPS output directory")
             RuntimeError("No B2 b2fstate file found in SOLPS output directory")
