@@ -18,5 +18,5 @@ dep_src/*
 fort.*
 intal*
 outtal*
-!users/README_USERS.md
+!users/README_USERS.MD
 !dep_src/README_DEP.MD
