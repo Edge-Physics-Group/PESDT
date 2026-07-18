@@ -1,7 +1,7 @@
 # Folders
 PESDT_addon-master/build
 PESDT_addon-master/cherab_PESDT_addon.egg-info
-PESDTCache
+PESDTCache/*
 __pycache__
 scratch/
 scratch.py
@@ -21,3 +21,4 @@ intal*
 outtal*
 !users/README_USERS.MD
 !dep_src/README_DEP.MD
+!PESDTCache/readme.md

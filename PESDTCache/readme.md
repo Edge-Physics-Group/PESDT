@@ -1,0 +1,1 @@
+This folder contains cached mesh files for faster reading
