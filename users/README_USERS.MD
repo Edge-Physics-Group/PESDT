@@ -1,0 +1,2 @@
+PESDT will create a folder by your username in this folder, where you are expected to store all you results
+You can override this (e.g. on JDC you can do what you want), but on Triton please use this folder!

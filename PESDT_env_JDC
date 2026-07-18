@@ -1,0 +1,38 @@
+#########################
+# PESDT ENV FILE
+# Source this file to load the necessary components for running PESDT.
+# This is quite specific to JDC (JET data centre), and the user may 
+# need to adapt this on their machine or cluster
+#########################
+
+######################### 
+# Reset pythonpath
+export PYTHONPATH=
+export PYTHONSTARTUP=
+#########################
+
+#########################
+# Unload other Python versions
+# Default is 2.7.5, but e.g. 3.7 is the JINTRAC default
+module unload python/2.7.5
+module unload python/3.7
+# Load Python 3.9
+module load python/3.9
+#########################
+
+#########################
+# Load the JET module, add ADAS/adaslib, PESDT, EPROC to python path. 
+# Set the JET cadmesh dir, and add ./local/bin for Cython to path.
+# Also set the C language standard for Cython
+module load jet
+export PYTHONPATH=$PYTHONPATH:"/home/adas/python/"
+export ADASHOME="home/adas"
+export ADASFORT="home/adas/bin64"
+export ADASCENT="home/adas/adas"
+export PYTHONPATH=$PYTHONPATH:$HOME/PESDT
+export PYTHONPATH=$PYTHONPATH:"/u/sim/jintrac/v280818/libs/eproc/python/eproc"
+export PYTHONPATH=$PYTHONPATH:"/u/sim/jintrac/v280818/libs/eproc/python"
+export CHERAB_CADMESH='/common/cadmesh/'
+export PATH="$HOME/.local/bin:$PATH"
+export CFLAGS="-std=c99"
+#########################
