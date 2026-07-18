@@ -734,7 +734,7 @@ echo "Run finished"
 echo "Running PESDT via SLURM"
 source /etc/profile.d/modules.sh
 
-source /scratch/phys/fusion/PESDT/pesdt-env/bin/activate
+source /scratch/phys/fusion/PESDT/pesdt_venv/bin/activate
 source /scratch/phys/fusion/PESDT/PESDT_env
 
 export OMP_NUM_THREADS=${{SLURM_CPUS_PER_TASK:-1}}
