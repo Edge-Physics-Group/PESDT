@@ -32,7 +32,7 @@ for root, dirs, files in os.walk(setup_path):
                                     module,
                                     [pyx_file],
                                     include_dirs=compilation_includes,
-                                    extra_compile_args=["-O3", "-ffast-math", "-march=native"],
+                                    extra_compile_args=["-O3", "-ffast-math", "-march=native", "-std=c99"],
                                     extra_link_args=[],
                                 )
 )
