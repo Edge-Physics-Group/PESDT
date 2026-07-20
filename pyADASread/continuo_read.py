@@ -3,13 +3,35 @@
 import numpy as np
 from scipy.interpolate import interp1d
 from subprocess import Popen, PIPE
-import os
+import os, ctypes
 import scipy.io as io
-try:
-    from adaslib import *
-    from adaslib.atomic import continuo
-except ModuleNotFoundError as e:
-    print(f"Adaslib unavailable, continuo unavailable. Error: {e}")
+
+class ContinuumRadiation(ctypes.Structure):
+    _fields_ = [
+        ("free_free", ctypes.c_double),
+        ("free_bound", ctypes.c_double),
+    ]
+
+
+lib = ctypes.CDLL("./libcontinuo_.so")
+
+lib.continuo_.argtypes = [
+    ctypes.c_double,  # wavelength_A
+    ctypes.c_double,  # Te_eV
+    ctypes.c_int,     # atomic_number
+    ctypes.c_int,     # ion_charge
+]
+
+def continuo_(wavelength_A, Te_eV, atomic_number, ion_charge):
+    result = lib.continuo_(
+        float(wavelength_A),
+        float(Te_eV),
+        int(atomic_number),
+        int(ion_charge),
+    )
+
+    return result.free_free, result.free_bound+result.free_free # Imitate adaslib behaviour
+
 h = 6.626E-34 # 'J.s'
 c = 299792458.0 # 'm/s'
 
@@ -98,7 +120,7 @@ def adas_continuo_py(wave_nm, Te_eV, iz0, iz1, output_in_ph_s=True, build32 = Fa
                 contin[iw, it] = float(outsplit[5])
     else:
         # ADAS reader
-        contff, contin = continuo(wave_nm*10., Te_eV, iz0, iz1)
+        contff, contin = continuo_(wave_nm*10., Te_eV, iz0, iz1)
 
     contff_ph = (1. / (4 * np.pi)) * contff * (1.0e-06) * 10.0  # ph s-1 m3 sr-1 nm-1
     contin_ph = (1. / (4 * np.pi)) * contin * (1.0e-06) * 10.0  # ph s-1 m3 sr-1 nm-1

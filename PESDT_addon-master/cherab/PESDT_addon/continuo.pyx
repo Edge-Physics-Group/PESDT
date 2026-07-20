@@ -6,17 +6,48 @@ from raysect.optical cimport Spectrum, Point3D, Vector3D
 from cherab.core cimport Line, Species, Plasma, Beam
 from cherab.core.model.lineshape cimport GaussianLine, LineShapeModel
 from cherab.core.utility.constants cimport RECIP_4_PI
-#from adaslib cimport continuo_
 
 cimport cython
 
-#cdef extern from "/home/adas/include/adaslib.h":
-#    cdef void continuo_(double *wave   , double *tev    , int *iz0,
-#                      int *iz1       , double *contff , double *contin )
-
-from adaslib.atomic.continuo_if import continuo_if
-
 import numpy as np
+cimport numpy as np
+from continuo cimport ContinuumRadiation, continuo_
+
+def continuo(double wavelength_A,
+             double Te_eV,
+             int atomic_number,
+             int ion_charge):
+    """
+    Calculate continuum radiation.
+
+    Parameters
+    ----------
+    wavelength_A : float
+        Wavelength in Angstrom.
+    Te_eV : float
+        Electron temperature in eV.
+    atomic_number : int
+        Nuclear charge Z.
+    ion_charge : int
+        Ion charge.
+
+    Returns
+    -------
+    (free_free, free_bound)
+    """
+
+    cdef ContinuumRadiation result
+
+    result = continuo_(
+        wavelength_A,
+        Te_eV,
+        atomic_number,
+        ion_charge
+    )
+
+    return result.free_free, result.free_bound
+
+
 
 
 cdef class Continuo(PlasmaModel):
@@ -100,68 +131,13 @@ cdef class Continuo(PlasmaModel):
     cdef double _continuo(self, double wvl, double te, double ne, double zeff = 1.0):
         cdef int iz0, iz1
         cdef double wvl_A, contff, contin, radiance
-
+        cdef ContinuumRadiation contrad
         wvl_A = wvl * 10.
         iz0=1
         iz1=1
-        contin, confff = continuo_if(wvl_A , te , iz0 , iz1 )
-
+        contrad = continuo_(wvl_A , te , iz0 , iz1 )
+        tot = contrad.free_bound + contrad.free_free
         return RECIP_4_PI*contin*(1e-6)*ne*ne*10
-
-    '''
-    cdef double _continuo(self, double wvl, double te, double ne, double zeff = 1.0):
-        # TODO: implement zeff using adaslib/continuo function. This is a weighted sum of the
-        # main ion and impurity ion densities
-        cdef double wvl_A, iz0, iz1, contff, contin, pi, radiance
-        """
-        adaslib/continuo wrapper
-
-        :param wvl: in nm
-        :param te: in eV
-        :param ne: in m^-3
-        :param zeff: a.u.
-        :return:
-
-        /home/adas/python/adaslib/atomic/continuo.py doc
-
-          PURPOSE    : calculates continuum emission at a requested wavelength
-                       and temperature for an element ionisation stage.
-
-          contff, contin = continuo(wave, tev, iz0, iz1)
-
-                        NAME         TYPE     DETAILS
-          REQUIRED   :  wave()       float    wavelength required (A)
-                        tev()        float    electron temperature (eV)
-                        iz0          int      atomic number
-                        iz1          int      ion stage + 1
-
-          RETURNS       contff(,)    float    free-free emissivity (ph cm3 s-1 A-1)
-                        contin(,)    float    total continuum emissivity
-                                              (free-free + free-bound) (ph cm3 s-1 A-1)
-                                                  dimensions: wave, te (dropped if just 1).
-
-          MODIFIED   :
-               1.1     Martin O'Mullane
-                         - First version
-
-          VERSION    :
-                1.1    16-06-2016
-
-
-        """
-        wvl_A = wvl * 10.
-        iz0=1
-        iz1=1
-        contff, contin = continuo(wvl_A, te, iz0, iz1)
-        pi = 3.141592
-
-        # Convert to ph/s/m^3/str/nm
-        contin = (1. / (4 * pi)) * contin * ne * ne * (1.0e-06) * 10.0 # ph/s/m^3/str/nm
-
-        # radiance =  PhotonToJ.to(contin, wvl) # W/m^3/str/nm
-
-        return radiance
-    '''
 
     def _change(self):
 

@@ -10,11 +10,16 @@ read_idl_tally.py
 pesdt_venv
 users/*
 dep_src/*
+*.egg-info/
 # Files
 *.pyc
 *.npy
 *~
 *.c
+*.cpp
+*.lock
+*.gpr
+*.rep
 *.nc
 fort.*
 intal*

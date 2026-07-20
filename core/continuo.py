@@ -2,7 +2,7 @@ import numpy as np
 from cherab.core.plasma import PlasmaModel
 from raysect.optical import Spectrum, Point3D, Vector3D
 from cherab.core.utility.conversion import PhotonToJ
-from adaslib.atomic import continuo
+from pyADASread.continuo_read import continuo_
 
 class Continuo(PlasmaModel):
     """
@@ -86,7 +86,7 @@ class Continuo(PlasmaModel):
         wvl_A = wvl * 10.
         iz0=1
         iz1=1
-        contff, contin = continuo(wvl_A, te, iz0, iz1)
+        contff, contin = continuo_(wvl_A, te, iz0, iz1)
 
         # Convert to ph/s/m^3/str/nm
         contin = (1. / (4 * np.pi)) * contin * ne * ne * (1.0e-06) * 10.0 # ph/s/m^3/str/nm

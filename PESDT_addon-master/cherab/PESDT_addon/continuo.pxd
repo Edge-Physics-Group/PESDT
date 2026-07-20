@@ -4,6 +4,19 @@ from cherab.core.plasma cimport PlasmaModel
 from cherab.core cimport Line, Species, LineShapeModel
 from raysect.optical cimport Spectrum, Point3D, Vector3D
 
+cdef extern from "continuo.h":
+
+    cdef struct ContinuumRadiation:
+        double free_free
+        double free_bound
+
+    ContinuumRadiation continuo_(
+        double wavelength_A,
+        double Te_eV,
+        int atomic_number,
+        int ion_charge
+    )
+
 cdef class Continuo(PlasmaModel):
     cdef:
          Line _line

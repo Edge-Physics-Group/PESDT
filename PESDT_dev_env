@@ -1,0 +1,11 @@
+#########################
+# PESDT ENV FILE
+# Source this file to load the necessary components for running PESDT.
+#########################
+
+######################### 
+# Set the JET cadmesh dir and AMJUEL path
+export AMJUEL_PATH='/scratch/phys/fusion/solps-iter/modules/Eirene/Database/AMdata/'
+export CHERAB_CADMESH='/scratch/phys/fusion/cherab/cadmesh/'
+export PESDT_HOME='/scratch/phys/fusion/PESDTdev/PESDT/'
+#########################
