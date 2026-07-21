@@ -4,16 +4,16 @@ import numpy as np
 # import pandas as pd
 import pickle, json, os, errno
 
-from matplotlib.collections import PatchCollection
-from matplotlib import patches
 from scipy.interpolate import interp1d
+
+from core.utils import continuo_read
 from .synth_diag import SynthDiag
 from .utils.utils import isclose, interp_nearest_neighb, find_nearest
 from .utils.amread import calc_photon_rate
 from .utils.amread import wavelength as calc_wavelength
 from .utils import get_ADAS_dict
 from .utils.machine_defs import get_DIIIDdefs, get_JETdefs
-from pyADASread import adas_adf11_read, adas_adf15_read, continuo_read
+#from pyADASread import adas_adf11_read, adas_adf15_read # Todo: replace adas with OpenAdas
 from .edge_code_formats import BackgroundPlasma, Cell, Edge2D, SOLPS, OEDGE, EIRENE
 from .cherab import CherabPlasma
 from .analyse import recover_line_int_ff_fb_Te, recover_line_int_Stark_ne, recover_line_int_particle_bal, recover_delL_atomden_product

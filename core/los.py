@@ -1,5 +1,5 @@
 import numpy as np
-from pyADASread import adas_adf11_read, adas_adf15_read, continuo_read
+from core.utils import continuo_read
 import logging
 logger = logging.getLogger(__name__)
 

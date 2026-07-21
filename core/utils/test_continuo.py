@@ -21,33 +21,8 @@ lib.continuo_.argtypes = [
 ]
 
 
-'''
-lib.argam.argtypes = [ctypes.c_int, ctypes.c_double]
-lib.r8f21_.argtypes= [ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double]
-lib.r8fdip0_.argtypes = [ctypes.c_double, ctypes.c_int, ctypes.c_double, ctypes.c_int, ctypes.c_double]
-lib.r8fmon1_.argtypes = [ctypes.c_double, ctypes.c_double, ctypes.c_int]
-lib.r8fdip1_.argtypes = [ctypes.c_double, ctypes.c_int, ctypes.c_double, ctypes.c_int]
-lib.r8fdip2_.argtypes = [ctypes.c_double, ctypes.c_int, ctypes.c_double, ctypes.c_int]
-lib.r8fdip_.argtypes = [ctypes.c_double, ctypes.c_int, ctypes.c_double, ctypes.c_int]
-lib.r8giii_.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_double, ctypes.c_double]
-lib.r8giiiav_.argtypes = [ctypes.c_double, ctypes.c_double]
-lib.r8gbf_.argtypes = [ctypes.c_double, ctypes.c_double]
-lib.r8gav_.argtypes = [ctypes.c_double, ctypes.c_double, ctypes.c_int]
-'''
 lib.continuo_.restype = ContinuumRadiation  
-'''
-lib.argam.restype = ctypes.c_double
-lib.r8f21_.restype= ctypes.c_double
-lib.r8fdip0_.restype = ctypes.c_double
-lib.r8fmon1_.restype = ctypes.c_double
-lib.r8fdip1_.restype = ctypes.c_double
-lib.r8fdip2_.restype = ctypes.c_double
-lib.r8fdip_.restype = ctypes.c_double
-lib.r8giii_.restype = ctypes.c_double
-lib.r8giiiav_.restype = ctypes.c_double
-lib.r8gbf_.restype = ctypes.c_double
-lib.r8gav_.restype = ctypes.c_double
-'''
+
 def call_continuo(wavelength_A, Te_eV, atomic_number, ion_charge):
     result = lib.continuo_(
         float(wavelength_A),

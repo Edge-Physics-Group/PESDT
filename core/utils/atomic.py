@@ -1,13 +1,6 @@
-import pickle
+import sys, os, pickle
 import numpy as np
-import os
-import sys
 import contextlib
-try:
-    from pyADASread import adas_adf11_read, adas_adf15_read
-except ModuleNotFoundError as e:
-    print(f"Error: {e}")
-    pass
 import logging
 logger = logging.getLogger(__name__)
 

@@ -2,7 +2,7 @@ import numpy as np
 import json
 # http://lmfit.github.io/lmfit-py/parameters.html
 from lmfit import minimize, Parameters, fit_report
-from pyADASread import continuo_read
+from core.utils import continuo_read
 import logging
 logger = logging.getLogger(__name__)
 
