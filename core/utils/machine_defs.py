@@ -80,7 +80,7 @@ def poloidal_angle(p1, p2):
 
 def get_JETdefs(plot_defs = False, pulse_ref = 90531):
 
-    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/")
+    pesdt_home = os.environ.get('PESDT_HOME', os.path.join(os.path.expanduser('~'), "PESDT/"))
     fwall = pesdt_home+ 'devices/JET/wall.txt'
     wall_coords = np.genfromtxt(fwall, delimiter=' ')
     wall_poly = patches.Polygon(wall_coords, closed=False, ec='k', lw=2.0, fc='None', zorder=10)
@@ -572,7 +572,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     # KB5 (including pulse dependent configurations)
     ###############
     #Default vs. re-configured sight line config
-    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/")
+    pesdt_home = os.environ.get('PESDT_HOME', os.path.join(os.path.expanduser('~'), "PESDT/"))
     if JET.pulse_ref >=73758 and JET.pulse_ref <=82263:
         file = os.path.join(pesdt_home, 'devices/JET/KB5_Bolometer_LOS_73758_82263.txt')
     else:
@@ -655,7 +655,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     # Half angle for all chords: 5.85 deg
     ###############
     half_angle= 5.85 * np.pi / 180.
-    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/")
+    pesdt_home = os.environ.get('PESDT_HOME', os.path.join(os.path.expanduser('~'), "PESDT/"))
     file = os.path.join(pesdt_home, 'devices/JET/B3D4_Bolometer_LOS.txt')
     lines = np.genfromtxt(file, dtype=list, delimiter="\t", skip_header=3)
 
@@ -690,7 +690,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     # Half angle for all chords: 5.85 deg
     ###############
     half_angle= 5.85 * np.pi / 180.
-    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/")
+    pesdt_home = os.environ.get('PESDT_HOME', os.path.join(os.path.expanduser('~'), "PESDT/"))
     file = os.path.join( pesdt_home, 'devices/JET/B3E4_Bolometer_LOS.txt')
     lines = np.genfromtxt(file, dtype=list, delimiter="\t", skip_header=3)
 
@@ -751,13 +751,13 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     return JET
 
 def get_AUGdefs(pulse_ref = 30000):
-    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/")
+    pesdt_home = os.environ.get('PESDT_HOME', os.path.join(os.path.expanduser('~'), "PESDT/"))
     AUG = MachineDefs('AUG', None, pulse_ref = pulse_ref)
 
     return AUG
 
 def get_DIIIDdefs(plot_defs=False):
-    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/")
+    pesdt_home = os.environ.get('PESDT_HOME', os.path.join(os.path.expanduser('~'), "PESDT/"))
     fwall = os.path.join(pesdt_home, 'devices/DIIID/d3d_efit_wall_174240.dat')
     wall_coords = np.genfromtxt(fwall, skip_header=3)
     wall_poly = patches.Polygon(wall_coords, closed=False, ec='k', lw=2.0, fc='None', zorder=10)
@@ -781,7 +781,7 @@ def get_DIIIDdefs(plot_defs=False):
         'bolo4':np.arange(35,48),
                 }
 
-    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/")
+    pesdt_home = os.environ.get('PESDT_HOME', os.path.join(os.path.expanduser('~'), "PESDT/"))
     file = os.path.join(pesdt_home,'devices/DIIID/bolo_geom_174240.dat')
     lines = np.genfromtxt(file, dtype=list, delimiter="\t", skip_header=3)
 
@@ -896,7 +896,7 @@ def get_DIIIDdefs(plot_defs=False):
         'bolo4_hr':np.arange(150,200),
                 }
 
-    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/")
+    pesdt_home = os.environ.get('PESDT_HOME', os.path.join(os.path.expanduser('~'), "PESDT/"))
     file = os.path.join(pesdt_home, 'devices/DIIID/bolo_geom_174240_highres.dat')
     lines = np.genfromtxt(file, dtype=list, delimiter="\t", skip_header=3)
 
@@ -1007,7 +1007,7 @@ def get_DIIIDdefs(plot_defs=False):
         'fs2':np.arange(9,17)
     }
 
-    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/")
+    pesdt_home = os.environ.get('PESDT_HOME', os.path.join(os.path.expanduser('~'), "PESDT/"))
     file = os.path.join(pesdt_home, 'devices/DIIID/fs_geom_174240.dat')
     lines = np.genfromtxt(file, dtype=list, delimiter="\t", skip_header=3)
 
@@ -1077,7 +1077,7 @@ def get_DIIIDdefs(plot_defs=False):
         'fs1_hr': np.arange(0, 20),
     }
 
-    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/")
+    pesdt_home = os.environ.get('PESDT_HOME', os.path.join(os.path.expanduser('~'), "PESDT/"))
     file = os.path.join(pesdt_home,'devices/DIIID/fs_geom_174240_highres.dat')
     lines = np.genfromtxt(file, dtype=list, delimiter="\t", skip_header=3)
 
@@ -1127,7 +1127,7 @@ def get_DIIIDdefs(plot_defs=False):
         'mds2': np.arange(7, 14)
     }
 
-    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/")
+    pesdt_home = os.environ.get('PESDT_HOME', os.path.join(os.path.expanduser('~'), "PESDT/"))
     file = os.path.join(pesdt_home,'devices/DIIID/mds_geom_174240.dat')
     lines = np.genfromtxt(file, dtype=list, delimiter="\t", skip_header=3)
 
@@ -1197,7 +1197,7 @@ def get_DIIIDdefs(plot_defs=False):
         'mds1_hr': np.arange(0, 20),
     }
 
-    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/")
+    pesdt_home = os.environ.get('PESDT_HOME', os.path.join(os.path.expanduser('~'), "PESDT/"))
     file = os.path.join(pesdt_home,'devices/DIIID/mdslw_geom_174240_highres.dat')
     lines = np.genfromtxt(file, dtype=list, delimiter="\t", skip_header=3)
 
@@ -1246,7 +1246,7 @@ def get_DIIIDdefs(plot_defs=False):
         'divspred': np.arange(0, 20),
     }
 
-    pesdt_home = os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/")
+    pesdt_home = os.environ.get('PESDT_HOME', os.path.join(os.path.expanduser('~'), "PESDT/"))
     file = os.path.join(pesdt_home,'devices/DIIID/divspred_geom_174240.dat')
     lines = np.genfromtxt(file, dtype=list, delimiter="\t", skip_header=4)
 

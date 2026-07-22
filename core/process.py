@@ -15,7 +15,7 @@ from .utils import get_ADAS_dict
 from .utils.machine_defs import get_DIIIDdefs, get_JETdefs
 #from pyADASread import adas_adf11_read, adas_adf15_read # Todo: replace adas with OpenAdas
 from .edge_code_formats import BackgroundPlasma, Cell, Edge2D, SOLPS, OEDGE, EIRENE
-from .cherab import CherabPlasma
+from .cherab import CherabPlasma, D3D_mesh
 from .analyse import recover_line_int_ff_fb_Te, recover_line_int_Stark_ne, recover_line_int_particle_bal, recover_delL_atomden_product
 
 
@@ -44,6 +44,14 @@ class ProcessEdgeSim:
             self.defs = get_JETdefs(pulse_ref=self.pulse)
         elif self.machine == 'DIIID':
             self.defs = get_DIIIDdefs()
+            diags = list(self.defs.diag_dict.keys())
+            structs = D3D_mesh.read_D3D_dat()
+            for diag in diags:
+                p1 = self.defs.diag_dict[diag]["p1"]
+                p2 = self.defs.diag_dict[diag]["p2"]
+                # Move p1 such that it is not blocked by any wall
+                p1_ = np.array([D3D_mesh.move_los_origin(p1[i], p2[i], structs, clearance=0.55, epsilon=0.01) for i in range(len(p1))])
+                self.defs.diag_dict[diag]["p1"] = p1_
         else:
             raise Exception("Unsupported machine. Currently supported machines are JET and DIIID")
 
@@ -207,12 +215,8 @@ class ProcessEdgeSim:
         self.opaque = False#cherab_opts.get("opacity", False)
         if self.opaque:
             self.opaque_mode = cherab_opts.get("opacity_mode", 0) #0 total, 1 center, 2 full spectrum
-        if self.machine == "JET":
-            diag_def = get_JETdefs().diag_dict
-        elif self.machine == "DIIID":
-            diag_def = get_DIIIDdefs().diag_dict
-        else:
-            pass # Will just crash later on
+        diag_def = self.defs.diag_dict
+        
         transitions = [(int(v[0]), int(v[1])) for _, v in spec_line_dict['1']['1'].items()]
         
         # === Create insrument LOS database ===
