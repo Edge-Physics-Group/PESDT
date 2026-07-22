@@ -2,6 +2,8 @@
 requires = [
     "setuptools>=61",
     "wheel",
+    "cherab==1.5.0.1",
+    "raysect>=0.9.1",
     "Cython>=3.0",
     "numpy>=2.0"
 ]
