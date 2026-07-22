@@ -12,6 +12,11 @@ class ContinuumRadiation(ctypes.Structure):
         ("free_bound", ctypes.c_double),
     ]
 
+cr_dtype = np.dtype([
+    ("free_free", np.float64),
+    ("free_bound", np.float64),
+])
+
 
 lib = ctypes.CDLL("./libcontinuo_.so")
 
@@ -21,6 +26,18 @@ lib.continuo_.argtypes = [
     ctypes.c_int,     # atomic_number
     ctypes.c_int,     # ion_charge
 ]
+
+lib.continuov_.argtypes = [
+    ctypes.POINTER(ctypes.c_double),   # wavelength_A
+    ctypes.POINTER(ctypes.c_double),   # Te_eV
+    ctypes.c_int,                      # atomic_number
+    ctypes.c_int,                      # ion_charge
+    ctypes.c_size_t,                   # num_wl
+    ctypes.c_size_t,                   # num_te
+    ctypes.POINTER(ContinuumRadiation) # output
+]
+
+lib.continuov_.restype = None
 
 def continuo_(wavelength_A, Te_eV, atomic_number, ion_charge):
     result = lib.continuo_(
@@ -32,6 +49,21 @@ def continuo_(wavelength_A, Te_eV, atomic_number, ion_charge):
 
     return result.free_free, result.free_bound+result.free_free # Imitate adaslib behaviour
 
+def continuov_(wavelength_A: np.ndarray, Te_eV: np.ndarray, atomic_number: int, ion_charge: int):
+    num_wl =len(wavelength_A); num_te = len(Te_eV)
+    output = np.empty(num_wl * num_te, dtype=cr_dtype)
+    lib.continuov_(
+        float(wavelength_A),
+        float(Te_eV),
+        int(atomic_number),
+        int(ion_charge),
+        num_wl,
+        num_te,
+        output
+    )
+    output = output.reshape(num_te, num_wl)
+    return output["free_free"], output["free_bound"]+output["free_free"]
+
 h = 6.626E-34 # 'J.s'
 c = 299792458.0 # 'm/s'
 
@@ -41,13 +73,10 @@ def find_nearest(array, value):
 
 
 def get_fffb_intensity_ratio_fn_T(wv_lo_nm, wv_hi_nm, Zeff, save_output=False, restore=False, build32 = False):
-    # TODO: figure out a way to make the path generic and so that it works from both /pyproc and /pyproc/cherab_bridge
-    outfile = os.path.expanduser('~') + '/PESDT/pyADASread/' + (str(wv_lo_nm)+'_'+str(wv_hi_nm)+'_adas_continuo_ratio.npy')
+    
 
     Te_rnge = [0.2, 30]
-    if restore == True:
-        return np.load(outfile)
-
+    
     print('Processing continuum ratio...')
     wave_nm = np.linspace(wv_lo_nm - 10, wv_hi_nm + 10, 100)
     ilo, vlo = find_nearest(wave_nm, wv_lo_nm)
@@ -68,8 +97,7 @@ def get_fffb_intensity_ratio_fn_T(wv_lo_nm, wv_hi_nm, Zeff, save_output=False, r
     # plt.plot(intensity_ratio_interp[:, 0], intensity_ratio_interp[:, 1])
     # plt.show()
     print ('Done')
-    if save_output == True:
-        np.save(outfile,intensity_ratio_interp)
+
     return intensity_ratio_interp
 
 def adas_continuo_py(wave_nm, Te_eV, iz0, iz1, output_in_ph_s=True, build32 = False):
@@ -86,41 +114,8 @@ def adas_continuo_py(wave_nm, Te_eV, iz0, iz1, output_in_ph_s=True, build32 = Fa
     n_te = np.size(Te_eV)
     n_wv = np.size(wave_nm)
 
-    if build32 ==True:
-        # 32bit executable - depracated
-        iz0_in = int(iz0)
-        iz1_in = int(iz1)
-
-        contff = np.zeros((n_wv, n_te))
-        contin = np.zeros((n_wv, n_te))
-
-        for it in range(0, n_te):
-            for iw in range(0, n_wv):
-
-                val_ff = 0.0
-                val_in = 0.0
-                if n_te > 1:
-                    tev_in = Te_eV[it]
-                else:
-                    tev_in = Te_eV
-                if n_wv > 1:
-                    wave_in = wave_nm[iw] * 10
-                else:
-                    wave_in = wave_nm * 10
-
-                p = Popen('/home/bloman/python_tools/pyADASread/adas_continuo.exe', stdin=PIPE, stdout=PIPE)
-                # encoding/decoding Python 3 style
-                input_str = os.linesep.join([str(wave_in), str(tev_in), str(iz0_in), str(iz1_in)])
-                out, err = p.communicate(input=input_str.encode())
-                out = out.decode()
-                out = out.strip('\n')
-                outsplit = out.split(' ')
-
-                contff[iw, it] = float(outsplit[3])
-                contin[iw, it] = float(outsplit[5])
-    else:
-        # ADAS reader
-        contff, contin = continuo_(wave_nm*10., Te_eV, iz0, iz1)
+    
+    contff, contin = continuo_(wave_nm*10., Te_eV, iz0, iz1)
 
     contff_ph = (1. / (4 * np.pi)) * contff * (1.0e-06) * 10.0  # ph s-1 m3 sr-1 nm-1
     contin_ph = (1. / (4 * np.pi)) * contin * (1.0e-06) * 10.0  # ph s-1 m3 sr-1 nm-1
