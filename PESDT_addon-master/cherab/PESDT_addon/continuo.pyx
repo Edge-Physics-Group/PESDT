@@ -11,7 +11,7 @@ cimport cython
 
 import numpy as np
 cimport numpy as np
-from continuo cimport ContinuumRadiation, continuo_
+
 
 def continuo(double wavelength_A,
              double Te_eV,
