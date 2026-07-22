@@ -17,11 +17,13 @@ if "--profile" in sys.argv:
     del sys.argv[sys.argv.index("--profile")]
 
 libroot = os.environ.get("CONTINUO_LIB")
+march = os.environ.get("MARCH")
 
 if libroot is None:
     libroot = os.path.abspath(os.path.dirname(__file__))
 compilation_includes = [".", numpy.get_include(), libroot]
-
+if march is None:
+    march = "x86-64-v3"
 setup_path = path.dirname(path.abspath(__file__))
 
 # build extension list
@@ -39,7 +41,7 @@ for root, dirs, files in os.walk(setup_path):
                                     libraries=["m", "continuo_"],
                                     library_dirs=[libroot],
                                     extra_link_args=[f"-Wl,-rpath,{libroot}"],
-                                    extra_compile_args=["-O3", "-ffast-math", "-march=x86-64-v3", "-std=c99"],
+                                    extra_compile_args=["-O3", "-ffast-math", f"-march={march}", "-std=c99"],
                                 )
 )
 
