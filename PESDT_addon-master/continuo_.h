@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-struct ContinuumRadiation
+typedef struct ContinuumRadiation
 {
     double free_free;
     double free_bound;

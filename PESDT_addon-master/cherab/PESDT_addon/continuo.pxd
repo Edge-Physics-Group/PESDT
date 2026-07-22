@@ -6,7 +6,7 @@ from raysect.optical cimport Spectrum, Point3D, Vector3D
 
 cdef extern from "continuo_.h":
 
-    cdef struct ContinuumRadiation:
+    ctypedef struct ContinuumRadiation:
         double free_free
         double free_bound
 
