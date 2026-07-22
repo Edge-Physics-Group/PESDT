@@ -10,8 +10,13 @@ class ContinuumRadiation(ctypes.Structure):
         ("total", ctypes.c_double),
     ]
 
+lib_root = os.environ.get("CONTINUO_LIB")
+if lib_root is None:
 
-lib = ctypes.CDLL("./libcontinuo_.so")
+    lib_path = "./libcontinuo_.so"
+else:
+    lib_path = os.path.join(lib_root, "libcontinuo_.so")
+lib = ctypes.CDLL(lib_path)
 
 lib.continuo_.argtypes = [
     ctypes.c_double,  # wavelength_A
