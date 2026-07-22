@@ -16,9 +16,9 @@ if "--profile" in sys.argv:
     profile = True
     del sys.argv[sys.argv.index("--profile")]
 
-lib_root = os.environ.get("CONTINUO_LIB")
+libroot = os.environ.get("CONTINUO_LIB")
 
-if lib_root is None:
+if libroot is None:
     libroot = os.path.abspath(os.path.dirname(__file__))
 compilation_includes = [".", numpy.get_include(), libroot]
 

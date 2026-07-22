@@ -5,12 +5,11 @@
 extern "C" {
 #endif
 
-struct ContinuumRadiation
+typedef struct ContinuumRadiation
 {
     double free_free;
     double free_bound;
-};
-
+} ContinuumRadiation;
 ContinuumRadiation continuo_(double wavelength_A,double Te_eV,int atomic_number,int ion_charge);
 
 void continuov_(double *wavelength_A,double *Te_eV,int atomic_number,int ion_charge, size_t num_wl, size_t num_te, ContinuumRadiation* output);
