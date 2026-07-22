@@ -15,7 +15,7 @@ if "--force" in sys.argv:
 if "--profile" in sys.argv:
     profile = True
     del sys.argv[sys.argv.index("--profile")]
-
+HERE = os.path.abspath(os.path.dirname(__file__))
 compilation_includes = [".", numpy.get_include(), ]
 
 setup_path = path.dirname(path.abspath(__file__))
@@ -33,8 +33,9 @@ for root, dirs, files in os.walk(setup_path):
                                     [pyx_file],
                                     include_dirs=compilation_includes,
                                     libraries=["m", "continuo_"],
+                                    library_dirs=[HERE],
+                                    extra_link_args=[f"-Wl,-rpath,{HERE}"],
                                     extra_compile_args=["-O3", "-ffast-math", "-march=x86-64-v3", "-std=c99"],
-                                    extra_link_args=[],
                                 )
 )
 
