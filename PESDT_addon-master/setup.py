@@ -16,7 +16,7 @@ if "--profile" in sys.argv:
     profile = True
     del sys.argv[sys.argv.index("--profile")]
 HERE = os.path.abspath(os.path.dirname(__file__))
-compilation_includes = [".", numpy.get_include(), ]
+compilation_includes = [".", numpy.get_include(), HERE]
 
 setup_path = path.dirname(path.abspath(__file__))
 
