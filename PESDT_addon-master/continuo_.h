@@ -1,10 +1,9 @@
 #ifndef CONTINUO_H
 #define CONTINUO_H
-
+#include <vector>
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 typedef struct ContinuumRadiation
 {
     double free_free;
@@ -12,7 +11,6 @@ typedef struct ContinuumRadiation
 } ContinuumRadiation;
 
 ContinuumRadiation continuo_(double wavelength_A,double Te_eV,int atomic_number,int ion_charge);
-
 
 #ifdef __cplusplus
 }
