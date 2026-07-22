@@ -16,9 +16,11 @@ cr_dtype = np.dtype([
     ("free_free", np.float64),
     ("free_bound", np.float64),
 ])
+lib_root = os.environ.get("CONTINUO_LIB")
+if lib_root is None:
+    lib_root = os.path.join(os.environ.get('PESDT_HOME', os.path.expanduser('~')), "PESDT/core/utils")
 
-
-lib = ctypes.CDLL("./libcontinuo_.so")
+lib = ctypes.CDLL(os.path.join(lib_root, "libcontinuo_.so"))
 
 lib.continuo_.argtypes = [
     ctypes.c_double,  # wavelength_A
