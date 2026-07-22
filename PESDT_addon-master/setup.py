@@ -16,7 +16,7 @@ if "--profile" in sys.argv:
     profile = True
     del sys.argv[sys.argv.index("--profile")]
 
-compilation_includes = [".", numpy.get_include()]
+compilation_includes = [".", numpy.get_include(), ]
 
 setup_path = path.dirname(path.abspath(__file__))
 
@@ -32,7 +32,7 @@ for root, dirs, files in os.walk(setup_path):
                                     module,
                                     [pyx_file],
                                     include_dirs=compilation_includes,
-                                    libraries=["m", "mvec", "continuo_"],
+                                    libraries=["m", "continuo_"],
                                     extra_compile_args=["-O3", "-ffast-math", "-march=x86-64-v3", "-std=c99"],
                                     extra_link_args=[],
                                 )
