@@ -1,6 +1,5 @@
 #ifndef CONTINUO_H
 #define CONTINUO_H
-#include <vector>
 #ifdef __cplusplus
 extern "C" {
 #endif
