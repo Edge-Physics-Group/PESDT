@@ -38,7 +38,6 @@ lib.continuov_.argtypes = [
     ctypes.c_size_t,                   # num_te
     ctypes.POINTER(ContinuumRadiation) # output
 ]
-
 lib.continuov_.restype = None
 
 def continuo_(wavelength_A, Te_eV, atomic_number, ion_charge):
@@ -50,6 +49,7 @@ def continuo_(wavelength_A, Te_eV, atomic_number, ion_charge):
     )
 
     return result.free_free, result.free_bound+result.free_free # Imitate adaslib behaviour
+
 
 def continuov_(wavelength_A: np.ndarray, Te_eV: np.ndarray, atomic_number: int, ion_charge: int):
     num_wl =len(wavelength_A); num_te = len(Te_eV)
