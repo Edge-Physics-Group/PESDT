@@ -9,7 +9,7 @@ typedef struct ContinuumRadiation
 {
     double free_free;
     double free_bound;
-};
+} ContinuumRadiation;
 
 ContinuumRadiation continuo_(double wavelength_A,double Te_eV,int atomic_number,int ion_charge);
 
