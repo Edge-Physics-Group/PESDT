@@ -58,7 +58,7 @@ ffv, ffvtot = continuov_(wavelengths, Te_test, 1, 1)
 ffa, fftot = adas_continuo(wavelengths, Te_test, 1, 1)
 
 ffv = ffv.flatten(); ffvtot = ffvtot.flatten()
-ffa = ffa.flatten(), fftot = fftot.flatten()
+ffa = ffa.flatten(); fftot = fftot.flatten()
 # 5. Plot the results to visually inspect recombination edges
 fig, (ax, ax2) = plt.subplots(1, 2, figsize=(10, 6))
 
