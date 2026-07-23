@@ -129,14 +129,14 @@ cdef class Continuo(PlasmaModel):
 
     cdef double _continuo(self, double wvl, double te, double ne, double zeff = 1.0):
         cdef int iz0, iz1
-        cdef double wvl_A, contff, contin, radiance
+        cdef double wvl_A
         cdef ContinuumRadiation contrad
         wvl_A = wvl * 10.
         iz0=1
         iz1=1
         contrad = continuo_(wvl_A , te , iz0 , iz1 )
         tot = contrad.free_bound + contrad.free_free
-        return RECIP_4_PI*contin*(1e-6)*ne*ne*10
+        return RECIP_4_PI*tot*(1e-6)*ne*ne*10
 
     def _change(self):
 
