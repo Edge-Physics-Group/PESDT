@@ -66,9 +66,7 @@ cdef class StarkFunction(Function1D):
     """
     Normalised Stark function for the StarkBroadenedLine line shape.
     """
-    #cdef dict __dict__
-    STARK_NORM_COEFFICIENT = 4 * LORENZIAN_CUTOFF_GAMMA * hyp2f1(0.4, 1, 1.4, -(2 * LORENZIAN_CUTOFF_GAMMA)**2.5)
-    
+
     def __init__(self, double wavelength, double lambda_1_2):
 
         if wavelength <= 0:
@@ -81,7 +79,7 @@ cdef class StarkFunction(Function1D):
         self._a = (0.5 * lambda_1_2)**2.5
         # normalise, so the integral over x is equal to 1 in the limits
         # (_x0 - LORENZIAN_CUTOFF_GAMMA * lambda_1_2, _x0 + LORENZIAN_CUTOFF_GAMMA * lambda_1_2)
-        self._norm = (0.5 * lambda_1_2)**1.5 / <double> self.STARK_NORM_COEFFICIENT
+        self._norm = (0.5 * lambda_1_2)**1.5 / <double> STARK_NORM_COEFFICIENT
 
     @cython.cdivision(True)
     cdef double evaluate(self, double x) except? -1e999:
@@ -130,7 +128,6 @@ cdef class StarkBroadenedLine(LineShapeModel):
 
 
     }
-    STARK_NORM_COEFFICIENT = 4 * LORENZIAN_CUTOFF_GAMMA * hyp2f1(0.4, 1, 1.4, -(2 * LORENZIAN_CUTOFF_GAMMA)**2.5)
 
     def __init__(self, Line line, double wavelength, Species target_species, Plasma plasma, AtomicData atomic_data,
                  dict stark_model_coefficients=None, integrator=GaussianQuadrature()):
