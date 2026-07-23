@@ -67,6 +67,7 @@ def continuov_(wavelength_A: np.ndarray, Te_eV: np.ndarray, atomic_number: int, 
         output.ctypes.data_as(ctypes.POINTER(ContinuumRadiation))
     )
     output = output.reshape(num_te, num_wl)
+    if num_te == 1: output = output.flatten()
     return output["free_free"]*CONV, (output["free_bound"]+output["free_free"])*CONV
 
 def find_nearest(array, value):
