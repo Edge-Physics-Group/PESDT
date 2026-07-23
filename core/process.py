@@ -5,7 +5,7 @@ import numpy as np
 import pickle, json, os, errno
 
 from scipy.interpolate import interp1d
-
+from scipy.constants import c, h
 from core.utils import continuo_read
 from .synth_diag import SynthDiag
 from .utils.utils import isclose, interp_nearest_neighb, find_nearest
@@ -793,7 +793,7 @@ class ProcessEdgeSim:
 
         logger.info('Calculating FF+FB filtered emission...')
         for cell in self.cells:
-            ff_only, ff_fb_tot = continuo_read.adas_continuo_py(wave_nm, cell.te, 1, 1)
+            ff_only, ff_fb_tot = continuo_read.continuov_(wave_nm, cell.te, 1, 1)
             f = interp1d(wave_nm, ff_fb_tot)
             ff_fb_tot_interp = f(filter_wv_nm)
             # convert to spectral emissivity: ph s-1 m-3 sr-1 nm-1
@@ -813,11 +813,11 @@ class ProcessEdgeSim:
         logger.info('Calculating FF+FB emission...')
         sum_ff_radpwr = 0
         for cell in self.cells:
-            ff_only, ff_fb = continuo_read.adas_continuo_py(wave_nm, cell.te, 1, 1, output_in_ph_s=False)
+            ff_only, ff_fb = continuo_read.continuov_(wave_nm, cell.te, 1, 1)
 
             # convert to spectral emissivity (from W m^3 sr^-1 nm^-1 to W m^-3 nm^-1)
-            ff_only = ff_only * cell.ne * cell.ne * 4. * np.pi
-            ff_fb = ff_fb * cell.ne * cell.ne * 4. * np.pi
+            ff_only = ff_only * cell.ne * cell.ne * 4. * np.pi * h*c/(wave_nm*1e-9)
+            ff_fb = ff_fb * cell.ne * cell.ne * 4. * np.pi*h*c/(wave_nm*1e-9)
 
             # Integrate over wavelength
             cell.ff_radpwr_perm3 = np.trapz(ff_only, wave_nm) # W m^-3
@@ -849,24 +849,6 @@ class ProcessEdgeSim:
             sum_pwr += np.sum(np.asarray(cell.H_radpwr)) # sanity check. compare to eproc
         self.Prad_H = sum_pwr
         logger.info(f"Total H radiated power: {sum_pwr} [W] ")
-
-        if self.spec_line_dict_lytrap:
-            logger.info('Calculating H radiated power for Ly trapping...')
-            sum_pwr = 0
-            for cell in self.cells:
-                iTe, vTe = find_nearest(self.ADAS_dict_lytrap['adf11']['1'].Te_arr, cell.te)
-                ine, vne = find_nearest(self.ADAS_dict_lytrap['adf11']['1'].ne_arr, cell.ne * 1.0e-06)
-                # plt/prb absolute rad pow contr in units W.cm^3
-                plt_contr = self.ADAS_dict_lytrap['adf11']['1'].plt[iTe, ine] * (1.0e-06 * cell.n0) * (
-                            1.0e-06 * cell.ne)  # W.cm^-3
-                prb_contr = self.ADAS_dict_lytrap['adf11']['1'].prb[iTe, ine] * (1.0e-06 * cell.ni) * (
-                            1.0e-06 * cell.ne)  # W.cm^-3
-                cell_vol = cell.poly.area * 2.0 * np.pi * cell.R  # m^3
-                cell.H_radpwr_Lytrap = (plt_contr + prb_contr) * 1.e06 * cell_vol  # Watts
-                cell.H_radpwr_Lytrap_perm3 = (plt_contr + prb_contr) * 1.e06  # Watts m^-3
-                sum_pwr += np.sum(np.asarray(cell.H_radpwr_Lytrap))  # sanity check. compare to eproc
-            self.Prad_H_Lytrap = sum_pwr
-            logger.info(f"Total H radiated power w/ Ly trapping: {sum_pwr} [W] ")
       
     def los_intersect(self, los):
         for cell in self.cells:
@@ -883,9 +865,6 @@ class ProcessEdgeSim:
                     area_ratio = clipped_cell.poly.area /  cell.poly.area
                     clipped_cell.H_radpwr = cell.H_radpwr * area_ratio
                     clipped_cell.H_radpwr_perm3 = cell.H_radpwr_perm3
-                    if self.spec_line_dict_lytrap:
-                        clipped_cell.H_radpwr_Lytrap = cell.H_radpwr_Lytrap * area_ratio
-                        clipped_cell.H_radpwr_Lytrap_perm3 = cell.H_radpwr_Lytrap_perm3
                     clipped_cell.ff_radpwr = np.asarray(cell.ff_radpwr) * area_ratio
                     clipped_cell.ff_radpwr_perm3 = cell.ff_radpwr_perm3
                     clipped_cell.ff_fb_radpwr = np.asarray(cell.ff_fb_radpwr) * area_ratio
