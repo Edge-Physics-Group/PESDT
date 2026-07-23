@@ -801,7 +801,7 @@ class ProcessEdgeSim:
             # multiply by filter transmission
             ff_fb_tot_interp *= filter_tran
             # Integrate over wavelength
-            ff_fb_tot_emiss = np.trapz(ff_fb_tot_interp, filter_wv_nm)
+            ff_fb_tot_emiss = np.trapezoid(ff_fb_tot_interp, filter_wv_nm)
             cell.ff_fb_filtered_emiss = {'ff_fb':ff_fb_tot_emiss, 'units':'ph.s^-1.m^-3.sr^-1',
                                 'filter_wv_nm':filter_wv_nm, 'filter_tran':filter_tran}
 
@@ -820,8 +820,8 @@ class ProcessEdgeSim:
             ff_fb = ff_fb * cell.ne * cell.ne * 4. * np.pi*h*c/(wave_nm*1e-9)
 
             # Integrate over wavelength
-            cell.ff_radpwr_perm3 = np.trapz(ff_only, wave_nm) # W m^-3
-            cell.ff_fb_radpwr_perm3 = np.trapz(ff_fb, wave_nm) # W m^-3
+            cell.ff_radpwr_perm3 = np.trapezoid(ff_only, wave_nm) # W m^-3
+            cell.ff_fb_radpwr_perm3 = np.trapezoid(ff_fb, wave_nm) # W m^-3
 
             cell_vol = cell.poly.area * 2.0 * np.pi * cell.R  # m^3
             cell.ff_radpwr = cell.ff_radpwr_perm3 * cell_vol

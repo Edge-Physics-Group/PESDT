@@ -52,8 +52,7 @@ def continuo(double wavelength_A,
 
 cdef class Continuo(PlasmaModel):
     """
-    Emitter that calculates bremsstrahlung emission from a plasma object using the ADAS
-    adaslib/continuo.f function.
+    Emitter that calculates bremsstrahlung emission from a plasma object using the libcontinuo continuo_ function.
 
     """
     
@@ -82,7 +81,7 @@ cdef class Continuo(PlasmaModel):
         self._change()
 
     def __repr__(self):
-        return '<PlasmaModel - adaslib/continuo Bremsstrahlung>'
+        return '<PlasmaModel - continuo FF + FB>'
 
     @cython.boundscheck(False)  # Deactivate bounds checking
     @cython.wraparound(False)   # Deactivate negative indexing.

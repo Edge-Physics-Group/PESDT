@@ -449,7 +449,7 @@ class LOS:
                         dl_emiss += self.los_1d['H_emiss'][key]['h2'][dl_idx]
                         dl_emiss += self.los_1d['H_emiss'][key]['h2+'][dl_idx]
                         dl_emiss += self.los_1d['H_emiss'][key]['h-'][dl_idx]
-                    wv_area = np.trapz(dl_stark[dl_idx], x = wave_nm)
+                    wv_area = np.trapezoid(dl_stark[dl_idx], x = wave_nm)
                     amp_scal = dl_emiss / wv_area
                     dl_stark[dl_idx] *= amp_scal
 

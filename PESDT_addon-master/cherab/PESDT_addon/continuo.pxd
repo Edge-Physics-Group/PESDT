@@ -10,12 +10,9 @@ cdef extern from "continuo_.h":
         double free_free
         double free_bound
 
-    ContinuumRadiation continuo_(
-        double wavelength_A,
-        double Te_eV,
-        int atomic_number,
-        int ion_charge
-    )
+    ContinuumRadiation continuo_(double wavelength_A, double Te_eV, int atomic_number, int ion_charge)
+
+    void continuov_(double * wavelength_A, double* Te_eV, int atomic_number, int ion_charge, size_t num_wl, size_t num_te, ContinuumRadiation * out)
 
 cdef class Continuo(PlasmaModel):
     cdef:

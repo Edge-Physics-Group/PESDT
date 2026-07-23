@@ -169,21 +169,23 @@ class CherabPlasma():
         # Define one transition at a time and 'observe' total radiance
         # If multiple transitions are fed into the plasma object, the total
         # observed radiance will be the sum of the defined spectral lines.
-
+        line_emitter = DirectEmission
         if include_stark:
             lineshape = StarkBroadenedLine
         elif include_ff_fb:
             lineshape = GaussianLine
         else:
             lineshape = None
+        '''
         if self.opaque:
             if self.opaque_mode in [0, 1]:
                 line_emitter = OpaqueDeltaDirectEmission 
             elif self.opaque_mode == 2:
-                line_emitter = DirectEmission
+                
         else:
             line_emitter = DirectEmission
             lineshape = None
+        '''
         # Only deuterium supported at the moment
         if atnum == 1:
             if data_source in ["AMJUEL", "YACORA"]:
