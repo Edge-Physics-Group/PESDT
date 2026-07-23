@@ -51,7 +51,7 @@ def continuo_(wavelength_A, Te_eV, atomic_number, ion_charge):
     return result.free_free*CONV, (result.free_bound+result.free_free)*CONV # Imitate adaslib behaviour
 
 def continuov_(wavelength_A: np.ndarray, Te_eV: np.ndarray, atomic_number: int, ion_charge: int):
-    wavelength_A = np.asarray(wavelength_A); Te_eV = np.asarray(Te_eV)
+    wavelength_A = np.atleast_1d(wavelength_A); Te_eV = np.atleast_1d(Te_eV)
     num_wl =len(wavelength_A); num_te = len(Te_eV)
     output = np.empty(num_wl * num_te, dtype=cr_dtype)
     lib.continuov_(
