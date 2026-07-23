@@ -24,7 +24,7 @@ def residual_lorentz_52(params, x, data=None, eps_data=None):
 
     model = 1. / (np.power(np.abs(x - cwl), 5. / 2.) + np.power(stark_fwhm / 2.0, 5. / 2.))
 
-    model_area = np.trapz(model, x=x)
+    model_area = np.trapezoid(model, x=x)
     amp_scal = area / model_area
     model *= amp_scal
 
