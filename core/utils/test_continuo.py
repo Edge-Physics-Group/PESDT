@@ -71,8 +71,8 @@ for Te_test in Te_tests:
     ax.plot(wavelengths,ffv,label="FF - vectorfunc",color="green",linestyle="--")
     ax.plot(wavelengths,ffvtot + fb_intensities,label="Total vectorfunc",color="green")
 
-    ax.plot(wavelengths,ffa,label="FF - adas",color="green",linestyle="--")
-    ax.plot(wavelengths,fftot + fb_intensities,label="Total adas",color="green")
+    ax.plot(wavelengths,ffa,label="FF - adas",color="magenta",linestyle="--")
+    ax.plot(wavelengths,fftot + fb_intensities,label="Total adas",color="magenta")
 
     ax2.plot(wavelengths,(ff_intensities-ffa)/ffa,label="FF -residual",color="crimson",linestyle="--")
     ax2.plot(wavelengths,(fb_intensities-(fftot-ffa))/(fftot-ffa),label="FB -residual",color="royalblue")
