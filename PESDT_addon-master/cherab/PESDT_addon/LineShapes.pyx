@@ -25,6 +25,8 @@ np.import_array()
 
 DEF GAUSSIAN_CUTOFF_SIGMA = 10.0
 
+cdef double LORENZIAN_CUTOFF_GAMMA = 50.0
+
 cdef class DeltaLine(LineShapeModel):
     """
     Infinitely narrow spectral line ("delta-function" line shape).
@@ -68,7 +70,8 @@ cdef class StarkFunction(Function1D):
     """
 
     def __init__(self, double wavelength, double lambda_1_2):
-
+        self.STARK_NORM_COEFFICIENT =  4 * LORENZIAN_CUTOFF_GAMMA * hyp2f1(0.4, 1, 1.4, -(2 * LORENZIAN_CUTOFF_GAMMA)**2.5)
+ 
         if wavelength <= 0:
             raise ValueError("Argument 'wavelength' must be positive.")
 
@@ -79,7 +82,7 @@ cdef class StarkFunction(Function1D):
         self._a = (0.5 * lambda_1_2)**2.5
         # normalise, so the integral over x is equal to 1 in the limits
         # (_x0 - LORENZIAN_CUTOFF_GAMMA * lambda_1_2, _x0 + LORENZIAN_CUTOFF_GAMMA * lambda_1_2)
-        self._norm = (0.5 * lambda_1_2)**1.5 / <double> STARK_NORM_COEFFICIENT
+        self._norm = (0.5 * lambda_1_2)**1.5 / <double> self.STARK_NORM_COEFFICIENT
 
     @cython.cdivision(True)
     cdef double evaluate(self, double x) except? -1e999:
