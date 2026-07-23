@@ -15,7 +15,8 @@ class ContinuumRadiation(ctypes.Structure):
 cr_dtype = np.dtype([
     ("free_free", np.float64),
     ("free_bound", np.float64),
-])
+], align=True)
+
 lib_root = os.environ.get("CONTINUO_LIB")
 if lib_root is None:
     lib_root = os.path.join(os.environ.get('PESDT_HOME', os.path.expanduser('~')), "PESDT/core/utils")
@@ -51,17 +52,19 @@ def continuo_(wavelength_A, Te_eV, atomic_number, ion_charge):
     return result.free_free*CONV, (result.free_bound+result.free_free)*CONV # Imitate adaslib behaviour
 
 def continuov_(wavelength_A: np.ndarray, Te_eV: np.ndarray, atomic_number: int, ion_charge: int):
-    wavelength_A = np.atleast_1d(wavelength_A); Te_eV = np.atleast_1d(Te_eV)
+    wavelength_A = np.ascontiguousarray(np.atleast_1d(wavelength_A), dtype=np.float64)
+    Te_eV = np.ascontiguousarray(np.atleast_1d(Te_eV), dtype=np.float64)
     num_wl =len(wavelength_A); num_te = len(Te_eV)
     output = np.empty(num_wl * num_te, dtype=cr_dtype)
+
     lib.continuov_(
-        wavelength_A,
-        Te_eV,
-        int(atomic_number),
-        int(ion_charge),
-        num_wl,
-        num_te,
-        output
+        wavelength_A.ctypes.data_as(ctypes.POINTER(ctypes.c_double)),
+        Te_eV.ctypes.data_as(ctypes.POINTER(ctypes.c_double)),
+        ctypes.c_int(atomic_number),
+        ctypes.c_int(ion_charge),
+        ctypes.c_size_t(num_wl),
+        ctypes.c_size_t(num_te),
+        output.ctypes.data_as(ctypes.POINTER(ContinuumRadiation))
     )
     output = output.reshape(num_te, num_wl)
     return output["free_free"]*CONV, (output["free_bound"]+output["free_free"])*CONV
