@@ -64,7 +64,7 @@ for Te_test in Te_tests:
     # 5. Plot the results to visually inspect recombination edges
     fig, (ax, ax2) = plt.subplots(1, 2, figsize=(10, 6))
 
-    ax.plot(wavelengths,ff_intensities,label="Free-Free (Bremsstrahlung)",color="crimson",linestyle="--")
+    ax.plot(wavelengths,ff_intensities,label="Free-Free (Bremsstrahlung)",color="crimson")
     ax.plot(wavelengths,fb_intensities,label="Free-Bound (Recombination)",color="royalblue")
     ax.plot(wavelengths,ff_intensities + fb_intensities,label="Total Continuum",color="black")
 
@@ -74,7 +74,7 @@ for Te_test in Te_tests:
     ax.plot(wavelengths,ffa,label="FF - adas",color="magenta",linestyle="--")
     ax.plot(wavelengths,fftot + fb_intensities,label="Total adas",color="magenta")
 
-    ax2.plot(wavelengths,(ff_intensities-ffa)/ffa,label="FF -residual",color="crimson",linestyle="--")
+    ax2.plot(wavelengths,(ff_intensities-ffa)/ffa,label="FF -residual",color="crimson")
     ax2.plot(wavelengths,(fb_intensities-(fftot-ffa))/(fftot-ffa),label="FB -residual",color="royalblue")
     ax2.plot(wavelengths,(ff_intensities-fftot + fb_intensities)/fftot,label="Total -residual",color="black")
 
