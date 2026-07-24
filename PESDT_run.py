@@ -16,20 +16,13 @@ if __name__=='__main__':
     logger.handlers = []
 
     # File handler
-    file_handler = logging.FileHandler('PESDT.log')
-    file_handler.setLevel(logging.INFO)
-    file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+    
 
     # Console (stream) handler
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setLevel(logging.INFO)
     console_handler.setFormatter(logging.Formatter('%(levelname)s - %(message)s'))
 
-    # Add both handlers
-    
-
-    
-    
 
     # Parse the input arguments
     parser = argparse.ArgumentParser(description='Run PESDT')
@@ -52,7 +45,9 @@ if __name__=='__main__':
         logger.info(f"Found input dictionary: {input_dict_file}")
         run_PESDT(input_dict)
     else:
-
+        file_handler = logging.FileHandler('PESDT.log')
+        file_handler.setLevel(logging.INFO)
+        file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
         logger.addHandler(console_handler)
         logger.info('PESDT started')
         logger.info(input_dict_file + ' not found')
