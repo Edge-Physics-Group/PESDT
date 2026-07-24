@@ -109,6 +109,9 @@ class ProcessEdgeSim:
         # to Siz and Srec estimates with modified Ly-trapping adas data
         self.cherab_ne_Te_KT3_resfile = self.input_dict['run_options'].get('use_cherab_resfile_for_KT3_ne_Te_fits', None)
         self.diag_list = self.input_dict['diag_list']
+        self.camera_list = self.input_dict['ccd_list']
+        self.bolo_list = self.input_dict['bolo_list']
+
         self.calc_synth_spec_features = self.input_dict['run_options'].get('analyse_synth_spec_features', False)
         self.AMJUEL_date = self.input_dict['run_options'].get("AMJUEL_date", 2016) # Default to <2017 (no H3+)
         self.data_source = self.input_dict["run_options"].get("data_source", "AMJUEL")
@@ -151,7 +154,7 @@ class ProcessEdgeSim:
                                         self.spec_line_dict, adf11_year=12, restore=not self.input_dict['read_ADAS'])
 
 
-        logger.info(f"diag_list: {self.input_dict['diag_list']}")
+        #logger.info(f"diag_list: {self.input_dict['diag_list']}")
 
     def load_edge_data(self):
         logger.info(f"Loading {self.edge_code} BG plasma from {self.sim_path}.")
@@ -188,8 +191,9 @@ class ProcessEdgeSim:
         cherab_opts: dict = self.input_dict["cherab_options"]
         run_opts = self.input_dict["run_options"]
         spec_line_dict = self.input_dict["spec_line_dict"]
-        diag_list = self.input_dict["diag_list"]
-
+        diag_list = self.diag_list
+        camera_list = self.camera_list
+        bolo_list = self.bolo_list
         # === Run Options ===
         data_source = run_opts.get("data_source", "AMJUEL")
         impurity_data_source = run_opts.get("imp_data_source", None)
@@ -222,20 +226,32 @@ class ProcessEdgeSim:
         # === Create insrument LOS database ===
         instrument_los_dict = {}
         camera_los_dict = {}
+        bolo_los_dict = {}
         for diag in diag_list:
-            diag_type = diag_def[diag].get("type", "LOS")
-            if diag_type == "LOS":
-                los_points = []
-                p1 = diag_def[diag]["p1"][0].tolist()
-                w1 = 0.0
-                w2 = diag_def[diag]["w"][0][1]
-                for p2 in diag_def[diag]["p2"]:
-                    los_points.append((p1, p2.tolist(), w1, w2))
-                instrument_los_dict[diag] = los_points
-            elif diag_type == "CCD":
-                camera_los_dict[diag] = diag_def[diag]
-            else:
-                pass
+            #diag_type = diag_def[diag].get("type", "LOS")
+            #if diag_type == "LOS":
+            los_points = []
+            w1 = 0.0
+            w2 = diag_def[diag]["w"][0][1]
+            for i, p2 in enumerate(diag_def[diag]["p2"]):
+                p1_ = diag_def[diag]["p1"][i].tolist()
+                p2_ = p2.tolist()
+                los_points.append((p1_, p2_, w1, w2))
+            instrument_los_dict[diag] = los_points
+        for diag in camera_list:
+            #elif diag_type == "CCD":
+            camera_los_dict[diag] = diag_def[diag]
+        for diag in bolo_list:
+            #elif diag_type == "BOLO":
+            los_points = []
+            w1 = 0.0
+            w2 = diag_def[diag]["w"][0][1]
+            for i, p2 in enumerate(diag_def[diag]["p2"]):
+                p1_ = diag_def[diag]["p1"][i].tolist()
+                p2_ = p2.tolist()
+                los_points.append((p1_, p2_, w1, w2))
+            bolo_los_dict[diag] = los_points
+    
 
 
         # === Initialize Plasma ===
@@ -247,36 +263,14 @@ class ProcessEdgeSim:
                             recalc_h2_pos=recalc_h2_pos,
                             transitions=transitions,
                             instrument_los_dict = instrument_los_dict,
+                            bolo_los_dict = bolo_los_dict,
                             mol_exc_bands= mol_exc_emission_bands,
                             opaque= self.opaque)
         
-        # For full Doppler, need to setup spectrometers for each camera
-        # Do it in a different function
-        # Ideal and central are okay here
-        if self.opaque and self.opaque_mode == 2:
-            logger.info("Full Doppler opacity mode on, skipping cameras")
-            opaque_bins = cherab_opts.get("opacity_spectral_bins", 21)
-            self.opaque_tracing(plasma, 
-                       include_reflections, 
-                       import_jet_surfaces, 
-                       data_source, 
-                       instrument_los_dict, 
-                       pixel_samples, 
-                       num_processes,
-                       calc_stark_ne,
-                       spec_line_dict,
-                       stark_transition,
-                       stark_bins,
-                       ff_fb,
-                       ff_fb_bins,
-                       mol_exc_emission,
-                       mol_exc_emission_bands,
-                       opaque_bins)
-            return
         # === Setup Observers ===
-        plasma.setup_observers(instrument_los_dict, pixel_samples=pixel_samples, num_processes = num_processes)
-        plasma.setup_cameras(camera_los_dict, pixel_samples = pixel_samples, num_processes = num_processes)
-
+        plasma.setup_observers(pixel_samples = pixel_samples, num_processes = num_processes)
+        plasma.setup_cameras(pixel_samples = pixel_samples, num_processes = num_processes)
+        plasma.setup_bolometers(pixel_samples = pixel_samples, num_processes = num_processes)
         # === Setup Spectral Observers if needed ===
         # Figure out Stark wavelength from spec_line_dict
         if calc_stark_ne:
@@ -310,7 +304,6 @@ class ProcessEdgeSim:
 
         self.outdict = {"description": f"CHERAB, REFLECTIONS: {include_reflections}, JET-MESH: {import_jet_surfaces}, DATA SOURCE: {data_source}"}
         
-
         # === Process Each Instrument ===
         for diag, _ in instrument_los_dict.items():
             self.outdict[diag] = {}
@@ -335,60 +328,52 @@ class ProcessEdgeSim:
                 if data_source in ["YACORA", "AMJUEL"]:
                     # Excitation
                     logger.info("Excitation")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
-                                            include_excitation=True, data_source=data_source)
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_excitation=True, data_source=data_source)
                     excit = plasma.integrate_instrument(diag)
                     self.outdict[diag][wavelength]["excit"] = [x[0] for x in excit]
 
                     # Recombination
                     logger.info("Recombination")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,
                                             include_recombination=True, data_source=data_source)
                     recom = plasma.integrate_instrument(diag)
                     self.outdict[diag][wavelength]["recom"] = [x[0] for x in recom]
                     # Molecular / negative H species
                 
                     logger.info("H2")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
-                                            include_H2=True, data_source=data_source)
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_H2=True, data_source=data_source)
                     self.outdict[diag][wavelength]["h2"] = [x[0] for x in plasma.integrate_instrument(diag)]
                     logger.info("H2+")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
-                                            include_H2_pos=True, data_source=data_source)
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_H2_pos=True, data_source=data_source)
                     self.outdict[diag][wavelength]["h2+"] = [x[0] for x in plasma.integrate_instrument(diag)]
                     logger.info("H3+")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
-                                            include_H3_pos=True, data_source=data_source)
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_H3_pos=True, data_source=data_source)
                     self.outdict[diag][wavelength]["h3+"] = [x[0] for x in plasma.integrate_instrument(diag)]
                     logger.info("H-")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
-                                            include_H_neg=True, data_source=data_source)
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_H_neg=True, data_source=data_source)
                     self.outdict[diag][wavelength]["h-"] = [x[0] for x in plasma.integrate_instrument(diag)]
 
                     if self.opaque:
                         logger.info("Photons (due to opacity)")
-                        plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
-                                            include_ph=True, data_source=data_source)
+                        plasma.define_Hydrogenic_plasma_model(transition=transition, include_ph=True, data_source=data_source)
                         self.outdict[diag][wavelength]["ph"] = [x[0] for x in plasma.integrate_instrument(diag)]
                 if data_source == "ADAS":
                     # Excitation
                     logger.info("Excitation")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
-                                            include_excitation=True, data_source=data_source)
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_excitation=True, data_source=data_source)
                     excit = plasma.integrate_instrument(diag)
                     self.outdict[diag][wavelength]["excit"] = [x[0] for x in excit]
 
                     # Recombination
                     logger.info("Recombination")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
-                                            include_recombination=True, data_source=data_source)
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_recombination=True, data_source=data_source)
                     recom = plasma.integrate_instrument(diag)
                     self.outdict[diag][wavelength]["recom"] = [x[0] for x in recom]
                     
                 # === Optional Stark Spectrum ===
                 if calc_stark_ne and transition == stark_transition:
                     logger.info("Stark")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                    plasma.define_stark_plasma_model(transition=transition,
                                             include_excitation=True, include_recombination=True,
                                             include_H2=True, include_H2_pos=True,
                                             include_H3_pos=True, include_H_neg=True,
@@ -405,7 +390,7 @@ class ProcessEdgeSim:
             # === Optional FF+FB Spectrum ===
             if ff_fb:
                 logger.info("Continuum")
-                plasma.define_plasma_model(atnum=1, ion_stage=0, data_source=data_source, include_ff_fb=True)
+                plasma.define_continuum_plasma_model()
                 spec, wl = plasma.integrate_instrument_spectral(diag, destination="continuum")
                 self.outdict[diag]["ff_fb_continuum"] = {
                     "wave": wl[0],
@@ -416,9 +401,8 @@ class ProcessEdgeSim:
             if mol_exc_emission:
                 for band in mol_exc_emission_bands:
                     logger.info(f"Molecular Excitation Emission for {band} band")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=band, data_source=data_source, include_mol_exc = True)
+                    plasma.define_Hydrogenic_plasma_model(transition=band, data_source=data_source, include_mol_exc = True)
                     self.outdict[diag][band] = [x[0] for x in plasma.integrate_instrument(diag)]
-
 
         # === Process Each Camera ===
         for diag, settings in camera_los_dict.items():
@@ -432,17 +416,21 @@ class ProcessEdgeSim:
                 wavelength = line_key
                 self.outdict[diag][wavelength] = {}
                 if data_source in ["YACORA", "AMJUEL"]:
-                    #plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                    #plasma.define_Hydrogenic_plasma_model(transition=transition,
                     #                        include_excitation=True, include_recombination= True, include_H2=True,
                     #                         include_H2_pos=True, include_H3_pos=True, include_H_neg=False, data_source=data_source)
                     # Need to create an option to choose hydrogen radiation components
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,
                                             include_excitation=True, include_recombination= True, include_H2=False,
                                              include_H2_pos=False, include_H3_pos=False, include_H_neg=False, data_source=data_source)
                     em = plasma.observe_camera(diag)
                     self.outdict[diag][wavelength]["total"] = em[0].tolist()
                     self.outdict[diag][wavelength]["variance"] = em[1].tolist()
-    
+
+        # === Process Each Bolometer ===
+        for diag, _ in bolo_los_dict.items():
+            pass
+
     def opaque_tracing(self, plasma: CherabPlasma, 
                        include_reflections, 
                        import_jet_surfaces, 
@@ -530,7 +518,7 @@ class ProcessEdgeSim:
                 if data_source in ["YACORA", "AMJUEL"]:
                     # Excitation
                     logger.info("Excitation")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,
                                             include_excitation=True, data_source=data_source)
                     spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
                     spec = np.array(spec)
@@ -541,7 +529,7 @@ class ProcessEdgeSim:
 
                     # Recombination
                     logger.info("Recombination")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,
                                             include_recombination=True, data_source=data_source)
                     spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
                     spec = np.array(spec)
@@ -552,7 +540,7 @@ class ProcessEdgeSim:
                     # Molecular / negative H species
                 
                     logger.info("H2")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,
                                             include_H2=True, data_source=data_source)
                     spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
                     spec = np.array(spec)
@@ -561,7 +549,7 @@ class ProcessEdgeSim:
                     ints = [np.sum(s) for s in spec]
                     self.outdict[diag][wavelength]["h2"] = ints
                     logger.info("H2+")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,
                                             include_H2_pos=True, data_source=data_source)
                     spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
                     spec = np.array(spec)
@@ -570,7 +558,7 @@ class ProcessEdgeSim:
                     ints = [np.sum(s) for s in spec]
                     self.outdict[diag][wavelength]["h2+"] = ints
                     logger.info("H3+")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,
                                             include_H3_pos=True, data_source=data_source)
                     spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
                     spec = np.array(spec)
@@ -579,7 +567,7 @@ class ProcessEdgeSim:
                     ints = [np.sum(s) for s in spec]
                     self.outdict[diag][wavelength]["h3+"] = ints
                     logger.info("H-")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,
                                             include_H_neg=True, data_source=data_source)
                     spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
                     spec = np.array(spec)
@@ -591,7 +579,7 @@ class ProcessEdgeSim:
                 if data_source == "ADAS":
                     # Excitation
                     logger.info("Excitation")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,
                                             include_excitation=True, data_source=data_source)
                     spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
                     spec = np.array(spec)
@@ -601,7 +589,7 @@ class ProcessEdgeSim:
 
                     # Recombination
                     logger.info("Recombination")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,
                                             include_recombination=True, data_source=data_source)
                     spec, wl = plasma.integrate_instrument_spectral(diag, destination= None)
                     spec = np.array(spec)
@@ -612,7 +600,7 @@ class ProcessEdgeSim:
                 # === Optional Stark Spectrum ===
                 if calc_stark_ne and transition == stark_transition:
                     logger.info("Stark")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=transition,
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,
                                             include_excitation=True, include_recombination=True,
                                             include_H2=True, include_H2_pos=True,
                                             include_H3_pos=True, include_H_neg=True,
@@ -629,7 +617,7 @@ class ProcessEdgeSim:
             # === Optional FF+FB Spectrum ===
             if ff_fb:
                 logger.info("Continuum")
-                plasma.define_plasma_model(atnum=1, ion_stage=0, data_source=data_source, include_ff_fb=True)
+                plasma.define_Hydrogenic_plasma_model(data_source=data_source, include_ff_fb=True)
                 spec, wl = plasma.integrate_instrument_spectral(diag, destination="continuum")
                 self.outdict[diag]["ff_fb_continuum"] = {
                     "wave": wl[0],
@@ -640,7 +628,7 @@ class ProcessEdgeSim:
             if mol_exc_emission:
                 for band in mol_exc_emission_bands:
                     logger.info(f"Molecular Excitation Emission for {band} band")
-                    plasma.define_plasma_model(atnum=1, ion_stage=0, transition=band, data_source=data_source, include_mol_exc = True)
+                    plasma.define_Hydrogenic_plasma_model(transition=band, data_source=data_source, include_mol_exc = True)
                     self.outdict[diag][band] = [x[0] for x in plasma.integrate_instrument(diag)]
         return
 

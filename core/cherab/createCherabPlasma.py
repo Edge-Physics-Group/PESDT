@@ -1,14 +1,13 @@
 
 import numpy as np
-from raysect.core.math.function.float.function2d.interpolate import Discrete2DMesh
-
 from cherab.PESDT_addon import PESDTSimulation, PESDTElement, deuterium, EIRENEMesh, QuadMesh
 import copy
 from ..utils import (read_amjuel_1d,
                      read_amjuel_2d,reactions, 
                      calc_cross_sections, 
                      calc_photon_rate,
-                     A_coeff, 
+                     A_coeff,
+                     continuo_read, 
                      H2_wavelength, 
                      wavelength,
                      calc_H2_band_emission, 
@@ -25,7 +24,15 @@ D2 = PESDTElement("Deuterium2", "D2", 2.0, 4.0, BaseD)
 D2vibr = PESDTElement("Deuterium2vibr", "D2", 2.0, 4.0, BaseD)
 D3 = PESDTElement("Deuterium3+", "D3", 3.0, 6.0, BaseD)
 M_D = 3.344e-27
-def createCherabPlasma(PESDT, transitions: list, 
+
+def createZCherabPlasma(PESDT, species_transitions: dict, convert_denel_to_m3 = True):
+    '''
+    Creates a cherab compatible PLASMA simulation object for any species using OpenADAS rates
+    
+    '''
+    return
+
+def createHydrogenicCherabPlasma(PESDT, transitions: list, 
                        convert_denel_to_m3 = True, 
                        data_source = "AMJUEL", 
                        recalc_h2_pos = True,
@@ -34,7 +41,8 @@ def createCherabPlasma(PESDT, transitions: list,
                        opaque_mode = 0,
                        opaque_bins = 21):
     '''
-    Creates a cherab compatible PLASMA simulation object
+    Creates a cherab compatible PLASMA simulation object for hydrogenic plasmas with user defined data source,
+    e.g. AMJUEL to have molecular contributions
     
     convert_denel_to_m3: When using adas data, you need to explicitly convert to the right units
     recalc_h2_pos: Recalculate the H2+ denisity according to AMJUEL H.12 2.0c. Should only be used, if
@@ -277,9 +285,6 @@ def createCherabPlasma(PESDT, transitions: list,
     species_density[0, :] = n0[:]  # neutral density D0
     species_density[1, :] = ni[:]  # ion density D+1
     
-
-    
-
     neutral_temperature = np.zeros((num_neut, num_cells))
     for i in range(num_neut):
         neutral_temperature[i, :] = t0[:] # just use T_n0 for now
@@ -305,3 +310,67 @@ def createCherabPlasma(PESDT, transitions: list,
         if opaque:
             sim.absorbance = [emission_keys, absorbance]
     return sim
+
+def createHydrogenicCherabPlasmaBolo(PESDT, convert_denel_to_m3 = True):
+    num_cells = len(PESDT.cells)
+
+    rv = np.zeros((num_cells, 4))
+    zv = np.zeros((num_cells, 4))
+    # Eirene uses triangles
+    if PESDT.edge_code == "eirene":
+        rv = np.zeros((num_cells, 3))
+        zv = np.zeros((num_cells, 3))
+
+    te = np.zeros(num_cells)
+    ti = np.zeros(num_cells)
+    t0 = np.zeros(num_cells)
+    ne = np.zeros(num_cells)
+    ni = np.zeros(num_cells)
+    n0 = np.zeros(num_cells)
+    n2 = np.zeros(num_cells)
+    n2p = np.zeros(num_cells)
+    multi = 1.0
+    if convert_denel_to_m3:
+        multi = 1e-6
+
+    for ith_cell, cell in enumerate(PESDT.cells):
+        
+        if PESDT.edge_code == "solps":
+            coords = np.array(cell.poly.exterior.coords).transpose()
+            rv[ith_cell, :] = coords[0]
+            zv[ith_cell, :] = coords[1]
+        elif PESDT.edge_code in ["edge2d", "oedge"]:
+            rv[ith_cell, :] = PESDT.data.rv[ith_cell, 0:4]
+            zv[ith_cell, :] = PESDT.data.zv[ith_cell, 0:4]
+        else:
+            pass
+            #Eirene grid is created directly from vertices
+        # Pull over plasma values to new CHERAB arrays
+
+        te[ith_cell] = cell.te
+        ti[ith_cell] = cell.te
+        t0[ith_cell] = cell.te if cell.t0 is None else cell.t0
+        # Multiply by 1e-6, I think cherab wants densities in cm^-3
+        
+        ni[ith_cell] = cell.ni*multi
+        ne[ith_cell] = cell.ne*multi
+        n0[ith_cell] = cell.n0*multi
+        n2[ith_cell] = cell.n2*multi
+        n2p[ith_cell] = cell.n2p*multi
+
+    #####################################################
+    # Now load the simulation object with plasma values #
+    
+    if PESDT.edge_code in ["solps", "edge2d", "oedge"]:
+        rv = np.transpose(rv)
+        zv = np.transpose(zv)
+        mesh = QuadMesh(rv, zv) 
+    elif PESDT.edge_code in ["eirene"]:
+        mesh = EIRENEMesh(PESDT.data.vertices, PESDT.data.triangles)
+
+    sim = PESDTSimulation(mesh, species_list) 
+    sim.electron_temperature = te
+    sim.electron_density = ne
+    sim.ion_temperature = ti
+    sim.neutral_temperature = neutral_temperature
+    sim.species_density = species_density

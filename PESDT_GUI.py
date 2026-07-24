@@ -119,29 +119,99 @@ class Base(QWidget):
         layout.addLayout(save_layout)
 
         # Diagnostics area (will hold grid of diagnostics)
-        diag_layout = QVBoxLayout()
-        diag_label = QLabel("Diagnostics:")
-        diag_layout.addWidget(diag_label)
+        em_diag_layout = QVBoxLayout()
+        em_diag_label = QLabel("Emission diagnostics:")
+        em_diag_layout.addWidget(em_diag_label)
 
-        self.diag_grid_widget = QWidget()
-        self.diag_grid = QGridLayout()
-        self.diag_grid.setSpacing(10)
-        self.diag_grid_widget.setLayout(self.diag_grid)
+        self.em_diag_grid_widget = QWidget()
+        self.em_diag_grid = QGridLayout()
+        self.em_diag_grid.setSpacing(10)
+        self.em_diag_grid_widget.setLayout(self.em_diag_grid)
 
         # Optional: make the diagnostic area scrollable
-        scroll_area = QScrollArea()
-        scroll_area.setWidgetResizable(True)
-        scroll_area.setWidget(self.diag_grid_widget)
+        em_scroll_area = QScrollArea()
+        em_scroll_area.setWidgetResizable(True)
+        em_scroll_area.setWidget(self.em_diag_grid_widget)
 
-        diag_layout.addWidget(scroll_area)
-        layout.addLayout(diag_layout)
+        em_diag_layout.addWidget(em_scroll_area)
+        layout.addLayout(em_diag_layout)
+
+        em_c_diag_layout = QVBoxLayout()
+        em_c_diag_label = QLabel("Emission cameras:")
+        em_c_diag_layout.addWidget(em_c_diag_label)
+
+        self.em_c_diag_grid_widget = QWidget()
+        self.em_c_diag_grid = QGridLayout()
+        self.em_c_diag_grid.setSpacing(10)
+        self.em_c_diag_grid_widget.setLayout(self.em_c_diag_grid)
+
+        # Optional: make the diagnostic area scrollable
+        em_c_scroll_area = QScrollArea()
+        em_c_scroll_area.setWidgetResizable(True)
+        em_c_scroll_area.setWidget(self.em_c_diag_grid_widget)
+
+        em_c_diag_layout.addWidget(em_c_scroll_area)
+        layout.addLayout(em_c_diag_layout)
+
+
+        bolo_diag_layout = QVBoxLayout()
+        bolo_diag_label = QLabel("Bolometers:")
+        bolo_diag_layout.addWidget(bolo_diag_label)
+
+        self.bolo_diag_grid_widget = QWidget()
+        self.bolo_diag_grid = QGridLayout()
+        self.bolo_diag_grid.setSpacing(10)
+        self.bolo_diag_grid_widget.setLayout(self.bolo_diag_grid)
+
+        # Optional: make the diagnostic area scrollable
+        bolo_scroll_area = QScrollArea()
+        bolo_scroll_area.setWidgetResizable(True)
+        bolo_scroll_area.setWidget(self.bolo_diag_grid_widget)
+
+        bolo_diag_layout.addWidget(bolo_scroll_area)
+        layout.addLayout(bolo_diag_layout)
+
+        other_diag_layout = QVBoxLayout()
+        other_diag_label = QLabel("Other Diagnostics:")
+        other_diag_layout.addWidget(other_diag_label)
+
+        self.other_diag_grid_widget = QWidget()
+        self.other_diag_grid = QGridLayout()
+        self.other_diag_grid.setSpacing(10)
+        self.other_diag_grid_widget.setLayout(self.other_diag_grid)
+
+        # Optional: make the diagnostic area scrollable
+        other_scroll_area = QScrollArea()
+        other_scroll_area.setWidgetResizable(True)
+        other_scroll_area.setWidget(self.other_diag_grid_widget)
+
+        other_diag_layout.addWidget(other_scroll_area)
+        layout.addLayout(other_diag_layout)
 
         self.update_diagnostics()
 
     def update_diagnostics(self):
         # Clear the old diagnostics
-        while self.diag_grid.count():
-            item = self.diag_grid.takeAt(0)
+        while self.em_diag_grid.count():
+            item = self.em_diag_grid.takeAt(0)
+            widget = item.widget()
+            if widget:
+                widget.deleteLater()
+
+        while self.em_c_diag_grid.count():
+            item = self.em_c_diag_grid.takeAt(0)
+            widget = item.widget()
+            if widget:
+                widget.deleteLater()
+
+        while self.bolo_diag_grid.count():
+            item = self.bolo_diag_grid.takeAt(0)
+            widget = item.widget()
+            if widget:
+                widget.deleteLater()
+        
+        while self.other_diag_grid.count():
+            item = self.other_diag_grid.takeAt(0)
             widget = item.widget()
             if widget:
                 widget.deleteLater()
@@ -166,12 +236,19 @@ class Base(QWidget):
             h_layout.addStretch()
             diag_widget.setLayout(h_layout)
 
-            self.diag_grid.addWidget(diag_widget, row, col)
+            if diag_dict[diag]["type"] == "LOS":
+                self.em_diag_grid.addWidget(diag_widget, row, col)
+            elif diag_dict[diag]["type"] == "CCD":
+                self.em_c_diag_grid.addWidget(diag_widget, row, col)
+            elif diag_dict[diag]["type"] == "BOLO":
+                self.bolo_diag_grid.addWidget(diag_widget, row, col)
+            else:
+                self.other_diag_grid.addWidget(diag_widget, row, col)
 
     def get_selected_diagnostics(self):
         selected = []
-        for i in range(self.diag_grid.count()):
-            item = self.diag_grid.itemAt(i)
+        for i in range(self.em_diag_grid.count()):
+            item = self.em_diag_grid.itemAt(i)
             widget = item.widget()
             if widget:
                 layout = widget.layout()
@@ -183,10 +260,99 @@ class Base(QWidget):
                     if isinstance(label_widget, QLabel):
                         selected.append(label_widget.text())
         return selected 
+
+    def get_selected_bolo(self):
+            selected = []
+            for i in range(self.bolo_diag_grid.count()):
+                item = self.bolo_diag_grid.itemAt(i)
+                widget = item.widget()
+                if widget:
+                    layout = widget.layout()
+    
+                    checkbox = layout.itemAt(0).widget()
+                    label_widget = layout.itemAt(1).widget()
+    
+                    if isinstance(checkbox, QCheckBox) and checkbox.isChecked():
+                        if isinstance(label_widget, QLabel):
+                            selected.append(label_widget.text())
+            return selected 
+
+    def get_selected_cameras(self):
+            selected = []
+            for i in range(self.em_c_diag_grid.count()):
+                item = self.em_c_diag_grid.itemAt(i)
+                widget = item.widget()
+                if widget:
+                    layout = widget.layout()
+    
+                    checkbox = layout.itemAt(0).widget()
+                    label_widget = layout.itemAt(1).widget()
+    
+                    if isinstance(checkbox, QCheckBox) and checkbox.isChecked():
+                        if isinstance(label_widget, QLabel):
+                            selected.append(label_widget.text())
+            return selected 
+
+    def get_selected_other(self):
+            selected = []
+            for i in range(self.other_diag_grid.count()):
+                item = self.other_diag_grid.itemAt(i)
+                widget = item.widget()
+                if widget:
+                    layout = widget.layout()
+    
+                    checkbox = layout.itemAt(0).widget()
+                    label_widget = layout.itemAt(1).widget()
+    
+                    if isinstance(checkbox, QCheckBox) and checkbox.isChecked():
+                        if isinstance(label_widget, QLabel):
+                            selected.append(label_widget.text())
+            return selected 
     
     def set_selected_diagnostics(self, selected_list):
-        for i in range(self.diag_grid.count()):
-            item = self.diag_grid.itemAt(i)
+        for i in range(self.em_diag_grid.count()):
+            item = self.em_diag_grid.itemAt(i)
+            widget = item.widget()
+            if widget:
+                layout = widget.layout()
+
+                checkbox = layout.itemAt(0).widget()
+                label_widget = layout.itemAt(1).widget()
+
+                if isinstance(checkbox, QCheckBox) and isinstance(label_widget, QLabel):
+                    diag_name = label_widget.text()
+                    checkbox.setChecked(diag_name in selected_list)
+
+    def set_selected_cameras(self, selected_list):
+        for i in range(self.bolo_diag_grid.count()):
+            item = self.bolo_diag_grid.itemAt(i)
+            widget = item.widget()
+            if widget:
+                layout = widget.layout()
+
+                checkbox = layout.itemAt(0).widget()
+                label_widget = layout.itemAt(1).widget()
+
+                if isinstance(checkbox, QCheckBox) and isinstance(label_widget, QLabel):
+                    diag_name = label_widget.text()
+                    checkbox.setChecked(diag_name in selected_list)
+
+    def set_selected_bolos(self, selected_list):
+        for i in range(self.em_c_diag_grid.count()):
+            item = self.em_c_diag_grid.itemAt(i)
+            widget = item.widget()
+            if widget:
+                layout = widget.layout()
+
+                checkbox = layout.itemAt(0).widget()
+                label_widget = layout.itemAt(1).widget()
+
+                if isinstance(checkbox, QCheckBox) and isinstance(label_widget, QLabel):
+                    diag_name = label_widget.text()
+                    checkbox.setChecked(diag_name in selected_list)
+    def set_selected_other(self, selected_list):
+        for i in range(self.other_diag_grid.count()):
+            item = self.other_diag_grid.itemAt(i)
             widget = item.widget()
             if widget:
                 layout = widget.layout()
@@ -209,6 +375,9 @@ class Base(QWidget):
             "read_ADAS": self.read_adas_checkbox.isChecked(),
             "save_dir": self.save_input.text(),
             "diag_list": self.get_selected_diagnostics(),
+            "bolo_list": self.get_selected_bolo(),
+            "ccd_list": self.get_selected_cameras(),
+            "other_diags": self.get_selected_other(),
             "run_options": {
                 "run_cherab": self.run_cherab.isChecked(),
                 "analyse_synth_spec_features": self.analyse_synth_spec_features.isChecked(),
@@ -815,6 +984,9 @@ class PESDTGui(QWidget):
         self.main_tab.base_tab.update_diagnostics()
         # Diag list
         self.main_tab.base_tab.set_selected_diagnostics(settings.get("diag_list", []))
+        self.main_tab.base_tab.set_selected_cameras(settings.get("ccd_list", []))
+        self.main_tab.base_tab.set_selected_bolos(settings.get("bolo_list", []))
+        self.main_tab.base_tab.set_selected_other(settings.get("other_diags", []))
         # Emission lines
         self.main_tab.em_tab.set_selected_lines(settings.get("spec_line_dict", {}).get("1", {}))
 
