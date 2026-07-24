@@ -99,6 +99,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     los_dict['p2'] = test_los[:,1]
     los_dict['w'] = test_los[:,2]
     los_dict['id'] = []
+    los_dict['type'] = "LOS"
     for id in range(len(test_los)):
         los_dict['id'].append(str(id+1))
     JET.set_diag_los('TEST', los_dict)
@@ -140,6 +141,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     los_dict['p2'] = kt3a_los[:,1]
     los_dict['w'] = kt3a_los[:,2]
     los_dict['id'] = []
+    los_dict['type'] = "LOS"
     for id in range(len(kt3a_los)):
         los_dict['id'].append(str(id+1))
     JET.set_diag_los('KT3A', los_dict)
@@ -181,6 +183,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     los_dict['p2'] = kt3b_los[:,1]
     los_dict['w'] = kt3b_los[:,2]
     los_dict['id'] = []
+    los_dict['type'] = "LOS"
     for id in range(len(kt3b_los)):
         los_dict['id'].append(str(id+1))
     JET.set_diag_los('KT3B', los_dict)
@@ -212,6 +215,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     los_dict['p2'] = ks3i_los[:,1]
     los_dict['w'] = ks3i_los[:,2]
     los_dict['id'] = []
+    los_dict['type'] = "LOS"
     for id in range(len(ks3i_los)):
         los_dict['id'].append(str(id+1))
     JET.set_diag_los('KS3I', los_dict)
@@ -243,6 +247,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     los_dict['p2'] = ks3o_los[:,1]
     los_dict['w'] = ks3o_los[:,2]
     los_dict['id'] = []
+    los_dict['type'] = "LOS"
     for id in range(len(ks3o_los)):
         los_dict['id'].append(str(id+1))
     JET.set_diag_los('KS3O', los_dict)
@@ -264,6 +269,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     los_dict['p2'] = ks3h_los[:,1]
     los_dict['w'] = ks3h_los[:,2]
     los_dict['id'] = []
+    los_dict['type'] = "LOS"
     for id in range(len(ks3h_los)):
         los_dict['id'].append(str(id+1))
     JET.set_diag_los('KS3H', los_dict)
@@ -289,6 +295,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     los_dict['p2'] = ks3j_los[:,1]
     los_dict['w'] = ks3j_los[:,2]
     los_dict['id'] = []
+    los_dict['type'] = "LOS"
     for id in range(len(ks3j_los)):
         los_dict['id'].append(str(id+1))
     JET.set_diag_los('KS3J', los_dict)
@@ -311,6 +318,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     los_dict['p2'] = ks3v_los[:,1]
     los_dict['w'] = ks3v_los[:,2]
     los_dict['id'] = []
+    los_dict['type'] = "LOS"
     for id in range(len(ks3v_los)):
         los_dict['id'].append(str(id+1))
     JET.set_diag_los('KS3V', los_dict)
@@ -337,6 +345,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     # los_dict['p2'] = ks3i_los[:,1]
     # los_dict['w'] = ks3i_los[:,2]
     # los_dict['id'] = []
+    # los_dict['type'] = "LOS"
     # for id in range(len(ks3i_los)):
     #     los_dict['id'].append(str(id+1))
     # JET.set_diag_los('KS3I', los_dict)
@@ -356,6 +365,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     los_dict['p2'] = ks8d_los[:,1]
     los_dict['w'] = ks8d_los[:,2]
     los_dict['id'] = []
+    los_dict['type'] = "LOS"
     for id in range(len(ks8d_los)):
         los_dict['id'].append(str(id+1))
     JET.set_diag_los('KS8D', los_dict)
@@ -376,6 +386,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     los_dict['p2'] = ks8d_los[:,1]
     los_dict['w'] = ks8d_los[:,2]
     los_dict['id'] = []
+    los_dict['type'] = "LOS"
     for id in range(len(ks8d_los)):
         los_dict['id'].append(str(id+1))
     JET.set_diag_los('KS8D_A', los_dict)
@@ -396,6 +407,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     los_dict['p2'] = kg1_los[:,1]
     los_dict['w'] = kg1_los[:,2]
     los_dict['id'] = []
+    los_dict['type'] = "LID"
     for id in range(len(kg1_los)):
         los_dict['id'].append(str(id+1))
     JET.set_diag_los('KG1/LID4', los_dict)
@@ -419,6 +431,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     los_dict['p2'] = kt1j_los[:,1]
     los_dict['w'] = kt1j_los[:,2]
     los_dict['id'] = []
+    los_dict['type'] = "LOS"
     for id in range(len(kt1j_los)):
         los_dict['id'].append(str(id+1))
     los_dict['angle'] = kt1j_los_angle
@@ -486,6 +499,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     los_dict['p2'] = kt1v_los[:,1]
     los_dict['w'] = kt1v_los[:,2]
     los_dict['id'] = []
+    los_dict['type'] = "LOS"
     for id in range(len(kt1v_los)):
         los_dict['id'].append(str(id+1))
     los_dict['half_angle'] = kt1v_los_half_angle
@@ -566,6 +580,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
         los_dict['id'].append(str(id+1))
     los_dict['half_angle'] = kt1h_los_half_angle
     los_dict['angle'] = kt1h_los_angle
+    los_dict['type'] = "LOS"
     JET.set_diag_los('KT1H', los_dict)
 
     ###############
@@ -633,6 +648,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     los_dict['p2'] = kb5v_los[:,1]
     los_dict['w'] = kb5v_los[:,2]
     los_dict['id'] = []
+    los_dict['type'] = "BOLO"
     for id in range(len(kb5v_los)):
         los_dict['id'].append(str(id+1))
     los_dict['half_angular_extent'] = kb5v_los_half_angular_extent
@@ -648,6 +664,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
         los_dict['id'].append(str(id+1))
     los_dict['half_angle'] = kb5h_los_half_angular_extent
     los_dict['angle'] = kb5h_los_angle
+    los_dict['type'] = "BOLO"
     JET.set_diag_los('KB5H', los_dict)
 
     ###############
@@ -683,6 +700,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     los_dict['id'] = B3D4_los_id
     los_dict['half_angular_extent'] = B3D4_los_half_angular_extent
     los_dict['angle'] = B3D4_los_angle
+    los_dict['type'] = "BOLO"
     JET.set_diag_los('B3D4', los_dict)
 
     ###############
@@ -718,6 +736,7 @@ def get_JETdefs(plot_defs = False, pulse_ref = 90531):
     los_dict['id'] = B3E4_los_id
     los_dict['half_angular_extent'] = B3E4_los_half_angular_extent
     los_dict['angle'] = B3E4_los_angle
+    los_dict['type'] = "BOLO"
     JET.set_diag_los('B3E4', los_dict)
 
     ######################
@@ -847,6 +866,7 @@ def get_DIIIDdefs(plot_defs=False):
         los_dict['id'].append(str(id+1))
     los_dict['half_angular_extent'] = bolo1_los_half_angular_extent
     los_dict['angle'] = bolo1_los_angle
+    los_dict['type'] = "BOLO"
     DIIID.set_diag_los('bolo1', los_dict)
 
     los_dict = {}
@@ -858,6 +878,7 @@ def get_DIIIDdefs(plot_defs=False):
         los_dict['id'].append(str(id+1))
     los_dict['half_angular_extent'] = bolo2_los_half_angular_extent
     los_dict['angle'] = bolo2_los_angle
+    los_dict['type'] = "BOLO"
     DIIID.set_diag_los('bolo2', los_dict)
 
     los_dict = {}
@@ -869,6 +890,7 @@ def get_DIIIDdefs(plot_defs=False):
         los_dict['id'].append(str(id+1))
     los_dict['half_angular_extent'] = bolo3_los_half_angular_extent
     los_dict['angle'] = bolo3_los_angle
+    los_dict['type'] = "BOLO"
     DIIID.set_diag_los('bolo3', los_dict)
 
     los_dict = {}
@@ -880,6 +902,7 @@ def get_DIIIDdefs(plot_defs=False):
         los_dict['id'].append(str(id+1))
     los_dict['half_angular_extent'] = bolo4_los_half_angular_extent
     los_dict['angle'] = bolo4_los_angle
+    los_dict['type'] = "BOLO"
     DIIID.set_diag_los('bolo4', los_dict)
 
     ###############
@@ -962,6 +985,7 @@ def get_DIIIDdefs(plot_defs=False):
         los_dict['id'].append(str(id+1))
     los_dict['half_angular_extent'] = bolo1_los_half_angular_extent
     los_dict['angle'] = bolo1_los_angle
+    los_dict['type'] = "BOLO"
     DIIID.set_diag_los('bolo1_hr', los_dict)
 
     los_dict = {}
@@ -973,6 +997,7 @@ def get_DIIIDdefs(plot_defs=False):
         los_dict['id'].append(str(id+1))
     los_dict['half_angular_extent'] = bolo2_los_half_angular_extent
     los_dict['angle'] = bolo2_los_angle
+    los_dict['type'] = "BOLO"
     DIIID.set_diag_los('bolo2_hr', los_dict)
 
     los_dict = {}
@@ -984,6 +1009,7 @@ def get_DIIIDdefs(plot_defs=False):
         los_dict['id'].append(str(id+1))
     los_dict['half_angular_extent'] = bolo3_los_half_angular_extent
     los_dict['angle'] = bolo3_los_angle
+    los_dict['type'] = "BOLO"
     DIIID.set_diag_los('bolo3_hr', los_dict)
 
     los_dict = {}
@@ -995,6 +1021,7 @@ def get_DIIIDdefs(plot_defs=False):
         los_dict['id'].append(str(id+1))
     los_dict['half_angular_extent'] = bolo4_los_half_angular_extent
     los_dict['angle'] = bolo4_los_angle
+    los_dict['type'] = "BOLO"
     DIIID.set_diag_los('bolo4_hr', los_dict)
 
     ###############
@@ -1056,6 +1083,7 @@ def get_DIIIDdefs(plot_defs=False):
         los_dict['id'].append(str(id+1))
     los_dict['half_angular_extent'] = fs1_los_half_angular_extent
     los_dict['angle'] = fs1_los_angle
+    los_dict['type'] = "LOS"
     DIIID.set_diag_los('fs1', los_dict)
     
     los_dict = {}
@@ -1067,6 +1095,7 @@ def get_DIIIDdefs(plot_defs=False):
         los_dict['id'].append(str(id+1))
     los_dict['half_angular_extent'] = fs2_los_half_angular_extent
     los_dict['angle'] = fs2_los_angle
+    los_dict['type'] = "LOS"
     DIIID.set_diag_los('fs2', los_dict)
 
     ###############
@@ -1115,6 +1144,7 @@ def get_DIIIDdefs(plot_defs=False):
         los_dict['id'].append(str(id + 1))
     los_dict['half_angular_extent'] = fs1_los_half_angular_extent
     los_dict['angle'] = fs1_los_angle
+    los_dict['type'] = "LOS"
     DIIID.set_diag_los('fs1_hr', los_dict)
 
     ###############
@@ -1176,6 +1206,7 @@ def get_DIIIDdefs(plot_defs=False):
         los_dict['id'].append(str(id + 1))
     los_dict['half_angular_extent'] = mds1_los_half_angular_extent
     los_dict['angle'] = mds1_los_angle
+    los_dict['type'] = "LOS"
     DIIID.set_diag_los('mds1', los_dict)
 
     los_dict = {}
@@ -1187,6 +1218,7 @@ def get_DIIIDdefs(plot_defs=False):
         los_dict['id'].append(str(id + 1))
     los_dict['half_angular_extent'] = mds2_los_half_angular_extent
     los_dict['angle'] = mds2_los_angle
+    los_dict['type'] = "LOS"
     DIIID.set_diag_los('mds2', los_dict)
 
     ###############
@@ -1235,6 +1267,7 @@ def get_DIIIDdefs(plot_defs=False):
         los_dict['id'].append(str(id + 1))
     los_dict['half_angular_extent'] = mds1_los_half_angular_extent
     los_dict['angle'] = mds1_los_angle
+    los_dict['type'] = "LOS"
     DIIID.set_diag_los('mds1_hr', los_dict)
 
 
@@ -1289,37 +1322,9 @@ def get_DIIIDdefs(plot_defs=False):
     divspred_los_half_angular_extent+=0.0037
     los_dict['half_angular_extent'] = divspred_los_half_angular_extent
     los_dict['angle'] = divspred_los_angle
+    los_dict['type'] = "LOS"
     DIIID.set_diag_los('divspred', los_dict)
 
-
-    if plot_defs:
-        plt.gca().add_patch(wall_poly)
-        diag = ['mds1_hr']#, 'bolo1', 'bolo2', 'bolo3', 'bolo4', 'fs1', 'fs2', 'mds1', 'mds2']
-        # plt.gca().add_patch(wall_poly)
-        colors = ['b', 'r', 'm', 'g','k', 'orange', 'brown', 'pink']
-        for icam, cam in enumerate(diag):
-            for i, los in enumerate(DIIID.diag_dict[cam]['id']):
-                plt.plot([DIIID.diag_dict[cam]['p1'][i, 0], DIIID.diag_dict[cam]['p2'][i, 0]],
-                         [DIIID.diag_dict[cam]['p1'][i, 1], DIIID.diag_dict[cam]['p2'][i, 1]],
-                         '-', c=colors[icam])
-                plt.text(0.7, -0.9 + 0.1* icam, cam, color=colors[icam])
-                p2_rot = rotate_los(DIIID.diag_dict[cam]['p1'][i],
-                                    DIIID.diag_dict[cam]['p2'][i], DIIID.diag_dict[cam]['half_angular_extent'][i])
-                plt.plot([DIIID.diag_dict[cam]['p1'][i, 0], p2_rot[0]],
-                        [DIIID.diag_dict[cam]['p1'][i, 1], p2_rot[1]], ':', c=colors[icam])
-
-        plt.axes().set_aspect('equal')
-        plt.show()
-
-        # plot against poloidal angle
-        for icam, cam in enumerate(diag):
-            print(cam)
-            for i, los in enumerate(DIIID.diag_dict[cam]['id']):
-                print(los, DIIID.diag_dict[cam]['angle'][i])
-                plt.plot(int(los), DIIID.diag_dict[cam]['angle'][i], 'o', c=colors[icam])
-                plt.text(0.7, 0.7 + 0.4, cam, color=colors[icam])
-
-        plt.show()
     return DIIID
 
 if __name__=='__main__':
