@@ -1,6 +1,7 @@
 #########################
-# PESDT ENV FILE
+# PESDT ENV FILE FOR AALTO TRITON CLUSTER
 # Source this file to load the necessary components for running PESDT.
+# On other clusters you need similar definitions, but the locations are of course different
 #########################
 
 ######################### 
@@ -8,4 +9,5 @@
 export AMJUEL_PATH='/scratch/phys/fusion/solps-iter/modules/Eirene/Database/AMdata/'
 export CHERAB_CADMESH='/scratch/phys/fusion/cherab/cadmesh/'
 export PESDT_HOME='/scratch/phys/fusion/PESDT/'
+export CONTINUO_LIB='/scratch/phys/fusion/vrikala/libcontinuo/'
 #########################
