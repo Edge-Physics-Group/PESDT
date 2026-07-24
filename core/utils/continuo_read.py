@@ -88,7 +88,7 @@ def get_fffb_intensity_ratio_fn_T(wv_lo_nm, wv_hi_nm, Zeff, **kwargs):
 
     intensity_ratio = np.zeros(((np.size(Te_arr)), 2))
     for iTe, vTe in enumerate(Te_arr):
-        ff_only, ff_fb_tot = continuov_(wave_nm, vTe, 1, 1)
+        ff_only, ff_fb_tot = continuov_(wave_nm*10, vTe, 1, 1)
         intensity_ratio[iTe, 0] = vTe
         intensity_ratio[iTe, 1] = ff_fb_tot[ilo] / ff_fb_tot[ihi]
 
