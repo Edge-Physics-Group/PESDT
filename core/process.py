@@ -793,7 +793,7 @@ class ProcessEdgeSim:
 
         logger.info('Calculating FF+FB filtered emission...')
         for cell in self.cells:
-            ff_only, ff_fb_tot = continuo_read.continuov_(wave_nm, cell.te, 1, 1)
+            ff_only, ff_fb_tot = continuo_read.continuov_(wave_nm*10, cell.te, 1, 1)
             f = interp1d(wave_nm, ff_fb_tot)
             ff_fb_tot_interp = f(filter_wv_nm)
             # convert to spectral emissivity: ph s-1 m-3 sr-1 nm-1
@@ -813,7 +813,7 @@ class ProcessEdgeSim:
         logger.info('Calculating FF+FB emission...')
         sum_ff_radpwr = 0
         for cell in self.cells:
-            ff_only, ff_fb = continuo_read.continuov_(wave_nm, cell.te, 1, 1)
+            ff_only, ff_fb = continuo_read.continuov_(wave_nm*10, cell.te, 1, 1)
 
             # convert to spectral emissivity (from W m^3 sr^-1 nm^-1 to W m^-3 nm^-1)
             ff_only = ff_only * cell.ne * cell.ne * 4. * np.pi * h*c/(wave_nm*1e-9)

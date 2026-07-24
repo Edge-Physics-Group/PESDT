@@ -56,7 +56,7 @@ def residual_continuo(params, wave, data=None, eps_data=None):
     te = params['te_360_400'].value
     ne = params['ne'].value
 
-    model_ff, model_ff_fb = continuo_read.continuov_(wave, te, 1, 1)
+    model_ff, model_ff_fb = continuo_read.continuov_(wave*10, te, 1, 1)
     model_ff = model_ff * ne * ne * delL
     model_ff_fb = model_ff_fb * ne * ne * delL
 

@@ -405,7 +405,7 @@ class LOS:
         # sum_ff_fb = np.zeros((len(wave_nm)))
         # for cell in self.cells:
         #     # call adas continuo function (return units: ph s-1 m3 sr-1 nm-1)
-        #     ff_only, ff_fb_tot = continuo_read.continuov_(wave_nm, cell.te, 1, 1)
+        #     ff_only, ff_fb_tot = continuo_read.continuov_(wave_nm*10, cell.te, 1, 1)
         #     # convert to spectral radiance: ph s-1 m-2 sr-1 nm-1
         #     sum_ff_fb += ff_fb_tot * cell.ne * cell.ne * cell.los_ortho_delL
 
@@ -414,7 +414,7 @@ class LOS:
         dl_ff_fb_abs = np.zeros((len(self.los_1d['l']), len(wave_nm)))
         for dl_idx, dl_val in enumerate(self.los_1d['l']):
             # call adas continuo function (return units: ph s-1 m3 sr-1 nm-1)
-            ff_only, ff_fb_tot = continuo_read.continuov_(wave_nm, self.los_1d['te'][dl_idx], 1, 1)
+            ff_only, ff_fb_tot = continuo_read.continuov_(wave_nm*10, self.los_1d['te'][dl_idx], 1, 1)
             # convert to spectral radiance: ph s-1 m-2 sr-1 nm-1
             dl_ff_fb_abs[dl_idx] = ff_fb_tot * self.los_1d['ne'][dl_idx] * self.los_1d['ne'][dl_idx] * self.los_1d['ortho_delL'][dl_idx]
 
