@@ -10,6 +10,7 @@ read_idl_tally.py
 pesdt_venv
 users/*
 dep_src/*
+#adas_db/*
 *.egg-info/*
 # Files
 *.pyc
@@ -28,3 +29,6 @@ outtal*
 !dep_src/README_DEP.MD
 !PESDTCache/readme.md
 !test_cases/solps/runD_2.2MW_1.6e19_JET/fort.44
+!adas_db/adf11/readme.md
+!adas_db/adf15/readme.md
+!adas_db/adf_dict.json

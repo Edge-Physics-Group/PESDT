@@ -1,7 +1,7 @@
 
 import numpy as np
 from cherab.PESDT_addon import PESDTSimulation, PESDTElement, deuterium, EIRENEMesh, QuadMesh
-import copy
+from scipy.constants import h, c
 from ..utils import (read_amjuel_1d,
                      read_amjuel_2d,reactions, 
                      calc_cross_sections, 
@@ -14,9 +14,15 @@ from ..utils import (read_amjuel_1d,
                      YACORA,
                      doppler_absorbance,
                      cen_absorbance,
-                     ideal_absorbance)
+                     ideal_absorbance,
+                     ADF15,
+                     ADF11,
+                     continuov_)
+from ..database import spectroscopic_lines_db
 import logging
 logger = logging.getLogger(__name__)
+
+sdb = spectroscopic_lines_db()
 
 BaseD = deuterium
 D0 = PESDTElement("Deuterium", "D", 1.0, 2.0, BaseD)
@@ -25,6 +31,20 @@ D2vibr = PESDTElement("Deuterium2vibr", "D2", 2.0, 4.0, BaseD)
 D3 = PESDTElement("Deuterium3+", "D3", 3.0, 6.0, BaseD)
 M_D = 3.344e-27
 
+def create_cherab_mesh(PESDT):
+    rv: np.ndarray = None
+    zv: np.ndarray = None
+    mesh = None
+
+    if PESDT.edge_code in ["solps", "edge2d", "oedge"]:
+        rv = np.transpose(PESDT.data.rv[:, 0:4])
+        zv = np.transpose(PESDT.data.zv[:, 0:4])
+        mesh = QuadMesh(rv, zv) 
+    elif PESDT.edge_code in ["eirene"]:
+        mesh = EIRENEMesh(PESDT.data.vertices, PESDT.data.triangles)
+
+    return mesh
+
 def createZCherabPlasma(PESDT, species_transitions: dict, convert_denel_to_m3 = True):
     '''
     Creates a cherab compatible PLASMA simulation object for any species using OpenADAS rates
@@ -32,8 +52,14 @@ def createZCherabPlasma(PESDT, species_transitions: dict, convert_denel_to_m3 = 
     '''
     return
 
-def createHydrogenicCherabPlasma(PESDT, transitions: list, 
-                       convert_denel_to_m3 = True, 
+def createZCherabPlasmaBolo(PESDT, species_transitions: dict, convert_denel_to_m3 = True):
+    '''
+    Creates a cherab compatible PLASMA simulation object for any species using OpenADAS rates
+    
+    '''
+    return
+
+def createHydrogenicCherabPlasma(PESDT, transitions: list,
                        data_source = "AMJUEL", 
                        recalc_h2_pos = True,
                        mol_exc_bands = None,
@@ -72,47 +98,27 @@ def createHydrogenicCherabPlasma(PESDT, transitions: list,
     n0 = np.zeros(num_cells)
     n2 = np.zeros(num_cells)
     n2p = np.zeros(num_cells)
-    multi = 1.0
-    if convert_denel_to_m3:
-        multi = 1e-6
 
+    mesh = create_cherab_mesh(PESDT)
     for ith_cell, cell in enumerate(PESDT.cells):
-        
-
-        if PESDT.edge_code == "solps":
-            coords = np.array(cell.poly.exterior.coords).transpose()
-            rv[ith_cell, :] = coords[0]
-            zv[ith_cell, :] = coords[1]
-        elif PESDT.edge_code in ["edge2d", "oedge"]:
-            rv[ith_cell, :] = PESDT.data.rv[ith_cell, 0:4]
-            zv[ith_cell, :] = PESDT.data.zv[ith_cell, 0:4]
-        else:
-            pass
-            #Eirene grid is created directly from vertices
         # Pull over plasma values to new CHERAB arrays
 
         te[ith_cell] = cell.te
-        ti[ith_cell] = cell.te
+        ti[ith_cell] = cell.ti
         t0[ith_cell] = cell.te if cell.t0 is None else cell.t0
-        # Multiply by 1e-6, I think cherab wants densities in cm^-3
         
-        ni[ith_cell] = cell.ni*multi
-        ne[ith_cell] = cell.ne*multi
-        n0[ith_cell] = cell.n0*multi
-        n2[ith_cell] = cell.n2*multi
-        n2p[ith_cell] = cell.n2p*multi
+        ni[ith_cell] = cell.ni
+        ne[ith_cell] = cell.ne
+        n0[ith_cell] = cell.n0
+        n2[ith_cell] = cell.n2
+        n2p[ith_cell] = cell.n2p
 
     #####################################################
     # Now load the simulation object with plasma values #
-    
-    if PESDT.edge_code in ["solps", "edge2d", "oedge"]:
-        rv = np.transpose(rv)
-        zv = np.transpose(zv)
-        mesh = QuadMesh(rv, zv) 
-    elif PESDT.edge_code in ["eirene"]:
-        mesh = EIRENEMesh(PESDT.data.vertices, PESDT.data.triangles)
+
     species_list = [(D0, 0), (D0, 1)]
     emission_keys = transitions
+
     if data_source == "AMJUEL":
         '''
         Calculate the H2+, H3+, and H- densities through AMJUEL rates, and add the molecular density 
@@ -122,6 +128,7 @@ def createHydrogenicCherabPlasma(PESDT, transitions: list,
 
         logger.info("Loading H2, H2+, H3+ and H-")
         num_species = 6
+
         if mol_exc_bands is not None:
             logger.info(f"Allocating space for molecular band emission, num. bands {len(mol_exc_bands)}")
             #
@@ -214,73 +221,13 @@ def createHydrogenicCherabPlasma(PESDT, transitions: list,
         #ADAS
         num_species = 2
         species_density = np.zeros((num_species, num_cells))
-    
-    if opaque:
-        logger.info(f"Opaque mode == {opaque_mode}: Calculating absorbance")
-        num_species +=1
-        _species_density = np.zeros((num_species, num_cells))
-        _species_density[:-1, :] = species_density
-        species_density = _species_density # resize, no density for photons
-
-        emission.append({})
-        species_list.append((D0, 2))
-        for tra in transitions:
-            if PESDT.edge_code == "eirene":
-                n0_N2 = PESDT.data.n0_ph2 # Contrib. of opacity to N=2
-                n0_N3 = PESDT.data.n0_ph3 # Contrib. of opacity to N=3
-            else:
-                n0_N2 = np.zeros((num_cells,)) 
-                n0_N3 = np.zeros((num_cells,)) 
-            if tra[0] == 2:
-                emission[num_species-1][tra] = n0_N2*A_coeff(tra)*1/(4.0*np.pi)
-            elif tra[0] ==3:
-                emission[num_species-1][tra] = n0_N3*A_coeff(tra)*1/(4.0*np.pi)
-            else:
-                emission[num_species-1][tra] = np.zeros((num_cells,))
-        absorbance = copy.deepcopy(emission) # Same shape
-        # Reset array
-        
-
-        if opaque_mode == 0:
-            absorb_ = {}
-            for tra in transitions:
-                absorb_[tra] = ideal_absorbance(tra, None, species_density[2,:], M_D)
-            for i in range(len(absorbance)):
-                for key in absorbance[i].keys():
-                    print(np.mean(absorb_[key]), np.min(absorb_[key]), np.max(absorb_[key]))
-                    absorbance[i][key] = absorb_[key] # absorbance is the same for each contribution
-        elif opaque_mode == 1:
-            try:
-                t0 = PESDT.data.t0
-            except:
-                logger.warning("No Td available, using Ti")
-                t0 = PESDT.data.ti
-            absorb_ = {}
-            for tra in transitions:
-
-                absorb_[tra] = cen_absorbance(tra, t0, species_density[2,:], M_D)
-            for i in range(len(absorbance)):
-                for key in absorbance[i].keys():
-                    print(np.mean(absorb_[key]), np.min(absorb_[key]), np.max(absorb_[key]))
-                    absorbance[i][key] = absorb_[key]
-        elif opaque_mode == 2:
-            
-            try:
-                t0 = PESDT.data.t0
-            except:
-                logger.warning("No Td available, using Ti")
-                t0 = PESDT.data.ti
-            absorb_ = {}
-            
-            for tra in transitions:
-                
-                absorb_[tra] = doppler_absorbance(tra, t0, species_density[2,:], M_D)
-            for i in range(len(absorbance)):
-                for key in absorbance[i].keys():
-                    print(np.mean(absorb_[key]), np.min(absorb_[key]), np.max(absorb_[key]))
-                    absorbance[i][key] = absorb_[key]
-        else:
-            raise Exception("unknown opaque mode")
+        adf = ADF15()
+        tra_wl_dct = {trans: wl for wl, trans in sdb.data["H"].items()}
+        emission = [{} for _ in range(len(species_density))]
+        for i in range(len(transitions)):
+            wl = tra_wl_dct[transitions[i]]
+            emission[0][transitions[i]] = adf.interpolate(te, ne, "EXCIT", wl)*ne*n0*1/(4.0*np.pi)
+            emission[1][transitions[i]] = adf.interpolate(te, ne, "RECOM", wl)*ne*ne*1/(4.0*np.pi)
     
     species_density[0, :] = n0[:]  # neutral density D0
     species_density[1, :] = ni[:]  # ion density D+1
@@ -291,11 +238,7 @@ def createHydrogenicCherabPlasma(PESDT, transitions: list,
     #neutral_temperature[-1, :] = t0[:]
 
     # Test with zero absorbance
-    absorbance = copy.deepcopy(emission)
-    for d in absorbance:
-        for key, values in d.items():
-            d[key] = np.zeros_like(values)
-
+    
     print(species_list)
 
     sim = PESDTSimulation(mesh, species_list, opaque = opaque) #[['D0', 0], ['D+1', 1]])
@@ -304,22 +247,11 @@ def createHydrogenicCherabPlasma(PESDT, transitions: list,
     sim.ion_temperature = ti
     sim.neutral_temperature = neutral_temperature
     sim.species_density = species_density
-
-    if data_source in ["AMJUEL", "YACORA"]:
-        sim.emission = [emission_keys, emission]
-        if opaque:
-            sim.absorbance = [emission_keys, absorbance]
+    sim.emission = [emission_keys, emission] # Emission is precalculated for all data sources
     return sim
 
-def createHydrogenicCherabPlasmaBolo(PESDT, convert_denel_to_m3 = True):
+def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
     num_cells = len(PESDT.cells)
-
-    rv = np.zeros((num_cells, 4))
-    zv = np.zeros((num_cells, 4))
-    # Eirene uses triangles
-    if PESDT.edge_code == "eirene":
-        rv = np.zeros((num_cells, 3))
-        zv = np.zeros((num_cells, 3))
 
     te = np.zeros(num_cells)
     ti = np.zeros(num_cells)
@@ -329,48 +261,70 @@ def createHydrogenicCherabPlasmaBolo(PESDT, convert_denel_to_m3 = True):
     n0 = np.zeros(num_cells)
     n2 = np.zeros(num_cells)
     n2p = np.zeros(num_cells)
-    multi = 1.0
-    if convert_denel_to_m3:
-        multi = 1e-6
+
 
     for ith_cell, cell in enumerate(PESDT.cells):
         
-        if PESDT.edge_code == "solps":
-            coords = np.array(cell.poly.exterior.coords).transpose()
-            rv[ith_cell, :] = coords[0]
-            zv[ith_cell, :] = coords[1]
-        elif PESDT.edge_code in ["edge2d", "oedge"]:
-            rv[ith_cell, :] = PESDT.data.rv[ith_cell, 0:4]
-            zv[ith_cell, :] = PESDT.data.zv[ith_cell, 0:4]
-        else:
-            pass
-            #Eirene grid is created directly from vertices
-        # Pull over plasma values to new CHERAB arrays
 
         te[ith_cell] = cell.te
         ti[ith_cell] = cell.te
         t0[ith_cell] = cell.te if cell.t0 is None else cell.t0
         # Multiply by 1e-6, I think cherab wants densities in cm^-3
         
-        ni[ith_cell] = cell.ni*multi
-        ne[ith_cell] = cell.ne*multi
-        n0[ith_cell] = cell.n0*multi
-        n2[ith_cell] = cell.n2*multi
-        n2p[ith_cell] = cell.n2p*multi
-
+        ni[ith_cell] = cell.ni
+        ne[ith_cell] = cell.ne
+        n0[ith_cell] = cell.n0
+        n2[ith_cell] = cell.n2
+        n2p[ith_cell] = cell.n2p
     #####################################################
     # Now load the simulation object with plasma values #
     
-    if PESDT.edge_code in ["solps", "edge2d", "oedge"]:
-        rv = np.transpose(rv)
-        zv = np.transpose(zv)
-        mesh = QuadMesh(rv, zv) 
-    elif PESDT.edge_code in ["eirene"]:
-        mesh = EIRENEMesh(PESDT.data.vertices, PESDT.data.triangles)
+    mesh = create_cherab_mesh(PESDT)
+
+    if data_source == "ADAS":
+        species_list = [(D0, 0), (D0, 1), (D0, 2), (D0, 3)]
+        num_species = 4
+        species_density = np.zeros((num_species, num_cells))
+        adf = ADF11()
+        
+
+        emission = [{} for _ in range(num_species)]
+        emission_keys = [(2, 1)] # Use Lyman alpha as the wl, Ly beta for FF and FFFB
+        emission[0][(2,1)] = adf.interpolate_plt(te, ne)*ne*n0*1/(4.0*np.pi)
+        emission[1][(2,1)] = adf.interpolate_prb(te, ne)*ne*ne*1/(4.0*np.pi)
+        ff, fffb = continuov_(10**np.arange(0, 4.01, 0.1), te)
+        wl = 10**np.arange(0, 4.01, 0.1)
+        emission[2][(2, 1)] = np.trapezoid(ff * h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
+        emission[3][(2, 1)] = np.trapezoid(fffb* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
+    elif data_source == "AMJUEL":
+        species_list = [(D0, 0), (D0, 2), (D0, 3)]
+        num_species = 3
+        emission = [{} for _ in range(num_species)]
+        em_line = np.zeros_like(te)
+        tra_wl_dct = {trans: wl for wl, trans in sdb.data["H"].items()}
+        for i in range(1,7):
+            for j in range(2, 7):
+                if i >= j: continue
+                transition = (j, i)
+                wl = float(tra_wl_dct[transition])
+            em_line += calc_photon_rate(transition, te, ne, n0, mol_n_density = n2, mol_p_density = n2p, h_neg = kwargs.get("h_neg", False), recalc_h2_pos = kwargs.get("recalc_h2_pos")) * h*c/(1e-10*wl)
+        emission[0][(2, 1)] = em_line
+        ff, fffb = continuov_(10**np.arange(0, 4.01, 0.1), te)
+        wl = 10**np.arange(0, 4.01, 0.1)
+        emission[1][(2, 1)] = np.trapezoid(ff * h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
+        emission[2][(2, 1)] = np.trapezoid(fffb* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
+    else:
+        # Assume Cell has total radiated power
+        species_list = [(D0, 0)]
+        num_species = 1
+        emission = [{} for _ in range(num_species)]
+        rad = np.zeros((num_cells))
+        for ith_cell, cell in enumerate(PESDT.cells):
+            rad[ith_cell] = cell.tot_rad
 
     sim = PESDTSimulation(mesh, species_list) 
     sim.electron_temperature = te
     sim.electron_density = ne
     sim.ion_temperature = ti
-    sim.neutral_temperature = neutral_temperature
     sim.species_density = species_density
+    sim.emission = [emission_keys, emission]

@@ -20,9 +20,10 @@ from cherab.PESDT_addon.continuo import Continuo
 
 from cherab.PESDT_addon import PESDTLine, PESDTLineMol
 from .cherab_AMJUEL_data import AMJUEL_Data
-from .cherab_atomic_data import PESDT_ADAS_Data
+from .cherab_atomic_data import PESDT_Data
 from .createCherabPlasma import createHydrogenicCherabPlasma, createHydrogenicCherabPlasmaBolo, createZCherabPlasma, D0, D2, D3, D2vibr
 from ..utils.JET_mesh_from_grid import create_toroidal_wall_from_points, modify_wall_polygon_for_observer,plot_wall_modification
+from ..database import spectroscopic_lines_db
 from .D3D_mesh import construct_DIIID_mesh
 import logging
 logger = logging.getLogger(__name__)
@@ -50,7 +51,6 @@ class CherabPlasma():
         self.import_surfaces = import_surfaces
         self.mesh_from_grid = not import_surfaces
         self.data_source = data_source
-        self.ADAS_dict = PESDT_obj.ADAS_dict if self.data_source == "ADAS" else None
         self.recalc_h2_pos = recalc_h2_pos 
         self.transitions = transitions
         self.sim_type = PESDT_obj.edge_code
@@ -60,7 +60,9 @@ class CherabPlasma():
         self.instrument_fibreoptics = {}
         self.stark_fibreoptics = {}
         self.continuum_fibreoptics = {}
+        self.bolo_fibreoptics = {}
         self.instrument_los_coords = {}
+        self.bolo_los_coords = {}
         self.cameras = {}
         self.bolos = {}
         self.mol_exc_bands = mol_exc_bands
@@ -130,6 +132,7 @@ class CherabPlasma():
             self.plasma = self.gen_cherab_plasma()
         if len(self.bolo_los_dict)>0: 
             self.bolo_plasma = self.gen_cherab_bolo_plasma()
+
     def gen_cherab_plasma(self):
 
         # Load PESDT object into cherab_edge2d module, which converts the edge_codes grid to cherab
@@ -143,21 +146,13 @@ class CherabPlasma():
                                     mol_exc_bands= self.mol_exc_bands,
                                     opaque= self.opaque,
                                     opaque_mode = self.opaque_mode)
-        # create atomic data source
+        
         plasma = cherab.create_plasma(parent=self.world, opaque = self.opaque)
-        if self.data_source == "AMJUEL":
-            PESDT_AMJUEL_data = AMJUEL_Data()
-            logger.info("Using AMJUEL")
-            
-            plasma.atomic_data = PESDT_AMJUEL_data
-        elif self.data_source == "YACORA":
-            plasma.atomic_data = AMJUEL_Data() # Using AMJUEL data here is fine, because emission is directly passed to cherab; it does not do anything
-            logger.info("Using YACORA")
-        else:
-            #ADAS
-            PESDT_adas = PESDT_ADAS_Data(self.ADAS_dict)
-            logger.info("Using ADAS")
-            plasma.atomic_data = PESDT_adas
+
+        # Dummy atomic data dict
+        data_dicts = {s: spectroscopic_lines_db.data[s] for s in self.species_list}
+        self.PESDT_data_dicts = {s: PESDT_Data(data_dicts[s]) for s in self.species_list}
+        plasma.atomic_data = self.PESDT_data_dicts[self.species_list[0]]
 
         return plasma
 
@@ -165,37 +160,36 @@ class CherabPlasma():
     
             # Load PESDT object into cherab_edge2d module, which converts the edge_codes grid to cherab
             # format, and populates cherab plasma parameters
-            convert_to_m3 = not (self.data_source in ["AMJUEL", "YACORA"])
-            cherab = createCherabPlasmaBolo(self.PESDT_obj,
-                                        transitions= self.transitions,
-                                        convert_denel_to_m3 = convert_to_m3, 
-                                        data_source=self.data_source, 
-                                        recalc_h2_pos = self.recalc_h2_pos, 
-                                        mol_exc_bands= self.mol_exc_bands,
-                                        opaque= self.opaque,
-                                        opaque_mode = self.opaque_mode)
+            cherab = createHydrogenicCherabPlasmaBolo(self.PESDT_obj,
+                                        data_source=self.data_source, h_neg = False,
+                                        recalc_h2_pos = self.recalc_h2_pos)
     
-            # create atomic data source
             plasma = cherab.create_plasma(parent=self.world, opaque = self.opaque)
-            if self.data_source == "AMJUEL":
-                PESDT_AMJUEL_data = AMJUEL_Data()
-                logger.info("Using AMJUEL")
-                
-                plasma.atomic_data = PESDT_AMJUEL_data
-            elif self.data_source == "YACORA":
-                plasma.atomic_data = AMJUEL_Data() # Using AMJUEL data here is fine, because emission is directly passed to cherab; it does not do anything
-                logger.info("Using YACORA")
-            else:
-                #ADAS
-                PESDT_adas = PESDT_ADAS_Data(self.ADAS_dict)
-                logger.info("Using ADAS")
-                plasma.atomic_data = PESDT_adas
+
+            data_dicts = {s: spectroscopic_lines_db.data[s] for s in self.species_list}
+            self.PESDT_data_dicts = {s: PESDT_Data(data_dicts[s]) for s in self.species_list}
+            plasma.atomic_data = self.PESDT_data_dicts[self.species_list[0]]
     
             return plasma
 
-    def define_bolometer_plasma_mode(self, ):
-
-        return
+    def define_bolometer_plasma_model(self, line = False, ff_rec = False, FF = False, FFFB = False):
+        model_list = []
+        line_emitter = DirectEmission
+        lineshape = None
+        if line:
+            h_line = PESDTLine(D0, 0, (2,1))
+            model_list.append(line_emitter(h_line, lineshape=lineshape))
+        if ff_rec:
+            h_line = PESDTLine(D0, 1, (2,1))
+            model_list.append(line_emitter(h_line, lineshape=lineshape))
+        if FF:  
+            h_line = PESDTLine(D0, 2, (2,1))
+            model_list.append(line_emitter(h_line, lineshape=lineshape))
+        if FFFB:
+            h_line = PESDTLine(D0, 3, (2,1))
+            model_list.append(line_emitter(h_line, lineshape=lineshape))
+       
+        self.bolo_plasma.models = model_list
 
     def define_continuum_plasma_model(self):
         h_line = PESDTLine(D0, 0, (4,2))
@@ -231,7 +225,7 @@ class CherabPlasma():
     def define_Hydrogenic_plasma_model(self, transition=(2, 1),
                             include_excitation=False, include_recombination=False,
                             include_H2 = False, include_H2_pos = False, include_H_neg = False,
-                            include_H3_pos = False, include_ph = False, data_source = "AMJUEL",
+                            include_H3_pos = False, include_ph = False,
                             include_mol_exc = False):
         # Define one transition at a time and 'observe' total radiance
         # If multiple transitions are fed into the plasma object, the total
@@ -239,39 +233,32 @@ class CherabPlasma():
         line_emitter = DirectEmission
         lineshape = None
         model_list = []
-        if data_source in ["AMJUEL", "YACORA"]:
-            if include_excitation:
-                h_line = PESDTLine(D0, 0, transition)
-                model_list.append(line_emitter(h_line, lineshape=lineshape))
-            if include_recombination:
-                h_line = PESDTLine(D0, 1, transition)
-                model_list.append(line_emitter(h_line, lineshape=lineshape))
-            if include_H2:
-                h_line = PESDTLine(D2, 0, transition)
-                model_list.append(line_emitter(h_line, lineshape=lineshape))
-            if include_H2_pos:
-                h_line = PESDTLine(D2, 1, transition) 
-                model_list.append(line_emitter(h_line, lineshape=lineshape))
-            if include_H3_pos:
-                h_line = PESDTLine(D3, 1, transition) 
-                model_list.append(line_emitter(h_line, lineshape=lineshape))
-            if include_H_neg:
-                h_line = PESDTLine(D0, -1, transition) 
-                model_list.append(line_emitter(h_line, lineshape=lineshape))
-            if include_ph and self.opaque:
-                h_line = PESDTLine(D0, 2, transition)
-                model_list.append(line_emitter(h_line, lineshape=lineshape))
-            if include_mol_exc and data_source != "YACORA":
-                h_line = PESDTLineMol(D2vibr, 0, transition)
-                model_list.append(DirectEmissionMol(h_line, lineshape = lineshape))
-        else:
-            h_line = Line(D0, 0, transition)
-            model_list = []
-            if include_excitation:
-                model_list.append(ExcitationLine(h_line, lineshape=lineshape))
-            if include_recombination:
-                model_list.append(RecombinationLine(h_line, lineshape=lineshape))
-            self.plasma.models = model_list
+        
+        if include_excitation:
+            h_line = PESDTLine(D0, 0, transition)
+            model_list.append(line_emitter(h_line, lineshape=lineshape))
+        if include_recombination:
+            h_line = PESDTLine(D0, 1, transition)
+            model_list.append(line_emitter(h_line, lineshape=lineshape))
+        if include_H2:
+            h_line = PESDTLine(D2, 0, transition)
+            model_list.append(line_emitter(h_line, lineshape=lineshape))
+        if include_H2_pos:
+            h_line = PESDTLine(D2, 1, transition) 
+            model_list.append(line_emitter(h_line, lineshape=lineshape))
+        if include_H3_pos:
+            h_line = PESDTLine(D3, 1, transition) 
+            model_list.append(line_emitter(h_line, lineshape=lineshape))
+        if include_H_neg:
+            h_line = PESDTLine(D0, -1, transition) 
+            model_list.append(line_emitter(h_line, lineshape=lineshape))
+        if include_ph and self.opaque:
+            h_line = PESDTLine(D0, 2, transition)
+            model_list.append(line_emitter(h_line, lineshape=lineshape))
+        if include_mol_exc:
+            h_line = PESDTLineMol(D2vibr, 0, transition)
+            model_list.append(DirectEmissionMol(h_line, lineshape = lineshape))
+       
         self.plasma.models = model_list
         
     def setup_observers(self, pixel_samples = 1000, num_processes = 1):
@@ -422,8 +409,45 @@ class CherabPlasma():
         return
 
     def setup_bolometers(self, pixel_samples, num_processes = 1):
+        for instrument in self.bolo_los_dict.keys():
+            fibreoptics = []
+            los_coords = []
+            for los_p1, los_p2, los_w1, los_w2 in self.bolo_los_dict[instrument]:
+                los_coords.append(los_p2)
+                    
+                    # Define LOS direction and observer origin using KT1V viewport angle
+                theta = -45.61 / 360 * (2 * pi)
+                origin = Point3D(los_p1[0] * cos(theta), los_p1[0] * sin(theta), los_p1[1])
+                endpoint = Point3D(los_p2[0] * cos(theta), los_p2[0] * sin(theta), los_p2[1])
+                direction = origin.vector_to(endpoint)
 
+                # Calculate acceptance angle from los_w2 and LOS length
+                chord_length = origin.distance_to(endpoint)
+                acceptance_angle = atan((los_w2 / 2.0) / chord_length) * 180. / np.pi
+
+                # Setup radiance pipeline
+                pipeline = RadiancePipeline0D(accumulate = False)
+                fibre = FibreOptic(
+                    pipelines=[pipeline],
+                    acceptance_angle=acceptance_angle,
+                    radius=0.01,  # Default pinhole size of 1 cm
+                    pixel_samples=pixel_samples,
+                    min_wavelength = 1.0,
+                    max_wavelength = 1e20,
+                    spectral_rays=1,  # Not used in RadiancePipeline0D, but required by FibreOptic
+                    transform=translate(*origin) * rotate_basis(direction, Vector3D(1, 0, 0)),
+                    parent=self.world)
+                if num_processes > 1:
+                    fibre.render_engine = MulticoreEngine(processes=int(num_processes))
+                else:
+                    fibre.render_engine = SerialEngine()
+                # Create fibre optic observer
+                fibreoptics.append((pipeline, fibre))
+                
+            self.bolo_fibreoptics[instrument] = fibreoptics
+            self.bolo_los_coords[instrument] = los_coords
         return
+    
     def integrate_instrument(self, instrument):
         """
         Iterates over the fibreOptics of an instrument
@@ -442,6 +466,25 @@ class CherabPlasma():
             i+=1
         # Return scalar radiance
         return res
+
+    def integrate_bolo(self, instrument):
+            """
+            Iterates over the fibreOptics of an instrument
+            
+            Returns:
+                Power in W/(sr*m^2)
+            """
+            res = []
+            los_coords = self.bolo_los_coords[instrument]
+            i = 0
+            for pipeline, fibre in self.bolo_fibreoptics[instrument]:
+                logger.info(f"LOS: {los_coords[i]}")
+                # Perform ray tracing
+                fibre.observe()
+                res.append([pipeline.value.mean, pipeline.value.variance])
+                i+=1
+            # Return scalar radiance
+            return res
     
     def observe_camera(self, instrument):
         pipeline, camera = self.cameras[instrument]

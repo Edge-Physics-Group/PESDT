@@ -293,7 +293,12 @@ class SOLPS(BackgroundPlasma):
         self.n2p = []
         self.ni = []
         self.te = []
+        self.rv = []
+        self.zv = []
         for cell in self.cells:
+            coords = np.array(cell.poly.exterior.coords).transpose()
+            self.rv.append(coords[0])
+            self.zv.append(coords[1])
             self.ne.append(cell.ne)   
             self.n0.append(cell.n0)
             self.n2.append(cell.n2)

@@ -1,53 +1,112 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.interpolate import RegularGridInterpolator
+import os, json
+import urllib.parse
+import urllib.request
 
-TRANSITION_TABLE = {(3, 2): "6561.9",
-                    (4, 2): "4860.6",
-                    (5, 2): "4339.9",
-                    (6, 2): "4101.2",
-                    (7, 2): "3969.5",
-                    (8, 2): "3888.5",
-                    (9, 2): "3834.9",
-                    (10, 2):"3797.4"}
+ADAS_DB_PATH = os.path.join(os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/"), "adas_db/")
 
-class ADF:
+with open(os.path.join(ADAS_DB_PATH, "adf_dict.json"), "r") as f:
+    ADF_DICT = json.load(f)
+
+
+def populate_adas_db(website = 'http://open.adas.ac.uk/download/'):
+    #ADF15:
+    for species, adaspath in ADF_DICT["ADF15"].items():
+        target = os.path.join(ADAS_DB_PATH, adaspath)
+        if not os.path.isfile(target):
+            directory = os.path.dirname(target)
+            if not os.path.isdir(directory):
+                os.makedirs(directory)
+            url = urllib.parse.urljoin(website, adaspath.replace('#', '][').lstrip('/'))
+            urllib.request.urlretrieve(url, target)
+    return
+
+class ADF11():
     inv4pi = 1/(4*np.pi)
 
-    def __init__(self, atomic_transitions_list, path: str = "adas/pec12#h_pju#h0.dat", wavelength: str = '6561.9', discard_low_N = True):
-        if discard_low_N:
-            trans_to_keep = []
-            for i, trans in enumerate(atomic_transitions_list):
-                if trans[0] < 6:
-                    print(f"discarding line {trans} (Use AMJUEL for N<=6)")
-                    continue
-                else:
-                    trans_to_keep.append(trans)
-            self.atomic_transitions_list = trans_to_keep
-        else:
-            self.atomic_transitions_list = atomic_transitions_list
-        self.M = len(self.atomic_transitions_list)
+    def __init__(self, species: str = "H"):
 
-        self.path = path
+        self.species = species
+
+        self.path_plt  = os.path.join(ADAS_DB_PATH, ADF_DICT["ADF11"]["plt"][species])
+        self.path_prb  = os.path.join(ADAS_DB_PATH, ADF_DICT["ADF11"]["prb"][species])
+        self._read_files()
+
+    def _read_files(self):
+
+        with open(self.path_plt, "r") as f:
+            lines = f.readlines()
+            header = lines.pop(0)
+            num_ne, num_te = header.split()[1:3]
+            num_ne = int(num_ne); num_te= int(num_te)
+            num_data = num_ne*num_te
+
+            lines.pop(0) # remove separator ----
+
+            num_data_per_line = len(lines[0].split())
+            num_ne_te_lines = int(np.ceil((num_ne+ num_te)/num_data_per_line))
+
+            ne_te_data = np.concatenate([ np.array([float(x) for x in line]) for line in lines[:num_ne_te_lines]])
+
+            self.ne_plt = ne_te_data[:num_ne]
+            self.te_plt = ne_te_data[num_ne:]
+
+            data_lines = lines[num_ne_te_lines+1:]
+
+            self.data_plt = np.concatenate([[np.array([np.float64(x) for x in line]) for line in data_lines]]).reshape((num_ne, num_te))
+            self.interp_plt = RegularGridInterpolator((self.te_plt, self.ne_plt), self.data_plt.T, bounds_error=False, fill_value=None)
+
+        with open(self.path_prb, "r") as f:
+            lines = f.readlines()
+            header = lines.pop(0)
+            num_ne, num_te = header.split()[1:3]
+            num_ne = int(num_ne); num_te= int(num_te)
+            num_data = num_ne*num_te
+
+            lines.pop(0) # remove separator ----
+
+            num_data_per_line = len(lines[0].split())
+            num_ne_te_lines = int(np.ceil((num_ne+ num_te)/num_data_per_line))
+
+            ne_te_data = np.concatenate([ np.array([float(x) for x in line]) for line in lines[:num_ne_te_lines]])
+
+            self.ne_prb = ne_te_data[:num_ne]
+            self.te_prb = ne_te_data[num_ne:]
+
+            data_lines = lines[num_ne_te_lines+1:]
+
+            self.data_prb = np.concatenate([[np.array([np.float64(x) for x in line]) for line in data_lines]]).reshape((num_ne, num_te))
+            self.interp_prb = RegularGridInterpolator((self.te_prb, self.ne_prb), self.data_prb.T, bounds_error=False, fill_value=None)
+        
+
+    # -------------------------
+    # Public API
+    # -------------------------
+    def interpolate_plt(self, te, ne):
+
+        ne_ = np.log10(ne*1e-6)
+        te_ = np.log10(te)
+        return self.interp_plt((te_, ne_))
+
+    def interpolate_prb(self, te, ne):
+    
+        ne_ = np.log10(ne*1e-6)
+        te_ = np.log10(te)
+        return 1e-6*10**self.interp_prb((te_, ne_))
+
+class ADF15():
+    inv4pi = 1/(4*np.pi)
+
+    def __init__(self, species: str = "H"):
+
+        self.species = species
+
+        self.path  = os.path.join(ADAS_DB_PATH, ADF_DICT["ADF15"][species])
         self.raw_lines = self._read_file()
         self.blocks = self._extract_blocks()
         self.data = self._parse_all_blocks()
-        self.current_wl = list(self.data.keys())[0]
-        self.current_pec = "EXCIT" 
-        self.te = self.data[self.current_wl][self.current_pec]["te"]
-        self.ne = self.data[self.current_wl][self.current_pec]["ne"]
-        self.interp = self.data[self.current_wl][self.current_pec]["interp"]
-        self.set_wavelength(wavelength)
-
-    def set_wavelength(self, new_wavelength: str):
-        if new_wavelength in self.data:
-            self.current_wl = new_wavelength
-            self.te = self.data[self.current_wl][self.current_pec]["te"]
-            self.ne = self.data[self.current_wl][self.current_pec]["ne"]
-            self.interp = self.data[self.current_wl][self.current_pec]["interp"]
-        else:
-            print(f"Wavelength {new_wavelength} not found in data\nCurrent wavelength is {self.current_wl}")
-            
         
     # -------------------------
     # File reading / cleaning
@@ -163,22 +222,7 @@ class ADF:
         """Evaluate interpolator for given wavelength."""
         return self.data[wl][pec_type]["interp"]((te, ne))
     
-    def f(self, te, ne):
-        return self.interpolate(self.current_wl, te, ne)
 
-    def calc_photon_rates(self, te, ne, nh):
-        rows = []
-        
-        for i in range(self.M):
-            wl = TRANSITION_TABLE[self.atomic_transitions_list[i]] 
-            row = (
-                  self.interpolate(te, ne, "EXCIT", wl) * nh*ne
-                + self.interpolate(te, ne, "RECOM", wl) * ne*ne
-                    
-                )* self.inv4pi*1e-6
-            rows.append(row)
-
-        return np.vstack(rows)
     
 if __name__ == "__main__":
-    adf = ADF()
+    adf = ADF15()
