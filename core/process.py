@@ -105,10 +105,6 @@ class ProcessEdgeSim:
         # Option to run cherab
         self.run_cherab = self.input_dict["run_options"].get('run_cherab', False)
 
-        # Option to use cherab ne and Te fits rather than pyproc's. Use case - Lyman opacity adas data is not suppored
-        # by cherab-bridge, so import cherab plasma parameter profiles with reflections impact here instead and apply
-        # to Siz and Srec estimates with modified Ly-trapping adas data
-        self.cherab_ne_Te_KT3_resfile = self.input_dict['run_options'].get('use_cherab_resfile_for_KT3_ne_Te_fits', None)
         self.diag_list = self.input_dict['diag_list']
         self.camera_list = self.input_dict['ccd_list']
         self.bolo_list = self.input_dict['bolo_list']
@@ -123,12 +119,6 @@ class ProcessEdgeSim:
         self.recalc_h2_pos = self.input_dict['run_options'].get('recalc_h2_pos', True)
         self.run_cherab = self.input_dict['run_options'].get('run_cherab', False)
         
-        # Location of adf15 and adf11 ADAS data modified for Ly-series opacity with escape factor method
-        self.adas_lytrap = self.input_dict.get('read_ADAS_lytrap', None)
-        if self.adas_lytrap is not None:
-            self.spec_line_dict_lytrap = self.adas_lytrap['spec_line_dict']
-        else:
-            self.spec_line_dict_lytrap = None
 
     def load_neutral_data_sources(self):
         """

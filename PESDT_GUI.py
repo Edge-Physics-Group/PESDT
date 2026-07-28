@@ -383,8 +383,6 @@ class Base(QWidget):
                 "analyse_synth_spec_features": self.analyse_synth_spec_features.isChecked(),
                 "data_source": self.data_source_combo.currentText(),
                 "recalc_h2_pos": self.recalc_h2_pos.isChecked(),
-                "Sion_H_transition": [[2,1],[3,2]],
-                "Srec_H_transition": [[5,2]]
             }
     }
 
