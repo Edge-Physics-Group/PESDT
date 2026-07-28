@@ -11,8 +11,9 @@ from .synth_diag import SynthDiag
 from .utils.utils import isclose, interp_nearest_neighb, find_nearest
 from .utils.amread import calc_photon_rate
 from .utils.amread import wavelength as calc_wavelength
-from .utils import get_ADAS_dict
+from .utils import populate_adas_db, ADF11, ADF15
 from .utils.machine_defs import get_DIIIDdefs, get_JETdefs
+from .database import spectroscopic_lines_db
 #from pyADASread import adas_adf11_read, adas_adf15_read # Todo: replace adas with OpenAdas
 from .edge_code_formats import BackgroundPlasma, Cell, Edge2D, SOLPS, OEDGE, EIRENE
 from .cherab import CherabPlasma, D3D_mesh
@@ -139,22 +140,8 @@ class ProcessEdgeSim:
             # Look for YACORA rates in the home folder, unless specified otherwise in the input
             self.YACORA_RATES_PATH = self.input_dict.get("YACORA_RATES_PATH", os.path.join(os.path.expanduser("~"), "YACORA_RATES/" ))
         elif self.data_source == "ADAS":
+            populate_adas_db()
             
-            # Look for Lyman trapping modified ADAS data
-            if self.adas_lytrap is not None:
-                self.ADAS_dict_lytrap = get_ADAS_dict(self.savedir,
-                                                    self.spec_line_dict_lytrap,
-                                                    restore=not self.input_dict['read_ADAS_lytrap']['read'],
-                                                    adf11_year = self.adas_lytrap['adf11_year'],
-                                                    lytrap_adf11_dir=self.adas_lytrap['adf11_dir'],
-                                                    lytrap_pec_file=self.adas_lytrap['pec_file'])
-
-            # Also get standard ADAS data
-            self.ADAS_dict = get_ADAS_dict(self.cache_dir,
-                                        self.spec_line_dict, adf11_year=12, restore=not self.input_dict['read_ADAS'])
-
-
-        #logger.info(f"diag_list: {self.input_dict['diag_list']}")
 
     def load_edge_data(self):
         logger.info(f"Loading {self.edge_code} BG plasma from {self.sim_path}.")
@@ -717,17 +704,12 @@ class ProcessEdgeSim:
         self.gen_synth_diag_data()
 
     def __getstate__(self):
-        """
-            For removing the large ADAS_dict from the object for pickling
-            See: https://docs/python/org/2/library/pickle.html#example
-        """
+
         odict = self.__dict__.copy() # copy the dict since we change it
-        if self.data_source == "ADAS":
-            del odict['ADAS_dict']
+
         return odict
 
     def __setstate__(self, dict):
-        # TODO: Read external ADAS_dict object and add to dict for unpickling
         self.__dict__.update(dict)
 
     def gen_synth_diag_data(self):
@@ -807,16 +789,15 @@ class ProcessEdgeSim:
                                       
         else: 
             logger.info("Using Adas")
-            for cell in self.cells:
-                for line_key in self.spec_line_dict['1']['1']:
-                    E_excit, E_recom= adas_adf15_read.get_H_line_emiss(line_key, self.ADAS_dict['adf15']['1']['1'], cell.te, cell.ne*1.0E-06, cell.ni*1.0E-06, cell.n0*1.0E-06)
-                    cell.H_emiss[line_key] = {'excit':E_excit, 'recom':E_recom, 'units':'ph.s^-1.m^-3.sr^-1'}
-
-        if self.spec_line_dict_lytrap:
-            logger.info('Calculating H emission for Ly trapping...')
-            for cell in self.cells:
-                for line_key in self.spec_line_dict_lytrap['1']['1']:
-                    E_excit, E_recom= adas_adf15_read.get_H_line_emiss(line_key, self.ADAS_dict_lytrap['adf15']['1']['1'], cell.te, cell.ne*1.0E-06, cell.ni*1.0E-06, cell.n0*1.0E-06)
+            adf = ADF15()
+            
+            for line_key in self.spec_line_dict['1']['1']:
+                sdb = spectroscopic_lines_db()
+                tra_wl_dct = {trans: wl for wl, trans in sdb.data["H"].items()}
+                wl = float(tra_wl_dct(line_key))
+                for cell in self.cells:
+                    E_excit= adf.interpolate(cell.te, cell.ne, "EXCIT", wl)*cell.ne*cell.n0*1/(4.0*np.pi)
+                    E_recom= adf.interpolate(cell.te, cell.ne, "RECOM", wl)*cell.ne*cell.ne*1/(4.0*np.pi)
                     cell.H_emiss[line_key] = {'excit':E_excit, 'recom':E_recom, 'units':'ph.s^-1.m^-3.sr^-1'}
 
     def calc_ff_fb_filtered_emiss(self, filter_wv_nm, filter_tran):
@@ -869,15 +850,15 @@ class ProcessEdgeSim:
         # self.H_adf11 = adas_adf11_utils.get_adas_H_adf11_interp(Te_rnge, ne_rnge, npts=self.ADAS_npts, npts_interp=1000, pwr=True)
         logger.info('Calculating H radiated power...')
         sum_pwr = 0
+        adf = ADF11()
         for cell in self.cells:
-            iTe, vTe = find_nearest(self.ADAS_dict['adf11']['1'].Te_arr, cell.te)
-            ine, vne = find_nearest(self.ADAS_dict['adf11']['1'].ne_arr, cell.ne*1.0e-06)
-            # plt/prb absolute rad pow contr in units W.cm^3
-            plt_contr = self.ADAS_dict['adf11']['1'].plt[iTe,ine]*(1.0e-06*cell.n0)*(1.0e-06*cell.ne) #W.cm^-3
-            prb_contr = self.ADAS_dict['adf11']['1'].prb[iTe,ine]*(1.0e-06*cell.ni)*(1.0e-06*cell.ne) #W.cm^-3
+            
+            # plt/prb absolute rad pow contr in units W.m^3
+            plt_contr = adf.interpolate_plt(cell.te, cell.ne)*cell.ne*cell.n0 #W.m^-3
+            prb_contr = adf.interpolate_prb(cell.te, cell.ne)*cell.ne*cell.ne #W.m^-3
             cell_vol = cell.poly.area * 2.0 * np.pi * cell.R # m^3
-            cell.H_radpwr = (plt_contr+prb_contr) * 1.e06 * cell_vol # Watts
-            cell.H_radpwr_perm3 = (plt_contr+prb_contr) * 1.e06 # Watts m^-3
+            cell.H_radpwr = (plt_contr+prb_contr)  * cell_vol # Watts
+            cell.H_radpwr_perm3 = (plt_contr+prb_contr) # Watts m^-3
 
             sum_pwr += np.sum(np.asarray(cell.H_radpwr)) # sanity check. compare to eproc
         self.Prad_H = sum_pwr
