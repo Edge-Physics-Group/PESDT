@@ -494,6 +494,7 @@ class SOLPS(BackgroundPlasma):
 
             # Multiple 2D data field (e.g. dab2)
             if number > nxyg:
+                logger.info(f"{len(_data)}, {number}, {nxyg}")
                 _data = np.array(_data).reshape((nxg, nyg, int(number / nxyg)), order='F')
                 if debug:
                     logger.info('Mesh data field {} with dimensions:  {:d} x {:d} x {:d}'.format(name, nxg, nyg, int(number/nxyg)))
