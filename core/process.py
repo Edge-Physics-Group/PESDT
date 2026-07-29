@@ -406,6 +406,17 @@ class ProcessEdgeSim:
 
         # === Process Each Bolometer ===
         for diag, _ in bolo_los_dict.items():
+            self.outdict[diag] = {}
+            
+            p1 = diag_def[diag]["p1"][0].tolist()
+            w1 = 0.0
+            w2 = diag_def[diag]["w"][0][1]
+
+            los_coords = []
+            for p2 in diag_def[diag]["p2"]:
+                los_coords.append({"p1": p1, "p2": p2.tolist(), "w1": w1, "w2": w2})
+            self.outdict[diag]["chord"] = los_coords
+            self.outdict[diag]["units"] = "W m^-2 sr^-1"
             if data_source == "ADAS":
                 logger.info("Excitation")
                 plasma.define_bolometer_plasma_model(line=True)
