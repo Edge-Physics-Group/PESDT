@@ -619,13 +619,13 @@ class SOLPS(BackgroundPlasma):
                        data.extend(['0.0'])
                     data.extend([line[i]])
     
-        if name != '' and name != 'edissml':
-            data.extend((nxg+1)*[0.0]) # Add last row of guard cells
-            flag, shaped_data = _make_solps_data_object(data)
-            if flag == SIM_INFO_DATA:
-                fort44_info_dict[name] = shaped_data
-            elif flag == MESH_DATA:
-                fort44_data_dict[name] = shaped_data
+            if name != '' and name != 'edissml':
+                data.extend((nxg+1)*[0.0]) # Add last row of guard cells
+                flag, shaped_data = _make_solps_data_object(data)
+                if flag == SIM_INFO_DATA:
+                    fort44_info_dict[name] = shaped_data
+                elif flag == MESH_DATA:
+                    fort44_data_dict[name] = shaped_data
     
         return fort44_header_dict, fort44_info_dict, fort44_data_dict
     
