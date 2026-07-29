@@ -295,7 +295,7 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
         emission = [{} for _ in range(num_species)]
         em_line = np.zeros_like(te)
         tra_wl_dct = {trans: wl for wl, trans in sdb.data["H"].items()}
-        for i in range(1,7):
+        for i in range(1,5):
             for j in range(2, 7):
                 if i >= j: continue
                 transition = (j, i)
