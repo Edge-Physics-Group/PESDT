@@ -21,6 +21,23 @@ def populate_adas_db(website = 'http://open.adas.ac.uk/download/'):
                 os.makedirs(directory)
             url = urllib.parse.urljoin(website, adaspath.replace('#', '][').lstrip('/'))
             urllib.request.urlretrieve(url, target)
+
+    for species, adaspath in ADF_DICT["ADF11"]["plt"].items():
+        target = os.path.join(ADAS_DB_PATH, adaspath)
+        if not os.path.isfile(target):
+            directory = os.path.dirname(target)
+            if not os.path.isdir(directory):
+                os.makedirs(directory)
+            url = urllib.parse.urljoin(website, adaspath.replace('#', '][').lstrip('/'))
+            urllib.request.urlretrieve(url, target)
+    for species, adaspath in ADF_DICT["ADF11"]["prb"].items():
+        target = os.path.join(ADAS_DB_PATH, adaspath)
+        if not os.path.isfile(target):
+            directory = os.path.dirname(target)
+            if not os.path.isdir(directory):
+                os.makedirs(directory)
+            url = urllib.parse.urljoin(website, adaspath.replace('#', '][').lstrip('/'))
+            urllib.request.urlretrieve(url, target)
     return
 
 class ADF11():

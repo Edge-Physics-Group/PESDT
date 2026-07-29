@@ -27,7 +27,7 @@
         }
 },
     "ADF15": {
-        "H": "pec12#h_pju#h0.dat", 
+        "H": "adf15/pec12#h/pec12#h_pju#h0.dat", 
         "He0": "adf15/pec96#he/pec96#he_pju#he0.dat",
         "He1": "adf15/pec96#he/pec96#he_pju#he1.dat",
         "Be0": "adf15/pec96#be/pec96#be_pju#be0.dat",
