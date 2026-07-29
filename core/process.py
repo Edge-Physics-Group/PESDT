@@ -306,45 +306,44 @@ class ProcessEdgeSim:
                 if data_source in ["YACORA", "AMJUEL"]:
                     # Excitation
                     logger.info("Excitation")
-                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_excitation=True, data_source=data_source)
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_excitation=True)
                     excit = plasma.integrate_instrument(diag)
                     self.outdict[diag][wavelength]["excit"] = [x[0] for x in excit]
 
                     # Recombination
                     logger.info("Recombination")
-                    plasma.define_Hydrogenic_plasma_model(transition=transition,
-                                            include_recombination=True, data_source=data_source)
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_recombination=True)
                     recom = plasma.integrate_instrument(diag)
                     self.outdict[diag][wavelength]["recom"] = [x[0] for x in recom]
                     # Molecular / negative H species
                 
                     logger.info("H2")
-                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_H2=True, data_source=data_source)
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_H2=True)
                     self.outdict[diag][wavelength]["h2"] = [x[0] for x in plasma.integrate_instrument(diag)]
                     logger.info("H2+")
-                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_H2_pos=True, data_source=data_source)
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_H2_pos=True)
                     self.outdict[diag][wavelength]["h2+"] = [x[0] for x in plasma.integrate_instrument(diag)]
                     logger.info("H3+")
-                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_H3_pos=True, data_source=data_source)
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_H3_pos=True)
                     self.outdict[diag][wavelength]["h3+"] = [x[0] for x in plasma.integrate_instrument(diag)]
                     logger.info("H-")
-                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_H_neg=True, data_source=data_source)
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_H_neg=True)
                     self.outdict[diag][wavelength]["h-"] = [x[0] for x in plasma.integrate_instrument(diag)]
 
                     if self.opaque:
                         logger.info("Photons (due to opacity)")
-                        plasma.define_Hydrogenic_plasma_model(transition=transition, include_ph=True, data_source=data_source)
+                        plasma.define_Hydrogenic_plasma_model(transition=transition, include_ph=True)
                         self.outdict[diag][wavelength]["ph"] = [x[0] for x in plasma.integrate_instrument(diag)]
                 if data_source == "ADAS":
                     # Excitation
                     logger.info("Excitation")
-                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_excitation=True, data_source=data_source)
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_excitation=True)
                     excit = plasma.integrate_instrument(diag)
                     self.outdict[diag][wavelength]["excit"] = [x[0] for x in excit]
 
                     # Recombination
                     logger.info("Recombination")
-                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_recombination=True, data_source=data_source)
+                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_recombination=True)
                     recom = plasma.integrate_instrument(diag)
                     self.outdict[diag][wavelength]["recom"] = [x[0] for x in recom]
                     
