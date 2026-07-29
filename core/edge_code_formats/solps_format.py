@@ -605,6 +605,7 @@ class SOLPS(BackgroundPlasma):
                 name = str(line[3].strip())
                 if name == 'edissml': # you can stop reading here, because other variables are not needed
                     break
+                logger.info(f"Datafield: {name}")
                 data = (nxg+1)*['0.0']
                 ndata = 0
                 nrow = 1
