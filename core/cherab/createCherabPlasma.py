@@ -82,14 +82,6 @@ def createHydrogenicCherabPlasma(PESDT, transitions: list,
     num_cells = len(PESDT.cells)
     num_neut = 2 if data_source in ["AMJUEL", "YACORA"] else 1
 
-    rv = np.zeros((num_cells, 4))
-    zv = np.zeros((num_cells, 4))
-    # Eirene uses triangles
-    if PESDT.edge_code == "eirene":
-        rv = np.zeros((num_cells, 3))
-        zv = np.zeros((num_cells, 3))
-    
-
     te = np.zeros(num_cells)
     ti = np.zeros(num_cells)
     t0 = np.zeros(num_cells)
@@ -329,3 +321,4 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
     sim.ion_temperature = ti
     sim.species_density = species_density
     sim.emission = [emission_keys, emission]
+    return sim
