@@ -67,6 +67,7 @@ class CherabPlasma():
         self.bolo_los_coords = {}
         self.cameras = {}
         self.bolos = {}
+        self.plasmas = {}
         self.mol_exc_bands = mol_exc_bands
         self.opaque = opaque
         self.opaque_mode = opaque_mode
@@ -131,9 +132,19 @@ class CherabPlasma():
             self.world = World()
             construct_DIIID_mesh(self.world)
         if (len(self.instrument_los_dict)>0 or len(self.cameras)> 0):
-            self.plasma = self.gen_cherab_plasma()
+            self.plasmas["line"] = self.gen_cherab_plasma()
+            self.plasma = self.plasmas["line"]
+            self.plasma.parent = self.world # Activate plasma
         if len(self.bolo_los_dict)>0: 
-            self.bolo_plasma = self.gen_cherab_bolo_plasma()
+            self.plasmas["bolo"]= self.gen_cherab_bolo_plasma()
+
+    def set_active_plasma(self, name: str):
+        # Deactivate all plasmas
+        for k, p in self.plasmas.items():
+            p.parent = None
+        # Activate target plasma
+        self.plasma = self.plasmas[name]
+        self.plasma.parent = self.world
 
     def gen_cherab_plasma(self):
 
@@ -146,7 +157,7 @@ class CherabPlasma():
                                     recalc_h2_pos = self.recalc_h2_pos, 
                                     mol_exc_bands= self.mol_exc_bands)
         
-        plasma = cherab.create_plasma(parent=self.world, opaque = self.opaque)
+        plasma = cherab.create_plasma(parent=None, opaque = self.opaque)
 
         # Dummy atomic data dict
         sdb = spectroscopic_lines_db()
@@ -164,7 +175,7 @@ class CherabPlasma():
                                         data_source=self.data_source, h_neg = False,
                                         recalc_h2_pos = self.recalc_h2_pos)
     
-            plasma = cherab.create_plasma(parent=self.world, opaque = self.opaque)
+            plasma = cherab.create_plasma(parent=None, opaque = self.opaque)
 
             sdb = spectroscopic_lines_db()
             data_dicts = {s: sdb.data[s] for s in self.species_list}
@@ -172,6 +183,8 @@ class CherabPlasma():
             plasma.atomic_data = self.PESDT_data_dicts[self.species_list[0]]
     
             return plasma
+
+
 
     def define_bolometer_plasma_model(self, line = False, ff_rec = False, FF = False, FFFB = False):
         model_list = []
@@ -190,7 +203,7 @@ class CherabPlasma():
             h_line = PESDTLine(D0, 3, (2,1))
             model_list.append(line_emitter(h_line, lineshape=lineshape))
        
-        self.bolo_plasma.models = model_list
+        self.plasma.models = model_list
 
     def define_continuum_plasma_model(self):
         h_line = PESDTLine(D0, 0, (4,2))
@@ -206,7 +219,7 @@ class CherabPlasma():
         ph = kwargs.get("include_ph", False) and self.opaque
         if kwargs.get("data_source", "AMJUEL") == "ADAS":
             h2 = False; h2p = False; h3p = False; hneg = False; ph = False
-            
+
         if  he:
             h_line = PESDTLine(D0, 0, transition)
             model_list.append(line_emitter(h_line, lineshape=lineshape))

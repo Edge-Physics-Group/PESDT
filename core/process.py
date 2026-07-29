@@ -283,6 +283,7 @@ class ProcessEdgeSim:
         self.outdict = {"description": f"CHERAB, REFLECTIONS: {include_reflections}, JET-MESH: {import_jet_surfaces}, DATA SOURCE: {data_source}"}
         
         # === Process Each Instrument ===
+        plasma.set_active_plasma("line")
         for diag, _ in instrument_los_dict.items():
             self.outdict[diag] = {}
 
@@ -382,6 +383,7 @@ class ProcessEdgeSim:
                     self.outdict[diag][band] = [x[0] for x in plasma.integrate_instrument(diag)]
 
         # === Process Each Camera ===
+        plasma.set_active_plasma("line")
         for diag, settings in camera_los_dict.items():
             self.outdict[diag] = {}
 
@@ -405,6 +407,7 @@ class ProcessEdgeSim:
                     self.outdict[diag][wavelength]["variance"] = em[1].tolist()
 
         # === Process Each Bolometer ===
+        plasma.set_active_plasma("bolo")
         for diag, _ in bolo_los_dict.items():
             self.outdict[diag] = {}
             
