@@ -259,9 +259,9 @@ class SOLPS(BackgroundPlasma):
             # EIRENE output on the B2 quad mesh. fort.46 pdena holds the same info on the tri
             # EIRENE mesh.
 #                _n0 = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 0] # fluid neutral den  
-            _n0 = self.fort44_data_dict['dab2'][_idx_grid_map[0], _idx_grid_map[1]] # kinetic atom den  
-            _n2 = self.fort44_data_dict['dmb2'][_idx_grid_map[0], _idx_grid_map[1]] # kinetic mol. den 
-            _n2p = self.fort44_data_dict['dib2'][_idx_grid_map[0], _idx_grid_map[1]] # kinetic mol. ion den
+            _n0 = self.fort44_data_dict['dab2'][_idx_grid_map[0], _idx_grid_map[1], 0] # kinetic atom den  
+            _n2 = self.fort44_data_dict['dmb2'][_idx_grid_map[0], _idx_grid_map[1], 0] # kinetic mol. den 
+            _n2p = self.fort44_data_dict['dib2'][_idx_grid_map[0], _idx_grid_map[1], 0] # kinetic mol. ion den
             _ni = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 1] # fuel ion den      
             _imp_den = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 2:] # impurity den by ion stage
             self.imp1_atom_num = None
@@ -486,32 +486,29 @@ class SOLPS(BackgroundPlasma):
         """
     
         # Inline function for mapping str data to floats, reshaping arrays, and loading into SOLPSData object.
-        def _make_solps_data_object(_data): 
-
-            # Convert list of strings to list of floats
-            for idx, item in enumerate(_data):
-                _data[idx] = float(item)
-
-            # Multiple 2D data field (e.g. dab2)
-            if number > nxyg:
-                logger.info(f"{len(_data)}, {number}, {nxyg}")
-                _data = np.array(_data).reshape((nxg, nyg, int(number / nxyg)), order='F')
+        def _make_solps_data_object(_data):
+            # Convert list of strings to numpy float array
+            _data = np.asarray(_data, dtype=float)
+            # Mesh data
+            if number >= nxy:
+                nplanes = number // nxy
+                # Raw data
+                raw = _data.reshape((nx, ny, nplanes), order='F')
+                # Allocate guarded array
+                guarded = np.zeros((nxg, nyg, nplanes), dtype=float)
+                # Copy interior
+                guarded[1:-1, 1:-1, :] = raw
                 if debug:
-                    logger.info('Mesh data field {} with dimensions:  {:d} x {:d} x {:d}'.format(name, nxg, nyg, int(number/nxyg)))
-                return MESH_DATA, _data
-    
-            # 2D data field (e.g. ne)
-            elif number == nxyg:
-                _data = np.array(_data).reshape((nxg, nyg), order='F')
-                if debug:
-                    logger.info('Mesh data field {} with dimensions:  {:d} x {:d}'.format(name, nxg, nyg))
-                return MESH_DATA, _data
-    
-            # Additional information field (e.g. zamin)
+                    logger.info(f"Mesh data field {name} with dimensions: "f"{nxg} x {nyg} x {nplanes}")
+
+                return MESH_DATA, guarded
+
+            # Additional information fields
             else:
-                _data = np.array(_data)
                 if debug:
-                    logger.info('Sim info field {} with length:     {} '.format(name, _data.shape[0]))
+                    logger.info(
+                        f"Sim info field {name} with length: {_data.shape[0]}"
+                    )
                 return SIM_INFO_DATA, _data
     
         if not(os.path.isfile(filepath)):
@@ -591,7 +588,6 @@ class SOLPS(BackgroundPlasma):
             if line[0] == '*eirene':
                 # If previous block read --> Convert data to float, reshape and save to Object
                 if name != '':
-                    data.extend((nxg+1)*[0.0]) # Add last row of guard cells
                     flag, shaped_data = _make_solps_data_object(data)
                     if flag == SIM_INFO_DATA:
                         fort44_info_dict[name] = shaped_data                    
@@ -600,29 +596,18 @@ class SOLPS(BackgroundPlasma):
     
                 # Read next field paramters
                 data_type = 'real'
-                number = int(line[6]) 
-                if number >= nxy: # adding guard cells
-                    number = number + (2*nxg+2*ny)*(number//nxy)           
+                number = int(line[6])          
                 name = str(line[3].strip())
                 if name == 'edissml': # you can stop reading here, because other variables are not needed
                     break
                 logger.info(f"Datafield: {name}")
-                data = (nxg+1)*['0.0']
-                ndata = 0
-                nrow = 1
+                data = []
     
             # Append line to vector of data
             else:
-                for i in range(len(line)):
-                    ndata = ndata+1
-                    if ndata > nrow*nx: # add guard cells
-                       nrow = nrow+1
-                       data.extend(['0.0'])
-                       data.extend(['0.0'])
-                    data.extend([line[i]])
+                data.extend(line)
     
         if name != '' and name != 'edissml':
-            data.extend((nxg+1)*[0.0]) # Add last row of guard cells
             flag, shaped_data = _make_solps_data_object(data)
             if flag == SIM_INFO_DATA:
                 fort44_info_dict[name] = shaped_data
