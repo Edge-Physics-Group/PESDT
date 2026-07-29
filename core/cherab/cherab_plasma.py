@@ -147,7 +147,8 @@ class CherabPlasma():
         plasma = cherab.create_plasma(parent=self.world, opaque = self.opaque)
 
         # Dummy atomic data dict
-        data_dicts = {s: spectroscopic_lines_db.data[s] for s in self.species_list}
+        sdb = spectroscopic_lines_db()
+        data_dicts = {s: sdb.data[s] for s in self.species_list}
         self.PESDT_data_dicts = {s: PESDT_Data(data_dicts[s]) for s in self.species_list}
         plasma.atomic_data = self.PESDT_data_dicts[self.species_list[0]]
 
@@ -163,7 +164,8 @@ class CherabPlasma():
     
             plasma = cherab.create_plasma(parent=self.world, opaque = self.opaque)
 
-            data_dicts = {s: spectroscopic_lines_db.data[s] for s in self.species_list}
+            sdb = spectroscopic_lines_db()
+            data_dicts = {s: sdb.data[s] for s in self.species_list}
             self.PESDT_data_dicts = {s: PESDT_Data(data_dicts[s]) for s in self.species_list}
             plasma.atomic_data = self.PESDT_data_dicts[self.species_list[0]]
     
