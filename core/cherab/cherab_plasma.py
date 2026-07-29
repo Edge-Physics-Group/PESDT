@@ -137,15 +137,12 @@ class CherabPlasma():
 
         # Load PESDT object into cherab_edge2d module, which converts the edge_codes grid to cherab
         # format, and populates cherab plasma parameters
-        convert_to_m3 = not (self.data_source in ["AMJUEL", "YACORA"])
+        
         cherab = createHydrogenicCherabPlasma(self.PESDT_obj,
                                     transitions= self.transitions,
-                                    convert_denel_to_m3 = convert_to_m3, 
                                     data_source=self.data_source, 
                                     recalc_h2_pos = self.recalc_h2_pos, 
-                                    mol_exc_bands= self.mol_exc_bands,
-                                    opaque= self.opaque,
-                                    opaque_mode = self.opaque_mode)
+                                    mol_exc_bands= self.mol_exc_bands)
         
         plasma = cherab.create_plasma(parent=self.world, opaque = self.opaque)
 
