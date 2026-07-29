@@ -293,7 +293,7 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
         emission_keys = [(2, 1)] # Use Lyman alpha as the wl, Ly beta for FF and FFFB
         emission[0][(2,1)] = adf.interpolate_plt(te, ne)*ne*n0*1/(4.0*np.pi)
         emission[1][(2,1)] = adf.interpolate_prb(te, ne)*ne*ne*1/(4.0*np.pi)
-        ff, fffb = continuov_(10**np.arange(0, 4.01, 0.1), te)
+        ff, fffb = continuov_(10**np.arange(0, 4.01, 0.1), te, 1, 1)
         wl = 10**np.arange(0, 4.01, 0.1)
         emission[2][(2, 1)] = np.trapezoid(ff * h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
         emission[3][(2, 1)] = np.trapezoid(fffb* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
@@ -310,7 +310,7 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
                 wl = float(tra_wl_dct[transition])
             em_line += calc_photon_rate(transition, te, ne, n0, mol_n_density = n2, mol_p_density = n2p, h_neg = kwargs.get("h_neg", False), recalc_h2_pos = kwargs.get("recalc_h2_pos")) * h*c/(1e-10*wl)
         emission[0][(2, 1)] = em_line
-        ff, fffb = continuov_(10**np.arange(0, 4.01, 0.1), te)
+        ff, fffb = continuov_(10**np.arange(0, 4.01, 0.1), te, 1, 1)
         wl = 10**np.arange(0, 4.01, 0.1)
         emission[1][(2, 1)] = np.trapezoid(ff * h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
         emission[2][(2, 1)] = np.trapezoid(fffb* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
