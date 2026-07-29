@@ -886,7 +886,11 @@ echo "Run finished"
         HH, MM, SS = job_info["time"].split(":")
         
         Path(cmd_dir).mkdir(parents=True, exist_ok=True)
-
+        PESDT_venv = os.path.join(pesdt_home, "pesdt_venv/bin/activate")
+        if "dev" in pesdt_home:
+            PESDT_env = os.path.join(pesdt_home, "PESDT_dev_env")
+        else:
+            PESDT_env = os.path.join(pesdt_home, "PESDT_env")
         content = f"""#!/bin/bash
 #SBATCH --job-name={job_name}
 #SBATCH --output={stdout_path}
@@ -901,8 +905,8 @@ echo "Run finished"
 echo "Running PESDT via SLURM"
 source /etc/profile.d/modules.sh
 
-source /scratch/phys/fusion/PESDT/pesdt_venv/bin/activate
-source /scratch/phys/fusion/PESDT/PESDT_env
+source {PESDT_venv}
+source {PESDT_env}
 
 export OMP_NUM_THREADS=${{SLURM_CPUS_PER_TASK:-1}}
 

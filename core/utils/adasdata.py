@@ -5,7 +5,7 @@ import os, json
 import urllib.parse
 import urllib.request
 
-ADAS_DB_PATH = os.path.join(os.environ.get('PESDT_HOME', os.path.expanduser('~') + "PESDT/"), "adas_db/")
+ADAS_DB_PATH = os.path.join(os.environ.get('PESDT_HOME', os.path.expanduser('~') + "/PESDT/"), "adas_db/")
 
 with open(os.path.join(ADAS_DB_PATH, "adf_dict.json"), "r") as f:
     ADF_DICT = json.load(f)
