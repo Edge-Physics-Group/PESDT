@@ -292,6 +292,7 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
     elif data_source == "AMJUEL":
         species_list = [(D0, 0), (D0, 2), (D0, 3)]
         num_species = 3
+        species_density = np.zeros((num_species, num_cells))
         emission = [{} for _ in range(num_species)]
         em_line = np.zeros_like(te)
         tra_wl_dct = {trans: wl for wl, trans in sdb.data["H"].items()}
@@ -310,6 +311,7 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
         # Assume Cell has total radiated power
         species_list = [(D0, 0)]
         num_species = 1
+        species_density = np.zeros((num_species, num_cells))
         emission = [{} for _ in range(num_species)]
         rad = np.zeros((num_cells))
         for ith_cell, cell in enumerate(PESDT.cells):
