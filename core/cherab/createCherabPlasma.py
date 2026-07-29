@@ -299,8 +299,8 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
             for j in range(2, 7):
                 if i >= j: continue
                 transition = (j, i)
-                wl = float(tra_wl_dct[transition])
-            em_line += calc_photon_rate(transition, te, ne, n0, mol_n_density = n2, mol_p_density = n2p, h_neg = kwargs.get("h_neg", False), recalc_h2_pos = kwargs.get("recalc_h2_pos")) * h*c/(1e-10*wl)
+                wl = wavelength(transition)
+            em_line += calc_photon_rate(transition, te, ne, n0, mol_n_density = n2, mol_p_density = n2p, h_neg = kwargs.get("h_neg", False), recalc_h2_pos = kwargs.get("recalc_h2_pos")) * h*c/(1e-9*wl)
         emission[0][(2, 1)] = em_line
         ff, fffb = continuov_(10**np.arange(0, 4.01, 0.1), te, 1, 1)
         wl = 10**np.arange(0, 4.01, 0.1)
