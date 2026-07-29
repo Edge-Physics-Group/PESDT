@@ -7,7 +7,7 @@ class PESDT_Data(AtomicData):
     def __init__(self, atomic_data_dict):
 
         # Invert dictionary to format transition : wave
-        self.atomic_data_dict = {trans: wl for wl, trans in atomic_data_dict.items()}
+        self.atomic_data_dict = {trans: float(wl) for wl, trans in atomic_data_dict.items()}
 
     def wavelength(self, ion, ion_stage, transition):
 
