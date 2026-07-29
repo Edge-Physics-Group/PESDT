@@ -304,7 +304,16 @@ class SOLPS(BackgroundPlasma):
             self.n2.append(cell.n2)
             self.n2p.append(cell.n2p)
             self.ni.append(cell.ni)   
-            self.te.append(max(cell.te,0.1))  
+            self.te.append(max(cell.te,0.1))
+        # Convert all to numpy arrays  
+        self.ne = np.array(self.ne)
+        self.n0 = np.array(self.n0)
+        self.n2 = np.array(self.n2)
+        self.n2p = np.array(self.n2p)
+        self.ni = np.array(self.ni)
+        self.te = np.array(self.te)
+        self.rv = np.array(self.rv)
+        self.zv = np.array(self.zv)
         
             
             
