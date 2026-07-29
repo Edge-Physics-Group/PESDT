@@ -238,7 +238,7 @@ class ADF15():
     # -------------------------
     def interpolate(self, te, ne, pec_type, wl):
         """Evaluate interpolator for given wavelength."""
-        return self.data[wl][pec_type]["interp"]((te, ne))
+        return self.data[wl][pec_type]["interp"]((te, ne))*1e-6
     
 
     
