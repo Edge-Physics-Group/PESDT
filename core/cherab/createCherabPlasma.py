@@ -223,7 +223,7 @@ def createHydrogenicCherabPlasma(PESDT, transitions: list,
         species_density = np.zeros((num_species, num_cells))
         adf = ADF15()
         tra_wl_dct = {trans: wl for wl, trans in sdb.data["H"].items()}
-        print(tra_wl_dct)
+        #print(tra_wl_dct)
         emission = [{} for _ in range(len(species_density))]
         for i in range(len(transitions)):
             wl = tra_wl_dct[transitions[i]]
