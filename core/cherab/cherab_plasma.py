@@ -200,25 +200,32 @@ class CherabPlasma():
         line_emitter = DirectEmission
         lineshape = StarkBroadenedLine
         model_list = []
-        if  kwargs.get("include_excitation", True):
+        he = kwargs.get("include_excitation", True); re = kwargs.get("include_recombination", True)
+        h2 = kwargs.get("include_H2", True); h2p = kwargs.get("include_H2_pos", True)
+        h3p = kwargs.get("include_H3_pos", True); hneg = kwargs.get("include_H_neg", False)
+        ph = kwargs.get("include_ph", False) and self.opaque
+        if kwargs.get("data_source", "AMJUEL") == "ADAS":
+            h2 = False; h2p = False; h3p = False; hneg = False; ph = False
+            
+        if  he:
             h_line = PESDTLine(D0, 0, transition)
             model_list.append(line_emitter(h_line, lineshape=lineshape))
-        if  kwargs.get("include_recombination", True):
+        if  re:
             h_line = PESDTLine(D0, 1, transition)
             model_list.append(line_emitter(h_line, lineshape=lineshape))
-        if  kwargs.get("include_H2", True):
+        if  h2:
             h_line = PESDTLine(D2, 0, transition)
             model_list.append(line_emitter(h_line, lineshape=lineshape))
-        if  kwargs.get("include_H2_pos", True):
+        if  h2p:
             h_line = PESDTLine(D2, 1, transition) 
             model_list.append(line_emitter(h_line, lineshape=lineshape))
-        if  kwargs.get("include_H3_pos", True):
+        if  h3p:
             h_line = PESDTLine(D3, 1, transition) 
             model_list.append(line_emitter(h_line, lineshape=lineshape))
-        if  kwargs.get("include_H_neg", False):
+        if  hneg:
             h_line = PESDTLine(D0, -1, transition) 
             model_list.append(line_emitter(h_line, lineshape=lineshape))
-        if  kwargs.get("include_ph", False) and self.opaque:
+        if  ph:
             h_line = PESDTLine(D0, 2, transition)
             model_list.append(line_emitter(h_line, lineshape=lineshape))
         self.plasma.models = model_list
