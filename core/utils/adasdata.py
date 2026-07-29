@@ -43,12 +43,12 @@ def populate_adas_db(website = 'http://open.adas.ac.uk/download/'):
 class ADF11():
     inv4pi = 1/(4*np.pi)
 
-    def __init__(self, species: str = "H"):
+    def __init__(self, species: str = "H", **kwargs):
 
         self.species = species
 
-        self.path_plt  = os.path.join(ADAS_DB_PATH, ADF_DICT["ADF11"]["plt"][species])
-        self.path_prb  = os.path.join(ADAS_DB_PATH, ADF_DICT["ADF11"]["prb"][species])
+        self.path_plt  = kwargs.get( "path_plt",os.path.join(ADAS_DB_PATH, ADF_DICT["ADF11"]["plt"][species]))
+        self.path_prb  = kwargs.get( "path_prb",os.path.join(ADAS_DB_PATH, ADF_DICT["ADF11"]["prb"][species]))
         self._read_files()
 
     def _read_files(self):
@@ -64,16 +64,17 @@ class ADF11():
 
             num_data_per_line = len(lines[0].split())
             num_ne_te_lines = int(np.ceil((num_ne+ num_te)/num_data_per_line))
-
-            ne_te_data = np.concatenate([ np.array([float(x) for x in line]) for line in lines[:num_ne_te_lines]])
+            
+            ne_te_data = np.concatenate([ np.array([float(x) for x in line.split()]) for line in lines[:num_ne_te_lines]])
 
             self.ne_plt = ne_te_data[:num_ne]
             self.te_plt = ne_te_data[num_ne:]
 
             data_lines = lines[num_ne_te_lines+1:]
+            num_data_lines = int(np.ceil(num_data/num_data_per_line))
 
-            self.data_plt = np.concatenate([[np.array([np.float64(x) for x in line]) for line in data_lines]]).reshape((num_ne, num_te))
-            self.interp_plt = RegularGridInterpolator((self.te_plt, self.ne_plt), self.data_plt.T, bounds_error=False, fill_value=None)
+            self.data_plt = np.concatenate([[np.array([np.float64(x) for x in line.split()]) for line in data_lines[:num_data_lines]]]).reshape((num_te, num_ne))
+            self.interp_plt = RegularGridInterpolator((self.te_plt, self.ne_plt), self.data_plt, bounds_error=False, fill_value=None)
 
         with open(self.path_prb, "r") as f:
             lines = f.readlines()
@@ -86,16 +87,16 @@ class ADF11():
 
             num_data_per_line = len(lines[0].split())
             num_ne_te_lines = int(np.ceil((num_ne+ num_te)/num_data_per_line))
-
-            ne_te_data = np.concatenate([ np.array([float(x) for x in line]) for line in lines[:num_ne_te_lines]])
+            num_data_lines = int(np.ceil(num_data/num_data_per_line))
+            ne_te_data = np.concatenate([ np.array([float(x) for x in line.split()]) for line in lines[:num_ne_te_lines]])
 
             self.ne_prb = ne_te_data[:num_ne]
             self.te_prb = ne_te_data[num_ne:]
 
             data_lines = lines[num_ne_te_lines+1:]
 
-            self.data_prb = np.concatenate([[np.array([np.float64(x) for x in line]) for line in data_lines]]).reshape((num_ne, num_te))
-            self.interp_prb = RegularGridInterpolator((self.te_prb, self.ne_prb), self.data_prb.T, bounds_error=False, fill_value=None)
+            self.data_prb = np.concatenate([[np.array([np.float64(x) for x in line.split()]) for line in data_lines[:num_data_lines]]]).reshape((num_te, num_ne))
+            self.interp_prb = RegularGridInterpolator((self.te_prb, self.ne_prb), self.data_prb, bounds_error=False, fill_value=None)
         
 
     # -------------------------
