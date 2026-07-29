@@ -40,6 +40,7 @@ class CherabPlasma():
                  transitions = None,
                  instrument_los_dict: dict = None,
                  bolo_los_dict: dict = None,
+                 camera_dict: dict = None,
                  mol_exc_bands = None,
                  species = ["D"],
                  opaque = False,
@@ -56,6 +57,7 @@ class CherabPlasma():
         self.sim_type = PESDT_obj.edge_code
         self.instrument_los_dict = instrument_los_dict
         self.bolo_los_dict = bolo_los_dict
+        self.camera_dict = camera_dict
         self.species_list = species
         self.instrument_fibreoptics = {}
         self.stark_fibreoptics = {}
@@ -379,7 +381,7 @@ class CherabPlasma():
     
     def setup_cameras(self, pixel_samples = 250, num_processes = 8):
         
-        for instrument, defs in self.camera_los_dict.items():
+        for instrument, defs in self.camera_dict.items():
             pipeline = RadiancePipeline2D(display_progress=False, accumulate = False)
             los_p1 = defs["p1"]
             los_p2 = defs["p2"]

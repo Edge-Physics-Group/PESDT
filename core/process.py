@@ -241,6 +241,7 @@ class ProcessEdgeSim:
                             transitions=transitions,
                             instrument_los_dict = instrument_los_dict,
                             bolo_los_dict = bolo_los_dict,
+                            camera_dict=camera_los_dict,
                             mol_exc_bands= mol_exc_emission_bands,
                             opaque= self.opaque)
         
