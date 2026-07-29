@@ -273,7 +273,7 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
     # Now load the simulation object with plasma values #
     
     mesh = create_cherab_mesh(PESDT)
-
+    emission_keys = [(2, 1)] # Use Lyman alpha as the wl
     if data_source == "ADAS":
         species_list = [(D0, 0), (D0, 1), (D0, 2), (D0, 3)]
         num_species = 4
@@ -282,7 +282,7 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
         
 
         emission = [{} for _ in range(num_species)]
-        emission_keys = [(2, 1)] # Use Lyman alpha as the wl, Ly beta for FF and FFFB
+        
         emission[0][(2,1)] = adf.interpolate_plt(te, ne)*ne*n0*1/(4.0*np.pi)
         emission[1][(2,1)] = adf.interpolate_prb(te, ne)*ne*ne*1/(4.0*np.pi)
         ff, fffb = continuov_(10**np.arange(0, 4.01, 0.1), te, 1, 1)
@@ -316,6 +316,7 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
         rad = np.zeros((num_cells))
         for ith_cell, cell in enumerate(PESDT.cells):
             rad[ith_cell] = cell.tot_rad
+        emission[0][(2,1)] = rad
 
     sim = PESDTSimulation(mesh, species_list) 
     sim.electron_temperature = te
