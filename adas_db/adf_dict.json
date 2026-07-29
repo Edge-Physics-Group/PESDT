@@ -1,6 +1,8 @@
 {"ADF11": { 
     "plt": {
         "H": "adf11/plt12/plt12_h.dat",
+        "D": "adf11/plt12/plt12_h.dat",
+        "T": "adf11/plt12/plt12_h.dat",
         "He": "adf11/plt96/plt96_he.dat",
         "Li": "adf11/plt96/plt96_li.dat",
         "Be": "adf11/plt96/plt96_be.dat",
@@ -14,6 +16,8 @@
     },
     "prb": {
         "H": "adf11/prb12/prb12_h.dat",
+        "D": "adf11/prb12/prb12_h.dat",
+        "T": "adf11/prb12/prb12_h.dat",
         "He": "adf11/prb96/prb96_he.dat",
         "Li": "adf11/prb96/prb96_li.dat",
         "Be": "adf11/prb96/prb96_be.dat",
@@ -28,6 +32,8 @@
 },
     "ADF15": {
         "H": "adf15/pec12#h/pec12#h_pju#h0.dat", 
+        "D": "adf15/pec12#h/pec12#h_pju#h0.dat", 
+        "T": "adf15/pec12#h/pec12#h_pju#h0.dat", 
         "He0": "adf15/pec96#he/pec96#he_pju#he0.dat",
         "He1": "adf15/pec96#he/pec96#he_pju#he1.dat",
         "Be0": "adf15/pec96#be/pec96#be_pju#be0.dat",
