@@ -54,7 +54,7 @@ else:
 
 setup(
     name="cherab-PESDT_addon",
-    version="0.1.0",
+    version="2.05a",
     license="EUPL 1.1",
     namespace_packages=['cherab'],
     packages=find_packages(),
