@@ -260,7 +260,7 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
         
 
         te[ith_cell] = cell.te
-        ti[ith_cell] = cell.te
+        ti[ith_cell] = cell.ti
         t0[ith_cell] = cell.te if cell.t0 is None else cell.t0
         # Multiply by 1e-6, I think cherab wants densities in cm^-3
         

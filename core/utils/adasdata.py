@@ -106,7 +106,7 @@ class ADF11():
 
         ne_ = np.log10(ne*1e-6)
         te_ = np.log10(te)
-        return self.interp_plt((te_, ne_))
+        return 1e-6*10**self.interp_plt((te_, ne_))
 
     def interpolate_prb(self, te, ne):
     
