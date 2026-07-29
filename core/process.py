@@ -421,48 +421,48 @@ class ProcessEdgeSim:
                 logger.info("Excitation")
                 plasma.define_bolometer_plasma_model(line=True)
                 excit = plasma.integrate_bolo(diag)
-                self.outdict[diag][wavelength]["excit"] = [x[0] for x in excit]
+                self.outdict[diag]["excit"] = [x[0] for x in excit]
 
                 # Recombination
                 logger.info("Recombination")
                 plasma.define_bolometer_plasma_model(ff_rec=True)
                 recom = plasma.integrate_bolo(diag)
-                self.outdict[diag][wavelength]["recom"] = [x[0] for x in recom]
+                self.outdict[diag]["recom"] = [x[0] for x in recom]
 
                 # FF
                 logger.info("FF")
                 plasma.define_bolometer_plasma_model(FF=True)
                 ff = plasma.integrate_bolo(diag)
-                self.outdict[diag][wavelength]["FF"] = [x[0] for x in ff]
+                self.outdict[diag]["FF"] = [x[0] for x in ff]
 
                 # FFFB
                 logger.info("FFFB")
                 plasma.define_bolometer_plasma_model(FFFB=True)
                 fffb = plasma.integrate_bolo(diag)
-                self.outdict[diag][wavelength]["FFFB"] = [x[0] for x in fffb]
+                self.outdict[diag]["FFFB"] = [x[0] for x in fffb]
 
             elif data_source == "AMJUEL":
                 logger.info("Total line")
                 plasma.define_bolometer_plasma_model(line=True)
                 excit = plasma.integrate_bolo(diag)
-                self.outdict[diag][wavelength]["tot_line"] = [x[0] for x in excit]
+                self.outdict[diag]["tot_line"] = [x[0] for x in excit]
 
                 # FF
                 logger.info("FF")
                 plasma.define_bolometer_plasma_model(FF=True)
                 ff = plasma.integrate_bolo(diag)
-                self.outdict[diag][wavelength]["FF"] = [x[0] for x in ff]
+                self.outdict[diag]["FF"] = [x[0] for x in ff]
 
                 # FFFB
                 logger.info("FFFB")
                 plasma.define_bolometer_plasma_model(FFFB=True)
                 fffb = plasma.integrate_bolo(diag)
-                self.outdict[diag][wavelength]["FFFB"] = [x[0] for x in fffb]
+                self.outdict[diag]["FFFB"] = [x[0] for x in fffb]
             else:
                 logger.info("Total")
                 plasma.define_bolometer_plasma_model(line=True)
                 excit = plasma.integrate_bolo(diag)
-                self.outdict[diag][wavelength]["tot"] = [x[0] for x in excit]
+                self.outdict[diag]["tot"] = [x[0] for x in excit]
 
     def opaque_tracing(self, plasma: CherabPlasma, 
                        include_reflections, 
