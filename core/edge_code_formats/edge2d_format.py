@@ -52,6 +52,7 @@ class Edge2D(BackgroundPlasma):
         # Read in Te, Ti, ni, ne
         self.teve = self.tran.teve
         self.tev = self.tran.tev
+        self.eneuta = self.tran.eneuta
         self.den = self.tran.den
         self.denel = self.tran.denel
         # Read in na and nm (atomic, molecular)
@@ -116,6 +117,7 @@ class Edge2D(BackgroundPlasma):
         self.zv = np.zeros((npts, 5))
         self.te = np.zeros((npts))
         self.ti = np.zeros((npts))
+        self.t0 = np.zeros((npts))
         self.ne = np.zeros((npts))
         self.ni = np.zeros((npts))
         self.n0 = np.zeros((npts))
@@ -133,6 +135,7 @@ class Edge2D(BackgroundPlasma):
                 self.zv[k] = [self.zvertp[j],  self.zvertp[j+1], self.zvertp[j+2], self.zvertp[j+3], self.zvertp[j]]
                 self.te[k] = self.teve[i]
                 self.ti[k] = self.tev[i]
+                self.t0[k] = self.eneuta[i]
                 self.ni[k] = self.den[i]
                 self.ne[k] = self.denel[i]
                 self.n0[k] = self.da[i]

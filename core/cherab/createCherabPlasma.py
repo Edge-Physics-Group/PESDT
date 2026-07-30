@@ -79,31 +79,19 @@ def createHydrogenicCherabPlasma(PESDT, transitions: list,
     ########################################################################
     # Start by loading in all the data from the PESDT object #
 
-    num_cells = len(PESDT.cells)
+    num_cells = len(PESDT.data.te)
     num_neut = 2 if data_source in ["AMJUEL", "YACORA"] else 1
 
-    te = np.zeros(num_cells)
-    ti = np.zeros(num_cells)
-    t0 = np.zeros(num_cells)
-    ne = np.zeros(num_cells)
-    ni = np.zeros(num_cells)
-    n0 = np.zeros(num_cells)
-    n2 = np.zeros(num_cells)
-    n2p = np.zeros(num_cells)
-
+    
+    te = PESDT.data.te #np.zeros(num_cells)
+    ti = PESDT.data.ti #np.zeros(num_cells)
+    t0 = PESDT.data.t0 #np.zeros(num_cells)
+    ne = PESDT.data.ne  #np.zeros(num_cells)
+    ni = PESDT.data.ni #np.zeros(num_cells)
+    n0 = PESDT.data.n0 #np.zeros(num_cells)
+    n2 = PESDT.data.n2 #np.zeros(num_cells)
+    n2p = PESDT.data.n2p #np.zeros(num_cells)
     mesh = create_cherab_mesh(PESDT)
-    for ith_cell, cell in enumerate(PESDT.cells):
-        # Pull over plasma values to new CHERAB arrays
-
-        te[ith_cell] = cell.te
-        ti[ith_cell] = cell.ti
-        t0[ith_cell] = cell.te if cell.t0 is None else cell.t0
-        
-        ni[ith_cell] = cell.ni
-        ne[ith_cell] = cell.ne
-        n0[ith_cell] = cell.n0
-        n2[ith_cell] = cell.n2
-        n2p[ith_cell] = cell.n2p
 
     #####################################################
     # Now load the simulation object with plasma values #
@@ -244,35 +232,19 @@ def createHydrogenicCherabPlasma(PESDT, transitions: list,
     return sim
 
 def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
-    num_cells = len(PESDT.cells)
+    num_cells = len(PESDT.data.te)
 
-    te = np.zeros(num_cells)
-    ti = np.zeros(num_cells)
-    t0 = np.zeros(num_cells)
-    ne = np.zeros(num_cells)
-    ni = np.zeros(num_cells)
-    n0 = np.zeros(num_cells)
-    n2 = np.zeros(num_cells)
-    n2p = np.zeros(num_cells)
+    te = PESDT.data.te #np.zeros(num_cells)
+    ti = PESDT.data.ti #np.zeros(num_cells)
+    t0 = PESDT.data.t0 #np.zeros(num_cells)
+    ne = PESDT.data.ne  #np.zeros(num_cells)
+    ni = PESDT.data.ni #np.zeros(num_cells)
+    n0 = PESDT.data.n0 #np.zeros(num_cells)
+    n2 = PESDT.data.n2 #np.zeros(num_cells)
+    n2p = PESDT.data.n2p #np.zeros(num_cells)
 
-
-    for ith_cell, cell in enumerate(PESDT.cells):
-        
-
-        te[ith_cell] = cell.te
-        ti[ith_cell] = cell.ti
-        t0[ith_cell] = cell.te if cell.t0 is None else cell.t0
-        # Multiply by 1e-6, I think cherab wants densities in cm^-3
-        
-        ni[ith_cell] = cell.ni
-        ne[ith_cell] = cell.ne
-        n0[ith_cell] = cell.n0
-        n2[ith_cell] = cell.n2
-        n2p[ith_cell] = cell.n2p
-    #####################################################
-    # Now load the simulation object with plasma values #
-    
     mesh = create_cherab_mesh(PESDT)
+
     emission_keys = [(2, 1)] # Use Lyman alpha as the wl
     if data_source == "ADAS":
         species_list = [(D0, 0), (D0, 1), (D0, 2), (D0, 3)]

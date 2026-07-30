@@ -259,7 +259,8 @@ class SOLPS(BackgroundPlasma):
             # EIRENE output on the B2 quad mesh. fort.46 pdena holds the same info on the tri
             # EIRENE mesh.
 #                _n0 = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 0] # fluid neutral den  
-            _n0 = self.fort44_data_dict['dab2'][_idx_grid_map[0], _idx_grid_map[1], 0] # kinetic atom den  
+            _n0 = self.fort44_data_dict['dab2'][_idx_grid_map[0], _idx_grid_map[1], 0] # kinetic atom den
+            _t0 = self.fort44_data_dict['tab2'][_idx_grid_map[0], _idx_grid_map[1], 0]/Q # kinetic atom temp  
             _n2 = self.fort44_data_dict['dmb2'][_idx_grid_map[0], _idx_grid_map[1], 0] # kinetic mol. den 
             _n2p = self.fort44_data_dict['dib2'][_idx_grid_map[0], _idx_grid_map[1], 0] # kinetic mol. ion den
             _ni = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 1] # fuel ion den      
@@ -281,7 +282,7 @@ class SOLPS(BackgroundPlasma):
                                     
             self.tri_cells.append(Cell(shply_poly.centroid.x, shply_poly.centroid.y,
                                         row=_idx_grid_map[0], ring=_idx_grid_map[1],                                       
-                                        poly=shply_poly, te=_te, ti = _ti,
+                                        poly=shply_poly, te=_te, ti = _ti, t0 = _t0,
                                         ne=_ne, ni=_ni,
                                         n0=_n0, n2=_n2, n2p=_n2p, Srec=0, Sion=0))
 
@@ -293,6 +294,8 @@ class SOLPS(BackgroundPlasma):
         self.n2p = []
         self.ni = []
         self.te = []
+        self.ti = []
+        self.t0 = []
         self.rv = []
         self.zv = []
         for cell in self.cells:
@@ -305,6 +308,8 @@ class SOLPS(BackgroundPlasma):
             self.n2p.append(cell.n2p)
             self.ni.append(cell.ni)   
             self.te.append(max(cell.te,0.1))
+            self.ti.append(max(cell.ti,0.1))
+            self.t0.append(max(cell.t0,0.1))
         # Convert all to numpy arrays  
         self.ne = np.array(self.ne)
         self.n0 = np.array(self.n0)
@@ -312,6 +317,8 @@ class SOLPS(BackgroundPlasma):
         self.n2p = np.array(self.n2p)
         self.ni = np.array(self.ni)
         self.te = np.array(self.te)
+        self.ti = np.array(self.ti)
+        self.t0 = np.array(self.t0)
         self.rv = np.array(self.rv)
         self.zv = np.array(self.zv)
         

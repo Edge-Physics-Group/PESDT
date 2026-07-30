@@ -117,6 +117,7 @@ class ProcessEdgeSim:
         self.machine = self.input_dict.get('machine', "JET")
         self.pulse = self.input_dict.get('pulse', 81472)
         self.recalc_h2_pos = self.input_dict['run_options'].get('recalc_h2_pos', True)
+        if self.edge_code in ["Edge2D", "OEDGE"]: self.recalc_h2_pos = True
         self.run_cherab = self.input_dict['run_options'].get('run_cherab', False)
         
 
@@ -155,6 +156,8 @@ class ProcessEdgeSim:
         logger.info("   Data loaded")
         
         self.te = self.data.te
+        self.ti = self.data.ti
+        self.t0 = self.data.t0
         self.ne = self.data.ne
         self.ni = self.data.ni
         self.n0 = self.data.n0
@@ -172,9 +175,9 @@ class ProcessEdgeSim:
         camera_list = self.camera_list
         bolo_list = self.bolo_list
         # === Run Options ===
-        data_source = run_opts.get("data_source", "AMJUEL")
+        data_source = self.data_source
         impurity_data_source = run_opts.get("imp_data_source", None)
-        recalc_h2_pos = run_opts.get("recalc_h2_pos", True)
+        recalc_h2_pos = self.recalc_h2_pos
 
         # === Cherab Options ===
         num_processes = cherab_opts.get("num_processes", 1)

@@ -102,6 +102,7 @@ class OEDGE(BackgroundPlasma):
         self.ti_t = self.read_boundary_data("KTIDS")
         # Neutral species
         self.n0 = self.read_data_2d("PINATO")
+        self.n2p = np.zeros_like(self.n0)
         self.n2 = self.read_data_2d("PINMOL")
         self.t0 = self.read_data_2d("PINENA")
         self.t2 = self.read_data_2d("PINENM")
