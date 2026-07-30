@@ -53,6 +53,7 @@ class Edge2D_old(BackgroundPlasma):
         # Read in Te, Ti, ni, ne
         self.teve = self.get_eproc_param("EprocDataRead", 'TEVE')
         self.tev = self.get_eproc_param("EprocDataRead", 'TEV')
+        self.eneuta = self.get_eproc_param("EprocDataRead", 'ENEUTA')
         self.den = self.get_eproc_param("EprocDataRead", 'DEN')
         self.denel = self.get_eproc_param("EprocDataRead", 'DENEL')
         # Read in na and nm (atomic, molecular)
@@ -192,6 +193,7 @@ class Edge2D_old(BackgroundPlasma):
         self.zv = np.zeros((self.NE2Ddata, 5))
         self.te = np.zeros((self.NE2Ddata))
         self.ti = np.zeros((self.NE2Ddata))
+        self.t0 = np.zeros((self.NE2Ddata))
         self.ne = np.zeros((self.NE2Ddata))
         self.ni = np.zeros((self.NE2Ddata))
         self.n0 = np.zeros((self.NE2Ddata))
@@ -212,6 +214,7 @@ class Edge2D_old(BackgroundPlasma):
                 self.zv[k] = [self.zvertp['data'][j],  self.zvertp['data'][j+1], self.zvertp['data'][j+2], self.zvertp['data'][j+3], self.zvertp['data'][j]]
                 self.te[k] = self.teve['data'][i]
                 self.ti[k] = self.tev['data'][i]
+                self.t0[k] = self.eneuta['data'][i]
                 self.ni[k] = self.den['data'][i]
                 self.ne[k] = self.denel['data'][i]
                 self.n0[k] = self.da['data'][i]
