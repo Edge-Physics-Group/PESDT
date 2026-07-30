@@ -95,3 +95,51 @@ cdef class PESDTLineMol(Line):
     @mol_transition.setter
     def mol_transition(self, val):
         self._mol_transition = val
+
+cdef class PESDTLinePower(Line):
+    """
+    A class fully specifies an observed spectroscopic emission line.
+
+    Note that wavelengths are not arguments to this class. This is because in
+    principle the transition has already been fully specified with the other three
+    arguments. The wavelength is looked up in the wavelength database of the
+    atomic data provider.
+
+    :param Element element: The atomic element/isotope to which this emission line belongs.
+    :param int charge: The charge state of the element/isotope that emits this line.
+    :param str transition: the name of the emission band, e.g "fulcher"
+    """
+
+    def __init__(self, Element element, int charge, object transition):
+        self.element = element
+        self.charge = charge
+        self.pow_transition = transition
+
+    def __repr__(self):
+        return '<Line: {}, {}, {}>'.format(self.element.name, self.charge, self.pow_transition)
+
+    def __hash__(self):
+        return hash((self.element, self.charge, self.pow_transition))
+
+    def __richcmp__(self, object other, int op):
+
+        cdef Line line
+
+        if not isinstance(other, Line):
+            return NotImplemented
+
+        line = <Line> other
+        if op == 2:     # __eq__()
+            return self.element == line.element and self.charge == line.charge and self.pow_transition == line.pow_transition
+        elif op == 3:   # __ne__()
+            return self.element != line.element or self.charge != line.charge or self.pow_transition != line.pow_transition
+        else:
+            return NotImplemented
+
+    @property
+    def pow_transition(self):
+        return self._pow_transition
+
+    @pow_transition.setter
+    def pow_transition(self, val):
+        self._pow_transition = val

@@ -9,3 +9,7 @@ cdef class PESDTLine(Line):
 cdef class PESDTLineMol(Line):
 
     cdef object _mol_transition
+
+cdef class PESDTLinePower(Line):
+
+    cdef object _pow_transition
