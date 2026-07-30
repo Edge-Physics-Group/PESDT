@@ -56,31 +56,37 @@ class ADF11():
         with open(self.path_plt, "r") as f:
             lines = f.readlines()
             header = lines.pop(0)
-            num_ne, num_te = header.split()[1:3]
-            num_ne = int(num_ne); num_te= int(num_te)
+            num_z, num_ne, num_te = header.split()[:3]
+            num_z = int(num_z); num_ne = int(num_ne); num_te= int(num_te)
             num_data = num_ne*num_te
 
             lines.pop(0) # remove separator ----
 
             num_data_per_line = len(lines[0].split())
             num_ne_te_lines = int(np.ceil((num_ne+ num_te)/num_data_per_line))
-            
+            num_data_lines = int(np.ceil(num_data/num_data_per_line))
+
             ne_te_data = np.concatenate([ np.array([float(x) for x in line.split()]) for line in lines[:num_ne_te_lines]])
 
             self.ne_plt = ne_te_data[:num_ne]
             self.te_plt = ne_te_data[num_ne:]
+            self.data_plt = [[]]*num_z
+            self.interp_plt = [[]]*num_z
+            idx = num_ne_te_lines+1
+            for z in range(num_z):
 
-            data_lines = lines[num_ne_te_lines+1:]
-            num_data_lines = int(np.ceil(num_data/num_data_per_line))
+                data_lines = lines[idx:]
+                
+                self.data_plt[z] = np.concatenate([[np.array([np.float64(x) for x in line.split()]) for line in data_lines[:num_data_lines]]]).reshape((num_te, num_ne))
+                self.interp_plt[z] = RegularGridInterpolator((self.te_plt, self.ne_plt), self.data_plt[z], bounds_error=False, fill_value=None)
 
-            self.data_plt = np.concatenate([[np.array([np.float64(x) for x in line.split()]) for line in data_lines[:num_data_lines]]]).reshape((num_te, num_ne))
-            self.interp_plt = RegularGridInterpolator((self.te_plt, self.ne_plt), self.data_plt, bounds_error=False, fill_value=None)
+                idx += num_data_lines +1
 
         with open(self.path_prb, "r") as f:
             lines = f.readlines()
             header = lines.pop(0)
-            num_ne, num_te = header.split()[1:3]
-            num_ne = int(num_ne); num_te= int(num_te)
+            num_z, num_ne, num_te = header.split()[:3]
+            num_z = int(num_z); num_ne = int(num_ne); num_te= int(num_te)
             num_data = num_ne*num_te
 
             lines.pop(0) # remove separator ----
@@ -95,24 +101,29 @@ class ADF11():
 
             data_lines = lines[num_ne_te_lines+1:]
 
-            self.data_prb = np.concatenate([[np.array([np.float64(x) for x in line.split()]) for line in data_lines[:num_data_lines]]]).reshape((num_te, num_ne))
-            self.interp_prb = RegularGridInterpolator((self.te_prb, self.ne_prb), self.data_prb, bounds_error=False, fill_value=None)
-        
+            self.data_prb = [[]]*num_z
+            self.interp_prb = [[]]*num_z
+            idx = num_ne_te_lines+1
+            for z in range(num_z):
+                data_lines = lines[idx:]
+                self.data_prb[z] = np.concatenate([[np.array([np.float64(x) for x in line.split()]) for line in data_lines[:num_data_lines]]]).reshape((num_te, num_ne))
+                self.interp_prb[z] = RegularGridInterpolator((self.te_prb, self.ne_prb), self.data_prb[z], bounds_error=False, fill_value=None)
+                idx += num_data_lines +1
 
     # -------------------------
     # Public API
     # -------------------------
-    def interpolate_plt(self, te, ne):
+    def interpolate_plt(self, te, ne, z):
 
         ne_ = np.log10(ne*1e-6)
         te_ = np.log10(te)
-        return 1e-6*10**self.interp_plt((te_, ne_))
+        return 1e-6*10**self.interp_plt[z]((te_, ne_))
 
-    def interpolate_prb(self, te, ne):
+    def interpolate_prb(self, te, ne, z):
     
         ne_ = np.log10(ne*1e-6)
         te_ = np.log10(te)
-        return 1e-6*10**self.interp_prb((te_, ne_))
+        return 1e-6*10**self.interp_prb[z]((te_, ne_))
 
 class ADF15():
     inv4pi = 1/(4*np.pi)
