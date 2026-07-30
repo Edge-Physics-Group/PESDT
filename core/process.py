@@ -108,6 +108,7 @@ class ProcessEdgeSim:
         self.diag_list = self.input_dict['diag_list']
         self.camera_list = self.input_dict['ccd_list']
         self.bolo_list = self.input_dict['bolo_list']
+        self.species_list = self.input_dict.get('species_list', ["D"])
 
         self.calc_synth_spec_features = self.input_dict['run_options'].get('analyse_synth_spec_features', False)
         self.AMJUEL_date = self.input_dict['run_options'].get("AMJUEL_date", 2016) # Default to <2017 (no H3+)
@@ -176,7 +177,6 @@ class ProcessEdgeSim:
         bolo_list = self.bolo_list
         # === Run Options ===
         data_source = self.data_source
-        impurity_data_source = run_opts.get("imp_data_source", None)
         recalc_h2_pos = self.recalc_h2_pos
 
         # === Cherab Options ===
@@ -200,8 +200,10 @@ class ProcessEdgeSim:
         if self.opaque:
             self.opaque_mode = cherab_opts.get("opacity_mode", 0) #0 total, 1 center, 2 full spectrum
         diag_def = self.defs.diag_dict
+
         
-        transitions = [(int(v[0]), int(v[1])) for _, v in spec_line_dict['1']['1'].items()]
+        #transitions = [(int(v[0]), int(v[1])) for _, v in spec_line_dict['1']['1'].items()]
+        transitions = spec_line_dict
         
         # === Create insrument LOS database ===
         instrument_los_dict = {}
@@ -232,7 +234,7 @@ class ProcessEdgeSim:
                 los_points.append((p1_, p2_, w1, w2))
             bolo_los_dict[diag] = los_points
     
-
+        sdb = spectroscopic_lines_db()
 
         # === Initialize Plasma ===
         plasma = CherabPlasma(self, 
@@ -246,6 +248,7 @@ class ProcessEdgeSim:
                             bolo_los_dict = bolo_los_dict,
                             camera_dict=camera_los_dict,
                             mol_exc_bands= mol_exc_emission_bands,
+                            species= self.species_list,
                             opaque= self.opaque)
         
         # === Setup Observers ===
@@ -284,191 +287,264 @@ class ProcessEdgeSim:
                                             num_processes = num_processes)
 
         self.outdict = {"description": f"CHERAB, REFLECTIONS: {include_reflections}, JET-MESH: {import_jet_surfaces}, DATA SOURCE: {data_source}"}
-        
-        # === Process Each Instrument ===
-        plasma.set_active_plasma("line")
-        for diag, _ in instrument_los_dict.items():
-            self.outdict[diag] = {}
 
-            p1 = diag_def[diag]["p1"][0].tolist()
-            w1 = 0.0
-            w2 = diag_def[diag]["w"][0][1]
 
-            los_coords = []
-            for p2 in diag_def[diag]["p2"]:
-                los_coords.append({"p1": p1, "p2": p2.tolist(), "w1": w1, "w2": w2})
-            self.outdict[diag]["chord"] = los_coords
-
-            H_lines = spec_line_dict['1']['1']
-            self.outdict[diag]["units"] = "ph s^-1 m^-2 sr^-1"
-
-            for line_key, trans in H_lines.items():
-                transition = (int(trans[0]), int(trans[1]))
-                logger.info(f"Transition: ({transition[0]}, {transition[1]})")
-                wavelength = line_key#calc_wavelength(transition)
-                self.outdict[diag][wavelength] = {}
-                if data_source in ["YACORA", "AMJUEL"]:
-                    # Excitation
-                    logger.info("Excitation")
-                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_excitation=True)
-                    excit = plasma.integrate_instrument(diag)
-                    self.outdict[diag][wavelength]["excit"] = [x[0] for x in excit]
-
-                    # Recombination
-                    logger.info("Recombination")
-                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_recombination=True)
-                    recom = plasma.integrate_instrument(diag)
-                    self.outdict[diag][wavelength]["recom"] = [x[0] for x in recom]
-                    # Molecular / negative H species
-                
-                    logger.info("H2")
-                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_H2=True)
-                    self.outdict[diag][wavelength]["h2"] = [x[0] for x in plasma.integrate_instrument(diag)]
-                    logger.info("H2+")
-                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_H2_pos=True)
-                    self.outdict[diag][wavelength]["h2+"] = [x[0] for x in plasma.integrate_instrument(diag)]
-                    logger.info("H3+")
-                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_H3_pos=True)
-                    self.outdict[diag][wavelength]["h3+"] = [x[0] for x in plasma.integrate_instrument(diag)]
-                    logger.info("H-")
-                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_H_neg=True)
-                    self.outdict[diag][wavelength]["h-"] = [x[0] for x in plasma.integrate_instrument(diag)]
-
-                    if self.opaque:
-                        logger.info("Photons (due to opacity)")
-                        plasma.define_Hydrogenic_plasma_model(transition=transition, include_ph=True)
-                        self.outdict[diag][wavelength]["ph"] = [x[0] for x in plasma.integrate_instrument(diag)]
-                if data_source == "ADAS":
-                    # Excitation
-                    logger.info("Excitation")
-                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_excitation=True)
-                    excit = plasma.integrate_instrument(diag)
-                    self.outdict[diag][wavelength]["excit"] = [x[0] for x in excit]
-
-                    # Recombination
-                    logger.info("Recombination")
-                    plasma.define_Hydrogenic_plasma_model(transition=transition,include_recombination=True)
-                    recom = plasma.integrate_instrument(diag)
-                    self.outdict[diag][wavelength]["recom"] = [x[0] for x in recom]
-                    
-                # === Optional Stark Spectrum ===
-                if calc_stark_ne and transition == stark_transition:
-                    logger.info("Stark")
-                    plasma.define_stark_plasma_model(transition=transition,
-                                            include_excitation=True, include_recombination=True,
-                                            include_H2=True, include_H2_pos=True,
-                                            include_H3_pos=True, include_H_neg=True,
-                                            include_stark=True, data_source=data_source)
-
-                    spec, wl = plasma.integrate_instrument_spectral(diag, destination="stark")
-                    self.outdict[diag]["stark"] = {
-                        "intensity": spec,
-                        "wave": wl[0], # same wavelengths for all chords
-                        "units": "nm, ph s^-1 m^-2 sr^-1 nm^-1",
-                        "wavelength": wavelength,
-                        "cwl": 0.1*float(wavelength)
-                        }
-            # === Optional FF+FB Spectrum ===
-            if ff_fb:
-                logger.info("Continuum")
-                plasma.define_continuum_plasma_model()
-                spec, wl = plasma.integrate_instrument_spectral(diag, destination="continuum")
-                self.outdict[diag]["ff_fb_continuum"] = {
-                    "wave": wl[0],
-                    "intensity": spec,
-                    "units": "nm, ph s^-1 m^-2 sr^-1 nm^-1"
-                }
-            # === Optional molecular band emission ===
-            if mol_exc_emission:
-                for band in mol_exc_emission_bands:
-                    logger.info(f"Molecular Excitation Emission for {band} band")
-                    plasma.define_Hydrogenic_plasma_model(transition=band, data_source=data_source, include_mol_exc = True)
-                    self.outdict[diag][band] = [x[0] for x in plasma.integrate_instrument(diag)]
-
-        # === Process Each Camera ===
-        plasma.set_active_plasma("line")
-        for diag, settings in camera_los_dict.items():
-            self.outdict[diag] = {}
-
-            logger.info(f"Processing camera {diag}")
-            H_lines = spec_line_dict['1']['1']
-            for line_key, trans in H_lines.items():
-                transition = (int(trans[0]), int(trans[1]))
-                logger.info(f"Transition: ({transition[0]}, {transition[1]})")
-                wavelength = line_key
-                self.outdict[diag][wavelength] = {}
-                if data_source in ["YACORA", "AMJUEL"]:
-                    #plasma.define_Hydrogenic_plasma_model(transition=transition,
-                    #                        include_excitation=True, include_recombination= True, include_H2=True,
-                    #                         include_H2_pos=True, include_H3_pos=True, include_H_neg=False, data_source=data_source)
-                    # Need to create an option to choose hydrogen radiation components
-                    plasma.define_Hydrogenic_plasma_model(transition=transition,
-                                            include_excitation=True, include_recombination= True, include_H2=False,
-                                             include_H2_pos=False, include_H3_pos=False, include_H_neg=False, data_source=data_source)
-                    em = plasma.observe_camera(diag)
-                    self.outdict[diag][wavelength]["total"] = em[0].tolist()
-                    self.outdict[diag][wavelength]["variance"] = em[1].tolist()
-
-        # === Process Each Bolometer ===
-        plasma.set_active_plasma("bolo")
-        for diag, _ in bolo_los_dict.items():
-            self.outdict[diag] = {}
+        for species in self.species_list:
             
-            p1 = diag_def[diag]["p1"][0].tolist()
-            w1 = 0.0
-            w2 = diag_def[diag]["w"][0][1]
+            # === Process Each Instrument ===
+            plasma.set_active_plasma("line"+species)
+            for diag, _ in instrument_los_dict.items():
+                self.outdict[diag] = {}
 
-            los_coords = []
-            for p2 in diag_def[diag]["p2"]:
-                los_coords.append({"p1": p1, "p2": p2.tolist(), "w1": w1, "w2": w2})
-            self.outdict[diag]["chord"] = los_coords
-            self.outdict[diag]["units"] = "W m^-2 sr^-1"
-            if data_source == "ADAS":
-                logger.info("Excitation")
-                plasma.define_bolometer_plasma_model(line=True)
-                excit = plasma.integrate_bolo(diag)
-                self.outdict[diag]["excit"] = [x[0] for x in excit]
+                p1 = diag_def[diag]["p1"][0].tolist()
+                w1 = 0.0
+                w2 = diag_def[diag]["w"][0][1]
 
-                # Recombination
-                logger.info("Recombination")
-                plasma.define_bolometer_plasma_model(ff_rec=True)
-                recom = plasma.integrate_bolo(diag)
-                self.outdict[diag]["recom"] = [x[0] for x in recom]
+                los_coords = []
+                for p2 in diag_def[diag]["p2"]:
+                    los_coords.append({"p1": p1, "p2": p2.tolist(), "w1": w1, "w2": w2})
+                self.outdict[diag]["chord"] = los_coords
 
-                # FF
-                logger.info("FF")
-                plasma.define_bolometer_plasma_model(FF=True)
-                ff = plasma.integrate_bolo(diag)
-                self.outdict[diag]["FF"] = [x[0] for x in ff]
+                #Separate branch for hydrogenic species
+                if species in ["H", "D", "T"]:
+                    temp = spec_line_dict['H']
+                    H_lines = {}
+                    for key, values in temp.items():
+                        if key == "ATOM_NUM": continue
+                        for tra, wl in values.items():
+                            H_lines[tra] = wl
 
-                # FFFB
-                logger.info("FFFB")
-                plasma.define_bolometer_plasma_model(FFFB=True)
-                fffb = plasma.integrate_bolo(diag)
-                self.outdict[diag]["FFFB"] = [x[0] for x in fffb]
+                    self.outdict[diag]["units"] = "ph s^-1 m^-2 sr^-1"
 
-            elif data_source == "AMJUEL":
-                logger.info("Total line")
-                plasma.define_bolometer_plasma_model(line=True)
-                excit = plasma.integrate_bolo(diag)
-                self.outdict[diag]["tot_line"] = [x[0] for x in excit]
+                    for line_key, trans in H_lines.items():
+                        transition = (int(trans[0]), int(trans[1]))
+                        logger.info(f"Transition: ({transition[0]}, {transition[1]})")
+                        wavelength = line_key#calc_wavelength(transition)
+                        self.outdict[diag][wavelength] = {}
+                        if data_source in ["YACORA", "AMJUEL"]:
+                            # Excitation
+                            logger.info("Excitation")
+                            plasma.define_Hydrogenic_plasma_model(transition=transition,include_excitation=True)
+                            excit = plasma.integrate_instrument(diag)
+                            self.outdict[diag][wavelength]["excit"] = [x[0] for x in excit]
 
-                # FF
-                logger.info("FF")
-                plasma.define_bolometer_plasma_model(FF=True)
-                ff = plasma.integrate_bolo(diag)
-                self.outdict[diag]["FF"] = [x[0] for x in ff]
+                            # Recombination
+                            logger.info("Recombination")
+                            plasma.define_Hydrogenic_plasma_model(transition=transition,include_recombination=True)
+                            recom = plasma.integrate_instrument(diag)
+                            self.outdict[diag][wavelength]["recom"] = [x[0] for x in recom]
+                            # Molecular / negative H species
+                        
+                            logger.info("H2")
+                            plasma.define_Hydrogenic_plasma_model(transition=transition,include_H2=True)
+                            self.outdict[diag][wavelength]["h2"] = [x[0] for x in plasma.integrate_instrument(diag)]
+                            logger.info("H2+")
+                            plasma.define_Hydrogenic_plasma_model(transition=transition,include_H2_pos=True)
+                            self.outdict[diag][wavelength]["h2+"] = [x[0] for x in plasma.integrate_instrument(diag)]
+                            logger.info("H3+")
+                            plasma.define_Hydrogenic_plasma_model(transition=transition,include_H3_pos=True)
+                            self.outdict[diag][wavelength]["h3+"] = [x[0] for x in plasma.integrate_instrument(diag)]
+                            logger.info("H-")
+                            plasma.define_Hydrogenic_plasma_model(transition=transition,include_H_neg=True)
+                            self.outdict[diag][wavelength]["h-"] = [x[0] for x in plasma.integrate_instrument(diag)]
 
-                # FFFB
-                logger.info("FFFB")
-                plasma.define_bolometer_plasma_model(FFFB=True)
-                fffb = plasma.integrate_bolo(diag)
-                self.outdict[diag]["FFFB"] = [x[0] for x in fffb]
-            else:
-                logger.info("Total")
-                plasma.define_bolometer_plasma_model(line=True)
-                excit = plasma.integrate_bolo(diag)
-                self.outdict[diag]["tot"] = [x[0] for x in excit]
+                            if self.opaque:
+                                logger.info("Photons (due to opacity)")
+                                plasma.define_Hydrogenic_plasma_model(transition=transition, include_ph=True)
+                                self.outdict[diag][wavelength]["ph"] = [x[0] for x in plasma.integrate_instrument(diag)]
+                        if data_source == "ADAS":
+                            # Excitation
+                            logger.info("Excitation")
+                            plasma.define_Hydrogenic_plasma_model(transition=transition,include_excitation=True)
+                            excit = plasma.integrate_instrument(diag)
+                            self.outdict[diag][wavelength]["excit"] = [x[0] for x in excit]
+
+                            # Recombination
+                            logger.info("Recombination")
+                            plasma.define_Hydrogenic_plasma_model(transition=transition,include_recombination=True)
+                            recom = plasma.integrate_instrument(diag)
+                            self.outdict[diag][wavelength]["recom"] = [x[0] for x in recom]
+                            
+                        # === Optional Stark Spectrum ===
+                        if calc_stark_ne and transition == stark_transition:
+                            logger.info("Stark")
+                            plasma.define_stark_plasma_model(transition=transition,
+                                                    include_excitation=True, include_recombination=True,
+                                                    include_H2=True, include_H2_pos=True,
+                                                    include_H3_pos=True, include_H_neg=True,
+                                                    include_stark=True, data_source=data_source)
+
+                            spec, wl = plasma.integrate_instrument_spectral(diag, destination="stark")
+                            self.outdict[diag]["stark"] = {
+                                "intensity": spec,
+                                "wave": wl[0], # same wavelengths for all chords
+                                "units": "nm, ph s^-1 m^-2 sr^-1 nm^-1",
+                                "wavelength": wavelength,
+                                "cwl": 0.1*float(wavelength)
+                                }
+                    # === Optional FF+FB Spectrum ===
+                    if ff_fb:
+                        logger.info("Continuum")
+                        plasma.define_continuum_plasma_model()
+                        spec, wl = plasma.integrate_instrument_spectral(diag, destination="continuum")
+                        self.outdict[diag]["ff_fb_continuum"] = {
+                            "wave": wl[0],
+                            "intensity": spec,
+                            "units": "nm, ph s^-1 m^-2 sr^-1 nm^-1"
+                        }
+                    # === Optional molecular band emission ===
+                    if mol_exc_emission:
+                        for band in mol_exc_emission_bands:
+                            logger.info(f"Molecular Excitation Emission for {band} band")
+                            plasma.define_Hydrogenic_plasma_model(transition=band, data_source=data_source, include_mol_exc = True)
+                            self.outdict[diag][band] = [x[0] for x in plasma.integrate_instrument(diag)]
+                else:
+                    spec_lines = spec_line_dict[species]
+                    for subspecies, lines_dict in spec_lines.items():
+                        charge = int(subspecies[len(species):])
+                        for line_key, trans in lines_dict.items():
+                            transition = (int(trans[0]), int(trans[1]))
+                            logger.info(f"Transition: ({transition[0]}, {transition[1]})")
+                            wavelength = line_key
+                            self.outdict[diag][wavelength] = {}
+                            
+                            # Excitation
+                            logger.info("Excitation")
+                            plasma.define_Zplasma_model(transition,species, charge, include_excitation=True)
+                            excit = plasma.integrate_instrument(diag)
+                            self.outdict[diag][wavelength]["excit"] = [x[0] for x in excit]
+
+                            # Recombination
+                            logger.info("Recombination")
+                            plasma.define_Zplasma_model(transition, species, charge,include_recombination=True)
+                            recom = plasma.integrate_instrument(diag)
+                            self.outdict[diag][wavelength]["recom"] = [x[0] for x in recom]
+
+            # === Process Each Camera ===
+            plasma.set_active_plasma("line"+species)
+            for diag, settings in camera_los_dict.items():
+                self.outdict[diag] = {}
+
+                logger.info(f"Processing camera {diag}")
+                #Separate branch for hydrogenic species
+                if species in ["H", "D", "T"]:
+                    temp = spec_line_dict['H']
+                    H_lines = {}
+                    for key, values in temp.items():
+                        if key == "ATOM_NUM": continue
+                        for tra, wl in values.items():
+                            H_lines[tra] = wl
+                    for line_key, trans in H_lines.items():
+                        transition = (int(trans[0]), int(trans[1]))
+                        logger.info(f"Transition: ({transition[0]}, {transition[1]})")
+                        wavelength = line_key
+                        self.outdict[diag][wavelength] = {}
+                        if data_source in ["YACORA", "AMJUEL"]:
+                            #plasma.define_Hydrogenic_plasma_model(transition=transition,
+                            #                        include_excitation=True, include_recombination= True, include_H2=True,
+                            #                         include_H2_pos=True, include_H3_pos=True, include_H_neg=False, data_source=data_source)
+                            # Need to create an option to choose hydrogen radiation components
+                            plasma.define_Hydrogenic_plasma_model(transition=transition,
+                                                    include_excitation=True, include_recombination= True, include_H2=True,
+                                                    include_H2_pos=True, include_H3_pos=True, include_H_neg=False)
+                            em = plasma.observe_camera(diag)
+                            self.outdict[diag][wavelength]["total"] = em[0].tolist()
+                            self.outdict[diag][wavelength]["variance"] = em[1].tolist()
+                        else:
+                            plasma.define_Hydrogenic_plasma_model(transition=transition,
+                                                    include_excitation=True, include_recombination= True)
+                            em = plasma.observe_camera(diag)
+                            self.outdict[diag][wavelength]["total"] = em[0].tolist()
+                            self.outdict[diag][wavelength]["variance"] = em[1].tolist()
+                else:
+                    spec_lines = spec_line_dict[species]
+                    for subspecies, lines_dict in spec_lines.items():
+                        charge = int(subspecies[len(species):])
+                        for line_key, trans in lines_dict.items():
+                            transition = (int(trans[0]), int(trans[1]))
+                            logger.info(f"Transition: ({transition[0]}, {transition[1]})")
+                            wavelength = line_key
+                            self.outdict[diag][wavelength] = {}
+                            plasma.define_Zplasma_model(transition, species, charge, include_excitation=True, include_recombination=True)
+                            em = plasma.observe_camera(diag)
+                            self.outdict[diag][wavelength]["total"] = em[0].tolist()
+                            self.outdict[diag][wavelength]["variance"] = em[1].tolist()
+
+            # === Process Each Bolometer ===
+            plasma.set_active_plasma("bolo"+species)
+            for diag, _ in bolo_los_dict.items():
+                if species not in ["H", "D", "T"]: data_source ="ADAS"
+                else: data_source= self.input_dict["run_options"].get("data_source", "AMJUEL")
+                self.outdict[diag] = {species: {}}
+                
+                p1 = diag_def[diag]["p1"][0].tolist()
+                w1 = 0.0
+                w2 = diag_def[diag]["w"][0][1]
+
+                los_coords = []
+                for p2 in diag_def[diag]["p2"]:
+                    los_coords.append({"p1": p1, "p2": p2.tolist(), "w1": w1, "w2": w2})
+                self.outdict[diag]["chord"] = los_coords
+                self.outdict[diag]["units"] = "W m^-2 sr^-1"
+                if data_source == "ADAS":
+                    max_charge = int(sdb.data_full[species]["ATOM_NUM"])
+                    logger.info("Excitation")
+                    excit = []
+                    for z in range(max_charge):
+                        plasma.define_bolometer_plasma_model(species, z, line=True)
+                        ex = plasma.integrate_bolo(diag)
+                        excit.append([x[0] for x in ex])
+                    self.outdict[diag][species]["excit"] = excit
+
+                    # Recombination
+                    logger.info("Recombination")
+                    recom = []
+                    for z in range(max_charge):
+                        plasma.define_bolometer_plasma_model(species, z, ff_rec=True)
+                        re = plasma.integrate_bolo(diag)
+                        recom.append([x[0] for x in re])
+                    self.outdict[diag][species]["recom"] = recom
+
+                    # FF
+                    logger.info("FF")
+                    FF = []
+                    for z in range(max_charge):
+                        plasma.define_bolometer_plasma_model(species, z, FF=True)
+                        ff = plasma.integrate_bolo(diag)
+                        FF.append([x[0] for x in ff])
+                    self.outdict[diag][species]["FF"] = FF
+
+                    # FFFB
+                    logger.info("FFFB")
+                    FFFB = []
+                    for z in range(max_charge):
+                        plasma.define_bolometer_plasma_model(species, z, FFFB=True)
+                        fffb = plasma.integrate_bolo(diag)
+                        FFFB.append([x[0] for x in fffb])
+                    self.outdict[diag][species]["FFFB"] = FFFB
+
+                elif data_source == "AMJUEL":
+                    logger.info("Total line")
+                    plasma.define_bolometer_plasma_model(species, 0,line=True)
+                    excit = plasma.integrate_bolo(diag)
+                    self.outdict[diag]["tot_line"] = [x[0] for x in excit]
+
+                    # FF
+                    logger.info("FF")
+                    plasma.define_bolometer_plasma_model(species, 0,FF=True)
+                    ff = plasma.integrate_bolo(diag)
+                    self.outdict[diag]["FF"] = [x[0] for x in ff]
+
+                    # FFFB
+                    logger.info("FFFB")
+                    plasma.define_bolometer_plasma_model(species, 0, FFFB=True)
+                    fffb = plasma.integrate_bolo(diag)
+                    self.outdict[diag]["FFFB"] = [x[0] for x in fffb]
+                else:
+                    logger.info("Total")
+                    plasma.define_bolometer_plasma_model(species, 0, line=True)
+                    excit = plasma.integrate_bolo(diag)
+                    self.outdict[diag]["tot"] = [x[0] for x in excit]
 
     def opaque_tracing(self, plasma: CherabPlasma, 
                        include_reflections, 

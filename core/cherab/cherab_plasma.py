@@ -195,26 +195,26 @@ class CherabPlasma():
             plasma.atomic_data = self.PESDT_bolo_data_dicts[self.species_list[0]]
             self.plasmas["bolo"+species] = plasma
             
-            
-
-
-    def define_bolometer_plasma_model(self, line = False, ff_rec = False, FF = False, FFFB = False):
+    def define_bolometer_plasma_model(self, species, charge, line = False, ff_rec = False, FF = False, FFFB = False, tot = False):
         model_list = []
         line_emitter = DirectEmission
         lineshape = None
+        element = ELEMENT_DICT[species]
         if line:
-            h_line = PESDTLine(D0, 0, (2,1))
+            h_line = PESDTLine(element, charge, "plt")
             model_list.append(line_emitter(h_line, lineshape=lineshape))
         if ff_rec:
-            h_line = PESDTLine(D0, 1, (2,1))
+            h_line = PESDTLine(element, charge, "prb")
             model_list.append(line_emitter(h_line, lineshape=lineshape))
         if FF:  
-            h_line = PESDTLine(D0, 2, (2,1))
+            h_line = PESDTLine(element, charge, "ff")
             model_list.append(line_emitter(h_line, lineshape=lineshape))
         if FFFB:
-            h_line = PESDTLine(D0, 3, (2,1))
+            h_line = PESDTLine(element, charge, "fffb")
             model_list.append(line_emitter(h_line, lineshape=lineshape))
-       
+        if tot:
+            h_line = PESDTLine(element, charge, "tot")
+            model_list.append(line_emitter(h_line, lineshape=lineshape))
         self.plasma.models = model_list
 
     def define_continuum_plasma_model(self):
@@ -293,7 +293,19 @@ class CherabPlasma():
             model_list.append(DirectEmissionMol(h_line, lineshape = lineshape))
        
         self.plasma.models = model_list
-        
+
+    def define_Zplasma_model(self, transition, species, charge, include_excitation = False, include_recombination = False):
+        line_emitter = DirectEmission
+        lineshape = None
+        model_list = []
+        sp = ELEMENT_DICT[species]
+        if include_excitation:
+            h_line = PESDTLine(sp, charge, transition)
+            model_list.append(line_emitter(h_line, lineshape=lineshape))
+        if include_recombination:
+            h_line = PESDTLine(sp, charge+1, transition)
+            model_list.append(line_emitter(h_line, lineshape=lineshape))
+    
     def setup_observers(self, pixel_samples = 1000, num_processes = 1):
         """
         Creates fibreOptics, which are used to integrate radiance along a line-of-sight using Raysect's RadiancePipeline0D.
