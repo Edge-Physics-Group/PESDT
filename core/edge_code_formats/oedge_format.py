@@ -112,6 +112,10 @@ class OEDGE(BackgroundPlasma):
         self.ioz = self.read_data_2d("PINION")
         self.rec = self.read_data_2d("PINREC")
 
+        # For interfacing reasons
+        self.n_izs = self.n0.reshape((1, len(self.ni)))
+        self.n_azs = self.n0.reshape((1, len(self.n0)))
+
     def print_keys_to_txt(self):
         with open('output.txt', 'w') as file:
             for key in self.nc.keys():

@@ -232,8 +232,21 @@ class SOLPS(BackgroundPlasma):
         _patches = [] 
         
         self.load_solps_from_raw_output(debug=True)
-            
-            # Tri centroids
+
+
+        self.ne = []
+        self.n0 = []
+        self.n2 = []
+        self.n2p = []
+        self.ni = []
+        self.n_izs = []
+        self.n_azs = []
+        self.te = []
+        self.ti = []
+        self.t0 = []
+        self.rv = []
+        self.zv = []
+        # Tri centroids
         for i, tri in enumerate(self.mesh.triangles):
             _vert_idx = [tri[0], tri[1], tri[2], tri[0]]
             _vert = self.mesh.vertex_coords[_vert_idx]
@@ -260,11 +273,12 @@ class SOLPS(BackgroundPlasma):
             # EIRENE mesh.
 #                _n0 = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 0] # fluid neutral den  
             _n0 = self.fort44_data_dict['dab2'][_idx_grid_map[0], _idx_grid_map[1], 0] # kinetic atom den
+            _na = self.fort44_data_dict['dab2'][_idx_grid_map[0], _idx_grid_map[1], :] # impurity atom densities
             _t0 = self.fort44_data_dict['tab2'][_idx_grid_map[0], _idx_grid_map[1], 0]/Q # kinetic atom temp  
             _n2 = self.fort44_data_dict['dmb2'][_idx_grid_map[0], _idx_grid_map[1], 0] # kinetic mol. den 
             _n2p = self.fort44_data_dict['dib2'][_idx_grid_map[0], _idx_grid_map[1], 0] # kinetic mol. ion den
             _ni = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 1] # fuel ion den      
-            _imp_den = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 2:] # impurity den by ion stage
+            _imp_den = self.mesh_data_dict['na'][_idx_grid_map[0], _idx_grid_map[1], 1:] # impurity den by ion stage 
             self.imp1_atom_num = None
             
 #                for i in range(len(sim_info_dict['zn'])):
@@ -279,7 +293,19 @@ class SOLPS(BackgroundPlasma):
             self.geom['rpx'] = 2.563
             self.geom['zpx'] = -1.449
             self.zch = {}
-                                    
+            coords = np.array(shply_poly.exterior.coords).transpose()
+            self.rv.append(coords[0])
+            self.zv.append(coords[1])
+            self.ne.append(_ne)   
+            self.n0.append(_n0)
+            self.n2.append(_n2)
+            self.n2p.append(_n2p)
+            self.ni.append(_ni)   
+            self.te.append(max(_te,0.1))
+            self.ti.append(max(_ti,0.1))
+            self.t0.append(max(_t0,0.1))   
+            self.n_izs.append([_imp_den])
+            self.n_azs.append([_na])
             self.tri_cells.append(Cell(shply_poly.centroid.x, shply_poly.centroid.y,
                                         row=_idx_grid_map[0], ring=_idx_grid_map[1],                                       
                                         poly=shply_poly, te=_te, ti = _ti, t0 = _t0,
@@ -288,34 +314,15 @@ class SOLPS(BackgroundPlasma):
 
         # Conform to PESDT data format 
         self.cells = self.tri_cells
-        self.ne = []
-        self.n0 = []
-        self.n2 = []
-        self.n2p = []
-        self.ni = []
-        self.te = []
-        self.ti = []
-        self.t0 = []
-        self.rv = []
-        self.zv = []
-        for cell in self.cells:
-            coords = np.array(cell.poly.exterior.coords).transpose()
-            self.rv.append(coords[0])
-            self.zv.append(coords[1])
-            self.ne.append(cell.ne)   
-            self.n0.append(cell.n0)
-            self.n2.append(cell.n2)
-            self.n2p.append(cell.n2p)
-            self.ni.append(cell.ni)   
-            self.te.append(max(cell.te,0.1))
-            self.ti.append(max(cell.ti,0.1))
-            self.t0.append(max(cell.t0,0.1))
+        
         # Convert all to numpy arrays  
         self.ne = np.array(self.ne)
         self.n0 = np.array(self.n0)
         self.n2 = np.array(self.n2)
         self.n2p = np.array(self.n2p)
         self.ni = np.array(self.ni)
+        self.n_izs = np.array(self.n_izs).T # Shape (Num izs, num cells)
+        self.n_azs = np.array(self.n_azs).T # Shape (Num azs, num cells)
         self.te = np.array(self.te)
         self.ti = np.array(self.ti)
         self.t0 = np.array(self.t0)

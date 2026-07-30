@@ -156,6 +156,9 @@ class Edge2D(BackgroundPlasma):
                                        ne=self.ne[k], ni=self.ni[k],
                                        n0=self.n0[k], n2 = self.n2[k], n2p = self.n2p[k], Srec=self.srec[k], Sion=self.sion[k]))
                 k+=1
+        # TODO: read impurities and add to n_izs and n_azs
+        self.n_izs = self.n0.reshape((1, len(self.ni)))
+        self.n_azs = self.n0.reshape((1, len(self.n0)))
 
         ##############################################
         # GET STRIKE POINT COORDS AND SEPARATRIX POLY
