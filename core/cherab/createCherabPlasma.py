@@ -1,6 +1,7 @@
 
 import numpy as np
 from cherab.PESDT_addon import PESDTSimulation, PESDTElement, deuterium, EIRENEMesh, QuadMesh
+from cherab.core.atomic.elements import helium, beryllium, carbon, nitrogen, neon,tungsten
 from scipy.constants import h, c
 from ..utils import (read_amjuel_1d,
                      read_amjuel_2d,reactions, 
@@ -29,7 +30,33 @@ D0 = PESDTElement("Deuterium", "D", 1.0, 2.0, BaseD)
 D2 = PESDTElement("Deuterium2", "D2", 2.0, 4.0, BaseD)
 D2vibr = PESDTElement("Deuterium2vibr", "D2", 2.0, 4.0, BaseD)
 D3 = PESDTElement("Deuterium3+", "D3", 3.0, 6.0, BaseD)
+
+He = PESDTElement("Helium", "He", 2.0, 4.0, helium)
+Be = PESDTElement("Beryllium", "Be", 9.0, 9.0, beryllium)
+C = PESDTElement("Carbon", "C", 12.0, 12.0, carbon)
+N = PESDTElement("Nitrogen", "N", 7.0, 14.0, nitrogen)
+N2 = PESDTElement("Nitrogen2", "N2", 14.0, 28.0, nitrogen)
+Ne = PESDTElement("Neon", "Ne", 10, 20.18, neon)
+W = PESDTElement("Tungsten", "W", 74.0, 183.84, tungsten)
+
+ELEMENT_DICT = {"He": He, "Be": Be, "C": C, "N": N, "N2": N2, "Ne": Ne, "W": W}
+
 M_D = 3.344e-27
+
+def get_base_species_and_charge(species: str, plasma_species: list[str]):
+    ps_ = None
+    idx = 0
+    for ps in plasma_species:
+        if ps in species:
+            ps_ = ps
+            break
+        idx +=1
+    charge = int(species[len(ps_):])
+
+    return ps_, charge, idx
+
+def get_num_charge_states(species: str):
+    return int(sdb.data_full[species]["ATOM_NUM"])
 
 def create_cherab_mesh(PESDT):
     rv: np.ndarray = None
@@ -45,19 +72,122 @@ def create_cherab_mesh(PESDT):
 
     return mesh
 
-def createZCherabPlasma(PESDT, species_transitions: dict, convert_denel_to_m3 = True):
+def createZCherabPlasma(PESDT, species_transitions: dict):
     '''
     Creates a cherab compatible PLASMA simulation object for any species using OpenADAS rates
     
     '''
-    return
+    num_cells = len(PESDT.data.te)
+    mesh = create_cherab_mesh(PESDT)
+    plasma_species: list[str] = PESDT.species 
+    te = PESDT.data.te #np.zeros(num_cells)
+    ti = PESDT.data.ti #np.zeros(num_cells)
+    
+    ne = PESDT.data.ne  #np.zeros(num_cells)
 
-def createZCherabPlasmaBolo(PESDT, species_transitions: dict, convert_denel_to_m3 = True):
+    n_azs = PESDT.data.n_azs
+    n_izs = PESDT.data.n_izs
+
+    species_list = []
+    emission_dict = {}
+    
+    for species, wl_transitions in species_transitions.items():
+        adf = ADF15(species)
+        sp, charge, idx = get_base_species_and_charge(species, plasma_species)
+        exc_sp = (ELEMENT_DICT[sp], charge) # Excitation
+        rec_sp = (ELEMENT_DICT[sp], charge+1) # Recombination
+
+        if not exc_sp in emission_dict:
+            emission_dict[exc_sp] = {}
+        if not rec_sp in emission_dict:
+            emission_dict[rec_sp] = {}
+
+        # count the number of charge states of the elements before this to get the correct index
+        bc_idx = 0
+        ba_idx = idx
+        for k in range(idx):
+            bc_idx += get_num_charge_states(plasma_species[k])
+
+        n_exc = None
+        n_rec = None
+        if charge == 0:
+            n_exc = n_azs[ba_idx, :]
+            n_rec = n_izs[bc_idx, :]
+        else:
+            n_exc = n_izs[bc_idx + charge -1, :]
+            n_rec = n_izs[bc_idx + charge, :]
+
+        for wl, transition in wl_transitions.items():
+            tr = (int(transition[0]), int(transition[1]))
+            emission[exc_sp][tr] = adf.interpolate(te, ne, "EXCIT", wl)*ne*n_exc*1/(4.0*np.pi)
+            emission[rec_sp][tr] = adf.interpolate(te, ne, "RECOM", wl)*ne*n_rec*1/(4.0*np.pi)
+
+    emission_keys = list(emission_dict.keys())
+    emission = [values for _, values in emission_dict.items()]
+    num_species = len(species_list)
+
+    sim = PESDTSimulation(mesh, species_list) #[['D0', 0], ['D+1', 1]])
+    sim.electron_temperature = te
+    sim.electron_density = ne
+    sim.ion_temperature = ti
+    sim.species_density  = np.zeros((num_species, num_cells))
+    sim.emission = [emission_keys, emission] # Emission is precalculated for all data sources
+    return sim
+
+
+def createZCherabPlasmaBolo(PESDT):
     '''
     Creates a cherab compatible PLASMA simulation object for any species using OpenADAS rates
     
     '''
-    return
+    num_cells = len(PESDT.data.te)
+    mesh = create_cherab_mesh(PESDT)
+    plasma_species: list[str] = PESDT.species 
+    te = PESDT.data.te #np.zeros(num_cells)
+    ti = PESDT.data.ti #np.zeros(num_cells)
+    
+    ne = PESDT.data.ne  #np.zeros(num_cells)
+
+    n_azs = PESDT.data.n_azs
+    n_izs = PESDT.data.n_izs
+
+    species_list = []
+    emission = []
+    emission_keys = ["plt", "prb", "fffb"]
+    idx = 0
+    for i, species in enumerate(plasma_species):
+        adf = ADF11(species)
+
+        max_charge = get_num_charge_states(species)
+        for z in range(max_charge):
+            sp = (ELEMENT_DICT[species], z)
+            species_list.append(sp)
+            em_dict = {}
+            if z == 0:
+                n_exc = n_azs[i, :]
+                n_rec = n_izs[idx +z, :]
+            else:
+                n_exc = n_izs[idx +z-1, :]
+                n_rec = n_izs[idx +z, :]
+            
+            wl = 10**np.arange(0, 4.01, 0.1)
+            ff, fffb = continuov_(wl, te, max_charge, z+1)
+            em_dict["plt"] = adf.interp_plt(te, ne, z)*ne*n_exc*1/(4.0*np.pi)
+            em_dict["prb"] = adf.interp_prb(te, ne, z)*ne*n_rec*1/(4.0*np.pi)
+            em_dict["fffb"] = np.trapezoid(fffb* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*n_rec*1/(4.0*np.pi)
+            emission.append(em_dict)
+            idx +=1
+
+
+    num_species = len(species_list)
+
+    sim = PESDTSimulation(mesh, species_list) #[['D0', 0], ['D+1', 1]])
+    sim.electron_temperature = te
+    sim.electron_density = ne
+    sim.ion_temperature = ti
+    sim.species_density  = np.zeros((num_species, num_cells))
+    sim.emission = [emission_keys, emission] # Emission is precalculated for all data sources
+    return sim
 
 def createHydrogenicCherabPlasma(PESDT, transitions: list,
                        data_source = "AMJUEL", 
@@ -255,8 +385,8 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
 
         emission = [{} for _ in range(num_species)]
         
-        emission[0][(2,1)] = adf.interpolate_plt(te, ne)*ne*n0*1/(4.0*np.pi)
-        emission[1][(2,1)] = adf.interpolate_prb(te, ne)*ne*ne*1/(4.0*np.pi)
+        emission[0][(2,1)] = adf.interpolate_plt(te, ne, 0)*ne*n0*1/(4.0*np.pi)
+        emission[1][(2,1)] = adf.interpolate_prb(te, ne, 0)*ne*ne*1/(4.0*np.pi)
         ff, fffb = continuov_(10**np.arange(0, 4.01, 0.1), te, 1, 1)
         wl = 10**np.arange(0, 4.01, 0.1)
         emission[2][(2, 1)] = np.trapezoid(ff * h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
