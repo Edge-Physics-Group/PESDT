@@ -15,7 +15,7 @@ class spectroscopic_lines_db:
         self.Be_lines   = self._load(os.path.join(pesdt_home, "core/database/Be.json"))
         self.N_lines    = self._load(os.path.join(pesdt_home, "core/database/N.json"))
         self.W_lines    = self._load(os.path.join(pesdt_home, "core/database/W.json"))
-
+        self.bolo_wl    = self._load(os.path.join(pesdt_home, "core/database/bolo.json"))
         self.data_full = {"H": self.H_lines, "D": self.H_lines,"T": self.H_lines,"He": self.He_lines, "C": self.C_lines, "Be": self.Be_lines, "N": self.N_lines, "W": self.W_lines}
         self.data = {"H": self.H_lines, "D": self.H_lines,"T": self.H_lines,"He": self.He_lines, "C": self.C_lines, "Be": self.Be_lines, "N": self.N_lines, "W": self.W_lines}
         # flatten data

@@ -20,8 +20,8 @@ from cherab.PESDT_addon.continuo import Continuo
 
 from cherab.PESDT_addon import PESDTLine, PESDTLineMol
 from .cherab_AMJUEL_data import AMJUEL_Data
-from .cherab_atomic_data import PESDT_Data
-from .createCherabPlasma import createHydrogenicCherabPlasma, createHydrogenicCherabPlasmaBolo, createZCherabPlasma, D0, D2, D3, D2vibr
+from .cherab_atomic_data import PESDT_Data, PESDT_Power_Data
+from .createCherabPlasma import createHydrogenicCherabPlasma, createHydrogenicCherabPlasmaBolo, createZCherabPlasma, createZCherabPlasmaBolo,D0, D2, D3, D2vibr, ELEMENT_DICT
 from ..utils.JET_mesh_from_grid import create_toroidal_wall_from_points, modify_wall_polygon_for_observer,plot_wall_modification
 from ..database import spectroscopic_lines_db
 from .D3D_mesh import construct_DIIID_mesh
@@ -68,6 +68,7 @@ class CherabPlasma():
         self.cameras = {}
         self.bolos = {}
         self.plasmas = {}
+        self.plasma = None
         self.mol_exc_bands = mol_exc_bands
         self.opaque = opaque
         self.opaque_mode = opaque_mode
@@ -132,58 +133,69 @@ class CherabPlasma():
             self.world = World()
             construct_DIIID_mesh(self.world)
         if (len(self.instrument_los_dict)>0 or len(self.cameras)> 0):
-            self.plasmas["line"] = self.gen_cherab_plasma()
-            self.plasma = self.plasmas["line"]
+            self.gen_cherab_plasma()
+            self.plasma = self.plasmas["line" + self.species_list[0]]
+            self.plasma_name = "line" + self.species_list[0]
             self.plasma.parent = self.world # Activate plasma
         if len(self.bolo_los_dict)>0: 
-            self.plasmas["bolo"]= self.gen_cherab_bolo_plasma()
+            self.gen_cherab_bolo_plasma()
+            if self.plasma is None:
+                self.plasma = self.plasmas["bolo" + self.species_list[0]]
+                self.plasma_name = "bolo" + self.species_list[0]
+                self.plasma.parent = self.world
 
     def set_active_plasma(self, name: str):
         # Deactivate all plasmas
         for k, p in self.plasmas.items():
             p.parent = None
         # Activate target plasma
+        self.plasma_name = name
         self.plasma = self.plasmas[name]
         self.plasma.parent = self.world
 
-    def gen_cherab_plasma(self):
+    
 
+    def gen_cherab_plasma(self):
         # Load PESDT object into cherab_edge2d module, which converts the edge_codes grid to cherab
         # format, and populates cherab plasma parameters
-        
-        cherab = createHydrogenicCherabPlasma(self.PESDT_obj,
-                                    transitions= self.transitions,
-                                    data_source=self.data_source, 
-                                    recalc_h2_pos = self.recalc_h2_pos, 
-                                    mol_exc_bands= self.mol_exc_bands)
-        
-        plasma = cherab.create_plasma(parent=None, opaque = self.opaque)
-
-        # Dummy atomic data dict
         sdb = spectroscopic_lines_db()
         data_dicts = {s: sdb.data[s] for s in self.species_list}
         self.PESDT_data_dicts = {s: PESDT_Data(data_dicts[s]) for s in self.species_list}
-        plasma.atomic_data = self.PESDT_data_dicts[self.species_list[0]]
 
-        return plasma
+        for species in self.species_list:
+            if species in ["H", "D", "T"]:
+                cherab = createHydrogenicCherabPlasma(self.PESDT_obj,
+                                            transitions= self.transitions[species],
+                                            data_source=self.data_source, 
+                                            recalc_h2_pos = self.recalc_h2_pos, 
+                                            mol_exc_bands= self.mol_exc_bands)
+                
+                plasma = cherab.create_plasma(parent=None, opaque = self.opaque)
+            else:
+                cherab = createZCherabPlasma(self.PESDT_obj, self.transitions[species])
+            plasma.atomic_data = self.PESDT_data_dicts[self.species_list[species]]
+            self.plasmas["line" + species] = plasma
 
     def gen_cherab_bolo_plasma(self):
-    
             # Load PESDT object into cherab_edge2d module, which converts the edge_codes grid to cherab
             # format, and populates cherab plasma parameters
-            cherab = createHydrogenicCherabPlasmaBolo(self.PESDT_obj,
-                                        data_source=self.data_source, h_neg = False,
-                                        recalc_h2_pos = self.recalc_h2_pos)
-    
-            plasma = cherab.create_plasma(parent=None, opaque = self.opaque)
-
             sdb = spectroscopic_lines_db()
-            data_dicts = {s: sdb.data[s] for s in self.species_list}
-            self.PESDT_data_dicts = {s: PESDT_Data(data_dicts[s]) for s in self.species_list}
-            plasma.atomic_data = self.PESDT_data_dicts[self.species_list[0]]
+            data_dicts = {s: sdb.bolo_wl[s] for s in self.species_list}
+            self.PESDT_bolo_data_dicts = {s: PESDT_Data(data_dicts[s]) for s in self.species_list}
     
-            return plasma
-
+            for species in self.species_list:
+                if species in ["H", "D", "T"]:
+                    cherab = createHydrogenicCherabPlasmaBolo(self.PESDT_obj,
+                                                data_source=self.data_source, h_neg = False,
+                                                recalc_h2_pos = self.recalc_h2_pos)
+            
+                    plasma = cherab.create_plasma(parent=None, opaque = self.opaque)
+                else:
+                    cherab = createZCherabPlasmaBolo(self.PESDT_obj)
+            plasma.atomic_data = self.PESDT_bolo_data_dicts[self.species_list[0]]
+            self.plasmas["bolo"+species] = plasma
+            
+            
 
 
     def define_bolometer_plasma_model(self, line = False, ff_rec = False, FF = False, FFFB = False):

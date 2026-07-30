@@ -39,7 +39,7 @@ N2 = PESDTElement("Nitrogen2", "N2", 14.0, 28.0, nitrogen)
 Ne = PESDTElement("Neon", "Ne", 10, 20.18, neon)
 W = PESDTElement("Tungsten", "W", 74.0, 183.84, tungsten)
 
-ELEMENT_DICT = {"He": He, "Be": Be, "C": C, "N": N, "N2": N2, "Ne": Ne, "W": W}
+ELEMENT_DICT = {"D": D0, "He": He, "Be": Be, "C": C, "N": N, "N2": N2, "Ne": Ne, "W": W}
 
 M_D = 3.344e-27
 
@@ -375,25 +375,27 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
 
     mesh = create_cherab_mesh(PESDT)
 
-    emission_keys = [(2, 1)] # Use Lyman alpha as the wl
+    
     if data_source == "ADAS":
-        species_list = [(D0, 0), (D0, 1), (D0, 2), (D0, 3)]
-        num_species = 4
+        emission_keys = ["plt", "prb", "ff", "fffb"] 
+        species_list = [(D0, 0)]
+        num_species = 1
         species_density = np.zeros((num_species, num_cells))
         adf = ADF11()
         
 
         emission = [{} for _ in range(num_species)]
         
-        emission[0][(2,1)] = adf.interpolate_plt(te, ne, 0)*ne*n0*1/(4.0*np.pi)
-        emission[1][(2,1)] = adf.interpolate_prb(te, ne, 0)*ne*ne*1/(4.0*np.pi)
+        emission[0]["plt"] = adf.interpolate_plt(te, ne, 0)*ne*n0*1/(4.0*np.pi)
+        emission[0]["prb"] = adf.interpolate_prb(te, ne, 0)*ne*ne*1/(4.0*np.pi)
         ff, fffb = continuov_(10**np.arange(0, 4.01, 0.1), te, 1, 1)
         wl = 10**np.arange(0, 4.01, 0.1)
-        emission[2][(2, 1)] = np.trapezoid(ff * h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
-        emission[3][(2, 1)] = np.trapezoid(fffb* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
+        emission[0]["ff"] = np.trapezoid(ff * h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
+        emission[0]["fffb"] = np.trapezoid(fffb* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
     elif data_source == "AMJUEL":
-        species_list = [(D0, 0), (D0, 2), (D0, 3)]
-        num_species = 3
+        emission_keys = ["tot", "ff", "fffb"] 
+        species_list = [(D0, 0)]
+        num_species = 1
         species_density = np.zeros((num_species, num_cells))
         emission = [{} for _ in range(num_species)]
         em_line = np.zeros_like(te)
@@ -404,13 +406,14 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
                 transition = (j, i)
                 wl = wavelength(transition)
                 em_line += calc_photon_rate(transition, te, ne, n0, mol_n_density = n2, mol_p_density = n2p, h_neg = kwargs.get("h_neg", False), recalc_h2_pos = kwargs.get("recalc_h2_pos")) * h*c/(1e-9*wl)
-        emission[0][(2, 1)] = em_line
+        emission[0]["tot"] = em_line
         ff, fffb = continuov_(10**np.arange(0, 4.01, 0.1), te, 1, 1)
         wl = 10**np.arange(0, 4.01, 0.1)
-        emission[1][(2, 1)] = np.trapezoid(ff * h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
-        emission[2][(2, 1)] = np.trapezoid(fffb* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
+        emission[0]["ff"] = np.trapezoid(ff * h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
+        emission[0]["fffb"] = np.trapezoid(fffb* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
     else:
         # Assume Cell has total radiated power
+        emission_keys = ["tot"]
         species_list = [(D0, 0)]
         num_species = 1
         species_density = np.zeros((num_species, num_cells))
@@ -418,7 +421,7 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
         rad = np.zeros((num_cells))
         for ith_cell, cell in enumerate(PESDT.cells):
             rad[ith_cell] = cell.tot_rad
-        emission[0][(2,1)] = rad
+        emission[0]["tot"] = rad
 
     sim = PESDTSimulation(mesh, species_list) 
     sim.electron_temperature = te

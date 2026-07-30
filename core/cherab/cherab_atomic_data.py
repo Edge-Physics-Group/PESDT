@@ -15,13 +15,14 @@ class PESDT_Data(AtomicData):
         # convert from A to nm!
         return self.atomic_data_dict[transition]*0.1
 
+# Dummy class for power. Fill atomic data dict with keys like ["plt", "prb", "fffb"]
 class PESDT_Power_Data(AtomicData):
 
-    def __init__(self):
+    def __init__(self, atomic_data_dict):
 
-        pass
+        self.atomic_data_dict = atomic_data_dict
 
     def wavelength(self, ion, ion_stage, transition):
-        pass 
+        self.atomic_data_dict[transition] 
 
 

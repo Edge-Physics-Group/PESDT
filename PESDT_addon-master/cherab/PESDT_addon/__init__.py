@@ -1,5 +1,5 @@
 from .continuo import continuo
-from .Line import PESDTLine, PESDTLineMol
+from .Line import PESDTLine, PESDTLineMol, PESDTLinePower
 from .LineEmitters import DirectEmission, DirectEmissionMol, OpaqueDeltaDirectEmission, OpaqueGaussianDirectEmission, LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH_neg_AM, LineH3_pos_AM
 from .Maxwellian import PESDTMaxwellian
 from .PESDT_plasma import PESDTSimulation
