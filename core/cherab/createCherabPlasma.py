@@ -91,6 +91,8 @@ def createZCherabPlasma(PESDT, species_transitions: dict):
 
     print(n_azs.shape)
     print(n_izs.shape)
+    print(PESDT.data.rv.shape)
+    print(te.shape)
     print(ne.shape)
     emission_dict = {}
     emission_keys = []
@@ -114,11 +116,11 @@ def createZCherabPlasma(PESDT, species_transitions: dict):
         n_exc = None
         n_rec = None
         if charge == 0:
-            n_exc = n_azs[ba_idx, :]
-            n_rec = n_izs[bc_idx, :]
+            n_exc = n_azs[ba_idx, :].flatten()
+            n_rec = n_izs[bc_idx, :].flatten()
         else:
-            n_exc = n_izs[bc_idx + charge -1, :]
-            n_rec = n_izs[bc_idx + charge, :]
+            n_exc = n_izs[bc_idx + charge -1, :].flatten()
+            n_rec = n_izs[bc_idx + charge, :].flatten()
         print(n_exc.shape)
         print(n_rec.shape)
         for wl, transition in wl_transitions.items():
@@ -173,11 +175,11 @@ def createZCherabPlasmaBolo(PESDT):
             species_list.append(sp)
             em_dict = {}
             if z == 0:
-                n_exc = n_azs[i, :]
-                n_rec = n_izs[idx +z, :]
+                n_exc = n_azs[i, :].flatten()
+                n_rec = n_izs[idx +z, :].flatten()
             else:
-                n_exc = n_izs[idx +z-1, :]
-                n_rec = n_izs[idx +z, :]
+                n_exc = n_izs[idx +z-1, :].flatten()
+                n_rec = n_izs[idx +z, :].flatten()
             
             wl = 10**np.arange(0, 4.01, 0.1)
             ff, fffb = continuov_(wl, te, max_charge, z+1)
