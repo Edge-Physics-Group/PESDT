@@ -418,18 +418,18 @@ class Base(QWidget):
         if index == 0:
             return
 
-        self.add_item(self.combo.currentText())
-        self.combo.setCurrentIndex(0)
+        self.add_species_item(self.species_combo.currentText())
+        self.species_combo.setCurrentIndex(0)
 
     def add_species_item(self, text):
 
-        if text in self.selected:
+        if text in self.selected_species:
             return
 
-        self.selected.append(text)
+        self.selected_species.append(text)
 
         tag = TagWidget(text)
-        tag.removed.connect(self.remove_item)
+        tag.removed.connect(self.remove_species_item)
 
         self.tags_layout.addWidget(tag)
 
