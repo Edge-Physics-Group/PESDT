@@ -176,6 +176,7 @@ class CherabPlasma():
             
             plasma.atomic_data = self.PESDT_data_dicts[self.species_list[i]]
             print(plasma.atomic_data.atomic_data_dict)
+            print("line" + species)
             self.plasmas["line" + species] = plasma
 
     def gen_cherab_bolo_plasma(self):

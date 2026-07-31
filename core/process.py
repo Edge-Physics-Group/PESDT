@@ -293,6 +293,7 @@ class ProcessEdgeSim:
             
             # === Process Each Instrument ===
             plasma.set_active_plasma("line"+species)
+            print(plasma.plasma_name)
             for diag, _ in instrument_los_dict.items():
                 self.outdict[diag] = {}
 
