@@ -188,7 +188,7 @@ def createZCherabPlasmaBolo(PESDT):
     sim.emission = [emission_keys, emission] # Emission is precalculated for all data sources
     return sim
 
-def createHydrogenicCherabPlasma(PESDT, transitions: list,
+def createHydrogenicCherabPlasma(PESDT, transitions: dict,
                        data_source = "AMJUEL", 
                        recalc_h2_pos = True,
                        mol_exc_bands = None,
@@ -226,8 +226,9 @@ def createHydrogenicCherabPlasma(PESDT, transitions: list,
     # Now load the simulation object with plasma values #
 
     species_list = [(D0, 0), (D0, 1)]
-    transitions_int = [(int(x[0]), int(x[1])) for x in transitions]
-    emission_keys = transitions
+
+    transitions_int = [(int(x[0]), int(x[1])) for wl, x in transitions.items()]
+    emission_keys = list(transitions.values())
 
     if data_source == "AMJUEL":
         '''
