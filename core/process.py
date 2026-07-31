@@ -307,17 +307,12 @@ class ProcessEdgeSim:
 
                 #Separate branch for hydrogenic species
                 if species in ["H", "D", "T"]:
-                    temp = spec_line_dict['H']
-                    H_lines = {}
-                    for key, values in temp.items():
-                        if key == "ATOM_NUM": continue
-                        for tra, wl in values.items():
-                            H_lines[tra] = wl
-
+                    H_lines = spec_line_dict['H']
+            
                     self.outdict[diag]["units"] = "ph s^-1 m^-2 sr^-1"
 
                     for line_key, trans in H_lines.items():
-                        transition = trans#(int(trans[0]), int(trans[1]))
+                        transition = tuple(trans)#(int(trans[0]), int(trans[1]))
                         logger.info(f"Transition: ({transition[0]}, {transition[1]})")
                         wavelength = line_key#calc_wavelength(transition)
                         self.outdict[diag][wavelength] = {}
@@ -428,14 +423,11 @@ class ProcessEdgeSim:
                 logger.info(f"Processing camera {diag}")
                 #Separate branch for hydrogenic species
                 if species in ["H", "D", "T"]:
-                    temp = spec_line_dict['H']
-                    H_lines = {}
-                    for key, values in temp.items():
-                        if key == "ATOM_NUM": continue
-                        for tra, wl in values.items():
-                            H_lines[tra] = wl
+                    
+                    H_lines = spec_line_dict['H']
+                    
                     for line_key, trans in H_lines.items():
-                        transition = trans#(int(trans[0]), int(trans[1]))
+                        transition = tuple(trans)#(int(trans[0]), int(trans[1]))
                         logger.info(f"Transition: ({transition[0]}, {transition[1]})")
                         wavelength = line_key
                         self.outdict[diag][wavelength] = {}

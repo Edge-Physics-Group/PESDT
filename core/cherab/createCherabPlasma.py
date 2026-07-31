@@ -228,7 +228,7 @@ def createHydrogenicCherabPlasma(PESDT, transitions: dict,
     species_list = [(D0, 0), (D0, 1)]
 
     transitions_int = [(int(x[0]), int(x[1])) for wl, x in transitions.items()]
-    emission_keys = list(transitions.values())
+    emission_keys = [tuple(x) for x in transitions.values()]
 
     if data_source == "AMJUEL":
         '''
