@@ -522,7 +522,7 @@ class EmissionLines(QWidget):
                     box = QCheckBox(wl)
                     self.checkboxes[(element_name, series_name, wl)] = (box, pn)
                     line_row.addWidget(box)
-
+                line_row.addStretch()
                 container = QWidget()
                 container.setLayout(line_row)
                 group_box.layout().addWidget(container)
