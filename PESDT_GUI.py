@@ -122,7 +122,7 @@ class Base(QWidget):
         self.selected_species = []
 
         self.species_combo = QComboBox()
-        self.species_combo.addItem("Select...")
+        self.species_combo.addItem("Select plasma species (order matters)")
         self.species_combo.addItems(["H", "He", "C", "N", "Ne", "W"])
         self.species_combo.currentIndexChanged.connect(self.species_combo_changed)
 
