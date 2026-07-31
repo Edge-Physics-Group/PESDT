@@ -226,7 +226,7 @@ def createHydrogenicCherabPlasma(PESDT, transitions: list,
     # Now load the simulation object with plasma values #
 
     species_list = [(D0, 0), (D0, 1)]
-    transitions_int = [(int(x[0], int(x[1]))) for x in transitions]
+    transitions_int = [(int(x[0]), int(x[1])) for x in transitions]
     emission_keys = transitions
 
     if data_source == "AMJUEL":
