@@ -543,7 +543,7 @@ class EmissionLines(QWidget):
                 else:
                     checkbox.setChecked(False)
             else:
-                if element_name in selected_dict and wl in selected_dict[element_name][series_name]:
+                if element_name in selected_dict and wl in selected_dict[element_name].get(series_name, {}):
                     checkbox.setChecked(True)
                 else:
                     checkbox.setChecked(False)
