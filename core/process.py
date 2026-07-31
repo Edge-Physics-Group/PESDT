@@ -293,7 +293,7 @@ class ProcessEdgeSim:
             
             # === Process Each Instrument ===
             plasma.set_active_plasma("line"+species)
-            print(plasma.plasma_name)
+            #print(plasma.plasma_name)
             for diag, _ in instrument_los_dict.items():
                 self.outdict[diag] = {}
 
@@ -321,7 +321,7 @@ class ProcessEdgeSim:
                             # Excitation
                             logger.info("Excitation")
                             plasma.define_Hydrogenic_plasma_model(transition=transition,include_excitation=True)
-                            print(plasma.plasma.atomic_data.atomic_data_dict)
+                            #print(plasma.plasma.atomic_data.atomic_data_dict)
                             excit = plasma.integrate_instrument(diag)
                             self.outdict[diag][wavelength]["excit"] = [x[0] for x in excit]
 

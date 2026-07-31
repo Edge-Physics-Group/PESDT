@@ -161,7 +161,7 @@ class CherabPlasma():
         sdb = spectroscopic_lines_db()
         data_dicts = {s: sdb.data[s] for s in self.species_list}
         self.PESDT_data_dicts = {s: PESDT_Data(data_dicts[s]) for s in self.species_list}
-        print(data_dicts[self.species_list[0]])
+        #print(data_dicts[self.species_list[0]])
         for i, species in enumerate(self.species_list):
             if species in ["H", "D", "T"]:
                 cherab = createHydrogenicCherabPlasma(self.PESDT_obj,
@@ -173,10 +173,11 @@ class CherabPlasma():
                 plasma = cherab.create_plasma(parent=None, opaque = self.opaque)
             else:
                 cherab = createZCherabPlasma(self.PESDT_obj, self.transitions[species])
+                plasma = cherab.create_plasma(parent=None, opaque = self.opaque)
             
             plasma.atomic_data = self.PESDT_data_dicts[self.species_list[i]]
-            print(plasma.atomic_data.atomic_data_dict)
-            print("line" + species)
+            #print(plasma.atomic_data.atomic_data_dict)
+            #print("line" + species)
             self.plasmas["line" + species] = plasma
 
     def gen_cherab_bolo_plasma(self):
@@ -195,6 +196,7 @@ class CherabPlasma():
                     plasma = cherab.create_plasma(parent=None, opaque = self.opaque)
                 else:
                     cherab = createZCherabPlasmaBolo(self.PESDT_obj)
+                    plasma = cherab.create_plasma(parent=None, opaque = self.opaque)
                 plasma.atomic_data = self.PESDT_bolo_data_dicts[self.species_list[i]]
                 self.plasmas["bolo"+species] = plasma
             
