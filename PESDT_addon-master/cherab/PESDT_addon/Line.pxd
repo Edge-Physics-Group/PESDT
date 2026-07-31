@@ -4,7 +4,7 @@ from cherab.core.atomic.elements cimport Element
 from cherab.core cimport Line
 
 cdef class PESDTLine(Line):
-    pass
+    cdef object _arb_transition
 
 cdef class PESDTLineMol(Line):
 

@@ -22,10 +22,10 @@ cdef class PESDTLine(Line):
 
     """
     
-    def __init__(self, Element element, int charge, tuple transition):
+    def __init__(self, Element element, int charge, object transition):
         self.element = element
         self.charge = charge
-        self.transition = transition
+        self.arb_transition = transition
 
     def __repr__(self):
         return '<Line: {}, {}, {}>'.format(self.element.name, self.charge, self.transition)
@@ -47,6 +47,14 @@ cdef class PESDTLine(Line):
             return self.element != line.element or self.charge != line.charge or self.transition != line.transition
         else:
             return NotImplemented
+
+    @property
+    def arb_transition(self):
+        return self._arb_transition
+
+    @arb_transition.setter
+    def arb_transition(self, val):
+        self._arb_transition = val
 
 cdef class PESDTLineMol(Line):
     """
