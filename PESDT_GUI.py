@@ -128,7 +128,6 @@ class Base(QWidget):
 
         self.tags_layout = QHBoxLayout()      
 
-        layout = QVBoxLayout(self)
         layout.addWidget(self.species_combo)
         layout.addLayout(self.tags_layout)
 
