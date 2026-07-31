@@ -21,9 +21,20 @@ DEF GAUSSIAN_CUTOFF_SIGMA = 10.0
     As long as you pass emission on to the plasma (i.e. use PESDTSimulation),
     you can use any data source you want.
 """
+cdef class DummyAtomicData(AtomicData):
+
+    def __init__(self, object atomic_data_dict, bool invert) -> None:
+        super().__init__()
+        self.atomic_data_dict = atomic_data_dict
+        if invert:
+            self.atomic_data_dict = {trans: float(wl) for wl, trans in atomic_data_dict.items()}
+
+    cpdef double arb_wavelength(self, object transition):
+        return self.atomic_data_dict[transition]
+
 cdef class DirectEmission(PlasmaModel):
     
-    def __init__(self, Line line, Plasma plasma=None, AtomicData atomic_data=None, object lineshape=None,
+    def __init__(self, Line line, Plasma plasma=None, DummyAtomicData atomic_data=None, object lineshape=None,
                  object lineshape_args=None, object lineshape_kwargs=None):
         
 
@@ -83,7 +94,7 @@ cdef class DirectEmission(PlasmaModel):
             raise RuntimeError("The plasma object does not contain the ion species for the specified line "
                                "(element={}, ionisation={}).".format(self._line.element.symbol, self._line.charge))
         # identify wavelength
-        self._wavelength = self._atomic_data.wavelength(self._line.element, self._line.charge, self._line.arb_transition)
+        self._wavelength = self._atomic_data.arb_wavelength(self._line.arb_transition)
 
         # instance line shape renderer
         self._lineshape = self._lineshape_class(self._line, self._wavelength, self._target_species, self._plasma, self._atomic_data,

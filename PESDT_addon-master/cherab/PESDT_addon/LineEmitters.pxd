@@ -8,6 +8,12 @@ from cherab.core.model.lineshape cimport GaussianLine, LineShapeModel
 from cherab.core.utility.constants cimport RECIP_4_PI
 from numpy cimport ndarray
 
+cdef class DummyAtomicData(AtomicData):
+     cdef:
+          object atomic_data_dict
+          
+     cpdef double arb_wavelength(self, object transition)
+
 cdef class DirectEmission(PlasmaModel):
 
     cdef:

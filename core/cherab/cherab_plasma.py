@@ -15,7 +15,7 @@ from .jet_cad_mesh import import_jet_mesh
 from .aug_cad_mesh import import_aug_mesh
 from cherab.core.model.lineshape import GaussianLine
 from cherab.PESDT_addon.LineShapes import StarkBroadenedLine, DeltaLine
-from cherab.PESDT_addon.LineEmitters import DirectEmission, DirectEmissionMol, OpaqueGaussianDirectEmission, OpaqueDeltaDirectEmission, LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
+from cherab.PESDT_addon.LineEmitters import DummyAtomicData, DirectEmission, DirectEmissionMol, OpaqueGaussianDirectEmission, OpaqueDeltaDirectEmission, LineExcitation_AM, LineRecombination_AM, LineH2_AM, LineH2_pos_AM, LineH3_pos_AM, LineH_neg_AM
 from cherab.PESDT_addon.continuo import Continuo
 
 from cherab.PESDT_addon import PESDTLine, PESDTLineMol
@@ -160,7 +160,7 @@ class CherabPlasma():
         # format, and populates cherab plasma parameters
         sdb = spectroscopic_lines_db()
         data_dicts = {s: sdb.data[s] for s in self.species_list}
-        self.PESDT_data_dicts = {s: PESDT_Data(data_dicts[s]) for s in self.species_list}
+        self.PESDT_data_dicts = {s: DummyAtomicData(data_dicts[s], True) for s in self.species_list}
         #print(data_dicts[self.species_list[0]])
         for i, species in enumerate(self.species_list):
             if species in ["H", "D", "T"]:
@@ -185,7 +185,7 @@ class CherabPlasma():
             # format, and populates cherab plasma parameters
             sdb = spectroscopic_lines_db()
             data_dicts = {s: sdb.bolo_wl[s] for s in self.species_list}
-            self.PESDT_bolo_data_dicts = {s: PESDT_Power_Data(data_dicts[s]) for s in self.species_list}
+            self.PESDT_bolo_data_dicts = {s: DummyAtomicData(data_dicts[s], False) for s in self.species_list}
     
             for i, species in enumerate(self.species_list):
                 if species in ["H", "D", "T"]:
