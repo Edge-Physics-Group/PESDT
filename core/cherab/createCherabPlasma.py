@@ -118,9 +118,8 @@ def createZCherabPlasma(PESDT, species_transitions: dict):
             n_rec = n_izs[bc_idx + charge, :]
 
         for wl, transition in wl_transitions.items():
-            tr = (int(transition[0]), int(transition[1]))
-            emission[exc_sp][tr] = adf.interpolate(te, ne, "EXCIT", wl)*ne*n_exc*1/(4.0*np.pi)
-            emission[rec_sp][tr] = adf.interpolate(te, ne, "RECOM", wl)*ne*n_rec*1/(4.0*np.pi)
+            emission[exc_sp][transition] = adf.interpolate(te, ne, "EXCIT", wl)*ne*n_exc*1/(4.0*np.pi)
+            emission[rec_sp][transition] = adf.interpolate(te, ne, "RECOM", wl)*ne*n_rec*1/(4.0*np.pi)
 
     emission_keys = list(emission_dict.keys())
     emission = [values for _, values in emission_dict.items()]
@@ -227,7 +226,7 @@ def createHydrogenicCherabPlasma(PESDT, transitions: list,
     # Now load the simulation object with plasma values #
 
     species_list = [(D0, 0), (D0, 1)]
-    transitions = [(int(x[0], int(x[1]))) for x in transitions]
+    transitions_int = [(int(x[0], int(x[1]))) for x in transitions]
     emission_keys = transitions
 
     if data_source == "AMJUEL":
@@ -272,7 +271,7 @@ def createHydrogenicCherabPlasma(PESDT, transitions: list,
         for i in range(len(transitions)):
             logger.info(f"   Calculating emission for line: {transitions[i]}")
             
-            em_n_exc, em_n_rec, em_mol, em_h2_pos, em_h3_pos, em_h_neg, tot = calc_photon_rate(transitions[i], te, ne, n0[:], mol_n_density = n2[:], mol_p_density = h2_pos_den[:],recalc_h2_pos = recalc_h2_pos, debug = True)
+            em_n_exc, em_n_rec, em_mol, em_h2_pos, em_h3_pos, em_h_neg, tot = calc_photon_rate(transitions_int[i], te, ne, n0[:], mol_n_density = n2[:], mol_p_density = h2_pos_den[:],recalc_h2_pos = recalc_h2_pos, debug = True)
             logger.info(f"Mean: {np.mean(tot)}")
             emission[0][transitions[i]] = em_n_exc
             emission[1][transitions[i]] = em_n_rec
