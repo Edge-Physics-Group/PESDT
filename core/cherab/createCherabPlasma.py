@@ -269,17 +269,17 @@ def createHydrogenicCherabPlasma(PESDT, transitions: dict,
         species_density[5, :] = h_neg_den[:]
         emission = [{} for _ in range(len(species_density))]
         logger.info("Precalculating emission")    
-        for i in range(len(transitions)):
-            logger.info(f"   Calculating emission for line: {transitions[i]}")
+        for i in range(len(emission_keys)):
+            logger.info(f"   Calculating emission for line: {emission_keys[i]}")
             
             em_n_exc, em_n_rec, em_mol, em_h2_pos, em_h3_pos, em_h_neg, tot = calc_photon_rate(transitions_int[i], te, ne, n0[:], mol_n_density = n2[:], mol_p_density = h2_pos_den[:],recalc_h2_pos = recalc_h2_pos, debug = True)
             logger.info(f"Mean: {np.mean(tot)}")
-            emission[0][transitions[i]] = em_n_exc
-            emission[1][transitions[i]] = em_n_rec
-            emission[2][transitions[i]] = em_mol
-            emission[3][transitions[i]] = em_h2_pos
-            emission[4][transitions[i]] = em_h3_pos
-            emission[5][transitions[i]] = em_h_neg
+            emission[0][emission_keys[i]] = em_n_exc
+            emission[1][emission_keys[i]] = em_n_rec
+            emission[2][emission_keys[i]] = em_mol
+            emission[3][emission_keys[i]] = em_h2_pos
+            emission[4][emission_keys[i]] = em_h3_pos
+            emission[5][emission_keys[i]] = em_h_neg
         if mol_exc_bands is not None:
             logger.info("Precalculating molecular band emission")
             species_list.append((D2vibr, 0))
@@ -318,16 +318,16 @@ def createHydrogenicCherabPlasma(PESDT, transitions: dict,
         species_density[5, :] = h_neg_den[:]
         logger.info("Precalculating emission")    
         emission = [{} for _ in range(len(species_density))]
-        for i in range(len(transitions)):
-            logger.info(f"   Calculating emission for line: {transitions[i]}")
-            h_emiss, h_rec_emiss, h2_emiss, h2_pos_emiss, h3_pos_emiss, hneg_emiss, tot = yacora.calc_photon_rate(transitions[i], te, ne, n0[:], n2[:], h2_pos_den, h3_pos_den, h_neg_den)
+        for i in range(len(emission_keys)):
+            logger.info(f"   Calculating emission for line: {emission_keys[i]}")
+            h_emiss, h_rec_emiss, h2_emiss, h2_pos_emiss, h3_pos_emiss, hneg_emiss, tot = yacora.calc_photon_rate(transitions_int[i], te, ne, n0[:], n2[:], h2_pos_den, h3_pos_den, h_neg_den)
             logger.info(f"Mean: {np.mean(tot)}")
-            emission[0][transitions[i]] = h_emiss
-            emission[1][transitions[i]] = h_rec_emiss
-            emission[2][transitions[i]] = h2_emiss
-            emission[3][transitions[i]] = h2_pos_emiss
-            emission[4][transitions[i]] = h3_pos_emiss
-            emission[5][transitions[i]] = hneg_emiss
+            emission[0][emission_keys[i]] = h_emiss
+            emission[1][emission_keys[i]] = h_rec_emiss
+            emission[2][emission_keys[i]] = h2_emiss
+            emission[3][emission_keys[i]] = h2_pos_emiss
+            emission[4][emission_keys[i]] = h3_pos_emiss
+            emission[5][emission_keys[i]] = hneg_emiss
     else:
         #ADAS
         num_species = 2
@@ -336,10 +336,10 @@ def createHydrogenicCherabPlasma(PESDT, transitions: dict,
         tra_wl_dct = {trans: wl for wl, trans in sdb.data["H"].items()}
         #print(tra_wl_dct)
         emission = [{} for _ in range(len(species_density))]
-        for i in range(len(transitions)):
-            wl = tra_wl_dct[transitions[i]]
-            emission[0][transitions[i]] = adf.interpolate(te, ne, "EXCIT", wl)*ne*n0*1/(4.0*np.pi)
-            emission[1][transitions[i]] = adf.interpolate(te, ne, "RECOM", wl)*ne*ne*1/(4.0*np.pi)
+        for i in range(len(emission_keys)):
+            wl = tra_wl_dct[emission_keys[i]]
+            emission[0][emission_keys[i]] = adf.interpolate(te, ne, "EXCIT", wl)*ne*n0*1/(4.0*np.pi)
+            emission[1][emission_keys[i]] = adf.interpolate(te, ne, "RECOM", wl)*ne*ne*1/(4.0*np.pi)
     
     species_density[0, :] = n0[:]  # neutral density D0
     species_density[1, :] = ni[:]  # ion density D+1
