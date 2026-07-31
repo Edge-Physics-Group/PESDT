@@ -88,7 +88,7 @@ def createZCherabPlasma(PESDT, species_transitions: dict):
     n_azs = PESDT.data.n_azs
     n_izs = PESDT.data.n_izs
 
-    species_list = []
+    
     emission_dict = {}
     
     for species, wl_transitions in species_transitions.items():
@@ -122,7 +122,11 @@ def createZCherabPlasma(PESDT, species_transitions: dict):
             emission_dict[rec_sp][transition] = adf.interpolate(te, ne, "RECOM", wl)*ne*n_rec*1/(4.0*np.pi)
 
     emission_keys = list(emission_dict.keys())
-    emission = [values for _, values in emission_dict.items()]
+    emission = []
+    species_list = []
+    for species, values in emission_dict.items():
+        species_list.append(species)
+        emission.append(values)
     num_species = len(species_list)
 
     sim = PESDTSimulation(mesh, species_list) #[['D0', 0], ['D+1', 1]])
