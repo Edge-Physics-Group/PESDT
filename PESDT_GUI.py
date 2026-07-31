@@ -517,6 +517,7 @@ class EmissionLines(QWidget):
                 group_box.layout().addWidget(QLabel(f"{series_name}:"))
 
                 line_row = QHBoxLayout()
+                line_row.setSpacing(8)
                 for wl, pn in lines.items():
                     box = QCheckBox(wl)
                     self.checkboxes[(element_name, series_name, wl)] = (box, pn)
