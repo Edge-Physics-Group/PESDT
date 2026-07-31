@@ -21,10 +21,16 @@ class spectroscopic_lines_db:
         # flatten data
         for species, data in self.data.items():
             flat_data = {}
-            for key, item in data.items():
-                if key == "ATOM_NUM": continue
-                for k, i in item.items():
-                    flat_data[k] = tuple(i) # Add items, all transitions are unique
+            if species in ["H", "D", "T"]:
+                for key, item in data.items():
+                    if key == "ATOM_NUM": continue
+                    for k, i in item.items():
+                        flat_data[k] = tuple(i) # Add items, all transitions are unique
+            else:
+                for key, item in data.items():
+                    if key == "ATOM_NUM": continue
+                    for k, i in item.items():
+                        flat_data[k] = i # Add items, all transitions are unique
             self.data[species] = flat_data
 
     def _load(self, path):
