@@ -696,7 +696,7 @@ class CherabSettings(QWidget):
         selected = self.emission_lines.get_selected_lines().get("H", {})
         self.stark_transition_combo.clear()
         # Flatten to a list of strings like: "1: 1215.2"
-        for wl in selected.items():
+        for wl in selected.keys():
             transition = selected[wl]  # [p, n]
             label = f"H: {wl}"
             self.stark_transition_combo.addItem(label, userData=transition)
