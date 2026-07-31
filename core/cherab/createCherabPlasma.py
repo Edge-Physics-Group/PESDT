@@ -79,7 +79,7 @@ def createZCherabPlasma(PESDT, species_transitions: dict):
     '''
     num_cells = len(PESDT.data.te)
     mesh = create_cherab_mesh(PESDT)
-    plasma_species: list[str] = PESDT.species 
+    plasma_species: list[str] = PESDT.species_list
     te = PESDT.data.te #np.zeros(num_cells)
     ti = PESDT.data.ti #np.zeros(num_cells)
     
@@ -141,7 +141,7 @@ def createZCherabPlasmaBolo(PESDT):
     '''
     num_cells = len(PESDT.data.te)
     mesh = create_cherab_mesh(PESDT)
-    plasma_species: list[str] = PESDT.species 
+    plasma_species: list[str] = PESDT.species_list 
     te = PESDT.data.te #np.zeros(num_cells)
     ti = PESDT.data.ti #np.zeros(num_cells)
     
