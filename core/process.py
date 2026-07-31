@@ -320,6 +320,7 @@ class ProcessEdgeSim:
                             # Excitation
                             logger.info("Excitation")
                             plasma.define_Hydrogenic_plasma_model(transition=transition,include_excitation=True)
+                            print(plasma.atomic_data)
                             excit = plasma.integrate_instrument(diag)
                             self.outdict[diag][wavelength]["excit"] = [x[0] for x in excit]
 
