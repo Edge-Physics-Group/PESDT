@@ -159,11 +159,13 @@ def createZCherabPlasmaBolo(PESDT):
     emission = []
     emission_keys = ["plt", "prb", "fffb"]
     idx = 0
+    logger.info("Precalculating power for Z")    
     for i, species in enumerate(plasma_species):
         adf = ADF11(species)
-
+        logger.info(f"  Species {species}")    
         max_charge = get_num_charge_states(species)
         for z in range(max_charge):
+            logger.info(f"  Charge state {z}")  
             sp = (ELEMENT_DICT[species], z)
             species_list.append(sp)
             em_dict = {}
