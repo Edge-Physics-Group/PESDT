@@ -156,7 +156,7 @@ def createZCherabPlasmaBolo(PESDT):
 
     species_list = []
     emission = []
-    emission_keys = ["plt", "prb", "fffb"]
+    emission_keys = ["plt", "prb", "ff","fffb"]
     idx = 0
     logger.info("Precalculating power for Z")    
     for i, species in enumerate(plasma_species):
@@ -179,6 +179,7 @@ def createZCherabPlasmaBolo(PESDT):
             ff, fffb = continuov_(wl, te, max_charge, z+1)
             em_dict["plt"] = adf.interpolate_plt(te, ne, z)*ne*n_exc*1/(4.0*np.pi)
             em_dict["prb"] = adf.interpolate_prb(te, ne, z)*ne*n_rec*1/(4.0*np.pi)
+            em_dict["ff"] = np.trapezoid(ff* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*n_rec*1/(4.0*np.pi)
             em_dict["fffb"] = np.trapezoid(fffb* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*n_rec*1/(4.0*np.pi)
             emission.append(em_dict)
         idx +=1
