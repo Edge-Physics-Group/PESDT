@@ -320,6 +320,7 @@ class ProcessEdgeSim:
                             # Excitation
                             logger.info("Excitation")
                             plasma.define_Hydrogenic_plasma_model(transition=transition,include_excitation=True)
+                            print(plasma.plasma.atomic_data.atomic_data_dict)
                             excit = plasma.integrate_instrument(diag)
                             self.outdict[diag][wavelength]["excit"] = [x[0] for x in excit]
 
@@ -398,8 +399,8 @@ class ProcessEdgeSim:
                     for subspecies, lines_dict in spec_lines.items():
                         charge = int(subspecies[len(species):])
                         for line_key, trans in lines_dict.items():
-                            transition = (int(trans[0]), int(trans[1]))
-                            logger.info(f"Transition: ({transition[0]}, {transition[1]})")
+                            transition = trans
+                            logger.info(f"Transition: {transition}")
                             wavelength = line_key
                             self.outdict[diag][wavelength] = {}
                             
@@ -453,8 +454,8 @@ class ProcessEdgeSim:
                     for subspecies, lines_dict in spec_lines.items():
                         charge = int(subspecies[len(species):])
                         for line_key, trans in lines_dict.items():
-                            transition = (int(trans[0]), int(trans[1]))
-                            logger.info(f"Transition: ({transition[0]}, {transition[1]})")
+                            transition = trans
+                            logger.info(f"Transition: {transition}")
                             wavelength = line_key
                             self.outdict[diag][wavelength] = {}
                             plasma.define_Zplasma_model(transition, species, charge, include_excitation=True, include_recombination=True)
