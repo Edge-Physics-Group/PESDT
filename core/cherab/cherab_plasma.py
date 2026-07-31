@@ -161,7 +161,7 @@ class CherabPlasma():
         sdb = spectroscopic_lines_db()
         data_dicts = {s: sdb.data[s] for s in self.species_list}
         self.PESDT_data_dicts = {s: PESDT_Data(data_dicts[s]) for s in self.species_list}
-        print(data_dicts[self.species_list[i]])
+        print(data_dicts[self.species_list[0]])
         for i, species in enumerate(self.species_list):
             if species in ["H", "D", "T"]:
                 cherab = createHydrogenicCherabPlasma(self.PESDT_obj,
