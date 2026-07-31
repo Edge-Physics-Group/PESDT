@@ -176,8 +176,8 @@ def createZCherabPlasmaBolo(PESDT):
             
             wl = 10**np.arange(0, 4.01, 0.1)
             ff, fffb = continuov_(wl, te, max_charge, z+1)
-            em_dict["plt"] = adf.interp_plt(te, ne, z)*ne*n_exc*1/(4.0*np.pi)
-            em_dict["prb"] = adf.interp_prb(te, ne, z)*ne*n_rec*1/(4.0*np.pi)
+            em_dict["plt"] = adf.interpolate_plt(te, ne, z)*ne*n_exc*1/(4.0*np.pi)
+            em_dict["prb"] = adf.interpolate_prb(te, ne, z)*ne*n_rec*1/(4.0*np.pi)
             em_dict["fffb"] = np.trapezoid(fffb* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*n_rec*1/(4.0*np.pi)
             emission.append(em_dict)
             idx +=1
