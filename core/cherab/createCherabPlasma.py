@@ -91,7 +91,7 @@ def createZCherabPlasma(PESDT, species_transitions: dict):
 
     
     emission_dict = {}
-    
+    emission_keys = []
     for species, wl_transitions in species_transitions.items():
         adf = ADF15(species)
         sp, charge, idx = get_base_species_and_charge(species, plasma_species)
@@ -121,8 +121,8 @@ def createZCherabPlasma(PESDT, species_transitions: dict):
         for wl, transition in wl_transitions.items():
             emission_dict[exc_sp][transition] = adf.interpolate(te, ne, "EXCIT", wl)*ne*n_exc*1/(4.0*np.pi)
             emission_dict[rec_sp][transition] = adf.interpolate(te, ne, "RECOM", wl)*ne*n_rec*1/(4.0*np.pi)
-
-    emission_keys = list(emission_dict.keys())
+            emission_keys.append(transition)
+    
     emission = []
     species_list = []
     for species, values in emission_dict.items():
