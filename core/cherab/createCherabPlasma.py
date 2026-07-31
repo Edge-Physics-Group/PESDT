@@ -89,11 +89,6 @@ def createZCherabPlasma(PESDT, species_transitions: dict):
     n_azs = PESDT.data.n_azs
     n_izs = PESDT.data.n_izs
 
-    print(n_azs.shape)
-    print(n_izs.shape)
-    print(PESDT.data.rv.shape)
-    print(te.shape)
-    print(ne.shape)
     emission_dict = {}
     emission_keys = []
     for species, wl_transitions in species_transitions.items():
@@ -121,8 +116,7 @@ def createZCherabPlasma(PESDT, species_transitions: dict):
         else:
             n_exc = n_izs[bc_idx + charge -1, :].flatten()
             n_rec = n_izs[bc_idx + charge, :].flatten()
-        print(n_exc.shape)
-        print(n_rec.shape)
+
         for wl, transition in wl_transitions.items():
             emission_dict[exc_sp][transition] = adf.interpolate(te, ne, "EXCIT", wl)*ne*n_exc*1/(4.0*np.pi)
             emission_dict[rec_sp][transition] = adf.interpolate(te, ne, "RECOM", wl)*ne*n_rec*1/(4.0*np.pi)
@@ -391,7 +385,7 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
     
     if data_source == "ADAS":
         emission_keys = ["plt", "prb", "ff", "fffb"] 
-        species_list = [(D0, 0)]
+        species_list = [(H0, 0)]
         num_species = 1
         species_density = np.zeros((num_species, num_cells))
         adf = ADF11()
@@ -407,7 +401,7 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
         emission[0]["fffb"] = np.trapezoid(fffb* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
     elif data_source == "AMJUEL":
         emission_keys = ["tot", "ff", "fffb"] 
-        species_list = [(D0, 0)]
+        species_list = [(H0, 0)]
         num_species = 1
         species_density = np.zeros((num_species, num_cells))
         emission = [{} for _ in range(num_species)]
@@ -427,7 +421,7 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
     else:
         # Assume Cell has total radiated power
         emission_keys = ["tot"]
-        species_list = [(D0, 0)]
+        species_list = [(H0, 0)]
         num_species = 1
         species_density = np.zeros((num_species, num_cells))
         emission = [{} for _ in range(num_species)]
