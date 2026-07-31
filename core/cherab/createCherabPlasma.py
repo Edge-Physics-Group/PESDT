@@ -1,7 +1,7 @@
 
 import numpy as np
 from cherab.PESDT_addon import PESDTSimulation, PESDTElement, deuterium, EIRENEMesh, QuadMesh
-from cherab.core.atomic.elements import helium, beryllium, carbon, nitrogen, neon,tungsten
+from cherab.core.atomic.elements import hydrogen, helium, beryllium, carbon, nitrogen, neon,tungsten
 from scipy.constants import h, c
 from ..utils import (read_amjuel_1d,
                      read_amjuel_2d,reactions, 
@@ -26,6 +26,7 @@ logger = logging.getLogger(__name__)
 sdb = spectroscopic_lines_db()
 
 BaseD = deuterium
+H0 = PESDTElement("Hydrogen", "H", 1.0, 1.0, hydrogen)
 D0 = PESDTElement("Deuterium", "D", 1.0, 2.0, BaseD)
 D2 = PESDTElement("Deuterium2", "D2", 2.0, 4.0, BaseD)
 D2vibr = PESDTElement("Deuterium2vibr", "D2", 2.0, 4.0, BaseD)
@@ -39,7 +40,7 @@ N2 = PESDTElement("Nitrogen2", "N2", 14.0, 28.0, nitrogen)
 Ne = PESDTElement("Neon", "Ne", 10, 20.18, neon)
 W = PESDTElement("Tungsten", "W", 74.0, 183.84, tungsten)
 
-ELEMENT_DICT = {"D": D0, "He": He, "Be": Be, "C": C, "N": N, "N2": N2, "Ne": Ne, "W": W}
+ELEMENT_DICT = {"H": H0,"D": D0, "He": He, "Be": Be, "C": C, "N": N, "N2": N2, "Ne": Ne, "W": W}
 
 M_D = 3.344e-27
 
