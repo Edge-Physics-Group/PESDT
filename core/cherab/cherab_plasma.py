@@ -162,7 +162,7 @@ class CherabPlasma():
         data_dicts = {s: sdb.data[s] for s in self.species_list}
         self.PESDT_data_dicts = {s: PESDT_Data(data_dicts[s]) for s in self.species_list}
 
-        for species in self.species_list:
+        for i, species in enumerate(self.species_list):
             if species in ["H", "D", "T"]:
                 cherab = createHydrogenicCherabPlasma(self.PESDT_obj,
                                             transitions= self.transitions[species],
@@ -173,7 +173,7 @@ class CherabPlasma():
                 plasma = cherab.create_plasma(parent=None, opaque = self.opaque)
             else:
                 cherab = createZCherabPlasma(self.PESDT_obj, self.transitions[species])
-            plasma.atomic_data = self.PESDT_data_dicts[self.species_list[species]]
+            plasma.atomic_data = self.PESDT_data_dicts[self.species_list[i]]
             self.plasmas["line" + species] = plasma
 
     def gen_cherab_bolo_plasma(self):
@@ -181,9 +181,9 @@ class CherabPlasma():
             # format, and populates cherab plasma parameters
             sdb = spectroscopic_lines_db()
             data_dicts = {s: sdb.bolo_wl[s] for s in self.species_list}
-            self.PESDT_bolo_data_dicts = {s: PESDT_Data(data_dicts[s]) for s in self.species_list}
+            self.PESDT_bolo_data_dicts = {s: PESDT_Power_Data(data_dicts[s]) for s in self.species_list}
     
-            for species in self.species_list:
+            for i, species in enumerate(self.species_list):
                 if species in ["H", "D", "T"]:
                     cherab = createHydrogenicCherabPlasmaBolo(self.PESDT_obj,
                                                 data_source=self.data_source, h_neg = False,
@@ -192,8 +192,8 @@ class CherabPlasma():
                     plasma = cherab.create_plasma(parent=None, opaque = self.opaque)
                 else:
                     cherab = createZCherabPlasmaBolo(self.PESDT_obj)
-            plasma.atomic_data = self.PESDT_bolo_data_dicts[self.species_list[0]]
-            self.plasmas["bolo"+species] = plasma
+                plasma.atomic_data = self.PESDT_bolo_data_dicts[self.species_list[i]]
+                self.plasmas["bolo"+species] = plasma
             
     def define_bolometer_plasma_model(self, species, charge, line = False, ff_rec = False, FF = False, FFFB = False, tot = False):
         model_list = []
