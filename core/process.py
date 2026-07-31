@@ -108,7 +108,7 @@ class ProcessEdgeSim:
         self.diag_list = self.input_dict['diag_list']
         self.camera_list = self.input_dict['ccd_list']
         self.bolo_list = self.input_dict['bolo_list']
-        self.species_list = self.input_dict.get('species_list', ["D"])
+        self.species_list = self.input_dict.get('species', ["D"])
 
         self.calc_synth_spec_features = self.input_dict['run_options'].get('analyse_synth_spec_features', False)
         self.AMJUEL_date = self.input_dict['run_options'].get("AMJUEL_date", 2016) # Default to <2017 (no H3+)

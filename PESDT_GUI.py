@@ -5,9 +5,33 @@ from PyQt5.QtWidgets import (
     QVBoxLayout, QHBoxLayout, QComboBox, QPushButton, QTabWidget, QSpinBox, QGridLayout, 
     QDoubleSpinBox, QScrollArea, QGroupBox, QFrame, QSizePolicy
 )
+from PyQt5.QtCore import pyqtSignal
+
 import matplotlib
 matplotlib.use('Qt5Agg')  # Or 'QtAgg' depending on your version
 #
+
+class TagWidget(QWidget):
+    removed = pyqtSignal(str)
+
+    def __init__(self, text):
+        super().__init__()
+
+        self.text = text
+
+        label = QLabel(text)
+
+        button = QPushButton("×")
+        button.setFixedSize(18, 18)
+        button.clicked.connect(lambda: self.removed.emit(self.text))
+
+        layout = QHBoxLayout(self)
+        layout.setContentsMargins(8, 2, 4, 2)
+        layout.setSpacing(4)
+        layout.addWidget(label)
+        layout.addWidget(button)
+
+        self.setMaximumWidth(self.sizeHint().width())
 
 class CollapsibleBox(QWidget):
     def __init__(self, title=""):
@@ -91,9 +115,23 @@ class Base(QWidget):
         layout.addLayout(data_source_layout)
 
         # Checkboxes
-        self.read_adas_checkbox = QCheckBox("Read ADAS (Check if you are using ADAS data for the first time, or you've added new lines)")
-        self.read_adas_checkbox.setChecked(False)
-        layout.addWidget(self.read_adas_checkbox)
+        #self.read_adas_checkbox = QCheckBox("Read ADAS (Check if you are using ADAS data for the first time, or you've added new lines)")
+        #self.read_adas_checkbox.setChecked(False)
+        #layout.addWidget(self.read_adas_checkbox)
+
+        self.selected_species = []
+
+        self.species_combo = QComboBox()
+        self.species_combo.addItem("Select...")
+        self.species_combo.addItems(["H", "He", "C", "N", "Ne", "W"])
+        self.species_combo.currentIndexChanged.connect(self.species_combo_changed)
+
+        self.tags_layout = QHBoxLayout()      
+
+        layout = QVBoxLayout(self)
+        layout.addWidget(self.species_combo)
+        layout.addLayout(self.tags_layout)
+
 
         self.recalc_h2_pos = QCheckBox(r"Re-calculate H2+ density (SOLPS, always on for EDEG2D and OEDGE)")
         self.recalc_h2_pos.setChecked(False)
@@ -106,8 +144,6 @@ class Base(QWidget):
         self.analyse_synth_spec_features = QCheckBox(r"Calculate Continuum Te and Stark broadened ne")
         self.analyse_synth_spec_features.setChecked(False)
         layout.addWidget(self.analyse_synth_spec_features)
-
-        
 
         # Save dir
         save_layout = QHBoxLayout()
@@ -220,30 +256,45 @@ class Base(QWidget):
         diag_dict = self.machine_diags.get(machine, {})
 
         # Populate diagnostics in grid
-        items = list(diag_dict.keys())
+        # Populate diagnostics in grids
         columns = 3
-        for index, diag in enumerate(items):
-            row = index // columns
-            col = index % columns
+
+        grids = {
+            "LOS": self.em_diag_grid,
+            "CCD": self.em_c_diag_grid,
+            "BOLO": self.bolo_diag_grid,
+            "OTHER": self.other_diag_grid,
+        }
+
+        indices = {key: 0 for key in grids}
+
+        for diag, info in diag_dict.items():
 
             diag_widget = QWidget()
             h_layout = QHBoxLayout()
             h_layout.setContentsMargins(5, 5, 5, 5)
-            
+
             checkbox = QCheckBox()
             h_layout.addWidget(checkbox)
             h_layout.addWidget(QLabel(diag))
             h_layout.addStretch()
             diag_widget.setLayout(h_layout)
 
-            if diag_dict[diag]["type"] == "LOS":
-                self.em_diag_grid.addWidget(diag_widget, row, col)
-            elif diag_dict[diag]["type"] == "CCD":
-                self.em_c_diag_grid.addWidget(diag_widget, row, col)
-            elif diag_dict[diag]["type"] == "BOLO":
-                self.bolo_diag_grid.addWidget(diag_widget, row, col)
-            else:
-                self.other_diag_grid.addWidget(diag_widget, row, col)
+            # Select the appropriate grid
+            diag_type = info["type"]
+            if diag_type not in grids:
+                diag_type = "OTHER"
+
+            grid = grids[diag_type]
+
+            # Compute row/column for this grid only
+            index = indices[diag_type]
+            row = index // columns
+            col = index % columns
+
+            grid.addWidget(diag_widget, row, col)
+
+            indices[diag_type] += 1
 
     def get_selected_diagnostics(self):
         selected = []
@@ -364,6 +415,53 @@ class Base(QWidget):
                     diag_name = label_widget.text()
                     checkbox.setChecked(diag_name in selected_list)
 
+    def species_combo_changed(self, index):
+        if index == 0:
+            return
+
+        self.add_item(self.combo.currentText())
+        self.combo.setCurrentIndex(0)
+
+    def add_species_item(self, text):
+
+        if text in self.selected:
+            return
+
+        self.selected.append(text)
+
+        tag = TagWidget(text)
+        tag.removed.connect(self.remove_item)
+
+        self.tags_layout.addWidget(tag)
+
+    def remove_species_item(self, text):
+
+        self.selected_species.remove(text)
+
+        for i in range(self.tags_layout.count()):
+            item = self.tags_layout.itemAt(i)
+            widget = item.widget()
+
+            if widget.text == text:
+                self.tags_layout.removeWidget(widget)
+                widget.deleteLater()
+                break
+    def clear_species(self):
+
+        self.selected_species.clear()
+
+        while self.tags_layout.count():
+            item = self.tags_layout.takeAt(0)
+
+            if item.widget():
+                item.widget().deleteLater()
+    def set_selected_species(self, items):
+
+        self.clear_species()
+
+        for item in items:
+            self.add_species_item(item)
+
     def get_settings(self):
         return {
             "machine": self.machine_combo.currentText(),
@@ -372,12 +470,12 @@ class Base(QWidget):
                 "code": self.edge_code_combo.currentText(),
                 "sim_path": self.edge_path_input.text()
             },
-            "read_ADAS": self.read_adas_checkbox.isChecked(),
             "save_dir": self.save_input.text(),
             "diag_list": self.get_selected_diagnostics(),
             "bolo_list": self.get_selected_bolo(),
             "ccd_list": self.get_selected_cameras(),
             "other_diags": self.get_selected_other(),
+            "species": self.selected_species,
             "run_options": {
                 "run_cherab": self.run_cherab.isChecked(),
                 "analyse_synth_spec_features": self.analyse_synth_spec_features.isChecked(),
@@ -422,7 +520,7 @@ class EmissionLines(QWidget):
                 line_row = QHBoxLayout()
                 for wl, pn in lines.items():
                     box = QCheckBox(wl)
-                    self.checkboxes[(atom_num, wl)] = (box, pn)
+                    self.checkboxes[(element_name, series_name, wl)] = (box, pn)
                     line_row.addWidget(box)
 
                 container = QWidget()
@@ -439,17 +537,28 @@ class EmissionLines(QWidget):
         self.content_layout.addStretch()
 
     def set_selected_lines(self, selected_dict):
-        for (atom_num, wl), (checkbox, _) in self.checkboxes.items():
-            if atom_num in selected_dict and wl in selected_dict[atom_num]:
-                checkbox.setChecked(True)
+        for (element_name, series_name, wl), (checkbox, _) in self.checkboxes.items():
+            if element_name == "H":
+                if element_name in selected_dict and wl in selected_dict[element_name]:
+                    checkbox.setChecked(True)
+                else:
+                    checkbox.setChecked(False)
             else:
-                checkbox.setChecked(False)
+                if element_name in selected_dict and wl in selected_dict[element_name][series_name]:
+                    checkbox.setChecked(True)
+                else:
+                    checkbox.setChecked(False)
 
     def get_selected_lines(self):
         result = {}
-        for (atom_num, wl), (box, pn) in self.checkboxes.items():
+        for (element_name, series_name, wl), (box, pn) in self.checkboxes.items():
             if box.isChecked():
-                result.setdefault(atom_num, {})[wl] = pn
+                if element_name not in result: result[element_name] = {}
+                if element_name == "H":
+                    result[element_name][wl] = pn
+                else:
+                    if series_name not in result[element_name]: result[element_name][series_name] = {}
+                    result[element_name][series_name][wl] = pn
         return result
 
 class CherabSettings(QWidget):
@@ -585,14 +694,13 @@ class CherabSettings(QWidget):
         layout.addWidget(self.refresh_btn)
 
     def update_lines(self):
-        selected = self.emission_lines.get_selected_lines()
+        selected = self.emission_lines.get_selected_lines().get("H", {})
         self.stark_transition_combo.clear()
         # Flatten to a list of strings like: "1: 1215.2"
-        for atom_num, lines in selected.items():
-            for wl in lines.keys():
-                transition = lines[wl]  # [p, n]
-                label = f"{atom_num}: {wl}"
-                self.stark_transition_combo.addItem(label, userData=transition)
+        for wl in selected.items():
+            transition = selected[wl]  # [p, n]
+            label = f"H: {wl}"
+            self.stark_transition_combo.addItem(label, userData=transition)
 
     def set_stark_line(self, target_transition):
         target_transition = [f"{target_transition[0]}",f"{target_transition[1]}"]
@@ -665,36 +773,6 @@ class JobInfo(QWidget):
         comp_time_layout.addWidget(comp_time_label)
         comp_time_layout.addWidget(self.comp_time_input)
         layout.addLayout(comp_time_layout)
-        # Output name base
-        #stdout_layout = QHBoxLayout()
-        #stdout_label = QLabel("Stdout file name:")
-        #self.stdout_name_input = QLineEdit("stdout")
-        #stdout_layout.addWidget(stdout_label)
-        #stdout_layout.addWidget(self.stdout_name_input)
-        #layout.addLayout(stdout_layout)
-
-        #stderr_layout = QHBoxLayout()
-        #stderr_label = QLabel("Stderr file name:")
-        #self.stderr_name_input = QLineEdit("stderr")
-        #stderr_layout.addWidget(stderr_label)
-        #stderr_layout.addWidget(self.stderr_name_input)
-        #layout.addLayout(stderr_layout)
-        
-        # Input file name
-        #input_layout = QHBoxLayout()
-        #input_label = QLabel("Input JSON filename:")
-        #self.input_filename = QLineEdit(f"inputfile.json")
-        #input_layout.addWidget(input_label)
-        #input_layout.addWidget(self.input_filename)
-        #layout.addLayout(input_layout)
-
-        # Path to save the .cmd script
-        #path_layout = QHBoxLayout()
-        #path_label = QLabel("Command File Save Path:")
-        #self.cmd_path = QLineEdit(f"PESDTBatchJobs/")
-        #path_layout.addWidget(path_label)
-        #path_layout.addWidget(self.cmd_path)
-        #layout.addLayout(path_layout)
 
         self.username = username
 
@@ -744,7 +822,7 @@ class Main(QWidget):
         # Save the input dict
         settings_dict = self.base_tab.get_settings()
         settings_dict["cherab_options"] = self.cherab_tab.get_settings()
-        settings_dict["spec_line_dict"] = {"1": self.em_tab.get_selected_lines()}
+        settings_dict["spec_line_dict"] = self.em_tab.get_selected_lines()
         settings_dict["job_name"] = job_name
         # Get full path from input field, using save_input directory
         save_path = os.path.join(base_info["save_dir"], job_name, f"{input_file_name}.json")
@@ -779,7 +857,7 @@ class Main(QWidget):
         job_info = self.jobinfo_tab.get_job_info()
         settings_dict = self.base_tab.get_settings()
         settings_dict["cherab_options"] = self.cherab_tab.get_settings()
-        settings_dict["spec_line_dict"] = {"1": self.em_tab.get_selected_lines()}
+        settings_dict["spec_line_dict"] = self.em_tab.get_selected_lines()
         settings_dict["job_name"] = job_info["job_name"]
         base_info = self.base_tab.get_settings()
         job_name = job_info["job_name"]
@@ -949,9 +1027,9 @@ class PESDTGui(QWidget):
         self.setGeometry(100, 100, 300, 300)
         self.tabs = QTabWidget()
         self.main_tab = Main(machine_dict = machine_dict, spect_db = spect_db)
-        self.post_proc_tab = PostProcess()
+        #self.post_proc_tab = PostProcess()
         self.tabs.addTab(self.main_tab, "Main")
-        self.tabs.addTab(self.post_proc_tab, "Post-processor")
+        #self.tabs.addTab(self.post_proc_tab, "Post-processor")
 
         # Main layout
         main_layout = QVBoxLayout()
@@ -977,8 +1055,8 @@ class PESDTGui(QWidget):
         self.main_tab.base_tab.machine_combo.setCurrentText(settings.get("machine", "JET"))
         self.main_tab.base_tab.edge_code_combo.setCurrentText(settings["edge_code"].get("code", "edge2d"))
         self.main_tab.base_tab.edge_path_input.setText(settings["edge_code"].get("sim_path", ""))
-        self.main_tab.base_tab.read_adas_checkbox.setChecked(settings.get("read_ADAS", False))
         self.main_tab.base_tab.save_input.setText(settings.get("save_dir", "PESDT_cases/"))
+        self.main_tab.base_tab.set_selected_species(settings.get("species", []))
         self.main_tab.base_tab.run_cherab.setChecked(settings["run_options"].get("run_cherab", False))
         self.main_tab.base_tab.analyse_synth_spec_features.setChecked(settings["run_options"].get("analyse_synth_spec_features", False))
         self.main_tab.base_tab.data_source_combo.setCurrentText(settings["run_options"].get("data_source", "AMJUEL"))
@@ -990,7 +1068,7 @@ class PESDTGui(QWidget):
         self.main_tab.base_tab.set_selected_bolos(settings.get("bolo_list", []))
         self.main_tab.base_tab.set_selected_other(settings.get("other_diags", []))
         # Emission lines
-        self.main_tab.em_tab.set_selected_lines(settings.get("spec_line_dict", {}).get("1", {}))
+        self.main_tab.em_tab.set_selected_lines(settings.get("spec_line_dict", {}))
 
         # Cherab options
         self.main_tab.cherab_tab.num_processes.setValue(settings.get("cherab_options", {}).get("num_processes", 1))
@@ -1015,10 +1093,6 @@ class PESDTGui(QWidget):
         self.main_tab.jobinfo_tab.email_input.setText(settings.get("job_info", {}).get("email", "")),
         self.main_tab.jobinfo_tab.mem_input.setText(settings.get("job_info", {}).get("mem", "")),
         self.main_tab.jobinfo_tab.comp_time_input.setText(settings.get("job_info", {}).get("time", "")),
-        #self.main_tab.jobinfo_tab.stdout_name_input.setText(settings.get("job_info", {}).get("stdout", "")),
-        #self.main_tab.jobinfo_tab.stderr_name_input.setText(settings.get("job_info", {}).get("stderr", "")),
-        #self.main_tab.jobinfo_tab.input_filename.setText(settings.get("job_info", {}).get("input_file", "")),
-        #self.main_tab.jobinfo_tab.cmd_path.setText(settings.get("job_info", {}).get("cmd_path", "")),
 
 
     def closeEvent(self, event):
@@ -1028,7 +1102,7 @@ class PESDTGui(QWidget):
         
         settings_dict = self.main_tab.base_tab.get_settings()
         settings_dict["cherab_options"] = self.main_tab.cherab_tab.get_settings()
-        settings_dict["spec_line_dict"] = {"1": self.main_tab.em_tab.get_selected_lines()}
+        settings_dict["spec_line_dict"] = self.main_tab.em_tab.get_selected_lines()
         settings_dict["job_info"] = self.main_tab.jobinfo_tab.get_job_info()
 
         with open(save_path_user, "w") as f:
@@ -1039,14 +1113,16 @@ class PESDTGui(QWidget):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    from core.utils import get_JETdefs, get_DIIIDdefs
+    from core.utils import get_JETdefs, get_DIIIDdefs, get_AUGdefs
     from core.database import spectroscopic_lines_db
     import shutil
     jet_dict = get_JETdefs().diag_dict
     dIIId_dict = get_DIIIDdefs().diag_dict
+    aug_dict = get_AUGdefs().diag_dict
     machine_dict = {
             "JET":   jet_dict,
-            "DIIID": dIIId_dict
+            "DIIID": dIIId_dict,
+            "AUG": aug_dict
         }
     window = PESDTGui(machine_dict = machine_dict, spect_db = spectroscopic_lines_db())
     
