@@ -180,7 +180,7 @@ def createZCherabPlasmaBolo(PESDT):
             em_dict["prb"] = adf.interpolate_prb(te, ne, z)*ne*n_rec*1/(4.0*np.pi)
             em_dict["fffb"] = np.trapezoid(fffb* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*n_rec*1/(4.0*np.pi)
             emission.append(em_dict)
-            idx +=1
+        idx +=1
 
 
     num_species = len(species_list)
