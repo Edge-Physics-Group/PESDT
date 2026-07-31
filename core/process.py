@@ -519,7 +519,7 @@ class ProcessEdgeSim:
 
                 elif data_source == "AMJUEL":
                     logger.info("Total line")
-                    plasma.define_bolometer_plasma_model(species, 0,line=True)
+                    plasma.define_bolometer_plasma_model(species, 0,tot=True)
                     excit = plasma.integrate_bolo(diag)
                     self.outdict[diag]["tot_line"] = [x[0] for x in excit]
 
@@ -536,7 +536,7 @@ class ProcessEdgeSim:
                     self.outdict[diag]["FFFB"] = [x[0] for x in fffb]
                 else:
                     logger.info("Total")
-                    plasma.define_bolometer_plasma_model(species, 0, line=True)
+                    plasma.define_bolometer_plasma_model(species, 0, tot=True)
                     excit = plasma.integrate_bolo(diag)
                     self.outdict[diag]["tot"] = [x[0] for x in excit]
 

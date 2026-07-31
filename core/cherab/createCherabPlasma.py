@@ -381,11 +381,12 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
     n2p = PESDT.data.n2p #np.zeros(num_cells)
 
     mesh = create_cherab_mesh(PESDT)
-
+    plasma_species: list[str] = PESDT.species_list 
+    element = ELEMENT_DICT[plasma_species[0]]
     
     if data_source == "ADAS":
         emission_keys = ["plt", "prb", "ff", "fffb"] 
-        species_list = [(H0, 0)]
+        species_list = [(element, 0)]
         num_species = 1
         species_density = np.zeros((num_species, num_cells))
         adf = ADF11()
@@ -401,7 +402,7 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
         emission[0]["fffb"] = np.trapezoid(fffb* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*ne*1/(4.0*np.pi)
     elif data_source == "AMJUEL":
         emission_keys = ["tot", "ff", "fffb"] 
-        species_list = [(H0, 0)]
+        species_list = [(element, 0)]
         num_species = 1
         species_density = np.zeros((num_species, num_cells))
         emission = [{} for _ in range(num_species)]
@@ -421,7 +422,7 @@ def createHydrogenicCherabPlasmaBolo(PESDT, data_source = "AMJUEL", **kwargs):
     else:
         # Assume Cell has total radiated power
         emission_keys = ["tot"]
-        species_list = [(H0, 0)]
+        species_list = [(element, 0)]
         num_species = 1
         species_density = np.zeros((num_species, num_cells))
         emission = [{} for _ in range(num_species)]
