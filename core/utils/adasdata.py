@@ -128,11 +128,10 @@ class ADF11():
 class ADF15():
     inv4pi = 1/(4*np.pi)
 
-    def __init__(self, species: str = "H"):
+    def __init__(self, species: str = "H", **kwargs):
 
         self.species = species
-
-        self.path  = os.path.join(ADAS_DB_PATH, ADF_DICT["ADF15"][species])
+        self.path  = kwargs.get( "path",os.path.join(ADAS_DB_PATH, ADF_DICT["ADF15"][species]))
         self.raw_lines = self._read_file()
         self.blocks = self._extract_blocks()
         self.data = self._parse_all_blocks()
@@ -172,7 +171,8 @@ class ADF15():
                         blocks[current_key].append(current_block)
 
                 # wavelength is first token (strip trailing 'A')
-                wl = line.split()[0].replace("A", "")
+                line = line.replace("A", "")
+                wl = line.split()[0]
                 current_key = wl
                 current_block = [line]
             else:
