@@ -286,7 +286,7 @@ class ProcessEdgeSim:
                                             spectral_rays= 1,
                                             num_processes = num_processes)
 
-        self.outdict = {"description": f"CHERAB, REFLECTIONS: {include_reflections}, JET-MESH: {import_jet_surfaces}, DATA SOURCE: {data_source}"}
+        self.outdict = {"description": f"CHERAB, REFLECTIONS: {include_reflections}, MESH: {import_jet_surfaces}, DATA SOURCE: {data_source}"}
 
 
         for species in self.species_list:

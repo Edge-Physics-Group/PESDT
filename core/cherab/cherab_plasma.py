@@ -313,6 +313,7 @@ class CherabPlasma():
         if include_recombination:
             h_line = PESDTLine(sp, charge+1, transition)
             model_list.append(line_emitter(h_line, lineshape=lineshape))
+        self.plasma.models = model_list
     
     def setup_observers(self, pixel_samples = 1000, num_processes = 1):
         """
