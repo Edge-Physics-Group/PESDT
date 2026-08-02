@@ -195,7 +195,7 @@ class CherabPlasma():
             
                     plasma = cherab.create_plasma(parent=None, opaque = self.opaque)
                 else:
-                    cherab = createZCherabPlasmaBolo(self.PESDT_obj)
+                    cherab = createZCherabPlasmaBolo(self.PESDT_obj, species)
                     plasma = cherab.create_plasma(parent=None, opaque = self.opaque)
                 plasma.atomic_data = self.PESDT_bolo_data_dicts[self.species_list[i]]
                 self.plasmas["bolo"+species] = plasma
