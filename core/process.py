@@ -290,7 +290,7 @@ class ProcessEdgeSim:
 
 
         for species in self.species_list:
-            
+            if species not in spec_line_dict: continue
             # === Process Each Instrument ===
             plasma.set_active_plasma("line"+species)
             print(plasma.plasma_name)
@@ -417,7 +417,7 @@ class ProcessEdgeSim:
                             plasma.define_Zplasma_model(transition, species, charge,include_recombination=True)
                             recom = plasma.integrate_instrument(diag)
                             self.outdict[diag][wavelength]["recom"] = [x[0] for x in recom]
-
+        for species in self.species_list:
             # === Process Each Camera ===
             plasma.set_active_plasma("line"+species)
             for diag, settings in camera_los_dict.items():
@@ -464,7 +464,7 @@ class ProcessEdgeSim:
                             em = plasma.observe_camera(diag)
                             self.outdict[diag][wavelength]["total"] = em[0].tolist()
                             self.outdict[diag][wavelength]["variance"] = em[1].tolist()
-
+        for species in self.species_list:
             # === Process Each Bolometer ===
             plasma.set_active_plasma("bolo"+species)
             for diag, _ in bolo_los_dict.items():
