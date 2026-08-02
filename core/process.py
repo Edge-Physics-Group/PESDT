@@ -483,62 +483,62 @@ class ProcessEdgeSim:
                 if data_source == "ADAS":
                     max_charge = int(sdb.data_full[species]["ATOM_NUM"])
                     logger.info("Excitation")
-                    excit = []
+                    excit = {}
                     for z in range(max_charge):
                         plasma.define_bolometer_plasma_model(species, z, line=True)
                         ex = plasma.integrate_bolo(diag)
-                        excit.append([x[0] for x in ex])
+                        excit[z] =[x[0] for x in ex]
                     self.outdict[diag][species]["excit"] = excit
 
                     # Recombination
                     logger.info("Recombination")
-                    recom = []
+                    recom = {}
                     for z in range(max_charge):
                         plasma.define_bolometer_plasma_model(species, z, ff_rec=True)
                         re = plasma.integrate_bolo(diag)
-                        recom.append([x[0] for x in re])
+                        recom[z] =[x[0] for x in re]
                     self.outdict[diag][species]["recom"] = recom
+                    if species in ["H", "D", "T"]:
+                        # FF
+                        logger.info("FF")
+                        FF = {}
+                        for z in range(max_charge):
+                            plasma.define_bolometer_plasma_model(species, z, FF=True)
+                            ff = plasma.integrate_bolo(diag)
+                            FF[z] =[x[0] for x in ff]
+                        self.outdict[diag][species]["FF"] = FF
 
-                    # FF
-                    logger.info("FF")
-                    FF = []
-                    for z in range(max_charge):
-                        plasma.define_bolometer_plasma_model(species, z, FF=True)
-                        ff = plasma.integrate_bolo(diag)
-                        FF.append([x[0] for x in ff])
-                    self.outdict[diag][species]["FF"] = FF
-
-                    # FFFB
-                    logger.info("FFFB")
-                    FFFB = []
-                    for z in range(max_charge):
-                        plasma.define_bolometer_plasma_model(species, z, FFFB=True)
-                        fffb = plasma.integrate_bolo(diag)
-                        FFFB.append([x[0] for x in fffb])
-                    self.outdict[diag][species]["FFFB"] = FFFB
+                        # FFFB
+                        logger.info("FFFB")
+                        FFFB = {}
+                        for z in range(max_charge):
+                            plasma.define_bolometer_plasma_model(species, z, FFFB=True)
+                            fffb = plasma.integrate_bolo(diag)
+                            FFFB[z] =[x[0] for x in fffb]
+                        self.outdict[diag][species]["FFFB"] = FFFB
 
                 elif data_source == "AMJUEL":
                     logger.info("Total line")
                     plasma.define_bolometer_plasma_model(species, 0,tot=True)
                     excit = plasma.integrate_bolo(diag)
-                    self.outdict[diag]["tot_line"] = [x[0] for x in excit]
+                    self.outdict[diag]["tot_line"] = {0: [x[0] for x in excit]}
 
                     # FF
                     logger.info("FF")
                     plasma.define_bolometer_plasma_model(species, 0,FF=True)
                     ff = plasma.integrate_bolo(diag)
-                    self.outdict[diag]["FF"] = [x[0] for x in ff]
+                    self.outdict[diag]["FF"] = {0: [x[0] for x in ff]}
 
                     # FFFB
                     logger.info("FFFB")
                     plasma.define_bolometer_plasma_model(species, 0, FFFB=True)
                     fffb = plasma.integrate_bolo(diag)
-                    self.outdict[diag]["FFFB"] = [x[0] for x in fffb]
+                    self.outdict[diag]["FFFB"] = {0: [x[0] for x in fffb]}
                 else:
                     logger.info("Total")
                     plasma.define_bolometer_plasma_model(species, 0, tot=True)
                     excit = plasma.integrate_bolo(diag)
-                    self.outdict[diag]["tot"] = [x[0] for x in excit]
+                    self.outdict[diag]["tot"] = {0:[x[0] for x in excit]}
 
     def opaque_tracing(self, plasma: CherabPlasma, 
                        include_reflections, 

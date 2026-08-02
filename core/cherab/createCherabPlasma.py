@@ -81,10 +81,10 @@ def createZCherabPlasma(PESDT, species_transitions: dict):
     num_cells = len(PESDT.data.te)
     mesh = create_cherab_mesh(PESDT)
     plasma_species: list[str] = PESDT.species_list
-    te = PESDT.data.te #np.zeros(num_cells)
-    ti = PESDT.data.ti #np.zeros(num_cells)
+    te = PESDT.data.te 
+    ti = PESDT.data.ti 
     
-    ne = PESDT.data.ne  #np.zeros(num_cells)
+    ne = PESDT.data.ne  
 
     n_azs = PESDT.data.n_azs
     n_izs = PESDT.data.n_izs
@@ -92,6 +92,7 @@ def createZCherabPlasma(PESDT, species_transitions: dict):
     emission_dict = {}
     emission_keys = []
     for species, wl_transitions in species_transitions.items():
+        logger.info(f"Precalculating emission for species {species}")    
         adf = ADF15(species)
         sp, charge, idx = get_base_species_and_charge(species, plasma_species)
         exc_sp = (ELEMENT_DICT[sp], charge) # Excitation
@@ -116,10 +117,12 @@ def createZCherabPlasma(PESDT, species_transitions: dict):
         else:
             n_exc = n_izs[bc_idx + charge -1, :].flatten()
             n_rec = n_izs[bc_idx + charge, :].flatten()
+        logger.info(f" Mean n_exc.: {n_exc:.3e}, n_rec.: {n_rec:.3e}")
 
         for wl, transition in wl_transitions.items():
             emission_dict[exc_sp][transition] = adf.interpolate(te, ne, "EXCIT", wl)*ne*n_exc*1/(4.0*np.pi)
             emission_dict[rec_sp][transition] = adf.interpolate(te, ne, "RECOM", wl)*ne*n_rec*1/(4.0*np.pi)
+            logger.info(f"  Mean exc.: {np.mean(emission_dict[exc_sp][transition]):.3e}, rec.: {np.mean(emission_dict[rec_sp][transition]):.3e}")
             emission_keys.append(transition)
     
     emission = []
@@ -138,7 +141,7 @@ def createZCherabPlasma(PESDT, species_transitions: dict):
     return sim
 
 
-def createZCherabPlasmaBolo(PESDT):
+def createZCherabPlasmaBolo(PESDT, species):
     '''
     Creates a cherab compatible PLASMA simulation object for any species using OpenADAS rates
     
@@ -146,6 +149,11 @@ def createZCherabPlasmaBolo(PESDT):
     num_cells = len(PESDT.data.te)
     mesh = create_cherab_mesh(PESDT)
     plasma_species: list[str] = PESDT.species_list 
+    pidx = plasma_species.index(species)
+    idx = 0
+    for i in list[range(pidx)]:
+        idx += get_num_charge_states(plasma_species[i])
+
     te = PESDT.data.te #np.zeros(num_cells)
     ti = PESDT.data.ti #np.zeros(num_cells)
     
@@ -156,34 +164,32 @@ def createZCherabPlasmaBolo(PESDT):
 
     species_list = []
     emission = []
-    emission_keys = ["plt", "prb", "ff","fffb"]
-    idx = 0
-    logger.info("Precalculating power for Z")    
-    for i, species in enumerate(plasma_species):
-        adf = ADF11(species)
-        logger.info(f"  Species {species}")    
-        max_charge = get_num_charge_states(species)
-        for z in range(max_charge):
-            logger.info(f"  Charge state {z}")  
-            sp = (ELEMENT_DICT[species], z)
-            species_list.append(sp)
-            em_dict = {}
-            if z == 0:
-                n_exc = n_azs[i, :].flatten()
-                n_rec = n_izs[idx +z, :].flatten()
-            else:
-                n_exc = n_izs[idx +z-1, :].flatten()
-                n_rec = n_izs[idx +z, :].flatten()
-            
-            wl = 10**np.arange(0, 4.01, 0.1)
-            ff, fffb = continuov_(wl, te, max_charge, z+1)
-            em_dict["plt"] = adf.interpolate_plt(te, ne, z)*ne*n_exc*1/(4.0*np.pi)
-            em_dict["prb"] = adf.interpolate_prb(te, ne, z)*ne*n_rec*1/(4.0*np.pi)
-            em_dict["ff"] = np.trapezoid(ff* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*n_rec*1/(4.0*np.pi)
-            em_dict["fffb"] = np.trapezoid(fffb* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*n_rec*1/(4.0*np.pi)
-            emission.append(em_dict)
-        idx +=1
+    emission_keys = ["plt", "prb"]
+    
+    logger.info(f"Precalculating power for species {species}")    
+    
+    adf = ADF11(species)
+    max_charge = get_num_charge_states(species)
+    for z in range(max_charge):
+        logger.info(f"  Charge state {z}")  
+        sp = (ELEMENT_DICT[species], z)
+        species_list.append(sp)
+        em_dict = {}
+        if z == 0:
+            n_exc = n_azs[idx, :].flatten()
+            n_rec = n_izs[idx +z, :].flatten()
+        else:
+            n_exc = n_izs[idx +z-1, :].flatten()
+            n_rec = n_izs[idx +z, :].flatten()
 
+        # The approximations used by continuo_ are not necessarily applicable to Z>1 species
+        #wl = 10**np.arange(0, 4.01, 0.1)
+        #ff, fffb = continuov_(wl, te, max_charge, z+1)
+        em_dict["plt"] = adf.interpolate_plt(te, ne, z)*ne*n_exc*1/(4.0*np.pi)
+        em_dict["prb"] = adf.interpolate_prb(te, ne, z)*ne*n_rec*1/(4.0*np.pi)
+        #em_dict["ff"] = np.trapezoid(ff* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*n_rec*1/(4.0*np.pi)
+        #em_dict["fffb"] = np.trapezoid(fffb* h*c/(1e-10*wl[None, :]), wl, axis = 1)*ne*n_rec*1/(4.0*np.pi)
+        emission.append(em_dict)
 
     num_species = len(species_list)
 
