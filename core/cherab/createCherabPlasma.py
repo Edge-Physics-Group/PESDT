@@ -120,8 +120,8 @@ def createZCherabPlasma(PESDT, species_transitions: dict):
         logger.info(f" Mean n_exc.: {np.mean(n_exc):.3e}, n_rec.: {np.mean(n_rec):.3e}")
 
         for wl, transition in wl_transitions.items():
-            emission_dict[exc_sp][transition] = adf.interpolate(te, ne, "EXCIT", wl)*ne*n_exc*1/(4.0*np.pi)
-            emission_dict[rec_sp][transition] = adf.interpolate(te, ne, "RECOM", wl)*ne*n_rec*1/(4.0*np.pi)
+            emission_dict[exc_sp][transition] = 1e20*np.ones_like(ne)#adf.interpolate(te, ne, "EXCIT", wl)*ne*n_exc*1/(4.0*np.pi)
+            emission_dict[rec_sp][transition] = 1e20*np.ones_like(ne)#adf.interpolate(te, ne, "RECOM", wl)*ne*n_rec*1/(4.0*np.pi)
             logger.info(f"  Mean exc.: {np.mean(emission_dict[exc_sp][transition]):.3e}, rec.: {np.mean(emission_dict[rec_sp][transition]):.3e}")
             emission_keys.append(transition)
     
