@@ -418,6 +418,7 @@ class ProcessEdgeSim:
                             recom = plasma.integrate_instrument(diag)
                             self.outdict[diag][wavelength]["recom"] = [x[0] for x in recom]
         for species in self.species_list:
+            if species not in spec_line_dict: continue
             # === Process Each Camera ===
             plasma.set_active_plasma("line"+species)
             for diag, settings in camera_los_dict.items():
