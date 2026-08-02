@@ -134,14 +134,16 @@ class CherabPlasma():
             construct_DIIID_mesh(self.world)
         if (len(self.instrument_los_dict)>0 or len(self.cameras)> 0):
             self.gen_cherab_plasma()
-            self.plasma = self.plasmas["line" + self.species_list[0]]
-            self.plasma_name = "line" + self.species_list[0]
+            first_plasma_name = list(self.plasmas.keys())[0]
+            self.plasma = self.plasmas[first_plasma_name]
+            self.plasma_name = first_plasma_name
             self.plasma.parent = self.world # Activate plasma
         if len(self.bolo_los_dict)>0: 
             self.gen_cherab_bolo_plasma()
             if self.plasma is None:
-                self.plasma = self.plasmas["bolo" + self.species_list[0]]
-                self.plasma_name = "bolo" + self.species_list[0]
+                first_plasma_name = list(self.plasmas.keys())[0]
+                self.plasma = self.plasmas[first_plasma_name]
+                self.plasma_name = first_plasma_name
                 self.plasma.parent = self.world
 
     def set_active_plasma(self, name: str):
