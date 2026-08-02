@@ -318,7 +318,7 @@ class ProcessEdgeSim:
                         transition = tuple(trans)#(int(trans[0]), int(trans[1]))
                         logger.info(f"Transition: ({transition[0]}, {transition[1]})")
                         wavelength = line_key#calc_wavelength(transition)
-                        self.outdict[diag][wavelength] = {}
+                        self.outdict[diag][species][wavelength] = {}
                         if data_source in ["YACORA", "AMJUEL"]:
                             # Excitation
                             logger.info("Excitation")
@@ -405,7 +405,7 @@ class ProcessEdgeSim:
                             transition = trans
                             logger.info(f"Transition: {transition}")
                             wavelength = line_key
-                            self.outdict[diag][wavelength] = {}
+                            self.outdict[diag][species][wavelength] = {}
                             
                             # Excitation
                             logger.info("Excitation")
@@ -438,7 +438,7 @@ class ProcessEdgeSim:
                         transition = tuple(trans)#(int(trans[0]), int(trans[1]))
                         logger.info(f"Transition: ({transition[0]}, {transition[1]})")
                         wavelength = line_key
-                        self.outdict[diag][wavelength] = {}
+                        self.outdict[diag][species][wavelength] = {}
                         if data_source in ["YACORA", "AMJUEL"]:
                             #plasma.define_Hydrogenic_plasma_model(transition=transition,
                             #                        include_excitation=True, include_recombination= True, include_H2=True,
@@ -464,7 +464,7 @@ class ProcessEdgeSim:
                             transition = trans
                             logger.info(f"Transition: {transition}")
                             wavelength = line_key
-                            self.outdict[diag][wavelength] = {}
+                            self.outdict[diag][species][wavelength] = {}
                             plasma.define_Zplasma_model(transition, species, charge, include_excitation=True, include_recombination=True)
                             em = plasma.observe_camera(diag)
                             self.outdict[diag][species][wavelength]["total"] = em[0].tolist()
