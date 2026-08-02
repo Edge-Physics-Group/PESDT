@@ -165,6 +165,7 @@ class CherabPlasma():
         self.PESDT_data_dicts = {s: DummyAtomicData(data_dicts[s], True) for s in self.species_list}
         #print(data_dicts[self.species_list[0]])
         for i, species in enumerate(self.species_list):
+            if species not in self.transitions: continue
             if species in ["H", "D", "T"]:
                 cherab = createHydrogenicCherabPlasma(self.PESDT_obj,
                                             transitions= self.transitions[species],
