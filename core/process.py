@@ -294,8 +294,6 @@ class ProcessEdgeSim:
             if species not in spec_line_dict: continue
             # === Process Each Instrument ===
             plasma.set_active_plasma("line"+species)
-            print(plasma.plasma_name)
-            print(species)
             for diag, _ in instrument_los_dict.items():
                 self.outdict[diag] = {}
                 self.outdict[diag][species] = {}
