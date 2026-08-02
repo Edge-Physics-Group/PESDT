@@ -151,7 +151,7 @@ def createZCherabPlasmaBolo(PESDT, species):
     plasma_species: list[str] = PESDT.species_list 
     pidx = plasma_species.index(species)
     idx = 0
-    for i in list[range(pidx)]:
+    for i in range(pidx):
         idx += get_num_charge_states(plasma_species[i])
 
     te = PESDT.data.te #np.zeros(num_cells)
