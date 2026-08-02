@@ -290,6 +290,7 @@ class ProcessEdgeSim:
 
 
         for species in self.species_list:
+            if len(instrument_los_dict)== 0: break # No LOS instruments
             if species not in spec_line_dict: continue
             # === Process Each Instrument ===
             plasma.set_active_plasma("line"+species)
@@ -418,6 +419,7 @@ class ProcessEdgeSim:
                             recom = plasma.integrate_instrument(diag)
                             self.outdict[diag][wavelength]["recom"] = [x[0] for x in recom]
         for species in self.species_list:
+            if len(camera_los_dict)== 0: break # No cameras
             if species not in spec_line_dict: continue
             # === Process Each Camera ===
             plasma.set_active_plasma("line"+species)
@@ -467,6 +469,7 @@ class ProcessEdgeSim:
                             self.outdict[diag][wavelength]["variance"] = em[1].tolist()
         for species in self.species_list:
             # === Process Each Bolometer ===
+            if len(bolo_los_dict)== 0: break # No bolos
             plasma.set_active_plasma("bolo"+species)
             for diag, _ in bolo_los_dict.items():
                 if species not in ["H", "D", "T"]: data_source ="ADAS"
