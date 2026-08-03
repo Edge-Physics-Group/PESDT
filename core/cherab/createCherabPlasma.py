@@ -352,7 +352,7 @@ def createHydrogenicCherabPlasma(PESDT, transitions: dict,
             emission_keys +=mol_exc_bands
             for band in mol_exc_bands:
                 logger.info(f"   Band: {band}")
-                em, den = yacora.calc_H2_band_emission(te, ne, n2[:], band=band, tvib = 3000)
+                em = yacora.calc_H2_band_emission(te, ne, n2[:], band=band, tvib = 3000)
                 emission[6][band], species_density[6, :] = em, den
     else:
         #ADAS
