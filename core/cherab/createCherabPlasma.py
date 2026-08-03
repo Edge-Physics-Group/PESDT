@@ -306,6 +306,10 @@ def createHydrogenicCherabPlasma(PESDT, transitions: dict,
         yacora = YACORA(PESDT.YACORA_RATES_PATH)
         
         num_species = 6
+        if mol_exc_bands is not None:
+            logger.info(f"Allocating space for molecular band emission, num. bands {len(mol_exc_bands)}")
+            #
+            num_species += 1
         species_density = np.zeros((num_species, num_cells))
         
         species_list.append((D2, 0))
@@ -341,6 +345,15 @@ def createHydrogenicCherabPlasma(PESDT, transitions: dict,
             emission[3][emission_keys[i]] = h2_pos_emiss
             emission[4][emission_keys[i]] = h3_pos_emiss
             emission[5][emission_keys[i]] = hneg_emiss
+        if mol_exc_bands is not None:
+            logger.info("Precalculating molecular band emission")
+            species_list.append((D2vibr, 0))
+            num_neut +=1
+            emission_keys +=mol_exc_bands
+            for band in mol_exc_bands:
+                logger.info(f"   Band: {band}")
+                em, den = yacora.calc_H2_band_emission(te, ne, n2[:], band=band, tvib = 3000)
+                emission[6][band], species_density[6, :] = em, den
     else:
         #ADAS
         num_species = 2
