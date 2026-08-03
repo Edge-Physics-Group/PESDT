@@ -393,7 +393,7 @@ class ProcessEdgeSim:
                     if mol_exc_emission:
                         for band in mol_exc_emission_bands:
                             logger.info(f"Molecular Excitation Emission for {band} band")
-                            plasma.define_Hydrogenic_plasma_model(transition=band, data_source=data_source, include_mol_exc = True)
+                            plasma.define_Hydrogenic_plasma_model(transition=band, include_mol_exc = True)
                             self.outdict[diag][species][band] = [x[0] for x in plasma.integrate_instrument(diag)]
                 else:
                     spec_lines = spec_line_dict[species]
