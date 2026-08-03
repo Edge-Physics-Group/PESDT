@@ -159,7 +159,7 @@ class YACORA():
 
     def calc_H2_band_emission(self, te, ne, nh2, band = "fulcher", tvib = 3000):
         rate = self.mol_em_rates[band][tvib]
-        return 2.43e7 * nh2 *self.interpolate_yacora_rate_arr(te, ne, rate) /(4.0*np.pi)
+        return 2.43e7 *ne* nh2 *self.interpolate_yacora_rate_arr(te, ne, rate) /(4.0*np.pi)
 
     def interpolate_yacora_rate_arr(self, te_arr_in, ne_arr_in, rate):
         ret = np.zeros(te_arr_in.shape)
