@@ -22,8 +22,11 @@ class YACORA():
         hneg1_data_path5: str = os.path.join(str(data_path), "PopKoeff_n=5_from_H-_with_H2+.txt")
         hneg2_data_path5: str = os.path.join(str(data_path), "PopKoeff_n=5_from_H-_with_H+.txt")
 
-        fulcher_3000Kpath: str = os.path.join(str(data_path), "Lookup_Fulcher_H2(v)_Tvib=3000K_woDEA+.txt")
-        fulcher_11000Kpath: str = os.path.join(str(data_path), "Lookup_Fulcher_H2(v)_Tvib=11000K_woDEA+.txt")
+        fulcher_3000Kpath_woDEA: str = os.path.join(str(data_path), "Lookup_Fulcher_H2(v)_Tvib=3000K_woDEA+.txt")
+        fulcher_11000Kpath_woDEA: str = os.path.join(str(data_path), "Lookup_Fulcher_H2(v)_Tvib=11000K_woDEA+.txt")
+
+        fulcher_3000Kpath: str = os.path.join(str(data_path), "Lookup_Fulcher_H2(v)_Tvib=3000K.txt")
+        fulcher_11000Kpath: str = os.path.join(str(data_path), "Lookup_Fulcher_H2(v)_Tvib=11000K.txt")
         # Read data
         h_data3, _ = self.read_yacora_rate(h_data_path3)
         h_rec_data3,_ = self.read_yacora_rate(h_rec_data_path3)
@@ -41,6 +44,9 @@ class YACORA():
         hneg1_data5,_ = self.read_yacora_rate(hneg1_data_path5)
         hneg2_data5,_ = self.read_yacora_rate(hneg2_data_path5)
 
+        fulcher_3000K_woDEA, _ = self.read_yacora_rate(fulcher_3000Kpath_woDEA, header_size=2)
+        fulcher_11000K_woDEA, _ = self.read_yacora_rate(fulcher_11000Kpath_woDEA, header_size=2)
+
         fulcher_3000K, _ = self.read_yacora_rate(fulcher_3000Kpath, header_size=2)
         fulcher_11000K, _ = self.read_yacora_rate(fulcher_11000Kpath, header_size=2)
         # Assing to dicts for calculating rates
@@ -52,7 +58,7 @@ class YACORA():
         self.hneg1_rates = {3: hneg1_data3, 5: hneg1_data5}
         self.hneg2_rates = {3: hneg2_data3, 5: hneg2_data5}
 
-        self.mol_em_rates = {"fulcher":{ 3000: fulcher_3000K, 11000: fulcher_11000K}}
+        self.mol_em_rates = {"woDEA": {"fulcher":{ 3000: fulcher_3000K_woDEA, 11000: fulcher_11000K_woDEA}}, "DEA": {"fulcher":{ 3000: fulcher_3000K, 11000: fulcher_11000K}}}
     @staticmethod
     def A_coeff(transition):
         '''
@@ -157,8 +163,8 @@ class YACORA():
 
         return h_emiss, h_rec_emiss, h2_emiss, h2_pos_emiss, h3_pos_emiss, hneg_emiss, tot
 
-    def calc_H2_band_emission(self, te, ne, nh2, band = "fulcher", tvib = 3000):
-        rate = self.mol_em_rates[band][tvib]
+    def calc_H2_band_emission(self, te, ne, nh2, dea = "DEA", band = "fulcher", tvib = 3000):
+        rate = self.mol_em_rates[dea][band][tvib]
         return ne* nh2 *self.interpolate_yacora_rate_arr(te, ne, rate) /(4.0*np.pi) 
 
     def interpolate_yacora_rate_arr(self, te_arr_in, ne_arr_in, rate):
