@@ -295,8 +295,8 @@ class ProcessEdgeSim:
             # === Process Each Instrument ===
             plasma.set_active_plasma("line"+species)
             for diag, _ in instrument_los_dict.items():
-                self.outdict[diag] = {}
-                self.outdict[diag][species] = {}
+                if diag not in self.outdict : self.outdict[diag] = {}
+                if species not in self.outdict[diag]: self.outdict[diag][species] = {}
                 p1 = diag_def[diag]["p1"][0].tolist()
                 w1 = 0.0
                 w2 = diag_def[diag]["w"][0][1]
@@ -423,8 +423,8 @@ class ProcessEdgeSim:
             # === Process Each Camera ===
             plasma.set_active_plasma("line"+species)
             for diag, settings in camera_los_dict.items():
-                self.outdict[diag] = {}
-                self.outdict[diag][species] = {}
+                if diag not in self.outdict : self.outdict[diag] = {}
+                if species not in self.outdict[diag]: self.outdict[diag][species] = {}
 
                 logger.info(f"Processing camera {diag}")
                 #Separate branch for hydrogenic species
@@ -474,7 +474,8 @@ class ProcessEdgeSim:
             for diag, _ in bolo_los_dict.items():
                 if species not in ["H", "D", "T"]: data_source ="ADAS"
                 else: data_source= self.input_dict["run_options"].get("data_source", "AMJUEL")
-                self.outdict[diag] = {species: {}}
+                if diag not in self.outdict : self.outdict[diag] = {}
+                if species not in self.outdict[diag]: self.outdict[diag][species] = {}
                 
                 p1 = diag_def[diag]["p1"][0].tolist()
                 w1 = 0.0
