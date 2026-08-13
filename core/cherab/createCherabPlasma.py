@@ -313,7 +313,6 @@ def createHydrogenicCherabPlasma(PESDT, transitions: dict,
         species_density = np.zeros((num_species, num_cells))
         
         species_list.append((D2, 0))
-        # USE AMJUEL TO CALCULATE SPECIES DENSITY
         reac = reactions(2) # The densities are independent of the hydrogenic excited state
         if recalc_h2_pos:
             MARc_h2_pos_den = read_amjuel_2d(reac["den_H2+"][0],reac["den_H2+"][1])

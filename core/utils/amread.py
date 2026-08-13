@@ -418,7 +418,7 @@ def calc_photon_rate(transition, Temperature, el_density, n_density, **kwargs):
                 MARc_h2_pos_den = read_amjuel_2d(reac["den_H2+"][0],reac["den_H2+"][1])
                 h2_pos_den = calc_cross_sections(MARc_h2_pos_den, T = Temperature, n = el_density)*mol_n_density
             else:
-                h2_pos_den = mol_p_density
+                h2_pos_den = mol_p_density*1e-6 #Convert loaded array to cm3
             MARc_h2_pos = read_amjuel_2d(reac["H2+"][0],reac["H2+"][1])
             em_h2_pos = A_coeff(transition)*calc_cross_sections(MARc_h2_pos, T = Temperature, n = el_density)*h2_pos_den/(4*np.pi)
 
