@@ -10,4 +10,5 @@ export AMJUEL_PATH='/scratch/phys/fusion/solps-iter/modules/Eirene/Database/AMda
 export CHERAB_CADMESH='/scratch/phys/fusion/cherab/cadmesh/'
 export PESDT_HOME='/scratch/phys/fusion/PESDT/'
 export CONTINUO_LIB='/scratch/phys/fusion/vrikala/libcontinuo/'
+export YACORA_RATES_PATH='/scratch/phys/fusion/yacora_rates/ccc_yacora_rates/'
 #########################

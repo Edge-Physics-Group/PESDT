@@ -129,8 +129,9 @@ class ProcessEdgeSim:
         if self.data_source == "AMJUEL":
             pass # we have amread, and the user needs to supply the .tex file
         elif self.data_source == "YACORA":
-            # Look for YACORA rates in the home folder, unless specified otherwise in the input
-            self.YACORA_RATES_PATH = self.input_dict.get("YACORA_RATES_PATH", os.path.join(os.path.expanduser("~"), "YACORA_RATES/" ))
+            # Look for YACORA rates in the home folder, unless specified otherwise in the environment
+            YACORA_RATES_PATH =  os.environ.get( "YACORA_RATES_PATH", os.path.join(os.path.expanduser('~'), "yacora_rates/") )
+            self.YACORA_RATES_PATH = YACORA_RATES_PATH
         elif self.data_source == "ADAS":
             populate_adas_db()
             
