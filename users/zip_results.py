@@ -27,15 +27,15 @@ for case in cases:
     print(f"  {case.name}")
 
 
-# Use the part before the first wildcard for the ZIP name
+# Name of the ZIP file
 prefix = pattern.split("*")[0].rstrip("_")
 zip_name = f"{prefix}_cases.zip"
 
 
-# Create temporary JSON files
 json_files = []
 
 try:
+    # Create temporary renamed JSON files
     for case in cases:
         source = case / "output.json"
 
@@ -50,20 +50,13 @@ try:
 
         print(f"Copied {source} -> {destination}")
 
-    # Create ZIP
+    # Create ZIP containing ONLY the renamed JSON files
     with zipfile.ZipFile(
         zip_name,
         "w",
         compression=zipfile.ZIP_DEFLATED
     ) as zf:
 
-        # Add the case directories
-        for case in cases:
-            for file in case.rglob("*"):
-                if file.is_file():
-                    zf.write(file, arcname=file)
-
-        # Add the renamed JSON files
         for json_file in json_files:
             zf.write(json_file, arcname=json_file.name)
 
