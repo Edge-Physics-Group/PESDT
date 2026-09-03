@@ -26,6 +26,7 @@ fort.*
 intal*
 outtal*
 !users/README_USERS.MD
+!users/zip_results.py
 !dep_src/README_DEP.MD
 !PESDTCache/readme.md
 !test_cases/solps/runD_2.2MW_1.6e19_JET/fort.44
