@@ -22,7 +22,7 @@ from .analyse import recover_line_int_ff_fb_Te, recover_line_int_Stark_ne, recov
 
 import logging
 logger = logging.getLogger(__name__)
-    
+
 class ProcessEdgeSim:
     '''
     Class to read and store background plasma results from supported edge codes, and run
@@ -57,7 +57,7 @@ class ProcessEdgeSim:
             raise Exception("Unsupported machine. Currently supported machines are JET and DIIID")
 
         self.load_edge_data()
-        
+
 
         logger.info("Emission evaluation")
         if self.run_cherab:
@@ -70,7 +70,7 @@ class ProcessEdgeSim:
                     if input_dict['cherab_options'].get('ff_fb_emission', False):
                         recover_line_int_ff_fb_Te(self.outdict)
                 except Exception as e:
-                    # SafeGuard for possible issues, so that not all comp. time is lost 
+                    # SafeGuard for possible issues, so that not all comp. time is lost
                     logger.error(f'Something went wrong with Line integrated Stark ne, or continuum Te, error{e}')
                     pass
             # SAVE IN JSON FORMAT TO ENSURE PYTHON 2/3 COMPATIBILITY
@@ -120,7 +120,7 @@ class ProcessEdgeSim:
         self.recalc_h2_pos = self.input_dict['run_options'].get('recalc_h2_pos', True)
         if self.edge_code in ["Edge2D", "OEDGE"]: self.recalc_h2_pos = True
         self.run_cherab = self.input_dict['run_options'].get('run_cherab', False)
-        
+
 
     def load_neutral_data_sources(self):
         """
@@ -134,7 +134,7 @@ class ProcessEdgeSim:
             self.YACORA_RATES_PATH = YACORA_RATES_PATH
         elif self.data_source == "ADAS":
             populate_adas_db()
-            
+
 
     def load_edge_data(self):
         logger.info(f"Loading {self.edge_code} BG plasma from {self.sim_path}.")
@@ -156,7 +156,7 @@ class ProcessEdgeSim:
             logger.info("Edge code not supported")
             raise Exception("Edge code not supported")
         logger.info("   Data loaded")
-        
+
         self.te = self.data.te
         self.ti = self.data.ti
         self.t0 = self.data.t0
@@ -166,7 +166,7 @@ class ProcessEdgeSim:
         self.n2 = self.data.n2
         self.n2p = self.data.n2p
 
-        self.cells = self.data.cells   
+        self.cells = self.data.cells
 
     def run_cherab_raytracing(self):
         # === Load Configuration ===
@@ -202,10 +202,10 @@ class ProcessEdgeSim:
             self.opaque_mode = cherab_opts.get("opacity_mode", 0) #0 total, 1 center, 2 full spectrum
         diag_def = self.defs.diag_dict
 
-        
+
         #transitions = [(int(v[0]), int(v[1])) for _, v in spec_line_dict['1']['1'].items()]
         transitions = spec_line_dict
-        
+
         # === Create insrument LOS database ===
         instrument_los_dict = {}
         camera_los_dict = {}
@@ -234,11 +234,11 @@ class ProcessEdgeSim:
                 p2_ = p2.tolist()
                 los_points.append((p1_, p2_, w1, w2))
             bolo_los_dict[diag] = los_points
-    
+
         sdb = spectroscopic_lines_db()
 
         # === Initialize Plasma ===
-        plasma = CherabPlasma(self, 
+        plasma = CherabPlasma(self,
                             machine= self.machine,
                             include_reflections=include_reflections,
                             import_surfaces=import_jet_surfaces,
@@ -251,7 +251,7 @@ class ProcessEdgeSim:
                             mol_exc_bands= mol_exc_emission_bands,
                             species= self.species_list,
                             opaque= self.opaque)
-        
+
         # === Setup Observers ===
         plasma.setup_observers(pixel_samples = pixel_samples, num_processes = num_processes)
         plasma.setup_cameras(pixel_samples = pixel_samples, num_processes = num_processes)
@@ -260,7 +260,7 @@ class ProcessEdgeSim:
         # Figure out Stark wavelength from spec_line_dict
         if calc_stark_ne:
             stark_wavelength_nm = None
-            for line_key, val in spec_line_dict["1"]["1"].items():
+            for line_key, val in spec_line_dict["H"].items():
                 if (int(val[0]), int(val[1])) == tuple(stark_transition):
                     stark_wavelength_nm = float(line_key) / 10.0
                     break
@@ -310,7 +310,7 @@ class ProcessEdgeSim:
                 #Separate branch for hydrogenic species
                 if species in ["H", "D", "T"]:
                     H_lines = spec_line_dict['H']
-            
+
                     self.outdict[diag]["units"] = "ph s^-1 m^-2 sr^-1"
 
                     for line_key, trans in H_lines.items():
@@ -332,7 +332,7 @@ class ProcessEdgeSim:
                             recom = plasma.integrate_instrument(diag)
                             self.outdict[diag][species][wavelength]["recom"] = [x[0] for x in recom]
                             # Molecular / negative H species
-                        
+
                             logger.info("H2")
                             plasma.define_Hydrogenic_plasma_model(transition=transition,include_H2=True)
                             self.outdict[diag][species][wavelength]["h2"] = [x[0] for x in plasma.integrate_instrument(diag)]
@@ -362,7 +362,7 @@ class ProcessEdgeSim:
                             plasma.define_Hydrogenic_plasma_model(transition=transition,include_recombination=True)
                             recom = plasma.integrate_instrument(diag)
                             self.outdict[diag][species][wavelength]["recom"] = [x[0] for x in recom]
-                            
+
                         # === Optional Stark Spectrum ===
                         if calc_stark_ne and transition == stark_transition:
                             logger.info("Stark")
@@ -405,7 +405,7 @@ class ProcessEdgeSim:
                             logger.info(f"Transition: {transition}")
                             wavelength = line_key
                             self.outdict[diag][species][wavelength] = {}
-                            
+
                             # Excitation
                             logger.info("Excitation")
                             plasma.define_Zplasma_model(transition,species, charge, include_excitation=True)
@@ -430,9 +430,9 @@ class ProcessEdgeSim:
                 logger.info(f"Processing camera {diag}")
                 #Separate branch for hydrogenic species
                 if species in ["H", "D", "T"]:
-                    
+
                     H_lines = spec_line_dict['H']
-                    
+
                     for line_key, trans in H_lines.items():
                         transition = tuple(trans)#(int(trans[0]), int(trans[1]))
                         logger.info(f"Transition: ({transition[0]}, {transition[1]})")
@@ -477,7 +477,7 @@ class ProcessEdgeSim:
                 else: data_source= self.input_dict["run_options"].get("data_source", "AMJUEL")
                 if diag not in self.outdict : self.outdict[diag] = {}
                 if species not in self.outdict[diag]: self.outdict[diag][species] = {}
-                
+
                 p1 = diag_def[diag]["p1"][0].tolist()
                 w1 = 0.0
                 w2 = diag_def[diag]["w"][0][1]
@@ -547,12 +547,12 @@ class ProcessEdgeSim:
                     excit = plasma.integrate_bolo(diag)
                     self.outdict[diag]["tot"] = {0:[x[0] for x in excit]}
 
-    def opaque_tracing(self, plasma: CherabPlasma, 
-                       include_reflections, 
-                       import_jet_surfaces, 
-                       data_source, 
-                       instrument_los_dict, 
-                       pixel_samples, 
+    def opaque_tracing(self, plasma: CherabPlasma,
+                       include_reflections,
+                       import_jet_surfaces,
+                       data_source,
+                       instrument_los_dict,
+                       pixel_samples,
                        num_processes,
                        calc_stark_ne,
                        spec_line_dict,
@@ -565,7 +565,7 @@ class ProcessEdgeSim:
                        opaque_bins):
         diag_def = get_JETdefs().diag_dict
         self.outdict = {"description": f"CHERAB, REFLECTIONS: {include_reflections}, JET-MESH: {import_jet_surfaces}, DATA SOURCE: {data_source}"}
-                
+
         # === Setup Spectral Observers if needed ===
         # Figure out Stark wavelength from spec_line_dict
         if calc_stark_ne:
@@ -598,7 +598,7 @@ class ProcessEdgeSim:
                                             num_processes = num_processes)
 
         self.outdict = {"description": f"CHERAB, REFLECTIONS: {include_reflections}, JET-MESH: {import_jet_surfaces}, DATA SOURCE: {data_source}"}
-        
+
         bin_width = 2.0/opaque_bins
         # === Process Each Instrument ===
         for diag, vals in instrument_los_dict.items():
@@ -622,13 +622,13 @@ class ProcessEdgeSim:
                 wavelength = calc_wavelength(transition)
                 self.outdict[diag][wavelength] = {}
                 # Setup observer here because wl bounds need to be adjusted each time.
-                plasma.setup_spectral_observers({diag: vals}, 
-                                                min_wavelength_nm= wavelength-1.0, 
-                                                max_wavelength_nm= wavelength+1.0, 
-                                                pixel_samples=pixel_samples, 
-                                                destination=None, 
+                plasma.setup_spectral_observers({diag: vals},
+                                                min_wavelength_nm= wavelength-1.0,
+                                                max_wavelength_nm= wavelength+1.0,
+                                                pixel_samples=pixel_samples,
+                                                destination=None,
                                                 spectral_bins=opaque_bins,
-                                                spectral_rays=1, 
+                                                spectral_rays=1,
                                                 num_processes = num_processes)
 
                 if data_source in ["YACORA", "AMJUEL"]:
@@ -654,7 +654,7 @@ class ProcessEdgeSim:
                     ints = [np.sum(s) for s in spec]
                     self.outdict[diag][wavelength]["recom"] = ints
                     # Molecular / negative H species
-                
+
                     logger.info("H2")
                     plasma.define_Hydrogenic_plasma_model(transition=transition,
                                             include_H2=True, data_source=data_source)
@@ -712,7 +712,7 @@ class ProcessEdgeSim:
                     wls = np.array(wl[0]) # each chord has the same wave array, just use the first one
                     ints = [np.sum(s) for s in spec]
                     self.outdict[diag][wavelength]["recom"] = ints
-                    
+
                 # === Optional Stark Spectrum ===
                 if calc_stark_ne and transition == stark_transition:
                     logger.info("Stark")
@@ -766,7 +766,7 @@ class ProcessEdgeSim:
                 if key in self.defs.diag_dict.keys():
                     self.synth_diag[key] = SynthDiag(self.defs, diag=key,
                                                     spec_line_dict = self.spec_line_dict,
-                                                    spec_line_dict_lytrap=self.spec_line_dict_lytrap, 
+                                                    spec_line_dict_lytrap=self.spec_line_dict_lytrap,
                                                     data_source = self.data_source)
                     for chord in self.synth_diag[key].chords:
                         # Basic LOS implementation using 2D polygons - no reflections
@@ -806,9 +806,9 @@ class ProcessEdgeSim:
         outdict = {}
 
         for diag_key, diag_obj in self.synth_diag.items():
-            diag_dict = {"units": "ph.s^-1.m^-2.sr^-1", 
-                         "chord": [], 
-                         "stark": {"cwl": 410.12, "wavelength": "4101.2", "transition": [6,2], "wave": [], "intensity": []}, 
+            diag_dict = {"units": "ph.s^-1.m^-2.sr^-1",
+                         "chord": [],
+                         "stark": {"cwl": 410.12, "wavelength": "4101.2", "transition": [6,2], "wave": [], "intensity": []},
                          "ff_fb_continuum": {"wave": [], "intensity": []}}
 
             # Prepare structure for each wavelength and emission type
@@ -819,7 +819,7 @@ class ProcessEdgeSim:
                     for src_key in src_vals:
                         if src_key not in diag_dict[wl] and src_key != "units":
                             diag_dict[wl][src_key] = []
-            
+
             # Get stark and ff_fb wave vectors
             diag_dict["stark"]["cwl"] = diag_obj.chords[0].los_int_spectra.get('stark', {}).get("cwl", 410.12)
             diag_dict["stark"]["wavelength"] = diag_obj.chords[0].los_int_spectra.get('stark', {}).get("wavelength", "4101.2")
@@ -868,13 +868,13 @@ class ProcessEdgeSim:
             for line_key in self.spec_line_dict['1']['1']:
                 E_excit, E_recom, E_mol, E_h2_pos, E_h3_pos, E_h_neg, E_tot = calc_photon_rate(self.spec_line_dict['1']['1'][line_key], self.te, self.ne, self.n0, mol_n_density=self.n2,molp_n_density=self.n2p,p_density=self.ni, h3=h3, recalc_h2_pos=self.recalc_h2_pos, debug=debug)
                 for k in range(len(self.cells)):
-                    self.cells[k].H_emiss[line_key] = {'excit': E_excit[k], 'recom': E_recom[k], "h2": E_mol[k], "h2+": E_h2_pos[k], "h3+": E_h3_pos[k], "h-": E_h_neg[k], "tot": E_tot[k], 
+                    self.cells[k].H_emiss[line_key] = {'excit': E_excit[k], 'recom': E_recom[k], "h2": E_mol[k], "h2+": E_h2_pos[k], "h3+": E_h3_pos[k], "h-": E_h_neg[k], "tot": E_tot[k],
                     "units": 'ph.s^-1.m^-3.sr^-1'}
-                                      
-        else: 
+
+        else:
             logger.info("Using Adas")
             adf = ADF15()
-            
+
             for line_key in self.spec_line_dict['1']['1']:
                 sdb = spectroscopic_lines_db()
                 tra_wl_dct = {trans: wl for wl, trans in sdb.data["H"].items()}
@@ -936,7 +936,7 @@ class ProcessEdgeSim:
         sum_pwr = 0
         adf = ADF11()
         for cell in self.cells:
-            
+
             # plt/prb absolute rad pow contr in units W.m^3
             plt_contr = adf.interpolate_plt(cell.te, cell.ne)*cell.ne*cell.n0 #W.m^-3
             prb_contr = adf.interpolate_prb(cell.te, cell.ne)*cell.ne*cell.ne #W.m^-3
@@ -947,7 +947,7 @@ class ProcessEdgeSim:
             sum_pwr += np.sum(np.asarray(cell.H_radpwr)) # sanity check. compare to eproc
         self.Prad_H = sum_pwr
         logger.info(f"Total H radiated power: {sum_pwr} [W] ")
-      
+
     def los_intersect(self, los):
         for cell in self.cells:
             # check if cell lies within los.poly
@@ -1019,8 +1019,8 @@ class ProcessEdgeSim:
         area = 2. * np.pi * np.array(self.data.qpartot_HFS_rmesh['ydata'])[xidx] * dR_HFS
         self.qpol_div_HFS = np.sum(qpol_HFS*area)
 
-        print('Pdiv_LFS (MW): ', self.qpol_div_LFS*1.e-06, 'Pdiv_HFS (MW): ', 
-              self.qpol_div_HFS*1.e-06, 'POWSOL (MW): ', 
+        print('Pdiv_LFS (MW): ', self.qpol_div_LFS*1.e-06, 'Pdiv_HFS (MW): ',
+              self.qpol_div_HFS*1.e-06, 'POWSOL (MW): ',
               self.data.powsol['data'][ self.data.powsol['npts']-1]*1.e-06)
 
     def calc_region_aggregates(self):
@@ -1066,8 +1066,8 @@ class ProcessEdgeSim:
         if delL_atomden:
             recover_delL_atomden_product(self, res_dict, sion_H_transition=sion_H_transition)
 
-        
-    
-    
+
+
+
 if __name__=='__main__':
     print('To run PESDT, use the "PESDT_run.py" script in the root of PESDT')
