@@ -268,8 +268,7 @@ class ProcessEdgeSim:
             if stark_wavelength_nm is not None:
                 min_wave = stark_wavelength_nm - 1.0
                 max_wave = stark_wavelength_nm + 1.0
-                plasma.setup_spectral_observers(instrument_los_dict,
-                                                min_wavelength_nm=min_wave,
+                plasma.setup_spectral_observers(min_wavelength_nm=min_wave,
                                                 max_wavelength_nm=max_wave,
                                                 destination="stark",
                                                 pixel_samples=pixel_samples,
@@ -278,8 +277,7 @@ class ProcessEdgeSim:
                                                 num_processes = num_processes)
 
         if ff_fb:
-            plasma.setup_spectral_observers(instrument_los_dict,
-                                            min_wavelength_nm=300,
+            plasma.setup_spectral_observers(min_wavelength_nm=300,
                                             max_wavelength_nm=500,
                                             destination="continuum",
                                             pixel_samples=pixel_samples,

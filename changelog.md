@@ -1,5 +1,6 @@
 10 Nov 2026 PESDT 2.0.5.2
 - Fix bug in Calc stark ne due to change in spec_line_dict format
+- Fix creating stark and continuum observers
 
 xx Aug 2026 PESDT 2.0.5.2
 - Fix bug in process.py when calling "define_Hydrogenic_plasma_model" for molecules
